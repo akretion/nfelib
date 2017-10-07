@@ -1,0 +1,9 @@
+Module contents
+=================
+
+.. automodule:: {{schema_name}}lib
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+

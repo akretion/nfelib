@@ -26,7 +26,7 @@ como instalar
 
 .. code::
 
-  pip install -e git+https://github.com/akretion/nfelib.git@#egg=nfelib
+  pip install -e git+https://github.com/akretion/nfelib.git#egg=nfelib
 
 como usar
 =========

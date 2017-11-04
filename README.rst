@@ -1,37 +1,43 @@
 nfelib Python library
 =====================
 
-A nfelib é uma biblioteca para ler e gerir notas fiscais electronicas brasileiras (NFe's). Ja existem varias outras bibliotecas, porem na Akretion queriamos algo que fosse simples de manter para usar com o ERP open source Odoo. A nfelib nao tem a pretençao de solucionar toda burocracia do SPED sozinha, mas apenas a questao da geraçao da NFe. Tambem criamos outras bibliotecas semelhantes para os outros documentos electronicos do SPED.
+A nfelib é uma biblioteca para ler e gerir notas fiscais electronicas brasileiras (NFe's). A nfelib não tem a pretenção de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe. Para transmitir as NFe's para a receita, aconselhamos a biblioteca `PyTrustNFe <https://github.com/danimaribeiro/PyTrustNFe>`_. Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Tambem criamos outras bibliotecas semelhantes para os outros documentos electronicos do SPED (especialmente para mdf, cte, e-social e sped-reinf).
+
+Durante anos usamos o `pysped <https://github.com/aricaldeira/PySPED>`_. Porem no pysped, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de codigo**, apenas `nessa parte para montar o leiaute da NFe <https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute>`_. Mas isso ocasiona um custo de manutenção prohibitivo a cada atualização dos esquemas sem falar que por se tratar de codigo manual tem varios erros com as tags poucas usadas e na Akretion cansamos de escrever patch na urgencia no pysped a cada vez que um cliente Odoo nosso não consegue transmistir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de codigo podem ser geradas por um unico comando com a ferramenta GenerateDS (pois é de chorar mesmo):
+
+.. code-block:: bash
+
+  python generateDS.py -o leiauteNFe.py leiauteNFe_v3.10.xsd
 
 A nfelib permite de:
 
 * Gerir os XMLs dos documentos fiscais.
-* Validar os dados com as mesmas validaçoes dos XSDs ao montar os objetos, o que evita detetar os erros apenas ao transmitir o XML.
+* Validar os dados com **as mesmas validaçoes dos XSD's ao montar os objetos**, o que evita detetar os erros apenas ao transmitir o XML.
 * Importar XMLs e transfoma-los em objetos Python. Usando um sistema de sub-classes, fica facil mapear esses objetos em outros objetos ou adicionar qualquer metodo customizado.
 
 A nfelibe é:
 
-* **Simples e confiavel**. O codigo é gerido pelo generateDS a partir dos XSD's da Fazenda usando o script generate de menos de **70 linhas de codigo** apenas.
-* Compativel com **Python 2 e Python 3**.
+* **Simples e confiavel**. O codigo é gerido pelo generateDS a partir dos XSD's da Fazenda. Ele **reflete exactamente a especificação fiscal** da versão do esquema escolhida sem que vc deve se perguntar qual é o grau de aderencia do codigo.
+* Compativel com **Python 3** e com Python 2.
 * Capaz de carregar **varias versoes dos esquemas**. Isso pode ser bem util ao receber uma nota fiscal com um layout antigo.
 
-As tecnologias XML (XSD, WSDL, SOAP...) usadas pelo site da Fazenda foram criadas inicialmente para Java e .Net. Durante um bom tempo essas tecnologias ficaram para tras no mundo do Python. Por isso varias pessoas foram criar bibliotecas manualmente com milhares de linhas e poucos testes para montar os XMLs dos documentos electronicos. Mas hoje é um absurdo usar biblitecas escritas manualmente e depender do autor inicial a cada atualizaçao dos esquemas ou quando seu programa deve migrar para Python 3. Veja o conceito do 'Truck Factor' <https://en.wikipedia.org/wiki/Bus_factor>
+As tecnologias XML (XSD, WSDL, SOAP...) usadas pelo site da Fazenda foram criadas inicialmente para Java e .Net. Durante um bom tempo essas tecnologias ficaram para tras no mundo do Python. Por isso varias pessoas foram criar bibliotecas manualmente com milhares de linhas e poucos testes para montar os XMLs dos documentos electronicos. Mas hoje é um absurdo usar biblitecas escritas manualmente e depender do autor inicial a cada atualização dos esquemas ou quando seu programa deve migrar para Python 3. Veja o conceito do `Truck Factor <https://en.wikipedia.org/wiki/Bus_factor>`_
 
-É debativel qual é a melhor forma de transmitir esses documentos electronicos para o site da Fazenda (talvez com essas bibliotecas que ja existem, talvez com outras bibilotecas em Java especializadas em transmitir os documentos electronicos). Porem na questao de montar os XML e poder efetuar validaçoes dos dados o mais cedo possivel (perto do momento em qual o usuario preenchou os dados), dificilmente uma biblioteca de milhares de linhas escrita manualmente fica mais confiavel do que codigo gerido a partir dos XSD da Fazenda apenas. As classes da nfelib sao geridas usando a ferramenta generateDS. A funcionalidade de sub-classes do generateDS tambem ajuda na questao dos mapeamentos entre o modelo de dados dos esquemas da fazenda e o modelo de dados do seu software (ERP por examplo). Finalmente ficou possivel fazer com Python o que o pessoal do Java ja fazia ha muito tempo com as tecnologias do tipo JAXB.
+Alem disso, usando outros recursos do GenerateDS, é possivel ir alem dessa biblioteca nfelib e gerir automaticamente o modelo de dado do ERP pelo menos no ERP Odoo que tem um framework bastante poderoso. Sendo assim, é possivel montar dinamicamente as telas do usuario, a geração do XML ou a importação do XML quasi que sem escrever codigo (apenas os campos que se mapeamem em campos ja existes do ERP). Fica então bem mais razovel para manter quando tem que atualizar os esquemas e assim tambem fica finalmente possivel manter os dados do SPED dentro do ERP com um custo de manutenção compativel com o modelo open source.
 
-Voce pode aprender mais sobre o generateDS.py aqui: <http://www.davekuhlman.org/generateDS.html>
+Voce pode aprender mais sobre o generateDS.py `aqui: <http://www.davekuhlman.org/generateDS.html>`_
 
 como instalar
 =============
 
-.. code::
+.. code-block:: bash
 
-  pip install git+https://github.com/akretion/nfelib.git#egg=nfelib
+  pip install nfelib
 
 como usar
 =========
 
-.. code::
+.. code-block:: python
 
   # nfelib permite de ler os dados de uma nota fiscal, por examplo no formato 3.10:
   >>> from nfelib.v3_10 import leiauteNFe as leiauteNFe3
@@ -86,3 +92,13 @@ como usar
     <CNAE>0111111</CNAE>
     <CRT>3</CRT>
   </emitType>
+
+
+uso no ERP Odoo
+===============
+
+para cada documento electronico para quais existem schemas XSD's, a Akretion fez um repo Github com uma lib desse tipo.
+Mas fomos alem: para cada repo existe uma branch 'generated_odoo' com o modelo de dados dos documento para o ERP livre Odoo.
+Esses modelos sao abstratos e podem ser injectados de forma inteligente no ERP Odoo para nao ter que manter manualmente os
+campos fiscais e o mapeamento desses dados. Em breve a Akretion ira mostrar como fazer isso dentro de modulos da OCA.
+

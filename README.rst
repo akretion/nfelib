@@ -42,9 +42,50 @@ Como Usar
   # nfelib permite ler os dados de uma nota fiscal, por exemplo no formato 3.10:
   >>> from nfelib.v3_10 import leiauteNFe as leiauteNFe3
   # você usaria from nfelib.v4_00 import leiauteNFe as leiauteNFe4 para usar a versão 4.00 do leiaute
-  >>> nota = leiauteNFe3.parse("/algum_caminho/alguma_nota.xml")
-  >>> nota.get_infNFe().get_emit().get_CPF()
-  '12345678901'
+
+  # primeiro, temos que recortar a nota processada (tag rais nfeProc) no primeiro filho (tag NFe)
+  # pois para evitar ter uma biblioteca enorme, o parser so funciona para o elemento NFe:
+  >>> from lxml import etree
+  >>> tree = etree.parse("/algum_caminho/alguma_nota.xml")
+  >>> root = tree.getroot()
+  >>> import tempfile
+  >>> new_file, filename = tempfile.mkstemp()
+  >>> subtree = etree.ElementTree(root[0]) # exportamentos apenas o primeiro filho
+  >>> subtree.write(filename, encoding='utf-8')
+
+  # agora vamos importar o XML da nota e transforma-lo em objeto Python:
+  >>> nota = leiauteNFe3.parse(filename)
+  # agora podemos trabalhar em cima do objeto e fazer operaçoes como:
+  >>> nota.get_infNFe().get_emit().get_CNPJ()
+  '03102552000172'
+  >>> len(nota.get_infNFe().get_det())
+  42
+  # (a nota tem 42 linhas)
+
+  # podemos tambem alterar os dados usandos os getters e setters...
+
+  # e finalmente podemos exportar a nota num arquivo de novo por examplo
+  # com Python2, hoje para exportar num arquivo, temos que primeiro exportar num
+  # buffer StringIO e depois jogar ele dentro de um arquivo para poder garantir o encoding utf-8:
+  >>> import StringIO
+  >>> output = StringIO.StringIO()
+  >>> nota.export(output, 0)
+  >>> contents = output.getvalue()
+  >>> output.close()
+
+  >>> new_file, filename = tempfile.mkstemp()
+  >>> with open(filename, 'w') as f:
+  ...     write_txt = contents.encode('utf8')
+  ...     f.write(write_txt)
+
+  >>> print filename
+  # basta abrir o arquivo filename, e conferir que ele eh semelhante ao arquivo de entrada (apenas recortado e formatado)
+
+
+  # no Python3, o export é mais facil, basta fazer:
+  >>> new_file, filename = tempfile.mkstemp()
+  >>> nota.export(open(filename, 'w'), 0)
+  >>> print(filename)
 
 
   # nfelib também permite de montar o XML de uma nota fiscal com todas validações dos XSDs já nos objetos:
@@ -98,6 +139,6 @@ Uso no ERP Odoo
 ===============
 
 Para cada documento eletrônico para o qual existe esquema XSD's, a Akretion fez um repo Github com uma lib desse tipo.
-Mas fomos além: para cada repo existe uma branch 'generated_odoo' com o modelo de dados dos documento para o ERP livre Odoo.
+Mas fomos além: para cada repo existe uma branch `'generated_odoo': <https://github.com/akretion/nfelib/tree/generated_odoo>` com o modelo de dados dos documento para o ERP livre Odoo.
 Esses modelos são abstratos e podem ser injetados de forma inteligente no ERP Odoo para não ter que manter manualmente os campos fiscais e o mapeamento desses dados. Em breve a Akretion irá mostrar como fazer isso dentro de módulos da OCA.
 

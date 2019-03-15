@@ -57,7 +57,8 @@ pip install git+https://github.com/akretion/nfelib
 
 
   # nfelib também permite de montar o XML de uma nota fiscal com todas validações dos XSDs já nos objetos:
-  >>> enderEmit=parser.TEnderEmi(xLgr='NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV',
+  >>> from nfelib.v4_00 import leiauteNFe
+  >>> enderEmit=leiauteNFe.TEnderEmi(xLgr='NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV',
   nro='11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y',
   xCpl='Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw',
   xBairro='67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU',
@@ -69,13 +70,13 @@ pip install git+https://github.com/akretion/nfelib
   fone='12345678901324')
 
   # se tentar montar algum objeto com algum dado inválido:
-  >>> emitente=parser.emitType(enderEmit=enderEmit, CPF='Brazil is a f*cking bureaucracy', xNome='Raphael', IE='12345678901234', IEST='84', IM='zjfBnFVG8TBq8iW', CNAE='0111111', CRT='3')
-  nfelib/v4_00/leiauteNFe.py:5560: UserWarning: Value "Brazil is a f*cking bureaucracy" does not match xsd maxLength restriction on TCpf
-    warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCpf' % {"value" : value.encode("utf-8")} )
-  nfelib/v4_00/leiauteNFe.py:5563: UserWarning: Value "Brazil is a f*cking bureaucracy" does not match xsd pattern restrictions: [['^[0-9]{11}$']]
-    warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCpf_patterns_,
-
-  >>> emitente=parser.emitType(enderEmit=enderEmit, CPF='12345678901', xNome='Raphael', IE='12345678901234', IEST='84', IM='zjfBnFVG8TBq8iW', CNAE='0111111', CRT='3')
+  >>> emitente=leiauteNFe.emitType(enderEmit=enderEmit, CPF='Brazil is a f*cking bureaucracy', xNome='Raphael', IE='12345678901234', IEST='84', IM='zjfBnFVG8TBq8iW', CNAE='0111111', CRT='3')
+>>> leiauteNFe.emitType(enderEmit=enderEmit, CPF='Brazil is a f*cking bureaucracy', xNome='Raphael', IE='12345678901234', IEST='84', IM='zjfBnFVG8TBq8iW', CNAE='0111111', CRT='3')
+/home/rvalyi/DEV/nfelib-edocs-gen/nfelib/v4_00/leiauteNFe.py:5821: UserWarning: Value "b'Brazil is a f*cking bureaucracy'" does not match xsd maxLength restriction on TCpf
+  warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCpf' % {"value" : value.encode("utf-8")} )
+/home/rvalyi/DEV/nfelib-edocs-gen/nfelib/v4_00/leiauteNFe.py:5824: UserWarning: Value "b'Brazil is a f*cking bureaucracy'" does not match xsd pattern restrictions: [['^([0-9]{11})$']]
+  warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCpf_patterns_, ))
+<nfelib.v4_00.leiauteNFe.emitType object at 0x7f623c4be748>
 
   # para gerir o XML:
   >>> import sys

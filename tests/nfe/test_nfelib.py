@@ -25,24 +25,8 @@ def test_in_out():
         nota.infNFe.emit.CNPJ
 
         filename = 'tests/output.xml'
-        if sys.version_info.major == 2:  # Python 2
-            output = StringIO.StringIO()
-            nota.export(output, 0, name_='NFe', namespaceprefix_='',
-                        namespacedef_='xmlns=\
-                        "http://www.portalfiscal.inf.br/nfe"')
-            contents = output.getvalue()
-            output.close()
-
-            with open(filename, 'w') as f:
-                write_txt = contents#.encode('utf8')
-                f.write(write_txt)
-        else:  # Python 3
-            filename = 'tests/output.xml'
-            with open(filename, 'w') as f:
-
-                nota.export(f, 0, name_='NFe', namespaceprefix_='',
-                            namespacedef_='xmlns=\
-                            "http://www.portalfiscal.inf.br/nfe"')
+        with open(filename, 'w') as f:
+            parser.export(nota, nfeProc=False, stream=f)
 
         diff = main.diff_files('tests/input.xml', 'tests/output.xml')
         print(diff)

@@ -3,6 +3,9 @@
 
 from setuptools import setup, find_packages
 
+with open('README.md', 'r', 'utf-8') as f:
+    readme = f.read()
+
 setup(
     name='nfelib',
     version='0.1',
@@ -10,7 +13,8 @@ setup(
     author_email='raphael.valyi@akretion.com',
     url='https://github.com/akretion/nfelib',
     description='nfelib: electronic invoicing library for Brazil',
-    long_description=open('README.rst').read(),
+    long_description=readme,
+    long_description_content_type='text/markdown',
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',

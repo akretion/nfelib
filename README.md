@@ -1,13 +1,12 @@
-NFeLib Python Library
-=====================
+# nfelib Python Library
 
 A NFeLib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileiras (NFe's). A NFeLib não tem a pretensão de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe. Para transmitir as NFe's para a receita, aconselhamos a biblioteca `PyTrustNFe <https://github.com/danimaribeiro/PyTrustNFe>`_. Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (especialmente para MDF, CTe, E-Social e SPED-Reinf).
 
 Durante anos usamos o `pysped <https://github.com/aricaldeira/PySPED>`_. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas `nessa parte para montar o leiaute da NFe <https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute>`_. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmistir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código podem ser geradas por um único comando com a ferramenta GenerateDS (pois é de chorar mesmo):
 
-.. code-block:: bash
-
-  python generateDS.py -o leiauteNFe.py leiauteNFe_v3.10.xsd
+```ruby
+python generateDS.py -o leiauteNFe.py leiauteNFe_v3.10.xsd
+```
 
 A NFeLib permite:
 
@@ -27,18 +26,15 @@ Além disso, usando outros recursos do GenerateDS, é possível ir além dessa b
 
 Você pode aprender mais sobre o generateDS.py `aqui: <http://www.davekuhlman.org/generateDS.html>`_
 
-Como Instalar
-=============
+# Como Instalar
 
-.. code-block:: bash
+```bash
+pip install git+https://github.com/akretion/nfelib
+```
 
-  pip install nfelib
+# Como Usar
 
-Como Usar
-=========
-
-.. code-block:: python
-
+```python
   # nfelib permite ler os dados de uma nota fiscal, por exemplo no formato 3.10:
   >>> from nfelib.v3_10 import leiauteNFe as leiauteNFe3
   # você usaria from nfelib.v4_00 import leiauteNFe as leiauteNFe4 para usar a versão 4.00 do leiaute
@@ -133,10 +129,9 @@ Como Usar
     <CNAE>0111111</CNAE>
     <CRT>3</CRT>
   </emitType>
+```
 
-
-Uso no ERP Odoo
-===============
+# Uso no ERP Odoo
 
 Para cada documento eletrônico para o qual existe esquema XSD's, a Akretion fez um repo Github com uma lib desse tipo.
 Mas fomos além: para cada repo existe uma branch `'generated_odoo': <https://github.com/akretion/nfelib/tree/generated_odoo>` com o modelo de dados dos documento para o ERP livre Odoo.

@@ -55,16 +55,16 @@ def parse(inFilename, silence=False):
     return rootObj
 
 
-def export(doc, nfeProc=True):
-    sys.stdout.write('<?xml version="1.0" ?>\n')
+def export(doc, nfeProc=True, stream=sys.stdout):
+    stream.write('<?xml version="1.0" ?>\n')
     if nfeProc:
-        sys.stdout.write('<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" \
+        stream.write('<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" \
                          versao="4.00">\n')
-    doc.export(sys.stdout, 0, namespaceprefix_='', name_='NFe',
+    doc.export(stream, 0, namespaceprefix_='', name_='NFe',
                namespacedef_='xmlns="http://www.portalfiscal.inf.br/nfe"')
     if nfeProc:
         # TODO deal with infProt
-        sys.stdout.write('</nfeProc>\n')
+        stream.write('</nfeProc>\n')
 
 
 USAGE_TEXT = """

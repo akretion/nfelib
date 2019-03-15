@@ -3,12 +3,12 @@
 
 from setuptools import setup, find_packages
 
-with open('README.md', 'r', 'utf-8') as f:
+with open('README.md', 'r') as f:
     readme = f.read()
 
 setup(
     name='nfelib',
-    version='0.1',
+    version='0.2',
     author='Raphael Valyi',
     author_email='raphael.valyi@akretion.com',
     url='https://github.com/akretion/nfelib',

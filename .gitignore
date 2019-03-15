@@ -1,5 +1,8 @@
 led python files
 *.py[co]
+.pytest_cache
 tests/.cache
 tests/.coverage
 tests/.pytest_cache
+tests/input.xml
+tests/output.xml

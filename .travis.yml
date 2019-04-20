@@ -6,5 +6,8 @@ python:
 install:
 - pip install xmldiff
 - pip install .
+branches:
+  except:
+    - master
 script:
 - pytest -s

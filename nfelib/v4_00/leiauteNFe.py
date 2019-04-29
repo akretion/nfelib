@@ -3615,7 +3615,7 @@ class TLocal(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpjOpc' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpjOpc_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpjOpc_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpjOpc_patterns_, ))
     validate_TCnpjOpc_patterns_ = [['^([0-9]{0}|[0-9]{14})$']]
     def validate_TCpf(self, value):
         # Validate type TCpf, a restriction on xs:string.
@@ -4039,7 +4039,7 @@ class TIpi(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_cSeloType(self, value):
         # Validate type cSeloType, a restriction on TString.
@@ -4563,7 +4563,7 @@ class ideType(GeneratedsSuper):
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
                     self.validate_TDateTimeUTC_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TDateTimeUTC_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on dhEmi: %s' % (value.encode('utf-8'), self.validate_TDateTimeUTC_patterns_, ))
     validate_TDateTimeUTC_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]|10|11):00|([\\+](12):00)))$']]
     def validate_tpNFType(self, value):
         # Validate type tpNFType, a restriction on xs:string.
@@ -4600,7 +4600,7 @@ class ideType(GeneratedsSuper):
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
                     self.validate_TCodMunIBGE_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on cMunFG: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
     def validate_tpImpType(self, value):
         # Validate type tpImpType, a restriction on xs:string.
@@ -4637,7 +4637,7 @@ class ideType(GeneratedsSuper):
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
                     self.validate_cDVType_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_cDVType_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on cDV: %s' % (value.encode('utf-8'), self.validate_cDVType_patterns_, ))
     validate_cDVType_patterns_ = [['^([0-9]{1})$']]
     def validate_TAmb(self, value):
         # Validate type TAmb, a restriction on xs:string.
@@ -4720,7 +4720,7 @@ class ideType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on verProcType' % {"value" : value} )
             if not self.gds_validate_simple_patterns(
                     self.validate_verProcType_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_verProcType_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on verProc: %s' % (value.encode('utf-8'), self.validate_verProcType_patterns_, ))
     validate_verProcType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_xJustType(self, value):
         # Validate type xJustType, a restriction on TString.
@@ -4733,7 +4733,7 @@ class ideType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on xJustType' % {"value" : value} )
             if not self.gds_validate_simple_patterns(
                     self.validate_xJustType_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_xJustType_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on xJust: %s' % (value.encode('utf-8'), self.validate_xJustType_patterns_, ))
     validate_xJustType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def hasContent_(self):
         if (
@@ -5223,7 +5223,7 @@ class refNFType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_modType(self, value):
         # Validate type modType, a restriction on xs:string.
@@ -5436,7 +5436,7 @@ class refNFPType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_TCpf(self, value):
         # Validate type TCpf, a restriction on xs:string.
@@ -5447,7 +5447,7 @@ class refNFPType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCpf' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCpf_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCpf_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CPF: %s' % (value.encode('utf-8'), self.validate_TCpf_patterns_, ))
     validate_TCpf_patterns_ = [['^([0-9]{11})$']]
     def validate_TIeDest(self, value):
         # Validate type TIeDest, a restriction on xs:string.
@@ -5458,7 +5458,7 @@ class refNFPType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TIeDest' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TIeDest_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TIeDest_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on TIeDest: %s' % (value.encode('utf-8'), self.validate_TIeDest_patterns_, ))
     validate_TIeDest_patterns_ = [['^(ISENTO|[0-9]{2,14})$']]
     def validate_modType2(self, value):
         # Validate type modType2, a restriction on xs:string.
@@ -5810,7 +5810,7 @@ class emitType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ of Emi: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_TCpf(self, value):
         # Validate type TCpf, a restriction on xs:string.
@@ -5847,7 +5847,7 @@ class emitType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on xFantType' % {"value" : value} )
             if not self.gds_validate_simple_patterns(
                     self.validate_xFantType_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_xFantType_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on xFantType: %s' % (value.encode('utf-8'), self.validate_xFantType_patterns_, ))
     validate_xFantType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TIe(self, value):
         # Validate type TIe, a restriction on xs:string.
@@ -5855,10 +5855,10 @@ class emitType(GeneratedsSuper):
             value = value.encode("utf-8")
         if value is not None and Validate_simpletypes_:
             if len(value) > 14:
-                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TIe' % {"value" : value.encode("utf-8")} )
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on IE' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TIe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TIe_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on IE: %s' % (value.encode('utf-8'), self.validate_TIe_patterns_, ))
     validate_TIe_patterns_ = [['^([0-9]{2,14}|ISENTO)$']]
     def validate_TIeST(self, value):
         # Validate type TIeST, a restriction on xs:string.
@@ -6110,7 +6110,7 @@ class avulsaType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_xOrgaoType(self, value):
         # Validate type xOrgaoType, a restriction on TString.
@@ -6432,7 +6432,7 @@ class destType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_TCpf(self, value):
         # Validate type TCpf, a restriction on xs:string.
@@ -7099,7 +7099,7 @@ class prodType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_cBenefType(self, value):
         # Validate type cBenefType, a restriction on xs:string.
@@ -7806,7 +7806,7 @@ class DIType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_cExportadorType(self, value):
         # Validate type cExportadorType, a restriction on TString.
@@ -15610,7 +15610,7 @@ class ISSQNType(GeneratedsSuper):
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
                     self.validate_TCodMunIBGE_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on cMunFG: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
     def validate_TCListServ(self, value):
         # Validate type TCListServ, a restriction on xs:string.
@@ -19218,7 +19218,7 @@ class transportaType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on CNPJ: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_TCpf(self, value):
         # Validate type TCpf, a restriction on xs:string.
@@ -19253,7 +19253,7 @@ class transportaType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TIeDest' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TIeDest_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TIeDest_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on TIeDest: %s' % (value.encode('utf-8'), self.validate_TIeDest_patterns_, ))
     validate_TIeDest_patterns_ = [['^(ISENTO|[0-9]{2,14})$']]
     def validate_xEnderType(self, value):
         # Validate type xEnderType, a restriction on TString.
@@ -19483,7 +19483,7 @@ class retTranspType(GeneratedsSuper):
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
                     self.validate_TCodMunIBGE_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on cMunFG: %s' % (value.encode('utf-8'), self.validate_TCodMunIBGE_patterns_, ))
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
     def hasContent_(self):
         if (
@@ -20558,7 +20558,7 @@ class cardType(GeneratedsSuper):
                 warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TCnpj' % {"value" : value.encode("utf-8")} )
             if not self.gds_validate_simple_patterns(
                     self.validate_TCnpj_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions on TCnpj: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
     validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
     def validate_tBandType(self, value):
         # Validate type tBandType, a restriction on xs:string.

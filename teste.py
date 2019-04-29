@@ -1,0 +1,14 @@
+from nfelib.v4_00 import leiauteNFe_sub as parser
+import io
+import warnings
+
+xml = """
+<NFe xmlns='http://www.portalfiscal.inf.br/nfe'><infNFe versao='4.00' Id='NFe22190415443409000150650040000012391041474884'><ide><cUF>22</cUF><cNF>04147488</cNF><natOp>VENDA</natOp><mod>65</mod><serie>4</serie><nNF>1239</nNF><dhEmi>2019-04-11T13:35:57-03:00</dhEmi><tpNF>1</tpNF><idDest>1</idDest><cMunFG>22110</cMunFG><tpImp>4</tpImp><tpEmis>20</tpEmis><cDV>z</cDV><tpAmb>z</tpAmb><finNFe>1</finNFe><indFinal>1</indFinal><indPres>1</indPres><procEmi>0</procEmi><verProc>PyNFe</verProc></ide><emit><CNPJ>zza</CNPJ><xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome><xFant>Nome Fantasia da Empresa</xFant><enderEmit><xLgr>Rua da Paz</xLgr><nro>666</nro><xBairro>Sossego</xBairro><cMun>2211001</cMun><xMun>teresina</xMun><UF>PI</UF><CEP>87704000</CEP><cPais>1058</cPais><xPais>Brasil</xPais></enderEmit><IE></IE><IM>12345</IM><CNAE>9999999</CNAE><CRT>1</CRT></emit><dest><CPF>06130802382</CPF><xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome><enderDest><xLgr>Rua dos Bobos</xLgr><nro>Zero</nro><xCpl>Ao lado de lugar nenhum</xCpl><xBairro>Aquele Mesmo</xBairro><cMun>5300108</cMun><xMun>Brasilia</xMun><UF>DF</UF><CEP>12345123</CEP><cPais>1058</cPais><xPais>Brasil</xPais><fone>11912341234</fone></enderDest><indIEDest>9</indIEDest><email>email@email.com</email></dest><det nItem='1'><prod><cProd>000328</cProd><cEAN>SEM GTIN</cEAN><xProd>NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xProd><NCM>87089990</NCM><CFOP>5102</CFOP><uCom>UN</uCom><qCom>12</qCom><vUnCom>9.7500</vUnCom><vProd>117.00</vProd><cEANTrib>SEM GTIN</cEANTrib><uTrib>UN</uTrib><qTrib>12</qTrib><vUnTrib>9.7500</vUnTrib><indTot>1</indTot></prod><imposto><vTotTrib>21.06</vTotTrib><ICMS><ICMSSN102><orig>0</orig><CSOSN>400</CSOSN></ICMSSN102></ICMS></imposto></det><total><ICMSTot><vBC>0.00</vBC><vICMS>0.00</vICMS><vICMSDeson>0.00</vICMSDeson><vFCP>0.00</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>0.00</vFCPST><vFCPSTRet>0.00</vFCPSTRet><vProd>117.00</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vIPIDevol>0.00</vIPIDevol><vPIS>0.00</vPIS><vCOFINS>0.00</vCOFINS><vOutro>0.00</vOutro><vNF>117.00</vNF><vTotTrib>21.06</vTotTrib></ICMSTot></total><transp><modFrete>9</modFrete></transp><pag><detPag><tPag>01</tPag><vPag>117.00</vPag></detPag></pag><infAdic><infAdFisco>Mensagem complementar</infAdFisco></infAdic></infNFe><infNFeSupl><qrCode><![CDATA[http://www.sefaz.pi.gov.br/nfce/qrcode?p=22190415443409000150650040000012391041474884|2|2|1|5BC09D7A348B3CBDBFF0D1E5015BE5D9377EDB52]]></qrCode><urlChave>http://www.sefaz.pi.gov.br/nfce/qrcode</urlChave></infNFeSupl></NFe>
+"""
+
+with warnings.catch_warnings(record=True) as w:
+    nota = parser.parse(io.StringIO(xml.decode('utf-8')))
+    
+    for item in w:
+        print(item.message)
+

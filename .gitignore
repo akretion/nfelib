@@ -6,3 +6,4 @@ tests/.coverage
 tests/.pytest_cache
 tests/input.xml
 tests/output.xml
+teste.py

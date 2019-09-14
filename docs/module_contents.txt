@@ -1,9 +1,10 @@
 Module contents
 =================
-
-.. automodule:: {{schema_name}}lib
+.. automodule:: leiauteInutNFe
     :members:
     :undoc-members:
     :show-inheritance:
-
-
+.. automodule:: leiauteNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:

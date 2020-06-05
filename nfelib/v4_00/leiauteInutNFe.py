@@ -3155,6 +3155,7 @@ class DigestMethodType(GeneratedsSuper):
 
 GDSClassesMapping = {
     'Signature': SignatureType,
+    'retInutNFe': TRetInutNFe,
 }
 
 

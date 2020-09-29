@@ -2,9 +2,7 @@ import sys
 import os
 from lxml import etree as etree_
 sys.path.append(os.path.dirname(__file__))
-import leiauteNFe as supermod
-
-# sys.path.append(os.path.dirname(__file__))
+import retEnviNFe as supermod
 
 
 def parsexml_(infile, parser=None, keep_signature=False, **kwargs):

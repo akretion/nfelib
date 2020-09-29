@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='nfelib',
-    version='0.2',
+    version='0.3',
     author='Raphael Valyi',
     author_email='raphael.valyi@akretion.com',
     url='https://github.com/akretion/nfelib',
@@ -22,10 +22,7 @@ setup(
         'Programming Language :: Python',
         'License :: OSI Approved :: BSD License',
         "Operating System :: OS Independent",
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -33,7 +30,7 @@ setup(
     keywords='e-invoice NFe ERP Odoo',
     packages=find_packages(),
     include_package_data=True,
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+    python_requires=">=3.5",
     scripts=[],
     zip_safe=False,
 )

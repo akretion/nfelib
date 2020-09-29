@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/akretion/nfelib.svg?branch=master_gen_v4_00)](https://travis-ci.org/akretion/nfelib)
 
+[![nfelib](https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfe.jpg)](https://github.com/akretion/nfelib/) by [![Akretion](https://raw.githubusercontent.com/akretion/nfelib/master/ext/akretion-logo2.png)](https://akretion.com/pt_BR)
+
 # nfelib Python Library
 
 A nfelib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileiras (NFe's). A nfelib não tem a pretensão de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe.
@@ -43,7 +45,7 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 ```bash
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
   
-# lPacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
+# Pacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
 erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
 
 erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .

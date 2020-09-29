@@ -2,27 +2,30 @@
 
 # nfelib Python Library
 
-A NFeLib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileiras (NFe's). A NFeLib não tem a pretensão de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe. Para transmitir as NFe's para a receita, aconselhamos a biblioteca Python Zeep, ou por examplo https://github.com/danimaribeiro/PyTrustNFe. Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (especialmente para MDF, CTe, E-Social e SPED-Reinf).
+A nfelib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileiras (NFe's). A nfelib não tem a pretensão de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe.
 
-Durante anos usamos o https://github.com/aricaldeira/PySPED. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas nessa parte para montar o leiaute da NFe https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmistir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código podem ser geradas por um único comando com a ferramenta GenerateDS (pois é de chorar mesmo):
+* Para transmitir as NFe's para a receita, aconselhamos a biblioteca Python Zeep, ou entao por examplo https://github.com/erpbrasil/erpbrasil.edoc.
+* E para imprimir o DANFE, é possivel usar https://github.com/erpbrasil/erpbrasil.edoc.pdf 
+
+Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (especialmente para MDFe, CTe, E-Social e SPED-Reinf).
+
+Durante anos usamos o https://github.com/aricaldeira/PySPED. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas nessa parte para montar o leiaute da NFe https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmitir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código podem ser geradas por **um único comando** com a ferramenta [generateDS](http://www.davekuhlman.org/generateDS.html) usada por essa lib:
 
 ```bash
 python generateDS.py -o leiauteNFe.py leiauteNFe_v4.00.xsd
 ```
 
-A NFeLib permite:
+A nfelib permite de:
 
 * Gerir os XMLs dos documentos fiscais.
 * Validar os dados com **as mesmas validações dos XSD's ao montar os objetos**, o que evita detectar os erros apenas ao transmitir o XML.
 * Importar XMLs e transforma-los em objetos Python. Usando um sistema de sub-classes, fica fácil mapear esses objetos em outros objetos ou adicionar qualquer método customizado.
 
-A NFeLib é:
+A nfelib é:
 
 * **Simples e confiável**. O código é gerido pelo generateDS a partir dos XSD's da Fazenda. Ele **reflete exatamente a especificação fiscal** da versão do esquema escolhida sem que você deva se perguntar qual é o grau de aderência do código.
-* Compatível com **Python 3** e com Python 2.
+* Compatível com **Python 3** (e com Python 2 se botar patches no generateDS e usar uma versao anterior)
 * Capaz de carregar **várias versões dos esquemas**. Isso pode ser bem útil ao receber uma nota fiscal com um leiaute antigo.
-
-As tecnologias XML (XSD, WSDL, SOAP...) usadas pelo site da Fazenda foram criadas inicialmente para Java e .Net. Durante um bom tempo essas tecnologias ficaram para trás no mundo do Python. Por isso várias pessoas foram criar bibliotecas manualmente com milhares de linhas e poucos testes para montar os XMLs dos documentos eletrônicos. Mas hoje é um absurdo usar biblitecas escritas manualmente e depender do autor inicial a cada atualização dos esquemas ou quando seu programa deve migrar para Python 3. Veja o conceito do `Truck Factor <https://en.wikipedia.org/wiki/Bus_factor>`_
 
 Além disso, usando outros recursos do GenerateDS, é possível ir além dessa biblioteca NFeLib e gerir automaticamente o modelo de dados do ERP pelo menos no ERP Odoo que tem um framework bastante poderoso. Sendo assim, é possivel montar dinamicamente as telas do usuário, a geração do XML ou a importação do XML quase que sem escrever código (apenas relacionar os campos mapeados com os campos já existentes do ERP). Fica então bem mais razoável para manter quando tem que atualizar os esquemas e assim também fica finalmente possível manter os dados do SPED dentro do ERP com um custo de manutenção compatível com o modelo open source.
 
@@ -32,6 +35,27 @@ Você pode aprender mais sobre o generateDS.py `aqui: <http://www.davekuhlman.or
 
 ```bash
 pip install git+https://github.com/akretion/nfelib
+```
+# Gerir a lib novamente
+**Muito importante:** as fonte estao mantido na branch **master**. Entao voce tem que fazer primeiro um 
+```git checkout master```.
+Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esquema que interessa. Porem é interessante instalar essa pequena ferramenta https://github.com/akretion/erpbrasil.edoc.gen para automatizar as operações. Depois da lib instalada (ela puxa o pacote GenerateDS), basta fazer:
+```bash
+# Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
+  
+# lPacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
+erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
+
+erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d nfelib
+```
+ai depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/
+
+se você quiser fazer  uma nova versão no Github, voce tem entao que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00`a fazer commit dos arquivos da pasta nfelib.
+
+# Rodar os testes
+
+```bash
+python3 -m pytest  tests -v
 ```
 
 # Como Usar
@@ -107,6 +131,4 @@ pip install git+https://github.com/akretion/nfelib
 # Uso no ERP Odoo
 
 Para cada documento eletrônico para o qual existe esquema XSD's, a Akretion fez um repo Github com uma lib desse tipo.
-Mas fomos além: para cada repo existe uma branch https://bitbucket.org/dkuhlman/generateds/pull-requests/51 com o modelo de dados dos documento para o ERP livre Odoo.
-Esses modelos são abstratos e podem ser injetados de forma inteligente no ERP Odoo para não ter que manter manualmente os campos fiscais e o mapeamento desses dados. Em breve a Akretion irá mostrar como fazer isso dentro de módulos da OCA.
-
+Mas fomos além: eu tambem criei um gerador de modelos abstratos (mixins) Odoo, de forma que para os documentos fiscais complexos como a NFe vc tem um marshalling/unmarshalling automatico dos dados ate os modelos persistentes do ERP e se remapeando nos objetos nativos do Odoo https://github.com/akretion/generateds-odoo

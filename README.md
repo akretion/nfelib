@@ -46,7 +46,7 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 # lPacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
 erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
 
-erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d nfelib
+erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .
 ```
 ai depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/
 
@@ -131,4 +131,5 @@ python3 -m pytest  tests -v
 # Uso no ERP Odoo
 
 Para cada documento eletrônico para o qual existe esquema XSD's, a Akretion fez um repo Github com uma lib desse tipo.
+
 Mas fomos além: eu tambem criei um gerador de modelos abstratos (mixins) Odoo, de forma que para os documentos fiscais complexos como a NFe vc tem um marshalling/unmarshalling automatico dos dados ate os modelos persistentes do ERP e se remapeando nos objetos nativos do Odoo https://github.com/akretion/generateds-odoo

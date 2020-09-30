@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
-  <xs:include schemaLocation="tiposDistDFe_v1.00.xsd"/>
+  <xs:include schemaLocation="tiposDistDFe_v1.01.xsd"/>
   <xs:element name="retDistDFeInt">
     <xs:annotation>
       <xs:documentation>Schema do resultado do pedido de distribuição de DF-e de interesse</xs:documentation>
@@ -31,9 +31,9 @@
             <xs:documentation>Descrição literal do status do processamento da requisição</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="dhResp" type="xs:dateTime">
+        <xs:element name="dhResp" type="TDateTimeUTC">
           <xs:annotation>
-            <xs:documentation>Data e Hora de processamento da requisição no formato AAAA-MM-DDTHH:MM:SS</xs:documentation>
+            <xs:documentation>Data e Hora de processamento da requisição no formato AAAA-MM-DDTHH:MM:SSTZD</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:element name="ultNSU" type="TNSU">
@@ -57,23 +57,20 @@
                   <xs:documentation>Informação resumida ou documento fiscal eletrônico de interesse da pessoa ou empresa. O conteúdo desta tag estará compactado no padrão gZip. O tipo do campo é base64Binary.</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
-                  <xs:sequence>
-                    <xs:any processContents="skip">
-                      <xs:annotation>
-                        <xs:documentation>Estrutura genérica do documento fiscal eletrônico</xs:documentation>
-                      </xs:annotation>
-                    </xs:any>
-                  </xs:sequence>
-                  <xs:attribute name="NSU" type="TNSU" use="required">
-                    <xs:annotation>
-                      <xs:documentation>NSU do documento fiscal</xs:documentation>
-                    </xs:annotation>
-                  </xs:attribute>
-                  <xs:attribute name="schema" type="xs:string" use="required">
-                    <xs:annotation>
-                      <xs:documentation>Identificação do Schema XML que será utilizado para validar o XML existente no campo seguinte. Vai identificar o tipo do documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd, resEvento_1.00.xsd, procEventoNFe_v1.00.xsd</xs:documentation>
-                    </xs:annotation>
-                  </xs:attribute>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:base64Binary">
+                      <xs:attribute name="NSU" type="TNSU" use="required">
+                        <xs:annotation>
+                          <xs:documentation>NSU do documento fiscal</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="schema" type="xs:string" use="required">
+                        <xs:annotation>
+                          <xs:documentation>Identificação do Schema XML que será utilizado para validar o XML existente no conteúdo da tag docZip. Vai identificar o tipo do documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd, resEvento_1.00.xsd, procEventoNFe_v1.00.xsd</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:extension>
+                  </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -84,3 +81,6 @@
     </xs:complexType>
   </xs:element>
 </xs:schema>
+
+
+

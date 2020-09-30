@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
-  <xs:include schemaLocation="tiposDistDFe_v1.00.xsd"/>
+  <xs:include schemaLocation="tiposDistDFe_v1.01.xsd"/>
   <xs:element name="distDFeInt">
     <xs:annotation>
       <xs:documentation>Schema de pedido de distribuição de DF-e de interesse</xs:documentation>
@@ -16,7 +16,7 @@
             </xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="cUFAutor" type="TCodUfIBGE">
+        <xs:element name="cUFAutor" type="TCodUfIBGE" minOccurs="0">
           <xs:annotation>
             <xs:documentation>Código da UF do Autor</xs:documentation>
           </xs:annotation>
@@ -57,6 +57,20 @@
                 <xs:element name="NSU" type="TNSU">
                   <xs:annotation>
                     <xs:documentation>Número Sequencial Único. Geralmente esta consulta será utilizada quando identificado pelo interessado um NSU faltante. O Web Service retornará o documento ou informará que o NSU não existe no Ambiente Nacional. Assim, esta consulta fechará a lacuna do NSU identificado como faltante.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="consChNFe">
+            <xs:annotation>
+              <xs:documentation>Grupo para consultar uma NF-e a partir da chave de acesso</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="chNFe" type="TChNFe">
+                  <xs:annotation>
+                    <xs:documentation>Chave de acesso da NF-e a ser consultada</xs:documentation>
                   </xs:annotation>
                 </xs:element>
               </xs:sequence>

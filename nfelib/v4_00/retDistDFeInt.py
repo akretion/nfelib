@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Sep 30 18:47:47 2020 by generateDS.py version 2.36.2.
+# Generated Wed Sep 30 20:51:15 2020 by generateDS.py version 2.36.2.
 # Python 3.8.2 (default, Apr 27 2020, 15:53:34)  [GCC 9.3.0]
 #
 # Command line options:
@@ -13,10 +13,10 @@
 #   ('-o', '/tmp/nfelib/nfelib/v4_00/retDistDFeInt.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/retDistDFeInt_v1.00.xsd
+#   /tmp/generated/schemas/nfe/v4_00/retDistDFeInt_v1.01.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retDistDFeInt.py" /tmp/generated/schemas/nfe/v4_00/retDistDFeInt_v1.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retDistDFeInt.py" /tmp/generated/schemas/nfe/v4_00/retDistDFeInt_v1.01.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00
@@ -1026,7 +1026,7 @@ class TCodUfIBGE(str, Enum):
 
 class TVerDistDFe(str, Enum):
     """Tipo Versão dos leiautes do Web Service NFeDistribuicaoDFe"""
-    _1_00='1.00'
+    _1_01='1.01'
 
 
 class retDistDFeInt(GeneratedsSuper):
@@ -1038,7 +1038,7 @@ class retDistDFeInt(GeneratedsSuper):
         MemberSpec_('verAplic', ['TVerAplic', 'TString', 'xs:string'], 0, 0, {'name': 'verAplic', 'type': 'xs:string'}, None),
         MemberSpec_('cStat', ['TStat', 'xs:string'], 0, 0, {'name': 'cStat', 'type': 'xs:string'}, None),
         MemberSpec_('xMotivo', ['TMotivo', 'TString', 'xs:string'], 0, 0, {'name': 'xMotivo', 'type': 'xs:string'}, None),
-        MemberSpec_('dhResp', 'xs:dateTime', 0, 0, {'name': 'dhResp', 'type': 'xs:dateTime'}, None),
+        MemberSpec_('dhResp', ['TDateTimeUTC', 'xs:string'], 0, 0, {'name': 'dhResp', 'type': 'xs:string'}, None),
         MemberSpec_('ultNSU', ['TNSU', 'xs:token'], 0, 0, {'name': 'ultNSU', 'type': 'xs:token'}, None),
         MemberSpec_('maxNSU', ['TNSU', 'xs:token'], 0, 0, {'name': 'maxNSU', 'type': 'xs:token'}, None),
         MemberSpec_('loteDistDFeInt', 'loteDistDFeIntType', 0, 1, {'minOccurs': '0', 'name': 'loteDistDFeInt', 'type': 'loteDistDFeIntType'}, None),
@@ -1065,11 +1065,8 @@ class retDistDFeInt(GeneratedsSuper):
         self.xMotivo = xMotivo
         self.validate_TMotivo(self.xMotivo)
         self.xMotivo_nsprefix_ = None
-        if isinstance(dhResp, BaseStrType_):
-            initvalue_ = datetime_.datetime.strptime(dhResp, '%Y-%m-%dT%H:%M:%S')
-        else:
-            initvalue_ = dhResp
-        self.dhResp = initvalue_
+        self.dhResp = dhResp
+        self.validate_TDateTimeUTC(self.dhResp)
         self.dhResp_nsprefix_ = None
         self.ultNSU = ultNSU
         self.validate_TNSU(self.ultNSU)
@@ -1167,6 +1164,20 @@ class retDistDFeInt(GeneratedsSuper):
                 result = False
         return result
     validate_TMotivo_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_TDateTimeUTC(self, value):
+        result = True
+        # Validate type TDateTimeUTC, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TDateTimeUTC_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TDateTimeUTC_patterns_, ))
+                result = False
+        return result
+    validate_TDateTimeUTC_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]|10|11):00|([\\+](12):00)))$']]
     def validate_TNSU(self, value):
         result = True
         # Validate type TNSU, a restriction on xs:token.
@@ -1189,7 +1200,7 @@ class retDistDFeInt(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['1.00']
+            enumerations = ['1.01']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TVerDistDFe' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -1259,7 +1270,7 @@ class retDistDFeInt(GeneratedsSuper):
         if self.dhResp is not None:
             namespaceprefix_ = self.dhResp_nsprefix_ + ':' if (UseCapturedNS_ and self.dhResp_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sdhResp>%s</%sdhResp>%s' % (namespaceprefix_ , self.gds_format_datetime(self.dhResp, input_name='dhResp'), namespaceprefix_ , eol_))
+            outfile.write('<%sdhResp>%s</%sdhResp>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.dhResp), input_name='dhResp')), namespaceprefix_ , eol_))
         if self.ultNSU is not None:
             namespaceprefix_ = self.ultNSU_nsprefix_ + ':' if (UseCapturedNS_ and self.ultNSU_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -1322,10 +1333,13 @@ class retDistDFeInt(GeneratedsSuper):
             # validate type TMotivo
             self.validate_TMotivo(self.xMotivo)
         elif nodeName_ == 'dhResp':
-            sval_ = child_.text
-            dval_ = self.gds_parse_datetime(sval_)
-            self.dhResp = dval_
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'dhResp')
+            value_ = self.gds_validate_string(value_, node, 'dhResp')
+            self.dhResp = value_
             self.dhResp_nsprefix_ = child_.prefix
+            # validate type TDateTimeUTC
+            self.validate_TDateTimeUTC(self.dhResp)
         elif nodeName_ == 'ultNSU':
             value_ = child_.text
             if value_:
@@ -1456,18 +1470,18 @@ class docZipType(GeneratedsSuper):
     pessoa ou empresa. O conteúdo desta tag estará compactado no padrão
     gZip. O tipo do campo é base64Binary.NSU do documento
     fiscalIdentificação do Schema XML que será utilizado para validar o XML
-    existente no campo seguinte. Vai identificar o tipo do documento e sua
-    versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd,
+    existente no conteúdo da tag docZip. Vai identificar o tipo do
+    documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd,
     resEvento_1.00.xsd, procEventoNFe_v1.00.xsd"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
         MemberSpec_('NSU', 'TNSU', 0, 0, {'use': 'required'}),
         MemberSpec_('schema', 'xs:string', 0, 0, {'use': 'required'}),
-        MemberSpec_('__ANY__', '__ANY__', 0, 0, {'processContents': 'skip'}, None),
+        MemberSpec_('valueOf_', 'xs:base64Binary', 0),
     ]
     subclass = None
     superclass = None
-    def __init__(self, NSU=None, schema=None, anytypeobjs_=None, gds_collector_=None, **kwargs_):
+    def __init__(self, NSU=None, schema=None, valueOf_=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1477,7 +1491,7 @@ class docZipType(GeneratedsSuper):
         self.NSU_nsprefix_ = None
         self.schema = _cast(None, schema)
         self.schema_nsprefix_ = None
-        self.anytypeobjs_ = anytypeobjs_
+        self.valueOf_ = valueOf_
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1502,7 +1516,7 @@ class docZipType(GeneratedsSuper):
     validate_TNSU_patterns_ = [['^([0-9]{15})$']]
     def hasContent_(self):
         if (
-            self.anytypeobjs_ is not None
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -1524,9 +1538,9 @@ class docZipType(GeneratedsSuper):
         already_processed = set()
         self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='docZipType')
         if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
+            outfile.write('>')
+            outfile.write(self.convert_unicode(self.valueOf_))
             self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='docZipType', pretty_print=pretty_print)
-            showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
@@ -1538,14 +1552,7 @@ class docZipType(GeneratedsSuper):
             already_processed.add('schema')
             outfile.write(' schema=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.schema), input_name='schema')), ))
     def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='docZipType', fromsubclass_=False, pretty_print=True):
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if not fromsubclass_:
-            if self.anytypeobjs_ is not None:
-                content_ = self.anytypeobjs_
-                outfile.write(content_)
+        pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -1553,6 +1560,7 @@ class docZipType(GeneratedsSuper):
         already_processed = set()
         self.ns_prefix_ = node.prefix
         self.buildAttributes(node, node.attrib, already_processed)
+        self.valueOf_ = get_all_text_(node)
         for child in node:
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
@@ -1569,8 +1577,7 @@ class docZipType(GeneratedsSuper):
             already_processed.add('schema')
             self.schema = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        content_ = self.gds_build_any(child_, 'docZipType')
-        self.set_anytypeobjs_(content_)
+        pass
 # end class docZipType
 
 
@@ -1768,52 +1775,53 @@ RenameMappings_ = {
 # and the file in which each is defined.
 # simpleTypes are marked "ST" and complexTypes "CT".
 NamespaceToDefMappings_ = {'http://www.portalfiscal.inf.br/nfe': [('TNSU',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TQNSU',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TVerDistDFe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TAmb',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCodUfIBGE',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCOrgaoIBGE',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCnpj',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCpf',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TVerAplic',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TStat',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TMotivo',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TString',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TChNFe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TProt',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TDateTimeUTC',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
-                                        ('TIe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                        ('TIe', 'tiposDistDFe_v1.01.xsd', 'ST'),
+                                        ('TDec_1302',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST')]}
 
 __all__ = [

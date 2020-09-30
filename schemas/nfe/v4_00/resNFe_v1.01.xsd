@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
-  <xs:include schemaLocation="tiposDistDFe_v1.00.xsd"/>
+  <xs:include schemaLocation="tiposDistDFe_v1.01.xsd"/>
   <xs:element name="resNFe">
     <xs:annotation>
       <xs:documentation>Schema da estrutura XML gerada pelo Ambiente Nacional com o conjunto de informações resumidas de uma NF-e</xs:documentation>
@@ -58,6 +58,11 @@
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
+        <xs:element name="vNF" type="TDec_1302">
+          <xs:annotation>
+            <xs:documentation>Valor Total da NF-e</xs:documentation>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="digVal" type="ds:DigestValueType" minOccurs="0">
           <xs:annotation>
             <xs:documentation>Digest Value da NF-e processada. Utilizado para conferir a integridade da NF-e original</xs:documentation>
@@ -73,6 +78,23 @@
             <xs:documentation>Número do Protocolo de Status da NF-e. 1 posição (1 – Secretaria de Fazenda Estadual 2 – Receita Federal); 2 - códiga da UF - 2 posições ano; 10 seqüencial no ano</xs:documentation>
           </xs:annotation>
         </xs:element>
+        <xs:element name="cSitNFe">
+          <xs:annotation>
+            <xs:documentation>
+            Situação da NF-e
+            1-Uso autorizado no momento da consulta;
+            2-Uso denegado;
+            </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:whiteSpace value="preserve"/>
+              <xs:enumeration value="1"/>
+              <xs:enumeration value="2"/>
+              <xs:enumeration value="3"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
       </xs:sequence>
       <xs:attribute name="versao" type="TVerResNFe" use="required"/>
     </xs:complexType>
@@ -83,7 +105,9 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:whiteSpace value="preserve"/>
-      <xs:enumeration value="1.00"/>
+      <xs:enumeration value="1.01"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
+
+

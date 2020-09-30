@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Sep 30 18:47:47 2020 by generateDS.py version 2.36.2.
+# Generated Wed Sep 30 20:51:15 2020 by generateDS.py version 2.36.2.
 # Python 3.8.2 (default, Apr 27 2020, 15:53:34)  [GCC 9.3.0]
 #
 # Command line options:
@@ -13,10 +13,10 @@
 #   ('-o', '/tmp/nfelib/nfelib/v4_00/distDFeInt.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.00.xsd
+#   /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.01.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/distDFeInt.py" /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/distDFeInt.py" /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.01.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00
@@ -1026,7 +1026,7 @@ class TCodUfIBGE(str, Enum):
 
 class TVerDistDFe(str, Enum):
     """Tipo Versão dos leiautes do Web Service NFeDistribuicaoDFe"""
-    _1_00='1.00'
+    _1_01='1.01'
 
 
 class distDFeInt(GeneratedsSuper):
@@ -1035,15 +1035,16 @@ class distDFeInt(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('versao', 'TVerDistDFe', 0, 0, {'use': 'required'}),
         MemberSpec_('tpAmb', ['TAmb', 'xs:string'], 0, 0, {'name': 'tpAmb', 'type': 'xs:string'}, None),
-        MemberSpec_('cUFAutor', ['TCodUfIBGE', 'xs:string'], 0, 0, {'name': 'cUFAutor', 'type': 'xs:string'}, None),
+        MemberSpec_('cUFAutor', ['TCodUfIBGE', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cUFAutor', 'type': 'xs:string'}, None),
         MemberSpec_('CNPJ', ['TCnpj', 'xs:string'], 0, 0, {'name': 'CNPJ', 'type': 'xs:string'}, 1),
         MemberSpec_('CPF', ['TCpf', 'xs:string'], 0, 0, {'name': 'CPF', 'type': 'xs:string'}, 1),
         MemberSpec_('distNSU', 'distNSUType', 0, 0, {'name': 'distNSU', 'type': 'distNSUType'}, 2),
         MemberSpec_('consNSU', 'consNSUType', 0, 0, {'name': 'consNSU', 'type': 'consNSUType'}, 2),
+        MemberSpec_('consChNFe', 'consChNFeType', 0, 0, {'name': 'consChNFe', 'type': 'consChNFeType'}, 2),
     ]
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, cUFAutor=None, CNPJ=None, CPF=None, distNSU=None, consNSU=None, gds_collector_=None, **kwargs_):
+    def __init__(self, versao=None, tpAmb=None, cUFAutor=None, CNPJ=None, CPF=None, distNSU=None, consNSU=None, consChNFe=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1067,6 +1068,8 @@ class distDFeInt(GeneratedsSuper):
         self.distNSU_nsprefix_ = None
         self.consNSU = consNSU
         self.consNSU_nsprefix_ = None
+        self.consChNFe = consChNFe
+        self.consChNFe_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -1152,7 +1155,7 @@ class distDFeInt(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['1.00']
+            enumerations = ['1.01']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TVerDistDFe' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -1164,7 +1167,8 @@ class distDFeInt(GeneratedsSuper):
             self.CNPJ is not None or
             self.CPF is not None or
             self.distNSU is not None or
-            self.consNSU is not None
+            self.consNSU is not None or
+            self.consChNFe is not None
         ):
             return True
         else:
@@ -1223,6 +1227,9 @@ class distDFeInt(GeneratedsSuper):
         if self.consNSU is not None:
             namespaceprefix_ = self.consNSU_nsprefix_ + ':' if (UseCapturedNS_ and self.consNSU_nsprefix_) else ''
             self.consNSU.export(outfile, level, namespaceprefix_, namespacedef_='', name_='consNSU', pretty_print=pretty_print)
+        if self.consChNFe is not None:
+            namespaceprefix_ = self.consChNFe_nsprefix_ + ':' if (UseCapturedNS_ and self.consChNFe_nsprefix_) else ''
+            self.consChNFe.export(outfile, level, namespaceprefix_, namespacedef_='', name_='consChNFe', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -1283,6 +1290,11 @@ class distDFeInt(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.consNSU = obj_
             obj_.original_tagname_ = 'consNSU'
+        elif nodeName_ == 'consChNFe':
+            obj_ = consChNFeType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.consChNFe = obj_
+            obj_.original_tagname_ = 'consChNFe'
 # end class distDFeInt
 
 
@@ -1510,6 +1522,118 @@ class consNSUType(GeneratedsSuper):
 # end class consNSUType
 
 
+class consChNFeType(GeneratedsSuper):
+    """Grupo para consultar uma NF-e a partir da chave de acesso"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('chNFe', ['TChNFe', 'xs:string'], 0, 0, {'name': 'chNFe', 'type': 'xs:string'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, chNFe=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.chNFe = chNFe
+        self.validate_TChNFe(self.chNFe)
+        self.chNFe_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, consChNFeType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if consChNFeType.subclass:
+            return consChNFeType.subclass(*args_, **kwargs_)
+        else:
+            return consChNFeType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def validate_TChNFe(self, value):
+        result = True
+        # Validate type TChNFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 44:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TChNFe' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChNFe_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TChNFe_patterns_, ))
+                result = False
+        return result
+    validate_TChNFe_patterns_ = [['^([0-9]{44})$']]
+    def hasContent_(self):
+        if (
+            self.chNFe is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='consChNFeType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('consChNFeType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'consChNFeType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='consChNFeType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='consChNFeType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='consChNFeType'):
+        pass
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='consChNFeType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.chNFe is not None:
+            namespaceprefix_ = self.chNFe_nsprefix_ + ':' if (UseCapturedNS_ and self.chNFe_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%schNFe>%s</%schNFe>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.chNFe), input_name='chNFe')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        pass
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'chNFe':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'chNFe')
+            value_ = self.gds_validate_string(value_, node, 'chNFe')
+            self.chNFe = value_
+            self.chNFe_nsprefix_ = child_.prefix
+            # validate type TChNFe
+            self.validate_TChNFe(self.chNFe)
+# end class consChNFeType
+
+
 GDSClassesMapping = {
 }
 
@@ -1704,55 +1828,57 @@ RenameMappings_ = {
 # and the file in which each is defined.
 # simpleTypes are marked "ST" and complexTypes "CT".
 NamespaceToDefMappings_ = {'http://www.portalfiscal.inf.br/nfe': [('TNSU',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TQNSU',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TVerDistDFe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TAmb',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCodUfIBGE',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCOrgaoIBGE',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCnpj',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TCpf',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TVerAplic',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TStat',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TMotivo',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TString',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TChNFe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TProt',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
                                         ('TDateTimeUTC',
-                                         'tiposDistDFe_v1.00.xsd',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST'),
-                                        ('TIe',
-                                         'tiposDistDFe_v1.00.xsd',
+                                        ('TIe', 'tiposDistDFe_v1.01.xsd', 'ST'),
+                                        ('TDec_1302',
+                                         'tiposDistDFe_v1.01.xsd',
                                          'ST')]}
 
 __all__ = [
+    "consChNFeType",
     "consNSUType",
     "distDFeInt",
     "distNSUType"

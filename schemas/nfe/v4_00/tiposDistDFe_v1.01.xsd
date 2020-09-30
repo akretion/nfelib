@@ -23,7 +23,7 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:whiteSpace value="preserve"/>
-      <xs:enumeration value="1.00"/>
+      <xs:enumeration value="1.01"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="TAmb">
@@ -205,4 +205,14 @@
       <xs:pattern value="[0-9]{2,14}|ISENTO"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="TDec_1302">
+    <xs:annotation>
+      <xs:documentation>Tipo Decimal com 15 dígitos, sendo 13 de corpo e 2 decimais</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:pattern value="0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
+

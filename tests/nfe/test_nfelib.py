@@ -10,6 +10,9 @@ from nfelib.v4_00 import retEnviNFe as nfe
 from nfelib.v4_00 import retInutNFe
 from nfelib.v4_00 import retConsStatServ
 from nfelib.v4_00 import retConsSitNFe
+from nfelib.v4_00 import distDFeInt
+from nfelib.v4_00 import retDistDFeInt
+
 
 def test_in_out_leiauteNFe():
     path = 'tests/nfe/v4_00/leiauteNFe'
@@ -66,8 +69,16 @@ def test_cons_sit():
     )
     raiz.export(sys.stdout, 0)
 
+def test_distDFe():
+    distDFeInt.distNSUType.factory()
+    distDFeInt.consNSUType.factory()
+    # FIXME de onde vem esse animal https://github.com/erpbrasil/erpbrasil.edoc/blob/e26047257ede173186e8a8345d15d81830b49380/src/erpbrasil/edoc/nfe.py#L1005
+    # distDFeInt.consChNFeType
+    distDFeInt.distDFeInt()
+    retDistDFeInt.retDistDFeInt.factory()
+
 def test_init_all():
-    for mod in [nfe, retInutNFe]:
+    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

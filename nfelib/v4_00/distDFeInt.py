@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Sep 30 18:47:43 2020 by generateDS.py version 2.36.2.
+# Generated Wed Sep 30 18:47:47 2020 by generateDS.py version 2.36.2.
 # Python 3.8.2 (default, Apr 27 2020, 15:53:34)  [GCC 9.3.0]
 #
 # Command line options:
@@ -10,13 +10,13 @@
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
-#   ('-o', '/tmp/nfelib/nfelib/v4_00/retConsStatServ.py')
+#   ('-o', '/tmp/nfelib/nfelib/v4_00/distDFeInt.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
+#   /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retConsStatServ.py" /tmp/generated/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/distDFeInt.py" /tmp/generated/schemas/nfe/v4_00/distDFeInt_v1.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00
@@ -1024,92 +1024,26 @@ class TCodUfIBGE(str, Enum):
     _5_3='53'
 
 
-class TMod(str, Enum):
-    """Tipo Modelo Documento Fiscal"""
-    _5_5='55'
-    _6_5='65'
+class TVerDistDFe(str, Enum):
+    """Tipo Versão dos leiautes do Web Service NFeDistribuicaoDFe"""
+    _1_00='1.00'
 
 
-class TUf(str, Enum):
-    """Tipo Sigla da UF"""
-    AC='AC'
-    AL='AL'
-    AM='AM'
-    AP='AP'
-    BA='BA'
-    CE='CE'
-    DF='DF'
-    ES='ES'
-    GO='GO'
-    MA='MA'
-    MG='MG'
-    MS='MS'
-    MT='MT'
-    PA='PA'
-    PB='PB'
-    PE='PE'
-    PI='PI'
-    PR='PR'
-    RJ='RJ'
-    RN='RN'
-    RO='RO'
-    RR='RR'
-    RS='RS'
-    SC='SC'
-    SE='SE'
-    SP='SP'
-    TO='TO'
-    EX='EX'
-
-
-class TUfEmi(str, Enum):
-    """Tipo Sigla da UF de emissor // acrescentado em 24/10/08"""
-    AC='AC'
-    AL='AL'
-    AM='AM'
-    AP='AP'
-    BA='BA'
-    CE='CE'
-    DF='DF'
-    ES='ES'
-    GO='GO'
-    MA='MA'
-    MG='MG'
-    MS='MS'
-    MT='MT'
-    PA='PA'
-    PB='PB'
-    PE='PE'
-    PI='PI'
-    PR='PR'
-    RJ='RJ'
-    RN='RN'
-    RO='RO'
-    RR='RR'
-    RS='RS'
-    SC='SC'
-    SE='SE'
-    SP='SP'
-    TO='TO'
-
-
-class xServType(str, Enum):
-    """Serviço Solicitado"""
-    STATUS='STATUS'
-
-
-class TConsStatServ(GeneratedsSuper):
-    """Tipo Pedido de Consulta do Status do Serviço"""
+class distDFeInt(GeneratedsSuper):
+    """Schema de pedido de distribuição de DF-e de interesse"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('versao', 'TVerConsStatServ', 0, 0, {'use': 'required'}),
+        MemberSpec_('versao', 'TVerDistDFe', 0, 0, {'use': 'required'}),
         MemberSpec_('tpAmb', ['TAmb', 'xs:string'], 0, 0, {'name': 'tpAmb', 'type': 'xs:string'}, None),
-        MemberSpec_('cUF', ['TCodUfIBGE', 'xs:string'], 0, 0, {'name': 'cUF', 'type': 'xs:string'}, None),
-        MemberSpec_('xServ', ['xServType', 'TServ', 'nfe:TString'], 0, 0, {'name': 'xServ', 'type': 'xs:string'}, None),
+        MemberSpec_('cUFAutor', ['TCodUfIBGE', 'xs:string'], 0, 0, {'name': 'cUFAutor', 'type': 'xs:string'}, None),
+        MemberSpec_('CNPJ', ['TCnpj', 'xs:string'], 0, 0, {'name': 'CNPJ', 'type': 'xs:string'}, 1),
+        MemberSpec_('CPF', ['TCpf', 'xs:string'], 0, 0, {'name': 'CPF', 'type': 'xs:string'}, 1),
+        MemberSpec_('distNSU', 'distNSUType', 0, 0, {'name': 'distNSU', 'type': 'distNSUType'}, 2),
+        MemberSpec_('consNSU', 'consNSUType', 0, 0, {'name': 'consNSU', 'type': 'consNSUType'}, 2),
     ]
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, cUF=None, xServ=None, gds_collector_=None, **kwargs_):
+    def __init__(self, versao=None, tpAmb=None, cUFAutor=None, CNPJ=None, CPF=None, distNSU=None, consNSU=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1120,22 +1054,29 @@ class TConsStatServ(GeneratedsSuper):
         self.tpAmb = tpAmb
         self.validate_TAmb(self.tpAmb)
         self.tpAmb_nsprefix_ = None
-        self.cUF = cUF
-        self.validate_TCodUfIBGE(self.cUF)
-        self.cUF_nsprefix_ = None
-        self.xServ = xServ
-        self.validate_xServType(self.xServ)
-        self.xServ_nsprefix_ = None
+        self.cUFAutor = cUFAutor
+        self.validate_TCodUfIBGE(self.cUFAutor)
+        self.cUFAutor_nsprefix_ = None
+        self.CNPJ = CNPJ
+        self.validate_TCnpj(self.CNPJ)
+        self.CNPJ_nsprefix_ = None
+        self.CPF = CPF
+        self.validate_TCpf(self.CPF)
+        self.CPF_nsprefix_ = None
+        self.distNSU = distNSU
+        self.distNSU_nsprefix_ = None
+        self.consNSU = consNSU
+        self.consNSU_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TConsStatServ)
+                CurrentSubclassModule_, distDFeInt)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TConsStatServ.subclass:
-            return TConsStatServ.subclass(*args_, **kwargs_)
+        if distDFeInt.subclass:
+            return distDFeInt.subclass(*args_, **kwargs_)
         else:
-            return TConsStatServ(*args_, **kwargs_)
+            return distDFeInt(*args_, **kwargs_)
     factory = staticmethod(factory)
     def validate_TAmb(self, value):
         result = True
@@ -1167,74 +1108,95 @@ class TConsStatServ(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def validate_xServType(self, value):
+    def validate_TCnpj(self, value):
         result = True
-        # Validate type xServType, a restriction on TServ.
+        # Validate type TCnpj, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 14:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TCnpj' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCnpj_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TCnpj_patterns_, ))
+                result = False
+        return result
+    validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
+    def validate_TCpf(self, value):
+        result = True
+        # Validate type TCpf, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 11:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TCpf' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCpf_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TCpf_patterns_, ))
+                result = False
+        return result
+    validate_TCpf_patterns_ = [['^([0-9]{11})$']]
+    def validate_TVerDistDFe(self, value):
+        # Validate type TVerDistDFe, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['STATUS']
+            enumerations = ['1.00']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on xServType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TVerDistDFe' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_xServType_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xServType_patterns_, ))
-                result = False
-        return result
-    validate_xServType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_TVerConsStatServ(self, value):
-        # Validate type TVerConsStatServ, a restriction on xs:token.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsStatServ_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TVerConsStatServ_patterns_, ))
-    validate_TVerConsStatServ_patterns_ = [['^(4\\.00)$']]
     def hasContent_(self):
         if (
             self.tpAmb is not None or
-            self.cUF is not None or
-            self.xServ is not None
+            self.cUFAutor is not None or
+            self.CNPJ is not None or
+            self.CPF is not None or
+            self.distNSU is not None or
+            self.consNSU is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='TConsStatServ', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsStatServ')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='distDFeInt', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('distDFeInt')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'TConsStatServ':
+        if self.original_tagname_ is not None and name_ == 'distDFeInt':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='TConsStatServ')
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='distDFeInt')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='TConsStatServ', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='distDFeInt', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='TConsStatServ'):
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='distDFeInt'):
         if self.versao is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='TConsStatServ', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='distDFeInt', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1243,14 +1205,24 @@ class TConsStatServ(GeneratedsSuper):
             namespaceprefix_ = self.tpAmb_nsprefix_ + ':' if (UseCapturedNS_ and self.tpAmb_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%stpAmb>%s</%stpAmb>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), namespaceprefix_ , eol_))
-        if self.cUF is not None:
-            namespaceprefix_ = self.cUF_nsprefix_ + ':' if (UseCapturedNS_ and self.cUF_nsprefix_) else ''
+        if self.cUFAutor is not None:
+            namespaceprefix_ = self.cUFAutor_nsprefix_ + ':' if (UseCapturedNS_ and self.cUFAutor_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%scUF>%s</%scUF>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), namespaceprefix_ , eol_))
-        if self.xServ is not None:
-            namespaceprefix_ = self.xServ_nsprefix_ + ':' if (UseCapturedNS_ and self.xServ_nsprefix_) else ''
+            outfile.write('<%scUFAutor>%s</%scUFAutor>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cUFAutor), input_name='cUFAutor')), namespaceprefix_ , eol_))
+        if self.CNPJ is not None:
+            namespaceprefix_ = self.CNPJ_nsprefix_ + ':' if (UseCapturedNS_ and self.CNPJ_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sxServ>%s</%sxServ>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), namespaceprefix_ , eol_))
+            outfile.write('<%sCNPJ>%s</%sCNPJ>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.CNPJ), input_name='CNPJ')), namespaceprefix_ , eol_))
+        if self.CPF is not None:
+            namespaceprefix_ = self.CPF_nsprefix_ + ':' if (UseCapturedNS_ and self.CPF_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sCPF>%s</%sCPF>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.CPF), input_name='CPF')), namespaceprefix_ , eol_))
+        if self.distNSU is not None:
+            namespaceprefix_ = self.distNSU_nsprefix_ + ':' if (UseCapturedNS_ and self.distNSU_nsprefix_) else ''
+            self.distNSU.export(outfile, level, namespaceprefix_, namespacedef_='', name_='distNSU', pretty_print=pretty_print)
+        if self.consNSU is not None:
+            namespaceprefix_ = self.consNSU_nsprefix_ + ':' if (UseCapturedNS_ and self.consNSU_nsprefix_) else ''
+            self.consNSU.export(outfile, level, namespaceprefix_, namespacedef_='', name_='consNSU', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -1267,8 +1239,7 @@ class TConsStatServ(GeneratedsSuper):
         if value is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             self.versao = value
-            self.versao = ' '.join(self.versao.split())
-            self.validate_TVerConsStatServ(self.versao)    # validate type TVerConsStatServ
+            self.validate_TVerDistDFe(self.versao)    # validate type TVerDistDFe
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'tpAmb':
             value_ = child_.text
@@ -1278,302 +1249,126 @@ class TConsStatServ(GeneratedsSuper):
             self.tpAmb_nsprefix_ = child_.prefix
             # validate type TAmb
             self.validate_TAmb(self.tpAmb)
-        elif nodeName_ == 'cUF':
+        elif nodeName_ == 'cUFAutor':
             value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'cUF')
-            value_ = self.gds_validate_string(value_, node, 'cUF')
-            self.cUF = value_
-            self.cUF_nsprefix_ = child_.prefix
+            value_ = self.gds_parse_string(value_, node, 'cUFAutor')
+            value_ = self.gds_validate_string(value_, node, 'cUFAutor')
+            self.cUFAutor = value_
+            self.cUFAutor_nsprefix_ = child_.prefix
             # validate type TCodUfIBGE
-            self.validate_TCodUfIBGE(self.cUF)
-        elif nodeName_ == 'xServ':
+            self.validate_TCodUfIBGE(self.cUFAutor)
+        elif nodeName_ == 'CNPJ':
             value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'xServ')
-            value_ = self.gds_validate_string(value_, node, 'xServ')
-            self.xServ = value_
-            self.xServ_nsprefix_ = child_.prefix
-            # validate type xServType
-            self.validate_xServType(self.xServ)
-# end class TConsStatServ
+            value_ = self.gds_parse_string(value_, node, 'CNPJ')
+            value_ = self.gds_validate_string(value_, node, 'CNPJ')
+            self.CNPJ = value_
+            self.CNPJ_nsprefix_ = child_.prefix
+            # validate type TCnpj
+            self.validate_TCnpj(self.CNPJ)
+        elif nodeName_ == 'CPF':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'CPF')
+            value_ = self.gds_validate_string(value_, node, 'CPF')
+            self.CPF = value_
+            self.CPF_nsprefix_ = child_.prefix
+            # validate type TCpf
+            self.validate_TCpf(self.CPF)
+        elif nodeName_ == 'distNSU':
+            obj_ = distNSUType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.distNSU = obj_
+            obj_.original_tagname_ = 'distNSU'
+        elif nodeName_ == 'consNSU':
+            obj_ = consNSUType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.consNSU = obj_
+            obj_.original_tagname_ = 'consNSU'
+# end class distDFeInt
 
 
-class TRetConsStatServ(GeneratedsSuper):
-    """Tipo Resultado da Consulta do Status do Serviço"""
+class distNSUType(GeneratedsSuper):
+    """Grupo para distribuir DF-e de interesse"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('versao', 'TVerConsStatServ', 0, 0, {'use': 'required'}),
-        MemberSpec_('tpAmb', ['TAmb', 'xs:string'], 0, 0, {'name': 'tpAmb', 'type': 'xs:string'}, None),
-        MemberSpec_('verAplic', ['TVerAplic', 'nfe:TString'], 0, 0, {'name': 'verAplic', 'type': 'xs:string'}, None),
-        MemberSpec_('cStat', ['TStat', 'xs:string'], 0, 0, {'name': 'cStat', 'type': 'xs:string'}, None),
-        MemberSpec_('xMotivo', ['TMotivo', 'nfe:TString'], 0, 0, {'name': 'xMotivo', 'type': 'xs:string'}, None),
-        MemberSpec_('cUF', ['TCodUfIBGE', 'xs:string'], 0, 0, {'name': 'cUF', 'type': 'xs:string'}, None),
-        MemberSpec_('dhRecbto', ['TDateTimeUTC', 'xs:string'], 0, 0, {'name': 'dhRecbto', 'type': 'xs:string'}, None),
-        MemberSpec_('tMed', ['TMed', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'tMed', 'type': 'xs:string'}, None),
-        MemberSpec_('dhRetorno', ['TDateTimeUTC', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'dhRetorno', 'type': 'xs:string'}, None),
-        MemberSpec_('xObs', ['TMotivo', 'nfe:TString'], 0, 1, {'minOccurs': '0', 'name': 'xObs', 'type': 'xs:string'}, None),
+        MemberSpec_('ultNSU', ['TNSU', 'xs:token'], 0, 0, {'name': 'ultNSU', 'type': 'xs:token'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, dhRecbto=None, tMed=None, dhRetorno=None, xObs=None, gds_collector_=None, **kwargs_):
+    def __init__(self, ultNSU=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        self.versao = _cast(None, versao)
-        self.versao_nsprefix_ = None
-        self.tpAmb = tpAmb
-        self.validate_TAmb(self.tpAmb)
-        self.tpAmb_nsprefix_ = None
-        self.verAplic = verAplic
-        self.validate_TVerAplic(self.verAplic)
-        self.verAplic_nsprefix_ = None
-        self.cStat = cStat
-        self.validate_TStat(self.cStat)
-        self.cStat_nsprefix_ = None
-        self.xMotivo = xMotivo
-        self.validate_TMotivo(self.xMotivo)
-        self.xMotivo_nsprefix_ = None
-        self.cUF = cUF
-        self.validate_TCodUfIBGE(self.cUF)
-        self.cUF_nsprefix_ = None
-        self.dhRecbto = dhRecbto
-        self.validate_TDateTimeUTC(self.dhRecbto)
-        self.dhRecbto_nsprefix_ = None
-        self.tMed = tMed
-        self.validate_TMed(self.tMed)
-        self.tMed_nsprefix_ = None
-        self.dhRetorno = dhRetorno
-        self.validate_TDateTimeUTC(self.dhRetorno)
-        self.dhRetorno_nsprefix_ = None
-        self.xObs = xObs
-        self.validate_TMotivo(self.xObs)
-        self.xObs_nsprefix_ = None
+        self.ultNSU = ultNSU
+        self.validate_TNSU(self.ultNSU)
+        self.ultNSU_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TRetConsStatServ)
+                CurrentSubclassModule_, distNSUType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TRetConsStatServ.subclass:
-            return TRetConsStatServ.subclass(*args_, **kwargs_)
+        if distNSUType.subclass:
+            return distNSUType.subclass(*args_, **kwargs_)
         else:
-            return TRetConsStatServ(*args_, **kwargs_)
+            return distNSUType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_TAmb(self, value):
+    def validate_TNSU(self, value):
         result = True
-        # Validate type TAmb, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            value = value
-            enumerations = ['1', '2']
-            if value not in enumerations:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TAmb' % {"value" : encode_str_2_3(value), "lineno": lineno} )
-                result = False
-        return result
-    def validate_TVerAplic(self, value):
-        result = True
-        # Validate type TVerAplic, a restriction on nfe:TString.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if len(value) > 20:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TVerAplic' % {"value": value, "lineno": lineno} )
-                result = False
-            if len(value) < 1:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on TVerAplic' % {"value" : value, "lineno": lineno} )
-                result = False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerAplic_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TVerAplic_patterns_, ))
-                result = False
-        return result
-    validate_TVerAplic_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_TStat(self, value):
-        result = True
-        # Validate type TStat, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if len(value) > 3:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TStat' % {"value" : encode_str_2_3(value), "lineno": lineno} )
-                result = False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TStat_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TStat_patterns_, ))
-                result = False
-        return result
-    validate_TStat_patterns_ = [['^([0-9]{3})$']]
-    def validate_TMotivo(self, value):
-        result = True
-        # Validate type TMotivo, a restriction on nfe:TString.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if len(value) > 255:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TMotivo' % {"value": value, "lineno": lineno} )
-                result = False
-            if len(value) < 1:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on TMotivo' % {"value" : value, "lineno": lineno} )
-                result = False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TMotivo_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TMotivo_patterns_, ))
-                result = False
-        return result
-    validate_TMotivo_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_TCodUfIBGE(self, value):
-        result = True
-        # Validate type TCodUfIBGE, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            value = value
-            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53']
-            if value not in enumerations:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : encode_str_2_3(value), "lineno": lineno} )
-                result = False
-        return result
-    def validate_TDateTimeUTC(self, value):
-        result = True
-        # Validate type TDateTimeUTC, a restriction on xs:string.
+        # Validate type TNSU, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_TDateTimeUTC_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TDateTimeUTC_patterns_, ))
+                    self.validate_TNSU_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TNSU_patterns_, ))
                 result = False
         return result
-    validate_TDateTimeUTC_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]|10|11):00|([\\+](12):00)))$']]
-    def validate_TMed(self, value):
-        result = True
-        # Validate type TMed, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TMed_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TMed_patterns_, ))
-                result = False
-        return result
-    validate_TMed_patterns_ = [['^([0-9]{1,4})$']]
-    def validate_TVerConsStatServ(self, value):
-        # Validate type TVerConsStatServ, a restriction on xs:token.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, str):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
-                return False
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsStatServ_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TVerConsStatServ_patterns_, ))
-    validate_TVerConsStatServ_patterns_ = [['^(4\\.00)$']]
+    validate_TNSU_patterns_ = [['^([0-9]{15})$']]
     def hasContent_(self):
         if (
-            self.tpAmb is not None or
-            self.verAplic is not None or
-            self.cStat is not None or
-            self.xMotivo is not None or
-            self.cUF is not None or
-            self.dhRecbto is not None or
-            self.tMed is not None or
-            self.dhRetorno is not None or
-            self.xObs is not None
+            self.ultNSU is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='TRetConsStatServ', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsStatServ')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='distNSUType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('distNSUType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'TRetConsStatServ':
+        if self.original_tagname_ is not None and name_ == 'distNSUType':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='TRetConsStatServ')
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='distNSUType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='TRetConsStatServ', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='distNSUType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='TRetConsStatServ'):
-        if self.versao is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='TRetConsStatServ', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='distNSUType'):
+        pass
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='distNSUType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.tpAmb is not None:
-            namespaceprefix_ = self.tpAmb_nsprefix_ + ':' if (UseCapturedNS_ and self.tpAmb_nsprefix_) else ''
+        if self.ultNSU is not None:
+            namespaceprefix_ = self.ultNSU_nsprefix_ + ':' if (UseCapturedNS_ and self.ultNSU_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%stpAmb>%s</%stpAmb>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), namespaceprefix_ , eol_))
-        if self.verAplic is not None:
-            namespaceprefix_ = self.verAplic_nsprefix_ + ':' if (UseCapturedNS_ and self.verAplic_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sverAplic>%s</%sverAplic>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), namespaceprefix_ , eol_))
-        if self.cStat is not None:
-            namespaceprefix_ = self.cStat_nsprefix_ + ':' if (UseCapturedNS_ and self.cStat_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%scStat>%s</%scStat>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), namespaceprefix_ , eol_))
-        if self.xMotivo is not None:
-            namespaceprefix_ = self.xMotivo_nsprefix_ + ':' if (UseCapturedNS_ and self.xMotivo_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sxMotivo>%s</%sxMotivo>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), namespaceprefix_ , eol_))
-        if self.cUF is not None:
-            namespaceprefix_ = self.cUF_nsprefix_ + ':' if (UseCapturedNS_ and self.cUF_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%scUF>%s</%scUF>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), namespaceprefix_ , eol_))
-        if self.dhRecbto is not None:
-            namespaceprefix_ = self.dhRecbto_nsprefix_ + ':' if (UseCapturedNS_ and self.dhRecbto_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sdhRecbto>%s</%sdhRecbto>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.dhRecbto), input_name='dhRecbto')), namespaceprefix_ , eol_))
-        if self.tMed is not None:
-            namespaceprefix_ = self.tMed_nsprefix_ + ':' if (UseCapturedNS_ and self.tMed_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%stMed>%s</%stMed>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tMed), input_name='tMed')), namespaceprefix_ , eol_))
-        if self.dhRetorno is not None:
-            namespaceprefix_ = self.dhRetorno_nsprefix_ + ':' if (UseCapturedNS_ and self.dhRetorno_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sdhRetorno>%s</%sdhRetorno>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.dhRetorno), input_name='dhRetorno')), namespaceprefix_ , eol_))
-        if self.xObs is not None:
-            namespaceprefix_ = self.xObs_nsprefix_ + ':' if (UseCapturedNS_ and self.xObs_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sxObs>%s</%sxObs>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xObs), input_name='xObs')), namespaceprefix_ , eol_))
+            outfile.write('<%sultNSU>%s</%sultNSU>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.ultNSU), input_name='ultNSU')), namespaceprefix_ , eol_))
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -1586,90 +1381,136 @@ class TRetConsStatServ(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('versao', node)
-        if value is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            self.versao = value
-            self.versao = ' '.join(self.versao.split())
-            self.validate_TVerConsStatServ(self.versao)    # validate type TVerConsStatServ
+        pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        if nodeName_ == 'tpAmb':
+        if nodeName_ == 'ultNSU':
             value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'tpAmb')
-            value_ = self.gds_validate_string(value_, node, 'tpAmb')
-            self.tpAmb = value_
-            self.tpAmb_nsprefix_ = child_.prefix
-            # validate type TAmb
-            self.validate_TAmb(self.tpAmb)
-        elif nodeName_ == 'verAplic':
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'ultNSU')
+            value_ = self.gds_validate_string(value_, node, 'ultNSU')
+            self.ultNSU = value_
+            self.ultNSU_nsprefix_ = child_.prefix
+            # validate type TNSU
+            self.validate_TNSU(self.ultNSU)
+# end class distNSUType
+
+
+class consNSUType(GeneratedsSuper):
+    """Grupo para consultar um DF-e a partir de um NSU específico"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('NSU', ['TNSU', 'xs:token'], 0, 0, {'name': 'NSU', 'type': 'xs:token'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, NSU=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.NSU = NSU
+        self.validate_TNSU(self.NSU)
+        self.NSU_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, consNSUType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if consNSUType.subclass:
+            return consNSUType.subclass(*args_, **kwargs_)
+        else:
+            return consNSUType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def validate_TNSU(self, value):
+        result = True
+        # Validate type TNSU, a restriction on xs:token.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TNSU_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TNSU_patterns_, ))
+                result = False
+        return result
+    validate_TNSU_patterns_ = [['^([0-9]{15})$']]
+    def hasContent_(self):
+        if (
+            self.NSU is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='consNSUType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('consNSUType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'consNSUType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='consNSUType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='consNSUType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='consNSUType'):
+        pass
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='consNSUType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.NSU is not None:
+            namespaceprefix_ = self.NSU_nsprefix_ + ':' if (UseCapturedNS_ and self.NSU_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sNSU>%s</%sNSU>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.NSU), input_name='NSU')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        pass
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'NSU':
             value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'verAplic')
-            value_ = self.gds_validate_string(value_, node, 'verAplic')
-            self.verAplic = value_
-            self.verAplic_nsprefix_ = child_.prefix
-            # validate type TVerAplic
-            self.validate_TVerAplic(self.verAplic)
-        elif nodeName_ == 'cStat':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'cStat')
-            value_ = self.gds_validate_string(value_, node, 'cStat')
-            self.cStat = value_
-            self.cStat_nsprefix_ = child_.prefix
-            # validate type TStat
-            self.validate_TStat(self.cStat)
-        elif nodeName_ == 'xMotivo':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'xMotivo')
-            value_ = self.gds_validate_string(value_, node, 'xMotivo')
-            self.xMotivo = value_
-            self.xMotivo_nsprefix_ = child_.prefix
-            # validate type TMotivo
-            self.validate_TMotivo(self.xMotivo)
-        elif nodeName_ == 'cUF':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'cUF')
-            value_ = self.gds_validate_string(value_, node, 'cUF')
-            self.cUF = value_
-            self.cUF_nsprefix_ = child_.prefix
-            # validate type TCodUfIBGE
-            self.validate_TCodUfIBGE(self.cUF)
-        elif nodeName_ == 'dhRecbto':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'dhRecbto')
-            value_ = self.gds_validate_string(value_, node, 'dhRecbto')
-            self.dhRecbto = value_
-            self.dhRecbto_nsprefix_ = child_.prefix
-            # validate type TDateTimeUTC
-            self.validate_TDateTimeUTC(self.dhRecbto)
-        elif nodeName_ == 'tMed':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'tMed')
-            value_ = self.gds_validate_string(value_, node, 'tMed')
-            self.tMed = value_
-            self.tMed_nsprefix_ = child_.prefix
-            # validate type TMed
-            self.validate_TMed(self.tMed)
-        elif nodeName_ == 'dhRetorno':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'dhRetorno')
-            value_ = self.gds_validate_string(value_, node, 'dhRetorno')
-            self.dhRetorno = value_
-            self.dhRetorno_nsprefix_ = child_.prefix
-            # validate type TDateTimeUTC
-            self.validate_TDateTimeUTC(self.dhRetorno)
-        elif nodeName_ == 'xObs':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'xObs')
-            value_ = self.gds_validate_string(value_, node, 'xObs')
-            self.xObs = value_
-            self.xObs_nsprefix_ = child_.prefix
-            # validate type TMotivo
-            self.validate_TMotivo(self.xObs)
-# end class TRetConsStatServ
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'NSU')
+            value_ = self.gds_validate_string(value_, node, 'NSU')
+            self.NSU = value_
+            self.NSU_nsprefix_ = child_.prefix
+            # validate type TNSU
+            self.validate_TNSU(self.NSU)
+# end class consNSUType
 
 
 GDSClassesMapping = {
-    'retConsStatServ': TRetConsStatServ,
 }
 
 
@@ -1716,8 +1557,8 @@ def parse(inFileName, silence=False, print_warnings=True):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TRetConsStatServ'
-        rootClass = TRetConsStatServ
+        rootTag = 'distDFeInt'
+        rootClass = distDFeInt
     rootObj = rootClass.factory()
     rootObj.build(rootNode, gds_collector_=gds_collector)
     CapturedNsmap_, namespacedefs = get_required_ns_prefix_defs(rootNode)
@@ -1748,8 +1589,8 @@ def parseEtree(inFileName, silence=False, print_warnings=True,
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TRetConsStatServ'
-        rootClass = TRetConsStatServ
+        rootTag = 'distDFeInt'
+        rootClass = distDFeInt
     rootObj = rootClass.factory()
     rootObj.build(rootNode, gds_collector_=gds_collector)
     # Enable Python to collect the space used by the DOM.
@@ -1791,8 +1632,8 @@ def parseString(inString, silence=False, print_warnings=True):
     gds_collector = GdsCollector_()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TRetConsStatServ'
-        rootClass = TRetConsStatServ
+        rootTag = 'distDFeInt'
+        rootClass = distDFeInt
     rootObj = rootClass.factory()
     rootObj.build(rootNode, gds_collector_=gds_collector)
     if not SaveElementTreeNode:
@@ -1819,8 +1660,8 @@ def parseLiteral(inFileName, silence=False, print_warnings=True):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TRetConsStatServ'
-        rootClass = TRetConsStatServ
+        rootTag = 'distDFeInt'
+        rootClass = distDFeInt
     rootObj = rootClass.factory()
     rootObj.build(rootNode, gds_collector_=gds_collector)
     # Enable Python to collect the space used by the DOM.
@@ -1828,8 +1669,8 @@ def parseLiteral(inFileName, silence=False, print_warnings=True):
         doc = None
         rootNode = None
     if not silence:
-        sys.stdout.write('#from retConsStatServ import *\n\n')
-        sys.stdout.write('import retConsStatServ as model_\n\n')
+        sys.stdout.write('#from distDFeInt import *\n\n')
+        sys.stdout.write('import distDFeInt as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -1862,155 +1703,57 @@ RenameMappings_ = {
 # Mapping of namespaces to types defined in them
 # and the file in which each is defined.
 # simpleTypes are marked "ST" and complexTypes "CT".
-NamespaceToDefMappings_ = {'http://www.portalfiscal.inf.br/nfe': [('TCodUfIBGE',
-                                         'tiposBasico_v4.00.xsd',
+NamespaceToDefMappings_ = {'http://www.portalfiscal.inf.br/nfe': [('TNSU',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TCodMunIBGE',
-                                         'tiposBasico_v4.00.xsd',
+                                        ('TQNSU',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TChNFe',
-                                         'tiposBasico_v4.00.xsd',
+                                        ('TVerDistDFe',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TProt',
-                                         'tiposBasico_v4.00.xsd',
+                                        ('TAmb',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TRec', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TStat',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TCnpj',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TCnpjVar',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TCnpjOpc',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TCpf', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TCpfVar',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0104v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0204v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0302a04',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0302a04Opc',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0302Max100',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0304Max100',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0302a04Max100',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_0803v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1104',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1104v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1104Opc',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1110v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1203',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1204',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1204v',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1204Opc',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1204temperatura',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1302',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDec_1302Opc',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TIeDest',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TIeDestNaoIsento',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TIeST',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TIe', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TMod', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TNF', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TSerie',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TUf', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TUfEmi',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TAmb', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TVerAplic',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TMotivo',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TJust',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TServ',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('Tano', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TMed', 'tiposBasico_v4.00.xsd', 'ST'),
-                                        ('TString',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TData',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TTime',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TDateTimeUTC',
-                                         'tiposBasico_v4.00.xsd',
-                                         'ST'),
-                                        ('TPlaca',
-                                         'tiposBasico_v4.00.xsd',
+                                        ('TCodUfIBGE',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
                                         ('TCOrgaoIBGE',
-                                         'tiposBasico_v4.00.xsd',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TVerConsStatServ',
-                                         'leiauteConsStatServ_v4.00.xsd',
+                                        ('TCnpj',
+                                         'tiposDistDFe_v1.00.xsd',
                                          'ST'),
-                                        ('TConsStatServ',
-                                         'leiauteConsStatServ_v4.00.xsd',
-                                         'CT'),
-                                        ('TRetConsStatServ',
-                                         'leiauteConsStatServ_v4.00.xsd',
-                                         'CT')]}
+                                        ('TCpf',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TVerAplic',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TStat',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TMotivo',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TString',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TChNFe',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TProt',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TDateTimeUTC',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST'),
+                                        ('TIe',
+                                         'tiposDistDFe_v1.00.xsd',
+                                         'ST')]}
 
 __all__ = [
-    "TConsStatServ",
-    "TRetConsStatServ"
+    "consNSUType",
+    "distDFeInt",
+    "distNSUType"
 ]

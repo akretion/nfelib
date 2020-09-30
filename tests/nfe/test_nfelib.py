@@ -72,8 +72,7 @@ def test_cons_sit():
 def test_distDFe():
     distDFeInt.distNSUType.factory()
     distDFeInt.consNSUType.factory()
-    # FIXME de onde vem esse animal https://github.com/erpbrasil/erpbrasil.edoc/blob/e26047257ede173186e8a8345d15d81830b49380/src/erpbrasil/edoc/nfe.py#L1005
-    # distDFeInt.consChNFeType
+    distDFeInt.consChNFeType.factory()
     distDFeInt.distDFeInt()
     retDistDFeInt.retDistDFeInt.factory()
 

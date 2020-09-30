@@ -9,7 +9,7 @@ A nfelib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileir
 * Para transmitir as NFe's para a receita, aconselhamos a biblioteca Python Zeep, ou entao por examplo https://github.com/erpbrasil/erpbrasil.edoc.
 * E para imprimir o DANFE, é possivel usar https://github.com/erpbrasil/erpbrasil.edoc.pdf 
 
-Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (especialmente para MDFe, CTe, E-Social e SPED-Reinf).
+Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (e especialmente para NFS-e, MDFe, CTe, E-Social e SPED-Reinf, GNRE, BP-e).
 
 Durante anos usamos o https://github.com/aricaldeira/PySPED. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas nessa parte para montar o leiaute da NFe https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmitir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código podem ser geradas por **um único comando** com a ferramenta [generateDS](http://www.davekuhlman.org/generateDS.html) usada por essa lib:
 
@@ -46,16 +46,16 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
   
 # Pacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
-erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
 
-# Pacote de Liberação Distribuição de DF-e v1.00 (Atualizado em 19/09/14) (ZIP)
-erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=PVvR01d6%20s8=
+# Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=n3Kn9%20YZNak=
 
-erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt" -d .
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt" -d .
 ```
-ai depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/
+Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo.
 
-se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00` e fazer commit dos arquivos da pasta nfelib. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar)
+Se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00` e fazer commit dos arquivos da pasta nfelib. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar com `git merges master -X theirs`)
 
 # Rodar os testes
 

@@ -48,11 +48,14 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 # Pacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
 erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
 
-erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d nfelib
+# Pacote de Liberação Distribuição de DF-e v1.00 (Atualizado em 19/09/14) (ZIP)
+erpbrasil.edoc.gen.download_schema -n nfe -v v4.00 -u http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=PVvR01d6%20s8=
+
+erpbrasil.edoc.gen.generate_python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt" -d .
 ```
 ai depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/
 
-se você quiser fazer  uma nova versão no Github, voce tem entao que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00`a fazer commit dos arquivos da pasta nfelib.
+se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00` e fazer commit dos arquivos da pasta nfelib. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar)
 
 # Rodar os testes
 

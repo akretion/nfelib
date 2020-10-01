@@ -29,7 +29,15 @@ Module contents
     :members:
     :undoc-members:
     :show-inheritance:
+.. automodule:: retEnvEventoCancNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
 .. automodule:: retEnvEvento
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retEnvEventoCancNFe
     :members:
     :undoc-members:
     :show-inheritance:

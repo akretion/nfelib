@@ -10,13 +10,13 @@
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
-#   ('-o', '/tmp/nfelib/nfelib/v4_00/retEnvEvento.py')
+#   ('-o', '/tmp/nfelib/nfelib/v4_00/retEnvEventoCancNFe.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/retEnvEvento_v1.00.xsd
+#   /tmp/generated/schemas/nfe/v4_00/retEnvEventoCancNFe_v1.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retEnvEvento.py" /tmp/generated/schemas/nfe/v4_00/retEnvEvento_v1.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retEnvEventoCancNFe.py" /tmp/generated/schemas/nfe/v4_00/retEnvEventoCancNFe_v1.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00
@@ -993,40 +993,6 @@ class TCOrgaoIBGE(str, Enum):
     _9_2='92'
 
 
-class TCOrgaoIBGE1(str, Enum):
-    """Tipo Código de orgão (UF da tabela do IBGE + 90 RFB)"""
-    _1_1='11'
-    _1_2='12'
-    _1_3='13'
-    _1_4='14'
-    _1_5='15'
-    _1_6='16'
-    _1_7='17'
-    _2_1='21'
-    _2_2='22'
-    _2_3='23'
-    _2_4='24'
-    _2_5='25'
-    _2_6='26'
-    _2_7='27'
-    _2_8='28'
-    _2_9='29'
-    _3_1='31'
-    _3_2='32'
-    _3_3='33'
-    _3_5='35'
-    _4_1='41'
-    _4_2='42'
-    _4_3='43'
-    _5_0='50'
-    _5_1='51'
-    _5_2='52'
-    _5_3='53'
-    _9_0='90'
-    _9_1='91'
-    _9_2='92'
-
-
 class TCodUfIBGE(str, Enum):
     """Tipo Código da UF da tabela do IBGE"""
     _1_1='11'
@@ -1427,6 +1393,25 @@ class Tpais(str, Enum):
     _9_970='9970'
 
 
+class descEventoType(str, Enum):
+    """Descrição do Evento - “Cancelamento”"""
+    CANCELAMENTO='Cancelamento'
+
+
+class tpEventoType(str, Enum):
+    """Tipo do Evento"""
+    _1_10111='110111'
+
+
+class verEventoType(str, Enum):
+    """Versão do Tipo do Evento"""
+    _1_00='1.00'
+
+
+class versaoType(str, Enum):
+    _1_00='1.00'
+
+
 class TEvento(GeneratedsSuper):
     """Tipo Evento"""
     __hash__ = GeneratedsSuper.__hash__
@@ -1555,7 +1540,7 @@ class TRetEvento(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
         MemberSpec_('versao', 'TVerEvento', 0, 0, {'use': 'required'}),
-        MemberSpec_('infEvento', 'infEventoType2', 0, 0, {'name': 'infEvento', 'type': 'infEventoType2'}, None),
+        MemberSpec_('infEvento', 'infEventoType1', 0, 0, {'name': 'infEvento', 'type': 'infEventoType1'}, None),
         MemberSpec_('Signature', 'xs:string', 0, 1, {'minOccurs': '0', 'name': 'Signature', 'ref': 'Signature', 'type': 'xs:string'}, None),
     ]
     subclass = None
@@ -1660,7 +1645,7 @@ class TRetEvento(GeneratedsSuper):
             self.validate_TVerEvento(self.versao)    # validate type TVerEvento
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'infEvento':
-            obj_ = infEventoType2.factory(parent_object_=self)
+            obj_ = infEventoType1.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.infEvento = obj_
             obj_.original_tagname_ = 'infEvento'
@@ -1821,7 +1806,7 @@ class TRetEnvEvento(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
         MemberSpec_('versao', 'TVerEnvEvento', 0, 0, {'use': 'required'}),
-        MemberSpec_('idLote', ['idLoteType6', 'xs:string'], 0, 0, {'name': 'idLote', 'type': 'xs:string'}, None),
+        MemberSpec_('idLote', ['idLoteType5', 'xs:string'], 0, 0, {'name': 'idLote', 'type': 'xs:string'}, None),
         MemberSpec_('tpAmb', ['TAmb', 'xs:string'], 0, 0, {'name': 'tpAmb', 'type': 'xs:string'}, None),
         MemberSpec_('verAplic', ['TVerAplic', 'nfe:TString'], 0, 0, {'name': 'verAplic', 'type': 'xs:string'}, None),
         MemberSpec_('cOrgao', ['TCOrgaoIBGE', 'xs:string'], 0, 0, {'name': 'cOrgao', 'type': 'xs:string'}, None),
@@ -1840,7 +1825,7 @@ class TRetEnvEvento(GeneratedsSuper):
         self.versao = _cast(None, versao)
         self.versao_nsprefix_ = None
         self.idLote = idLote
-        self.validate_idLoteType6(self.idLote)
+        self.validate_idLoteType5(self.idLote)
         self.idLote_nsprefix_ = None
         self.tpAmb = tpAmb
         self.validate_TAmb(self.tpAmb)
@@ -1873,20 +1858,20 @@ class TRetEnvEvento(GeneratedsSuper):
         else:
             return TRetEnvEvento(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_idLoteType6(self, value):
+    def validate_idLoteType5(self, value):
         result = True
-        # Validate type idLoteType6, a restriction on xs:string.
+        # Validate type idLoteType5, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_idLoteType6_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_idLoteType6_patterns_, ))
+                    self.validate_idLoteType5_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_idLoteType5_patterns_, ))
                 result = False
         return result
-    validate_idLoteType6_patterns_ = [['^([0-9]{1,15})$']]
+    validate_idLoteType5_patterns_ = [['^([0-9]{1,15})$']]
     def validate_TAmb(self, value):
         result = True
         # Validate type TAmb, a restriction on xs:string.
@@ -2082,8 +2067,8 @@ class TRetEnvEvento(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'idLote')
             self.idLote = value_
             self.idLote_nsprefix_ = child_.prefix
-            # validate type idLoteType6
-            self.validate_idLoteType6(self.idLote)
+            # validate type idLoteType5
+            self.validate_idLoteType5(self.idLote)
         elif nodeName_ == 'tpAmb':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'tpAmb')
@@ -2419,6 +2404,12 @@ class infEventoType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
+            value = value
+            enumerations = ['110111']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on tpEventoType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
             if not self.gds_validate_simple_patterns(
                     self.validate_tpEventoType_patterns_, value):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_tpEventoType_patterns_, ))
@@ -2438,7 +2429,7 @@ class infEventoType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nSeqEventoType_patterns_, ))
                 result = False
         return result
-    validate_nSeqEventoType_patterns_ = [['^([1-9][0-9]{0,1})$']]
+    validate_nSeqEventoType_patterns_ = [['^([1-9]|[1][0-9]{0,1}|20)$']]
     def validate_verEventoType(self, value):
         result = True
         # Validate type verEventoType, a restriction on xs:string.
@@ -2447,7 +2438,12 @@ class infEventoType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
-            pass
+            value = value
+            enumerations = ['1.00']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on verEventoType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
         return result
     def validate_IdType(self, value):
         # Validate type IdType, a restriction on xs:ID.
@@ -2646,23 +2642,33 @@ class infEventoType(GeneratedsSuper):
 
 
 class detEventoType(GeneratedsSuper):
+    """Schema XML de validação do evento do cancelamento 1101111"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('__ANY__', '__ANY__', 1, 0, {'maxOccurs': 'unbounded', 'processContents': 'skip'}, None),
+        MemberSpec_('versao', 'versaoType', 0, 0, {'use': 'required'}),
+        MemberSpec_('descEvento', ['descEventoType', 'xs:string'], 0, 0, {'name': 'descEvento', 'type': 'xs:string'}, None),
+        MemberSpec_('nProt', ['TProt', 'xs:string'], 0, 0, {'name': 'nProt', 'type': 'xs:string'}, None),
+        MemberSpec_('xJust', ['TJust', 'nfe:TString'], 0, 0, {'name': 'xJust', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, anytypeobjs_=None, gds_collector_=None, **kwargs_):
+    def __init__(self, versao=None, descEvento=None, nProt=None, xJust=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        if anytypeobjs_ is None:
-            self.anytypeobjs_ = []
-        else:
-            self.anytypeobjs_ = anytypeobjs_
-        self.anyAttributes_ = {}
+        self.versao = _cast(None, versao)
+        self.versao_nsprefix_ = None
+        self.descEvento = descEvento
+        self.validate_descEventoType(self.descEvento)
+        self.descEvento_nsprefix_ = None
+        self.nProt = nProt
+        self.validate_TProt(self.nProt)
+        self.nProt_nsprefix_ = None
+        self.xJust = xJust
+        self.validate_TJust(self.xJust)
+        self.xJust_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -2674,9 +2680,75 @@ class detEventoType(GeneratedsSuper):
         else:
             return detEventoType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def validate_descEventoType(self, value):
+        result = True
+        # Validate type descEventoType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            value = value
+            enumerations = ['Cancelamento']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on descEventoType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+        return result
+    def validate_TProt(self, value):
+        result = True
+        # Validate type TProt, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TProt_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TProt_patterns_, ))
+                result = False
+        return result
+    validate_TProt_patterns_ = [['^([0-9]{15})$']]
+    def validate_TJust(self, value):
+        result = True
+        # Validate type TJust, a restriction on nfe:TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 255:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TJust' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 15:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on TJust' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TJust_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TJust_patterns_, ))
+                result = False
+        return result
+    validate_TJust_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_versaoType(self, value):
+        # Validate type versaoType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            value = value
+            enumerations = ['1.00']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on versaoType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
     def hasContent_(self):
         if (
-            self.anytypeobjs_
+            self.descEvento is not None or
+            self.nProt is not None or
+            self.xJust is not None
         ):
             return True
         else:
@@ -2705,48 +2777,26 @@ class detEventoType(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='detEventoType'):
-        unique_counter = 0
-        for name, value in self.anyAttributes_.items():
-            xsinamespaceprefix = 'xsi'
-            xsinamespace1 = 'http://www.w3.org/2001/XMLSchema-instance'
-            xsinamespace2 = '{%s}' % (xsinamespace1, )
-            if name.startswith(xsinamespace2):
-                name1 = name[len(xsinamespace2):]
-                name2 = '%s:%s' % (xsinamespaceprefix, name1, )
-                if name2 not in already_processed:
-                    already_processed.add(name2)
-                    outfile.write(' %s=%s' % (name2, quote_attrib(value), ))
-            else:
-                mo = re_.match(Namespace_extract_pat_, name)
-                if mo is not None:
-                    namespace, name = mo.group(1, 2)
-                    if name not in already_processed:
-                        already_processed.add(name)
-                        if namespace == 'http://www.w3.org/XML/1998/namespace':
-                            outfile.write(' %s=%s' % (
-                                name, quote_attrib(value), ))
-                        else:
-                            unique_counter += 1
-                            outfile.write(' xmlns:%d="%s"' % (
-                                unique_counter, namespace, ))
-                            outfile.write(' %d:%s=%s' % (
-                                unique_counter, name, quote_attrib(value), ))
-                else:
-                    if name not in already_processed:
-                        already_processed.add(name)
-                        outfile.write(' %s=%s' % (
-                            name, quote_attrib(value), ))
-        pass
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
     def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='detEventoType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if not fromsubclass_:
-            for obj_ in self.anytypeobjs_:
-                showIndent(outfile, level, pretty_print)
-                outfile.write(obj_)
-                outfile.write('\n')
+        if self.descEvento is not None:
+            namespaceprefix_ = self.descEvento_nsprefix_ + ':' if (UseCapturedNS_ and self.descEvento_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sdescEvento>%s</%sdescEvento>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.descEvento), input_name='descEvento')), namespaceprefix_ , eol_))
+        if self.nProt is not None:
+            namespaceprefix_ = self.nProt_nsprefix_ + ':' if (UseCapturedNS_ and self.nProt_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%snProt>%s</%snProt>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.nProt), input_name='nProt')), namespaceprefix_ , eol_))
+        if self.xJust is not None:
+            namespaceprefix_ = self.xJust_nsprefix_ + ':' if (UseCapturedNS_ and self.xJust_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sxJust>%s</%sxJust>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xJust), input_name='xJust')), namespaceprefix_ , eol_))
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -2759,31 +2809,53 @@ class detEventoType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        self.anyAttributes_ = {}
-        for name, value in attrs.items():
-            if name not in already_processed:
-                self.anyAttributes_[name] = value
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_versaoType(self.versao)    # validate type versaoType
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        content_ = self.gds_build_any(child_, 'detEventoType')
-        self.add_anytypeobjs_(content_)
+        if nodeName_ == 'descEvento':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'descEvento')
+            value_ = self.gds_validate_string(value_, node, 'descEvento')
+            self.descEvento = value_
+            self.descEvento_nsprefix_ = child_.prefix
+            # validate type descEventoType
+            self.validate_descEventoType(self.descEvento)
+        elif nodeName_ == 'nProt':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'nProt')
+            value_ = self.gds_validate_string(value_, node, 'nProt')
+            self.nProt = value_
+            self.nProt_nsprefix_ = child_.prefix
+            # validate type TProt
+            self.validate_TProt(self.nProt)
+        elif nodeName_ == 'xJust':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'xJust')
+            value_ = self.gds_validate_string(value_, node, 'xJust')
+            self.xJust = value_
+            self.xJust_nsprefix_ = child_.prefix
+            # validate type TJust
+            self.validate_TJust(self.xJust)
 # end class detEventoType
 
 
-class infEventoType2(GeneratedsSuper):
-    """Identificação do destinatpario da NF-e"""
+class infEventoType1(GeneratedsSuper):
+    """Identificação do destinatário da NF-e"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('Id', 'IdType5', 0, 1, {'use': 'optional'}),
+        MemberSpec_('Id', 'IdType4', 0, 1, {'use': 'optional'}),
         MemberSpec_('tpAmb', ['TAmb', 'xs:string'], 0, 0, {'name': 'tpAmb', 'type': 'xs:string'}, None),
         MemberSpec_('verAplic', ['TVerAplic', 'nfe:TString'], 0, 0, {'name': 'verAplic', 'type': 'xs:string'}, None),
         MemberSpec_('cOrgao', ['TCOrgaoIBGE', 'xs:string'], 0, 0, {'name': 'cOrgao', 'type': 'xs:string'}, None),
         MemberSpec_('cStat', ['TStat', 'xs:string'], 0, 0, {'name': 'cStat', 'type': 'xs:string'}, None),
         MemberSpec_('xMotivo', ['TMotivo', 'nfe:TString'], 0, 0, {'name': 'xMotivo', 'type': 'xs:string'}, None),
         MemberSpec_('chNFe', ['TChNFe', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'chNFe', 'type': 'xs:string'}, None),
-        MemberSpec_('tpEvento', ['tpEventoType3', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'tpEvento', 'type': 'xs:string'}, None),
+        MemberSpec_('tpEvento', ['tpEventoType2', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'tpEvento', 'type': 'xs:string'}, None),
         MemberSpec_('xEvento', ['xEventoType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xEvento', 'type': 'xs:string'}, None),
-        MemberSpec_('nSeqEvento', ['nSeqEventoType4', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'nSeqEvento', 'type': 'xs:string'}, None),
-        MemberSpec_('cOrgaoAutor', ['TCOrgaoIBGE', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cOrgaoAutor', 'type': 'xs:string'}, None),
+        MemberSpec_('nSeqEvento', ['nSeqEventoType3', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'nSeqEvento', 'type': 'xs:string'}, None),
         MemberSpec_('CNPJDest', ['TCnpjOpc', 'xs:string'], 0, 1, {'name': 'CNPJDest', 'type': 'xs:string'}, 2),
         MemberSpec_('CPFDest', ['TCpf', 'xs:string'], 0, 1, {'name': 'CPFDest', 'type': 'xs:string'}, 2),
         MemberSpec_('emailDest', ['emailDestType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'emailDest', 'type': 'xs:string'}, None),
@@ -2792,7 +2864,7 @@ class infEventoType2(GeneratedsSuper):
     ]
     subclass = None
     superclass = None
-    def __init__(self, Id=None, tpAmb=None, verAplic=None, cOrgao=None, cStat=None, xMotivo=None, chNFe=None, tpEvento=None, xEvento=None, nSeqEvento=None, cOrgaoAutor=None, CNPJDest=None, CPFDest=None, emailDest=None, dhRegEvento=None, nProt=None, gds_collector_=None, **kwargs_):
+    def __init__(self, Id=None, tpAmb=None, verAplic=None, cOrgao=None, cStat=None, xMotivo=None, chNFe=None, tpEvento=None, xEvento=None, nSeqEvento=None, CNPJDest=None, CPFDest=None, emailDest=None, dhRegEvento=None, nProt=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -2819,17 +2891,14 @@ class infEventoType2(GeneratedsSuper):
         self.validate_TChNFe(self.chNFe)
         self.chNFe_nsprefix_ = None
         self.tpEvento = tpEvento
-        self.validate_tpEventoType3(self.tpEvento)
+        self.validate_tpEventoType2(self.tpEvento)
         self.tpEvento_nsprefix_ = None
         self.xEvento = xEvento
         self.validate_xEventoType(self.xEvento)
         self.xEvento_nsprefix_ = None
         self.nSeqEvento = nSeqEvento
-        self.validate_nSeqEventoType4(self.nSeqEvento)
+        self.validate_nSeqEventoType3(self.nSeqEvento)
         self.nSeqEvento_nsprefix_ = None
-        self.cOrgaoAutor = cOrgaoAutor
-        self.validate_TCOrgaoIBGE(self.cOrgaoAutor)
-        self.cOrgaoAutor_nsprefix_ = None
         self.CNPJDest = CNPJDest
         self.validate_TCnpjOpc(self.CNPJDest)
         self.CNPJDest_nsprefix_ = None
@@ -2848,13 +2917,13 @@ class infEventoType2(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infEventoType2)
+                CurrentSubclassModule_, infEventoType1)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if infEventoType2.subclass:
-            return infEventoType2.subclass(*args_, **kwargs_)
+        if infEventoType1.subclass:
+            return infEventoType1.subclass(*args_, **kwargs_)
         else:
-            return infEventoType2(*args_, **kwargs_)
+            return infEventoType1(*args_, **kwargs_)
     factory = staticmethod(factory)
     def validate_TAmb(self, value):
         result = True
@@ -2958,20 +3027,20 @@ class infEventoType2(GeneratedsSuper):
                 result = False
         return result
     validate_TChNFe_patterns_ = [['^((1[1-7]|2[1-9]|3[1,2,3,5]|4[1-3]|5[0-3])(0[6-9]|[1-9][\\d])(0[1-9]|1[0-2])([\\d]{14})([\\d]{5})([\\d]{9})([\\d]{10}))$']]
-    def validate_tpEventoType3(self, value):
+    def validate_tpEventoType2(self, value):
         result = True
-        # Validate type tpEventoType3, a restriction on xs:string.
+        # Validate type tpEventoType2, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_tpEventoType3_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_tpEventoType3_patterns_, ))
+                    self.validate_tpEventoType2_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_tpEventoType2_patterns_, ))
                 result = False
         return result
-    validate_tpEventoType3_patterns_ = [['^([0-9]{6})$']]
+    validate_tpEventoType2_patterns_ = [['^([0-9]{6})$']]
     def validate_xEventoType(self, value):
         result = True
         # Validate type xEventoType, a restriction on TString.
@@ -2994,20 +3063,20 @@ class infEventoType2(GeneratedsSuper):
                 result = False
         return result
     validate_xEventoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_nSeqEventoType4(self, value):
+    def validate_nSeqEventoType3(self, value):
         result = True
-        # Validate type nSeqEventoType4, a restriction on xs:string.
+        # Validate type nSeqEventoType3, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_nSeqEventoType4_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nSeqEventoType4_patterns_, ))
+                    self.validate_nSeqEventoType3_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nSeqEventoType3_patterns_, ))
                 result = False
         return result
-    validate_nSeqEventoType4_patterns_ = [['^([1-9][0-9]{0,1})$']]
+    validate_nSeqEventoType3_patterns_ = [['^([1-9][0-9]{0,1})$']]
     def validate_TCnpjOpc(self, value):
         result = True
         # Validate type TCnpjOpc, a restriction on xs:string.
@@ -3075,7 +3144,7 @@ class infEventoType2(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_dhRegEventoType_patterns_, ))
                 result = False
         return result
-    validate_dhRegEventoType_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d[\\-,\\+](0[0-9]|10|11|12):00)$']]
+    validate_dhRegEventoType_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d-0[1-4]:00)$']]
     def validate_TProt(self, value):
         result = True
         # Validate type TProt, a restriction on xs:string.
@@ -3090,17 +3159,17 @@ class infEventoType2(GeneratedsSuper):
                 result = False
         return result
     validate_TProt_patterns_ = [['^([0-9]{15})$']]
-    def validate_IdType5(self, value):
-        # Validate type IdType5, a restriction on xs:ID.
+    def validate_IdType4(self, value):
+        # Validate type IdType4, a restriction on xs:ID.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_IdType5_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_IdType5_patterns_, ))
-    validate_IdType5_patterns_ = [['^(ID[0-9]{15})$']]
+                    self.validate_IdType4_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_IdType4_patterns_, ))
+    validate_IdType4_patterns_ = [['^(ID[0-9]{15})$']]
     def hasContent_(self):
         if (
             self.tpAmb is not None or
@@ -3112,7 +3181,6 @@ class infEventoType2(GeneratedsSuper):
             self.tpEvento is not None or
             self.xEvento is not None or
             self.nSeqEvento is not None or
-            self.cOrgaoAutor is not None or
             self.CNPJDest is not None or
             self.CPFDest is not None or
             self.emailDest is not None or
@@ -3122,34 +3190,34 @@ class infEventoType2(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infEventoType2', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infEventoType2')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infEventoType1', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infEventoType1')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'infEventoType2':
+        if self.original_tagname_ is not None and name_ == 'infEventoType1':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='infEventoType2')
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='infEventoType1')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='infEventoType2', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='infEventoType1', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='infEventoType2'):
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='infEventoType1'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
             outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
-    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infEventoType2', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infEventoType1', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -3190,10 +3258,6 @@ class infEventoType2(GeneratedsSuper):
             namespaceprefix_ = self.nSeqEvento_nsprefix_ + ':' if (UseCapturedNS_ and self.nSeqEvento_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%snSeqEvento>%s</%snSeqEvento>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.nSeqEvento), input_name='nSeqEvento')), namespaceprefix_ , eol_))
-        if self.cOrgaoAutor is not None:
-            namespaceprefix_ = self.cOrgaoAutor_nsprefix_ + ':' if (UseCapturedNS_ and self.cOrgaoAutor_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%scOrgaoAutor>%s</%scOrgaoAutor>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cOrgaoAutor), input_name='cOrgaoAutor')), namespaceprefix_ , eol_))
         if self.CNPJDest is not None:
             namespaceprefix_ = self.CNPJDest_nsprefix_ + ':' if (UseCapturedNS_ and self.CNPJDest_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -3230,7 +3294,7 @@ class infEventoType2(GeneratedsSuper):
         if value is not None and 'Id' not in already_processed:
             already_processed.add('Id')
             self.Id = value
-            self.validate_IdType5(self.Id)    # validate type IdType5
+            self.validate_IdType4(self.Id)    # validate type IdType4
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'tpAmb':
             value_ = child_.text
@@ -3286,8 +3350,8 @@ class infEventoType2(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'tpEvento')
             self.tpEvento = value_
             self.tpEvento_nsprefix_ = child_.prefix
-            # validate type tpEventoType3
-            self.validate_tpEventoType3(self.tpEvento)
+            # validate type tpEventoType2
+            self.validate_tpEventoType2(self.tpEvento)
         elif nodeName_ == 'xEvento':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xEvento')
@@ -3302,16 +3366,8 @@ class infEventoType2(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'nSeqEvento')
             self.nSeqEvento = value_
             self.nSeqEvento_nsprefix_ = child_.prefix
-            # validate type nSeqEventoType4
-            self.validate_nSeqEventoType4(self.nSeqEvento)
-        elif nodeName_ == 'cOrgaoAutor':
-            value_ = child_.text
-            value_ = self.gds_parse_string(value_, node, 'cOrgaoAutor')
-            value_ = self.gds_validate_string(value_, node, 'cOrgaoAutor')
-            self.cOrgaoAutor = value_
-            self.cOrgaoAutor_nsprefix_ = child_.prefix
-            # validate type TCOrgaoIBGE
-            self.validate_TCOrgaoIBGE(self.cOrgaoAutor)
+            # validate type nSeqEventoType3
+            self.validate_nSeqEventoType3(self.nSeqEvento)
         elif nodeName_ == 'CNPJDest':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'CNPJDest')
@@ -3352,7 +3408,7 @@ class infEventoType2(GeneratedsSuper):
             self.nProt_nsprefix_ = child_.prefix
             # validate type TProt
             self.validate_TProt(self.nProt)
-# end class infEventoType2
+# end class infEventoType1
 
 
 GDSClassesMapping = {
@@ -3515,8 +3571,8 @@ def parseLiteral(inFileName, silence=False, print_warnings=True):
         doc = None
         rootNode = None
     if not silence:
-        sys.stdout.write('#from retEnvEvento import *\n\n')
-        sys.stdout.write('import retEnvEvento as model_\n\n')
+        sys.stdout.write('#from retEnvEventoCancNFe import *\n\n')
+        sys.stdout.write('import retEnvEventoCancNFe as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -3543,7 +3599,6 @@ if __name__ == '__main__':
     main()
 
 RenameMappings_ = {
-    "{http://www.portalfiscal.inf.br/nfe}TCOrgaoIBGE": "TCOrgaoIBGE1",
 }
 
 #
@@ -3683,28 +3738,25 @@ NamespaceToDefMappings_ = {'http://www.portalfiscal.inf.br/nfe': [('TCodUfIBGE',
                                          'tiposBasico_v1.03.xsd',
                                          'ST'),
                                         ('TVerEnvEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'ST'),
                                         ('TVerEvento',
-                                         'leiauteEvento_v1.00.xsd',
-                                         'ST'),
-                                        ('TCOrgaoIBGE',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'ST'),
                                         ('TEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'CT'),
                                         ('TRetEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'CT'),
                                         ('TEnvEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'CT'),
                                         ('TRetEnvEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'CT'),
                                         ('TProcEvento',
-                                         'leiauteEvento_v1.00.xsd',
+                                         'leiauteEventoCancNFe_v1.00.xsd',
                                          'CT')],
  'http://www.w3.org/2000/09/xmldsig#': [('DigestValueType',
                                          'xmldsig-core-schema_v1.01.xsd',
@@ -3745,5 +3797,5 @@ __all__ = [
     "TRetEvento",
     "detEventoType",
     "infEventoType",
-    "infEventoType2"
+    "infEventoType1"
 ]

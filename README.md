@@ -39,8 +39,12 @@ Você pode aprender mais sobre o generateDS.py `aqui: <http://www.davekuhlman.or
 pip install git+https://github.com/akretion/nfelib
 ```
 # Gerir a lib novamente
-**Muito importante:** as fonte estao mantido na branch **master**. Entao voce tem que fazer primeiro um 
-```git checkout master```.
+**Muito importante:** as fonte estao mantido na branch **master**. Entao voce tem que fazer primeiro
+
+```
+git checkout master
+```
+
 Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esquema que interessa. Porem é interessante instalar essa pequena ferramenta https://github.com/akretion/erpbrasil.edoc.gen para automatizar as operações. Depois da lib instalada (ela puxa o pacote GenerateDS), basta fazer:
 ```bash
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
@@ -54,11 +58,18 @@ erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.go
 # Pacote de Liberação Evento Generico v1.01 (Atualizado em 30/05/2014)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u   http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
 
-erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt|retEnvEvento" -d .
+# Pacote de Liberação Evento Canc v1.01 (30/05/2014) (ZIP)
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u  http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=
+
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt|retEnvEvento|retEnvEventoCancNFe" -d .
 ```
 Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo.
 
-Se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida `git checkout master_gen_v4_00` e fazer commit dos arquivos da pasta nfelib. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar com `git merges master -X theirs`)
+Se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida 
+
+```git checkout master_gen_v4_00```
+
+e fazer commit dos arquivos da pasta nfelib e dos schemas. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar com `git merges master -X theirs`)
 
 # Rodar os testes
 

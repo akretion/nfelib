@@ -12,6 +12,7 @@ from nfelib.v4_00 import retConsStatServ
 from nfelib.v4_00 import retConsSitNFe
 from nfelib.v4_00 import distDFeInt
 from nfelib.v4_00 import retDistDFeInt
+from nfelib.v4_00 import retEnvEvento
 
 
 def test_in_out_leiauteNFe():
@@ -76,8 +77,13 @@ def test_distDFe():
     distDFeInt.distDFeInt()
     retDistDFeInt.retDistDFeInt.factory()
 
+def test_evento_generico():
+    raiz = retEnvEvento.TEnvEvento(versao="1.00", idLote='42')
+    raiz.export(sys.stdout, 0)
+    retEnvEvento.TRetEnvEvento()
+
 def test_init_all():
-    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt]:
+    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

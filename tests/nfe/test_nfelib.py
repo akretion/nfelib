@@ -15,6 +15,7 @@ from nfelib.v4_00 import distDFeInt
 from nfelib.v4_00 import retDistDFeInt
 from nfelib.v4_00 import retEnvEvento
 from nfelib.v4_00 import retEnvEventoCancNFe
+from nfelib.v4_00 import retEnvCCe
 
 
 def test_in_out_leiauteNFe():
@@ -89,8 +90,29 @@ def test_evento_cancelamento():
     retEnvEventoCancNFe.infEventoType()
     retEnvEventoCancNFe.detEventoType()
 
+def test_cce():
+    retEnvCCe.infEventoType()
+    retEnvCCe.detEventoType()
+
+def test_in_out_leiauteCCe():
+    path = 'tests/cce/v1_00/leiauteCCe'
+    for filename in os.listdir(path):
+        inputfile = '%s/%s' % (path, filename,)
+        doc = retInutNFe.parsexml_(inputfile, None)
+        obj = retEnvCCe.TEvento.factory().build(doc.getroot())
+
+        outputfile = 'tests/output.xml'
+        with open(outputfile, 'w') as f:
+            obj.export(f, level=0, name_='evento',
+                namespacedef_='xmlns="http://www.portalfiscal.inf.br/nfe"')
+
+        diff = main.diff_files(inputfile, outputfile)
+        print(diff)
+        assert len(diff) == 0
+
 def test_init_all():
-    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento, retEnvEventoCancNFe]:
+    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
+            retEnvEventoCancNFe, retEnvCCe]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

@@ -61,9 +61,13 @@ erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "distDFeInt|retDistDFeInt"
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u   http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvEvento" -d .
 
-# Pacote de Liberação Evento Canc v1.01 (30/05/2014) (ZIP)
+# Pacote de Liberação Evento Canc v1.01 (30/05/2014)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u  http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvEventoCancNFe" -d .
+
+# Pacote de Liberação Evento CCe v1.01 (30/05/2014)
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=P/FXaGiLKo0=
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvCCe" -d .
 ```
 Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo (`python3 -m pytest  tests -v`).
 
@@ -72,7 +76,7 @@ Depois voce tem que trocar de branch de novo para a branch onde fica o codigo ge
 ```bash
 rm -r nfelib
 git checkout master_gen_v4_00
-git merges master -X theirs
+git merge master -X theirs
 # gera de novo com o script acima (erpbrasil-edoc-gen-generate-python...)
 # roda os tests para ver se esta tudo OK
 python3 -m pytest  tests -v

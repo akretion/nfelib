@@ -51,7 +51,10 @@ erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.go
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=n3Kn9%20YZNak=
 
-erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt" -d .
+# Pacote de Liberação Evento Generico v1.01 (Atualizado em 30/05/2014)
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u   http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
+
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt|retEnvEvento" -d .
 ```
 Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo.
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2019 - TODAY Raphaël Valyi - Akretion
 
 import os
 import sys
@@ -13,6 +14,7 @@ from nfelib.v4_00 import retConsSitNFe
 from nfelib.v4_00 import distDFeInt
 from nfelib.v4_00 import retDistDFeInt
 from nfelib.v4_00 import retEnvEvento
+from nfelib.v4_00 import retEnvEventoCancNFe
 
 
 def test_in_out_leiauteNFe():
@@ -82,8 +84,13 @@ def test_evento_generico():
     raiz.export(sys.stdout, 0)
     retEnvEvento.TRetEnvEvento()
 
+def test_evento_cancelamento():
+    retEnvEventoCancNFe.TEvento()
+    retEnvEventoCancNFe.infEventoType()
+    retEnvEventoCancNFe.detEventoType()
+
 def test_init_all():
-    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento]:
+    for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento, retEnvEventoCancNFe]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

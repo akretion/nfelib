@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Sep 30 21:48:31 2020 by generateDS.py version 2.36.2.
+# Generated  by generateDS.py version 2.36.2.
 # Python 3.8.2 (default, Apr 27 2020, 15:53:34)  [GCC 9.3.0]
 #
 # Command line options:
 #   ('--no-namespace-defs', '')
+#   ('--no-dates', '')
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
@@ -16,7 +17,7 @@
 #   /tmp/generated/schemas/nfe/v4_00/retConsReciNFe_v4.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retConsReciNFe.py" /tmp/generated/schemas/nfe/v4_00/retConsReciNFe_v4.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retConsReciNFe.py" /tmp/generated/schemas/nfe/v4_00/retConsReciNFe_v4.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00

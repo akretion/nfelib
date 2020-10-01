@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='nfelib',
-    version='0.4',
+    version='0.5',
     author='Raphael Valyi',
     author_email='raphael.valyi@akretion.com',
     url='https://github.com/akretion/nfelib',

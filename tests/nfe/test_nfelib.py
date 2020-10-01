@@ -16,6 +16,7 @@ from nfelib.v4_00 import retDistDFeInt
 from nfelib.v4_00 import retEnvEvento
 from nfelib.v4_00 import retEnvEventoCancNFe
 from nfelib.v4_00 import retEnvCCe
+from nfelib.v4_00 import retEnvConfRecebto
 
 
 def test_in_out_leiauteNFe():
@@ -110,9 +111,16 @@ def test_in_out_leiauteCCe():
         print(diff)
         assert len(diff) == 0
 
+def test_mde():
+    retEnvConfRecebto.TEvento()
+    retEnvConfRecebto.infEventoType()
+    retEnvConfRecebto.detEventoType()
+    retEnvConfRecebto.tpEventoType('210200')
+    retEnvConfRecebto.descEventoType('Confirmacao da Operacao')
+
 def test_init_all():
     for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
-            retEnvEventoCancNFe, retEnvCCe]:
+            retEnvEventoCancNFe, retEnvCCe, retEnvConfRecebto]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

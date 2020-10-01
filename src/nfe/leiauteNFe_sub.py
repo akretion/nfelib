@@ -1,3 +1,5 @@
+# Copyright (C) 2019 - TODAY Raphaël Valyi - Akretion
+
 import sys
 import os
 from lxml import etree as etree_

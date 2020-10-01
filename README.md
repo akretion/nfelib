@@ -11,10 +11,10 @@ A nfelib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileir
 
 Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (e especialmente para NFS-e, MDFe, CTe, E-Social e SPED-Reinf, GNRE, BP-e).
 
-Durante anos usamos o https://github.com/aricaldeira/PySPED. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas nessa parte para montar o leiaute da NFe https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmitir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código podem ser geradas por **um único comando** com a ferramenta [generateDS](http://www.davekuhlman.org/generateDS.html) usada por essa lib:
+Durante anos usamos o https://github.com/aricaldeira/PySPED. Porém no PySPED, o autor partiu para escrever e manter manualmente **mais de 10 000 de linhas de código**, apenas nessa parte para montar o leiaute da NFe https://github.com/aricaldeira/PySPED/tree/master/pysped/nfe/leiaute. Mas isso ocasiona um custo de manutenção proibitivo a cada atualização dos esquemas sem falar que por se tratar de código manual tem vários erros com as TAGs pouco usadas e na Akretion cansamos de escrever patch na urgência no PySPED a cada vez que um cliente Odoo nosso não consegue transmitir uma NF'e. Na verdade o equivalente dessas 10 000 linhas de código (anos de trabalho do autor) podem ser geradas por **esse único comando** com a ferramenta [generateDS](http://www.davekuhlman.org/generateDS.html) usada por essa lib:
 
 ```bash
-python generateDS.py -o leiauteNFe.py leiauteNFe_v4.00.xsd
+generateDS -o leiauteNFe.py leiauteNFe_v4.00.xsd
 ```
 
 A nfelib permite de:
@@ -29,16 +29,16 @@ A nfelib é:
 * Compatível com **Python 3** (e com Python 2 se botar patches no generateDS e usar uma versao anterior)
 * Capaz de carregar **várias versões dos esquemas**. Isso pode ser bem útil ao receber uma nota fiscal com um leiaute antigo.
 
-Além disso, usando outros recursos do GenerateDS, é possível ir além dessa biblioteca NFeLib e gerir automaticamente o modelo de dados do ERP pelo menos no ERP Odoo que tem um framework bastante poderoso. Sendo assim, é possivel montar dinamicamente as telas do usuário, a geração do XML ou a importação do XML quase que sem escrever código (apenas relacionar os campos mapeados com os campos já existentes do ERP). Fica então bem mais razoável para manter quando tem que atualizar os esquemas e assim também fica finalmente possível manter os dados do SPED dentro do ERP com um custo de manutenção compatível com o modelo open source.
+Além disso, usando outros recursos do GenerateDS, é possível ir além dessa biblioteca nfelib e gerir automaticamente o modelo de dados do ERP pelo menos no ERP Odoo que tem um framework bastante poderoso. Sendo assim, é possivel montar dinamicamente as telas do usuário, a geração do XML ou a importação do XML quase que sem escrever código (apenas relacionar os campos mapeados com os campos já existentes do ERP). Fica então bem mais razoável para manter quando tem que atualizar os esquemas e assim também fica finalmente possível manter os dados do SPED dentro do ERP com um custo de manutenção compatível com o modelo open source.
 
-Você pode aprender mais sobre o generateDS.py `aqui: <http://www.davekuhlman.org/generateDS.html>`_
+Você pode aprender mais sobre o generateDS [aqui](http://www.davekuhlman.org/generateDS.html)
 
 # Como Instalar
 
 ```bash
 pip install git+https://github.com/akretion/nfelib
 ```
-# Gerir a lib novamente
+# Gerir a lib novamente / processo de release
 **Muito importante:** as fonte estao mantido na branch **master**. Entao voce tem que fazer primeiro
 
 ```
@@ -51,25 +51,38 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
   
 # Pacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=n3Kn9%20YZNak=
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "distDFeInt|retDistDFeInt" -d .
 
 # Pacote de Liberação Evento Generico v1.01 (Atualizado em 30/05/2014)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u   http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvEvento" -d .
 
 # Pacote de Liberação Evento Canc v1.01 (30/05/2014) (ZIP)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u  http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=
-
-erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe|distDFeInt|retDistDFeInt|retEnvEvento|retEnvEventoCancNFe" -d .
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvEventoCancNFe" -d .
 ```
-Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo.
+Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo (`python3 -m pytest  tests -v`).
 
-Se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem que trocar de branch de novo para a branch gerida 
-
-```git checkout master_gen_v4_00```
-
-e fazer commit dos arquivos da pasta nfelib e dos schemas. (faça um merge da branch master na branch master_gen_v4_00 antes do commit da neflib se precisar com `git merges master -X theirs`)
+Se você quiser criar uma nova versão do nfelib no Github, depois de gerir voce tem fazer um commit do README.md com a receita do bolo atualizada (essa parte) e dos testes atualizados.
+Depois voce tem que trocar de branch de novo para a branch onde fica o codigo gerido e gerir de novo:
+```bash
+rm -r nfelib
+git checkout master_gen_v4_00
+git merges master -X theirs
+# gera de novo com o script acima (erpbrasil-edoc-gen-generate-python...)
+# roda os tests para ver se esta tudo OK
+python3 -m pytest  tests -v
+# copia os schemas, por examplo com
+rm -r schemas/nfe
+cp -r /tmp/generated/schemas/nfe schemas/nfe
+git add schemas
+git add nfelib
+# ai vc pode fazer um commit e um push com as mudanças (e 2 PRs para as branches master e master_gen_v4_00 eventualmente)
+```
 
 # Rodar os testes
 

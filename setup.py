@@ -1,21 +1,41 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
 
-from setuptools import setup, find_packages
+import io
+import re
+from os.path import dirname
+from os.path import join
 
-with open('README.md', 'r') as f:
-    readme = f.read()
+from setuptools import find_packages
+from setuptools import setup
+
+
+def read(*names, **kwargs):
+    with io.open(
+        join(dirname(__file__), *names),
+        encoding=kwargs.get('encoding', 'utf8')
+    ) as fh:
+        return fh.read()
+
 
 setup(
     name='nfelib',
     version='0.5',
+    license='MIT',
+    description='nfelib: electronic invoicing library for Brazil',
+    long_description='%s\n%s\n%s' % (
+        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('AUTHORS.rst')),
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
+    ),
     author='Raphael Valyi',
     author_email='raphael.valyi@akretion.com',
-    url='https://github.com/akretion/nfelib',
-    description='nfelib: electronic invoicing library for Brazil',
-    long_description=readme,
-    long_description_content_type='text/markdown',
-    license='MIT',
+    url='https://github.com/erpbrasil/nfelib',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -28,9 +48,6 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
     keywords='e-invoice NFe ERP Odoo',
-    packages=find_packages(),
-    include_package_data=True,
     python_requires=">=3.5",
     scripts=[],
-    zip_safe=False,
 )

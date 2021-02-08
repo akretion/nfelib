@@ -64,8 +64,8 @@
       </dest>
       <det nItem="1">
         <prod>
-          <cProd>1094</cProd>
-          <cEAN>7897846900945</cEAN>
+          <cProd>2094</cProd>
+          <cEAN>7997846900945</cEAN>
           <xProd>GRANOLA TRADICIONAL 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
@@ -290,7 +290,7 @@
         <prod>
           <cProd>1096</cProd>
           <cEAN>7897846900969</cEAN>
-          <xProd>CEREALLE GRANOLA MACA &amp; GERGELIM 800G</xProd>
+          <xProd>GRANOLA MACA &amp; GERGELIM 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
           <CFOP>5401</CFOP>
@@ -696,7 +696,7 @@
         <prod>
           <cProd>1128</cProd>
           <cEAN>7897846901287</cEAN>
-          <xProd>GRANOLA MAIS 500G</xProd>
+          <xProd>MAIS 500G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
           <CFOP>5401</CFOP>

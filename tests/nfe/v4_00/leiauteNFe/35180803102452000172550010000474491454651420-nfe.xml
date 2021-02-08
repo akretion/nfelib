@@ -64,7 +64,7 @@
         <prod>
           <cProd>1094</cProd>
           <cEAN>7897846900945</cEAN>
-          <xProd>CEREALLE GRANOLA TRADICIONAL 800G</xProd>
+          <xProd>GRANOLA TRADICIONAL 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
           <CFOP>5910</CFOP>
@@ -226,7 +226,7 @@
         <prod>
           <cProd>1128</cProd>
           <cEAN>7897846901287</cEAN>
-          <xProd>GRANOLA MAIS 500G</xProd>
+          <xProd>MAIS 500G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
           <CFOP>5910</CFOP>
@@ -280,7 +280,7 @@
         <prod>
           <cProd>1208</cProd>
           <cEAN>7897846902086</cEAN>
-          <xProd>QUINOA FACIL CASTANHA 100G (2X50G)</xProd>
+          <xProd>QUINOA 100G (2X50G)</xProd>
           <NCM>10085090</NCM>
           <CFOP>5910</CFOP>
           <uCom>UN</uCom>
@@ -381,7 +381,7 @@
         <prod>
           <cProd>1210</cProd>
           <cEAN>7897846902109</cEAN>
-          <xProd>QUINOA FACIL VEGETAIS 100G (2X50G)</xProd>
+          <xProd>QUINOA VEGETAIS 100G (2X50G)</xProd>
           <NCM>10085090</NCM>
           <CFOP>5910</CFOP>
           <uCom>UN</uCom>

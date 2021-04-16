@@ -27226,10 +27226,14 @@ class pagType(GeneratedsSuper):
         for detPag_ in self.detPag:
             namespaceprefix_ = self.detPag_nsprefix_ + ':' if (UseCapturedNS_ and self.detPag_nsprefix_) else ''
             detPag_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='detPag', pretty_print=pretty_print)
-        if self.vTroco is not None:
-            namespaceprefix_ = self.vTroco_nsprefix_ + ':' if (UseCapturedNS_ and self.vTroco_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%svTroco>%s</%svTroco>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vTroco), input_name='vTroco')), namespaceprefix_ , eol_))
+        # Contornando problema com a tag vTroco para notas fiscais sem pagamento
+        if self.vTroco is not None and self.detPag:
+            for detPag in self.detPag:
+                if detPag.tPag != '90' or not detPag.tPag:
+                    namespaceprefix_ = self.vTroco_nsprefix_ + ':' if (UseCapturedNS_ and self.vTroco_nsprefix_) else ''
+                    showIndent(outfile, level, pretty_print)
+                    outfile.write('<%svTroco>%s</%svTroco>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vTroco), input_name='vTroco')), namespaceprefix_ , eol_))
+
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:

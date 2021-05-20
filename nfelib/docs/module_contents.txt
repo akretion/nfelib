@@ -1,7 +1,7 @@
 Module contents
 =================
 
-.. automodule:: retEnvConfRecebto
+.. automodule:: retConsCad
     :members:
     :undoc-members:
     :show-inheritance:

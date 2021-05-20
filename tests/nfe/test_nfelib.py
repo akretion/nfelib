@@ -17,6 +17,7 @@ from nfelib.v4_00 import retEnvEvento
 from nfelib.v4_00 import retEnvEventoCancNFe
 from nfelib.v4_00 import retEnvCCe
 from nfelib.v4_00 import retEnvConfRecebto
+from nfelib.v4_00 import retConsCad
 
 
 def test_in_out_leiauteNFe():
@@ -118,9 +119,23 @@ def test_mde():
     retEnvConfRecebto.tpEventoType('210200')
     retEnvConfRecebto.descEventoType('Confirmacao da Operacao')
 
+def test_consulta():
+    infCons = retConsCad.infConsType(
+        xServ='CONS-CAD',
+        UF='SP',
+        IE='alguma IE',
+        CNPJ='algum CNPJ',
+        CPF=None,
+    )
+    raiz = retConsCad.TConsCad(
+        versao='2.00',
+        infCons=infCons,
+    )
+    raiz.original_tagname_ = 'ConsCad'
+
 def test_init_all():
     for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
-            retEnvEventoCancNFe, retEnvCCe, retEnvConfRecebto]:
+            retEnvEventoCancNFe, retEnvCCe, retEnvConfRecebto, retConsCad]:
         for class_name in mod.__all__:
             cls = getattr(mod, class_name)
             if issubclass(cls, mod.GeneratedsSuper):

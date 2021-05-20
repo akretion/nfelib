@@ -74,6 +74,10 @@ erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.go
 # mude o encoding desse arquivo xsd de iso-8859-1 para utf-8 e amaldiçoe o cara que usou iso-8859-1
 iconv -f iso-8859-1 /tmp/generated/schemas/nfe/v4_00/retEnvConfRecebto_v1.00.xsd -t UTF-8 -o /tmp/generated/schemas/nfe/v4_00/retEnvConfRecebto_v1.00.xsd
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvConfRecebto" -d .
+
+# Consulta Cadastro - Pacote de Liberação No. 6t (21/03/2014)"
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=/KLQ3Wi0ckY=
+erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsCad" -d .
 ```
 Depois você pode olhar os arquivos Python geridos na pasta nfelib/v4_00/ e rodar os testes por examplo (`python3 -m pytest  tests -v`).
 

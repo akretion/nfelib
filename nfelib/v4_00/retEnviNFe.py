@@ -1763,6 +1763,15 @@ class indIncentivoType(str, Enum):
     _2='2'
 
 
+class indIntermedType(str, Enum):
+    """Indicador de intermediador/marketplace
+    0=Operação sem intermediador (em site ou plataforma própria)
+    1=Operação em site ou plataforma de terceiros
+    (intermediadores/marketplace)"""
+    _0='0'
+    _1='1'
+
+
 class indPagType(str, Enum):
     """Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à
     Prazo;"""
@@ -2169,7 +2178,11 @@ class pICMSInterType(str, Enum):
 class tBandType(str, Enum):
     """Bandeira da operadora de cartão de crédito/débito:01–Visa;
     02–Mastercard; 03–American Express; 04–Sorocred;05-Diners
-    Club;06-Elo;07-Hipercard;08-Aura;09-Cabal;99–Outros"""
+    Club;06-Elo;07-Hipercard;08-Aura;09-Cabal
+    10-Alelo; 11-Banes Card; 12-CalCard; 13-Credz; 14-Discover; 15-GoodCard;
+    16-GreenCard; 17-Hiper; 18-JcB; 19-Mais;20-MaxVan;
+    21-Policard;22-RedeCompras
+    23-Sodexo; 24-ValeCard; 25-Verocheque; 26-VR; 27-Ticket;99–Outros"""
     _0_1='01'
     _0_2='02'
     _0_3='03'
@@ -2179,14 +2192,37 @@ class tBandType(str, Enum):
     _0_7='07'
     _0_8='08'
     _0_9='09'
+    _1_0='10'
+    _1_1='11'
+    _1_2='12'
+    _1_3='13'
+    _1_4='14'
+    _1_5='15'
+    _1_6='16'
+    _1_7='17'
+    _1_8='18'
+    _1_9='19'
+    _2_0='20'
+    _2_1='21'
+    _2_2='22'
+    _2_3='23'
+    _2_4='24'
+    _2_5='25'
+    _2_6='26'
+    _2_7='27'
     _9_9='99'
 
 
 class tPagType(str, Enum):
     """Forma de Pagamento:01-Dinheiro;02-Cheque;03-Cartão de Crédito;04-Cartão
-    de Débito;05-Crédito Loja;10-Vale Alimentação;11-Vale Refeição;12-Vale
-    Presente;13-Vale Combustível;14 - Duplicata Mercantil;15 - Boleto
-    Bancario;90 - Sem Pagamento;99 - Outros"""
+    de Débito;05-Crédito Loja;
+    10-Vale Alimentação;11-Vale Refeição;12-Vale Presente;13-Vale
+    Combustível;14 - Duplicata Mercantil;
+    15 - Boleto Bancario;16 Depósito Bancário
+    17 Pagamento Instantâneo (PIX)
+    18 Transferência bancária, Carteira Digital
+    19 Programa de fidelidade, Cashback, Crédito Virtual 90 - Sem Pagamento;99
+    - Outros"""
     _0_1='01'
     _0_2='02'
     _0_3='03'
@@ -2198,6 +2234,10 @@ class tPagType(str, Enum):
     _1_3='13'
     _1_4='14'
     _1_5='15'
+    _1_6='16'
+    _1_7='17'
+    _1_8='18'
+    _1_9='19'
     _9_0='90'
     _9_9='99'
 
@@ -6970,6 +7010,7 @@ class infNFeType(GeneratedsSuper):
         MemberSpec_('transp', 'transpType', 0, 0, {'name': 'transp', 'type': 'transpType'}, None),
         MemberSpec_('cobr', 'cobrType', 0, 1, {'minOccurs': '0', 'name': 'cobr', 'type': 'cobrType'}, None),
         MemberSpec_('pag', 'pagType', 0, 0, {'name': 'pag', 'type': 'pagType'}, None),
+        MemberSpec_('infIntermed', 'infIntermedType', 0, 1, {'minOccurs': '0', 'name': 'infIntermed', 'type': 'infIntermedType'}, None),
         MemberSpec_('infAdic', 'infAdicType', 0, 1, {'minOccurs': '0', 'name': 'infAdic', 'type': 'infAdicType'}, None),
         MemberSpec_('exporta', 'exportaType', 0, 1, {'minOccurs': '0', 'name': 'exporta', 'type': 'exportaType'}, None),
         MemberSpec_('compra', 'compraType', 0, 1, {'minOccurs': '0', 'name': 'compra', 'type': 'compraType'}, None),
@@ -6978,7 +7019,7 @@ class infNFeType(GeneratedsSuper):
     ]
     subclass = None
     superclass = None
-    def __init__(self, versao=None, Id=None, ide=None, emit=None, avulsa=None, dest=None, retirada=None, entrega=None, autXML=None, det=None, total=None, transp=None, cobr=None, pag=None, infAdic=None, exporta=None, compra=None, cana=None, infRespTec=None, gds_collector_=None, **kwargs_):
+    def __init__(self, versao=None, Id=None, ide=None, emit=None, avulsa=None, dest=None, retirada=None, entrega=None, autXML=None, det=None, total=None, transp=None, cobr=None, pag=None, infIntermed=None, infAdic=None, exporta=None, compra=None, cana=None, infRespTec=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -7018,6 +7059,8 @@ class infNFeType(GeneratedsSuper):
         self.cobr_nsprefix_ = None
         self.pag = pag
         self.pag_nsprefix_ = None
+        self.infIntermed = infIntermed
+        self.infIntermed_nsprefix_ = None
         self.infAdic = infAdic
         self.infAdic_nsprefix_ = None
         self.exporta = exporta
@@ -7075,6 +7118,7 @@ class infNFeType(GeneratedsSuper):
             self.transp is not None or
             self.cobr is not None or
             self.pag is not None or
+            self.infIntermed is not None or
             self.infAdic is not None or
             self.exporta is not None or
             self.compra is not None or
@@ -7155,6 +7199,9 @@ class infNFeType(GeneratedsSuper):
         if self.pag is not None:
             namespaceprefix_ = self.pag_nsprefix_ + ':' if (UseCapturedNS_ and self.pag_nsprefix_) else ''
             self.pag.export(outfile, level, namespaceprefix_, namespacedef_='', name_='pag', pretty_print=pretty_print)
+        if self.infIntermed is not None:
+            namespaceprefix_ = self.infIntermed_nsprefix_ + ':' if (UseCapturedNS_ and self.infIntermed_nsprefix_) else ''
+            self.infIntermed.export(outfile, level, namespaceprefix_, namespacedef_='', name_='infIntermed', pretty_print=pretty_print)
         if self.infAdic is not None:
             namespaceprefix_ = self.infAdic_nsprefix_ + ':' if (UseCapturedNS_ and self.infAdic_nsprefix_) else ''
             self.infAdic.export(outfile, level, namespaceprefix_, namespacedef_='', name_='infAdic', pretty_print=pretty_print)
@@ -7253,6 +7300,11 @@ class infNFeType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.pag = obj_
             obj_.original_tagname_ = 'pag'
+        elif nodeName_ == 'infIntermed':
+            obj_ = infIntermedType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.infIntermed = obj_
+            obj_.original_tagname_ = 'infIntermed'
         elif nodeName_ == 'infAdic':
             obj_ = infAdicType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -7304,6 +7356,7 @@ class ideType(GeneratedsSuper):
         MemberSpec_('finNFe', ['TFinNFe', 'xs:string'], 0, 0, {'name': 'finNFe', 'type': 'xs:string'}, None),
         MemberSpec_('indFinal', ['indFinalType', 'xs:string'], 0, 0, {'name': 'indFinal', 'type': 'xs:string'}, None),
         MemberSpec_('indPres', ['indPresType', 'xs:string'], 0, 0, {'name': 'indPres', 'type': 'xs:string'}, None),
+        MemberSpec_('indIntermed', ['indIntermedType', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'indIntermed', 'type': 'xs:string'}, None),
         MemberSpec_('procEmi', ['TProcEmi', 'xs:string'], 0, 0, {'name': 'procEmi', 'type': 'xs:string'}, None),
         MemberSpec_('verProc', ['verProcType', 'TString', 'xs:string'], 0, 0, {'name': 'verProc', 'type': 'xs:string'}, None),
         MemberSpec_('dhCont', ['TDateTimeUTC', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'dhCont', 'type': 'xs:string'}, None),
@@ -7312,7 +7365,7 @@ class ideType(GeneratedsSuper):
     ]
     subclass = None
     superclass = None
-    def __init__(self, cUF=None, cNF=None, natOp=None, mod=None, serie=None, nNF=None, dhEmi=None, dhSaiEnt=None, tpNF=None, idDest=None, cMunFG=None, tpImp=None, tpEmis=None, cDV=None, tpAmb=None, finNFe=None, indFinal=None, indPres=None, procEmi=None, verProc=None, dhCont=None, xJust=None, NFref=None, gds_collector_=None, **kwargs_):
+    def __init__(self, cUF=None, cNF=None, natOp=None, mod=None, serie=None, nNF=None, dhEmi=None, dhSaiEnt=None, tpNF=None, idDest=None, cMunFG=None, tpImp=None, tpEmis=None, cDV=None, tpAmb=None, finNFe=None, indFinal=None, indPres=None, indIntermed=None, procEmi=None, verProc=None, dhCont=None, xJust=None, NFref=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -7372,6 +7425,9 @@ class ideType(GeneratedsSuper):
         self.indPres = indPres
         self.validate_indPresType(self.indPres)
         self.indPres_nsprefix_ = None
+        self.indIntermed = indIntermed
+        self.validate_indIntermedType(self.indIntermed)
+        self.indIntermed_nsprefix_ = None
         self.procEmi = procEmi
         self.validate_TProcEmi(self.procEmi)
         self.procEmi_nsprefix_ = None
@@ -7656,6 +7712,21 @@ class ideType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on indPresType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
+    def validate_indIntermedType(self, value):
+        result = True
+        # Validate type indIntermedType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            value = value
+            enumerations = ['0', '1']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on indIntermedType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+        return result
     def validate_TProcEmi(self, value):
         result = True
         # Validate type TProcEmi, a restriction on xs:string.
@@ -7735,6 +7806,7 @@ class ideType(GeneratedsSuper):
             self.finNFe is not None or
             self.indFinal is not None or
             self.indPres is not None or
+            self.indIntermed is not None or
             self.procEmi is not None or
             self.verProc is not None or
             self.dhCont is not None or
@@ -7846,6 +7918,10 @@ class ideType(GeneratedsSuper):
             namespaceprefix_ = self.indPres_nsprefix_ + ':' if (UseCapturedNS_ and self.indPres_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%sindPres>%s</%sindPres>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.indPres), input_name='indPres')), namespaceprefix_ , eol_))
+        if self.indIntermed is not None:
+            namespaceprefix_ = self.indIntermed_nsprefix_ + ':' if (UseCapturedNS_ and self.indIntermed_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sindIntermed>%s</%sindIntermed>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.indIntermed), input_name='indIntermed')), namespaceprefix_ , eol_))
         if self.procEmi is not None:
             namespaceprefix_ = self.procEmi_nsprefix_ + ':' if (UseCapturedNS_ and self.procEmi_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -8023,6 +8099,14 @@ class ideType(GeneratedsSuper):
             self.indPres_nsprefix_ = child_.prefix
             # validate type indPresType
             self.validate_indPresType(self.indPres)
+        elif nodeName_ == 'indIntermed':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'indIntermed')
+            value_ = self.gds_validate_string(value_, node, 'indIntermed')
+            self.indIntermed = value_
+            self.indIntermed_nsprefix_ = child_.prefix
+            # validate type indIntermedType
+            self.validate_indIntermedType(self.indIntermed)
         elif nodeName_ == 'procEmi':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'procEmi')
@@ -28172,12 +28256,13 @@ class detPagType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('indPag', ['indPagType', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'indPag', 'type': 'xs:string'}, None),
         MemberSpec_('tPag', ['tPagType', 'xs:string'], 0, 0, {'name': 'tPag', 'type': 'xs:string'}, None),
+        MemberSpec_('xPag', ['xPagType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPag', 'type': 'xs:string'}, None),
         MemberSpec_('vPag', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vPag', 'type': 'xs:string'}, None),
         MemberSpec_('card', 'cardType', 0, 1, {'minOccurs': '0', 'name': 'card', 'type': 'cardType'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, indPag=None, tPag=None, vPag=None, card=None, gds_collector_=None, **kwargs_):
+    def __init__(self, indPag=None, tPag=None, xPag=None, vPag=None, card=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -28189,6 +28274,9 @@ class detPagType(GeneratedsSuper):
         self.tPag = tPag
         self.validate_tPagType(self.tPag)
         self.tPag_nsprefix_ = None
+        self.xPag = xPag
+        self.validate_xPagType(self.xPag)
+        self.xPag_nsprefix_ = None
         self.vPag = vPag
         self.validate_TDec_1302(self.vPag)
         self.vPag_nsprefix_ = None
@@ -28229,12 +28317,34 @@ class detPagType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['01', '02', '03', '04', '05', '10', '11', '12', '13', '14', '15', '90', '99']
+            enumerations = ['01', '02', '03', '04', '05', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '90', '99']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on tPagType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
+    def validate_xPagType(self, value):
+        result = True
+        # Validate type xPagType, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 60:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xPagType' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 2:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xPagType' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xPagType_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPagType_patterns_, ))
+                result = False
+        return result
+    validate_xPagType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TDec_1302(self, value):
         result = True
         # Validate type TDec_1302, a restriction on xs:string.
@@ -28253,6 +28363,7 @@ class detPagType(GeneratedsSuper):
         if (
             self.indPag is not None or
             self.tPag is not None or
+            self.xPag is not None or
             self.vPag is not None or
             self.card is not None
         ):
@@ -28297,6 +28408,10 @@ class detPagType(GeneratedsSuper):
             namespaceprefix_ = self.tPag_nsprefix_ + ':' if (UseCapturedNS_ and self.tPag_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%stPag>%s</%stPag>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tPag), input_name='tPag')), namespaceprefix_ , eol_))
+        if self.xPag is not None:
+            namespaceprefix_ = self.xPag_nsprefix_ + ':' if (UseCapturedNS_ and self.xPag_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sxPag>%s</%sxPag>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xPag), input_name='xPag')), namespaceprefix_ , eol_))
         if self.vPag is not None:
             namespaceprefix_ = self.vPag_nsprefix_ + ':' if (UseCapturedNS_ and self.vPag_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -28334,6 +28449,14 @@ class detPagType(GeneratedsSuper):
             self.tPag_nsprefix_ = child_.prefix
             # validate type tPagType
             self.validate_tPagType(self.tPag)
+        elif nodeName_ == 'xPag':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'xPag')
+            value_ = self.gds_validate_string(value_, node, 'xPag')
+            self.xPag = value_
+            self.xPag_nsprefix_ = child_.prefix
+            # validate type xPagType
+            self.validate_xPagType(self.xPag)
         elif nodeName_ == 'vPag':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'vPag')
@@ -28432,7 +28555,7 @@ class cardType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '99']
+            enumerations = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '99']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on tBandType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -28563,6 +28686,157 @@ class cardType(GeneratedsSuper):
             # validate type cAutType
             self.validate_cAutType(self.cAut)
 # end class cardType
+
+
+class infIntermedType(GeneratedsSuper):
+    """Grupo de Informações do Intermediador da Transação"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('CNPJ', ['TCnpj', 'xs:string'], 0, 0, {'name': 'CNPJ', 'type': 'xs:string'}, None),
+        MemberSpec_('idCadIntTran', ['idCadIntTranType', 'TString', 'xs:string'], 0, 0, {'name': 'idCadIntTran', 'type': 'xs:string'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, CNPJ=None, idCadIntTran=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.CNPJ = CNPJ
+        self.validate_TCnpj(self.CNPJ)
+        self.CNPJ_nsprefix_ = None
+        self.idCadIntTran = idCadIntTran
+        self.validate_idCadIntTranType(self.idCadIntTran)
+        self.idCadIntTran_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, infIntermedType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if infIntermedType.subclass:
+            return infIntermedType.subclass(*args_, **kwargs_)
+        else:
+            return infIntermedType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def validate_TCnpj(self, value):
+        result = True
+        # Validate type TCnpj, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 14:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on TCnpj' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCnpj_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TCnpj_patterns_, ))
+                result = False
+        return result
+    validate_TCnpj_patterns_ = [['^([0-9]{14})$']]
+    def validate_idCadIntTranType(self, value):
+        result = True
+        # Validate type idCadIntTranType, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 60:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on idCadIntTranType' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 2:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on idCadIntTranType' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_idCadIntTranType_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_idCadIntTranType_patterns_, ))
+                result = False
+        return result
+    validate_idCadIntTranType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def hasContent_(self):
+        if (
+            self.CNPJ is not None or
+            self.idCadIntTran is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infIntermedType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infIntermedType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'infIntermedType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='infIntermedType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='infIntermedType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='infIntermedType'):
+        pass
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='infIntermedType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.CNPJ is not None:
+            namespaceprefix_ = self.CNPJ_nsprefix_ + ':' if (UseCapturedNS_ and self.CNPJ_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sCNPJ>%s</%sCNPJ>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.CNPJ), input_name='CNPJ')), namespaceprefix_ , eol_))
+        if self.idCadIntTran is not None:
+            namespaceprefix_ = self.idCadIntTran_nsprefix_ + ':' if (UseCapturedNS_ and self.idCadIntTran_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sidCadIntTran>%s</%sidCadIntTran>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.idCadIntTran), input_name='idCadIntTran')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        pass
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'CNPJ':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'CNPJ')
+            value_ = self.gds_validate_string(value_, node, 'CNPJ')
+            self.CNPJ = value_
+            self.CNPJ_nsprefix_ = child_.prefix
+            # validate type TCnpj
+            self.validate_TCnpj(self.CNPJ)
+        elif nodeName_ == 'idCadIntTran':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'idCadIntTran')
+            value_ = self.gds_validate_string(value_, node, 'idCadIntTran')
+            self.idCadIntTran = value_
+            self.idCadIntTran_nsprefix_ = child_.prefix
+            # validate type idCadIntTranType
+            self.validate_idCadIntTranType(self.idCadIntTran)
+# end class infIntermedType
 
 
 class infAdicType(GeneratedsSuper):
@@ -32001,6 +32275,7 @@ __all__ = [
     "impostoDevolType",
     "impostoType",
     "infAdicType",
+    "infIntermedType",
     "infNFeSuplType",
     "infNFeType",
     "infProtType",

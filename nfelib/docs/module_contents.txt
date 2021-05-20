@@ -1,7 +1,43 @@
 Module contents
 =================
 
-.. automodule:: retConsCad
+.. automodule:: retConsStatServ
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retConsStatServ
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retConsSitNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retConsSitNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retEnviNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retEnviNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retConsReciNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retConsReciNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retInutNFe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: retInutNFe
     :members:
     :undoc-members:
     :show-inheritance:

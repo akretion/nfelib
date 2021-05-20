@@ -7,7 +7,7 @@
 A nfelib é uma biblioteca para ler e gerir notas fiscais eletrônicas brasileiras (NFe's). A nfelib não tem a pretensão de solucionar toda burocracia do SPED sozinha, mas foca apenas na questão do parsing e da geração da NFe.
 
 * Para transmitir as NFe's para a receita, aconselhamos a biblioteca Python Zeep, ou entao por examplo https://github.com/erpbrasil/erpbrasil.edoc.
-* E para imprimir o DANFE, é possivel usar https://github.com/erpbrasil/erpbrasil.edoc.pdf 
+* E para imprimir o DANFE, é possivel usar https://github.com/erpbrasil/erpbrasil.edoc.pdf
 
 Na Akretion queriamos algo modular, simples de se manter para usar com o ERP Odoo que adaptamos para as necessidades fiscais brasileiras. Também criamos outras bibliotecas semelhantes para os outros documentos eletrônicos do SPED (e especialmente para NFS-e, MDFe, CTe, E-Social e SPED-Reinf, GNRE, BP-e).
 
@@ -48,9 +48,9 @@ git checkout master
 Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esquema que interessa. Porem é interessante instalar essa pequena ferramenta https://github.com/akretion/erpbrasil.edoc.gen para automatizar as operações. Depois da lib instalada (ela puxa o pacote GenerateDS), basta fazer:
 ```bash
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
-  
-# Pacote de Liberação No. 9 (Novo leiaute da NF-e, NT 2019.001 v.1.20a). Publicado em 20/08/2019.
-erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=vdxcmJ2AgTo=
+
+# Pacote de Liberação nº 9 (Novo leiaute da NF-e, NT 2020.006 v.1.20). Válido de 05/04/2021 a 31/08/2021. Publicado em 25/03/2021
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=6pwSKLBKjJM=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
@@ -75,7 +75,7 @@ erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.go
 iconv -f iso-8859-1 /tmp/generated/schemas/nfe/v4_00/retEnvConfRecebto_v1.00.xsd -t UTF-8 -o /tmp/generated/schemas/nfe/v4_00/retEnvConfRecebto_v1.00.xsd
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retEnvConfRecebto" -d .
 
-# Consulta Cadastro - Pacote de Liberação No. 6t (21/03/2014)"
+# Consulta Cadastro - Pacote de Liberação No. 6t (21/03/2014)
 erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=/KLQ3Wi0ckY=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsCad" -d .
 ```

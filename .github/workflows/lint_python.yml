@@ -11,10 +11,10 @@ jobs:
       - run: black --check . || true
       - run: flake8 . --builtins=basestring,unicode --count --select=E9,F63,F7,F82 --show-source --statistics
       # Reasonable defaults would be: --max-complexity=10 --max-line-length=88
-      - run: flake8 . --count --exit-zero --max-complexity=164 --max-line-length=222 --show-source --statistics
+      - run: flake8 . --count --exit-zero --max-complexity=164 --max-line-length=232 --show-source --statistics
       - run: isort --check-only --profile black . || true
-      # - run: pip install -r requirements.txt || true
-      - run: python setup.py install
+      - run: pip install xmldiff
+      - run: pip install -e .
       - run: mypy --install-types --non-interactive . || true
       - run: pytest . || true
       - run: pytest --doctest-modules . || true

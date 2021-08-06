@@ -49,8 +49,8 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 ```bash
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
 
-# Pacote de Liberação nº 9 (Novo leiaute da NF-e, NT 2020.006 v.1.20). Válido de 05/04/2021 a 31/08/2021. Publicado em 25/03/2021
-erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=6pwSKLBKjJM=
+# Pacote de Liberação nº 9 (Novo leiaute da NF-e, NT 2020.005, 2020.006 e NT 2021.002). Publicado em 29/06/2021.
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=lhqXSmnywl4=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
@@ -127,7 +127,7 @@ python3 -m pytest  tests -v
 
 
   # nfelib também permite de montar o XML de uma nota fiscal com todas validações dos XSDs já nos objetos:
-  >>> from nfelib.v4_00 import leiauteNFe
+  >>> from nfelib.v4_00 import retEnviNFe as leiauteNFe
   >>> enderEmit=leiauteNFe.TEnderEmi(xLgr='NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV',
   nro='11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y',
   xCpl='Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw',
@@ -179,3 +179,5 @@ python3 -m pytest  tests -v
 Para cada documento eletrônico para o qual existe esquema XSD's, a Akretion fez um repo Github com uma lib desse tipo.
 
 Mas fomos além: eu tambem criei um gerador de modelos abstratos (mixins) Odoo, de forma que para os documentos fiscais complexos como a NFe vc tem um marshalling/unmarshalling automatico dos dados ate os modelos persistentes do ERP e se remapeando nos objetos nativos do Odoo https://github.com/akretion/generateds-odoo
+
+O uso dessa lib no Odoo para emitir e importar NFe's pode ser visto nesse módulo da OCA: https://github.com/OCA/l10n-brazil/tree/12.0/l10n_br_nfe

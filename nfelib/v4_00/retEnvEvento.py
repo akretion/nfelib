@@ -11,13 +11,13 @@
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
-#   ('-o', '/tmp/nfelib/nfelib/v4_00/retEnvEvento.py')
+#   ('-o', '/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retEnvEvento.py')
 #
 # Command line arguments:
 #   /tmp/generated/schemas/nfe/v4_00/retEnvEvento_v1.00.xsd
 #
 # Command line:
-#   /home/rvalyi/.local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib/nfelib/v4_00/retEnvEvento.py" /tmp/generated/schemas/nfe/v4_00/retEnvEvento_v1.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retEnvEvento.py" /tmp/generated/schemas/nfe/v4_00/retEnvEvento_v1.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00

@@ -6,17 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - run: pip install bandit black flake8 isort mypy pytest pyupgrade safety
+      - run: pip install bandit flake8 pytest xmldiff
       - run: bandit --recursive --skip B101,B314,B320,B405,B410 .
-      - run: black --check . || true
       - run: flake8 . --builtins=basestring,unicode --count --select=E9,F63,F7,F82 --show-source --statistics
-      # Reasonable defaults would be: --max-complexity=10 --max-line-length=88
-      - run: flake8 . --count --exit-zero --max-complexity=164 --max-line-length=302 --show-source --statistics
-      - run: isort --check-only --profile black . || true
-      - run: pip install xmldiff
       - run: pip install -e .
-      - run: mypy --install-types --non-interactive . || true
       - run: pytest .
-      - run: pytest --doctest-modules . || true
-      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py || true
-      - run: safety check

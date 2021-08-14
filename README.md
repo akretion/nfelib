@@ -35,9 +35,12 @@ Você pode aprender mais sobre o generateDS [aqui](http://www.davekuhlman.org/ge
 
 # Como Instalar
 
+Nesse momento inicial nos ainda não atualizamos o pacote no Pypi e recomendamos a instalação pelo git abaixo, possivelmente especificando uma revisão git:
+
 ```bash
-pip install git+https://github.com/akretion/nfelib
+pip install git+https://github.com/akretion/nfelib.git@master_gen_v4_00#egg=nfelib
 ```
+
 # Gerir a lib novamente / processo de release
 **Muito importante:** as fonte estao mantido na branch **master**. Entao voce tem que fazer primeiro
 

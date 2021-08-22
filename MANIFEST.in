@@ -1,0 +1,4 @@
+graft nfelib
+graft schemas
+graft tests
+global-exclude *.py[cod]

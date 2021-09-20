@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
   <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-    <infNFe versao="4.00" Id="NFe35180803102452000172550010000474641681223493">
+    <infNFe versao="4.00" Id="NFe35180834128745000152550010000474491454651420">
       <ide>
         <cUF>35</cUF>
-        <cNF>68122349</cNF>
-        <natOp>Bonificacao</natOp>
+        <cNF>45465142</cNF>
+        <natOp>Bonificação de mercadoria sujeita ao regime de Substituição</natOp>
         <mod>55</mod>
         <serie>1</serie>
-        <nNF>47464</nNF>
-        <dhEmi>2018-08-08T14:30:22-03:00</dhEmi>
-        <dhSaiEnt>2018-08-09T14:24:36-03:00</dhSaiEnt>
+        <nNF>47449</nNF>
+        <dhEmi>2018-08-08T10:25:10-03:00</dhEmi>
+        <dhSaiEnt>2018-08-08T11:25:10-03:00</dhSaiEnt>
         <tpNF>1</tpNF>
-        <idDest>2</idDest>
+        <idDest>1</idDest>
         <cMunFG>3549102</cMunFG>
         <tpImp>1</tpImp>
         <tpEmis>1</tpEmis>
-        <cDV>3</cDV>
+        <cDV>0</cDV>
         <tpAmb>1</tpAmb>
         <finNFe>1</finNFe>
         <indFinal>1</indFinal>
@@ -44,22 +44,21 @@
         <CRT>3</CRT>
       </emit>
       <dest>
-        <CNPJ>48527693000100</CNPJ>
-        <xNome>REPRESENTACOES EIRELI</xNome>
+        <CNPJ>53232886000165</CNPJ>
+        <xNome>REPRESENTACAO COMERCIAL ALIMENTICIOS LTDA</xNome>
         <enderDest>
-          <xLgr>Rua Moacyr</xLgr>
-          <nro>3</nro>
-          <xCpl>Box 33</xCpl>
-          <xBairro>Centro</xBairro>
-          <cMun>3200300</cMun>
-          <xMun>Alfredo Chaves</xMun>
-          <UF>ES</UF>
-          <CEP>29240123</CEP>
+          <xLgr>Rua Ema</xLgr>
+          <nro>7</nro>
+          <xBairro>Jardim Shangri-la</xBairro>
+          <cMun>3522307</cMun>
+          <xMun>Itapetininga</xMun>
+          <UF>SP</UF>
+          <CEP>18208123</CEP>
           <cPais>1058</cPais>
           <xPais>Brasil</xPais>
         </enderDest>
         <indIEDest>9</indIEDest>
-        <email>a@a.com</email>
+        <email>ia@ai.com</email>
       </dest>
       <det nItem="1">
         <prod>
@@ -68,7 +67,7 @@
           <xProd>GRANOLA TRADICIONAL 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>5.1231600</vUnCom>
@@ -85,10 +84,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>10.25</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.72</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>1.84</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -113,16 +112,6 @@
               <vCOFINS>0.31</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>12.35</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.98</vICMSUFDest>
-            <vICMSUFRemet>0.25</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="2">
@@ -132,7 +121,7 @@
           <xProd>GRANOLA BANANA &amp; MEL 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>5.1231600</vUnCom>
@@ -149,10 +138,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>10.25</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.72</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>1.84</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -177,16 +166,6 @@
               <vCOFINS>0.31</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>12.35</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.98</vICMSUFDest>
-            <vICMSUFRemet>0.25</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="3">
@@ -196,7 +175,7 @@
           <xProd>GRANOLA ZERO 800G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>5.1231600</vUnCom>
@@ -213,10 +192,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>10.25</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.72</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>1.84</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -241,16 +220,6 @@
               <vCOFINS>0.31</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>12.35</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.98</vICMSUFDest>
-            <vICMSUFRemet>0.25</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="4">
@@ -260,7 +229,7 @@
           <xProd>MAIS 500G</xProd>
           <NCM>19041000</NCM>
           <CEST>1703000</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.2623300</vUnCom>
@@ -277,10 +246,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>4.52</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.32</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.81</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -305,16 +274,6 @@
               <vCOFINS>0.14</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>5.45</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.44</vICMSUFDest>
-            <vICMSUFRemet>0.11</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="5">
@@ -323,7 +282,7 @@
           <cEAN>7897846902086</cEAN>
           <xProd>QUINOA 100G (2X50G)</xProd>
           <NCM>10085090</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.9717100</vUnCom>
@@ -340,10 +299,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>5.94</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.42</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>1.07</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -368,16 +327,6 @@
               <vCOFINS>0.18</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>7.16</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.58</vICMSUFDest>
-            <vICMSUFRemet>0.14</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="6">
@@ -386,7 +335,7 @@
           <cEAN>7897846901119</cEAN>
           <xProd>12 GRAOS 500G</xProd>
           <NCM>10062020</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.6166000</vUnCom>
@@ -400,14 +349,15 @@
         <imposto>
           <vTotTrib>0.00</vTotTrib>
           <ICMS>
-            <ICMS00>
+            <ICMS20>
               <orig>0</orig>
-              <CST>00</CST>
-              <modBC>0</modBC>
-              <vBC>5.23</vBC>
-              <pICMS>7.00</pICMS>
+              <CST>20</CST>
+              <modBC>3</modBC>
+              <pRedBC>61.11</pRedBC>
+              <vBC>2.03</vBC>
+              <pICMS>18.00</pICMS>
               <vICMS>0.37</vICMS>
-            </ICMS00>
+            </ICMS20>
           </ICMS>
           <IPI>
             <cEnq>999</cEnq>
@@ -425,16 +375,6 @@
               <CST>06</CST>
             </COFINSNT>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>6.30</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.13</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="7">
@@ -443,7 +383,7 @@
           <cEAN>7897846902109</cEAN>
           <xProd>QUINOA VEGETAIS 100G (2X50G)</xProd>
           <NCM>10085090</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.9717100</vUnCom>
@@ -460,10 +400,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>5.94</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.42</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>1.07</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -488,16 +428,6 @@
               <vCOFINS>0.18</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>7.16</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.58</vICMSUFDest>
-            <vICMSUFRemet>0.14</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="8">
@@ -506,7 +436,7 @@
           <cEAN>7897846901386</cEAN>
           <xProd>12 GRAOS SELECAO LOW GLUTEN 500G</xProd>
           <NCM>10062020</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.9736000</vUnCom>
@@ -520,14 +450,15 @@
         <imposto>
           <vTotTrib>0.00</vTotTrib>
           <ICMS>
-            <ICMS00>
+            <ICMS20>
               <orig>0</orig>
-              <CST>00</CST>
-              <modBC>0</modBC>
-              <vBC>5.95</vBC>
-              <pICMS>7.00</pICMS>
+              <CST>20</CST>
+              <modBC>3</modBC>
+              <pRedBC>61.11</pRedBC>
+              <vBC>2.31</vBC>
+              <pICMS>18.00</pICMS>
               <vICMS>0.42</vICMS>
-            </ICMS00>
+            </ICMS20>
           </ICMS>
           <IPI>
             <cEnq>999</cEnq>
@@ -545,16 +476,6 @@
               <CST>06</CST>
             </COFINSNT>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>7.17</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.58</vICMSUFDest>
-            <vICMSUFRemet>0.14</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="9">
@@ -563,15 +484,15 @@
           <cEAN>7897846902352</cEAN>
           <xProd>GOLDEN MIX 100G</xProd>
           <NCM>21069010</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
-          <vUnCom>1.0000000</vUnCom>
-          <vProd>2.00</vProd>
+          <vUnCom>0.00</vUnCom>
+          <vProd>0.00</vProd>
           <cEANTrib>7897846902352</cEANTrib>
           <uTrib>UN</uTrib>
           <qTrib>2.0000</qTrib>
-          <vUnTrib>1.0000000</vUnTrib>
+          <vUnTrib>0.00</vUnTrib>
           <indTot>1</indTot>
         </prod>
         <imposto>
@@ -580,10 +501,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
-              <vBC>2.00</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.14</vICMS>
+              <modBC>3</modBC>
+              <vBC>0.00</vBC>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.00</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -595,29 +516,19 @@
           <PIS>
             <PISAliq>
               <CST>01</CST>
-              <vBC>2.00</vBC>
+              <vBC>0.00</vBC>
               <pPIS>0.65</pPIS>
-              <vPIS>0.01</vPIS>
+              <vPIS>0.00</vPIS>
             </PISAliq>
           </PIS>
           <COFINS>
             <COFINSAliq>
               <CST>01</CST>
-              <vBC>2.00</vBC>
+              <vBC>0.00</vBC>
               <pCOFINS>3.00</pCOFINS>
-              <vCOFINS>0.06</vCOFINS>
+              <vCOFINS>0.00</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>2.41</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.19</vICMSUFDest>
-            <vICMSUFRemet>0.05</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="10">
@@ -626,7 +537,7 @@
           <cEAN>7897846902321</cEAN>
           <xProd>HIBISCO COM CANELA E GENGIBRE 100G</xProd>
           <NCM>21069010</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>6.7400000</vUnCom>
@@ -643,10 +554,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>13.48</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.94</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.43</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -671,16 +582,6 @@
               <vCOFINS>0.40</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>16.24</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.30</vICMSUFDest>
-            <vICMSUFRemet>0.32</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="11">
@@ -689,7 +590,7 @@
           <cEAN>7897846902314</cEAN>
           <xProd>MATCHA COM CANELA E GENGIBRE 100G</xProd>
           <NCM>21069010</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>6.7400000</vUnCom>
@@ -706,10 +607,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>13.48</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.94</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.43</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -734,16 +635,6 @@
               <vCOFINS>0.40</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>16.24</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.30</vICMSUFDest>
-            <vICMSUFRemet>0.32</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="12">
@@ -753,7 +644,7 @@
           <xProd>COOKIES GRANOLA BANANA E MEL 30G</xProd>
           <NCM>19059020</NCM>
           <CEST>1705602</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>7.0000</qCom>
           <vUnCom>0.6700000</vUnCom>
@@ -770,10 +661,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>4.69</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.33</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.84</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -798,16 +689,6 @@
               <vCOFINS>0.14</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>5.65</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.46</vICMSUFDest>
-            <vICMSUFRemet>0.11</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="13">
@@ -817,7 +698,7 @@
           <xProd>COOKIES GRANOLA BAUNILHA COM GOTAS DE CHOCOLATE 30G</xProd>
           <NCM>19059020</NCM>
           <CEST>1705602</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>7.0000</qCom>
           <vUnCom>0.6700000</vUnCom>
@@ -834,10 +715,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>4.69</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.33</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.84</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -862,16 +743,6 @@
               <vCOFINS>0.14</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>5.65</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.46</vICMSUFDest>
-            <vICMSUFRemet>0.11</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="14">
@@ -881,7 +752,7 @@
           <xProd>COOKIES ZERO CASTANHAS 30G</xProd>
           <NCM>19053100</NCM>
           <CEST>1705300</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>7.0000</qCom>
           <vUnCom>0.7500000</vUnCom>
@@ -898,10 +769,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>5.25</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.37</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.94</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -926,16 +797,6 @@
               <vCOFINS>0.16</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>6.33</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.13</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="15">
@@ -945,7 +806,7 @@
           <xProd>COOKIES ZERO BERRIES 30G</xProd>
           <NCM>19053100</NCM>
           <CEST>1705300</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>7.0000</qCom>
           <vUnCom>0.7500000</vUnCom>
@@ -962,10 +823,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>5.25</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.37</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.94</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -990,16 +851,6 @@
               <vCOFINS>0.16</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>6.33</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.13</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="16">
@@ -1008,7 +859,7 @@
           <cEAN>7897846902543</cEAN>
           <xProd>HIBISCUS FRUIT 6G ABACAXI COM HORTELA</xProd>
           <NCM>21069010</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>12.0000</qCom>
           <vUnCom>1.1800000</vUnCom>
@@ -1025,10 +876,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>14.16</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.99</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.55</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1053,16 +904,6 @@
               <vCOFINS>0.42</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>17.06</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.37</vICMSUFDest>
-            <vICMSUFRemet>0.34</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="17">
@@ -1071,7 +912,7 @@
           <cEAN>7897846901461</cEAN>
           <xProd>8 GRAOS CASTANHAS BRASILEIRAS 250G</xProd>
           <NCM>10062020</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.8224000</vUnCom>
@@ -1085,14 +926,15 @@
         <imposto>
           <vTotTrib>0.00</vTotTrib>
           <ICMS>
-            <ICMS00>
+            <ICMS20>
               <orig>0</orig>
-              <CST>00</CST>
-              <modBC>0</modBC>
-              <vBC>5.64</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.39</vICMS>
-            </ICMS00>
+              <CST>20</CST>
+              <modBC>3</modBC>
+              <pRedBC>61.11</pRedBC>
+              <vBC>2.19</vBC>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.40</vICMS>
+            </ICMS20>
           </ICMS>
           <IPI>
             <cEnq>999</cEnq>
@@ -1110,16 +952,6 @@
               <CST>06</CST>
             </COFINSNT>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>6.80</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.54</vICMSUFDest>
-            <vICMSUFRemet>0.14</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="18">
@@ -1128,7 +960,7 @@
           <cEAN>7897846901478</cEAN>
           <xProd>8 GRAOS FUNGHI SECCHI C/ TOMATE SECO 250G</xProd>
           <NCM>10062020</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>2.0000</qCom>
           <vUnCom>2.8224000</vUnCom>
@@ -1142,14 +974,15 @@
         <imposto>
           <vTotTrib>0.00</vTotTrib>
           <ICMS>
-            <ICMS00>
+            <ICMS20>
               <orig>0</orig>
-              <CST>00</CST>
-              <modBC>0</modBC>
-              <vBC>5.64</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.39</vICMS>
-            </ICMS00>
+              <CST>20</CST>
+              <modBC>3</modBC>
+              <pRedBC>61.11</pRedBC>
+              <vBC>2.19</vBC>
+              <pICMS>18.00</pICMS>
+              <vICMS>0.40</vICMS>
+            </ICMS20>
           </ICMS>
           <IPI>
             <cEnq>999</cEnq>
@@ -1167,16 +1000,6 @@
               <CST>06</CST>
             </COFINSNT>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>6.80</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.54</vICMSUFDest>
-            <vICMSUFRemet>0.14</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="19">
@@ -1185,7 +1008,7 @@
           <cEAN>7897846902567</cEAN>
           <xProd>HIBISCUS FRUIT 6G CRANBERRY</xProd>
           <NCM>21069010</NCM>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>12.0000</qCom>
           <vUnCom>1.1800000</vUnCom>
@@ -1202,10 +1025,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>14.16</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.99</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.55</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1230,16 +1053,6 @@
               <vCOFINS>0.42</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>17.06</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.37</vICMSUFDest>
-            <vICMSUFRemet>0.34</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="20">
@@ -1249,7 +1062,7 @@
           <xProd>MATCHA FRUIT LIMAO 6G (#)</xProd>
           <NCM>09021000</NCM>
           <CEST>1709700</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>12.0000</qCom>
           <vUnCom>1.1770500</vUnCom>
@@ -1266,10 +1079,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>14.12</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.99</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.54</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1294,16 +1107,6 @@
               <vCOFINS>0.42</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>17.01</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.36</vICMSUFDest>
-            <vICMSUFRemet>0.34</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <det nItem="21">
@@ -1313,7 +1116,7 @@
           <xProd>MATCHA FRUIT ABACAXI HORTELA 6G (#)</xProd>
           <NCM>09021000</NCM>
           <CEST>1709700</CEST>
-          <CFOP>6910</CFOP>
+          <CFOP>5910</CFOP>
           <uCom>UN</uCom>
           <qCom>12.0000</qCom>
           <vUnCom>1.1770500</vUnCom>
@@ -1330,10 +1133,10 @@
             <ICMS00>
               <orig>0</orig>
               <CST>00</CST>
-              <modBC>0</modBC>
+              <modBC>3</modBC>
               <vBC>14.12</vBC>
-              <pICMS>7.00</pICMS>
-              <vICMS>0.99</vICMS>
+              <pICMS>18.00</pICMS>
+              <vICMS>2.54</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1358,51 +1161,39 @@
               <vCOFINS>0.42</vCOFINS>
             </COFINSAliq>
           </COFINS>
-          <ICMSUFDest>
-            <vBCUFDest>17.01</vBCUFDest>
-            <pFCPUFDest>0.00</pFCPUFDest>
-            <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>7.00</pICMSInter>
-            <pICMSInterPart>80.00</pICMSInterPart>
-            <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>1.36</vICMSUFDest>
-            <vICMSUFRemet>0.34</vICMSUFRemet>
-          </ICMSUFDest>
         </imposto>
       </det>
       <total>
         <ICMSTot>
-          <vBC>175.01</vBC>
-          <vICMS>12.27</vICMS>
+          <vBC>159.27</vBC>
+          <vICMS>28.66</vICMS>
           <vICMSDeson>0.00</vICMSDeson>
-          <vICMSUFDest>16.87</vICMSUFDest>
-          <vICMSUFRemet>4.22</vICMSUFRemet>
           <vFCP>0.00</vFCP>
           <vBCST>0.00</vBCST>
           <vST>0.00</vST>
           <vFCPST>0.00</vFCPST>
           <vFCPSTRet>0.00</vFCPSTRet>
-          <vProd>175.01</vProd>
+          <vProd>173.01</vProd>
           <vFrete>0.00</vFrete>
           <vSeg>0.00</vSeg>
           <vDesc>0.00</vDesc>
           <vII>0.00</vII>
           <vIPI>0.00</vIPI>
           <vIPIDevol>0.00</vIPIDevol>
-          <vPIS>0.99</vPIS>
-          <vCOFINS>4.57</vCOFINS>
+          <vPIS>0.98</vPIS>
+          <vCOFINS>4.51</vCOFINS>
           <vOutro>0.00</vOutro>
-          <vNF>175.01</vNF>
+          <vNF>173.01</vNF>
         </ICMSTot>
       </total>
       <transp>
         <modFrete>0</modFrete>
         <transporta>
-          <CNPJ>25663791000160</CNPJ>
-          <xNome>LOGISTICA ME</xNome>
+          <CNPJ>56382230000117</CNPJ>
+          <xNome>TRANSP E ENCOMENDAS LTDA</xNome>
           <IE>089981799688</IE>
-          <xEnder>PAULINO, 1905, JARDIM ITIMALIA</xEnder>
-          <xMun>Sao Joao da Boa Vista</xMun>
+          <xEnder>R GEN AUGUSTO, 683, 683, PQ. IND. LAGOINHA</xEnder>
+          <xMun>Ribeirao Preto</xMun>
           <UF>SP</UF>
         </transporta>
         <vol>
@@ -1414,27 +1205,27 @@
       <pag>
         <detPag>
           <tPag>99</tPag>
-          <vPag>175.01</vPag>
+          <vPag>173.01</vPag>
         </detPag>
       </pag>
       <infAdic>
-        <infCpl>Entregar no endereco: | Rua: Rio n 3| Bairro: Helio| Serra - Espirito Santo| Cep: 29.160-541| VALORES TOTAIS DO ICMS INTERESTADUAL: DIFAL UF DESTINO R$ 16,87 + FCP 0,00: DIFAL UF ORIGEM: R$ 4,22| | TRANSPORTADORA :GUARU CARGO - TRANSPORTES LTDA.CNPJ:  - IE  END: AVENIDA MONTEIRO, 4 - GALPAO01 ASA 7 - CIDADE JARDIM CUMBICA - GUARULHOS - SP - CEP: 07.180-123 FRETE POR CONTA DO EMITENTE</infCpl>
+        <infCpl>ENDERECO DE ENTREGA:| Rua Ema, 7| Jd Shangrila| Itapetininga -SP| CEP. 18208-123 -</infCpl>
       </infAdic>
     </infNFe>
     <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
       <SignedInfo>
         <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
         <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-        <Reference URI="#NFe35180803102452000172550010000474641681223493">
+        <Reference URI="#NFe35180834128745000152550010000474491454651420">
           <Transforms>
             <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
             <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
           </Transforms>
           <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-          <DigestValue>cCSb3ou9tF66rnbjFbG+7jpy+IQ=</DigestValue>
+          <DigestValue>mtUbXNIGEhdxdsGQncKQz7/Op40=</DigestValue>
         </Reference>
       </SignedInfo>
-      <SignatureValue>N/FTb7LQ3IR/JHJHJieyXw7USxGMGAhGpflrQbsKvEVJd6ts47UIiIoUPFhgBtrXm7o402IR6K+/VlxKmQfeynCO/R9cv89ArACkrt51oZbfIYTS6S1j5TH2fy6V/tY3MLnlNFIeWfI38Ap5xBWEvpLtyIQYt9feT/UKHUyD3B2BoGVyb3VVz4aALxpkkeK/J/3+8HAHYLmP0nG9y4ltQk38waOOEVbxILxOxuUVnVvC8I1UsFGWlDFSKEEvOddar0uGwS+GJI5UJUtbD9kLoEVrUUcCCBqdeH4oL0XLh4xYYgpjcJIjh35zggTDWmxHpaEjiesXXPJ1BVeziD8CMA==</SignatureValue>
+      <SignatureValue>1trbMXrvlV42ADFKIJ/Q5A97wG0herAdKxp38oynyM0g24Q7et3yH8BJ77lxYL1jiZw1VHiwkD64k7xjbkgKc/+qn1ctb4lF+vtVakdfZCJBoZt62G9TDTHFnG7ziM55KLLDFkj7cTWVhPH8M4+UrduIDIy0QfrDd1WzrY04zyOg3cfx+dg5LXopg8oICETFgSipb3taQFDfUA7lP4NsaalTkiEqp3tnumPEnrTS4h5DGfujC97tF1RGcq6c8vLOXgXG0rEvFJiZGUCdfi36cc4bAAwPbGDyg3o1RMWaVbAcThuSMXbsVEsoPDmZHmnvcEHL4J+lISY1C+N6DBTgYg==</SignatureValue>
       <KeyInfo>
         <X509Data>
           <X509Certificate>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</X509Certificate>
@@ -1446,10 +1237,10 @@
     <infProt>
       <tpAmb>1</tpAmb>
       <verAplic>SP_NFE_PL009_V4</verAplic>
-      <chNFe>35180803102452000172550010000474641681223493</chNFe>
-      <dhRecbto>2018-08-08T14:31:17-03:00</dhRecbto>
-      <nProt>135180532184231</nProt>
-      <digVal>cCSb3ou9tF66rnbjFbG+7jpy+IQ=</digVal>
+      <chNFe>35180834128745000152550010000474491454651420</chNFe>
+      <dhRecbto>2018-08-08T10:26:58-03:00</dhRecbto>
+      <nProt>135180531287041</nProt>
+      <digVal>mtUbXNIGEhdxdsGQncKQz7/Op40=</digVal>
       <cStat>100</cStat>
       <xMotivo>Autorizado o uso da NF-e</xMotivo>
     </infProt>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
   <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-    <infNFe versao="4.00" Id="NFe35180803102452000172550010000476861118934859">
+    <infNFe versao="4.00" Id="NFe35180834128745000152550010000476861118934859">
       <ide>
         <cUF>35</cUF>
         <cNF>11893485</cNF>
@@ -2346,7 +2346,7 @@
       <SignedInfo>
         <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
         <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-        <Reference URI="#NFe35180803102452000172550010000476861118934859">
+        <Reference URI="#NFe35180834128745000152550010000476861118934859">
           <Transforms>
             <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
             <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
@@ -2367,7 +2367,7 @@
     <infProt>
       <tpAmb>1</tpAmb>
       <verAplic>SP_NFE_PL009_V4</verAplic>
-      <chNFe>35180803102452000172550010000476861118934859</chNFe>
+      <chNFe>35180834128745000152550010000476861118934859</chNFe>
       <dhRecbto>2018-08-17T15:29:34-03:00</dhRecbto>
       <nProt>135180557351415</nProt>
       <digVal>BkVM5rYJAMEOC8AXAWTn9FwVaWg=</digVal>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
   <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-    <infNFe versao="4.00" Id="NFe35180803102452000172550010000474501597356342">
+    <infNFe versao="4.00" Id="NFe35180834128745000152550010000474641681223493">
       <ide>
         <cUF>35</cUF>
-        <cNF>59735634</cNF>
+        <cNF>68122349</cNF>
         <natOp>Bonificacao</natOp>
         <mod>55</mod>
         <serie>1</serie>
-        <nNF>47450</nNF>
-        <dhEmi>2018-08-08T11:21:27-03:00</dhEmi>
-        <dhSaiEnt>2018-08-09T11:16:57-03:00</dhSaiEnt>
+        <nNF>47464</nNF>
+        <dhEmi>2018-08-08T14:30:22-03:00</dhEmi>
+        <dhSaiEnt>2018-08-09T14:24:36-03:00</dhSaiEnt>
         <tpNF>1</tpNF>
         <idDest>2</idDest>
         <cMunFG>3549102</cMunFG>
         <tpImp>1</tpImp>
         <tpEmis>1</tpEmis>
-        <cDV>2</cDV>
+        <cDV>3</cDV>
         <tpAmb>1</tpAmb>
         <finNFe>1</finNFe>
         <indFinal>1</indFinal>
@@ -44,21 +44,22 @@
         <CRT>3</CRT>
       </emit>
       <dest>
-        <CNPJ>17902818000100</CNPJ>
-        <xNome>COMERCIO DE PRODUTOS ALIMENTICIOS LTDA ME</xNome>
+        <CNPJ>48527693000100</CNPJ>
+        <xNome>REPRESENTACOES EIRELI</xNome>
         <enderDest>
-          <xLgr>Rua Tadeu</xLgr>
-          <nro>2</nro>
-          <xBairro>Bairro Presidente</xBairro>
-          <cMun>4207007</cMun>
-          <xMun>Icara</xMun>
-          <UF>SC</UF>
-          <CEP>88820123</CEP>
+          <xLgr>Rua Moacyr</xLgr>
+          <nro>3</nro>
+          <xCpl>Box 33</xCpl>
+          <xBairro>Centro</xBairro>
+          <cMun>3200300</cMun>
+          <xMun>Alfredo Chaves</xMun>
+          <UF>ES</UF>
+          <CEP>29240123</CEP>
           <cPais>1058</cPais>
           <xPais>Brasil</xPais>
         </enderDest>
         <indIEDest>9</indIEDest>
-        <email>ai1@ai.com</email>
+        <email>a@a.com</email>
       </dest>
       <det nItem="1">
         <prod>
@@ -86,8 +87,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>10.25</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.23</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.72</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -116,11 +117,11 @@
             <vBCUFDest>12.35</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.12</vICMSUFRemet>
+            <vICMSUFDest>0.98</vICMSUFDest>
+            <vICMSUFRemet>0.25</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -150,8 +151,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>10.25</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.23</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.72</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -180,11 +181,11 @@
             <vBCUFDest>12.35</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.12</vICMSUFRemet>
+            <vICMSUFDest>0.98</vICMSUFDest>
+            <vICMSUFRemet>0.25</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -214,8 +215,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>10.25</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.23</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.72</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -244,11 +245,11 @@
             <vBCUFDest>12.35</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.50</vICMSUFDest>
-            <vICMSUFRemet>0.12</vICMSUFRemet>
+            <vICMSUFDest>0.98</vICMSUFDest>
+            <vICMSUFRemet>0.25</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -278,8 +279,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>4.52</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.54</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.32</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -308,11 +309,11 @@
             <vBCUFDest>5.45</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.22</vICMSUFDest>
-            <vICMSUFRemet>0.05</vICMSUFRemet>
+            <vICMSUFDest>0.44</vICMSUFDest>
+            <vICMSUFRemet>0.11</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -341,8 +342,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.94</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.71</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.42</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -371,11 +372,11 @@
             <vBCUFDest>7.16</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.29</vICMSUFDest>
-            <vICMSUFRemet>0.07</vICMSUFRemet>
+            <vICMSUFDest>0.58</vICMSUFDest>
+            <vICMSUFRemet>0.14</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -404,8 +405,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.23</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.63</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.37</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -428,11 +429,11 @@
             <vBCUFDest>6.30</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.25</vICMSUFDest>
-            <vICMSUFRemet>0.06</vICMSUFRemet>
+            <vICMSUFDest>0.50</vICMSUFDest>
+            <vICMSUFRemet>0.13</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -461,8 +462,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.94</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.71</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.42</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -491,11 +492,11 @@
             <vBCUFDest>7.16</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.29</vICMSUFDest>
-            <vICMSUFRemet>0.07</vICMSUFRemet>
+            <vICMSUFDest>0.58</vICMSUFDest>
+            <vICMSUFRemet>0.14</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -524,8 +525,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.95</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.71</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.42</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -548,11 +549,11 @@
             <vBCUFDest>7.17</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.29</vICMSUFDest>
-            <vICMSUFRemet>0.07</vICMSUFRemet>
+            <vICMSUFDest>0.58</vICMSUFDest>
+            <vICMSUFRemet>0.14</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -581,8 +582,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>2.00</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.24</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.14</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -611,11 +612,11 @@
             <vBCUFDest>2.41</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.10</vICMSUFDest>
-            <vICMSUFRemet>0.02</vICMSUFRemet>
+            <vICMSUFDest>0.19</vICMSUFDest>
+            <vICMSUFRemet>0.05</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -644,8 +645,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>13.48</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.62</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.94</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -674,11 +675,11 @@
             <vBCUFDest>16.24</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.65</vICMSUFDest>
-            <vICMSUFRemet>0.16</vICMSUFRemet>
+            <vICMSUFDest>1.30</vICMSUFDest>
+            <vICMSUFRemet>0.32</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -707,8 +708,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>13.48</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.62</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.94</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -737,11 +738,11 @@
             <vBCUFDest>16.24</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.65</vICMSUFDest>
-            <vICMSUFRemet>0.16</vICMSUFRemet>
+            <vICMSUFDest>1.30</vICMSUFDest>
+            <vICMSUFRemet>0.32</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -771,8 +772,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>4.69</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.56</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.33</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -801,11 +802,11 @@
             <vBCUFDest>5.65</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.22</vICMSUFDest>
-            <vICMSUFRemet>0.06</vICMSUFRemet>
+            <vICMSUFDest>0.46</vICMSUFDest>
+            <vICMSUFRemet>0.11</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -835,8 +836,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>4.69</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.56</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.33</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -865,11 +866,11 @@
             <vBCUFDest>5.65</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.22</vICMSUFDest>
-            <vICMSUFRemet>0.06</vICMSUFRemet>
+            <vICMSUFDest>0.46</vICMSUFDest>
+            <vICMSUFRemet>0.11</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -899,8 +900,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.25</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.63</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.37</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -929,11 +930,11 @@
             <vBCUFDest>6.33</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.26</vICMSUFDest>
-            <vICMSUFRemet>0.06</vICMSUFRemet>
+            <vICMSUFDest>0.50</vICMSUFDest>
+            <vICMSUFRemet>0.13</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -963,8 +964,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.25</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.63</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.37</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -993,11 +994,11 @@
             <vBCUFDest>6.33</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.26</vICMSUFDest>
-            <vICMSUFRemet>0.06</vICMSUFRemet>
+            <vICMSUFDest>0.50</vICMSUFDest>
+            <vICMSUFRemet>0.13</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1026,8 +1027,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>14.16</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.70</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.99</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1056,11 +1057,11 @@
             <vBCUFDest>17.06</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.68</vICMSUFDest>
-            <vICMSUFRemet>0.17</vICMSUFRemet>
+            <vICMSUFDest>1.37</vICMSUFDest>
+            <vICMSUFRemet>0.34</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1089,8 +1090,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.64</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.68</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.39</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1113,11 +1114,11 @@
             <vBCUFDest>6.80</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.27</vICMSUFDest>
-            <vICMSUFRemet>0.07</vICMSUFRemet>
+            <vICMSUFDest>0.54</vICMSUFDest>
+            <vICMSUFRemet>0.14</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1146,8 +1147,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>5.64</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>0.68</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.39</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1170,11 +1171,11 @@
             <vBCUFDest>6.80</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.27</vICMSUFDest>
-            <vICMSUFRemet>0.07</vICMSUFRemet>
+            <vICMSUFDest>0.54</vICMSUFDest>
+            <vICMSUFRemet>0.14</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1203,8 +1204,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>14.16</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.70</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.99</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1233,11 +1234,11 @@
             <vBCUFDest>17.06</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.68</vICMSUFDest>
-            <vICMSUFRemet>0.17</vICMSUFRemet>
+            <vICMSUFDest>1.37</vICMSUFDest>
+            <vICMSUFRemet>0.34</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1267,8 +1268,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>14.12</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.69</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.99</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1297,11 +1298,11 @@
             <vBCUFDest>17.01</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.68</vICMSUFDest>
-            <vICMSUFRemet>0.17</vICMSUFRemet>
+            <vICMSUFDest>1.36</vICMSUFDest>
+            <vICMSUFRemet>0.34</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
@@ -1331,8 +1332,8 @@
               <CST>00</CST>
               <modBC>0</modBC>
               <vBC>14.12</vBC>
-              <pICMS>12.00</pICMS>
-              <vICMS>1.69</vICMS>
+              <pICMS>7.00</pICMS>
+              <vICMS>0.99</vICMS>
             </ICMS00>
           </ICMS>
           <IPI>
@@ -1361,21 +1362,21 @@
             <vBCUFDest>17.01</vBCUFDest>
             <pFCPUFDest>0.00</pFCPUFDest>
             <pICMSUFDest>17.00</pICMSUFDest>
-            <pICMSInter>12.00</pICMSInter>
+            <pICMSInter>7.00</pICMSInter>
             <pICMSInterPart>80.00</pICMSInterPart>
             <vFCPUFDest>0.00</vFCPUFDest>
-            <vICMSUFDest>0.68</vICMSUFDest>
-            <vICMSUFRemet>0.17</vICMSUFRemet>
+            <vICMSUFDest>1.36</vICMSUFDest>
+            <vICMSUFRemet>0.34</vICMSUFRemet>
           </ICMSUFDest>
         </imposto>
       </det>
       <total>
         <ICMSTot>
           <vBC>175.01</vBC>
-          <vICMS>20.99</vICMS>
+          <vICMS>12.27</vICMS>
           <vICMSDeson>0.00</vICMSDeson>
-          <vICMSUFDest>8.46</vICMSUFDest>
-          <vICMSUFRemet>2.08</vICMSUFRemet>
+          <vICMSUFDest>16.87</vICMSUFDest>
+          <vICMSUFRemet>4.22</vICMSUFRemet>
           <vFCP>0.00</vFCP>
           <vBCST>0.00</vBCST>
           <vST>0.00</vST>
@@ -1398,10 +1399,10 @@
         <modFrete>0</modFrete>
         <transporta>
           <CNPJ>25663791000160</CNPJ>
-          <xNome>TRANSP E ENCOMENDAS LTDA</xNome>
+          <xNome>LOGISTICA ME</xNome>
           <IE>089981799688</IE>
-          <xEnder>R GEN AUGUSTO, 683, 683, PQ. IND. LAGOINHA</xEnder>
-          <xMun>Ribeirao Preto</xMun>
+          <xEnder>PAULINO, 1905, JARDIM ITIMALIA</xEnder>
+          <xMun>Sao Joao da Boa Vista</xMun>
           <UF>SP</UF>
         </transporta>
         <vol>
@@ -1417,23 +1418,23 @@
         </detPag>
       </pag>
       <infAdic>
-        <infCpl>VALORES TOTAIS DO ICMS INTERESTADUAL: DIFAL UF DESTINO R$ 8,46 + FCP 0,00: DIFAL UF ORIGEM: R$ 2,08| ENDERECO DE ENTREGA:| Rua - Tadeu n - 2| Bairro Presidente | Cidade - Icara/SC| Cep- 88.820.123.</infCpl>
+        <infCpl>Entregar no endereco: | Rua: Rio n 3| Bairro: Helio| Serra - Espirito Santo| Cep: 29.160-541| VALORES TOTAIS DO ICMS INTERESTADUAL: DIFAL UF DESTINO R$ 16,87 + FCP 0,00: DIFAL UF ORIGEM: R$ 4,22| | TRANSPORTADORA :GUARU CARGO - TRANSPORTES LTDA.CNPJ:  - IE  END: AVENIDA MONTEIRO, 4 - GALPAO01 ASA 7 - CIDADE JARDIM CUMBICA - GUARULHOS - SP - CEP: 07.180-123 FRETE POR CONTA DO EMITENTE</infCpl>
       </infAdic>
     </infNFe>
     <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
       <SignedInfo>
         <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
         <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-        <Reference URI="#NFe35180803102452000172550010000474501597356342">
+        <Reference URI="#NFe35180834128745000152550010000474641681223493">
           <Transforms>
             <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
             <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
           </Transforms>
           <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-          <DigestValue>csL95WHF/pvlCeG+vror5RS3DVw=</DigestValue>
+          <DigestValue>cCSb3ou9tF66rnbjFbG+7jpy+IQ=</DigestValue>
         </Reference>
       </SignedInfo>
-      <SignatureValue>cD4bkrb96hY02JspjLj4kDt3exv0hR7lp+8sBhniLmr4Bgx0i6D/NwPLs2onWrB1zwnrPGOYDS2FQK8lQKusuxXl2R6b+MnhkaT/laK9Qp+II7hkJp93X+FkbYRHW8ik/MuhX8w+seq5sWSRnBJL9/fNuYQayYeZBDWM+Ray69zIrK4oZb2iKvIP6gTVNJ38p7RfB9GniKkuyoLOYba6gFn18LGBv3c2YDT+52Tq9VFnqIPHLgjyU0R0O9pPMx+/qF6U0pb5b6GbIwXmNUtEwtUFTPf8GfExemrP80PApUaBhpNX354KWdZjyQpsT5v7IE8d2qJ66OHO6hyDJKUxVw==</SignatureValue>
+      <SignatureValue>N/FTb7LQ3IR/JHJHJieyXw7USxGMGAhGpflrQbsKvEVJd6ts47UIiIoUPFhgBtrXm7o402IR6K+/VlxKmQfeynCO/R9cv89ArACkrt51oZbfIYTS6S1j5TH2fy6V/tY3MLnlNFIeWfI38Ap5xBWEvpLtyIQYt9feT/UKHUyD3B2BoGVyb3VVz4aALxpkkeK/J/3+8HAHYLmP0nG9y4ltQk38waOOEVbxILxOxuUVnVvC8I1UsFGWlDFSKEEvOddar0uGwS+GJI5UJUtbD9kLoEVrUUcCCBqdeH4oL0XLh4xYYgpjcJIjh35zggTDWmxHpaEjiesXXPJ1BVeziD8CMA==</SignatureValue>
       <KeyInfo>
         <X509Data>
           <X509Certificate>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</X509Certificate>
@@ -1445,10 +1446,10 @@
     <infProt>
       <tpAmb>1</tpAmb>
       <verAplic>SP_NFE_PL009_V4</verAplic>
-      <chNFe>35180803102452000172550010000474501597356342</chNFe>
-      <dhRecbto>2018-08-08T11:23:05-03:00</dhRecbto>
-      <nProt>135180531548408</nProt>
-      <digVal>csL95WHF/pvlCeG+vror5RS3DVw=</digVal>
+      <chNFe>35180834128745000152550010000474641681223493</chNFe>
+      <dhRecbto>2018-08-08T14:31:17-03:00</dhRecbto>
+      <nProt>135180532184231</nProt>
+      <digVal>cCSb3ou9tF66rnbjFbG+7jpy+IQ=</digVal>
       <cStat>100</cStat>
       <xMotivo>Autorizado o uso da NF-e</xMotivo>
     </infProt>

@@ -47,3 +47,9 @@ erpbrasil-edoc-gen-download-schema -n nfe_ator_interessado -v v1_0 -u https://ww
 rm -rf schemas/nfe_ator_interessado
 cp -rf /tmp/generated/schemas/nfe_ator_interessado schemas/nfe_ator_interessado
 xsdata generate schemas/nfe_ator_interessado/v1_0 --package nfelib.nfe_ator_interessado.v1_0
+
+# Evento Prévio de Emissão em Contingência (EPEC) - v1.01 (30/05/2014)
+erpbrasil-edoc-gen-download-schema -n nfe_epec -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=HcoVPI2JvY0=
+rm -rf schemas/nfe_epec
+cp -rf /tmp/generated/schemas/nfe_ator_interessado schemas/nfe_epec
+xsdata generate schemas/nfe_epec/v1_0 --package nfelib.nfe_epec.v1_0

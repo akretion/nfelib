@@ -65,3 +65,9 @@ erpbrasil-edoc-gen-download-schema -n cte -v v3_0 -u https://www.cte.fazenda.gov
 rm -rf schemas/cte
 cp -rf /tmp/generated/schemas/cte schemas/cte
 xsdata generate schemas/cte/v3_0 --package nfelib.cte.v3_0
+
+# CT-e - Web Service Distribuição de DF-e de Interesse dos Atores do CT-e
+erpbrasil-edoc-gen-download-schema -n cte_dist_dfe -v v1_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=l6I2ehbBicE=
+rm -rf schemas/cte_dist_dfe
+cp -rf /tmp/generated/schemas/cte_dist_dfe schemas/cte_dist_dfe
+xsdata generate schemas/cte_dist_dfe/v1_0 --package nfelib.cte_dist_dfe.v1_0

@@ -60,3 +60,8 @@ rm -rf schemas/nfe_entrega
 cp -rf /tmp/generated/schemas/nfe_entrega schemas/nfe_entrega
 xsdata generate schemas/nfe_entrega/v1_0 --package nfelib.nfe_entrega.v1_0
 
+# CT-e - Pacote de Liberação 3.00a (ZIP) - (NT 2021.001) (Publicado em 22/03/2021)
+erpbrasil-edoc-gen-download-schema -n cte -v v3_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=hFnCT8GrfTY=
+rm -rf schemas/cte
+cp -rf /tmp/generated/schemas/cte schemas/cte
+xsdata generate schemas/cte/v3_0 --package nfelib.cte.v3_0

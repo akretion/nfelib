@@ -71,3 +71,10 @@ erpbrasil-edoc-gen-download-schema -n cte_dist_dfe -v v1_0 -u https://www.cte.fa
 rm -rf schemas/cte_dist_dfe
 cp -rf /tmp/generated/schemas/cte_dist_dfe schemas/cte_dist_dfe
 xsdata generate schemas/cte_dist_dfe/v1_0 --package nfelib.cte_dist_dfe.v1_0
+
+# MDF-e - Manifesto Eletrônico de Documentos Fiscais - Schema NT 2021.002 (05/04/2021)
+erpbrasil-edoc-gen-download-schema -n mdfe -v v3_0 -u https://mdfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFe_300a_NT022021.zip
+# NOTE this one was actually downloaded manually to /tmp/generated/schemas/mdfe/v3_0
+rm -rf schemas/mdfe
+cp -rf /tmp/generated/schemas/mdfe schemas/mdfe
+xsdata generate schemas/mdfe/v3_0 --package nfelib.mdfe.v3_0

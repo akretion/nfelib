@@ -78,3 +78,10 @@ erpbrasil-edoc-gen-download-schema -n mdfe -v v3_0 -u https://mdfe-portal.svrs.r
 rm -rf schemas/mdfe
 cp -rf /tmp/generated/schemas/mdfe schemas/mdfe
 xsdata generate schemas/mdfe/v3_0 --package nfelib.mdfe.v3_0
+
+# BP-e - Bilhete de Passagem Eletrônico - Schemas NT 2021.001 (26/01/2021)
+erpbrasil-edoc-gen-download-schema -n bpe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip
+# NOTE this one was actually downloaded manually to /tmp/generated/schemas/bpe/v1_0
+rm -rf schemas/bpe
+cp -rf /tmp/generated/schemas/bpe schemas/bpe
+xsdata generate schemas/bpe/v1_0 --package nfelib.bpe.v1_0

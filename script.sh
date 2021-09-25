@@ -53,3 +53,10 @@ erpbrasil-edoc-gen-download-schema -n nfe_epec -v v1_0 -u https://www.nfe.fazend
 rm -rf schemas/nfe_epec
 cp -rf /tmp/generated/schemas/nfe_ator_interessado schemas/nfe_epec
 xsdata generate schemas/nfe_epec/v1_0 --package nfelib.nfe_epec.v1_0
+
+# Evento Comprovante Entrega da NF-e . Publicado em 19/05/2021 (Atualizado em 15/06/2021)
+erpbrasil-edoc-gen-download-schema -n nfe_entrega -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=2AWmHNFOCe8=
+rm -rf schemas/nfe_entrega
+cp -rf /tmp/generated/schemas/nfe_entrega schemas/nfe_entrega
+xsdata generate schemas/nfe_entrega/v1_0 --package nfelib.nfe_entrega.v1_0
+

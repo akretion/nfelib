@@ -41,3 +41,9 @@ rm -rf /tmp/generated/schemas/nfe_cons/v2_0/*v2.00.xsd
 rm -rf schemas/nfe_cons
 cp -rf /tmp/generated/schemas/nfe_cons schemas/nfe_cons
 xsdata generate schemas/nfe_cons/v2_0 --package nfelib.nfe_cons.v2_0
+
+# Evento Ator Interessado na NF-e - Transportador. Publicado em 28/01/2021.
+erpbrasil-edoc-gen-download-schema -n nfe_ator_interessado -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=ufthUw%20oQd8=
+rm -rf schemas/nfe_ator_interessado
+cp -rf /tmp/generated/schemas/nfe_ator_interessado schemas/nfe_ator_interessado
+xsdata generate schemas/nfe_ator_interessado/v1_0 --package nfelib.nfe_ator_interessado.v1_0

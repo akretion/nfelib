@@ -50,7 +50,7 @@ class TcorgaoIbge(Enum):
     VALUE_91 = "91"
 
 
-class DetEventoVersao1(Enum):
+class DetEventoVersao(Enum):
     VALUE_1_00 = "1.00"
 
 
@@ -317,7 +317,7 @@ class Tevento:
                     "required": True,
                 }
             )
-            versao: Optional[DetEventoVersao1] = field(
+            versao: Optional[DetEventoVersao] = field(
                 default=None,
                 metadata={
                     "type": "Attribute",

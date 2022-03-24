@@ -18,10 +18,6 @@ from nfelib.nfe_cons.v2_0.ret_cons_sit_nfe_v2_01 import RetConsSitNfe
 from nfelib.nfe_cons.v2_0.tipos_basico_v1_03 import (
     Tamb,
     TcodUfIbge,
-    Tmod,
-    Tuf,
-    TufEmi,
-    Tpais,
 )
 from nfelib.nfe_cons.v2_0.xmldsig_core_schema_v1_01 import (
     KeyInfoType,
@@ -54,10 +50,6 @@ __all__ = [
     "RetConsSitNfe",
     "Tamb",
     "TcodUfIbge",
-    "Tmod",
-    "Tuf",
-    "TufEmi",
-    "Tpais",
     "KeyInfoType",
     "ReferenceType",
     "Signature",

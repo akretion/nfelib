@@ -9,14 +9,7 @@ from nfelib.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import (
 )
 from nfelib.nfe_evento_generico.v1_0.proc_evento_nfe_v1_00 import ProcEventoNfe
 from nfelib.nfe_evento_generico.v1_0.ret_env_evento_v1_00 import RetEnvEvento
-from nfelib.nfe_evento_generico.v1_0.tipos_basico_v1_03 import (
-    Tamb,
-    TcodUfIbge,
-    Tmod,
-    Tuf,
-    TufEmi,
-    Tpais,
-)
+from nfelib.nfe_evento_generico.v1_0.tipos_basico_v1_03 import Tamb
 from nfelib.nfe_evento_generico.v1_0.xmldsig_core_schema_v1_01 import (
     KeyInfoType,
     ReferenceType,
@@ -41,11 +34,6 @@ __all__ = [
     "ProcEventoNfe",
     "RetEnvEvento",
     "Tamb",
-    "TcodUfIbge",
-    "Tmod",
-    "Tuf",
-    "TufEmi",
-    "Tpais",
     "KeyInfoType",
     "ReferenceType",
     "Signature",

@@ -2,10 +2,7 @@ from nfelib.cte_dist_dfe.v1_0.dist_dfe_int_v1_00 import DistDfeInt
 from nfelib.cte_dist_dfe.v1_0.ret_dist_dfe_int_v1_00 import RetDistDfeInt
 from nfelib.cte_dist_dfe.v1_0.tipos_dist_dfe_v1_00 import (
     Tamb,
-    TcorgaoIbge,
     TcodUfIbge,
-    TfinCte,
-    TmodTransp,
     TverDistDfe,
 )
 from nfelib.cte_dist_dfe.v1_0.xmldsig_core_schema_v1_01 import (
@@ -25,10 +22,7 @@ __all__ = [
     "DistDfeInt",
     "RetDistDfeInt",
     "Tamb",
-    "TcorgaoIbge",
     "TcodUfIbge",
-    "TfinCte",
-    "TmodTransp",
     "TverDistDfe",
     "KeyInfoType",
     "ReferenceType",

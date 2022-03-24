@@ -2,28 +2,16 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional
 from nfelib.mdfe.v3_0.mdfe_modal_rodoviario_v3_00 import (
-    CompTpComp1,
-    InfPagIndPag1,
+    CompTpComp,
+    InfPagIndPag,
 )
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 
 
-class CompTpComp2(Enum):
-    VALUE_01 = "01"
-    VALUE_02 = "02"
-    VALUE_03 = "03"
-    VALUE_99 = "99"
-
-
 class EvPagtoOperMdfeDescEvento(Enum):
     PAGAMENTO_OPERA_O_MDF_E = "Pagamento Operação MDF-e"
     PAGAMENTO_OPERACAO_MDF_E = "Pagamento Operacao MDF-e"
-
-
-class InfPagIndPag2(Enum):
-    VALUE_0 = "0"
-    VALUE_1 = "1"
 
 
 @dataclass
@@ -185,7 +173,7 @@ class EvPagtoOperMdfe:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        ind_pag: Optional[InfPagIndPag1] = field(
+        ind_pag: Optional[InfPagIndPag] = field(
             default=None,
             metadata={
                 "name": "indPag",
@@ -228,7 +216,7 @@ class EvPagtoOperMdfe:
             :ivar v_comp: Valor do componente
             :ivar x_comp: Descrição do componente do tipo Outros
             """
-            tp_comp: Optional[CompTpComp1] = field(
+            tp_comp: Optional[CompTpComp] = field(
                 default=None,
                 metadata={
                     "name": "tpComp",

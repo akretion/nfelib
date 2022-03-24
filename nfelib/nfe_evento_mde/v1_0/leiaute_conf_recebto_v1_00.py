@@ -40,14 +40,14 @@ class TcorgaoIbge(Enum):
     VALUE_91 = "91"
 
 
-class DetEventoDescEvento1(Enum):
+class DetEventoDescEvento(Enum):
     CONFIRMACAO_DA_OPERACAO = "Confirmacao da Operacao"
     CIENCIA_DA_OPERACAO = "Ciencia da Operacao"
     DESCONHECIMENTO_DA_OPERACAO = "Desconhecimento da Operacao"
     OPERACAO_NAO_REALIZADA = "Operacao nao Realizada"
 
 
-class DetEventoVersao1(Enum):
+class DetEventoVersao(Enum):
     VALUE_1_00 = "1.00"
 
 
@@ -243,7 +243,7 @@ class Tevento:
             :ivar x_just: Justificativa de Operação não Realizada
             :ivar versao:
             """
-            desc_evento: Optional[DetEventoDescEvento1] = field(
+            desc_evento: Optional[DetEventoDescEvento] = field(
                 default=None,
                 metadata={
                     "name": "descEvento",
@@ -265,7 +265,7 @@ class Tevento:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            versao: Optional[DetEventoVersao1] = field(
+            versao: Optional[DetEventoVersao] = field(
                 default=None,
                 metadata={
                     "type": "Attribute",

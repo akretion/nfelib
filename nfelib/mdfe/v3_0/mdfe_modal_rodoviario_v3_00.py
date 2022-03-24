@@ -6,7 +6,7 @@ from nfelib.mdfe.v3_0.tipos_geral_mdfe_v3_00 import Tuf
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 
 
-class CompTpComp1(Enum):
+class CompTpComp(Enum):
     VALUE_01 = "01"
     VALUE_02 = "02"
     VALUE_03 = "03"
@@ -23,18 +23,12 @@ class InfPagIndAltoDesemp(Enum):
     VALUE_1 = "1"
 
 
-class InfPagIndPag1(Enum):
+class InfPagIndPag(Enum):
     VALUE_0 = "0"
     VALUE_1 = "1"
 
 
-class PropTpProp1(Enum):
-    VALUE_0 = "0"
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-
-
-class PropTpProp2(Enum):
+class PropTpProp(Enum):
     VALUE_0 = "0"
     VALUE_1 = "1"
     VALUE_2 = "2"
@@ -485,7 +479,7 @@ class Rodo:
                     "type": "Element",
                 }
             )
-            ind_pag: Optional[InfPagIndPag1] = field(
+            ind_pag: Optional[InfPagIndPag] = field(
                 default=None,
                 metadata={
                     "name": "indPag",
@@ -529,7 +523,7 @@ class Rodo:
                 :ivar v_comp: Valor do componente
                 :ivar x_comp: Descrição do componente do tipo Outros
                 """
-                tp_comp: Optional[CompTpComp1] = field(
+                tp_comp: Optional[CompTpComp] = field(
                     default=None,
                     metadata={
                         "name": "tpComp",
@@ -849,7 +843,7 @@ class Rodo:
                     "type": "Element",
                 }
             )
-            tp_prop: Optional[PropTpProp1] = field(
+            tp_prop: Optional[PropTpProp] = field(
                 default=None,
                 metadata={
                     "name": "tpProp",
@@ -1062,7 +1056,7 @@ class Rodo:
                     "type": "Element",
                 }
             )
-            tp_prop: Optional[PropTpProp1] = field(
+            tp_prop: Optional[PropTpProp] = field(
                 default=None,
                 metadata={
                     "name": "tpProp",

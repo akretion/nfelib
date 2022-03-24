@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from nfelib.nfe_epec.v1_0.leiaute_epec_v1_00 import DetEventoVersao1
+from nfelib.nfe_epec.v1_0.leiaute_epec_v1_00 import DetEventoVersao
 from nfelib.nfe_epec.v1_0.tipos_basico_v1_03 import (
     TcodUfIbge,
     Tuf,
@@ -32,10 +32,6 @@ class Ie:
 
 class DescEventoValue(Enum):
     EPEC = "EPEC"
-
-
-class DetEventoVersao2(Enum):
-    VALUE_1_00 = "1.00"
 
 
 @dataclass
@@ -271,7 +267,7 @@ class DetEvento:
             "required": True,
         }
     )
-    versao: Optional[DetEventoVersao1] = field(
+    versao: Optional[DetEventoVersao] = field(
         default=None,
         metadata={
             "type": "Attribute",

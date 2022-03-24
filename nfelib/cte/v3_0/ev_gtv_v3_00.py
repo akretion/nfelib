@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional
-from nfelib.cte.v3_0.cte_tipos_basico_v3_00 import InfEspecieTpEspecie1
+from nfelib.cte.v3_0.cte_tipos_basico_v3_00 import InfEspecieTpEspecie
 from nfelib.cte.v3_0.tipos_geral_cte_v3_00 import Tuf
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
@@ -10,13 +10,6 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 class EvGtvDescEvento(Enum):
     INFORMA_ES_DA_GTV = "Informações da GTV"
     INFORMACOES_DA_GTV = "Informacoes da GTV"
-
-
-class InfEspecieTpEspecie2(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-    VALUE_4 = "4"
 
 
 @dataclass
@@ -197,7 +190,7 @@ class EvGtv:
                 - Moeda 4 - Outros
             :ivar v_especie: Valor Transportada em Espécie indicada
             """
-            tp_especie: Optional[InfEspecieTpEspecie1] = field(
+            tp_especie: Optional[InfEspecieTpEspecie] = field(
                 default=None,
                 metadata={
                     "name": "tpEspecie",

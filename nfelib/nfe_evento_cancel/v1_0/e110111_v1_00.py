@@ -1,20 +1,11 @@
 from dataclasses import dataclass, field
-from enum import Enum
 from typing import Optional
 from nfelib.nfe_evento_cancel.v1_0.leiaute_evento_canc_nfe_v1_00 import (
-    DetEventoDescEvento1,
-    DetEventoVersao1,
+    DetEventoDescEvento,
+    DetEventoVersao,
 )
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
-
-
-class DetEventoDescEvento2(Enum):
-    CANCELAMENTO = "Cancelamento"
-
-
-class DetEventoVersao2(Enum):
-    VALUE_1_00 = "1.00"
 
 
 @dataclass
@@ -33,7 +24,7 @@ class DetEvento:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DetEventoDescEvento1] = field(
+    desc_evento: Optional[DetEventoDescEvento] = field(
         default=None,
         metadata={
             "name": "descEvento",
@@ -64,7 +55,7 @@ class DetEvento:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    versao: Optional[DetEventoVersao1] = field(
+    versao: Optional[DetEventoVersao] = field(
         default=None,
         metadata={
             "type": "Attribute",

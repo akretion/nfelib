@@ -20,11 +20,6 @@ from nfelib.nfe_entrega.v1_0.ret_evento_entrega_nfe_v1_00 import RetEnvEvento
 from nfelib.nfe_entrega.v1_0.tipos_basico_v1_03 import (
     Tamb,
     TcorgaoIbge,
-    TcodUfIbge,
-    Tmod,
-    Tuf,
-    TufEmi,
-    Tpais,
 )
 from nfelib.nfe_entrega.v1_0.xmldsig_core_schema_v1_01 import (
     KeyInfoType,
@@ -57,11 +52,6 @@ __all__ = [
     "RetEnvEvento",
     "Tamb",
     "TcorgaoIbge",
-    "TcodUfIbge",
-    "Tmod",
-    "Tuf",
-    "TufEmi",
-    "Tpais",
     "KeyInfoType",
     "ReferenceType",
     "Signature",

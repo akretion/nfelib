@@ -1,20 +1,11 @@
 from dataclasses import dataclass, field
-from enum import Enum
 from typing import Optional
 from nfelib.nfe_evento_mde.v1_0.leiaute_conf_recebto_v1_00 import (
-    DetEventoDescEvento1,
-    DetEventoVersao1,
+    DetEventoDescEvento,
+    DetEventoVersao,
 )
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
-
-
-class DetEventoDescEvento2(Enum):
-    CIENCIA_DA_OPERACAO = "Ciencia da Operacao"
-
-
-class DetEventoVersao2(Enum):
-    VALUE_1_00 = "1.00"
 
 
 @dataclass
@@ -29,7 +20,7 @@ class DetEvento:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DetEventoDescEvento1] = field(
+    desc_evento: Optional[DetEventoDescEvento] = field(
         default=None,
         metadata={
             "name": "descEvento",
@@ -38,7 +29,7 @@ class DetEvento:
             "white_space": "preserve",
         }
     )
-    versao: Optional[DetEventoVersao1] = field(
+    versao: Optional[DetEventoVersao] = field(
         default=None,
         metadata={
             "type": "Attribute",

@@ -10,11 +10,11 @@ from nfelib.nfe_evento_cancel.v1_0.xmldsig_core_schema_v1_01 import Signature
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 
 
-class DetEventoDescEvento1(Enum):
+class DetEventoDescEvento(Enum):
     CANCELAMENTO = "Cancelamento"
 
 
-class DetEventoVersao1(Enum):
+class DetEventoVersao(Enum):
     VALUE_1_00 = "1.00"
 
 
@@ -210,7 +210,7 @@ class Tevento:
             :ivar x_just: Justificativa do cancelamento
             :ivar versao:
             """
-            desc_evento: Optional[DetEventoDescEvento1] = field(
+            desc_evento: Optional[DetEventoDescEvento] = field(
                 default=None,
                 metadata={
                     "name": "descEvento",
@@ -244,7 +244,7 @@ class Tevento:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            versao: Optional[DetEventoVersao1] = field(
+            versao: Optional[DetEventoVersao] = field(
                 default=None,
                 metadata={
                     "type": "Attribute",

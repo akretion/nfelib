@@ -28,29 +28,15 @@ class CompTpComp(Enum):
     VALUE_6 = "6"
 
 
-class Icms00Cst1(Enum):
+class Icms00Cst(Enum):
     VALUE_00 = "00"
 
 
-class Icms00Cst2(Enum):
-    VALUE_00 = "00"
-
-
-class Icms20Cst1(Enum):
+class Icms20Cst(Enum):
     VALUE_20 = "20"
 
 
-class Icms20Cst2(Enum):
-    VALUE_20 = "20"
-
-
-class Icms45Cst1(Enum):
-    VALUE_40 = "40"
-    VALUE_41 = "41"
-    VALUE_51 = "51"
-
-
-class Icms45Cst2(Enum):
+class Icms45Cst(Enum):
     VALUE_40 = "40"
     VALUE_41 = "41"
     VALUE_51 = "51"
@@ -60,235 +46,20 @@ class Icms60Cst(Enum):
     VALUE_60 = "60"
 
 
-class Icms90Cst1(Enum):
+class Icms90Cst(Enum):
     VALUE_90 = "90"
 
 
-class Icms90Cst2(Enum):
+class IcmsoutraUfCst(Enum):
     VALUE_90 = "90"
 
 
-class IcmsoutraUfCst1(Enum):
+class IcmssnCst(Enum):
     VALUE_90 = "90"
 
 
-class IcmsoutraUfCst2(Enum):
-    VALUE_90 = "90"
-
-
-class IcmssnCst1(Enum):
-    VALUE_90 = "90"
-
-
-class IcmssnCst2(Enum):
-    VALUE_90 = "90"
-
-
-class IcmssnIndSn1(Enum):
+class IcmssnIndSn(Enum):
     VALUE_1 = "1"
-
-
-class IcmssnIndSn2(Enum):
-    VALUE_1 = "1"
-
-
-class TclistServ(Enum):
-    """
-    Tipo Código da Lista de Serviços LC 116/2003.
-    """
-    VALUE_101 = "101"
-    VALUE_102 = "102"
-    VALUE_103 = "103"
-    VALUE_104 = "104"
-    VALUE_105 = "105"
-    VALUE_106 = "106"
-    VALUE_107 = "107"
-    VALUE_108 = "108"
-    VALUE_201 = "201"
-    VALUE_302 = "302"
-    VALUE_303 = "303"
-    VALUE_304 = "304"
-    VALUE_305 = "305"
-    VALUE_401 = "401"
-    VALUE_402 = "402"
-    VALUE_403 = "403"
-    VALUE_404 = "404"
-    VALUE_405 = "405"
-    VALUE_406 = "406"
-    VALUE_407 = "407"
-    VALUE_408 = "408"
-    VALUE_409 = "409"
-    VALUE_410 = "410"
-    VALUE_411 = "411"
-    VALUE_412 = "412"
-    VALUE_413 = "413"
-    VALUE_414 = "414"
-    VALUE_415 = "415"
-    VALUE_416 = "416"
-    VALUE_417 = "417"
-    VALUE_418 = "418"
-    VALUE_419 = "419"
-    VALUE_420 = "420"
-    VALUE_421 = "421"
-    VALUE_422 = "422"
-    VALUE_423 = "423"
-    VALUE_501 = "501"
-    VALUE_502 = "502"
-    VALUE_503 = "503"
-    VALUE_504 = "504"
-    VALUE_505 = "505"
-    VALUE_506 = "506"
-    VALUE_507 = "507"
-    VALUE_508 = "508"
-    VALUE_509 = "509"
-    VALUE_601 = "601"
-    VALUE_602 = "602"
-    VALUE_603 = "603"
-    VALUE_604 = "604"
-    VALUE_605 = "605"
-    VALUE_701 = "701"
-    VALUE_702 = "702"
-    VALUE_703 = "703"
-    VALUE_704 = "704"
-    VALUE_705 = "705"
-    VALUE_706 = "706"
-    VALUE_707 = "707"
-    VALUE_708 = "708"
-    VALUE_709 = "709"
-    VALUE_710 = "710"
-    VALUE_711 = "711"
-    VALUE_712 = "712"
-    VALUE_713 = "713"
-    VALUE_716 = "716"
-    VALUE_717 = "717"
-    VALUE_718 = "718"
-    VALUE_719 = "719"
-    VALUE_720 = "720"
-    VALUE_721 = "721"
-    VALUE_722 = "722"
-    VALUE_801 = "801"
-    VALUE_802 = "802"
-    VALUE_901 = "901"
-    VALUE_902 = "902"
-    VALUE_903 = "903"
-    VALUE_1001 = "1001"
-    VALUE_1002 = "1002"
-    VALUE_1003 = "1003"
-    VALUE_1004 = "1004"
-    VALUE_1005 = "1005"
-    VALUE_1006 = "1006"
-    VALUE_1007 = "1007"
-    VALUE_1008 = "1008"
-    VALUE_1009 = "1009"
-    VALUE_1010 = "1010"
-    VALUE_1101 = "1101"
-    VALUE_1102 = "1102"
-    VALUE_1103 = "1103"
-    VALUE_1104 = "1104"
-    VALUE_1201 = "1201"
-    VALUE_1202 = "1202"
-    VALUE_1203 = "1203"
-    VALUE_1204 = "1204"
-    VALUE_1205 = "1205"
-    VALUE_1206 = "1206"
-    VALUE_1207 = "1207"
-    VALUE_1208 = "1208"
-    VALUE_1209 = "1209"
-    VALUE_1210 = "1210"
-    VALUE_1211 = "1211"
-    VALUE_1212 = "1212"
-    VALUE_1213 = "1213"
-    VALUE_1214 = "1214"
-    VALUE_1215 = "1215"
-    VALUE_1216 = "1216"
-    VALUE_1217 = "1217"
-    VALUE_1302 = "1302"
-    VALUE_1303 = "1303"
-    VALUE_1304 = "1304"
-    VALUE_1305 = "1305"
-    VALUE_1401 = "1401"
-    VALUE_1402 = "1402"
-    VALUE_1403 = "1403"
-    VALUE_1404 = "1404"
-    VALUE_1405 = "1405"
-    VALUE_1406 = "1406"
-    VALUE_1407 = "1407"
-    VALUE_1408 = "1408"
-    VALUE_1409 = "1409"
-    VALUE_1410 = "1410"
-    VALUE_1411 = "1411"
-    VALUE_1412 = "1412"
-    VALUE_1413 = "1413"
-    VALUE_1501 = "1501"
-    VALUE_1502 = "1502"
-    VALUE_1503 = "1503"
-    VALUE_1504 = "1504"
-    VALUE_1505 = "1505"
-    VALUE_1506 = "1506"
-    VALUE_1507 = "1507"
-    VALUE_1508 = "1508"
-    VALUE_1509 = "1509"
-    VALUE_1510 = "1510"
-    VALUE_1511 = "1511"
-    VALUE_1512 = "1512"
-    VALUE_1513 = "1513"
-    VALUE_1514 = "1514"
-    VALUE_1515 = "1515"
-    VALUE_1516 = "1516"
-    VALUE_1517 = "1517"
-    VALUE_1518 = "1518"
-    VALUE_1601 = "1601"
-    VALUE_1701 = "1701"
-    VALUE_1702 = "1702"
-    VALUE_1703 = "1703"
-    VALUE_1704 = "1704"
-    VALUE_1705 = "1705"
-    VALUE_1706 = "1706"
-    VALUE_1708 = "1708"
-    VALUE_1709 = "1709"
-    VALUE_1710 = "1710"
-    VALUE_1711 = "1711"
-    VALUE_1712 = "1712"
-    VALUE_1713 = "1713"
-    VALUE_1714 = "1714"
-    VALUE_1715 = "1715"
-    VALUE_1716 = "1716"
-    VALUE_1717 = "1717"
-    VALUE_1718 = "1718"
-    VALUE_1719 = "1719"
-    VALUE_1720 = "1720"
-    VALUE_1721 = "1721"
-    VALUE_1722 = "1722"
-    VALUE_1723 = "1723"
-    VALUE_1724 = "1724"
-    VALUE_1801 = "1801"
-    VALUE_1901 = "1901"
-    VALUE_2001 = "2001"
-    VALUE_2002 = "2002"
-    VALUE_2003 = "2003"
-    VALUE_2101 = "2101"
-    VALUE_2201 = "2201"
-    VALUE_2301 = "2301"
-    VALUE_2401 = "2401"
-    VALUE_2501 = "2501"
-    VALUE_2502 = "2502"
-    VALUE_2503 = "2503"
-    VALUE_2504 = "2504"
-    VALUE_2601 = "2601"
-    VALUE_2701 = "2701"
-    VALUE_2801 = "2801"
-    VALUE_2901 = "2901"
-    VALUE_3001 = "3001"
-    VALUE_3101 = "3101"
-    VALUE_3201 = "3201"
-    VALUE_3301 = "3301"
-    VALUE_3401 = "3401"
-    VALUE_3501 = "3501"
-    VALUE_3601 = "3601"
-    VALUE_3701 = "3701"
-    VALUE_3801 = "3801"
-    VALUE_3901 = "3901"
-    VALUE_4001 = "4001"
 
 
 class TdocAssoc(Enum):
@@ -312,14 +83,6 @@ class TfinCte(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_3 = "3"
-
-
-class TfinCteOs(Enum):
-    """
-    Tipo Finalidade da CT-e Outros Serviços.
-    """
-    VALUE_0 = "0"
-    VALUE_1 = "1"
 
 
 class TfinGtve(Enum):
@@ -362,14 +125,6 @@ class TmodDoc(Enum):
     VALUE_27 = "27"
     VALUE_28 = "28"
     VALUE_55 = "55"
-
-
-class TmodTranspGtve(Enum):
-    """
-    Tipo Modal transporte GTVe.
-    """
-    VALUE_01 = "01"
-    VALUE_06 = "06"
 
 
 class TmodTranspOs(Enum):
@@ -500,19 +255,7 @@ class IdeIndGlobalizado(Enum):
     VALUE_1 = "1"
 
 
-class IdeIndIetoma1(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_9 = "9"
-
-
-class IdeIndIetoma2(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_9 = "9"
-
-
-class IdeIndIetoma3(Enum):
+class IdeIndIetoma(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_9 = "9"
@@ -528,67 +271,27 @@ class IdeRetira(Enum):
     VALUE_1 = "1"
 
 
-class IdeTpEmis1(Enum):
+class IdeTpEmis(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_7 = "7"
     VALUE_8 = "8"
 
 
-class IdeTpEmis2(Enum):
-    VALUE_1 = "1"
-    VALUE_3 = "3"
-    VALUE_4 = "4"
-    VALUE_5 = "5"
-    VALUE_7 = "7"
-    VALUE_8 = "8"
-
-
-class IdeTpEmis3(Enum):
-    VALUE_1 = "1"
-    VALUE_5 = "5"
-    VALUE_7 = "7"
-    VALUE_8 = "8"
-
-
-class IdeTpImp1(Enum):
+class IdeTpImp(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
 
 
-class IdeTpImp2(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-
-
-class IdeTpImp3(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-
-
-class IdeTpServ1(Enum):
+class IdeTpServ(Enum):
     VALUE_9 = "9"
-
-
-class IdeTpServ2(Enum):
-    VALUE_0 = "0"
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-    VALUE_4 = "4"
-
-
-class IdeTpServ3(Enum):
-    VALUE_6 = "6"
-    VALUE_7 = "7"
-    VALUE_8 = "8"
 
 
 class InfCteSubIndAlteraToma(Enum):
     VALUE_1 = "1"
 
 
-class InfEspecieTpEspecie1(Enum):
+class InfEspecieTpEspecie(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_3 = "3"
@@ -645,7 +348,7 @@ class Toma3Toma(Enum):
     VALUE_3 = "3"
 
 
-class Toma4Toma1(Enum):
+class Toma4Toma(Enum):
     VALUE_4 = "4"
 
 
@@ -1405,7 +1108,7 @@ class Timp:
         :ivar p_icms: Alíquota do ICMS
         :ivar v_icms: Valor do ICMS
         """
-        cst: Optional[Icms00Cst1] = field(
+        cst: Optional[Icms00Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1459,7 +1162,7 @@ class Timp:
         :ivar p_icms: Alíquota do ICMS
         :ivar v_icms: Valor do ICMS
         """
-        cst: Optional[Icms20Cst1] = field(
+        cst: Optional[Icms20Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1520,7 +1223,7 @@ class Timp:
         :ivar cst: Classificação Tributária do Serviço Preencher com: 40
             - ICMS isenção; 41 - ICMS não tributada; 51 - ICMS diferido
         """
-        cst: Optional[Icms45Cst1] = field(
+        cst: Optional[Icms45Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1615,7 +1318,7 @@ class Timp:
         :ivar v_icms: Valor do ICMS
         :ivar v_cred: Valor do Crédito Outorgado/Presumido
         """
-        cst: Optional[Icms90Cst1] = field(
+        cst: Optional[Icms90Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1689,7 +1392,7 @@ class Timp:
         :ivar p_icmsoutra_uf: Alíquota do ICMS
         :ivar v_icmsoutra_uf: Valor do ICMS devido outra UF
         """
-        cst: Optional[IcmsoutraUfCst1] = field(
+        cst: Optional[IcmsoutraUfCst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1751,7 +1454,7 @@ class Timp:
         :ivar ind_sn: Indica se o contribuinte é Simples Nacional
             1=Sim
         """
-        cst: Optional[IcmssnCst1] = field(
+        cst: Optional[IcmssnCst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1761,7 +1464,7 @@ class Timp:
                 "white_space": "preserve",
             }
         )
-        ind_sn: Optional[IcmssnIndSn1] = field(
+        ind_sn: Optional[IcmssnIndSn] = field(
             default=None,
             metadata={
                 "name": "indSN",
@@ -1848,7 +1551,7 @@ class TimpOs:
         :ivar p_icms: Alíquota do ICMS
         :ivar v_icms: Valor do ICMS
         """
-        cst: Optional[Icms00Cst1] = field(
+        cst: Optional[Icms00Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1902,7 +1605,7 @@ class TimpOs:
         :ivar p_icms: Alíquota do ICMS
         :ivar v_icms: Valor do ICMS
         """
-        cst: Optional[Icms20Cst1] = field(
+        cst: Optional[Icms20Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1963,7 +1666,7 @@ class TimpOs:
         :ivar cst: Classificação Tributária do Serviço Preencher com: 40
             - ICMS isenção; 41 - ICMS não tributada; 51 - ICMS diferido
         """
-        cst: Optional[Icms45Cst1] = field(
+        cst: Optional[Icms45Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -1984,7 +1687,7 @@ class TimpOs:
         :ivar v_icms: Valor do ICMS
         :ivar v_cred: Valor do Crédito Outorgado/Presumido
         """
-        cst: Optional[Icms90Cst1] = field(
+        cst: Optional[Icms90Cst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -2058,7 +1761,7 @@ class TimpOs:
         :ivar p_icmsoutra_uf: Alíquota do ICMS
         :ivar v_icmsoutra_uf: Valor do ICMS devido outra UF
         """
-        cst: Optional[IcmsoutraUfCst1] = field(
+        cst: Optional[IcmsoutraUfCst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -2120,7 +1823,7 @@ class TimpOs:
         :ivar ind_sn: Indica se o contribuinte é Simples Nacional
             1=Sim
         """
-        cst: Optional[IcmssnCst1] = field(
+        cst: Optional[IcmssnCst] = field(
             default=None,
             metadata={
                 "name": "CST",
@@ -2130,7 +1833,7 @@ class TimpOs:
                 "white_space": "preserve",
             }
         )
-        ind_sn: Optional[IcmssnIndSn1] = field(
+        ind_sn: Optional[IcmssnIndSn] = field(
             default=None,
             metadata={
                 "name": "indSN",
@@ -3314,7 +3017,7 @@ class TcteOs:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp1] = field(
+            tp_imp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
                     "name": "tpImp",
@@ -3324,7 +3027,7 @@ class TcteOs:
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis1] = field(
+            tp_emis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
                     "name": "tpEmis",
@@ -3426,7 +3129,7 @@ class TcteOs:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ1] = field(
+            tp_serv: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
                     "name": "tpServ",
@@ -3436,7 +3139,7 @@ class TcteOs:
                     "white_space": "preserve",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma1] = field(
+            ind_ietoma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
                     "name": "indIEToma",
@@ -5243,7 +4946,7 @@ class Tgtve:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp1] = field(
+            tp_imp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
                     "name": "tpImp",
@@ -5253,7 +4956,7 @@ class Tgtve:
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis1] = field(
+            tp_emis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
                     "name": "tpEmis",
@@ -5346,7 +5049,7 @@ class Tgtve:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ1] = field(
+            tp_serv: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
                     "name": "tpServ",
@@ -5356,7 +5059,7 @@ class Tgtve:
                     "white_space": "preserve",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma1] = field(
+            ind_ietoma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
                     "name": "indIEToma",
@@ -6046,7 +5749,7 @@ class Tgtve:
                 :ivar x_moeda_estr: Nome da Moeda Informar somente se
                     tipo de numerário for 2 - Estrangeiro
                 """
-                tp_especie: Optional[InfEspecieTpEspecie1] = field(
+                tp_especie: Optional[InfEspecieTpEspecie] = field(
                     default=None,
                     metadata={
                         "name": "tpEspecie",
@@ -6922,7 +6625,7 @@ class Tcte:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp1] = field(
+            tp_imp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
                     "name": "tpImp",
@@ -6932,7 +6635,7 @@ class Tcte:
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis1] = field(
+            tp_emis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
                     "name": "tpEmis",
@@ -7042,7 +6745,7 @@ class Tcte:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ1] = field(
+            tp_serv: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
                     "name": "tpServ",
@@ -7139,7 +6842,7 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma1] = field(
+            ind_ietoma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
                     "name": "indIEToma",
@@ -7227,7 +6930,7 @@ class Tcte:
                 :ivar ender_toma: Dados do endereço
                 :ivar email: Endereço de email
                 """
-                toma: Optional[Toma4Toma1] = field(
+                toma: Optional[Toma4Toma] = field(
                     default=None,
                     metadata={
                         "type": "Element",

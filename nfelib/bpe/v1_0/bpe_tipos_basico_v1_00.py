@@ -60,15 +60,6 @@ class Tdoc(Enum):
     VALUE_5 = "5"
 
 
-class TforPag(Enum):
-    """
-    Tipo Forma de Pagamento.
-    """
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_0 = "0"
-
-
 class TindPres(Enum):
     """
     Tipo de Indicador de Presença.
@@ -88,14 +79,6 @@ class Tmodal(Enum):
     VALUE_1 = "1"
     VALUE_3 = "3"
     VALUE_4 = "4"
-
-
-class TprocEmi(Enum):
-    """
-    Tipo processo de emissão do BP-e.
-    """
-    VALUE_0 = "0"
-    VALUE_3 = "3"
 
 
 @dataclass
@@ -207,15 +190,6 @@ class TtipoBpeTm(Enum):
     VALUE_4 = "4"
 
 
-class TtipoOper(Enum):
-    """
-    Tipo de Operação.
-    """
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-
-
 class TtipoSubstituicao(Enum):
     """
     Tipo de Substituição.
@@ -240,24 +214,13 @@ class CardTpIntegra(Enum):
     VALUE_2 = "2"
 
 
-class EmitCrt1(Enum):
+class EmitCrt(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_3 = "3"
 
 
-class EmitCrt2(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-
-
-class IdeTpEmis1(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-
-
-class IdeTpEmis2(Enum):
+class IdeTpEmis(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
 
@@ -1467,7 +1430,7 @@ class Tbpe:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_emis: Optional[IdeTpEmis1] = field(
+            tp_emis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
                     "name": "tpEmis",
@@ -1670,7 +1633,7 @@ class Tbpe:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            crt: Optional[EmitCrt1] = field(
+            crt: Optional[EmitCrt] = field(
                 default=None,
                 metadata={
                     "name": "CRT",
@@ -3091,7 +3054,7 @@ class TbpeTm:
                     "pattern": r"((((20|19|18)(([02468][048])|([13579][26]))-02-29))|((20|19|18)[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                 }
             )
-            tp_emis: Optional[IdeTpEmis1] = field(
+            tp_emis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
                     "name": "tpEmis",
@@ -3256,7 +3219,7 @@ class TbpeTm:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            crt: Optional[EmitCrt1] = field(
+            crt: Optional[EmitCrt] = field(
                 default=None,
                 metadata={
                     "name": "CRT",

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from nfelib.cte.v3_0.cte_tipos_basico_v3_00 import Toma4Toma1
+from nfelib.cte.v3_0.cte_tipos_basico_v3_00 import Toma4Toma
 from nfelib.cte.v3_0.evento_cte_tipos_basico_v3_00 import TmodTransp
 from nfelib.cte.v3_0.tipos_geral_cte_v3_00 import Tuf
 
@@ -14,14 +14,6 @@ class EvEpeccteDescEvento(Enum):
 
 class EvEpeccteTpCte(Enum):
     VALUE_0 = "0"
-
-
-class Toma4Toma2(Enum):
-    VALUE_0 = "0"
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-    VALUE_4 = "4"
 
 
 @dataclass
@@ -182,7 +174,7 @@ class EvEpeccte:
             cadastro de contribuintes do ICMS. Caso o tomador não seja
             contribuinte do ICMS não informar o conteúdo.
         """
-        toma: Optional[Toma4Toma1] = field(
+        toma: Optional[Toma4Toma] = field(
             default=None,
             metadata={
                 "type": "Element",

@@ -11,34 +11,30 @@ from nfelib.nfe_ator_interessado.v1_0.xmldsig_core_schema_v1_01 import Signature
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 
 
-class DetEventoDescEvento1(Enum):
+class DetEventoDescEvento(Enum):
     ATOR_INTERESSADO_NA_NF_E = "Ator interessado na NF-e"
 
 
-class DetEventoTpAutor1(Enum):
+class DetEventoTpAutor(Enum):
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_3 = "3"
 
 
-class DetEventoTpAutorizacao1(Enum):
+class DetEventoTpAutorizacao(Enum):
     VALUE_0 = "0"
     VALUE_1 = "1"
 
 
-class DetEventoVersao1(Enum):
+class DetEventoVersao(Enum):
     VALUE_1_00 = "1.00"
 
 
-class DetEventoXCondUso1(Enum):
+class DetEventoXCondUso(Enum):
     O_EMITENTE_OU_DESTINAT_RIO_DA_NF_E_DECLARA_QUE_PERMITE_O_TRANSPORTADOR_DECLARADO_NO_CAMPO_CNPJ_CPF_DESTE_EVENTO_A_AUTORIZAR_OS_TRANSPORTADORES_SUBCONTRATADOS_OU_REDESPACHADOS_A_TEREM_ACESSO_AO_DOWNLOAD_DA_NF_E = "O emitente ou destinatário da NF-e, declara que permite o transportador declarado no campo CNPJ/CPF deste evento a autorizar os transportadores subcontratados ou redespachados a terem acesso ao download da NF-e"
 
 
-class InfEventoTpEvento1(Enum):
-    VALUE_110150 = "110150"
-
-
-class InfEventoTpEvento2(Enum):
+class InfEventoTpEvento(Enum):
     VALUE_110150 = "110150"
 
 
@@ -169,7 +165,7 @@ class Tevento:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        tp_evento: Optional[InfEventoTpEvento1] = field(
+        tp_evento: Optional[InfEventoTpEvento] = field(
             default=None,
             metadata={
                 "name": "tpEvento",
@@ -242,7 +238,7 @@ class Tevento:
                 de autorização para o transportador:
             :ivar versao:
             """
-            desc_evento: Optional[DetEventoDescEvento1] = field(
+            desc_evento: Optional[DetEventoDescEvento] = field(
                 default=None,
                 metadata={
                     "name": "descEvento",
@@ -261,7 +257,7 @@ class Tevento:
                     "required": True,
                 }
             )
-            tp_autor: Optional[DetEventoTpAutor1] = field(
+            tp_autor: Optional[DetEventoTpAutor] = field(
                 default=None,
                 metadata={
                     "name": "tpAutor",
@@ -293,7 +289,7 @@ class Tevento:
                     "required": True,
                 }
             )
-            tp_autorizacao: Optional[DetEventoTpAutorizacao1] = field(
+            tp_autorizacao: Optional[DetEventoTpAutorizacao] = field(
                 default=None,
                 metadata={
                     "name": "tpAutorizacao",
@@ -302,7 +298,7 @@ class Tevento:
                     "white_space": "preserve",
                 }
             )
-            x_cond_uso: Optional[DetEventoXCondUso1] = field(
+            x_cond_uso: Optional[DetEventoXCondUso] = field(
                 default=None,
                 metadata={
                     "name": "xCondUso",
@@ -311,7 +307,7 @@ class Tevento:
                     "white_space": "preserve",
                 }
             )
-            versao: Optional[DetEventoVersao1] = field(
+            versao: Optional[DetEventoVersao] = field(
                 default=None,
                 metadata={
                     "type": "Attribute",
@@ -467,7 +463,7 @@ class TretEvento:
                 "pattern": r"[0-9]{44}",
             }
         )
-        tp_evento: Optional[InfEventoTpEvento1] = field(
+        tp_evento: Optional[InfEventoTpEvento] = field(
             default=None,
             metadata={
                 "name": "tpEvento",

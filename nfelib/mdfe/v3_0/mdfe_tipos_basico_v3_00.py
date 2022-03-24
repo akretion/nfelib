@@ -17,41 +17,6 @@ from nfelib.mdfe.v3_0.xmldsig_core_schema_v1_01 import Signature
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 
 
-class TmodDoc(Enum):
-    """
-    Tipo Modelo do Documento.
-    """
-    VALUE_01 = "01"
-    VALUE_1_B = "1B"
-    VALUE_02 = "02"
-    VALUE_2_D = "2D"
-    VALUE_2_E = "2E"
-    VALUE_04 = "04"
-    VALUE_06 = "06"
-    VALUE_07 = "07"
-    VALUE_08 = "08"
-    VALUE_8_B = "8B"
-    VALUE_09 = "09"
-    VALUE_10 = "10"
-    VALUE_11 = "11"
-    VALUE_13 = "13"
-    VALUE_14 = "14"
-    VALUE_15 = "15"
-    VALUE_16 = "16"
-    VALUE_17 = "17"
-    VALUE_18 = "18"
-    VALUE_20 = "20"
-    VALUE_21 = "21"
-    VALUE_22 = "22"
-    VALUE_23 = "23"
-    VALUE_24 = "24"
-    VALUE_25 = "25"
-    VALUE_26 = "26"
-    VALUE_27 = "27"
-    VALUE_28 = "28"
-    VALUE_55 = "55"
-
-
 class TmodalMd(Enum):
     """
     Tipo Modal Manifesto.

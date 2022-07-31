@@ -52,8 +52,8 @@ Depois seria possível rodar o generateDS manualmente em cada arquivo xsd do esq
 ```bash
 # Download dos esquemas de NFe do portal da Fazenda: https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=
 
-# Pacote de Liberação nº 9 (Novo leiaute da NF-e, NT 2020.005, 2020.006 e NT 2021.002). Publicado em 29/06/2021.
-erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=lhqXSmnywl4=
+# Pacote de Liberação nº 9i (Novo leiaute da NF-e, NT 2021.004 v.1.00d). Publicado em 17/05/22
+erpbrasil-edoc-gen-download-schema -n nfe -v v4.00 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=jkJ62OcEpnY=
 erpbrasil-edoc-gen-generate-python -n nfe -v v4.00 -i "retConsStatServ|retConsSitNFe|retEnviNFe|retConsReciNFe|retInutNFe" -d .
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)

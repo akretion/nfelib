@@ -3,7 +3,7 @@
 
 #
 # Generated  by generateDS.py version 2.38.6.
-# Python 3.8.5 (default, Jul 28 2020, 12:59:40)  [GCC 9.3.0]
+# Python 3.10.4 (main, Apr  2 2022, 09:04:19) [GCC 11.2.0]
 #
 # Command line options:
 #   ('--no-namespace-defs', '')
@@ -11,13 +11,13 @@
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
-#   ('-o', '/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retConsStatServ.py')
+#   ('-o', '/tmp/nfelib-master/nfelib/v4_00/retConsStatServ.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
+#   /tmp/nfelib-master/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retConsStatServ.py" /tmp/generated/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib-master/nfelib/v4_00/retConsStatServ.py" /tmp/nfelib-master/schemas/nfe/v4_00/retConsStatServ_v4.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00

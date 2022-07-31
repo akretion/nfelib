@@ -3,7 +3,7 @@
 
 #
 # Generated  by generateDS.py version 2.38.6.
-# Python 3.8.5 (default, Jul 28 2020, 12:59:40)  [GCC 9.3.0]
+# Python 3.10.4 (main, Apr  2 2022, 09:04:19) [GCC 11.2.0]
 #
 # Command line options:
 #   ('--no-namespace-defs', '')
@@ -11,13 +11,13 @@
 #   ('--member-specs', 'list')
 #   ('--use-getter-setter', 'none')
 #   ('-f', '')
-#   ('-o', '/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retEnviNFe.py')
+#   ('-o', '/tmp/nfelib-master/nfelib/v4_00/retEnviNFe.py')
 #
 # Command line arguments:
-#   /tmp/generated/schemas/nfe/v4_00/retEnviNFe_v4.00.xsd
+#   /tmp/nfelib-master/schemas/nfe/v4_00/retEnviNFe_v4.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/home/rvalyi/DEV/nfelib2/nfelib/v4_00/retEnviNFe.py" /tmp/generated/schemas/nfe/v4_00/retEnviNFe_v4.00.xsd
+#   /usr/local/bin/generateDS.py --no-namespace-defs --no-dates --member-specs="list" --use-getter-setter="none" -f -o "/tmp/nfelib-master/nfelib/v4_00/retEnviNFe.py" /tmp/nfelib-master/schemas/nfe/v4_00/retEnviNFe_v4.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   v4_00
@@ -1264,7 +1264,7 @@ class CSTType8(str, Enum):
     _1_0='10'
 
 
-class CSTType83(str, Enum):
+class CSTType89(str, Enum):
     """Código da Situação Tributária do IPI:
     00-Entrada com recuperação de crédito
     49 - Outras entradas
@@ -1276,7 +1276,7 @@ class CSTType83(str, Enum):
     _9_9='99'
 
 
-class CSTType84(str, Enum):
+class CSTType90(str, Enum):
     """Código da Situação Tributária do IPI:
     01-Entrada tributada com alíquota zero
     02-Entrada isenta
@@ -1304,209 +1304,6 @@ class TAmb(str, Enum):
     """Tipo Ambiente"""
     _1='1'
     _2='2'
-
-
-class TCListServ(str, Enum):
-    """Tipo Código da Lista de Serviços LC 116/2003"""
-    _0_1_01='01.01'
-    _0_1_02='01.02'
-    _0_1_03='01.03'
-    _0_1_04='01.04'
-    _0_1_05='01.05'
-    _0_1_06='01.06'
-    _0_1_07='01.07'
-    _0_1_08='01.08'
-    _0_1_09='01.09'
-    _0_2_01='02.01'
-    _0_3_02='03.02'
-    _0_3_03='03.03'
-    _0_3_04='03.04'
-    _0_3_05='03.05'
-    _0_4_01='04.01'
-    _0_4_02='04.02'
-    _0_4_03='04.03'
-    _0_4_04='04.04'
-    _0_4_05='04.05'
-    _0_4_06='04.06'
-    _0_4_07='04.07'
-    _0_4_08='04.08'
-    _0_4_09='04.09'
-    _0_4_10='04.10'
-    _0_4_11='04.11'
-    _0_4_12='04.12'
-    _0_4_13='04.13'
-    _0_4_14='04.14'
-    _0_4_15='04.15'
-    _0_4_16='04.16'
-    _0_4_17='04.17'
-    _0_4_18='04.18'
-    _0_4_19='04.19'
-    _0_4_20='04.20'
-    _0_4_21='04.21'
-    _0_4_22='04.22'
-    _0_4_23='04.23'
-    _0_5_01='05.01'
-    _0_5_02='05.02'
-    _0_5_03='05.03'
-    _0_5_04='05.04'
-    _0_5_05='05.05'
-    _0_5_06='05.06'
-    _0_5_07='05.07'
-    _0_5_08='05.08'
-    _0_5_09='05.09'
-    _0_6_01='06.01'
-    _0_6_02='06.02'
-    _0_6_03='06.03'
-    _0_6_04='06.04'
-    _0_6_05='06.05'
-    _0_6_06='06.06'
-    _0_7_01='07.01'
-    _0_7_02='07.02'
-    _0_7_03='07.03'
-    _0_7_04='07.04'
-    _0_7_05='07.05'
-    _0_7_06='07.06'
-    _0_7_07='07.07'
-    _0_7_08='07.08'
-    _0_7_09='07.09'
-    _0_7_10='07.10'
-    _0_7_11='07.11'
-    _0_7_12='07.12'
-    _0_7_13='07.13'
-    _0_7_16='07.16'
-    _0_7_17='07.17'
-    _0_7_18='07.18'
-    _0_7_19='07.19'
-    _0_7_20='07.20'
-    _0_7_21='07.21'
-    _0_7_22='07.22'
-    _0_8_01='08.01'
-    _0_8_02='08.02'
-    _0_9_01='09.01'
-    _0_9_02='09.02'
-    _0_9_03='09.03'
-    _1_0_01='10.01'
-    _1_0_02='10.02'
-    _1_0_03='10.03'
-    _1_0_04='10.04'
-    _1_0_05='10.05'
-    _1_0_06='10.06'
-    _1_0_07='10.07'
-    _1_0_08='10.08'
-    _1_0_09='10.09'
-    _1_0_10='10.10'
-    _1_1_01='11.01'
-    _1_1_02='11.02'
-    _1_1_03='11.03'
-    _1_1_04='11.04'
-    _1_2_01='12.01'
-    _1_2_02='12.02'
-    _1_2_03='12.03'
-    _1_2_04='12.04'
-    _1_2_05='12.05'
-    _1_2_06='12.06'
-    _1_2_07='12.07'
-    _1_2_08='12.08'
-    _1_2_09='12.09'
-    _1_2_10='12.10'
-    _1_2_11='12.11'
-    _1_2_12='12.12'
-    _1_2_13='12.13'
-    _1_2_14='12.14'
-    _1_2_15='12.15'
-    _1_2_16='12.16'
-    _1_2_17='12.17'
-    _1_3_02='13.02'
-    _1_3_03='13.03'
-    _1_3_04='13.04'
-    _1_3_05='13.05'
-    _1_4_01='14.01'
-    _1_4_02='14.02'
-    _1_4_03='14.03'
-    _1_4_04='14.04'
-    _1_4_05='14.05'
-    _1_4_06='14.06'
-    _1_4_07='14.07'
-    _1_4_08='14.08'
-    _1_4_09='14.09'
-    _1_4_10='14.10'
-    _1_4_11='14.11'
-    _1_4_12='14.12'
-    _1_4_13='14.13'
-    _1_4_14='14.14'
-    _1_5_01='15.01'
-    _1_5_02='15.02'
-    _1_5_03='15.03'
-    _1_5_04='15.04'
-    _1_5_05='15.05'
-    _1_5_06='15.06'
-    _1_5_07='15.07'
-    _1_5_08='15.08'
-    _1_5_09='15.09'
-    _1_5_10='15.10'
-    _1_5_11='15.11'
-    _1_5_12='15.12'
-    _1_5_13='15.13'
-    _1_5_14='15.14'
-    _1_5_15='15.15'
-    _1_5_16='15.16'
-    _1_5_17='15.17'
-    _1_5_18='15.18'
-    _1_6_01='16.01'
-    _1_6_02='16.02'
-    _1_7_01='17.01'
-    _1_7_02='17.02'
-    _1_7_03='17.03'
-    _1_7_04='17.04'
-    _1_7_05='17.05'
-    _1_7_06='17.06'
-    _1_7_08='17.08'
-    _1_7_09='17.09'
-    _1_7_10='17.10'
-    _1_7_11='17.11'
-    _1_7_12='17.12'
-    _1_7_13='17.13'
-    _1_7_14='17.14'
-    _1_7_15='17.15'
-    _1_7_16='17.16'
-    _1_7_17='17.17'
-    _1_7_18='17.18'
-    _1_7_19='17.19'
-    _1_7_20='17.20'
-    _1_7_21='17.21'
-    _1_7_22='17.22'
-    _1_7_23='17.23'
-    _1_7_24='17.24'
-    _1_7_25='17.25'
-    _1_8_01='18.01'
-    _1_9_01='19.01'
-    _2_0_01='20.01'
-    _2_0_02='20.02'
-    _2_0_03='20.03'
-    _2_1_01='21.01'
-    _2_2_01='22.01'
-    _2_3_01='23.01'
-    _2_4_01='24.01'
-    _2_5_01='25.01'
-    _2_5_02='25.02'
-    _2_5_03='25.03'
-    _2_5_04='25.04'
-    _2_5_05='25.05'
-    _2_6_01='26.01'
-    _2_7_01='27.01'
-    _2_8_01='28.01'
-    _2_9_01='29.01'
-    _3_0_01='30.01'
-    _3_1_01='31.01'
-    _3_2_01='32.01'
-    _3_3_01='33.01'
-    _3_4_01='34.01'
-    _3_5_01='35.01'
-    _3_6_01='36.01'
-    _3_7_01='37.01'
-    _3_8_01='38.01'
-    _3_9_01='39.01'
-    _4_0_01='40.01'
 
 
 class TCOrgaoIBGE(str, Enum):
@@ -1693,7 +1490,7 @@ class VINType(str, Enum):
     N='N'
 
 
-class cPaisType67(str, Enum):
+class cPaisType73(str, Enum):
     """Código do país"""
     _1_058='1058'
 
@@ -2218,6 +2015,18 @@ class tpArmaType(str, Enum):
     _1='1'
 
 
+class tpAtoType(str, Enum):
+    """Tipo do ato concessório
+    Para origem do Processo na SEFAZ (indProc=0), informar o
+    tipo de ato concessório:
+    08=Termo de Acordo;
+    10=Regime Especial;
+    12=Autorização específica;"""
+    _0_8='08'
+    _1_0='10'
+    _1_2='12'
+
+
 class tpEmisType(str, Enum):
     """Forma de emissão da NF-e
     1 - Normal;
@@ -2302,8 +2111,8 @@ class tpRestType(str, Enum):
 
 class tpViaTranspType(str, Enum):
     """Via de transporte internacional informada na DI
-    1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria
-    ;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;
+    1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-
+    Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;
     11-Courier;12-Em maos;13-Por reboque."""
     _1='1'
     _2='2'
@@ -2320,7 +2129,7 @@ class tpViaTranspType(str, Enum):
     _1_3='13'
 
 
-class xPaisType68(str, Enum):
+class xPaisType74(str, Enum):
     """Nome do país"""
     BRASIL='Brasil'
     BRASIL_1='BRASIL'
@@ -3242,8 +3051,8 @@ class TRetConsReciNFe(GeneratedsSuper):
         MemberSpec_('xMotivo', ['TMotivo', 'nfe:TString'], 0, 0, {'name': 'xMotivo', 'type': 'xs:string'}, None),
         MemberSpec_('cUF', ['TCodUfIBGE', 'xs:string'], 0, 0, {'name': 'cUF', 'type': 'xs:string'}, None),
         MemberSpec_('dhRecbto', ['TDateTimeUTC', 'xs:string'], 0, 0, {'name': 'dhRecbto', 'type': 'xs:string'}, None),
-        MemberSpec_('cMsg', ['cMsgType56', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cMsg', 'type': 'xs:string'}, None),
-        MemberSpec_('xMsg', ['xMsgType57', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xMsg', 'type': 'xs:string'}, None),
+        MemberSpec_('cMsg', ['cMsgType62', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cMsg', 'type': 'xs:string'}, None),
+        MemberSpec_('xMsg', ['xMsgType63', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xMsg', 'type': 'xs:string'}, None),
         MemberSpec_('protNFe', 'TProtNFe', 1, 1, {'maxOccurs': '50', 'minOccurs': '0', 'name': 'protNFe', 'type': 'TProtNFe'}, None),
     ]
     subclass = None
@@ -3278,10 +3087,10 @@ class TRetConsReciNFe(GeneratedsSuper):
         self.validate_TDateTimeUTC(self.dhRecbto)
         self.dhRecbto_nsprefix_ = None
         self.cMsg = cMsg
-        self.validate_cMsgType56(self.cMsg)
+        self.validate_cMsgType62(self.cMsg)
         self.cMsg_nsprefix_ = None
         self.xMsg = xMsg
-        self.validate_xMsgType57(self.xMsg)
+        self.validate_xMsgType63(self.xMsg)
         self.xMsg_nsprefix_ = None
         if protNFe is None:
             self.protNFe = []
@@ -3423,23 +3232,23 @@ class TRetConsReciNFe(GeneratedsSuper):
                 result = False
         return result
     validate_TDateTimeUTC_patterns_ = [['^((((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]|10|11):00|([\\+](12):00)))$']]
-    def validate_cMsgType56(self, value):
+    def validate_cMsgType62(self, value):
         result = True
-        # Validate type cMsgType56, a restriction on xs:string.
+        # Validate type cMsgType62, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_cMsgType56_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cMsgType56_patterns_, ))
+                    self.validate_cMsgType62_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cMsgType62_patterns_, ))
                 result = False
         return result
-    validate_cMsgType56_patterns_ = [['^([0-9]{1,4})$']]
-    def validate_xMsgType57(self, value):
+    validate_cMsgType62_patterns_ = [['^([0-9]{1,4})$']]
+    def validate_xMsgType63(self, value):
         result = True
-        # Validate type xMsgType57, a restriction on TString.
+        # Validate type xMsgType63, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -3447,18 +3256,18 @@ class TRetConsReciNFe(GeneratedsSuper):
                 return False
             if len(value) > 200:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMsgType57' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMsgType63' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMsgType57' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMsgType63' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xMsgType57_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMsgType57_patterns_, ))
+                    self.validate_xMsgType63_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMsgType63_patterns_, ))
                 result = False
         return result
-    validate_xMsgType57_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xMsgType63_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TVerNFe(self, value):
         # Validate type TVerNFe, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
@@ -3637,16 +3446,16 @@ class TRetConsReciNFe(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'cMsg')
             self.cMsg = value_
             self.cMsg_nsprefix_ = child_.prefix
-            # validate type cMsgType56
-            self.validate_cMsgType56(self.cMsg)
+            # validate type cMsgType62
+            self.validate_cMsgType62(self.cMsg)
         elif nodeName_ == 'xMsg':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xMsg')
             value_ = self.gds_validate_string(value_, node, 'xMsg')
             self.xMsg = value_
             self.xMsg_nsprefix_ = child_.prefix
-            # validate type xMsgType57
-            self.validate_xMsgType57(self.xMsg)
+            # validate type xMsgType63
+            self.validate_xMsgType63(self.xMsg)
         elif nodeName_ == 'protNFe':
             obj_ = TProtNFe.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -3785,12 +3594,12 @@ class TEndereco(GeneratedsSuper):
         MemberSpec_('xCpl', ['xCplType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCpl', 'type': 'xs:string'}, None),
         MemberSpec_('xBairro', ['xBairroType', 'TString', 'xs:string'], 0, 0, {'name': 'xBairro', 'type': 'xs:string'}, None),
         MemberSpec_('cMun', ['TCodMunIBGE', 'xs:string'], 0, 0, {'name': 'cMun', 'type': 'xs:string'}, None),
-        MemberSpec_('xMun', ['xMunType58', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
+        MemberSpec_('xMun', ['xMunType64', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
         MemberSpec_('UF', ['TUf', 'xs:string'], 0, 0, {'name': 'UF', 'type': 'xs:string'}, None),
         MemberSpec_('CEP', ['CEPType', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'CEP', 'type': 'xs:string'}, None),
-        MemberSpec_('cPais', ['cPaisType59', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
+        MemberSpec_('cPais', ['cPaisType65', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
         MemberSpec_('xPais', ['xPaisType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPais', 'type': 'xs:string'}, None),
-        MemberSpec_('fone', ['foneType60', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
+        MemberSpec_('fone', ['foneType66', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
@@ -3816,7 +3625,7 @@ class TEndereco(GeneratedsSuper):
         self.validate_TCodMunIBGE(self.cMun)
         self.cMun_nsprefix_ = None
         self.xMun = xMun
-        self.validate_xMunType58(self.xMun)
+        self.validate_xMunType64(self.xMun)
         self.xMun_nsprefix_ = None
         self.UF = UF
         self.validate_TUf(self.UF)
@@ -3825,13 +3634,13 @@ class TEndereco(GeneratedsSuper):
         self.validate_CEPType(self.CEP)
         self.CEP_nsprefix_ = None
         self.cPais = cPais
-        self.validate_cPaisType59(self.cPais)
+        self.validate_cPaisType65(self.cPais)
         self.cPais_nsprefix_ = None
         self.xPais = xPais
         self.validate_xPaisType(self.xPais)
         self.xPais_nsprefix_ = None
         self.fone = fone
-        self.validate_foneType60(self.fone)
+        self.validate_foneType66(self.fone)
         self.fone_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -3946,9 +3755,9 @@ class TEndereco(GeneratedsSuper):
                 result = False
         return result
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
-    def validate_xMunType58(self, value):
+    def validate_xMunType64(self, value):
         result = True
-        # Validate type xMunType58, a restriction on TString.
+        # Validate type xMunType64, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -3956,18 +3765,18 @@ class TEndereco(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType58' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType64' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType58' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType64' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xMunType58_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType58_patterns_, ))
+                    self.validate_xMunType64_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType64_patterns_, ))
                 result = False
         return result
-    validate_xMunType58_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xMunType64_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TUf(self, value):
         result = True
         # Validate type TUf, a restriction on xs:string.
@@ -3997,20 +3806,20 @@ class TEndereco(GeneratedsSuper):
                 result = False
         return result
     validate_CEPType_patterns_ = [['^([0-9]{8})$']]
-    def validate_cPaisType59(self, value):
+    def validate_cPaisType65(self, value):
         result = True
-        # Validate type cPaisType59, a restriction on xs:string.
+        # Validate type cPaisType65, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_cPaisType59_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType59_patterns_, ))
+                    self.validate_cPaisType65_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType65_patterns_, ))
                 result = False
         return result
-    validate_cPaisType59_patterns_ = [['^([0-9]{1,4})$']]
+    validate_cPaisType65_patterns_ = [['^([0-9]{1,4})$']]
     def validate_xPaisType(self, value):
         result = True
         # Validate type xPaisType, a restriction on TString.
@@ -4033,20 +3842,20 @@ class TEndereco(GeneratedsSuper):
                 result = False
         return result
     validate_xPaisType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_foneType60(self, value):
+    def validate_foneType66(self, value):
         result = True
-        # Validate type foneType60, a restriction on xs:string.
+        # Validate type foneType66, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_foneType60_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType60_patterns_, ))
+                    self.validate_foneType66_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType66_patterns_, ))
                 result = False
         return result
-    validate_foneType60_patterns_ = [['^([0-9]{6,14})$']]
+    validate_foneType66_patterns_ = [['^([0-9]{6,14})$']]
     def hasContent_(self):
         if (
             self.xLgr is not None or
@@ -4198,8 +4007,8 @@ class TEndereco(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xMun')
             self.xMun = value_
             self.xMun_nsprefix_ = child_.prefix
-            # validate type xMunType58
-            self.validate_xMunType58(self.xMun)
+            # validate type xMunType64
+            self.validate_xMunType64(self.xMun)
         elif nodeName_ == 'UF':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'UF')
@@ -4222,8 +4031,8 @@ class TEndereco(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'cPais')
             self.cPais = value_
             self.cPais_nsprefix_ = child_.prefix
-            # validate type cPaisType59
-            self.validate_cPaisType59(self.cPais)
+            # validate type cPaisType65
+            self.validate_cPaisType65(self.cPais)
         elif nodeName_ == 'xPais':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xPais')
@@ -4238,8 +4047,8 @@ class TEndereco(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'fone')
             self.fone = value_
             self.fone_nsprefix_ = child_.prefix
-            # validate type foneType60
-            self.validate_foneType60(self.fone)
+            # validate type foneType66
+            self.validate_foneType66(self.fone)
 # end class TEndereco
 
 
@@ -4248,17 +4057,17 @@ class TEnderEmi(GeneratedsSuper):
     mínimo"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('xLgr', ['xLgrType61', 'TString', 'xs:string'], 0, 0, {'name': 'xLgr', 'type': 'xs:string'}, None),
-        MemberSpec_('nro', ['nroType62', 'TString', 'xs:string'], 0, 0, {'name': 'nro', 'type': 'xs:string'}, None),
-        MemberSpec_('xCpl', ['xCplType63', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCpl', 'type': 'xs:string'}, None),
-        MemberSpec_('xBairro', ['xBairroType64', 'TString', 'xs:string'], 0, 0, {'name': 'xBairro', 'type': 'xs:string'}, None),
+        MemberSpec_('xLgr', ['xLgrType67', 'TString', 'xs:string'], 0, 0, {'name': 'xLgr', 'type': 'xs:string'}, None),
+        MemberSpec_('nro', ['nroType68', 'TString', 'xs:string'], 0, 0, {'name': 'nro', 'type': 'xs:string'}, None),
+        MemberSpec_('xCpl', ['xCplType69', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCpl', 'type': 'xs:string'}, None),
+        MemberSpec_('xBairro', ['xBairroType70', 'TString', 'xs:string'], 0, 0, {'name': 'xBairro', 'type': 'xs:string'}, None),
         MemberSpec_('cMun', ['TCodMunIBGE', 'xs:string'], 0, 0, {'name': 'cMun', 'type': 'xs:string'}, None),
-        MemberSpec_('xMun', ['xMunType65', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
+        MemberSpec_('xMun', ['xMunType71', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
         MemberSpec_('UF', ['TUfEmi', 'xs:string'], 0, 0, {'name': 'UF', 'type': 'xs:string'}, None),
-        MemberSpec_('CEP', ['CEPType66', 'xs:string'], 0, 0, {'name': 'CEP', 'type': 'xs:string'}, None),
-        MemberSpec_('cPais', ['cPaisType67', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
-        MemberSpec_('xPais', ['xPaisType68', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPais', 'type': 'xs:string'}, None),
-        MemberSpec_('fone', ['foneType69', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
+        MemberSpec_('CEP', ['CEPType72', 'xs:string'], 0, 0, {'name': 'CEP', 'type': 'xs:string'}, None),
+        MemberSpec_('cPais', ['cPaisType73', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
+        MemberSpec_('xPais', ['xPaisType74', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPais', 'type': 'xs:string'}, None),
+        MemberSpec_('fone', ['foneType75', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
@@ -4269,37 +4078,37 @@ class TEnderEmi(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.xLgr = xLgr
-        self.validate_xLgrType61(self.xLgr)
+        self.validate_xLgrType67(self.xLgr)
         self.xLgr_nsprefix_ = None
         self.nro = nro
-        self.validate_nroType62(self.nro)
+        self.validate_nroType68(self.nro)
         self.nro_nsprefix_ = None
         self.xCpl = xCpl
-        self.validate_xCplType63(self.xCpl)
+        self.validate_xCplType69(self.xCpl)
         self.xCpl_nsprefix_ = None
         self.xBairro = xBairro
-        self.validate_xBairroType64(self.xBairro)
+        self.validate_xBairroType70(self.xBairro)
         self.xBairro_nsprefix_ = None
         self.cMun = cMun
         self.validate_TCodMunIBGE(self.cMun)
         self.cMun_nsprefix_ = None
         self.xMun = xMun
-        self.validate_xMunType65(self.xMun)
+        self.validate_xMunType71(self.xMun)
         self.xMun_nsprefix_ = None
         self.UF = UF
         self.validate_TUfEmi(self.UF)
         self.UF_nsprefix_ = None
         self.CEP = CEP
-        self.validate_CEPType66(self.CEP)
+        self.validate_CEPType72(self.CEP)
         self.CEP_nsprefix_ = None
         self.cPais = cPais
-        self.validate_cPaisType67(self.cPais)
+        self.validate_cPaisType73(self.cPais)
         self.cPais_nsprefix_ = None
         self.xPais = xPais
-        self.validate_xPaisType68(self.xPais)
+        self.validate_xPaisType74(self.xPais)
         self.xPais_nsprefix_ = None
         self.fone = fone
-        self.validate_foneType69(self.fone)
+        self.validate_foneType75(self.fone)
         self.fone_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -4312,9 +4121,9 @@ class TEnderEmi(GeneratedsSuper):
         else:
             return TEnderEmi(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_xLgrType61(self, value):
+    def validate_xLgrType67(self, value):
         result = True
-        # Validate type xLgrType61, a restriction on TString.
+        # Validate type xLgrType67, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4322,21 +4131,21 @@ class TEnderEmi(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xLgrType61' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xLgrType67' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xLgrType61' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xLgrType67' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xLgrType61_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xLgrType61_patterns_, ))
+                    self.validate_xLgrType67_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xLgrType67_patterns_, ))
                 result = False
         return result
-    validate_xLgrType61_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_nroType62(self, value):
+    validate_xLgrType67_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_nroType68(self, value):
         result = True
-        # Validate type nroType62, a restriction on TString.
+        # Validate type nroType68, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4344,21 +4153,21 @@ class TEnderEmi(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on nroType62' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on nroType68' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on nroType62' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on nroType68' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_nroType62_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nroType62_patterns_, ))
+                    self.validate_nroType68_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nroType68_patterns_, ))
                 result = False
         return result
-    validate_nroType62_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xCplType63(self, value):
+    validate_nroType68_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCplType69(self, value):
         result = True
-        # Validate type xCplType63, a restriction on TString.
+        # Validate type xCplType69, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4366,21 +4175,21 @@ class TEnderEmi(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCplType63' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCplType69' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCplType63' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCplType69' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xCplType63_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCplType63_patterns_, ))
+                    self.validate_xCplType69_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCplType69_patterns_, ))
                 result = False
         return result
-    validate_xCplType63_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xBairroType64(self, value):
+    validate_xCplType69_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xBairroType70(self, value):
         result = True
-        # Validate type xBairroType64, a restriction on TString.
+        # Validate type xBairroType70, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4388,18 +4197,18 @@ class TEnderEmi(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xBairroType64' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xBairroType70' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xBairroType64' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xBairroType70' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xBairroType64_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xBairroType64_patterns_, ))
+                    self.validate_xBairroType70_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xBairroType70_patterns_, ))
                 result = False
         return result
-    validate_xBairroType64_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xBairroType70_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TCodMunIBGE(self, value):
         result = True
         # Validate type TCodMunIBGE, a restriction on xs:string.
@@ -4414,9 +4223,9 @@ class TEnderEmi(GeneratedsSuper):
                 result = False
         return result
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
-    def validate_xMunType65(self, value):
+    def validate_xMunType71(self, value):
         result = True
-        # Validate type xMunType65, a restriction on TString.
+        # Validate type xMunType71, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4424,18 +4233,18 @@ class TEnderEmi(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType65' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType71' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType65' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType71' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xMunType65_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType65_patterns_, ))
+                    self.validate_xMunType71_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType71_patterns_, ))
                 result = False
         return result
-    validate_xMunType65_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xMunType71_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TUfEmi(self, value):
         result = True
         # Validate type TUfEmi, a restriction on xs:string.
@@ -4451,23 +4260,23 @@ class TEnderEmi(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TUfEmi' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def validate_CEPType66(self, value):
+    def validate_CEPType72(self, value):
         result = True
-        # Validate type CEPType66, a restriction on xs:string.
+        # Validate type CEPType72, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_CEPType66_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CEPType66_patterns_, ))
+                    self.validate_CEPType72_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CEPType72_patterns_, ))
                 result = False
         return result
-    validate_CEPType66_patterns_ = [['^([0-9]{8})$']]
-    def validate_cPaisType67(self, value):
+    validate_CEPType72_patterns_ = [['^([0-9]{8})$']]
+    def validate_cPaisType73(self, value):
         result = True
-        # Validate type cPaisType67, a restriction on TString.
+        # Validate type cPaisType73, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4477,17 +4286,17 @@ class TEnderEmi(GeneratedsSuper):
             enumerations = ['1058']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on cPaisType67' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on cPaisType73' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_cPaisType67_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType67_patterns_, ))
+                    self.validate_cPaisType73_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType73_patterns_, ))
                 result = False
         return result
-    validate_cPaisType67_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xPaisType68(self, value):
+    validate_cPaisType73_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xPaisType74(self, value):
         result = True
-        # Validate type xPaisType68, a restriction on TString.
+        # Validate type xPaisType74, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4497,28 +4306,28 @@ class TEnderEmi(GeneratedsSuper):
             enumerations = ['Brasil', 'BRASIL']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on xPaisType68' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on xPaisType74' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xPaisType68_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPaisType68_patterns_, ))
+                    self.validate_xPaisType74_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPaisType74_patterns_, ))
                 result = False
         return result
-    validate_xPaisType68_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_foneType69(self, value):
+    validate_xPaisType74_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_foneType75(self, value):
         result = True
-        # Validate type foneType69, a restriction on xs:string.
+        # Validate type foneType75, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_foneType69_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType69_patterns_, ))
+                    self.validate_foneType75_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType75_patterns_, ))
                 result = False
         return result
-    validate_foneType69_patterns_ = [['^([0-9]{6,14})$']]
+    validate_foneType75_patterns_ = [['^([0-9]{6,14})$']]
     def hasContent_(self):
         if (
             self.xLgr is not None or
@@ -4630,32 +4439,32 @@ class TEnderEmi(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xLgr')
             self.xLgr = value_
             self.xLgr_nsprefix_ = child_.prefix
-            # validate type xLgrType61
-            self.validate_xLgrType61(self.xLgr)
+            # validate type xLgrType67
+            self.validate_xLgrType67(self.xLgr)
         elif nodeName_ == 'nro':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'nro')
             value_ = self.gds_validate_string(value_, node, 'nro')
             self.nro = value_
             self.nro_nsprefix_ = child_.prefix
-            # validate type nroType62
-            self.validate_nroType62(self.nro)
+            # validate type nroType68
+            self.validate_nroType68(self.nro)
         elif nodeName_ == 'xCpl':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xCpl')
             value_ = self.gds_validate_string(value_, node, 'xCpl')
             self.xCpl = value_
             self.xCpl_nsprefix_ = child_.prefix
-            # validate type xCplType63
-            self.validate_xCplType63(self.xCpl)
+            # validate type xCplType69
+            self.validate_xCplType69(self.xCpl)
         elif nodeName_ == 'xBairro':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xBairro')
             value_ = self.gds_validate_string(value_, node, 'xBairro')
             self.xBairro = value_
             self.xBairro_nsprefix_ = child_.prefix
-            # validate type xBairroType64
-            self.validate_xBairroType64(self.xBairro)
+            # validate type xBairroType70
+            self.validate_xBairroType70(self.xBairro)
         elif nodeName_ == 'cMun':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'cMun')
@@ -4670,8 +4479,8 @@ class TEnderEmi(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xMun')
             self.xMun = value_
             self.xMun_nsprefix_ = child_.prefix
-            # validate type xMunType65
-            self.validate_xMunType65(self.xMun)
+            # validate type xMunType71
+            self.validate_xMunType71(self.xMun)
         elif nodeName_ == 'UF':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'UF')
@@ -4686,32 +4495,32 @@ class TEnderEmi(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'CEP')
             self.CEP = value_
             self.CEP_nsprefix_ = child_.prefix
-            # validate type CEPType66
-            self.validate_CEPType66(self.CEP)
+            # validate type CEPType72
+            self.validate_CEPType72(self.CEP)
         elif nodeName_ == 'cPais':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'cPais')
             value_ = self.gds_validate_string(value_, node, 'cPais')
             self.cPais = value_
             self.cPais_nsprefix_ = child_.prefix
-            # validate type cPaisType67
-            self.validate_cPaisType67(self.cPais)
+            # validate type cPaisType73
+            self.validate_cPaisType73(self.cPais)
         elif nodeName_ == 'xPais':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xPais')
             value_ = self.gds_validate_string(value_, node, 'xPais')
             self.xPais = value_
             self.xPais_nsprefix_ = child_.prefix
-            # validate type xPaisType68
-            self.validate_xPaisType68(self.xPais)
+            # validate type xPaisType74
+            self.validate_xPaisType74(self.xPais)
         elif nodeName_ == 'fone':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'fone')
             value_ = self.gds_validate_string(value_, node, 'fone')
             self.fone = value_
             self.fone_nsprefix_ = child_.prefix
-            # validate type foneType69
-            self.validate_foneType69(self.fone)
+            # validate type foneType75
+            self.validate_foneType75(self.fone)
 # end class TEnderEmi
 
 
@@ -4722,19 +4531,19 @@ class TLocal(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('CNPJ', ['TCnpjOpc', 'xs:string'], 0, 0, {'name': 'CNPJ', 'type': 'xs:string'}, 2),
         MemberSpec_('CPF', ['TCpf', 'xs:string'], 0, 0, {'name': 'CPF', 'type': 'xs:string'}, 2),
-        MemberSpec_('xNome', ['xNomeType70', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xNome', 'type': 'xs:string'}, None),
-        MemberSpec_('xLgr', ['xLgrType71', 'TString', 'xs:string'], 0, 0, {'name': 'xLgr', 'type': 'xs:string'}, None),
-        MemberSpec_('nro', ['nroType72', 'TString', 'xs:string'], 0, 0, {'name': 'nro', 'type': 'xs:string'}, None),
-        MemberSpec_('xCpl', ['xCplType73', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCpl', 'type': 'xs:string'}, None),
-        MemberSpec_('xBairro', ['xBairroType74', 'TString', 'xs:string'], 0, 0, {'name': 'xBairro', 'type': 'xs:string'}, None),
+        MemberSpec_('xNome', ['xNomeType76', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xNome', 'type': 'xs:string'}, None),
+        MemberSpec_('xLgr', ['xLgrType77', 'TString', 'xs:string'], 0, 0, {'name': 'xLgr', 'type': 'xs:string'}, None),
+        MemberSpec_('nro', ['nroType78', 'TString', 'xs:string'], 0, 0, {'name': 'nro', 'type': 'xs:string'}, None),
+        MemberSpec_('xCpl', ['xCplType79', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCpl', 'type': 'xs:string'}, None),
+        MemberSpec_('xBairro', ['xBairroType80', 'TString', 'xs:string'], 0, 0, {'name': 'xBairro', 'type': 'xs:string'}, None),
         MemberSpec_('cMun', ['TCodMunIBGE', 'xs:string'], 0, 0, {'name': 'cMun', 'type': 'xs:string'}, None),
-        MemberSpec_('xMun', ['xMunType75', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
+        MemberSpec_('xMun', ['xMunType81', 'TString', 'xs:string'], 0, 0, {'name': 'xMun', 'type': 'xs:string'}, None),
         MemberSpec_('UF', ['TUf', 'xs:string'], 0, 0, {'name': 'UF', 'type': 'xs:string'}, None),
-        MemberSpec_('CEP', ['CEPType76', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'CEP', 'type': 'xs:string'}, None),
-        MemberSpec_('cPais', ['cPaisType77', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
-        MemberSpec_('xPais', ['xPaisType78', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPais', 'type': 'xs:string'}, None),
-        MemberSpec_('fone', ['foneType79', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
-        MemberSpec_('email', ['emailType80', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'email', 'type': 'xs:string'}, None),
+        MemberSpec_('CEP', ['CEPType82', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'CEP', 'type': 'xs:string'}, None),
+        MemberSpec_('cPais', ['cPaisType83', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'cPais', 'type': 'xs:string'}, None),
+        MemberSpec_('xPais', ['xPaisType84', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPais', 'type': 'xs:string'}, None),
+        MemberSpec_('fone', ['foneType85', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'fone', 'type': 'xs:string'}, None),
+        MemberSpec_('email', ['emailType86', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'email', 'type': 'xs:string'}, None),
         MemberSpec_('IE', ['TIe', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'IE', 'type': 'xs:string'}, None),
     ]
     subclass = None
@@ -4752,43 +4561,43 @@ class TLocal(GeneratedsSuper):
         self.validate_TCpf(self.CPF)
         self.CPF_nsprefix_ = None
         self.xNome = xNome
-        self.validate_xNomeType70(self.xNome)
+        self.validate_xNomeType76(self.xNome)
         self.xNome_nsprefix_ = None
         self.xLgr = xLgr
-        self.validate_xLgrType71(self.xLgr)
+        self.validate_xLgrType77(self.xLgr)
         self.xLgr_nsprefix_ = None
         self.nro = nro
-        self.validate_nroType72(self.nro)
+        self.validate_nroType78(self.nro)
         self.nro_nsprefix_ = None
         self.xCpl = xCpl
-        self.validate_xCplType73(self.xCpl)
+        self.validate_xCplType79(self.xCpl)
         self.xCpl_nsprefix_ = None
         self.xBairro = xBairro
-        self.validate_xBairroType74(self.xBairro)
+        self.validate_xBairroType80(self.xBairro)
         self.xBairro_nsprefix_ = None
         self.cMun = cMun
         self.validate_TCodMunIBGE(self.cMun)
         self.cMun_nsprefix_ = None
         self.xMun = xMun
-        self.validate_xMunType75(self.xMun)
+        self.validate_xMunType81(self.xMun)
         self.xMun_nsprefix_ = None
         self.UF = UF
         self.validate_TUf(self.UF)
         self.UF_nsprefix_ = None
         self.CEP = CEP
-        self.validate_CEPType76(self.CEP)
+        self.validate_CEPType82(self.CEP)
         self.CEP_nsprefix_ = None
         self.cPais = cPais
-        self.validate_cPaisType77(self.cPais)
+        self.validate_cPaisType83(self.cPais)
         self.cPais_nsprefix_ = None
         self.xPais = xPais
-        self.validate_xPaisType78(self.xPais)
+        self.validate_xPaisType84(self.xPais)
         self.xPais_nsprefix_ = None
         self.fone = fone
-        self.validate_foneType79(self.fone)
+        self.validate_foneType85(self.fone)
         self.fone_nsprefix_ = None
         self.email = email
-        self.validate_emailType80(self.email)
+        self.validate_emailType86(self.email)
         self.email_nsprefix_ = None
         self.IE = IE
         self.validate_TIe(self.IE)
@@ -4840,9 +4649,9 @@ class TLocal(GeneratedsSuper):
                 result = False
         return result
     validate_TCpf_patterns_ = [['^([0-9]{11})$']]
-    def validate_xNomeType70(self, value):
+    def validate_xNomeType76(self, value):
         result = True
-        # Validate type xNomeType70, a restriction on TString.
+        # Validate type xNomeType76, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4850,21 +4659,21 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xNomeType70' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xNomeType76' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xNomeType70' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xNomeType76' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xNomeType70_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xNomeType70_patterns_, ))
+                    self.validate_xNomeType76_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xNomeType76_patterns_, ))
                 result = False
         return result
-    validate_xNomeType70_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xLgrType71(self, value):
+    validate_xNomeType76_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xLgrType77(self, value):
         result = True
-        # Validate type xLgrType71, a restriction on TString.
+        # Validate type xLgrType77, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4872,21 +4681,21 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xLgrType71' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xLgrType77' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xLgrType71' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xLgrType77' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xLgrType71_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xLgrType71_patterns_, ))
+                    self.validate_xLgrType77_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xLgrType77_patterns_, ))
                 result = False
         return result
-    validate_xLgrType71_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_nroType72(self, value):
+    validate_xLgrType77_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_nroType78(self, value):
         result = True
-        # Validate type nroType72, a restriction on TString.
+        # Validate type nroType78, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4894,21 +4703,21 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on nroType72' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on nroType78' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on nroType72' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on nroType78' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_nroType72_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nroType72_patterns_, ))
+                    self.validate_nroType78_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_nroType78_patterns_, ))
                 result = False
         return result
-    validate_nroType72_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xCplType73(self, value):
+    validate_nroType78_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCplType79(self, value):
         result = True
-        # Validate type xCplType73, a restriction on TString.
+        # Validate type xCplType79, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4916,21 +4725,21 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCplType73' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCplType79' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCplType73' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCplType79' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xCplType73_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCplType73_patterns_, ))
+                    self.validate_xCplType79_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCplType79_patterns_, ))
                 result = False
         return result
-    validate_xCplType73_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xBairroType74(self, value):
+    validate_xCplType79_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xBairroType80(self, value):
         result = True
-        # Validate type xBairroType74, a restriction on TString.
+        # Validate type xBairroType80, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4938,18 +4747,18 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xBairroType74' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xBairroType80' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xBairroType74' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xBairroType80' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xBairroType74_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xBairroType74_patterns_, ))
+                    self.validate_xBairroType80_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xBairroType80_patterns_, ))
                 result = False
         return result
-    validate_xBairroType74_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xBairroType80_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TCodMunIBGE(self, value):
         result = True
         # Validate type TCodMunIBGE, a restriction on xs:string.
@@ -4964,9 +4773,9 @@ class TLocal(GeneratedsSuper):
                 result = False
         return result
     validate_TCodMunIBGE_patterns_ = [['^([0-9]{7})$']]
-    def validate_xMunType75(self, value):
+    def validate_xMunType81(self, value):
         result = True
-        # Validate type xMunType75, a restriction on TString.
+        # Validate type xMunType81, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -4974,18 +4783,18 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType75' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xMunType81' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType75' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xMunType81' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xMunType75_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType75_patterns_, ))
+                    self.validate_xMunType81_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xMunType81_patterns_, ))
                 result = False
         return result
-    validate_xMunType75_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xMunType81_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TUf(self, value):
         result = True
         # Validate type TUf, a restriction on xs:string.
@@ -5001,37 +4810,37 @@ class TLocal(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TUf' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def validate_CEPType76(self, value):
+    def validate_CEPType82(self, value):
         result = True
-        # Validate type CEPType76, a restriction on xs:string.
+        # Validate type CEPType82, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_CEPType76_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CEPType76_patterns_, ))
+                    self.validate_CEPType82_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CEPType82_patterns_, ))
                 result = False
         return result
-    validate_CEPType76_patterns_ = [['^([0-9]{8})$']]
-    def validate_cPaisType77(self, value):
+    validate_CEPType82_patterns_ = [['^([0-9]{8})$']]
+    def validate_cPaisType83(self, value):
         result = True
-        # Validate type cPaisType77, a restriction on xs:string.
+        # Validate type cPaisType83, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_cPaisType77_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType77_patterns_, ))
+                    self.validate_cPaisType83_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cPaisType83_patterns_, ))
                 result = False
         return result
-    validate_cPaisType77_patterns_ = [['^([0-9]{1,4})$']]
-    def validate_xPaisType78(self, value):
+    validate_cPaisType83_patterns_ = [['^([0-9]{1,4})$']]
+    def validate_xPaisType84(self, value):
         result = True
-        # Validate type xPaisType78, a restriction on TString.
+        # Validate type xPaisType84, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -5039,35 +4848,35 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xPaisType78' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xPaisType84' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xPaisType78' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xPaisType84' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xPaisType78_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPaisType78_patterns_, ))
+                    self.validate_xPaisType84_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPaisType84_patterns_, ))
                 result = False
         return result
-    validate_xPaisType78_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_foneType79(self, value):
+    validate_xPaisType84_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_foneType85(self, value):
         result = True
-        # Validate type foneType79, a restriction on xs:string.
+        # Validate type foneType85, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_foneType79_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType79_patterns_, ))
+                    self.validate_foneType85_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType85_patterns_, ))
                 result = False
         return result
-    validate_foneType79_patterns_ = [['^([0-9]{6,14})$']]
-    def validate_emailType80(self, value):
+    validate_foneType85_patterns_ = [['^([0-9]{6,14})$']]
+    def validate_emailType86(self, value):
         result = True
-        # Validate type emailType80, a restriction on TString.
+        # Validate type emailType86, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -5075,18 +4884,18 @@ class TLocal(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on emailType80' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on emailType86' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on emailType80' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on emailType86' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_emailType80_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_emailType80_patterns_, ))
+                    self.validate_emailType86_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_emailType86_patterns_, ))
                 result = False
         return result
-    validate_emailType80_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_emailType86_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TIe(self, value):
         result = True
         # Validate type TIe, a restriction on xs:string.
@@ -5257,40 +5066,40 @@ class TLocal(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xNome')
             self.xNome = value_
             self.xNome_nsprefix_ = child_.prefix
-            # validate type xNomeType70
-            self.validate_xNomeType70(self.xNome)
+            # validate type xNomeType76
+            self.validate_xNomeType76(self.xNome)
         elif nodeName_ == 'xLgr':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xLgr')
             value_ = self.gds_validate_string(value_, node, 'xLgr')
             self.xLgr = value_
             self.xLgr_nsprefix_ = child_.prefix
-            # validate type xLgrType71
-            self.validate_xLgrType71(self.xLgr)
+            # validate type xLgrType77
+            self.validate_xLgrType77(self.xLgr)
         elif nodeName_ == 'nro':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'nro')
             value_ = self.gds_validate_string(value_, node, 'nro')
             self.nro = value_
             self.nro_nsprefix_ = child_.prefix
-            # validate type nroType72
-            self.validate_nroType72(self.nro)
+            # validate type nroType78
+            self.validate_nroType78(self.nro)
         elif nodeName_ == 'xCpl':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xCpl')
             value_ = self.gds_validate_string(value_, node, 'xCpl')
             self.xCpl = value_
             self.xCpl_nsprefix_ = child_.prefix
-            # validate type xCplType73
-            self.validate_xCplType73(self.xCpl)
+            # validate type xCplType79
+            self.validate_xCplType79(self.xCpl)
         elif nodeName_ == 'xBairro':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xBairro')
             value_ = self.gds_validate_string(value_, node, 'xBairro')
             self.xBairro = value_
             self.xBairro_nsprefix_ = child_.prefix
-            # validate type xBairroType74
-            self.validate_xBairroType74(self.xBairro)
+            # validate type xBairroType80
+            self.validate_xBairroType80(self.xBairro)
         elif nodeName_ == 'cMun':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'cMun')
@@ -5305,8 +5114,8 @@ class TLocal(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xMun')
             self.xMun = value_
             self.xMun_nsprefix_ = child_.prefix
-            # validate type xMunType75
-            self.validate_xMunType75(self.xMun)
+            # validate type xMunType81
+            self.validate_xMunType81(self.xMun)
         elif nodeName_ == 'UF':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'UF')
@@ -5321,40 +5130,40 @@ class TLocal(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'CEP')
             self.CEP = value_
             self.CEP_nsprefix_ = child_.prefix
-            # validate type CEPType76
-            self.validate_CEPType76(self.CEP)
+            # validate type CEPType82
+            self.validate_CEPType82(self.CEP)
         elif nodeName_ == 'cPais':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'cPais')
             value_ = self.gds_validate_string(value_, node, 'cPais')
             self.cPais = value_
             self.cPais_nsprefix_ = child_.prefix
-            # validate type cPaisType77
-            self.validate_cPaisType77(self.cPais)
+            # validate type cPaisType83
+            self.validate_cPaisType83(self.cPais)
         elif nodeName_ == 'xPais':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xPais')
             value_ = self.gds_validate_string(value_, node, 'xPais')
             self.xPais = value_
             self.xPais_nsprefix_ = child_.prefix
-            # validate type xPaisType78
-            self.validate_xPaisType78(self.xPais)
+            # validate type xPaisType84
+            self.validate_xPaisType84(self.xPais)
         elif nodeName_ == 'fone':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'fone')
             value_ = self.gds_validate_string(value_, node, 'fone')
             self.fone = value_
             self.fone_nsprefix_ = child_.prefix
-            # validate type foneType79
-            self.validate_foneType79(self.fone)
+            # validate type foneType85
+            self.validate_foneType85(self.fone)
         elif nodeName_ == 'email':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'email')
             value_ = self.gds_validate_string(value_, node, 'email')
             self.email = value_
             self.email_nsprefix_ = child_.prefix
-            # validate type emailType80
-            self.validate_emailType80(self.email)
+            # validate type emailType86
+            self.validate_emailType86(self.email)
         elif nodeName_ == 'IE':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'IE')
@@ -5373,8 +5182,8 @@ class TInfRespTec(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('CNPJ', ['TCnpjOpc', 'xs:string'], 0, 0, {'name': 'CNPJ', 'type': 'xs:string'}, None),
         MemberSpec_('xContato', ['xContatoType', 'TString', 'xs:string'], 0, 0, {'name': 'xContato', 'type': 'xs:string'}, None),
-        MemberSpec_('email', ['emailType81', 'TString', 'xs:string'], 0, 0, {'name': 'email', 'type': 'xs:string'}, None),
-        MemberSpec_('fone', ['foneType82', 'xs:string'], 0, 0, {'name': 'fone', 'type': 'xs:string'}, None),
+        MemberSpec_('email', ['emailType87', 'TString', 'xs:string'], 0, 0, {'name': 'email', 'type': 'xs:string'}, None),
+        MemberSpec_('fone', ['foneType88', 'xs:string'], 0, 0, {'name': 'fone', 'type': 'xs:string'}, None),
         MemberSpec_('idCSRT', ['idCSRTType', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'idCSRT', 'type': 'xs:string'}, None),
         MemberSpec_('hashCSRT', ['hashCSRTType', 'xs:base64Binary'], 0, 1, {'minOccurs': '0', 'name': 'hashCSRT', 'type': 'xs:base64Binary'}, None),
     ]
@@ -5393,10 +5202,10 @@ class TInfRespTec(GeneratedsSuper):
         self.validate_xContatoType(self.xContato)
         self.xContato_nsprefix_ = None
         self.email = email
-        self.validate_emailType81(self.email)
+        self.validate_emailType87(self.email)
         self.email_nsprefix_ = None
         self.fone = fone
-        self.validate_foneType82(self.fone)
+        self.validate_foneType88(self.fone)
         self.fone_nsprefix_ = None
         self.idCSRT = idCSRT
         self.validate_idCSRTType(self.idCSRT)
@@ -5455,9 +5264,9 @@ class TInfRespTec(GeneratedsSuper):
                 result = False
         return result
     validate_xContatoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_emailType81(self, value):
+    def validate_emailType87(self, value):
         result = True
-        # Validate type emailType81, a restriction on TString.
+        # Validate type emailType87, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -5465,32 +5274,32 @@ class TInfRespTec(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on emailType81' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on emailType87' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 6:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on emailType81' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on emailType87' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_emailType81_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_emailType81_patterns_, ))
+                    self.validate_emailType87_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_emailType87_patterns_, ))
                 result = False
         return result
-    validate_emailType81_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_foneType82(self, value):
+    validate_emailType87_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_foneType88(self, value):
         result = True
-        # Validate type foneType82, a restriction on xs:string.
+        # Validate type foneType88, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_foneType82_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType82_patterns_, ))
+                    self.validate_foneType88_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_foneType88_patterns_, ))
                 result = False
         return result
-    validate_foneType82_patterns_ = [['^([0-9]{6,14})$']]
+    validate_foneType88_patterns_ = [['^([0-9]{6,14})$']]
     def validate_idCSRTType(self, value):
         result = True
         # Validate type idCSRTType, a restriction on xs:string.
@@ -5616,16 +5425,16 @@ class TInfRespTec(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'email')
             self.email = value_
             self.email_nsprefix_ = child_.prefix
-            # validate type emailType81
-            self.validate_emailType81(self.email)
+            # validate type emailType87
+            self.validate_emailType87(self.email)
         elif nodeName_ == 'fone':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'fone')
             value_ = self.gds_validate_string(value_, node, 'fone')
             self.fone = value_
             self.fone_nsprefix_ = child_.prefix
-            # validate type foneType82
-            self.validate_foneType82(self.fone)
+            # validate type foneType88
+            self.validate_foneType88(self.fone)
         elif nodeName_ == 'idCSRT':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'idCSRT')
@@ -10494,10 +10303,11 @@ class detType(GeneratedsSuper):
         MemberSpec_('imposto', 'impostoType', 0, 0, {'name': 'imposto', 'type': 'impostoType'}, None),
         MemberSpec_('impostoDevol', 'impostoDevolType', 0, 1, {'minOccurs': '0', 'name': 'impostoDevol', 'type': 'impostoDevolType'}, None),
         MemberSpec_('infAdProd', ['infAdProdType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'infAdProd', 'type': 'xs:string'}, None),
+        MemberSpec_('obsItem', 'obsItemType', 0, 1, {'minOccurs': '0', 'name': 'obsItem', 'type': 'obsItemType'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, nItem=None, prod=None, imposto=None, impostoDevol=None, infAdProd=None, gds_collector_=None, **kwargs_):
+    def __init__(self, nItem=None, prod=None, imposto=None, impostoDevol=None, infAdProd=None, obsItem=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -10514,6 +10324,8 @@ class detType(GeneratedsSuper):
         self.infAdProd = infAdProd
         self.validate_infAdProdType(self.infAdProd)
         self.infAdProd_nsprefix_ = None
+        self.obsItem = obsItem
+        self.obsItem_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -10563,7 +10375,8 @@ class detType(GeneratedsSuper):
             self.prod is not None or
             self.imposto is not None or
             self.impostoDevol is not None or
-            self.infAdProd is not None
+            self.infAdProd is not None or
+            self.obsItem is not None
         ):
             return True
         else:
@@ -10613,6 +10426,9 @@ class detType(GeneratedsSuper):
             namespaceprefix_ = self.infAdProd_nsprefix_ + ':' if (UseCapturedNS_ and self.infAdProd_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%sinfAdProd>%s</%sinfAdProd>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.infAdProd), input_name='infAdProd')), namespaceprefix_ , eol_))
+        if self.obsItem is not None:
+            namespaceprefix_ = self.obsItem_nsprefix_ + ':' if (UseCapturedNS_ and self.obsItem_nsprefix_) else ''
+            self.obsItem.export(outfile, level, namespaceprefix_, namespacedef_='', name_='obsItem', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -10654,6 +10470,11 @@ class detType(GeneratedsSuper):
             self.infAdProd_nsprefix_ = child_.prefix
             # validate type infAdProdType
             self.validate_infAdProdType(self.infAdProd)
+        elif nodeName_ == 'obsItem':
+            obj_ = obsItemType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.obsItem = obj_
+            obj_.original_tagname_ = 'obsItem'
 # end class detType
 
 
@@ -14323,7 +14144,7 @@ class medType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_cProdANVISAType_patterns_, ))
                 result = False
         return result
-    validate_cProdANVISAType_patterns_ = [['^([0-9]{13}|ISENTO)$'], ['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_cProdANVISAType_patterns_ = [['^([0-9]{11}|[0-9]{13}|ISENTO)$'], ['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_xMotivoIsencaoType(self, value):
         result = True
         # Validate type xMotivoIsencaoType, a restriction on TString.
@@ -15428,8 +15249,8 @@ class impostoType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('vTotTrib', ['TDec_1302', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'vTotTrib', 'type': 'xs:string'}, None),
         MemberSpec_('ICMS', 'ICMSType', 0, 0, {'name': 'ICMS', 'type': 'ICMSType'}, 10),
-        MemberSpec_('IPI', 'TIpi', 0, 1, {'minOccurs': '0', 'name': 'IPI', 'type': 'TIpi'}, 10),
         MemberSpec_('II', 'IIType', 0, 1, {'minOccurs': '0', 'name': 'II', 'type': 'IIType'}, 10),
+        MemberSpec_('IPI', 'TIpi', 0, 1, {'minOccurs': '0', 'name': 'IPI', 'type': 'TIpi'}, 10),
         MemberSpec_('ISSQN', 'ISSQNType', 0, 0, {'name': 'ISSQN', 'type': 'ISSQNType'}, 10),
         MemberSpec_('PIS', 'PISType', 0, 1, {'minOccurs': '0', 'name': 'PIS', 'type': 'PISType'}, None),
         MemberSpec_('PISST', 'PISSTType', 0, 1, {'minOccurs': '0', 'name': 'PISST', 'type': 'PISSTType'}, None),
@@ -15450,10 +15271,10 @@ class impostoType(GeneratedsSuper):
         self.vTotTrib_nsprefix_ = None
         self.ICMS = ICMS
         self.ICMS_nsprefix_ = None
-        self.IPI = IPI
-        self.IPI_nsprefix_ = None
         self.II = II
         self.II_nsprefix_ = None
+        self.IPI = IPI
+        self.IPI_nsprefix_ = None
         self.ISSQN = ISSQN
         self.ISSQN_nsprefix_ = None
         self.PIS = PIS
@@ -15495,8 +15316,8 @@ class impostoType(GeneratedsSuper):
         if (
             self.vTotTrib is not None or
             self.ICMS is not None or
-            self.IPI is not None or
             self.II is not None or
+            self.IPI is not None or
             self.ISSQN is not None or
             self.PIS is not None or
             self.PISST is not None or
@@ -15544,12 +15365,12 @@ class impostoType(GeneratedsSuper):
         if self.ICMS is not None:
             namespaceprefix_ = self.ICMS_nsprefix_ + ':' if (UseCapturedNS_ and self.ICMS_nsprefix_) else ''
             self.ICMS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ICMS', pretty_print=pretty_print)
-        if self.IPI is not None:
-            namespaceprefix_ = self.IPI_nsprefix_ + ':' if (UseCapturedNS_ and self.IPI_nsprefix_) else ''
-            self.IPI.export(outfile, level, namespaceprefix_, namespacedef_='', name_='IPI', pretty_print=pretty_print)
         if self.II is not None:
             namespaceprefix_ = self.II_nsprefix_ + ':' if (UseCapturedNS_ and self.II_nsprefix_) else ''
             self.II.export(outfile, level, namespaceprefix_, namespacedef_='', name_='II', pretty_print=pretty_print)
+        if self.IPI is not None:
+            namespaceprefix_ = self.IPI_nsprefix_ + ':' if (UseCapturedNS_ and self.IPI_nsprefix_) else ''
+            self.IPI.export(outfile, level, namespaceprefix_, namespacedef_='', name_='IPI', pretty_print=pretty_print)
         if self.ISSQN is not None:
             namespaceprefix_ = self.ISSQN_nsprefix_ + ':' if (UseCapturedNS_ and self.ISSQN_nsprefix_) else ''
             self.ISSQN.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ISSQN', pretty_print=pretty_print)
@@ -15595,16 +15416,16 @@ class impostoType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.ICMS = obj_
             obj_.original_tagname_ = 'ICMS'
-        elif nodeName_ == 'IPI':
-            obj_ = TIpi.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.IPI = obj_
-            obj_.original_tagname_ = 'IPI'
         elif nodeName_ == 'II':
             obj_ = IIType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.II = obj_
             obj_.original_tagname_ = 'II'
+        elif nodeName_ == 'IPI':
+            obj_ = TIpi.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.IPI = obj_
+            obj_.original_tagname_ = 'IPI'
         elif nodeName_ == 'ISSQN':
             obj_ = ISSQNType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -19783,12 +19604,15 @@ class ICMSPartType(GeneratedsSuper):
         MemberSpec_('vBCST', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vBCST', 'type': 'xs:string'}, None),
         MemberSpec_('pICMSST', ['TDec_0302a04', 'xs:string'], 0, 0, {'name': 'pICMSST', 'type': 'xs:string'}, None),
         MemberSpec_('vICMSST', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vICMSST', 'type': 'xs:string'}, None),
+        MemberSpec_('vBCFCPST', ['TDec_1302', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'vBCFCPST', 'type': 'xs:string'}, None),
+        MemberSpec_('pFCPST', ['TDec_0302a04Opc', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'pFCPST', 'type': 'xs:string'}, None),
+        MemberSpec_('vFCPST', ['TDec_1302', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'vFCPST', 'type': 'xs:string'}, None),
         MemberSpec_('pBCOp', ['TDec_0302a04Opc', 'xs:string'], 0, 0, {'name': 'pBCOp', 'type': 'xs:string'}, None),
         MemberSpec_('UFST', ['TUf', 'xs:string'], 0, 0, {'name': 'UFST', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, orig=None, CST=None, modBC=None, vBC=None, pRedBC=None, pICMS=None, vICMS=None, modBCST=None, pMVAST=None, pRedBCST=None, vBCST=None, pICMSST=None, vICMSST=None, pBCOp=None, UFST=None, gds_collector_=None, **kwargs_):
+    def __init__(self, orig=None, CST=None, modBC=None, vBC=None, pRedBC=None, pICMS=None, vICMS=None, modBCST=None, pMVAST=None, pRedBCST=None, vBCST=None, pICMSST=None, vICMSST=None, vBCFCPST=None, pFCPST=None, vFCPST=None, pBCOp=None, UFST=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -19833,6 +19657,15 @@ class ICMSPartType(GeneratedsSuper):
         self.vICMSST = vICMSST
         self.validate_TDec_1302(self.vICMSST)
         self.vICMSST_nsprefix_ = None
+        self.vBCFCPST = vBCFCPST
+        self.validate_TDec_1302(self.vBCFCPST)
+        self.vBCFCPST_nsprefix_ = None
+        self.pFCPST = pFCPST
+        self.validate_TDec_0302a04Opc(self.pFCPST)
+        self.pFCPST_nsprefix_ = None
+        self.vFCPST = vFCPST
+        self.validate_TDec_1302(self.vFCPST)
+        self.vFCPST_nsprefix_ = None
         self.pBCOp = pBCOp
         self.validate_TDec_0302a04Opc(self.pBCOp)
         self.pBCOp_nsprefix_ = None
@@ -19982,6 +19815,9 @@ class ICMSPartType(GeneratedsSuper):
             self.vBCST is not None or
             self.pICMSST is not None or
             self.vICMSST is not None or
+            self.vBCFCPST is not None or
+            self.pFCPST is not None or
+            self.vFCPST is not None or
             self.pBCOp is not None or
             self.UFST is not None
         ):
@@ -20070,6 +19906,18 @@ class ICMSPartType(GeneratedsSuper):
             namespaceprefix_ = self.vICMSST_nsprefix_ + ':' if (UseCapturedNS_ and self.vICMSST_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%svICMSST>%s</%svICMSST>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vICMSST), input_name='vICMSST')), namespaceprefix_ , eol_))
+        if self.vBCFCPST is not None:
+            namespaceprefix_ = self.vBCFCPST_nsprefix_ + ':' if (UseCapturedNS_ and self.vBCFCPST_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svBCFCPST>%s</%svBCFCPST>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vBCFCPST), input_name='vBCFCPST')), namespaceprefix_ , eol_))
+        if self.pFCPST is not None:
+            namespaceprefix_ = self.pFCPST_nsprefix_ + ':' if (UseCapturedNS_ and self.pFCPST_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spFCPST>%s</%spFCPST>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pFCPST), input_name='pFCPST')), namespaceprefix_ , eol_))
+        if self.vFCPST is not None:
+            namespaceprefix_ = self.vFCPST_nsprefix_ + ':' if (UseCapturedNS_ and self.vFCPST_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svFCPST>%s</%svFCPST>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vFCPST), input_name='vFCPST')), namespaceprefix_ , eol_))
         if self.pBCOp is not None:
             namespaceprefix_ = self.pBCOp_nsprefix_ + ':' if (UseCapturedNS_ and self.pBCOp_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -20196,6 +20044,30 @@ class ICMSPartType(GeneratedsSuper):
             self.vICMSST_nsprefix_ = child_.prefix
             # validate type TDec_1302
             self.validate_TDec_1302(self.vICMSST)
+        elif nodeName_ == 'vBCFCPST':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'vBCFCPST')
+            value_ = self.gds_validate_string(value_, node, 'vBCFCPST')
+            self.vBCFCPST = value_
+            self.vBCFCPST_nsprefix_ = child_.prefix
+            # validate type TDec_1302
+            self.validate_TDec_1302(self.vBCFCPST)
+        elif nodeName_ == 'pFCPST':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'pFCPST')
+            value_ = self.gds_validate_string(value_, node, 'pFCPST')
+            self.pFCPST = value_
+            self.pFCPST_nsprefix_ = child_.prefix
+            # validate type TDec_0302a04Opc
+            self.validate_TDec_0302a04Opc(self.pFCPST)
+        elif nodeName_ == 'vFCPST':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'vFCPST')
+            value_ = self.gds_validate_string(value_, node, 'vFCPST')
+            self.vFCPST = value_
+            self.vFCPST_nsprefix_ = child_.prefix
+            # validate type TDec_1302
+            self.validate_TDec_1302(self.vFCPST)
         elif nodeName_ == 'pBCOp':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'pBCOp')
@@ -22828,13 +22700,12 @@ class ISSQNType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
-            value = value
-            enumerations = ['01.01', '01.02', '01.03', '01.04', '01.05', '01.06', '01.07', '01.08', '01.09', '02.01', '03.02', '03.03', '03.04', '03.05', '04.01', '04.02', '04.03', '04.04', '04.05', '04.06', '04.07', '04.08', '04.09', '04.10', '04.11', '04.12', '04.13', '04.14', '04.15', '04.16', '04.17', '04.18', '04.19', '04.20', '04.21', '04.22', '04.23', '05.01', '05.02', '05.03', '05.04', '05.05', '05.06', '05.07', '05.08', '05.09', '06.01', '06.02', '06.03', '06.04', '06.05', '06.06', '07.01', '07.02', '07.03', '07.04', '07.05', '07.06', '07.07', '07.08', '07.09', '07.10', '07.11', '07.12', '07.13', '07.16', '07.17', '07.18', '07.19', '07.20', '07.21', '07.22', '08.01', '08.02', '09.01', '09.02', '09.03', '10.01', '10.02', '10.03', '10.04', '10.05', '10.06', '10.07', '10.08', '10.09', '10.10', '11.01', '11.02', '11.03', '11.04', '12.01', '12.02', '12.03', '12.04', '12.05', '12.06', '12.07', '12.08', '12.09', '12.10', '12.11', '12.12', '12.13', '12.14', '12.15', '12.16', '12.17', '13.02', '13.03', '13.04', '13.05', '14.01', '14.02', '14.03', '14.04', '14.05', '14.06', '14.07', '14.08', '14.09', '14.10', '14.11', '14.12', '14.13', '14.14', '15.01', '15.02', '15.03', '15.04', '15.05', '15.06', '15.07', '15.08', '15.09', '15.10', '15.11', '15.12', '15.13', '15.14', '15.15', '15.16', '15.17', '15.18', '16.01', '16.02', '17.01', '17.02', '17.03', '17.04', '17.05', '17.06', '17.08', '17.09', '17.10', '17.11', '17.12', '17.13', '17.14', '17.15', '17.16', '17.17', '17.18', '17.19', '17.20', '17.21', '17.22', '17.23', '17.24', '17.25', '18.01', '19.01', '20.01', '20.02', '20.03', '21.01', '22.01', '23.01', '24.01', '25.01', '25.02', '25.03', '25.04', '25.05', '26.01', '27.01', '28.01', '29.01', '30.01', '31.01', '32.01', '33.01', '34.01', '35.01', '36.01', '37.01', '38.01', '39.01', '40.01']
-            if value not in enumerations:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on TCListServ' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCListServ_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_TCListServ_patterns_, ))
                 result = False
         return result
+    validate_TCListServ_patterns_ = [['^([0-9]{2}.[0-9]{2})$']]
     def validate_TDec_1302Opc(self, value):
         result = True
         # Validate type TDec_1302Opc, a restriction on xs:string.
@@ -26013,6 +25884,395 @@ class IPIType(GeneratedsSuper):
 # end class IPIType
 
 
+class obsItemType(GeneratedsSuper):
+    """Grupo de observações de uso livre (para o item da NF-e)"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('obsCont', 'obsContType', 0, 1, {'minOccurs': '0', 'name': 'obsCont', 'type': 'obsContType'}, None),
+        MemberSpec_('obsFisco', 'obsFiscoType', 0, 1, {'minOccurs': '0', 'name': 'obsFisco', 'type': 'obsFiscoType'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, obsCont=None, obsFisco=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.obsCont = obsCont
+        self.obsCont_nsprefix_ = None
+        self.obsFisco = obsFisco
+        self.obsFisco_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, obsItemType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if obsItemType.subclass:
+            return obsItemType.subclass(*args_, **kwargs_)
+        else:
+            return obsItemType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def hasContent_(self):
+        if (
+            self.obsCont is not None or
+            self.obsFisco is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsItemType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsItemType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'obsItemType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsItemType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsItemType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsItemType'):
+        pass
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsItemType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.obsCont is not None:
+            namespaceprefix_ = self.obsCont_nsprefix_ + ':' if (UseCapturedNS_ and self.obsCont_nsprefix_) else ''
+            self.obsCont.export(outfile, level, namespaceprefix_, namespacedef_='', name_='obsCont', pretty_print=pretty_print)
+        if self.obsFisco is not None:
+            namespaceprefix_ = self.obsFisco_nsprefix_ + ':' if (UseCapturedNS_ and self.obsFisco_nsprefix_) else ''
+            self.obsFisco.export(outfile, level, namespaceprefix_, namespacedef_='', name_='obsFisco', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        pass
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'obsCont':
+            obj_ = obsContType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.obsCont = obj_
+            obj_.original_tagname_ = 'obsCont'
+        elif nodeName_ == 'obsFisco':
+            obj_ = obsFiscoType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.obsFisco = obj_
+            obj_.original_tagname_ = 'obsFisco'
+# end class obsItemType
+
+
+class obsContType(GeneratedsSuper):
+    """Grupo de observações de uso livre (para o item da NF-e)"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('xCampo', 'xCampoType', 0, 0, {'use': 'required'}),
+        MemberSpec_('xTexto', ['xTextoType', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, xCampo=None, xTexto=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.xCampo = _cast(None, xCampo)
+        self.xCampo_nsprefix_ = None
+        self.xTexto = xTexto
+        self.validate_xTextoType(self.xTexto)
+        self.xTexto_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, obsContType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if obsContType.subclass:
+            return obsContType.subclass(*args_, **kwargs_)
+        else:
+            return obsContType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def validate_xTextoType(self, value):
+        result = True
+        # Validate type xTextoType, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 60:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 1:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xTextoType_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType_patterns_, ))
+                result = False
+        return result
+    validate_xTextoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCampoType(self, value):
+        # Validate type xCampoType, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 20:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 1:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xCampoType_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType_patterns_, ))
+    validate_xCampoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def hasContent_(self):
+        if (
+            self.xTexto is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsContType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'obsContType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsContType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsContType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsContType'):
+        if self.xCampo is not None and 'xCampo' not in already_processed:
+            already_processed.add('xCampo')
+            outfile.write(' xCampo=%s' % (quote_attrib(self.xCampo), ))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.xTexto is not None:
+            namespaceprefix_ = self.xTexto_nsprefix_ + ':' if (UseCapturedNS_ and self.xTexto_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sxTexto>%s</%sxTexto>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xTexto), input_name='xTexto')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('xCampo', node)
+        if value is not None and 'xCampo' not in already_processed:
+            already_processed.add('xCampo')
+            self.xCampo = value
+            self.validate_xCampoType(self.xCampo)    # validate type xCampoType
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'xTexto':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'xTexto')
+            value_ = self.gds_validate_string(value_, node, 'xTexto')
+            self.xTexto = value_
+            self.xTexto_nsprefix_ = child_.prefix
+            # validate type xTextoType
+            self.validate_xTextoType(self.xTexto)
+# end class obsContType
+
+
+class obsFiscoType(GeneratedsSuper):
+    """Grupo de observações de uso livre (para o item da NF-e)"""
+    __hash__ = GeneratedsSuper.__hash__
+    member_data_items_ = [
+        MemberSpec_('xCampo', 'xCampoType52', 0, 0, {'use': 'required'}),
+        MemberSpec_('xTexto', ['xTextoType51', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
+    ]
+    subclass = None
+    superclass = None
+    def __init__(self, xCampo=None, xTexto=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.xCampo = _cast(None, xCampo)
+        self.xCampo_nsprefix_ = None
+        self.xTexto = xTexto
+        self.validate_xTextoType51(self.xTexto)
+        self.xTexto_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, obsFiscoType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if obsFiscoType.subclass:
+            return obsFiscoType.subclass(*args_, **kwargs_)
+        else:
+            return obsFiscoType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def validate_xTextoType51(self, value):
+        result = True
+        # Validate type xTextoType51, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 60:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType51' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 1:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType51' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xTextoType51_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType51_patterns_, ))
+                result = False
+        return result
+    validate_xTextoType51_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCampoType52(self, value):
+        # Validate type xCampoType52, a restriction on TString.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            if len(value) > 20:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType52' % {"value": value, "lineno": lineno} )
+                result = False
+            if len(value) < 1:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType52' % {"value" : value, "lineno": lineno} )
+                result = False
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xCampoType52_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType52_patterns_, ))
+    validate_xCampoType52_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def hasContent_(self):
+        if (
+            self.xTexto is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsFiscoType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'obsFiscoType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsFiscoType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsFiscoType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsFiscoType'):
+        if self.xCampo is not None and 'xCampo' not in already_processed:
+            already_processed.add('xCampo')
+            outfile.write(' xCampo=%s' % (quote_attrib(self.xCampo), ))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.xTexto is not None:
+            namespaceprefix_ = self.xTexto_nsprefix_ + ':' if (UseCapturedNS_ and self.xTexto_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sxTexto>%s</%sxTexto>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.xTexto), input_name='xTexto')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('xCampo', node)
+        if value is not None and 'xCampo' not in already_processed:
+            already_processed.add('xCampo')
+            self.xCampo = value
+            self.validate_xCampoType52(self.xCampo)    # validate type xCampoType52
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'xTexto':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'xTexto')
+            value_ = self.gds_validate_string(value_, node, 'xTexto')
+            self.xTexto = value_
+            self.xTexto_nsprefix_ = child_.prefix
+            # validate type xTextoType51
+            self.validate_xTextoType51(self.xTexto)
+# end class obsFiscoType
+
+
 class totalType(GeneratedsSuper):
     """Dados dos totais da NF-e"""
     __hash__ = GeneratedsSuper.__hash__
@@ -27401,7 +27661,7 @@ class transportaType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('CNPJ', ['TCnpj', 'xs:string'], 0, 1, {'name': 'CNPJ', 'type': 'xs:string'}, 19),
         MemberSpec_('CPF', ['TCpf', 'xs:string'], 0, 1, {'name': 'CPF', 'type': 'xs:string'}, 19),
-        MemberSpec_('xNome', ['xNomeType51', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xNome', 'type': 'xs:string'}, None),
+        MemberSpec_('xNome', ['xNomeType53', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xNome', 'type': 'xs:string'}, None),
         MemberSpec_('IE', ['TIeDest', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'IE', 'type': 'xs:string'}, None),
         MemberSpec_('xEnder', ['xEnderType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xEnder', 'type': 'xs:string'}, None),
         MemberSpec_('xMun', ['xMunType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xMun', 'type': 'xs:string'}, None),
@@ -27422,7 +27682,7 @@ class transportaType(GeneratedsSuper):
         self.validate_TCpf(self.CPF)
         self.CPF_nsprefix_ = None
         self.xNome = xNome
-        self.validate_xNomeType51(self.xNome)
+        self.validate_xNomeType53(self.xNome)
         self.xNome_nsprefix_ = None
         self.IE = IE
         self.validate_TIeDest(self.IE)
@@ -27483,9 +27743,9 @@ class transportaType(GeneratedsSuper):
                 result = False
         return result
     validate_TCpf_patterns_ = [['^([0-9]{11})$']]
-    def validate_xNomeType51(self, value):
+    def validate_xNomeType53(self, value):
         result = True
-        # Validate type xNomeType51, a restriction on TString.
+        # Validate type xNomeType53, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -27493,18 +27753,18 @@ class transportaType(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xNomeType51' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xNomeType53' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 2:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xNomeType51' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xNomeType53' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xNomeType51_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xNomeType51_patterns_, ))
+                    self.validate_xNomeType53_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xNomeType53_patterns_, ))
                 result = False
         return result
-    validate_xNomeType51_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xNomeType53_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_TIeDest(self, value):
         result = True
         # Validate type TIeDest, a restriction on xs:string.
@@ -27689,8 +27949,8 @@ class transportaType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xNome')
             self.xNome = value_
             self.xNome_nsprefix_ = child_.prefix
-            # validate type xNomeType51
-            self.validate_xNomeType51(self.xNome)
+            # validate type xNomeType53
+            self.validate_xNomeType53(self.xNome)
         elif nodeName_ == 'IE':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'IE')
@@ -27734,7 +27994,7 @@ class retTranspType(GeneratedsSuper):
         MemberSpec_('vBCRet', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vBCRet', 'type': 'xs:string'}, None),
         MemberSpec_('pICMSRet', ['TDec_0302a04', 'xs:string'], 0, 0, {'name': 'pICMSRet', 'type': 'xs:string'}, None),
         MemberSpec_('vICMSRet', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vICMSRet', 'type': 'xs:string'}, None),
-        MemberSpec_('CFOP', ['CFOPType52', 'xs:string'], 0, 0, {'name': 'CFOP', 'type': 'xs:string'}, None),
+        MemberSpec_('CFOP', ['CFOPType54', 'xs:string'], 0, 0, {'name': 'CFOP', 'type': 'xs:string'}, None),
         MemberSpec_('cMunFG', ['TCodMunIBGE', 'xs:string'], 0, 0, {'name': 'cMunFG', 'type': 'xs:string'}, None),
     ]
     subclass = None
@@ -27758,7 +28018,7 @@ class retTranspType(GeneratedsSuper):
         self.validate_TDec_1302(self.vICMSRet)
         self.vICMSRet_nsprefix_ = None
         self.CFOP = CFOP
-        self.validate_CFOPType52(self.CFOP)
+        self.validate_CFOPType54(self.CFOP)
         self.CFOP_nsprefix_ = None
         self.cMunFG = cMunFG
         self.validate_TCodMunIBGE(self.cMunFG)
@@ -27802,20 +28062,20 @@ class retTranspType(GeneratedsSuper):
                 result = False
         return result
     validate_TDec_0302a04_patterns_ = [['^(0|0\\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\\.[0-9]{2,4})?)$']]
-    def validate_CFOPType52(self, value):
+    def validate_CFOPType54(self, value):
         result = True
-        # Validate type CFOPType52, a restriction on xs:string.
+        # Validate type CFOPType54, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_CFOPType52_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CFOPType52_patterns_, ))
+                    self.validate_CFOPType54_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_CFOPType54_patterns_, ))
                 result = False
         return result
-    validate_CFOPType52_patterns_ = [['^([1,2,3,5,6,7]{1}[0-9]{3})$']]
+    validate_CFOPType54_patterns_ = [['^([1,2,3,5,6,7]{1}[0-9]{3})$']]
     def validate_TCodMunIBGE(self, value):
         result = True
         # Validate type TCodMunIBGE, a restriction on xs:string.
@@ -27948,8 +28208,8 @@ class retTranspType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'CFOP')
             self.CFOP = value_
             self.CFOP_nsprefix_ = child_.prefix
-            # validate type CFOPType52
-            self.validate_CFOPType52(self.CFOP)
+            # validate type CFOPType54
+            self.validate_CFOPType54(self.CFOP)
         elif nodeName_ == 'cMunFG':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'cMunFG')
@@ -29543,8 +29803,8 @@ class infAdicType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('infAdFisco', ['infAdFiscoType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'infAdFisco', 'type': 'xs:string'}, None),
         MemberSpec_('infCpl', ['infCplType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'infCpl', 'type': 'xs:string'}, None),
-        MemberSpec_('obsCont', 'obsContType', 1, 1, {'maxOccurs': '10', 'minOccurs': '0', 'name': 'obsCont', 'type': 'obsContType'}, None),
-        MemberSpec_('obsFisco', 'obsFiscoType', 1, 1, {'maxOccurs': '10', 'minOccurs': '0', 'name': 'obsFisco', 'type': 'obsFiscoType'}, None),
+        MemberSpec_('obsCont', 'obsContType55', 1, 1, {'maxOccurs': '10', 'minOccurs': '0', 'name': 'obsCont', 'type': 'obsContType55'}, None),
+        MemberSpec_('obsFisco', 'obsFiscoType58', 1, 1, {'maxOccurs': '10', 'minOccurs': '0', 'name': 'obsFisco', 'type': 'obsFiscoType58'}, None),
         MemberSpec_('procRef', 'procRefType', 1, 1, {'maxOccurs': '100', 'minOccurs': '0', 'name': 'procRef', 'type': 'procRefType'}, None),
     ]
     subclass = None
@@ -29720,12 +29980,12 @@ class infAdicType(GeneratedsSuper):
             # validate type infCplType
             self.validate_infCplType(self.infCpl)
         elif nodeName_ == 'obsCont':
-            obj_ = obsContType.factory(parent_object_=self)
+            obj_ = obsContType55.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.obsCont.append(obj_)
             obj_.original_tagname_ = 'obsCont'
         elif nodeName_ == 'obsFisco':
-            obj_ = obsFiscoType.factory(parent_object_=self)
+            obj_ = obsFiscoType58.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.obsFisco.append(obj_)
             obj_.original_tagname_ = 'obsFisco'
@@ -29737,14 +29997,14 @@ class infAdicType(GeneratedsSuper):
 # end class infAdicType
 
 
-class obsContType(GeneratedsSuper):
+class obsContType55(GeneratedsSuper):
     """Campo de uso livre do contribuinte
     informar o nome do campo no atributo xCampo
     e o conteúdo do campo no xTexto"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('xCampo', 'xCampoType', 0, 0, {'use': 'required'}),
-        MemberSpec_('xTexto', ['xTextoType', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
+        MemberSpec_('xCampo', 'xCampoType57', 0, 0, {'use': 'required'}),
+        MemberSpec_('xTexto', ['xTextoType56', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
@@ -29757,22 +30017,22 @@ class obsContType(GeneratedsSuper):
         self.xCampo = _cast(None, xCampo)
         self.xCampo_nsprefix_ = None
         self.xTexto = xTexto
-        self.validate_xTextoType(self.xTexto)
+        self.validate_xTextoType56(self.xTexto)
         self.xTexto_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, obsContType)
+                CurrentSubclassModule_, obsContType55)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if obsContType.subclass:
-            return obsContType.subclass(*args_, **kwargs_)
+        if obsContType55.subclass:
+            return obsContType55.subclass(*args_, **kwargs_)
         else:
-            return obsContType(*args_, **kwargs_)
+            return obsContType55(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_xTextoType(self, value):
+    def validate_xTextoType56(self, value):
         result = True
-        # Validate type xTextoType, a restriction on TString.
+        # Validate type xTextoType56, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -29780,20 +30040,20 @@ class obsContType(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType56' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType56' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xTextoType_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType_patterns_, ))
+                    self.validate_xTextoType56_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType56_patterns_, ))
                 result = False
         return result
-    validate_xTextoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xCampoType(self, value):
-        # Validate type xCampoType, a restriction on TString.
+    validate_xTextoType56_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCampoType57(self, value):
+        # Validate type xCampoType57, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -29801,16 +30061,16 @@ class obsContType(GeneratedsSuper):
                 return False
             if len(value) > 20:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType57' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType57' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xCampoType_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType_patterns_, ))
-    validate_xCampoType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+                    self.validate_xCampoType57_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType57_patterns_, ))
+    validate_xCampoType57_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def hasContent_(self):
         if (
             self.xTexto is not None
@@ -29818,34 +30078,34 @@ class obsContType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsContType')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType55', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsContType55')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'obsContType':
+        if self.original_tagname_ is not None and name_ == 'obsContType55':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsContType')
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsContType55')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsContType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsContType55', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsContType'):
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsContType55'):
         if self.xCampo is not None and 'xCampo' not in already_processed:
             already_processed.add('xCampo')
             outfile.write(' xCampo=%s' % (quote_attrib(self.xCampo), ))
-    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsContType55', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -29870,7 +30130,7 @@ class obsContType(GeneratedsSuper):
         if value is not None and 'xCampo' not in already_processed:
             already_processed.add('xCampo')
             self.xCampo = value
-            self.validate_xCampoType(self.xCampo)    # validate type xCampoType
+            self.validate_xCampoType57(self.xCampo)    # validate type xCampoType57
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'xTexto':
             value_ = child_.text
@@ -29878,19 +30138,19 @@ class obsContType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xTexto')
             self.xTexto = value_
             self.xTexto_nsprefix_ = child_.prefix
-            # validate type xTextoType
-            self.validate_xTextoType(self.xTexto)
-# end class obsContType
+            # validate type xTextoType56
+            self.validate_xTextoType56(self.xTexto)
+# end class obsContType55
 
 
-class obsFiscoType(GeneratedsSuper):
+class obsFiscoType58(GeneratedsSuper):
     """Campo de uso exclusivo do Fisco
     informar o nome do campo no atributo xCampo
     e o conteúdo do campo no xTexto"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('xCampo', 'xCampoType54', 0, 0, {'use': 'required'}),
-        MemberSpec_('xTexto', ['xTextoType53', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
+        MemberSpec_('xCampo', 'xCampoType60', 0, 0, {'use': 'required'}),
+        MemberSpec_('xTexto', ['xTextoType59', 'TString', 'xs:string'], 0, 0, {'name': 'xTexto', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
@@ -29903,22 +30163,22 @@ class obsFiscoType(GeneratedsSuper):
         self.xCampo = _cast(None, xCampo)
         self.xCampo_nsprefix_ = None
         self.xTexto = xTexto
-        self.validate_xTextoType53(self.xTexto)
+        self.validate_xTextoType59(self.xTexto)
         self.xTexto_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, obsFiscoType)
+                CurrentSubclassModule_, obsFiscoType58)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if obsFiscoType.subclass:
-            return obsFiscoType.subclass(*args_, **kwargs_)
+        if obsFiscoType58.subclass:
+            return obsFiscoType58.subclass(*args_, **kwargs_)
         else:
-            return obsFiscoType(*args_, **kwargs_)
+            return obsFiscoType58(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_xTextoType53(self, value):
+    def validate_xTextoType59(self, value):
         result = True
-        # Validate type xTextoType53, a restriction on TString.
+        # Validate type xTextoType59, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -29926,20 +30186,20 @@ class obsFiscoType(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType53' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xTextoType59' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType53' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xTextoType59' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xTextoType53_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType53_patterns_, ))
+                    self.validate_xTextoType59_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xTextoType59_patterns_, ))
                 result = False
         return result
-    validate_xTextoType53_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xCampoType54(self, value):
-        # Validate type xCampoType54, a restriction on TString.
+    validate_xTextoType59_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    def validate_xCampoType60(self, value):
+        # Validate type xCampoType60, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -29947,16 +30207,16 @@ class obsFiscoType(GeneratedsSuper):
                 return False
             if len(value) > 20:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType54' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xCampoType60' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType54' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xCampoType60' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xCampoType54_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType54_patterns_, ))
-    validate_xCampoType54_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+                    self.validate_xCampoType60_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xCampoType60_patterns_, ))
+    validate_xCampoType60_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def hasContent_(self):
         if (
             self.xTexto is not None
@@ -29964,34 +30224,34 @@ class obsFiscoType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsFiscoType')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType58', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsFiscoType58')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'obsFiscoType':
+        if self.original_tagname_ is not None and name_ == 'obsFiscoType58':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsFiscoType')
+        self.exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsFiscoType58')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsFiscoType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsFiscoType58', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsFiscoType'):
+    def exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsFiscoType58'):
         if self.xCampo is not None and 'xCampo' not in already_processed:
             already_processed.add('xCampo')
             outfile.write(' xCampo=%s' % (quote_attrib(self.xCampo), ))
-    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsFiscoType58', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30016,7 +30276,7 @@ class obsFiscoType(GeneratedsSuper):
         if value is not None and 'xCampo' not in already_processed:
             already_processed.add('xCampo')
             self.xCampo = value
-            self.validate_xCampoType54(self.xCampo)    # validate type xCampoType54
+            self.validate_xCampoType60(self.xCampo)    # validate type xCampoType60
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'xTexto':
             value_ = child_.text
@@ -30024,9 +30284,9 @@ class obsFiscoType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xTexto')
             self.xTexto = value_
             self.xTexto_nsprefix_ = child_.prefix
-            # validate type xTextoType53
-            self.validate_xTextoType53(self.xTexto)
-# end class obsFiscoType
+            # validate type xTextoType59
+            self.validate_xTextoType59(self.xTexto)
+# end class obsFiscoType58
 
 
 class procRefType(GeneratedsSuper):
@@ -30035,10 +30295,11 @@ class procRefType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('nProc', ['nProcType', 'TString', 'xs:string'], 0, 0, {'name': 'nProc', 'type': 'xs:string'}, None),
         MemberSpec_('indProc', ['indProcType', 'xs:string'], 0, 0, {'name': 'indProc', 'type': 'xs:string'}, None),
+        MemberSpec_('tpAto', ['tpAtoType', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'tpAto', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, nProc=None, indProc=None, gds_collector_=None, **kwargs_):
+    def __init__(self, nProc=None, indProc=None, tpAto=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -30050,6 +30311,9 @@ class procRefType(GeneratedsSuper):
         self.indProc = indProc
         self.validate_indProcType(self.indProc)
         self.indProc_nsprefix_ = None
+        self.tpAto = tpAto
+        self.validate_tpAtoType(self.tpAto)
+        self.tpAto_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -30098,10 +30362,26 @@ class procRefType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on indProcType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
+    def validate_tpAtoType(self, value):
+        result = True
+        # Validate type tpAtoType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            value = value
+            enumerations = ['08', '10', '12']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on tpAtoType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+        return result
     def hasContent_(self):
         if (
             self.nProc is not None or
-            self.indProc is not None
+            self.indProc is not None or
+            self.tpAto is not None
         ):
             return True
         else:
@@ -30144,6 +30424,10 @@ class procRefType(GeneratedsSuper):
             namespaceprefix_ = self.indProc_nsprefix_ + ':' if (UseCapturedNS_ and self.indProc_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%sindProc>%s</%sindProc>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.indProc), input_name='indProc')), namespaceprefix_ , eol_))
+        if self.tpAto is not None:
+            namespaceprefix_ = self.tpAto_nsprefix_ + ':' if (UseCapturedNS_ and self.tpAto_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%stpAto>%s</%stpAto>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tpAto), input_name='tpAto')), namespaceprefix_ , eol_))
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -30174,6 +30458,14 @@ class procRefType(GeneratedsSuper):
             self.indProc_nsprefix_ = child_.prefix
             # validate type indProcType
             self.validate_indProcType(self.indProc)
+        elif nodeName_ == 'tpAto':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'tpAto')
+            value_ = self.gds_validate_string(value_, node, 'tpAto')
+            self.tpAto = value_
+            self.tpAto_nsprefix_ = child_.prefix
+            # validate type tpAtoType
+            self.validate_tpAtoType(self.tpAto)
 # end class procRefType
 
 
@@ -30369,7 +30661,7 @@ class compraType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
         MemberSpec_('xNEmp', ['xNEmpType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xNEmp', 'type': 'xs:string'}, None),
-        MemberSpec_('xPed', ['xPedType55', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPed', 'type': 'xs:string'}, None),
+        MemberSpec_('xPed', ['xPedType61', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xPed', 'type': 'xs:string'}, None),
         MemberSpec_('xCont', ['xContType', 'TString', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'xCont', 'type': 'xs:string'}, None),
     ]
     subclass = None
@@ -30384,7 +30676,7 @@ class compraType(GeneratedsSuper):
         self.validate_xNEmpType(self.xNEmp)
         self.xNEmp_nsprefix_ = None
         self.xPed = xPed
-        self.validate_xPedType55(self.xPed)
+        self.validate_xPedType61(self.xPed)
         self.xPed_nsprefix_ = None
         self.xCont = xCont
         self.validate_xContType(self.xCont)
@@ -30422,9 +30714,9 @@ class compraType(GeneratedsSuper):
                 result = False
         return result
     validate_xNEmpType_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
-    def validate_xPedType55(self, value):
+    def validate_xPedType61(self, value):
         result = True
-        # Validate type xPedType55, a restriction on TString.
+        # Validate type xPedType61, a restriction on TString.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -30432,18 +30724,18 @@ class compraType(GeneratedsSuper):
                 return False
             if len(value) > 60:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xPedType55' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xPedType61' % {"value": value, "lineno": lineno} )
                 result = False
             if len(value) < 1:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xPedType55' % {"value" : value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minLength restriction on xPedType61' % {"value" : value, "lineno": lineno} )
                 result = False
             if not self.gds_validate_simple_patterns(
-                    self.validate_xPedType55_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPedType55_patterns_, ))
+                    self.validate_xPedType61_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_xPedType61_patterns_, ))
                 result = False
         return result
-    validate_xPedType55_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
+    validate_xPedType61_patterns_ = [['^([!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})$']]
     def validate_xContType(self, value):
         result = True
         # Validate type xContType, a restriction on TString.
@@ -30545,8 +30837,8 @@ class compraType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'xPed')
             self.xPed = value_
             self.xPed_nsprefix_ = child_.prefix
-            # validate type xPedType55
-            self.validate_xPedType55(self.xPed)
+            # validate type xPedType61
+            self.validate_xPedType61(self.xPed)
         elif nodeName_ == 'xCont':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'xCont')
@@ -31176,7 +31468,7 @@ class infSolicNFFType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
-            if len(value) > 2000:
+            if len(value) > 5000:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxLength restriction on xSolicType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
@@ -31304,7 +31596,7 @@ class infNFeSuplType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_qrCodeType_patterns_, ))
                 result = False
         return result
-    validate_qrCodeType_patterns_ = [['^((((HTTPS?|https?)://.*\\?chNFe=[0-9]{44}&nVersao=100&tpAmb=[1-2](&cDest=([A-Za-z0-9.:+-/)(]{0}|[A-Za-z0-9.:+-/)(]{5,20})?)?&dhEmi=[A-Fa-f0-9]{50}&vNF=(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)&vICMS=(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)&digVal=[A-Fa-f0-9]{56}&cIdToken=[0-9]{6}&cHashQRCode=[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\\?p=([0-9]{34}(1|4)[0-9]{9})\\|[2]\\|[1-2]\\|(0|[1-9]{1}([0-9]{1,5})?)\\|[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\\?p=([0-9]{34}9[0-9]{9})\\|[2]\\|[1-2]\\|([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-1]{1})\\|(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)\\|[A-Fa-f0-9]{56}\\|(0|[1-9]{1}([0-9]{1,5})?)\\|[A-Fa-f0-9]{40})))$']]
+    validate_qrCodeType_patterns_ = [['^((((HTTPS?|https?)://.*\\?chNFe=[0-9]{44}&nVersao=100&tpAmb=[1-2](&cDest=([A-Za-z0-9.:+-/)(]{0}|[A-Za-z0-9.:+-/)(]{5,20})?)?&dhEmi=[A-Fa-f0-9]{50}&vNF=(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)&vICMS=(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)&digVal=[A-Fa-f0-9]{56}&cIdToken=[0-9]{6}&cHashQRCode=[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\\?p=([0-9]{34}(1|3|4)[0-9]{9})\\|[2]\\|[1-2]\\|(0|[1-9]{1}([0-9]{1,5})?)\\|[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\\?p=([0-9]{34}9[0-9]{9})\\|[2]\\|[1-2]\\|([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-1]{1})\\|(0|0\\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\\.[0-9]{2})?)\\|[A-Fa-f0-9]{56}\\|(0|[1-9]{1}([0-9]{1,5})?)\\|[A-Fa-f0-9]{40})))$']]
     def validate_urlChaveType(self, value):
         result = True
         # Validate type urlChaveType, a restriction on xs:string.
@@ -31977,7 +32269,7 @@ class infRecType(GeneratedsSuper):
 class IPITribType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('CST', ['CSTType83', 'xs:string'], 0, 0, {'name': 'CST', 'type': 'xs:string'}, None),
+        MemberSpec_('CST', ['CSTType89', 'xs:string'], 0, 0, {'name': 'CST', 'type': 'xs:string'}, None),
         MemberSpec_('vBC', ['TDec_1302', 'xs:string'], 0, 0, {'name': 'vBC', 'type': 'xs:string'}, 20),
         MemberSpec_('pIPI', ['TDec_0302a04', 'xs:string'], 0, 0, {'name': 'pIPI', 'type': 'xs:string'}, 20),
         MemberSpec_('qUnid', ['TDec_1204v', 'xs:string'], 0, 0, {'name': 'qUnid', 'type': 'xs:string'}, 20),
@@ -31993,7 +32285,7 @@ class IPITribType(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.CST = CST
-        self.validate_CSTType83(self.CST)
+        self.validate_CSTType89(self.CST)
         self.CST_nsprefix_ = None
         self.vBC = vBC
         self.validate_TDec_1302(self.vBC)
@@ -32021,9 +32313,9 @@ class IPITribType(GeneratedsSuper):
         else:
             return IPITribType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_CSTType83(self, value):
+    def validate_CSTType89(self, value):
         result = True
-        # Validate type CSTType83, a restriction on xs:string.
+        # Validate type CSTType89, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -32033,7 +32325,7 @@ class IPITribType(GeneratedsSuper):
             enumerations = ['00', '49', '50', '99']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on CSTType83' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on CSTType89' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
     def validate_TDec_1302(self, value):
@@ -32178,8 +32470,8 @@ class IPITribType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'CST')
             self.CST = value_
             self.CST_nsprefix_ = child_.prefix
-            # validate type CSTType83
-            self.validate_CSTType83(self.CST)
+            # validate type CSTType89
+            self.validate_CSTType89(self.CST)
         elif nodeName_ == 'vBC':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'vBC')
@@ -32226,7 +32518,7 @@ class IPITribType(GeneratedsSuper):
 class IPINTType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
-        MemberSpec_('CST', ['CSTType84', 'xs:string'], 0, 0, {'name': 'CST', 'type': 'xs:string'}, None),
+        MemberSpec_('CST', ['CSTType90', 'xs:string'], 0, 0, {'name': 'CST', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
@@ -32237,7 +32529,7 @@ class IPINTType(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.CST = CST
-        self.validate_CSTType84(self.CST)
+        self.validate_CSTType90(self.CST)
         self.CST_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -32250,9 +32542,9 @@ class IPINTType(GeneratedsSuper):
         else:
             return IPINTType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def validate_CSTType84(self, value):
+    def validate_CSTType90(self, value):
         result = True
-        # Validate type CSTType84, a restriction on xs:string.
+        # Validate type CSTType90, a restriction on xs:string.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -32262,7 +32554,7 @@ class IPINTType(GeneratedsSuper):
             enumerations = ['01', '02', '03', '04', '05', '51', '52', '53', '54', '55']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on CSTType84' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on CSTType90' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
     def hasContent_(self):
@@ -32326,8 +32618,8 @@ class IPINTType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'CST')
             self.CST = value_
             self.CST_nsprefix_ = child_.prefix
-            # validate type CSTType84
-            self.validate_CSTType84(self.CST)
+            # validate type CSTType90
+            self.validate_CSTType90(self.CST)
 # end class IPINTType
 
 
@@ -33095,7 +33387,10 @@ __all__ = [
     "lacresType",
     "medType",
     "obsContType",
+    "obsContType55",
     "obsFiscoType",
+    "obsFiscoType58",
+    "obsItemType",
     "pagType",
     "procRefType",
     "prodType",

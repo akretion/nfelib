@@ -15249,8 +15249,8 @@ class impostoType(GeneratedsSuper):
     member_data_items_ = [
         MemberSpec_('vTotTrib', ['TDec_1302', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'vTotTrib', 'type': 'xs:string'}, None),
         MemberSpec_('ICMS', 'ICMSType', 0, 0, {'name': 'ICMS', 'type': 'ICMSType'}, 10),
-        MemberSpec_('II', 'IIType', 0, 1, {'minOccurs': '0', 'name': 'II', 'type': 'IIType'}, 10),
         MemberSpec_('IPI', 'TIpi', 0, 1, {'minOccurs': '0', 'name': 'IPI', 'type': 'TIpi'}, 10),
+        MemberSpec_('II', 'IIType', 0, 1, {'minOccurs': '0', 'name': 'II', 'type': 'IIType'}, 10),
         MemberSpec_('ISSQN', 'ISSQNType', 0, 0, {'name': 'ISSQN', 'type': 'ISSQNType'}, 10),
         MemberSpec_('PIS', 'PISType', 0, 1, {'minOccurs': '0', 'name': 'PIS', 'type': 'PISType'}, None),
         MemberSpec_('PISST', 'PISSTType', 0, 1, {'minOccurs': '0', 'name': 'PISST', 'type': 'PISSTType'}, None),
@@ -15271,10 +15271,10 @@ class impostoType(GeneratedsSuper):
         self.vTotTrib_nsprefix_ = None
         self.ICMS = ICMS
         self.ICMS_nsprefix_ = None
-        self.II = II
-        self.II_nsprefix_ = None
         self.IPI = IPI
         self.IPI_nsprefix_ = None
+        self.II = II
+        self.II_nsprefix_ = None
         self.ISSQN = ISSQN
         self.ISSQN_nsprefix_ = None
         self.PIS = PIS
@@ -15316,8 +15316,8 @@ class impostoType(GeneratedsSuper):
         if (
             self.vTotTrib is not None or
             self.ICMS is not None or
-            self.II is not None or
             self.IPI is not None or
+            self.II is not None or
             self.ISSQN is not None or
             self.PIS is not None or
             self.PISST is not None or
@@ -15365,12 +15365,12 @@ class impostoType(GeneratedsSuper):
         if self.ICMS is not None:
             namespaceprefix_ = self.ICMS_nsprefix_ + ':' if (UseCapturedNS_ and self.ICMS_nsprefix_) else ''
             self.ICMS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ICMS', pretty_print=pretty_print)
-        if self.II is not None:
-            namespaceprefix_ = self.II_nsprefix_ + ':' if (UseCapturedNS_ and self.II_nsprefix_) else ''
-            self.II.export(outfile, level, namespaceprefix_, namespacedef_='', name_='II', pretty_print=pretty_print)
         if self.IPI is not None:
             namespaceprefix_ = self.IPI_nsprefix_ + ':' if (UseCapturedNS_ and self.IPI_nsprefix_) else ''
             self.IPI.export(outfile, level, namespaceprefix_, namespacedef_='', name_='IPI', pretty_print=pretty_print)
+        if self.II is not None:
+            namespaceprefix_ = self.II_nsprefix_ + ':' if (UseCapturedNS_ and self.II_nsprefix_) else ''
+            self.II.export(outfile, level, namespaceprefix_, namespacedef_='', name_='II', pretty_print=pretty_print)
         if self.ISSQN is not None:
             namespaceprefix_ = self.ISSQN_nsprefix_ + ':' if (UseCapturedNS_ and self.ISSQN_nsprefix_) else ''
             self.ISSQN.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ISSQN', pretty_print=pretty_print)
@@ -15416,16 +15416,16 @@ class impostoType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.ICMS = obj_
             obj_.original_tagname_ = 'ICMS'
-        elif nodeName_ == 'II':
-            obj_ = IIType.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.II = obj_
-            obj_.original_tagname_ = 'II'
         elif nodeName_ == 'IPI':
             obj_ = TIpi.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.IPI = obj_
             obj_.original_tagname_ = 'IPI'
+        elif nodeName_ == 'II':
+            obj_ = IIType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.II = obj_
+            obj_.original_tagname_ = 'II'
         elif nodeName_ == 'ISSQN':
             obj_ = ISSQNType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)

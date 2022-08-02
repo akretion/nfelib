@@ -11,23 +11,14 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
-from nfelib.nfe.v4_0.proc_nfe_v4_00  import NfeProc
-from nfelib.nfe.v4_0.inut_nfe_v4_00 import InutNfe
-from nfelib.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
-from nfelib.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
+from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00  import NfeProc
+from nfelib.bindings.nfe.v4_0.inut_nfe_v4_00 import InutNfe
+from nfelib.bindings.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
+from nfelib.bindings.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 
-from nfelib.nfe_dist_dfe.v1_0.dist_dfe_int_v1_01 import DistDfeInt
+from nfelib.bindings.nfe_dist_dfe.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 
-from nfelib.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEvento
-
-#from nfelib.v4_00 import distDFeInt
-#from nfelib.v4_00 import retDistDFeInt
-#from nfelib.v4_00 import retEnvEvento
-#from nfelib.v4_00 import retEnvEventoCancNFe
-#from nfelib.v4_00 import retEnvCCe
-#from nfelib.v4_00 import retEnvConfRecebto
-#from nfelib.v4_00 import retConsCad
-
+from nfelib.bindings.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEvento
 
 def test_in_out_leiauteNFe():
     path = os.path.join("tests", "nfe", "v4_00", "leiauteNFe")

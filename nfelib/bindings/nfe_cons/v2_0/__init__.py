@@ -1,0 +1,63 @@
+from nfelib.bindings.nfe_cons.v2_0.cons_sit_nfe_v2_01 import ConsSitNfe
+from nfelib.bindings.nfe_cons.v2_0.leiaute_cons_sit_nfe_v2_01 import (
+    TcorgaoIbge,
+    TconsSitNfe,
+    TconsSitNfeXServ,
+    Tevento,
+    TprocEvento,
+    TprotNfe,
+    TretCancNfeV200107,
+    TretConsSitNfe,
+    TretEvento,
+    TverCancNfeV200107,
+    TverConsSitNfe,
+    TverEvento,
+    TverNfe,
+)
+from nfelib.bindings.nfe_cons.v2_0.ret_cons_sit_nfe_v2_01 import RetConsSitNfe
+from nfelib.bindings.nfe_cons.v2_0.tipos_basico_v1_03 import (
+    Tamb,
+    TcodUfIbge,
+)
+from nfelib.bindings.nfe_cons.v2_0.xmldsig_core_schema_v1_01 import (
+    KeyInfoType,
+    ReferenceType,
+    Signature,
+    SignatureType,
+    SignatureValueType,
+    SignedInfoType,
+    TtransformUri,
+    TransformType,
+    TransformsType,
+    X509DataType,
+)
+
+__all__ = [
+    "ConsSitNfe",
+    "TcorgaoIbge",
+    "TconsSitNfe",
+    "TconsSitNfeXServ",
+    "Tevento",
+    "TprocEvento",
+    "TprotNfe",
+    "TretCancNfeV200107",
+    "TretConsSitNfe",
+    "TretEvento",
+    "TverCancNfeV200107",
+    "TverConsSitNfe",
+    "TverEvento",
+    "TverNfe",
+    "RetConsSitNfe",
+    "Tamb",
+    "TcodUfIbge",
+    "KeyInfoType",
+    "ReferenceType",
+    "Signature",
+    "SignatureType",
+    "SignatureValueType",
+    "SignedInfoType",
+    "TtransformUri",
+    "TransformType",
+    "TransformsType",
+    "X509DataType",
+]

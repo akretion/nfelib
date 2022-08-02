@@ -46,12 +46,14 @@ def test_in_out_leiauteNFe():
         # TODO FIXME
 #        obj.infNFe.emit.CNPJ
 
-        output_file = 'tests/output.xml'
+        output_file = 'tests/output_nfe.xml'
         with open(output_file, 'w') as f:
             f.write(xml)
 
         diff = main.diff_files(input_file, output_file)
         assert len(diff) == 0
+        if len(diff) != 0:
+            break
 
 def test_in_out_leiauteInutNFe():
     path = os.path.join("tests", "nfe", "v4_00", "leiauteInutNFe")

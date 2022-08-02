@@ -21,10 +21,9 @@ from nfelib.bindings.nfe_dist_dfe.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 from nfelib.bindings.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEvento
 
 def test_in_out_leiauteNFe():
-    path = os.path.join("tests", "nfe", "v4_00", "leiauteNFe")
+    path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
-        print("II", input_file, Path(input_file))
         parser = XmlParser()
         obj = parser.from_path(Path(input_file), NfeProc)
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
@@ -37,7 +36,7 @@ def test_in_out_leiauteNFe():
         # TODO FIXME
 #        obj.infNFe.emit.CNPJ
 
-        output_file = 'tests/output_nfe.xml'
+        output_file = 'nfelib/tests/output_nfe.xml'
         with open(output_file, 'w') as f:
             f.write(xml)
 
@@ -47,10 +46,9 @@ def test_in_out_leiauteNFe():
             break
 
 def test_in_out_leiauteInutNFe():
-    path = os.path.join("tests", "nfe", "v4_00", "leiauteInutNFe")
+    path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteInutNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
-        print("II", input_file, Path(input_file))
         parser = XmlParser()
         obj = parser.from_path(Path(input_file), InutNfe)
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
@@ -63,7 +61,7 @@ def test_in_out_leiauteInutNFe():
 #        doc = retInutNFe.parsexml_(inputfile, None)
 #        obj = retInutNFe.TInutNFe.factory().build(doc.getroot())
 
-        output_file = 'tests/output.xml'
+        output_file = 'nfelib/tests/output.xml'
         with open(output_file, 'w') as f:
             f.write(xml)
 

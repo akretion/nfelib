@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
   <NFe>
     <infNFe versao="4.00" Id="NFe42211275277525000178550030000276771368212013">
@@ -388,26 +389,6 @@
         <fone>1131649168</fone>
       </infRespTec>
     </infNFe>
-    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-      <SignedInfo>
-        <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-        <Reference URI="#NFe42211275277525000178550030000276771368212013">
-          <Transforms>
-            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-            <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-          </Transforms>
-          <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-          <DigestValue>H/7UqbcwbMhxxFn+PbYNUh5sSYc=</DigestValue>
-        </Reference>
-      </SignedInfo>
-      <SignatureValue>eYI7Mc9Fecpg77jEImuENnyHd41o8d2uvKAZvtLwmHjphP4tfooOYanQGbnSU5wH/dRXh91sRk0GLCsVSoYAoiWJ+ojUP11Eczp1lh/YeaW+weGNGS9EAgrebYfuK6EqBOI9GZRfXZ8su3SXeKNgink+BJNmuSd2Rcf9ktFyFKouWTOnMJEGrT29YnnNfpljWWBFJ2ZRdq/4MkextTWcMSPvSIUvmBAmtCH4ej2Y0JmlgNTXnGSwaGoKVeBy+oVief5fNzwrUK/6fNHVMiccAl2JeFjPukdEIkj2nQMd42Vuqf9AhLyC4hQTI7zEC/AaF4qTHABjo3B33lB/9QWWrA==</SignatureValue>
-      <KeyInfo>
-        <X509Data>
-          <X509Certificate>MIIHLzCCBRegAwIBAgIISTQhBBk5MFgwDQYJKoZIhvcNAQELBQAwWTELMAkGA1UE BhMCQlIxEzARBgNVBAoTCklDUC1CcmFzaWwxFTATBgNVBAsTDEFDIFNPTFVUSSB2 NTEeMBwGA1UEAxMVQUMgU09MVVRJIE11bHRpcGxhIHY1MB4XDTIxMDQxOTE0NTMw MFoXDTIyMDQxOTE0NTMwMFowgdwxCzAJBgNVBAYTAkJSMRMwEQYDVQQKEwpJQ1At QnJhc2lsMQswCQYDVQQIEwJTQzERMA8GA1UEBxMIQmx1bWVuYXUxHjAcBgNVBAsT FUFDIFNPTFVUSSBNdWx0aXBsYSB2NTEXMBUGA1UECxMOMjc2MTMwNzIwMDAxNjAx GTAXBgNVBAsTEFZpZGVvY29uZmVyZW5jaWExGjAYBgNVBAsTEUNlcnRpZmljYWRv IFBKIEExMSgwJgYDVQQDEx9GT1JOT1MgSlVORyBMVERBOjc1Mjc3NTI1MDAwMTc4 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgyRQ9UGmhsYs0DXYseeD 6i1nPSOt6KpqBwQq5DE1oW5NjkISlsubjq4INYpwTVvLsOaidRSzBSCeX4j8uqqq dnhtW6azARv/s1zf8hTr6sbreY3Np2CD1Kvcjg0AwfawCcPqq4uwZcLhE/xr2WFH GSUcDAQw6tomKc2gDHo3agzG9+ZwspuUv8aG3CLLQQQKXT627E9Y1mZW9fbxbXJH qykTkmH/koUKUdmYbuIHxfskSE+ta2SZux46adhCzI7WimYWTGPIv9QKtvu456MF qGc2kiNrmlk8SwEC3rE33lUaIkHU25yIUaWS4kaVFB0qlqW9CIeE17bWEXUork9G MwIDAQABo4ICdTCCAnEwCQYDVR0TBAIwADAfBgNVHSMEGDAWgBTFUu0lgAnfnILI n0fG3bRfMd25sTBUBggrBgEFBQcBAQRIMEYwRAYIKwYBBQUHMAKGOGh0dHA6Ly9j Y2QuYWNzb2x1dGkuY29tLmJyL2xjci9hYy1zb2x1dGktbXVsdGlwbGEtdjUucDdi MIGwBgNVHREEgagwgaWBFmZpbmFuY2Vpcm9AanVuZy5jb20uYnKgHQYFYEwBAwKg FBMSRElPR08gR1VTVEFWTyBKVU5HoBkGBWBMAQMDoBATDjc1Mjc3NTI1MDAwMTc4 oDgGBWBMAQMEoC8TLTE5MTIxOTgwMDMyNzM3NTQ5MzEwMDAwMDAwMDAwMDAwMDAw MDAwMDAwMDAwMKAXBgVgTAEDB6AOEwwwMDAwMDAwMDAwMDAwXQYDVR0gBFYwVDBS BgZgTAECASYwSDBGBggrBgEFBQcCARY6aHR0cDovL2NjZC5hY3NvbHV0aS5jb20u YnIvZG9jcy9kcGMtYWMtc29sdXRpLW11bHRpcGxhLnBkZjAdBgNVHSUEFjAUBggr BgEFBQcDAgYIKwYBBQUHAwQwgYwGA1UdHwSBhDCBgTA+oDygOoY4aHR0cDovL2Nj ZC5hY3NvbHV0aS5jb20uYnIvbGNyL2FjLXNvbHV0aS1tdWx0aXBsYS12NS5jcmww P6A9oDuGOWh0dHA6Ly9jY2QyLmFjc29sdXRpLmNvbS5ici9sY3IvYWMtc29sdXRp LW11bHRpcGxhLXY1LmNybDAdBgNVHQ4EFgQUNjZPp4eju1TkjITliflRqLNvm+ww DgYDVR0PAQH/BAQDAgXgMA0GCSqGSIb3DQEBCwUAA4ICAQAV+kcfNTH+YB6D2I6Y 9dsATdFmOAzYD8//PlGCQD6sOl6R0SG0CfgrTJrVk9EiaL7PAoV2+WxZpaWe2z9X EYcHkhqW7YOBlELc0QZEncN4PSzBXLsqYsxag3ZZdY3BVkuzg6P/09bczleQQPTO 8y32Ys/nIZcZ1pDThCmIBti6hBJAZIUMFEt4U7gOj7ncq8KAUgD4O8NaSYC6u0o2 xdMz1wPryU/gKyTcizkn4o9hErYS1K2bmVnmytGEp4qRLCrhvRhUiRY3XyHb4vHl /SRJabCAUTvh6uXQW9JVhF1aI6dfiXQnClA7yrNop8+VMt6VWqt+cA1fR+2TZ/2D datvBtopixDilXzVwJzE79sbf5I81gzLDpMo7UssM7IsKMNgTYaFtvm+1zPaiDB9 IWaolSWeprBAEq+RaUY5cN7pC6LEUWAJxyeqOENvC+cRJv6dYygKH1o1b4q+K7MY u4tVGr8ApLTYR8VmKGbspM4GtJZnBLw2mNhlFexmerhRIlIUuVQU3g/zOuAbhpYl x23iA0A3stEqZJ3qsbgv9xlKzu2Chjh7RjfaszrtmYa0pbpbwLu/qSzuvKJRnFnK /WYXRiu2T09edDLjCXPJktzU+bU8e63Ur9spEEs76BDR+YVyJ4FRQzFOjAAaCz5S 1IQmSk3Z6mX/k0LdpqqzMo8keA== </X509Certificate>
-        </X509Data>
-      </KeyInfo>
-    </Signature>
   </NFe>
   <protNFe versao="4.00">
     <infProt>

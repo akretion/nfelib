@@ -118,3 +118,9 @@ if [$DOWNLOAD_SCHEMAS]; then
   cp -rf /tmp/generated/schemas/bpe nfelib/schemas/bpe
 fi
 xsdata generate nfelib/schemas/bpe/v1_0 --package nfelib.bindings.bpe.v1_0
+
+# NFS-e Pacote de esquemas XSD V1.00.02 - (16/09/2022)
+rm -rf nfelib/schemas/nfse
+erpbrasil-edoc-gen-download-schema -n nfse -v v1_0 -u https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip 
+cp -rf /tmp/generated/schemas/nfse nfelib/schemas/nfse
+xsdata generate nfelib/schemas/nfse/v1_0 --package nfelib.bindings.nfse.v1_0

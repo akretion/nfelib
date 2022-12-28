@@ -52,8 +52,8 @@ class TloteDistDfe:
         :ivar any_element: informação do proc
         :ivar schema: Identificação do Schema XML de validação do proc,
             Ex. procMDFe_v1.00.xsd.
-        :ivar nsu: número sequencial único do Ambiente Autorizador
-        :ivar ip_transmissor:
+        :ivar NSU: número sequencial único do Ambiente Autorizador
+        :ivar ipTransmissor:
         """
         any_element: Optional[object] = field(
             default=None,
@@ -69,19 +69,17 @@ class TloteDistDfe:
                 "required": True,
             }
         )
-        nsu: Optional[str] = field(
+        NSU: Optional[str] = field(
             default=None,
             metadata={
-                "name": "NSU",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"[0-9]{15}",
             }
         )
-        ip_transmissor: Optional[str] = field(
+        ipTransmissor: Optional[str] = field(
             default=None,
             metadata={
-                "name": "ipTransmissor",
                 "type": "Attribute",
                 "white_space": "preserve",
                 "pattern": r"(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])",
@@ -95,18 +93,18 @@ class TdistDfe:
     Schema XML de validação da área de dados da mensagem da solicitação de
     distribuição de DF-e.
 
-    :ivar tp_amb: Identificação do Ambiente:  1 - Produção  2 -
+    :ivar tpAmb: Identificação do Ambiente:  1 - Produção  2 -
         Homologação
-    :ivar ver_aplic: Versão do Aplicativo que solicitou a distribuição
-        de DF-e
-    :ivar ind_dfe: Indicador de DF-e solicitados: 0 - DF-e autorizados
+    :ivar verAplic: Versão do Aplicativo que solicitou a distribuição de
+        DF-e
+    :ivar indDFe: Indicador de DF-e solicitados: 0 - DF-e autorizados
         pela UF; 1 - DF-e com carregamento na UF; 2 – DF-e com
         descarregamento na UF; 3 – DF-e com percurso pela UF; 8 – DF-e
         carregados  (1), descarregados (2)  e que tiveram percurso na UF
         (3); 9 - Todos DF-e que fazem referência a UF.
-    :ivar ind_comp_ret: Indicador de Compactação da Mensagem de retorno:
+    :ivar indCompRet: Indicador de Compactação da Mensagem de retorno:
         0 - sem compactação;  1 - compactação padrão gZip
-    :ivar ult_nsu: último NSU recebido, caso seja informado com zero, o
+    :ivar ultNSU: último NSU recebido, caso seja informado com zero, o
         Ambiente Autorizador tentará localizar o primeiro DF-e
         existente.
     :ivar versao:
@@ -114,19 +112,17 @@ class TdistDfe:
     class Meta:
         name = "TDistDFe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -136,28 +132,25 @@ class TdistDfe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    ind_dfe: Optional[TdistDfeIndDfe] = field(
+    indDFe: Optional[TdistDfeIndDfe] = field(
         default=None,
         metadata={
-            "name": "indDFe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    ind_comp_ret: Optional[TdistDfeIndCompRet] = field(
+    indCompRet: Optional[TdistDfeIndCompRet] = field(
         default=None,
         metadata={
-            "name": "indCompRet",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    ult_nsu: Optional[str] = field(
+    ultNSU: Optional[str] = field(
         default=None,
         metadata={
-            "name": "ultNSU",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -180,33 +173,31 @@ class TretDistDfe:
     Schema XML de validação do lote de retorno de documentos ficais
     eletronicos.
 
-    :ivar tp_amb: Identificação do Ambiente:  1 - Produção  2 -
+    :ivar tpAmb: Identificação do Ambiente:  1 - Produção  2 -
         Homologação
-    :ivar ver_aplic: Versão do Aplicativo que atendeu a pedido de
+    :ivar verAplic: Versão do Aplicativo que atendeu a pedido de
         distribuição de DF-e
-    :ivar c_stat: código do status de resultado da pesquisa
-    :ivar x_motivo: descrição do resultado do pesquisa
-    :ivar ult_nsu: último NSU
-    :ivar lote_dist_mdfe_comp:
-    :ivar lote_dist_mdfe:
+    :ivar cStat: código do status de resultado da pesquisa
+    :ivar xMotivo: descrição do resultado do pesquisa
+    :ivar ultNSU: último NSU
+    :ivar loteDistMDFeComp:
+    :ivar loteDistMDFe:
     :ivar versao:
     """
     class Meta:
         name = "TRetDistDFe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -216,10 +207,9 @@ class TretDistDfe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -227,10 +217,9 @@ class TretDistDfe:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -240,28 +229,25 @@ class TretDistDfe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    ult_nsu: Optional[str] = field(
+    ultNSU: Optional[str] = field(
         default=None,
         metadata={
-            "name": "ultNSU",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "pattern": r"[0-9]{15}",
         }
     )
-    lote_dist_mdfe_comp: Optional[bytes] = field(
+    loteDistMDFeComp: Optional[bytes] = field(
         default=None,
         metadata={
-            "name": "loteDistMDFeComp",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "format": "base64",
         }
     )
-    lote_dist_mdfe: Optional[TloteDistDfe] = field(
+    loteDistMDFe: Optional[TloteDistDfe] = field(
         default=None,
         metadata={
-            "name": "loteDistMDFe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
         }

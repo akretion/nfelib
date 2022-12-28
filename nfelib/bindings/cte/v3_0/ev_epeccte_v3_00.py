@@ -22,44 +22,42 @@ class EvEpeccte:
     Schema XML de validação do evento de emissão prévia de emissão em
     contingência 110113.
 
-    :ivar desc_evento: Descrição do Evento - “EPEC”
-    :ivar x_just: Justificativa da Entrada em Contingencia
-    :ivar v_icms: Valor do ICMS
-    :ivar v_icmsst: Valor do ICMS ST
-    :ivar v_tprest: Valor Total da Prestação do Serviço Pode conter
-        zeros quando o CT-e for de complemento de ICMS
-    :ivar v_carga: Valor total da carga Dever ser informado para todos
-        os modais, com exceção para o Dutoviário.
+    :ivar descEvento: Descrição do Evento - “EPEC”
+    :ivar xJust: Justificativa da Entrada em Contingencia
+    :ivar vICMS: Valor do ICMS
+    :ivar vICMSST: Valor do ICMS ST
+    :ivar vTPrest: Valor Total da Prestação do Serviço Pode conter zeros
+        quando o CT-e for de complemento de ICMS
+    :ivar vCarga: Valor total da carga Dever ser informado para todos os
+        modais, com exceção para o Dutoviário.
     :ivar toma4: Indicador do "papel" do tomador do serviço no CT-e
     :ivar modal: Modal Preencher com: 01-Rodoviário; 02-Aéreo;
         03-Aquaviário; 04-Ferroviário; 05-Dutoviário; 06-Multimodal;
-    :ivar ufini: UF do início da prestação Informar 'EX' para operações
+    :ivar UFIni: UF do início da prestação Informar 'EX' para operações
         com o exterior.
-    :ivar uffim: UF do término da prestação Informar 'EX' para operações
+    :ivar UFFim: UF do término da prestação Informar 'EX' para operações
         com o exterior.
-    :ivar tp_cte: Tipo do CT-e - Aceitar apenas Tipo Normal = 0
-        Preencher com: 0 - CT-e Normal; 1 - CT-e de Complemento de
-        Valores;     2 - CT-e de Anulação; 3 - CT-e Substituto
-    :ivar dh_emi: Data e hora de emissão do CT-e Formato AAAA-MM-
+    :ivar tpCTe: Tipo do CT-e - Aceitar apenas Tipo Normal = 0 Preencher
+        com: 0 - CT-e Normal; 1 - CT-e de Complemento de Valores;     2
+        - CT-e de Anulação; 3 - CT-e Substituto
+    :ivar dhEmi: Data e hora de emissão do CT-e Formato AAAA-MM-
         DDTHH:MM:DD TZD
     """
     class Meta:
         name = "evEPECCTe"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    desc_evento: Optional[EvEpeccteDescEvento] = field(
+    descEvento: Optional[EvEpeccteDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    x_just: Optional[str] = field(
+    xJust: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xJust",
             "type": "Element",
             "required": True,
             "min_length": 15,
@@ -68,39 +66,35 @@ class EvEpeccte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    v_icms: Optional[str] = field(
+    vICMS: Optional[str] = field(
         default=None,
         metadata={
-            "name": "vICMS",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         }
     )
-    v_icmsst: Optional[str] = field(
+    vICMSST: Optional[str] = field(
         default=None,
         metadata={
-            "name": "vICMSST",
             "type": "Element",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         }
     )
-    v_tprest: Optional[str] = field(
+    vTPrest: Optional[str] = field(
         default=None,
         metadata={
-            "name": "vTPrest",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         }
     )
-    v_carga: Optional[str] = field(
+    vCarga: Optional[str] = field(
         default=None,
         metadata={
-            "name": "vCarga",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
@@ -121,36 +115,32 @@ class EvEpeccte:
             "required": True,
         }
     )
-    ufini: Optional[Tuf] = field(
+    UFIni: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UFIni",
             "type": "Element",
             "required": True,
         }
     )
-    uffim: Optional[Tuf] = field(
+    UFFim: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UFFim",
             "type": "Element",
             "required": True,
         }
     )
-    tp_cte: Optional[EvEpeccteTpCte] = field(
+    tpCTe: Optional[EvEpeccteTpCte] = field(
         default=None,
         metadata={
-            "name": "tpCTe",
             "type": "Element",
             "required": True,
             "length": 1,
             "white_space": "preserve",
         }
     )
-    dh_emi: Optional[str] = field(
+    dhEmi: Optional[str] = field(
         default=None,
         metadata={
-            "name": "dhEmi",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
@@ -163,13 +153,13 @@ class EvEpeccte:
         """
         :ivar toma: Tomador do Serviço Preencher com: 0-Remetente;
             1-Expedidor;2-Recebedor;3-Destinatário ;4 - Outros
-        :ivar uf: UF do tomador do serviço Informar 'EX' para operações
+        :ivar UF: UF do tomador do serviço Informar 'EX' para operações
             com o exterior.
-        :ivar cnpj: Número do CNPJ Em caso de empresa não estabelecida
+        :ivar CNPJ: Número do CNPJ Em caso de empresa não estabelecida
             no Brasil, será informado o CNPJ com zeros. Informar os
             zeros não significativos.
-        :ivar cpf: Número do CPF Informar os zeros não significativos.
-        :ivar ie: Inscrição Estadual Informar a IE do tomador ou ISENTO
+        :ivar CPF: Número do CPF Informar os zeros não significativos.
+        :ivar IE: Inscrição Estadual Informar a IE do tomador ou ISENTO
             se tomador é contribuinte do ICMS isento de inscrição no
             cadastro de contribuintes do ICMS. Caso o tomador não seja
             contribuinte do ICMS não informar o conteúdo.
@@ -182,36 +172,32 @@ class EvEpeccte:
                 "white_space": "preserve",
             }
         )
-        uf: Optional[Tuf] = field(
+        UF: Optional[Tuf] = field(
             default=None,
             metadata={
-                "name": "UF",
                 "type": "Element",
                 "required": True,
             }
         )
-        cnpj: Optional[str] = field(
+        CNPJ: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CNPJ",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{0}|[0-9]{14}",
             }
         )
-        cpf: Optional[str] = field(
+        CPF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CPF",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{11}",
             }
         )
-        ie: Optional[str] = field(
+        IE: Optional[str] = field(
             default=None,
             metadata={
-                "name": "IE",
                 "type": "Element",
                 "max_length": 14,
                 "white_space": "preserve",

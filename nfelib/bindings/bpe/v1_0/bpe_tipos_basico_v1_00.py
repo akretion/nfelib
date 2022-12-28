@@ -86,20 +86,20 @@ class TrespTec:
     """
     Tipo Dados da Responsável Técnico.
 
-    :ivar cnpj: CNPJ da pessoa jurídica responsável técnica pelo sistema
+    :ivar CNPJ: CNPJ da pessoa jurídica responsável técnica pelo sistema
         utilizado na emissão do documento fiscal eletrônico Informar o
         CNPJ da pessoa jurídica desenvolvedora do sistema utilizado na
         emissão do documento fiscal eletrônico.
-    :ivar x_contato: Nome da pessoa a ser contatada Informar o nome da
+    :ivar xContato: Nome da pessoa a ser contatada Informar o nome da
         pessoa a ser contatada na empresa desenvolvedora do sistema
         utilizado na emissão do documento fiscal eletrônico. No caso de
         pessoa física, informar o respectivo nome.
     :ivar email: Email da pessoa jurídica a ser contatada
     :ivar fone: Telefone da pessoa jurídica a ser contatada Preencher
         com o Código DDD + número do telefone.
-    :ivar id_csrt: Identificador do código de segurança do responsável
+    :ivar idCSRT: Identificador do código de segurança do responsável
         técnico Identificador do CSRT utilizado para geração do hash
-    :ivar hash_csrt: Hash do token do código de segurança do responsável
+    :ivar hashCSRT: Hash do token do código de segurança do responsável
         técnico O hashCSRT é o resultado das funções SHA-1 e base64 do
         token CSRT fornecido pelo fisco + chave de acesso do DF-e.
         (Implementação em futura NT) Observação: 28 caracteres são
@@ -108,10 +108,9 @@ class TrespTec:
     class Meta:
         name = "TRespTec"
 
-    cnpj: Optional[str] = field(
+    CNPJ: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CNPJ",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -119,10 +118,9 @@ class TrespTec:
             "pattern": r"[0-9]{14}",
         }
     )
-    x_contato: Optional[str] = field(
+    xContato: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xContato",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -154,19 +152,17 @@ class TrespTec:
             "pattern": r"[0-9]{7,12}",
         }
     )
-    id_csrt: Optional[str] = field(
+    idCSRT: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idCSRT",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "pattern": r"[0-9]{3}",
         }
     )
-    hash_csrt: Optional[bytes] = field(
+    hashCSRT: Optional[bytes] = field(
         default=None,
         metadata={
-            "name": "hashCSRT",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "length": 20,
@@ -326,24 +322,23 @@ class TendeEmi:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE)
-    :ivar x_mun: Nome do município
-    :ivar cep: CEP Informar zeros não significativos
-    :ivar uf: Sigla da UF
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE)
+    :ivar xMun: Nome do município
+    :ivar CEP: CEP Informar zeros não significativos
+    :ivar UF: Sigla da UF
     :ivar fone: Telefone
     :ivar email: Endereço de E-mail
     """
     class Meta:
         name = "TEndeEmi"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -365,10 +360,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "min_length": 1,
@@ -377,10 +371,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -390,10 +383,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -401,10 +393,9 @@ class TendeEmi:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -414,20 +405,18 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[TufSemEx] = field(
+    UF: Optional[TufSemEx] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -460,28 +449,27 @@ class Tendereco:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE),
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE),
         informar 9999999 para operações com o exterior.
-    :ivar x_mun: Nome do município, informar EXTERIOR para operações com
+    :ivar xMun: Nome do município, informar EXTERIOR para operações com
         o exterior.
-    :ivar cep: CEP Informar os zeros não significativos
-    :ivar uf: Sigla da UF, informar EX para operações com o exterior.
-    :ivar c_pais: Código do país Utilizar a tabela do BACEN
-    :ivar x_pais: Nome do país
+    :ivar CEP: CEP Informar os zeros não significativos
+    :ivar UF: Sigla da UF, informar EX para operações com o exterior.
+    :ivar cPais: Código do país Utilizar a tabela do BACEN
+    :ivar xPais: Nome do país
     :ivar fone: Telefone
     :ivar email: Endereço de E-mail
     """
     class Meta:
         name = "TEndereco"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -503,10 +491,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "min_length": 1,
@@ -515,10 +502,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -528,10 +514,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -539,10 +524,9 @@ class Tendereco:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -552,39 +536,35 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    c_pais: Optional[str] = field(
+    cPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"[0-9]{1,4}",
         }
     )
-    x_pais: Optional[str] = field(
+    xPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "min_length": 1,
@@ -620,52 +600,47 @@ class Timp:
     """
     Tipo Dados do Imposto BP-e.
 
-    :ivar icms00: Prestação sujeito à tributação normal do ICMS
-    :ivar icms20: Prestação sujeito à tributação com redução de BC do
+    :ivar ICMS00: Prestação sujeito à tributação normal do ICMS
+    :ivar ICMS20: Prestação sujeito à tributação com redução de BC do
         ICMS
-    :ivar icms45: ICMS  Isento, não Tributado ou diferido
-    :ivar icms90: ICMS Outros
-    :ivar icmssn: Simples Nacional
+    :ivar ICMS45: ICMS  Isento, não Tributado ou diferido
+    :ivar ICMS90: ICMS Outros
+    :ivar ICMSSN: Simples Nacional
     """
     class Meta:
         name = "TImp"
 
-    icms00: Optional["Timp.Icms00"] = field(
+    ICMS00: Optional["Timp.Icms00"] = field(
         default=None,
         metadata={
-            "name": "ICMS00",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
     )
-    icms20: Optional["Timp.Icms20"] = field(
+    ICMS20: Optional["Timp.Icms20"] = field(
         default=None,
         metadata={
-            "name": "ICMS20",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
     )
-    icms45: Optional["Timp.Icms45"] = field(
+    ICMS45: Optional["Timp.Icms45"] = field(
         default=None,
         metadata={
-            "name": "ICMS45",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
     )
-    icms90: Optional["Timp.Icms90"] = field(
+    ICMS90: Optional["Timp.Icms90"] = field(
         default=None,
         metadata={
-            "name": "ICMS90",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
     )
-    icmssn: Optional["Timp.Icmssn"] = field(
+    ICMSSN: Optional["Timp.Icmssn"] = field(
         default=None,
         metadata={
-            "name": "ICMSSN",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
@@ -674,26 +649,24 @@ class Timp:
     @dataclass
     class Icms00:
         """
-        :ivar cst: classificação Tributária do Serviço 00 - tributação
+        :ivar CST: classificação Tributária do Serviço 00 - tributação
             normal ICMS
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms00Cst] = field(
+        CST: Optional[Icms00Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -701,10 +674,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -712,10 +684,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -727,27 +698,25 @@ class Timp:
     @dataclass
     class Icms20:
         """
-        :ivar cst: Classificação Tributária do serviço 20 - tributação
+        :ivar CST: Classificação Tributária do serviço 20 - tributação
             com BC reduzida do ICMS
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms20Cst] = field(
+        CST: Optional[Icms20Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -755,10 +724,9 @@ class Timp:
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -766,10 +734,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -777,10 +744,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -792,13 +758,12 @@ class Timp:
     @dataclass
     class Icms45:
         """
-        :ivar cst: Classificação Tributária do Serviço Preencher com: 40
+        :ivar CST: Classificação Tributária do Serviço Preencher com: 40
             - ICMS isenção; 41 - ICMS não tributada; 51 - ICMS diferido
         """
-        cst: Optional[Icms45Cst] = field(
+        CST: Optional[Icms45Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -809,37 +774,34 @@ class Timp:
     @dataclass
     class Icms90:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS outros
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
-        :ivar v_cred: Valor do Crédito Outorgado/Presumido
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS outros
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
+        :ivar vCred: Valor do Crédito Outorgado/Presumido
         """
-        cst: Optional[Icms90Cst] = field(
+        CST: Optional[Icms90Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "white_space": "preserve",
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -847,10 +809,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -858,10 +819,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -869,10 +829,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        v_cred: Optional[str] = field(
+        vCred: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vCred",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "white_space": "preserve",
@@ -883,25 +842,23 @@ class Timp:
     @dataclass
     class Icmssn:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS Simples
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS Simples
             Nacional
-        :ivar ind_sn: Indica se o contribuinte é Simples Nacional
+        :ivar indSN: Indica se o contribuinte é Simples Nacional
             1=Sim
         """
-        cst: Optional[IcmssnCst] = field(
+        CST: Optional[IcmssnCst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        ind_sn: Optional[IcmssnIndSn] = field(
+        indSN: Optional[IcmssnIndSn] = field(
             default=None,
             metadata={
-                "name": "indSN",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -915,27 +872,25 @@ class TprotBpe:
     """
     Tipo Protocolo de status resultado do processamento do BP-e (Modelo 63)
 
-    :ivar inf_prot: Dados do protocolo de status
-    :ivar inf_fisco: Mensagem do Fisco
+    :ivar infProt: Dados do protocolo de status
+    :ivar infFisco: Mensagem do Fisco
     :ivar signature:
     :ivar versao:
     """
     class Meta:
         name = "TProtBPe"
 
-    inf_prot: Optional["TprotBpe.InfProt"] = field(
+    infProt: Optional["TprotBpe.InfProt"] = field(
         default=None,
         metadata={
-            "name": "infProt",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    inf_fisco: Optional["TprotBpe.InfFisco"] = field(
+    infFisco: Optional["TprotBpe.InfFisco"] = field(
         default=None,
         metadata={
-            "name": "infFisco",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
@@ -961,32 +916,30 @@ class TprotBpe:
     @dataclass
     class InfProt:
         """
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar ver_aplic: Versão do Aplicativo que processou o BP-e
-        :ivar ch_bpe: Chave de acesso do BP-e
-        :ivar dh_recbto: Data e hora de processamento, no formato AAAA-
+        :ivar verAplic: Versão do Aplicativo que processou o BP-e
+        :ivar chBPe: Chave de acesso do BP-e
+        :ivar dhRecbto: Data e hora de processamento, no formato AAAA-
             MM-DDTHH:MM:SS TZD.
-        :ivar n_prot: Número do Protocolo de Status do BP-e.
-        :ivar dig_val: Digest Value do BP-e processado. Utilizado para
+        :ivar nProt: Número do Protocolo de Status do BP-e.
+        :ivar digVal: Digest Value do BP-e processado. Utilizado para
             conferir a integridade do BP-e original.
-        :ivar c_stat: Código do status do BP-e.
-        :ivar x_motivo: Descrição literal do status do BP-e.
-        :ivar id:
+        :ivar cStat: Código do status do BP-e.
+        :ivar xMotivo: Descrição literal do status do BP-e.
+        :ivar Id:
         """
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             }
         )
-        ver_aplic: Optional[str] = field(
+        verAplic: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verAplic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -996,10 +949,9 @@ class TprotBpe:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        ch_bpe: Optional[str] = field(
+        chBPe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chBPe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1008,10 +960,9 @@ class TprotBpe:
                 "pattern": r"[0-9]{44}",
             }
         )
-        dh_recbto: Optional[str] = field(
+        dhRecbto: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRecbto",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1019,29 +970,26 @@ class TprotBpe:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        n_prot: Optional[str] = field(
+        nProt: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nProt",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{15}",
             }
         )
-        dig_val: Optional[bytes] = field(
+        digVal: Optional[bytes] = field(
             default=None,
             metadata={
-                "name": "digVal",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "format": "base64",
             }
         )
-        c_stat: Optional[str] = field(
+        cStat: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cStat",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1049,10 +997,9 @@ class TprotBpe:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_motivo: Optional[str] = field(
+        xMotivo: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMotivo",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1062,10 +1009,9 @@ class TprotBpe:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
             }
         )
@@ -1073,13 +1019,12 @@ class TprotBpe:
     @dataclass
     class InfFisco:
         """
-        :ivar c_msg: Código do status da mensagem do fisco
-        :ivar x_msg: Mensagem do Fisco
+        :ivar cMsg: Código do status da mensagem do fisco
+        :ivar xMsg: Mensagem do Fisco
         """
-        c_msg: Optional[str] = field(
+        cMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1087,10 +1032,9 @@ class TprotBpe:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_msg: Optional[str] = field(
+        xMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1107,26 +1051,24 @@ class Tbpe:
     """
     Tipo Bilhete de Passagem Eletrônico.
 
-    :ivar inf_bpe: Informações do BP-e
-    :ivar inf_bpe_supl: Informações suplementares do BP-e
+    :ivar infBPe: Informações do BP-e
+    :ivar infBPeSupl: Informações suplementares do BP-e
     :ivar signature:
     """
     class Meta:
         name = "TBPe"
 
-    inf_bpe: Optional["Tbpe.InfBpe"] = field(
+    infBPe: Optional["Tbpe.InfBpe"] = field(
         default=None,
         metadata={
-            "name": "infBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    inf_bpe_supl: Optional["Tbpe.InfBpeSupl"] = field(
+    infBPeSupl: Optional["Tbpe.InfBpeSupl"] = field(
         default=None,
         metadata={
-            "name": "infBPeSupl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -1150,21 +1092,21 @@ class Tbpe:
         :ivar comp: Identificação do Comprador do BP-e
         :ivar agencia: Identificação da agência/preposto/terceiro que
             comercializou o BP-e
-        :ivar inf_bpe_sub: Informações dos BP-e de Substituição para
+        :ivar infBPeSub: Informações dos BP-e de Substituição para
             remarcação e/ou transferência
-        :ivar inf_passagem: Informações do detalhamento da Passagem
-        :ivar inf_viagem: Grupo de informações da viagem do BP-e
-        :ivar inf_valor_bpe: Informações dos valores do Bilhete de
+        :ivar infPassagem: Informações do detalhamento da Passagem
+        :ivar infViagem: Grupo de informações da viagem do BP-e
+        :ivar infValorBPe: Informações dos valores do Bilhete de
             Passagem
         :ivar imp: Informações relativas aos Impostos
         :ivar pag: Dados de Pagamento.
-        :ivar aut_xml: Autorizados para download do XML do DF-e Informar
+        :ivar autXML: Autorizados para download do XML do DF-e Informar
             CNPJ ou CPF. Preencher os zeros não significativos.
-        :ivar inf_adic: Informações Adicionais
-        :ivar inf_resp_tec: Informações do Responsável Técnico pela
+        :ivar infAdic: Informações Adicionais
+        :ivar infRespTec: Informações do Responsável Técnico pela
             emissão do DF-e
         :ivar versao: Versão do leiaute Ex: "3.00"
-        :ivar id: Identificador da tag a ser assinada Informar a chave
+        :ivar Id: Identificador da tag a ser assinada Informar a chave
             de acesso do BP-e e precedida do literal "BPe"
         """
         ide: Optional["Tbpe.InfBpe.Ide"] = field(
@@ -1197,36 +1139,32 @@ class Tbpe:
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
         )
-        inf_bpe_sub: Optional["Tbpe.InfBpe.InfBpeSub"] = field(
+        infBPeSub: Optional["Tbpe.InfBpe.InfBpeSub"] = field(
             default=None,
             metadata={
-                "name": "infBPeSub",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
         )
-        inf_passagem: Optional["Tbpe.InfBpe.InfPassagem"] = field(
+        infPassagem: Optional["Tbpe.InfBpe.InfPassagem"] = field(
             default=None,
             metadata={
-                "name": "infPassagem",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             }
         )
-        inf_viagem: List["Tbpe.InfBpe.InfViagem"] = field(
+        infViagem: List["Tbpe.InfBpe.InfViagem"] = field(
             default_factory=list,
             metadata={
-                "name": "infViagem",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "min_occurs": 1,
             }
         )
-        inf_valor_bpe: Optional["Tbpe.InfBpe.InfValorBpe"] = field(
+        infValorBPe: Optional["Tbpe.InfBpe.InfValorBpe"] = field(
             default=None,
             metadata={
-                "name": "infValorBPe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -1249,27 +1187,24 @@ class Tbpe:
                 "max_occurs": 10,
             }
         )
-        aut_xml: List["Tbpe.InfBpe.AutXml"] = field(
+        autXML: List["Tbpe.InfBpe.AutXml"] = field(
             default_factory=list,
             metadata={
-                "name": "autXML",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "max_occurs": 10,
             }
         )
-        inf_adic: Optional["Tbpe.InfBpe.InfAdic"] = field(
+        infAdic: Optional["Tbpe.InfBpe.InfAdic"] = field(
             default=None,
             metadata={
-                "name": "infAdic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
         )
-        inf_resp_tec: Optional[TrespTec] = field(
+        infRespTec: Optional[TrespTec] = field(
             default=None,
             metadata={
-                "name": "infRespTec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
@@ -1283,10 +1218,9 @@ class Tbpe:
                 "pattern": r"1\.00",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"BPe[0-9]{44}",
@@ -1296,65 +1230,63 @@ class Tbpe:
         @dataclass
         class Ide:
             """
-            :ivar c_uf: Código da UF do emitente do BP-e Código da UF do
+            :ivar cUF: Código da UF do emitente do BP-e Código da UF do
                 emitente do Documento Fiscal. Utilizar a Tabela do IBGE
                 de código de unidades da federação.
-            :ivar tp_amb: Tipo do Ambiente 1 - Produção 2 - Homologação
+            :ivar tpAmb: Tipo do Ambiente 1 - Produção 2 - Homologação
             :ivar mod: Modelo do Bilhete de Passagem Utilizar o código
                 63 para identificação do BP-e
             :ivar serie: Série do documento fiscal Informar a série do
                 documento fiscal (informar zero se inexistente).
-            :ivar n_bp: Número do bilhete de passagem Número que
+            :ivar nBP: Número do bilhete de passagem Número que
                 identifica o bilhete 1 a 999999999.
-            :ivar c_bp: Código numérico que compõe a Chave de Acesso.
+            :ivar cBP: Código numérico que compõe a Chave de Acesso.
                 Código aleatório gerado pelo emitente, com o objetivo de
                 evitar acessos indevidos ao documento.
-            :ivar c_dv: Digito verificador da chave de acesso Informar o
+            :ivar cDV: Digito verificador da chave de acesso Informar o
                 dígito  de controle da chave de acesso do BP-e, que deve
                 ser calculado com a aplicação do algoritmo módulo 11
                 (base 2,9) da chave de acesso.
             :ivar modal: Modalidade de transporte 1 - Rodoviário; 3 -
                 Aquaviário; 4 - Ferroviário.
-            :ivar dh_emi: Data e hora de emissão do Bilhete de Passagem
+            :ivar dhEmi: Data e hora de emissão do Bilhete de Passagem
                 Formato AAAA-MM-DDTHH:MM:DD TZD
-            :ivar tp_emis: Forma de emissão do Bilhete (Normal ou
+            :ivar tpEmis: Forma de emissão do Bilhete (Normal ou
                 Contingência Off-Line) 1 - Normal ; 2 - Contingência
                 Off-Line
-            :ivar ver_proc: Versão do processo de emissão Informar a
+            :ivar verProc: Versão do processo de emissão Informar a
                 versão do aplicativo emissor de BP-e.
-            :ivar tp_bpe: Tipo do BP-e 0 - BP-e normal 3 - BP-e
+            :ivar tpBPe: Tipo do BP-e 0 - BP-e normal 3 - BP-e
                 substituição
-            :ivar ind_pres: Indicador de presença do comprador no
+            :ivar indPres: Indicador de presença do comprador no
                 estabelecimento comercial no momento da operação
                 1=Operação presencial não embarcado; 2=Operação não
                 presencial, pela Internet; 3=Operação não presencial,
                 Teleatendimento; 4=BP-e em operação com entrega a
                 domicílio; 5=Operação presencial embarcada; 9=Operação
                 não presencial, outros.
-            :ivar ufini: Sigla da UF Início da Viagem Utilizar a Tabela
+            :ivar UFIni: Sigla da UF Início da Viagem Utilizar a Tabela
                 do IBGE de código de unidades da federação
-            :ivar c_mun_ini: Código do município do início da viagem
-            :ivar uffim: Sigla da UF do Fim da Viagem Utilizar a Tabela
+            :ivar cMunIni: Código do município do início da viagem
+            :ivar UFFim: Sigla da UF do Fim da Viagem Utilizar a Tabela
                 do IBGE de código de unidades da federação. Informar
                 'EX' para operações com o exterior.
-            :ivar c_mun_fim: Código do município do fim da viagem
-            :ivar dh_cont: Data e Hora da entrada em contingência
+            :ivar cMunFim: Código do município do fim da viagem
+            :ivar dhCont: Data e Hora da entrada em contingência
                 Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
-            :ivar x_just: Justificativa da entrada em contingência
+            :ivar xJust: Justificativa da entrada em contingência
             """
-            c_uf: Optional[TcodUfIbge] = field(
+            cUF: Optional[TcodUfIbge] = field(
                 default=None,
                 metadata={
-                    "name": "cUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            tp_amb: Optional[Tamb] = field(
+            tpAmb: Optional[Tamb] = field(
                 default=None,
                 metadata={
-                    "name": "tpAmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1378,10 +1310,9 @@ class Tbpe:
                     "pattern": r"0|[1-9]{1}[0-9]{0,2}",
                 }
             )
-            n_bp: Optional[str] = field(
+            nBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1389,10 +1320,9 @@ class Tbpe:
                     "pattern": r"[1-9]{1}[0-9]{0,8}",
                 }
             )
-            c_bp: Optional[str] = field(
+            cBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1400,10 +1330,9 @@ class Tbpe:
                     "pattern": r"[0-9]{8}",
                 }
             )
-            c_dv: Optional[str] = field(
+            cDV: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDV",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1419,10 +1348,9 @@ class Tbpe:
                     "required": True,
                 }
             )
-            dh_emi: Optional[str] = field(
+            dhEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1430,20 +1358,18 @@ class Tbpe:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_emis: Optional[IdeTpEmis] = field(
+            tpEmis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
-                    "name": "tpEmis",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ver_proc: Optional[str] = field(
+            verProc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "verProc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1453,37 +1379,33 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            tp_bpe: Optional[TtipoBpe] = field(
+            tpBPe: Optional[TtipoBpe] = field(
                 default=None,
                 metadata={
-                    "name": "tpBPe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            ind_pres: Optional[TindPres] = field(
+            indPres: Optional[TindPres] = field(
                 default=None,
                 metadata={
-                    "name": "indPres",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            ufini: Optional[TufSemEx] = field(
+            UFIni: Optional[TufSemEx] = field(
                 default=None,
                 metadata={
-                    "name": "UFIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            c_mun_ini: Optional[str] = field(
+            cMunIni: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1491,19 +1413,17 @@ class Tbpe:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            uffim: Optional[Tuf] = field(
+            UFFim: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            c_mun_fim: Optional[str] = field(
+            cMunFim: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1511,20 +1431,18 @@ class Tbpe:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            dh_cont: Optional[str] = field(
+            dhCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 15,
@@ -1537,27 +1455,26 @@ class Tbpe:
         @dataclass
         class Emit:
             """
-            :ivar cnpj: CNPJ do emitente Informar zeros não
+            :ivar CNPJ: CNPJ do emitente Informar zeros não
                 significativos
-            :ivar ie: Inscrição Estadual do emitente
-            :ivar iest: Inscrição Estadual do Substituto Tributário
-            :ivar x_nome: Razão social ou Nome do emitente
-            :ivar x_fant: Nome fantasia do emitente
-            :ivar im: Inscrição Municipal
-            :ivar cnae: CNAE Fiscal
-            :ivar crt: Código de Regime Tributário. Este campo será
+            :ivar IE: Inscrição Estadual do emitente
+            :ivar IEST: Inscrição Estadual do Substituto Tributário
+            :ivar xNome: Razão social ou Nome do emitente
+            :ivar xFant: Nome fantasia do emitente
+            :ivar IM: Inscrição Municipal
+            :ivar CNAE: CNAE Fiscal
+            :ivar CRT: Código de Regime Tributário. Este campo será
                 obrigatoriamente preenchido com: 1 – Simples Nacional; 2
                 – Simples Nacional – excesso de sublimite de receita
                 bruta; 3 – Regime Normal.
-            :ivar ender_emit: Endereço do emitente
-            :ivar tar: Termo de Autorização de Serviço Regular Registro
+            :ivar enderEmit: Endereço do emitente
+            :ivar TAR: Termo de Autorização de Serviço Regular Registro
                 obrigatório do emitente do BP-e junto à ANTT para
                 exercer a atividade
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1565,10 +1482,9 @@ class Tbpe:
                     "pattern": r"[0-9]{14}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1576,20 +1492,18 @@ class Tbpe:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            iest: Optional[str] = field(
+            IEST: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IEST",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1599,10 +1513,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -1611,10 +1524,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            im: Optional[str] = field(
+            IM: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IM",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -1623,39 +1535,35 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            cnae: Optional[str] = field(
+            CNAE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNAE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{7}",
                 }
             )
-            crt: Optional[EmitCrt] = field(
+            CRT: Optional[EmitCrt] = field(
                 default=None,
                 metadata={
-                    "name": "CRT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ender_emit: Optional[TendeEmi] = field(
+            enderEmit: Optional[TendeEmi] = field(
                 default=None,
                 metadata={
-                    "name": "enderEmit",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            tar: Optional[str] = field(
+            TAR: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "TAR",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -1667,25 +1575,24 @@ class Tbpe:
         @dataclass
         class Comp:
             """
-            :ivar x_nome: Razão social ou Nome do comprador
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar xNome: Razão social ou Nome do comprador
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar id_estrangeiro: Identificador do comprador em caso de
+            :ivar idEstrangeiro: Identificador do comprador em caso de
                 comprador estrangeiro
-            :ivar ie: Inscrição Estadual Informar a IE do remetente ou
+            :ivar IE: Inscrição Estadual Informar a IE do remetente ou
                 ISENTO se remetente é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 remetente não seja contribuinte do ICMS não informar a
                 tag.
-            :ivar ender_comp: Endereço do comprador
+            :ivar enderComp: Endereço do comprador
             """
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1695,50 +1602,45 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            id_estrangeiro: Optional[str] = field(
+            idEstrangeiro: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "idEstrangeiro",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"([!-ÿ]{0}|[!-ÿ]{5,20})?",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0,14}|ISENTO|PR[0-9]{4,8}",
                 }
             )
-            ender_comp: Optional[Tendereco] = field(
+            enderComp: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderComp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1748,16 +1650,15 @@ class Tbpe:
         @dataclass
         class Agencia:
             """
-            :ivar x_nome: Razão social ou Nome da Agência
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar xNome: Razão social ou Nome da Agência
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar ender_agencia: Endereço da agência
+            :ivar enderAgencia: Endereço da agência
             """
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1767,10 +1668,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1778,10 +1678,9 @@ class Tbpe:
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            ender_agencia: Optional[Tendereco] = field(
+            enderAgencia: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderAgencia",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1791,15 +1690,14 @@ class Tbpe:
         @dataclass
         class InfBpeSub:
             """
-            :ivar ch_bpe: Chave do Bilhete de Passagem Substituido
+            :ivar chBPe: Chave do Bilhete de Passagem Substituido
                 Informar os zeros não significativos.
-            :ivar tp_sub: Tipo de Substituição 1 - Remarcação 2 -
+            :ivar tpSub: Tipo de Substituição 1 - Remarcação 2 -
                 Transferência 3 - Transferência e Remarcação
             """
-            ch_bpe: Optional[str] = field(
+            chBPe: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "chBPe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1808,10 +1706,9 @@ class Tbpe:
                     "pattern": r"[0-9]{44}",
                 }
             )
-            tp_sub: Optional[TtipoSubstituicao] = field(
+            tpSub: Optional[TtipoSubstituicao] = field(
                 default=None,
                 metadata={
-                    "name": "tpSub",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1821,20 +1718,19 @@ class Tbpe:
         @dataclass
         class InfPassagem:
             """
-            :ivar c_loc_orig: Código da Localidade de Origem
-            :ivar x_loc_orig: Descrição da Localidade de Origem
-            :ivar c_loc_dest:
-            :ivar x_loc_dest: Descrição da Localidade de Destino
-            :ivar dh_emb: Data e hora de embarque Formato AAAA-MM-
+            :ivar cLocOrig: Código da Localidade de Origem
+            :ivar xLocOrig: Descrição da Localidade de Origem
+            :ivar cLocDest:
+            :ivar xLocDest: Descrição da Localidade de Destino
+            :ivar dhEmb: Data e hora de embarque Formato AAAA-MM-
                 DDTHH:MM:DD TZD
-            :ivar dh_validade: Data e hora de validade do bilhete
-                Formato AAAA-MM-DDTHH:MM:DD TZD
-            :ivar inf_passageiro: Informações do passageiro
+            :ivar dhValidade: Data e hora de validade do bilhete Formato
+                AAAA-MM-DDTHH:MM:DD TZD
+            :ivar infPassageiro: Informações do passageiro
             """
-            c_loc_orig: Optional[str] = field(
+            cLocOrig: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cLocOrig",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1843,10 +1739,9 @@ class Tbpe:
                     "white_space": "preserve",
                 }
             )
-            x_loc_orig: Optional[str] = field(
+            xLocOrig: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xLocOrig",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1856,10 +1751,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            c_loc_dest: Optional[str] = field(
+            cLocDest: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cLocDest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1868,10 +1762,9 @@ class Tbpe:
                     "white_space": "preserve",
                 }
             )
-            x_loc_dest: Optional[str] = field(
+            xLocDest: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xLocDest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1881,10 +1774,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            dh_emb: Optional[str] = field(
+            dhEmb: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1892,10 +1784,9 @@ class Tbpe:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            dh_validade: Optional[str] = field(
+            dhValidade: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhValidade",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -1903,10 +1794,9 @@ class Tbpe:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            inf_passageiro: Optional["Tbpe.InfBpe.InfPassagem.InfPassageiro"] = field(
+            infPassageiro: Optional["Tbpe.InfBpe.InfPassagem.InfPassageiro"] = field(
                 default=None,
                 metadata={
-                    "name": "infPassageiro",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                 }
@@ -1915,21 +1805,20 @@ class Tbpe:
             @dataclass
             class InfPassageiro:
                 """
-                :ivar x_nome: Nome do Passageiro
-                :ivar cpf: Número do CPF Informar os zeros não
+                :ivar xNome: Nome do Passageiro
+                :ivar CPF: Número do CPF Informar os zeros não
                     significativos.
-                :ivar tp_doc: Tipo do Documento de identificação 1-RG
+                :ivar tpDoc: Tipo do Documento de identificação 1-RG
                     2-Título de Eleitor 3-Passaporte 4-CNH 5-Outros
-                :ivar n_doc: Número do Documento do passageiro
-                :ivar x_doc: Descrição do tipo de documento "outros"
-                :ivar d_nasc: Data de Nascimento Formato AAAA-MM-DD
+                :ivar nDoc: Número do Documento do passageiro
+                :ivar xDoc: Descrição do tipo de documento "outros"
+                :ivar dNasc: Data de Nascimento Formato AAAA-MM-DD
                 :ivar fone: Telefone
                 :ivar email: Endereço de E-mail
                 """
-                x_nome: Optional[str] = field(
+                xNome: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xNome",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -1939,29 +1828,26 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                cpf: Optional[str] = field(
+                CPF: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CPF",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{11}",
                     }
                 )
-                tp_doc: Optional[Tdoc] = field(
+                tpDoc: Optional[Tdoc] = field(
                     default=None,
                     metadata={
-                        "name": "tpDoc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
                     }
                 )
-                n_doc: Optional[str] = field(
+                nDoc: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nDoc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -1971,10 +1857,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_doc: Optional[str] = field(
+                xDoc: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xDoc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 2,
@@ -1983,10 +1868,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                d_nasc: Optional[str] = field(
+                dNasc: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "dNasc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "white_space": "preserve",
@@ -2017,34 +1901,33 @@ class Tbpe:
         @dataclass
         class InfViagem:
             """
-            :ivar c_percurso: Código do percurso da viagem
-            :ivar x_percurso: Descrição do Percurso da viagem
-            :ivar tp_viagem: Tipo de Viagem Informa o código do tipo da
+            :ivar cPercurso: Código do percurso da viagem
+            :ivar xPercurso: Descrição do Percurso da viagem
+            :ivar tpViagem: Tipo de Viagem Informa o código do tipo da
                 viagem (00-regular, 01-extra)
-            :ivar tp_serv: Tipo de Serviço Informar o código do tipo de
+            :ivar tpServ: Tipo de Serviço Informar o código do tipo de
                 serviço (1-Convencional com sanitário, 2-Convencional
                 sem sanitário, 3-Semileito, 4-Leito com ar condicionado,
                 5-Leito sem ar condicionado, 6-Executivo, 7-Semiurbano,
                 8-Longitudinal, 9-Travessia, 10-Cama, 11-Micro-onibus)
-            :ivar tp_acomodacao: Tipo de Acomodação Informar o código do
+            :ivar tpAcomodacao: Tipo de Acomodação Informar o código do
                 tipo de acomodação (1-Assento/poltrona, 2-Rede, 3-Rede
                 com ar-condicionado, 4-Cabine, 5-Outros)
-            :ivar tp_trecho: Tipo de trecho da viagem Informar do tipo
-                de trecho (1-Normal, 2-Trecho Inicial, 3-Conexão)
-            :ivar dh_viagem: Data e hora de referencia para a viagem
+            :ivar tpTrecho: Tipo de trecho da viagem Informar do tipo de
+                trecho (1-Normal, 2-Trecho Inicial, 3-Conexão)
+            :ivar dhViagem: Data e hora de referencia para a viagem
                 Formato AAAA-MM-DDTHH:MM:DD TZD
-            :ivar dh_conexao: Data e hora da conexão Informar se
-                tpTrecho = 3 Formato AAAA-MM-DDTHH:MM:DD TZD
+            :ivar dhConexao: Data e hora da conexão Informar se tpTrecho
+                = 3 Formato AAAA-MM-DDTHH:MM:DD TZD
             :ivar prefixo: Prefixo da linha
             :ivar poltrona: Número da Poltrona / assento / cabine
             :ivar plataforma: Plataforma/carro/barco de Embarque
-            :ivar inf_travessia: Informações do transporte aquaviário de
+            :ivar infTravessia: Informações do transporte aquaviário de
                 travessia
             """
-            c_percurso: Optional[str] = field(
+            cPercurso: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cPercurso",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2053,10 +1936,9 @@ class Tbpe:
                     "white_space": "preserve",
                 }
             )
-            x_percurso: Optional[str] = field(
+            xPercurso: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xPercurso",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2066,50 +1948,45 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            tp_viagem: Optional[InfViagemTpViagem] = field(
+            tpViagem: Optional[InfViagemTpViagem] = field(
                 default=None,
                 metadata={
-                    "name": "tpViagem",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_serv: Optional[InfViagemTpServ] = field(
+            tpServ: Optional[InfViagemTpServ] = field(
                 default=None,
                 metadata={
-                    "name": "tpServ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_acomodacao: Optional[InfViagemTpAcomodacao] = field(
+            tpAcomodacao: Optional[InfViagemTpAcomodacao] = field(
                 default=None,
                 metadata={
-                    "name": "tpAcomodacao",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_trecho: Optional[InfViagemTpTrecho] = field(
+            tpTrecho: Optional[InfViagemTpTrecho] = field(
                 default=None,
                 metadata={
-                    "name": "tpTrecho",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            dh_viagem: Optional[str] = field(
+            dhViagem: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhViagem",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2117,10 +1994,9 @@ class Tbpe:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            dh_conexao: Optional[str] = field(
+            dhConexao: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhConexao",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
@@ -2159,10 +2035,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            inf_travessia: Optional["Tbpe.InfBpe.InfViagem.InfTravessia"] = field(
+            infTravessia: Optional["Tbpe.InfBpe.InfViagem.InfTravessia"] = field(
                 default=None,
                 metadata={
-                    "name": "infTravessia",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                 }
@@ -2171,7 +2046,7 @@ class Tbpe:
             @dataclass
             class InfTravessia:
                 """
-                :ivar tp_veiculo: Tipo do veículo transportado
+                :ivar tpVeiculo: Tipo do veículo transportado
                     01-Motocicleta 02-Automóvel 03-Automóvel com reboque
                     04-Caminhonete 05-Caminhonete com reboque 06-Micro-
                     onibus 07-Van 08-Ônibus - 2 ou 3 eixos 09-Ônibus 4
@@ -2183,23 +2058,21 @@ class Tbpe:
                     Pneu Grande 24-Trator de Pneu com reboque 25-Trator
                     de Pneu sem reboque 26-Carroça 27-Mobilete
                     28-Bicicleta 29-Passageiro 99-Outros
-                :ivar sit_veiculo: Situação do veículo transportado 01 -
+                :ivar sitVeiculo: Situação do veículo transportado 01 -
                     Vazio; 02 - Carregado; 03 - Não se aplica
                 """
-                tp_veiculo: Optional[InfTravessiaTpVeiculo] = field(
+                tpVeiculo: Optional[InfTravessiaTpVeiculo] = field(
                     default=None,
                     metadata={
-                        "name": "tpVeiculo",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
                         "white_space": "preserve",
                     }
                 )
-                sit_veiculo: Optional[InfTravessiaSitVeiculo] = field(
+                sitVeiculo: Optional[InfTravessiaSitVeiculo] = field(
                     default=None,
                     metadata={
-                        "name": "sitVeiculo",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2210,30 +2083,29 @@ class Tbpe:
         @dataclass
         class InfValorBpe:
             """
-            :ivar v_bp: Valor do Bilhete de Passagem Pode conter zeros
+            :ivar vBP: Valor do Bilhete de Passagem Pode conter zeros
                 quando o BP-e for de complemento de ICMS
-            :ivar v_desconto: Valor do desconto concedido ao comprador
+            :ivar vDesconto: Valor do desconto concedido ao comprador
                 Indicar o valor total concedido em função dos benefícios
                 concedidos ou política de desconto da empresa Informar
                 0.00 em caso de passagem comercializada sem nenhum
                 desconto
-            :ivar v_pgto: Valor pago pelo BP-e (vBP - vDesconto)
-            :ivar v_troco: Valor do troco
-            :ivar tp_desconto: Tipo de desconto/benefício para o BP-e 01
+            :ivar vPgto: Valor pago pelo BP-e (vBP - vDesconto)
+            :ivar vTroco: Valor do troco
+            :ivar tpDesconto: Tipo de desconto/benefício para o BP-e 01
                 - Tarifa promocional 02 - Idoso 03 - Criança 04 -
                 Deficiente 05 - Estudante 06 - Animal Doméstico 07 -
                 Acordo Coletivo 08 - Profissional em Deslocamento 09 -
                 Profissional da Empresa 10 - Jovem 99 - Outros
-            :ivar x_desconto: Descrição do tipo de desconto/benefício
+            :ivar xDesconto: Descrição do tipo de desconto/benefício
                 concedido
-            :ivar c_desconto: Código do desconto quando informado com
+            :ivar cDesconto: Código do desconto quando informado com
                 tipo 99 - Outros
-            :ivar comp: Componentes do Valor do Bilhete
+            :ivar Comp: Componentes do Valor do Bilhete
             """
-            v_bp: Optional[str] = field(
+            vBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2241,10 +2113,9 @@ class Tbpe:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            v_desconto: Optional[str] = field(
+            vDesconto: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vDesconto",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2252,10 +2123,9 @@ class Tbpe:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            v_pgto: Optional[str] = field(
+            vPgto: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vPgto",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2263,10 +2133,9 @@ class Tbpe:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            v_troco: Optional[str] = field(
+            vTroco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTroco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2274,19 +2143,17 @@ class Tbpe:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            tp_desconto: Optional[InfValorBpeTpDesconto] = field(
+            tpDesconto: Optional[InfValorBpeTpDesconto] = field(
                 default=None,
                 metadata={
-                    "name": "tpDesconto",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                 }
             )
-            x_desconto: Optional[str] = field(
+            xDesconto: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xDesconto",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 2,
@@ -2295,10 +2162,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            c_desconto: Optional[str] = field(
+            cDesconto: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDesconto",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 2,
@@ -2307,10 +2173,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            comp: List["Tbpe.InfBpe.InfValorBpe.Comp"] = field(
+            Comp: List["Tbpe.InfBpe.InfValorBpe.Comp"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_occurs": 1,
@@ -2320,26 +2185,24 @@ class Tbpe:
             @dataclass
             class Comp:
                 """
-                :ivar tp_comp: Tipo do Componente 01 - TARIFA; 02 -
+                :ivar tpComp: Tipo do Componente 01 - TARIFA; 02 -
                     PEDÁGIO; 03 - TAXA EMBARQUE; 04 - SEGURO; 05-TAXA DE
                     MANUTENÇÃO RODOVIA (TMR); 06 - SERVIÇO DE VENDA
                     INTEGRADA (SVI); 99 - OUTROS
-                :ivar v_comp: Valor do componente
+                :ivar vComp: Valor do componente
                 """
-                tp_comp: Optional[CompTpComp] = field(
+                tpComp: Optional[CompTpComp] = field(
                     default=None,
                     metadata={
-                        "name": "tpComp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
                         "white_space": "preserve",
                     }
                 )
-                v_comp: Optional[str] = field(
+                vComp: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vComp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2351,40 +2214,37 @@ class Tbpe:
         @dataclass
         class Imp:
             """
-            :ivar icms: Informações relativas ao ICMS
-            :ivar v_tot_trib: Valor Total dos Tributos
-            :ivar inf_ad_fisco: Informações adicionais de interesse do
+            :ivar ICMS: Informações relativas ao ICMS
+            :ivar vTotTrib: Valor Total dos Tributos
+            :ivar infAdFisco: Informações adicionais de interesse do
                 Fisco Norma referenciada, informações complementares,
                 etc
-            :ivar icmsuffim: Informações do ICMS de partilha com a UF de
+            :ivar ICMSUFFim: Informações do ICMS de partilha com a UF de
                 término do serviço de transporte na operação
                 interestadual Grupo a ser informado nas prestações
                 interestaduais para consumidor final, não contribuinte
                 do ICMS
             """
-            icms: Optional[Timp] = field(
+            ICMS: Optional[Timp] = field(
                 default=None,
                 metadata={
-                    "name": "ICMS",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            v_tot_trib: Optional[str] = field(
+            vTotTrib: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTotTrib",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            inf_ad_fisco: Optional[str] = field(
+            infAdFisco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infAdFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -2393,10 +2253,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            icmsuffim: Optional["Tbpe.InfBpe.Imp.Icmsuffim"] = field(
+            ICMSUFFim: Optional["Tbpe.InfBpe.Imp.Icmsuffim"] = field(
                 default=None,
                 metadata={
-                    "name": "ICMSUFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                 }
@@ -2405,27 +2264,25 @@ class Tbpe:
             @dataclass
             class Icmsuffim:
                 """
-                :ivar v_bcuffim: Valor da BC do ICMS na UF fim da viagem
-                :ivar p_fcpuffim: Percentual do ICMS relativo ao Fundo
-                    de Combate à pobreza (FCP) na UF fim da viagem
+                :ivar vBCUFFim: Valor da BC do ICMS na UF fim da viagem
+                :ivar pFCPUFFim: Percentual do ICMS relativo ao Fundo de
+                    Combate à pobreza (FCP) na UF fim da viagem Alíquota
+                    adotada nas operações internas na UF do destinatário
+                :ivar pICMSUFFim: Alíquota interna da UF fim da viagem
                     Alíquota adotada nas operações internas na UF do
                     destinatário
-                :ivar p_icmsuffim: Alíquota interna da UF fim da viagem
-                    Alíquota adotada nas operações internas na UF do
-                    destinatário
-                :ivar p_icmsinter: Alíquota interestadual das UF
+                :ivar pICMSInter: Alíquota interestadual das UF
                     envolvidas Alíquota interestadual das UF envolvidas
-                :ivar v_fcpuffim: Valor do ICMS relativo ao Fundo de
+                :ivar vFCPUFFim: Valor do ICMS relativo ao Fundo de
                     Combate á Pobreza (FCP) da UF fim da viagem
-                :ivar v_icmsuffim: Valor do ICMS de partilha para a UF
+                :ivar vICMSUFFim: Valor do ICMS de partilha para a UF
                     fim da viagem
-                :ivar v_icmsufini: Valor do ICMS de partilha para a UF
+                :ivar vICMSUFIni: Valor do ICMS de partilha para a UF
                     início da viagem
                 """
-                v_bcuffim: Optional[str] = field(
+                vBCUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vBCUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2433,10 +2290,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                p_fcpuffim: Optional[str] = field(
+                pFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2444,10 +2300,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsuffim: Optional[str] = field(
+                pICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2455,10 +2310,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsinter: Optional[str] = field(
+                pICMSInter: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSInter",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2466,10 +2320,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                v_fcpuffim: Optional[str] = field(
+                vFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2477,10 +2330,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsuffim: Optional[str] = field(
+                vICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2488,10 +2340,9 @@ class Tbpe:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsufini: Optional[str] = field(
+                vICMSUFIni: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFIni",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -2503,30 +2354,28 @@ class Tbpe:
         @dataclass
         class Pag:
             """
-            :ivar t_pag: Forma de
+            :ivar tPag: Forma de
                 Pagamento:01-Dinheiro;02-Cheque;03-Cartão de
                 Crédito;04-Cartão de Débito;05-Vale Transportel;06 -
                 PIX; 99 - Outros
-            :ivar x_pag: Descrição da forma de pagamento 99 - Outros
-            :ivar n_doc_pag: Número do documento ou carteira apresentada
+            :ivar xPag: Descrição da forma de pagamento 99 - Outros
+            :ivar nDocPag: Número do documento ou carteira apresentada
                 nas formas de pagamento diferentes de 03 e 04
-            :ivar v_pag: Valor do Pagamento
+            :ivar vPag: Valor do Pagamento
             :ivar card: Grupo de Cartões
             """
-            t_pag: Optional[PagTPag] = field(
+            tPag: Optional[PagTPag] = field(
                 default=None,
                 metadata={
-                    "name": "tPag",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            x_pag: Optional[str] = field(
+            xPag: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xPag",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 2,
@@ -2535,10 +2384,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            n_doc_pag: Optional[str] = field(
+            nDocPag: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nDocPag",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 2,
@@ -2547,10 +2395,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            v_pag: Optional[str] = field(
+            vPag: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vPag",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2569,62 +2416,58 @@ class Tbpe:
             @dataclass
             class Card:
                 """
-                :ivar tp_integra: Tipo de Integração do processo de
+                :ivar tpIntegra: Tipo de Integração do processo de
                     pagamento com o sistema de automação da empresa
                     1=Pagamento integrado com o sistema de automação da
                     empresa Ex. equipamento TEF , Comercio Eletronico
                     2=Pagamento não integrado com o sistema de automação
                     da empresa Ex: equipamento POS
-                :ivar cnpj: CNPJ da credenciadora de cartão de
+                :ivar CNPJ: CNPJ da credenciadora de cartão de
                     crédito/débito
-                :ivar t_band: Bandeira da operadora de cartão de
+                :ivar tBand: Bandeira da operadora de cartão de
                     crédito/débito 01–Visa; 02–Mastercard; 03–American
                     Express; 04–Sorocred; 05 - Elo; 06 - Diners;
                     99–Outros
-                :ivar x_band: Descrição da operador de cartão para 99 -
+                :ivar xBand: Descrição da operador de cartão para 99 -
                     Outros
-                :ivar c_aut: Número de autorização da operação cartão de
+                :ivar cAut: Número de autorização da operação cartão de
                     crédito/débito
-                :ivar nsu_trans: Número sequencial único da transação
-                :ivar nsu_host: Número sequencial único do Host
-                :ivar n_parcelas: Número de parcelas
-                :ivar inf_ad_card: Informações adicionais operacionais
+                :ivar nsuTrans: Número sequencial único da transação
+                :ivar nsuHost: Número sequencial único do Host
+                :ivar nParcelas: Número de parcelas
+                :ivar infAdCard: Informações adicionais operacionais
                     para integração do cartão de crédito Norma
                     referenciada, informações complementares, etc
                 """
-                tp_integra: Optional[CardTpIntegra] = field(
+                tpIntegra: Optional[CardTpIntegra] = field(
                     default=None,
                     metadata={
-                        "name": "tpIntegra",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
                         "white_space": "preserve",
                     }
                 )
-                cnpj: Optional[str] = field(
+                CNPJ: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CNPJ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{14}",
                     }
                 )
-                t_band: Optional[CardTBand] = field(
+                tBand: Optional[CardTBand] = field(
                     default=None,
                     metadata={
-                        "name": "tBand",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "white_space": "preserve",
                     }
                 )
-                x_band: Optional[str] = field(
+                xBand: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xBand",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 2,
@@ -2633,10 +2476,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                c_aut: Optional[str] = field(
+                cAut: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "cAut",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -2645,10 +2487,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                nsu_trans: Optional[str] = field(
+                nsuTrans: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nsuTrans",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -2657,10 +2498,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                nsu_host: Optional[str] = field(
+                nsuHost: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nsuHost",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -2669,10 +2509,9 @@ class Tbpe:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                n_parcelas: Optional[str] = field(
+                nParcelas: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nParcelas",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -2681,10 +2520,9 @@ class Tbpe:
                         "pattern": r"[0-9]{3}",
                     }
                 )
-                inf_ad_card: Optional[str] = field(
+                infAdCard: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "infAdCard",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -2697,25 +2535,23 @@ class Tbpe:
         @dataclass
         class AutXml:
             """
-            :ivar cnpj: CNPJ do autorizado Informar zeros não
+            :ivar CNPJ: CNPJ do autorizado Informar zeros não
                 significativos
-            :ivar cpf: CPF do autorizado Informar zeros não
+            :ivar CPF: CPF do autorizado Informar zeros não
                 significativos
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
@@ -2726,16 +2562,15 @@ class Tbpe:
         @dataclass
         class InfAdic:
             """
-            :ivar inf_ad_fisco: Informações adicionais de interesse do
+            :ivar infAdFisco: Informações adicionais de interesse do
                 Fisco Norma referenciada, informações complementares,
                 etc
-            :ivar inf_cpl: Informações complementares de interesse do
+            :ivar infCpl: Informações complementares de interesse do
                 Contribuinte
             """
-            inf_ad_fisco: Optional[str] = field(
+            infAdFisco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infAdFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -2744,10 +2579,9 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            inf_cpl: Optional[str] = field(
+            infCpl: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infCpl",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -2760,17 +2594,16 @@ class Tbpe:
     @dataclass
     class InfBpeSupl:
         """
-        :ivar qr_cod_bpe: Texto com o QR-Code impresso no DABPE
-        :ivar board_pass_bpe: Texto contendo o boarding Pass impresso no
+        :ivar qrCodBPe: Texto com o QR-Code impresso no DABPE
+        :ivar boardPassBPe: Texto contendo o boarding Pass impresso no
             DABPE (padrão PDF417) O boarding Pass poderá ser gerado no
             padrão PDF417 e impresso no DABPE opcionalmente pelo
             emitente para colocar informações operacionais do bilhete
             e/ou prestar informações para a agência reguladora do setor
         """
-        qr_cod_bpe: Optional[str] = field(
+        qrCodBPe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "qrCodBPe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
@@ -2780,10 +2613,9 @@ class Tbpe:
                 "pattern": r"((HTTPS?|https?)://.*\?chBPe=[0-9]{44}&tpAmb=[1-2](&sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)",
             }
         )
-        board_pass_bpe: Optional[str] = field(
+        boardPassBPe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "boardPassBPe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "min_length": 50,
@@ -2799,16 +2631,15 @@ class TbpeTm:
     """
     Tipo Bilhete de Passagem Eletrônico Transporte Metropolitano.
 
-    :ivar inf_bpe: Informações do BPeTM
+    :ivar infBPe: Informações do BPeTM
     :ivar signature:
     """
     class Meta:
         name = "TBPeTM"
 
-    inf_bpe: Optional["TbpeTm.InfBpe"] = field(
+    infBPe: Optional["TbpeTm.InfBpe"] = field(
         default=None,
         metadata={
-            "name": "infBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -2829,15 +2660,15 @@ class TbpeTm:
         """
         :ivar ide: Identificação do BPe TM
         :ivar emit: Identificação do Emitente do BPe TM
-        :ivar det_bpe_tm: Grupo de informações detalhadas do BPe TM
+        :ivar detBPeTM: Grupo de informações detalhadas do BPe TM
         :ivar total: Informações dos totais do BPe TM
-        :ivar aut_xml: Autorizados para download do XML do DF-e Informar
+        :ivar autXML: Autorizados para download do XML do DF-e Informar
             CNPJ ou CPF. Preencher os zeros não significativos.
-        :ivar inf_adic: Informações Adicionais
-        :ivar inf_resp_tec: Informações do Responsável Técnico pela
+        :ivar infAdic: Informações Adicionais
+        :ivar infRespTec: Informações do Responsável Técnico pela
             emissão do DF-e
         :ivar versao: Versão do leiaute Ex: "3.00"
-        :ivar id: Identificador da tag a ser assinada Informar a chave
+        :ivar Id: Identificador da tag a ser assinada Informar a chave
             de acesso do BP-e e precedida do literal "BPe"
         """
         ide: Optional["TbpeTm.InfBpe.Ide"] = field(
@@ -2856,10 +2687,9 @@ class TbpeTm:
                 "required": True,
             }
         )
-        det_bpe_tm: List["TbpeTm.InfBpe.DetBpeTm"] = field(
+        detBPeTM: List["TbpeTm.InfBpe.DetBpeTm"] = field(
             default_factory=list,
             metadata={
-                "name": "detBPeTM",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "min_occurs": 1,
@@ -2874,27 +2704,24 @@ class TbpeTm:
                 "required": True,
             }
         )
-        aut_xml: List["TbpeTm.InfBpe.AutXml"] = field(
+        autXML: List["TbpeTm.InfBpe.AutXml"] = field(
             default_factory=list,
             metadata={
-                "name": "autXML",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "max_occurs": 10,
             }
         )
-        inf_adic: Optional["TbpeTm.InfBpe.InfAdic"] = field(
+        infAdic: Optional["TbpeTm.InfBpe.InfAdic"] = field(
             default=None,
             metadata={
-                "name": "infAdic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
         )
-        inf_resp_tec: Optional[TrespTec] = field(
+        infRespTec: Optional[TrespTec] = field(
             default=None,
             metadata={
-                "name": "infRespTec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/bpe",
             }
@@ -2908,10 +2735,9 @@ class TbpeTm:
                 "pattern": r"1\.00",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"BPe[0-9]{44}",
@@ -2921,53 +2747,51 @@ class TbpeTm:
         @dataclass
         class Ide:
             """
-            :ivar c_uf: Código da UF do emitente do BP-e Código da UF do
+            :ivar cUF: Código da UF do emitente do BP-e Código da UF do
                 emitente do Documento Fiscal. Utilizar a Tabela do IBGE
                 de código de unidades da federação.
-            :ivar tp_amb: Tipo do Ambiente 1 - Produção 2 - Homologação
+            :ivar tpAmb: Tipo do Ambiente 1 - Produção 2 - Homologação
             :ivar mod: Modelo do Bilhete de Passagem Utilizar o código
                 63 para identificação do BP-e
             :ivar serie: Série do documento fiscal Informar a série do
                 documento fiscal (informar zero se inexistente).
-            :ivar n_bp: Número do bilhete de passagem Número que
+            :ivar nBP: Número do bilhete de passagem Número que
                 identifica o bilhete 1 a 999999999.
-            :ivar c_bp: Código numérico que compõe a Chave de Acesso.
+            :ivar cBP: Código numérico que compõe a Chave de Acesso.
                 Código aleatório gerado pelo emitente, com o objetivo de
                 evitar acessos indevidos ao documento.
-            :ivar c_dv: Digito verificador da chave de acesso Informar o
+            :ivar cDV: Digito verificador da chave de acesso Informar o
                 dígito  de controle da chave de acesso do BP-e, que deve
                 ser calculado com a aplicação do algoritmo módulo 11
                 (base 2,9) da chave de acesso.
             :ivar modal: Modalidade de transporte 1 - Rodoviário; 3 -
                 Aquaviário; 4 - Ferroviário.
-            :ivar dh_emi: Data e hora de emissão do Bilhete de Passagem
+            :ivar dhEmi: Data e hora de emissão do Bilhete de Passagem
                 Formato AAAA-MM-DDTHH:MM:DD TZD
-            :ivar d_compet: Data da Competência a que se refere o
+            :ivar dCompet: Data da Competência a que se refere o
                 Transporte Metropolitano Formato AAAA-MM-DDTHH:MM:DD TZD
-            :ivar tp_emis: Forma de emissão do Bilhete (Normal ou
+            :ivar tpEmis: Forma de emissão do Bilhete (Normal ou
                 Contingência Off-Line) 1 - Normal ; 2 - Contingência
                 Off-Line
-            :ivar ver_proc: Versão do processo de emissão Informar a
+            :ivar verProc: Versão do processo de emissão Informar a
                 versão do aplicativo emissor de BP-e.
-            :ivar tp_bpe: Tipo do BP-e 4 - BP-e Transporte Metropolitano
-            :ivar cfop: Código Fiscal de Operações e Prestações
-            :ivar dh_cont: Data e Hora da entrada em contingência
+            :ivar tpBPe: Tipo do BP-e 4 - BP-e Transporte Metropolitano
+            :ivar CFOP: Código Fiscal de Operações e Prestações
+            :ivar dhCont: Data e Hora da entrada em contingência
                 Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
-            :ivar x_just: Justificativa da entrada em contingência
+            :ivar xJust: Justificativa da entrada em contingência
             """
-            c_uf: Optional[TcodUfIbge] = field(
+            cUF: Optional[TcodUfIbge] = field(
                 default=None,
                 metadata={
-                    "name": "cUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            tp_amb: Optional[Tamb] = field(
+            tpAmb: Optional[Tamb] = field(
                 default=None,
                 metadata={
-                    "name": "tpAmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -2991,10 +2815,9 @@ class TbpeTm:
                     "pattern": r"0|[1-9]{1}[0-9]{0,2}",
                 }
             )
-            n_bp: Optional[str] = field(
+            nBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3002,10 +2825,9 @@ class TbpeTm:
                     "pattern": r"[1-9]{1}[0-9]{0,8}",
                 }
             )
-            c_bp: Optional[str] = field(
+            cBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3013,10 +2835,9 @@ class TbpeTm:
                     "pattern": r"[0-9]{8}",
                 }
             )
-            c_dv: Optional[str] = field(
+            cDV: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDV",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3032,10 +2853,9 @@ class TbpeTm:
                     "required": True,
                 }
             )
-            dh_emi: Optional[str] = field(
+            dhEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3043,10 +2863,9 @@ class TbpeTm:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            d_compet: Optional[str] = field(
+            dCompet: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dCompet",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3054,20 +2873,18 @@ class TbpeTm:
                     "pattern": r"((((20|19|18)(([02468][048])|([13579][26]))-02-29))|((20|19|18)[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                 }
             )
-            tp_emis: Optional[IdeTpEmis] = field(
+            tpEmis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
-                    "name": "tpEmis",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ver_proc: Optional[str] = field(
+            verProc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "verProc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3077,19 +2894,17 @@ class TbpeTm:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            tp_bpe: Optional[TtipoBpeTm] = field(
+            tpBPe: Optional[TtipoBpeTm] = field(
                 default=None,
                 metadata={
-                    "name": "tpBPe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            cfop: Optional[str] = field(
+            CFOP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CFOP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3097,20 +2912,18 @@ class TbpeTm:
                     "pattern": r"[123567][0-9]([0-9][1-9]|[1-9][0-9])",
                 }
             )
-            dh_cont: Optional[str] = field(
+            dhCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 15,
@@ -3123,27 +2936,26 @@ class TbpeTm:
         @dataclass
         class Emit:
             """
-            :ivar cnpj: CNPJ do emitente Informar zeros não
+            :ivar CNPJ: CNPJ do emitente Informar zeros não
                 significativos
-            :ivar ie: Inscrição Estadual do emitente
-            :ivar iest: Inscrição Estadual do Substituto Tributário
-            :ivar x_nome: Razão social ou Nome do emitente
-            :ivar x_fant: Nome fantasia do emitente
-            :ivar im: Inscrição Municipal
-            :ivar cnae: CNAE Fiscal
-            :ivar crt: Código de Regime Tributário. Este campo será
+            :ivar IE: Inscrição Estadual do emitente
+            :ivar IEST: Inscrição Estadual do Substituto Tributário
+            :ivar xNome: Razão social ou Nome do emitente
+            :ivar xFant: Nome fantasia do emitente
+            :ivar IM: Inscrição Municipal
+            :ivar CNAE: CNAE Fiscal
+            :ivar CRT: Código de Regime Tributário. Este campo será
                 obrigatoriamente preenchido com: 1 – Simples Nacional; 2
                 – Simples Nacional – excesso de sublimite de receita
                 bruta; 3 – Regime Normal.
-            :ivar ender_emit: Endereço do emitente
-            :ivar tar: Termo de Autorização de Serviço Regular Registro
+            :ivar enderEmit: Endereço do emitente
+            :ivar TAR: Termo de Autorização de Serviço Regular Registro
                 obrigatório do emitente do BP-e junto à ANTT para
                 exercer a atividade
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3151,10 +2963,9 @@ class TbpeTm:
                     "pattern": r"[0-9]{14}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3162,20 +2973,18 @@ class TbpeTm:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            iest: Optional[str] = field(
+            IEST: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IEST",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3185,10 +2994,9 @@ class TbpeTm:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -3197,10 +3005,9 @@ class TbpeTm:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            im: Optional[str] = field(
+            IM: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IM",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -3209,39 +3016,35 @@ class TbpeTm:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            cnae: Optional[str] = field(
+            CNAE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNAE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{7}",
                 }
             )
-            crt: Optional[EmitCrt] = field(
+            CRT: Optional[EmitCrt] = field(
                 default=None,
                 metadata={
-                    "name": "CRT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ender_emit: Optional[TendeEmi] = field(
+            enderEmit: Optional[TendeEmi] = field(
                 default=None,
                 metadata={
-                    "name": "enderEmit",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            tar: Optional[str] = field(
+            TAR: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "TAR",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -3253,28 +3056,26 @@ class TbpeTm:
         @dataclass
         class DetBpeTm:
             """
-            :ivar ufini_viagem: Sigla da UF início da Viagem Utilizar a
+            :ivar UFIniViagem: Sigla da UF início da Viagem Utilizar a
                 Tabela do IBGE de código de unidades da federação
-            :ivar uffim_viagem: Sigla da UF fim da Viagem Utilizar a
+            :ivar UFFimViagem: Sigla da UF fim da Viagem Utilizar a
                 Tabela do IBGE de código de unidades da federação
             :ivar placa: Placa do coletivo
             :ivar prefixo: Prefixo da linha
             :ivar det: Datalhamento da viagem por trechos do BPeTM
-            :ivar id_eqp_cont: Identificador do equipamento contador
+            :ivar idEqpCont: Identificador do equipamento contador
             """
-            ufini_viagem: Optional[TufSemEx] = field(
+            UFIniViagem: Optional[TufSemEx] = field(
                 default=None,
                 metadata={
-                    "name": "UFIniViagem",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                 }
             )
-            uffim_viagem: Optional[TufSemEx] = field(
+            UFFimViagem: Optional[TufSemEx] = field(
                 default=None,
                 metadata={
-                    "name": "UFFimViagem",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                 }
@@ -3307,10 +3108,9 @@ class TbpeTm:
                     "max_occurs": 990,
                 }
             )
-            id_eqp_cont: Optional[str] = field(
+            idEqpCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "idEqpCont",
                     "type": "Attribute",
                     "required": True,
                     "white_space": "preserve",
@@ -3321,22 +3121,21 @@ class TbpeTm:
             @dataclass
             class Det:
                 """
-                :ivar c_mun_ini: Código do município do início da viagem
-                :ivar c_mun_fim: Código do município do fim da viagem
-                :ivar n_cont_inicio: Contador início da viagem
-                :ivar n_cont_fim: Contador fim da viagem
-                :ivar q_pass: Quantidade de Passagens da viagem
-                :ivar v_bp: Valor da soma dos Bilhetes de Passagem da
+                :ivar cMunIni: Código do município do início da viagem
+                :ivar cMunFim: Código do município do fim da viagem
+                :ivar nContInicio: Contador início da viagem
+                :ivar nContFim: Contador fim da viagem
+                :ivar qPass: Quantidade de Passagens da viagem
+                :ivar vBP: Valor da soma dos Bilhetes de Passagem da
                     viagem Pode conter zeros quando o BP-e for de
                     complemento de ICMS
                 :ivar imp: Informações relativas aos Impostos
-                :ivar comp: Componentes da viagem
-                :ivar n_viagem:
+                :ivar Comp: Componentes da viagem
+                :ivar nViagem:
                 """
-                c_mun_ini: Optional[str] = field(
+                cMunIni: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "cMunIni",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -3344,20 +3143,18 @@ class TbpeTm:
                         "pattern": r"[0-9]{7}",
                     }
                 )
-                c_mun_fim: Optional[str] = field(
+                cMunFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "cMunFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{7}",
                     }
                 )
-                n_cont_inicio: Optional[str] = field(
+                nContInicio: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nContInicio",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -3365,10 +3162,9 @@ class TbpeTm:
                         "white_space": "preserve",
                     }
                 )
-                n_cont_fim: Optional[str] = field(
+                nContFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nContFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_length": 1,
@@ -3376,10 +3172,9 @@ class TbpeTm:
                         "white_space": "preserve",
                     }
                 )
-                q_pass: Optional[str] = field(
+                qPass: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "qPass",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -3388,10 +3183,9 @@ class TbpeTm:
                         "white_space": "preserve",
                     }
                 )
-                v_bp: Optional[str] = field(
+                vBP: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vBP",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -3407,19 +3201,17 @@ class TbpeTm:
                         "required": True,
                     }
                 )
-                comp: List["TbpeTm.InfBpe.DetBpeTm.Det.Comp"] = field(
+                Comp: List["TbpeTm.InfBpe.DetBpeTm.Det.Comp"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "Comp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_occurs": 1,
                     }
                 )
-                n_viagem: Optional[str] = field(
+                nViagem: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nViagem",
                         "type": "Attribute",
                         "required": True,
                         "white_space": "preserve",
@@ -3430,24 +3222,22 @@ class TbpeTm:
                 @dataclass
                 class Imp:
                     """
-                    :ivar icms: Informações relativas ao ICMS
-                    :ivar inf_ad_fisco: Informações adicionais de
+                    :ivar ICMS: Informações relativas ao ICMS
+                    :ivar infAdFisco: Informações adicionais de
                         interesse do Fisco Norma referenciada,
                         informações complementares, etc
                     """
-                    icms: Optional[Timp] = field(
+                    ICMS: Optional[Timp] = field(
                         default=None,
                         metadata={
-                            "name": "ICMS",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/bpe",
                             "required": True,
                         }
                     )
-                    inf_ad_fisco: Optional[str] = field(
+                    infAdFisco: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "infAdFisco",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/bpe",
                             "min_length": 1,
@@ -3460,14 +3250,13 @@ class TbpeTm:
                 @dataclass
                 class Comp:
                     """
-                    :ivar x_nome: Nome do componente Exxemplos: ISENTOS,
+                    :ivar xNome: Nome do componente Exxemplos: ISENTOS,
                         VT, CARTAO PRE-PAGO, IDOSOS
-                    :ivar q_comp: Quantidade do componente
+                    :ivar qComp: Quantidade do componente
                     """
-                    x_nome: Optional[str] = field(
+                    xNome: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "xNome",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/bpe",
                             "required": True,
@@ -3477,10 +3266,9 @@ class TbpeTm:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    q_comp: Optional[str] = field(
+                    qComp: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "qComp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/bpe",
                             "required": True,
@@ -3492,16 +3280,15 @@ class TbpeTm:
         @dataclass
         class Total:
             """
-            :ivar q_pass: Quantidade total de passagens
-            :ivar v_bp: Valor Total do Bilhete de Passagem Transporte
+            :ivar qPass: Quantidade total de passagens
+            :ivar vBP: Valor Total do Bilhete de Passagem Transporte
                 Metropolitano Pode conter zeros quando o BP-e for de
                 complemento de ICMS
-            :ivar icmstot: Totais referentes ao ICMS
+            :ivar ICMSTot: Totais referentes ao ICMS
             """
-            q_pass: Optional[str] = field(
+            qPass: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "qPass",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3509,10 +3296,9 @@ class TbpeTm:
                     "pattern": r"[0-9]{1,6}",
                 }
             )
-            v_bp: Optional[str] = field(
+            vBP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vBP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3520,10 +3306,9 @@ class TbpeTm:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            icmstot: Optional["TbpeTm.InfBpe.Total.Icmstot"] = field(
+            ICMSTot: Optional["TbpeTm.InfBpe.Total.Icmstot"] = field(
                 default=None,
                 metadata={
-                    "name": "ICMSTot",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
@@ -3533,13 +3318,12 @@ class TbpeTm:
             @dataclass
             class Icmstot:
                 """
-                :ivar v_bc: BC do ICMS
-                :ivar v_icms: Valor Total do ICMS
+                :ivar vBC: BC do ICMS
+                :ivar vICMS: Valor Total do ICMS
                 """
-                v_bc: Optional[str] = field(
+                vBC: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vBC",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -3547,10 +3331,9 @@ class TbpeTm:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icms: Optional[str] = field(
+                vICMS: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "required": True,
@@ -3562,25 +3345,23 @@ class TbpeTm:
         @dataclass
         class AutXml:
             """
-            :ivar cnpj: CNPJ do autorizado Informar zeros não
+            :ivar CNPJ: CNPJ do autorizado Informar zeros não
                 significativos
-            :ivar cpf: CPF do autorizado Informar zeros não
+            :ivar CPF: CPF do autorizado Informar zeros não
                 significativos
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "white_space": "preserve",
@@ -3591,16 +3372,15 @@ class TbpeTm:
         @dataclass
         class InfAdic:
             """
-            :ivar inf_ad_fisco: Informações adicionais de interesse do
+            :ivar infAdFisco: Informações adicionais de interesse do
                 Fisco Norma referenciada, informações complementares,
                 etc
-            :ivar inf_cpl: Informações complementares de interesse do
+            :ivar infCpl: Informações complementares de interesse do
                 Contribuinte
             """
-            inf_ad_fisco: Optional[str] = field(
+            infAdFisco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infAdFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -3609,10 +3389,9 @@ class TbpeTm:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            inf_cpl: Optional[str] = field(
+            infCpl: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infCpl",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_length": 1,
@@ -3628,41 +3407,37 @@ class TretBpe:
     """
     Tipo Retorno do Pedido de Autorização de BP-e (Modelo 63)
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar c_uf: Identificação da UF
-    :ivar ver_aplic: Versão do Aplicativo que processou o BP-e
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar cUF: Identificação da UF
+    :ivar verAplic: Versão do Aplicativo que processou o BP-e
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar prot_bpe: Reposta ao processamento do BP-e
+    :ivar protBPe: Reposta ao processamento do BP-e
     :ivar versao:
     """
     class Meta:
         name = "TRetBPe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -3672,10 +3447,9 @@ class TretBpe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -3683,10 +3457,9 @@ class TretBpe:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -3696,10 +3469,9 @@ class TretBpe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    prot_bpe: Optional[TprotBpe] = field(
+    protBPe: Optional[TprotBpe] = field(
         default=None,
         metadata={
-            "name": "protBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
@@ -3723,10 +3495,9 @@ class TenviBpe:
     class Meta:
         name = "TEnviBPe"
 
-    id_lote: Optional[str] = field(
+    idLote: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idLote",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -3734,10 +3505,9 @@ class TenviBpe:
             "pattern": r"[0-9]{1,15}",
         }
     )
-    bpe: Optional[Tbpe] = field(
+    BPe: Optional[Tbpe] = field(
         default=None,
         metadata={
-            "name": "BPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,

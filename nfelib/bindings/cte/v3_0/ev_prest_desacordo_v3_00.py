@@ -19,36 +19,33 @@ class EvPrestDesacordo:
     """
     Schema XML de validação do evento Prestação do Serviço em Desacordo 610110.
 
-    :ivar desc_evento: Descrição do Evento - “Prestação do Serviço em
+    :ivar descEvento: Descrição do Evento - “Prestação do Serviço em
         Desacordo”
-    :ivar ind_desacordo_oper: Indicador de operação em desacordo
-    :ivar x_obs: Observações do tomador
+    :ivar indDesacordoOper: Indicador de operação em desacordo
+    :ivar xObs: Observações do tomador
     """
     class Meta:
         name = "evPrestDesacordo"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    desc_evento: Optional[EvPrestDesacordoDescEvento] = field(
+    descEvento: Optional[EvPrestDesacordoDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    ind_desacordo_oper: Optional[EvPrestDesacordoIndDesacordoOper] = field(
+    indDesacordoOper: Optional[EvPrestDesacordoIndDesacordoOper] = field(
         default=None,
         metadata={
-            "name": "indDesacordoOper",
             "type": "Element",
             "required": True,
         }
     )
-    x_obs: Optional[str] = field(
+    xObs: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xObs",
             "type": "Element",
             "required": True,
             "min_length": 15,

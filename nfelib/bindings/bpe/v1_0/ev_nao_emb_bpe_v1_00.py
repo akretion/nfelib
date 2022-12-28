@@ -15,37 +15,34 @@ class EvNaoEmbBpe:
     """
     Schema XML de validação do evento do não embarque 110115.
 
-    :ivar desc_evento: Descrição do Evento - “Não Embarque”
-    :ivar n_prot: Número do Protocolo de Status do BP-e.
-    :ivar x_just: Justificativa do Não Embarque
+    :ivar descEvento: Descrição do Evento - “Não Embarque”
+    :ivar nProt: Número do Protocolo de Status do BP-e.
+    :ivar xJust: Justificativa do Não Embarque
     """
     class Meta:
         name = "evNaoEmbBPe"
         namespace = "http://www.portalfiscal.inf.br/bpe"
 
-    desc_evento: Optional[EvNaoEmbBpeDescEvento] = field(
+    descEvento: Optional[EvNaoEmbBpeDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    n_prot: Optional[str] = field(
+    nProt: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nProt",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[0-9]{15}",
         }
     )
-    x_just: Optional[str] = field(
+    xJust: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xJust",
             "type": "Element",
             "required": True,
             "min_length": 15,

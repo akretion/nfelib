@@ -37,9 +37,9 @@ class Aereo:
     """
     Informações do modal Aéreo.
 
-    :ivar n_minu: Número da Minuta Documento que precede o CT-e,
-        assinado pelo expedidor, espécie de pedido de serviço
-    :ivar n_oca: Número Operacional do Conhecimento Aéreo Representa o
+    :ivar nMinu: Número da Minuta Documento que precede o CT-e, assinado
+        pelo expedidor, espécie de pedido de serviço
+    :ivar nOCA: Número Operacional do Conhecimento Aéreo Representa o
         número de controle comumente utilizado pelo conhecimento aéreo
         composto por uma sequência numérica de onze dígitos. Os três
         primeiros dígitos representam um código que os operadores de
@@ -49,8 +49,8 @@ class Aereo:
         um sistema de módulo sete imponderado o qual divide o número de
         série do conhecimento aéreo por sete e usa o resto como dígito
         de verificação.
-    :ivar d_prev_aereo: Data prevista da entrega Formato AAAA-MM-DD
-    :ivar nat_carga: Natureza da carga
+    :ivar dPrevAereo: Data prevista da entrega Formato AAAA-MM-DD
+    :ivar natCarga: Natureza da carga
     :ivar tarifa: Informações de tarifa
     :ivar peri: Preenchido quando for  transporte de produtos
         classificados pela ONU como perigosos. O preenchimento desses
@@ -61,38 +61,34 @@ class Aereo:
         name = "aereo"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    n_minu: Optional[str] = field(
+    nMinu: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nMinu",
             "type": "Element",
             "white_space": "preserve",
             "pattern": r"[0-9]{9}",
         }
     )
-    n_oca: Optional[str] = field(
+    nOCA: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nOCA",
             "type": "Element",
             "white_space": "preserve",
             "pattern": r"[0-9]{11}",
         }
     )
-    d_prev_aereo: Optional[str] = field(
+    dPrevAereo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "dPrevAereo",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
         }
     )
-    nat_carga: Optional["Aereo.NatCarga"] = field(
+    natCarga: Optional["Aereo.NatCarga"] = field(
         default=None,
         metadata={
-            "name": "natCarga",
             "type": "Element",
             "required": True,
         }
@@ -114,12 +110,12 @@ class Aereo:
     @dataclass
     class NatCarga:
         """
-        :ivar x_dime: Dimensão Formato:1234X1234X1234 (cm). Esse campo
+        :ivar xDime: Dimensão Formato:1234X1234X1234 (cm). Esse campo
             deve sempre que possível ser preenchido. Entretanto, quando
             for impossível o preenchimento das dimensões, fica
             obrigatório o preenchimento da cubagem em metro cúbico do
             leiaute do CT-e da estrutura genérica (infQ).
-        :ivar c_inf_manu: Informações de manuseio 01 - certificado do
+        :ivar cInfManu: Informações de manuseio 01 - certificado do
             expedidor para embarque de animal vivo; 02 - artigo perigoso
             conforme Declaração do Expedidor anexa; 03 - somente em
             aeronave cargueira; 04 - artigo perigoso - declaração do
@@ -140,10 +136,9 @@ class Aereo:
             lítio em conformidade com a Seção II da PI970 ; 99 - outro
             (especificar no campo observações) .
         """
-        x_dime: Optional[str] = field(
+        xDime: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xDime",
                 "type": "Element",
                 "min_length": 5,
                 "max_length": 14,
@@ -151,10 +146,9 @@ class Aereo:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        c_inf_manu: List[NatCargaCInfManu] = field(
+        cInfManu: List[NatCargaCInfManu] = field(
             default_factory=list,
             metadata={
-                "name": "cInfManu",
                 "type": "Element",
                 "white_space": "preserve",
             }
@@ -163,17 +157,16 @@ class Aereo:
     @dataclass
     class Tarifa:
         """
-        :ivar cl: Classe Preencher com: M - Tarifa Mínima; G - Tarifa
+        :ivar CL: Classe Preencher com: M - Tarifa Mínima; G - Tarifa
             Geral; E - Tarifa Específica
-        :ivar c_tar: Código da Tarifa Deverão ser incluídos os códigos
-            de três dígitos, correspondentes à tarifa.
-        :ivar v_tar: Valor da Tarifa Valor da tarifa por kg quando for o
+        :ivar cTar: Código da Tarifa Deverão ser incluídos os códigos de
+            três dígitos, correspondentes à tarifa.
+        :ivar vTar: Valor da Tarifa Valor da tarifa por kg quando for o
             caso.
         """
-        cl: Optional[str] = field(
+        CL: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CL",
                 "type": "Element",
                 "required": True,
                 "length": 1,
@@ -181,10 +174,9 @@ class Aereo:
                 "pattern": r"M|G|E",
             }
         )
-        c_tar: Optional[str] = field(
+        cTar: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cTar",
                 "type": "Element",
                 "min_length": 1,
                 "max_length": 4,
@@ -192,10 +184,9 @@ class Aereo:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        v_tar: Optional[str] = field(
+        vTar: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vTar",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",
@@ -206,32 +197,30 @@ class Aereo:
     @dataclass
     class Peri:
         """
-        :ivar n_onu: Número ONU/UN Ver a legislação de transporte de
+        :ivar nONU: Número ONU/UN Ver a legislação de transporte de
             produtos perigosos aplicadas ao modal
-        :ivar q_tot_emb: Quantidade total de volumes contendo artigos
+        :ivar qTotEmb: Quantidade total de volumes contendo artigos
             perigosos Preencher com o número de volumes (unidades) de
             artigos perigosos, ou seja, cada embalagem devidamente
             marcada e etiquetada (por ex.: número de caixas, de
             tambores, de bombonas, dentre outros). Não deve ser
             preenchido com o número de ULD, pallets ou containers.
-        :ivar inf_tot_ap: Grupo de informações das quantidades totais de
+        :ivar infTotAP: Grupo de informações das quantidades totais de
             artigos perigosos Preencher conforme a legislação de
             transporte de produtos perigosos aplicada ao modal
         """
-        n_onu: Optional[str] = field(
+        nONU: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nONU",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"[0-9]{4}|ND",
             }
         )
-        q_tot_emb: Optional[str] = field(
+        qTotEmb: Optional[str] = field(
             default=None,
             metadata={
-                "name": "qTotEmb",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -240,10 +229,9 @@ class Aereo:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        inf_tot_ap: Optional["Aereo.Peri.InfTotAp"] = field(
+        infTotAP: Optional["Aereo.Peri.InfTotAp"] = field(
             default=None,
             metadata={
-                "name": "infTotAP",
                 "type": "Element",
                 "required": True,
             }
@@ -252,7 +240,7 @@ class Aereo:
         @dataclass
         class InfTotAp:
             """
-            :ivar q_tot_prod: Quantidade total de artigos perigosos 15
+            :ivar qTotProd: Quantidade total de artigos perigosos 15
                 posições, sendo 11 inteiras e 4 decimais. Deve indicar a
                 quantidade total do artigo perigoso, tendo como base a
                 unidade referenciada na Tabela 3-1 do Doc 9284, por
@@ -262,30 +250,26 @@ class Aereo:
                 deve-se indicar o somatório dos Índices de Transporte
                 (TI). Não indicar a quantidade do artigo perigoso por
                 embalagem.
-            :ivar uni_ap: Unidade de medida 1 – KG; 2 – KG G (quilograma
+            :ivar uniAP: Unidade de medida 1 – KG; 2 – KG G (quilograma
                 bruto); 3 – LITROS; 4 – TI (índice de transporte para
                 radioativos); 5- Unidades (apenas para artigos perigosos
                 medidos em unidades que não se enquadram nos itens
                 acima. Exemplo: baterias, celulares, equipamentos,
                 veículos, dentre outros)
             """
-            q_tot_prod: Optional[str] = field(
+            qTotProd: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "qTotProd",
                     "type": "Element",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{4}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
                 }
             )
-            uni_ap: Optional[InfTotApUniAp] = field(
+            uniAP: Optional[InfTotApUniAp] = field(
                 default=None,
                 metadata={
-                    "name": "uniAP",
                     "type": "Element",
                     "required": True,
-                    "min_length": 1,
-                    "max_length": 1,
                 }
             )

@@ -20,9 +20,9 @@ class EvCceCte:
     """
     Schema XML de validação do evento carta de correção 110110.
 
-    :ivar desc_evento: Descrição do Evento - “Carta de Correção”
-    :ivar inf_correcao: Grupo de Informações de Correção
-    :ivar x_cond_uso: Condições de uso da Carta de Correção, informar a
+    :ivar descEvento: Descrição do Evento - “Carta de Correção”
+    :ivar infCorrecao: Grupo de Informações de Correção
+    :ivar xCondUso: Condições de uso da Carta de Correção, informar a
         literal :Condições de uso da Carta de Correção, informar a
         literal: “A Carta de Correção é disciplinada pelo Art. 58-B do
         CONVÊNIO/SINIEF 06/89: Fica permitida a utilização de carta de
@@ -49,27 +49,24 @@ class EvCceCte:
         name = "evCCeCTe"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    desc_evento: Optional[EvCceCteDescEvento] = field(
+    descEvento: Optional[EvCceCteDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    inf_correcao: List["EvCceCte.InfCorrecao"] = field(
+    infCorrecao: List["EvCceCte.InfCorrecao"] = field(
         default_factory=list,
         metadata={
-            "name": "infCorrecao",
             "type": "Element",
             "min_occurs": 1,
         }
     )
-    x_cond_uso: Optional[EvCceCteXCondUso] = field(
+    xCondUso: Optional[EvCceCteXCondUso] = field(
         default=None,
         metadata={
-            "name": "xCondUso",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
@@ -79,18 +76,17 @@ class EvCceCte:
     @dataclass
     class InfCorrecao:
         """
-        :ivar grupo_alterado: Indicar o grupo de informações que
-            pertence o campoAlterado. Ex: ide
-        :ivar campo_alterado: Nome do campo modificado do CT-e Original.
-        :ivar valor_alterado: Valor correspondente à alteração.
-        :ivar nro_item_alterado: Preencher com o indice do item alterado
+        :ivar grupoAlterado: Indicar o grupo de informações que pertence
+            o campoAlterado. Ex: ide
+        :ivar campoAlterado: Nome do campo modificado do CT-e Original.
+        :ivar valorAlterado: Valor correspondente à alteração.
+        :ivar nroItemAlterado: Preencher com o indice do item alterado
             caso a alteração ocorra em uma lista. OBS: O indice inicia
             sempre  em 1
         """
-        grupo_alterado: Optional[str] = field(
+        grupoAlterado: Optional[str] = field(
             default=None,
             metadata={
-                "name": "grupoAlterado",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -98,10 +94,9 @@ class EvCceCte:
                 "white_space": "preserve",
             }
         )
-        campo_alterado: Optional[str] = field(
+        campoAlterado: Optional[str] = field(
             default=None,
             metadata={
-                "name": "campoAlterado",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -109,10 +104,9 @@ class EvCceCte:
                 "white_space": "preserve",
             }
         )
-        valor_alterado: Optional[str] = field(
+        valorAlterado: Optional[str] = field(
             default=None,
             metadata={
-                "name": "valorAlterado",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -120,10 +114,9 @@ class EvCceCte:
                 "white_space": "preserve",
             }
         )
-        nro_item_alterado: Optional[str] = field(
+        nroItemAlterado: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nroItemAlterado",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[1-9][0-9]|0?[1-9]",

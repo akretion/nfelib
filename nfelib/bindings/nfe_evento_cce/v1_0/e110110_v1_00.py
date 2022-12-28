@@ -14,9 +14,9 @@ class DetEvento:
     """
     Schema XML de validação do evento do carta de correção e1101110.
 
-    :ivar desc_evento: Descrição do Evento - “Carta de Correção”
-    :ivar x_correcao: Correção a ser considerada
-    :ivar x_cond_uso: Texto Fixo com as condições de uso da Carta de
+    :ivar descEvento: Descrição do Evento - “Carta de Correção”
+    :ivar xCorrecao: Correção a ser considerada
+    :ivar xCondUso: Texto Fixo com as condições de uso da Carta de
         Correção
     :ivar versao:
     """
@@ -24,19 +24,17 @@ class DetEvento:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DetEventoDescEvento] = field(
+    descEvento: Optional[DetEventoDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    x_correcao: Optional[str] = field(
+    xCorrecao: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCorrecao",
             "type": "Element",
             "required": True,
             "min_length": 15,
@@ -45,10 +43,9 @@ class DetEvento:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cond_uso: Optional[DetEventoXCondUso] = field(
+    xCondUso: Optional[DetEventoXCondUso] = field(
         default=None,
         metadata={
-            "name": "xCondUso",
             "type": "Element",
             "required": True,
             "white_space": "preserve",

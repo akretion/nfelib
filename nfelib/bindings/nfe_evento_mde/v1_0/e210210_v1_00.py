@@ -13,17 +13,16 @@ class DetEvento:
     """
     Schema XML de validação do evento de Ciência da Operação.
 
-    :ivar desc_evento: Descrição do Evento: "Ciência da Operação"
+    :ivar descEvento: Descrição do Evento: "Ciência da Operação"
     :ivar versao:
     """
     class Meta:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DetEventoDescEvento] = field(
+    descEvento: Optional[DetEventoDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",

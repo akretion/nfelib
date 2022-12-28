@@ -14,39 +14,36 @@ class EvExcessoBagagem:
     """
     Schema XML de validação do evento de excesso de bagagem 110117.
 
-    :ivar desc_evento: Descrição do Evento - “Excesso Bagagem”
-    :ivar n_prot: Número do Protocolo de Status do BP-e.
-    :ivar q_bagagem: Quantidade de volumes de bagagem carregados
-    :ivar v_tot_bag: Valor total do serviço Pode conter zeros quando o
+    :ivar descEvento: Descrição do Evento - “Excesso Bagagem”
+    :ivar nProt: Número do Protocolo de Status do BP-e.
+    :ivar qBagagem: Quantidade de volumes de bagagem carregados
+    :ivar vTotBag: Valor total do serviço Pode conter zeros quando o
         BP-e for de complemento de ICMS
     """
     class Meta:
         name = "evExcessoBagagem"
         namespace = "http://www.portalfiscal.inf.br/bpe"
 
-    desc_evento: Optional[EvExcessoBagagemDescEvento] = field(
+    descEvento: Optional[EvExcessoBagagemDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    n_prot: Optional[str] = field(
+    nProt: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nProt",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[0-9]{15}",
         }
     )
-    q_bagagem: Optional[str] = field(
+    qBagagem: Optional[str] = field(
         default=None,
         metadata={
-            "name": "qBagagem",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -54,10 +51,9 @@ class EvExcessoBagagem:
             "white_space": "preserve",
         }
     )
-    v_tot_bag: Optional[str] = field(
+    vTotBag: Optional[str] = field(
         default=None,
         metadata={
-            "name": "vTotBag",
             "type": "Element",
             "required": True,
             "white_space": "preserve",

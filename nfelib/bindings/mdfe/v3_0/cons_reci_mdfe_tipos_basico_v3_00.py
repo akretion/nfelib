@@ -14,27 +14,24 @@ class TconsReciMdfe:
     """
     Tipo Pedido de Consulta do Recibo do MDF-e.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar n_rec: Número do Recibo do arquivo a ser consultado
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar nRec: Número do Recibo do arquivo a ser consultado
     :ivar versao:
     """
     class Meta:
         name = "TConsReciMDFe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    n_rec: Optional[str] = field(
+    nRec: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nRec",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -58,33 +55,30 @@ class TretConsReciMdfe:
     """
     Tipo Retorno do Pedido de  Consulta do Recibo do MDF-e.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar ver_aplic: Versão do Aplicativo que processou o MDF-e
-    :ivar n_rec: Número do Recibo Consultado
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar verAplic: Versão do Aplicativo que processou o MDF-e
+    :ivar nRec: Número do Recibo Consultado
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar c_uf: Idntificação da UF
-    :ivar prot_mdfe: Resultado do processamento do MDF-e
+    :ivar cUF: Idntificação da UF
+    :ivar protMDFe: Resultado do processamento do MDF-e
     :ivar versao:
     """
     class Meta:
         name = "TRetConsReciMDFe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -94,10 +88,9 @@ class TretConsReciMdfe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    n_rec: Optional[str] = field(
+    nRec: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nRec",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -105,10 +98,9 @@ class TretConsReciMdfe:
             "pattern": r"[0-9]{15}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -116,10 +108,9 @@ class TretConsReciMdfe:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
@@ -129,19 +120,17 @@ class TretConsReciMdfe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
             "required": True,
         }
     )
-    prot_mdfe: Optional[TprotMdfe] = field(
+    protMDFe: Optional[TprotMdfe] = field(
         default=None,
         metadata={
-            "name": "protMDFe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
         }

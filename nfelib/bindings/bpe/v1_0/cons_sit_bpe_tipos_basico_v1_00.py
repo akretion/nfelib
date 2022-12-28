@@ -16,29 +16,26 @@ class TconsSitBpe:
     Tipo Pedido de Consulta da Situação Atual do Bilhete de Passagem
     Eletrônico.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar x_serv: Serviço Solicitado
-    :ivar ch_bpe: Chaves de acesso do BP-e
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar xServ: Serviço Solicitado
+    :ivar chBPe: Chaves de acesso do BP-e
     :ivar versao:
     """
     class Meta:
         name = "TConsSitBPe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    x_serv: str = field(
+    xServ: str = field(
         init=False,
         default="CONSULTAR",
         metadata={
-            "name": "xServ",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -46,10 +43,9 @@ class TconsSitBpe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    ch_bpe: Optional[str] = field(
+    chBPe: Optional[str] = field(
         default=None,
         metadata={
-            "name": "chBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -74,32 +70,29 @@ class TretConsSitBpe:
     Tipo Retorno de Pedido de Consulta da Situação Atual do Bilhete de Passagem
     Eletrônico.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar ver_aplic: Versão do Aplicativo que processou o BP-e
-    :ivar c_stat: Código do status da mensagem enviada.
-    :ivar x_motivo: Descrição literal do status do serviço solicitado.
-    :ivar c_uf: código da UF de atendimento
-    :ivar prot_bpe:
-    :ivar proc_evento_bpe:
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar verAplic: Versão do Aplicativo que processou o BP-e
+    :ivar cStat: Código do status da mensagem enviada.
+    :ivar xMotivo: Descrição literal do status do serviço solicitado.
+    :ivar cUF: código da UF de atendimento
+    :ivar protBPe:
+    :ivar procEventoBPe:
     :ivar versao:
     """
     class Meta:
         name = "TRetConsSitBPe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -109,10 +102,9 @@ class TretConsSitBpe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -120,10 +112,9 @@ class TretConsSitBpe:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
@@ -133,27 +124,24 @@ class TretConsSitBpe:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         }
     )
-    prot_bpe: List[TprotBpe] = field(
+    protBPe: List[TprotBpe] = field(
         default_factory=list,
         metadata={
-            "name": "protBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }
     )
-    proc_evento_bpe: List[TprocEvento] = field(
+    procEventoBPe: List[TprocEvento] = field(
         default_factory=list,
         metadata={
-            "name": "procEventoBPe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/bpe",
         }

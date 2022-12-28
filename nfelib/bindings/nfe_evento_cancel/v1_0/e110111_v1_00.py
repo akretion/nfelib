@@ -13,40 +13,37 @@ class DetEvento:
     """
     Schema XML de validação do evento do cancelamento 1101111.
 
-    :ivar desc_evento: Descrição do Evento - “Cancelamento”
-    :ivar n_prot: Número do Protocolo de Status da NF-e. 1 posição (1 –
+    :ivar descEvento: Descrição do Evento - “Cancelamento”
+    :ivar nProt: Número do Protocolo de Status da NF-e. 1 posição (1 –
         Secretaria de Fazenda Estadual 2 – Receita Federal); 2 posições
         ano; 10 seqüencial no ano.
-    :ivar x_just: Justificativa do cancelamento
+    :ivar xJust: Justificativa do cancelamento
     :ivar versao:
     """
     class Meta:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DetEventoDescEvento] = field(
+    descEvento: Optional[DetEventoDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    n_prot: Optional[str] = field(
+    nProt: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nProt",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[0-9]{15}",
         }
     )
-    x_just: Optional[str] = field(
+    xJust: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xJust",
             "type": "Element",
             "required": True,
             "min_length": 15,

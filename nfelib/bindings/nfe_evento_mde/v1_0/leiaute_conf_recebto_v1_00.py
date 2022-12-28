@@ -66,10 +66,9 @@ class Tevento:
     class Meta:
         name = "TEvento"
 
-    inf_evento: Optional["Tevento.InfEvento"] = field(
+    infEvento: Optional["Tevento.InfEvento"] = field(
         default=None,
         metadata={
-            "name": "infEvento",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -97,52 +96,49 @@ class Tevento:
     @dataclass
     class InfEvento:
         """
-        :ivar c_orgao: Código do órgão de recepção do Evento. Utilizar a
+        :ivar cOrgao: Código do órgão de recepção do Evento. Utilizar a
             Tabela do IBGE extendida, utilizar 90 para identificar o
             Ambiente Nacional
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar cnpj: CNPJ
-        :ivar cpf: CPF
-        :ivar ch_nfe: Chave de Acesso da NF-e vinculada ao evento
-        :ivar dh_evento: Data e Hora do Evento, formato UTC (AAAA-MM-
+        :ivar CNPJ: CNPJ
+        :ivar CPF: CPF
+        :ivar chNFe: Chave de Acesso da NF-e vinculada ao evento
+        :ivar dhEvento: Data e Hora do Evento, formato UTC (AAAA-MM-
             DDThh:mm:ssTZD, onde TZD = +hh:mm ou -hh:mm)
-        :ivar tp_evento: Tipo do Evento: 210200 - Confirmacao da
-            Operação 210210 – Ciência da Operação 210220 -
-            Deconhecimento da operacao 210240 - Operação não Realizada
-        :ivar n_seq_evento: Seqüencial do evento para o mesmo tipo de
+        :ivar tpEvento: Tipo do Evento: 210200 - Confirmacao da Operação
+            210210 – Ciência da Operação 210220 - Deconhecimento da
+            operacao 210240 - Operação não Realizada
+        :ivar nSeqEvento: Seqüencial do evento para o mesmo tipo de
             evento.  Para maioria dos eventos será 1, nos casos em que
             possa existir mais de um evento, como é o caso da carta de
             correção, o autor do evento deve numerar de forma
             seqüencial.
-        :ivar ver_evento: Versão do Tipo do Evento
-        :ivar det_evento: Evento da confirmação de recebimento e210200
-        :ivar id: Identificador da TAG a ser assinada, a regra de
+        :ivar verEvento: Versão do Tipo do Evento
+        :ivar detEvento: Evento da confirmação de recebimento e210200
+        :ivar Id: Identificador da TAG a ser assinada, a regra de
             formação do Id é: “ID” + tpEvento +  chave da NF-e +
             nSeqEvento
         """
-        c_orgao: Optional[TcorgaoIbge] = field(
+        cOrgao: Optional[TcorgaoIbge] = field(
             default=None,
             metadata={
-                "name": "cOrgao",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
             }
         )
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
             }
         )
-        cnpj: Optional[str] = field(
+        CNPJ: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CNPJ",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "max_length": 14,
@@ -150,20 +146,18 @@ class Tevento:
                 "pattern": r"[0-9]{0}|[0-9]{14}",
             }
         )
-        cpf: Optional[str] = field(
+        CPF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CPF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{11}",
             }
         )
-        ch_nfe: Optional[str] = field(
+        chNFe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chNFe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -171,10 +165,9 @@ class Tevento:
                 "pattern": r"[0-9]{44}",
             }
         )
-        dh_evento: Optional[str] = field(
+        dhEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -182,10 +175,9 @@ class Tevento:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        tp_evento: Optional[InfEventoTpEvento] = field(
+        tpEvento: Optional[InfEventoTpEvento] = field(
             default=None,
             metadata={
-                "name": "tpEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -193,10 +185,9 @@ class Tevento:
                 "pattern": r"[0-9]{6}",
             }
         )
-        n_seq_evento: Optional[str] = field(
+        nSeqEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nSeqEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -204,10 +195,9 @@ class Tevento:
                 "pattern": r"[0-9]{1,2}",
             }
         )
-        ver_evento: Optional[str] = field(
+        verEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -215,19 +205,17 @@ class Tevento:
                 "pattern": r"1\.00",
             }
         )
-        det_evento: Optional["Tevento.InfEvento.DetEvento"] = field(
+        detEvento: Optional["Tevento.InfEvento.DetEvento"] = field(
             default=None,
             metadata={
-                "name": "detEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"ID[0-9]{52}",
@@ -237,26 +225,24 @@ class Tevento:
         @dataclass
         class DetEvento:
             """
-            :ivar desc_evento: Descrição do Evento: "Confirmacao da
+            :ivar descEvento: Descrição do Evento: "Confirmacao da
                 Operacao" "Ciencia da Operacao" "Desconhecimento da
                 Operacao" "Operação não Realizada"
-            :ivar x_just: Justificativa de Operação não Realizada
+            :ivar xJust: Justificativa de Operação não Realizada
             :ivar versao:
             """
-            desc_evento: Optional[DetEventoDescEvento] = field(
+            descEvento: Optional[DetEventoDescEvento] = field(
                 default=None,
                 metadata={
-                    "name": "descEvento",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
                     "min_length": 15,
@@ -280,10 +266,9 @@ class TretEvento:
     """
     Tipo retorno do Evento.
     """
-    inf_evento: Optional["TretEvento.InfEvento"] = field(
+    infEvento: Optional["TretEvento.InfEvento"] = field(
         default=None,
         metadata={
-            "name": "infEvento",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -310,40 +295,37 @@ class TretEvento:
     @dataclass
     class InfEvento:
         """
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar ver_aplic: Versão do Aplicativo que recebeu o Evento
-        :ivar c_orgao: Código do órgão de recepção do Evento. Utilizar a
+        :ivar verAplic: Versão do Aplicativo que recebeu o Evento
+        :ivar cOrgao: Código do órgão de recepção do Evento. Utilizar a
             Tabela do IBGE extendida, utilizar 91 para identificar o
             Ambiente Nacional
-        :ivar c_stat: Código do status da registro do Evento
-        :ivar x_motivo: Descrição literal do status do registro do
-            Evento
-        :ivar ch_nfe: Chave de Acesso NF-e vinculada
-        :ivar tp_evento: Tipo do Evento vinculado
-        :ivar x_evento: Descrição do Evento
-        :ivar n_seq_evento: Seqüencial do evento
-        :ivar cnpjdest: CNPJ Destinatário
-        :ivar cpfdest: CPF Destiantário
-        :ivar email_dest: email do destinatário
-        :ivar dh_reg_evento: Data e Hora de do recebimento do evento ou
-            do registro do evento formato UTC AAAA-MM-DDThh:mm:ssTZD.
-        :ivar n_prot: Número do protocolo de registro do evento
-        :ivar id:
+        :ivar cStat: Código do status da registro do Evento
+        :ivar xMotivo: Descrição literal do status do registro do Evento
+        :ivar chNFe: Chave de Acesso NF-e vinculada
+        :ivar tpEvento: Tipo do Evento vinculado
+        :ivar xEvento: Descrição do Evento
+        :ivar nSeqEvento: Seqüencial do evento
+        :ivar CNPJDest: CNPJ Destinatário
+        :ivar CPFDest: CPF Destiantário
+        :ivar emailDest: email do destinatário
+        :ivar dhRegEvento: Data e Hora de do recebimento do evento ou do
+            registro do evento formato UTC AAAA-MM-DDThh:mm:ssTZD.
+        :ivar nProt: Número do protocolo de registro do evento
+        :ivar Id:
         """
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
             }
         )
-        ver_aplic: Optional[str] = field(
+        verAplic: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verAplic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -353,19 +335,17 @@ class TretEvento:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        c_orgao: Optional[TcorgaoIbge] = field(
+        cOrgao: Optional[TcorgaoIbge] = field(
             default=None,
             metadata={
-                "name": "cOrgao",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
             }
         )
-        c_stat: Optional[str] = field(
+        cStat: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cStat",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -373,10 +353,9 @@ class TretEvento:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_motivo: Optional[str] = field(
+        xMotivo: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMotivo",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -386,30 +365,27 @@ class TretEvento:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        ch_nfe: Optional[str] = field(
+        chNFe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chNFe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{44}",
             }
         )
-        tp_evento: Optional[str] = field(
+        tpEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "tpEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{6}",
             }
         )
-        x_evento: Optional[str] = field(
+        xEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "min_length": 5,
@@ -418,20 +394,18 @@ class TretEvento:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        n_seq_evento: Optional[str] = field(
+        nSeqEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nSeqEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{1,2}",
             }
         )
-        cnpjdest: Optional[str] = field(
+        CNPJDest: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CNPJDest",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "max_length": 14,
@@ -439,20 +413,18 @@ class TretEvento:
                 "pattern": r"[0-9]{0}|[0-9]{14}",
             }
         )
-        cpfdest: Optional[str] = field(
+        CPFDest: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CPFDest",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{11}",
             }
         )
-        email_dest: Optional[str] = field(
+        emailDest: Optional[str] = field(
             default=None,
             metadata={
-                "name": "emailDest",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "min_length": 1,
@@ -461,10 +433,9 @@ class TretEvento:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        dh_reg_evento: Optional[str] = field(
+        dhRegEvento: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRegEvento",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "required": True,
@@ -472,20 +443,18 @@ class TretEvento:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d-0[1-3]:00",
             }
         )
-        n_prot: Optional[str] = field(
+        nProt: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nProt",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{15}",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "pattern": r"ID[0-9]{15}",
             }
@@ -500,10 +469,9 @@ class TenvEvento:
     class Meta:
         name = "TEnvEvento"
 
-    id_lote: Optional[str] = field(
+    idLote: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idLote",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -547,10 +515,9 @@ class TprocEvento:
             "required": True,
         }
     )
-    ret_evento: Optional[TretEvento] = field(
+    retEvento: Optional[TretEvento] = field(
         default=None,
         metadata={
-            "name": "retEvento",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -572,23 +539,21 @@ class TretEnvEvento:
     """
     Tipo Retorno de Lote de Envio.
 
-    :ivar id_lote:
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar ver_aplic: Versão do Aplicativo que recebeu o Evento
-    :ivar c_orgao: Código do òrgao que registrou o Evento
-    :ivar c_stat: Código do status da registro do Evento
-    :ivar x_motivo: Descrição literal do status do registro do Evento
-    :ivar ret_evento:
+    :ivar idLote:
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar verAplic: Versão do Aplicativo que recebeu o Evento
+    :ivar cOrgao: Código do òrgao que registrou o Evento
+    :ivar cStat: Código do status da registro do Evento
+    :ivar xMotivo: Descrição literal do status do registro do Evento
+    :ivar retEvento:
     :ivar versao:
     """
     class Meta:
         name = "TRetEnvEvento"
 
-    id_lote: Optional[str] = field(
+    idLote: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idLote",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -596,19 +561,17 @@ class TretEnvEvento:
             "pattern": r"[0-9]{1,15}",
         }
     )
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -618,19 +581,17 @@ class TretEnvEvento:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_orgao: Optional[TcorgaoIbge] = field(
+    cOrgao: Optional[TcorgaoIbge] = field(
         default=None,
         metadata={
-            "name": "cOrgao",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -638,10 +599,9 @@ class TretEnvEvento:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "required": True,
@@ -651,10 +611,9 @@ class TretEnvEvento:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    ret_evento: List[TretEvento] = field(
+    retEvento: List[TretEvento] = field(
         default_factory=list,
         metadata={
-            "name": "retEvento",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/nfe",
             "max_occurs": 20,

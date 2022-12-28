@@ -3,6 +3,8 @@
 import os
 import sys
 from os import path
+import inspect
+from enum import EnumMeta
 from xmldiff import main
 sys.path.append(path.join(path.dirname(__file__), '..', 'nfelib'))
 
@@ -11,6 +13,7 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
+from nfelib.bindings.nfe.v4_0 import leiaute_nfe_v4_00
 from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00  import NfeProc
 from nfelib.bindings.nfe.v4_0.inut_nfe_v4_00 import InutNfe
 from nfelib.bindings.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
@@ -75,9 +78,9 @@ def test_in_out_leiauteInutNFe():
 def test_stat():
     obj = TconsStatServ(
         versao='4.00',
-        tp_amb='1',
-        c_uf='SP',
-        x_serv='STATUS',
+        tpAmb='1',
+        cUF='SP',
+        xServ='STATUS',
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
@@ -85,9 +88,9 @@ def test_stat():
 def test_cons_sit():
     obj = TconsSitNfe(
         versao='4.00',
-        tp_amb='1',
-        x_serv='CONSULTAR',
-        ch_nfe='NFe35180803102452000172550010000474641681223493',
+        tpAmb='1',
+        xServ='CONSULTAR',
+        chNFe='NFe35180803102452000172550010000474641681223493',
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
@@ -158,10 +161,24 @@ def test_evento_generico():
 #     )
 #     obj.original_tagname_ = 'ConsCad'
 
-# def test_init_all():
-#     for mod in [nfe, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
-#             retEnvEventoCancNFe, retEnvCCe, retEnvConfRecebto, retConsCad]:
-#         for class_name in mod.__all__:
-#             cls = getattr(mod, class_name)
-#             if issubclass(cls, mod.GeneratedsSuper):
-#                 cls()
+
+def visit_nested_classes(cls, classes):
+    classes.add(cls)
+    for attr in dir(cls):
+        nested = getattr(cls, attr)
+        if not inspect.isclass(nested) or nested.__name__ == "type" or nested.__name__.endswith(".Meta"):
+            continue
+        visit_nested_classes(nested, classes)
+
+def test_init_all():
+    output_file = 'log.txt'
+    with open(output_file, 'w') as f:
+        for mod in [leiaute_nfe_v4_00]:#, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
+            for _klass_name, klass in mod.__dict__.items():
+                 if isinstance(klass, type) and type(klass) != EnumMeta:
+                     f.write("\n" + _klass_name)
+                     classes = set()
+                     visit_nested_classes(klass, classes)
+                     for cls in classes:
+                         cls()
+#                         f.write("\n    " + str(cls))

@@ -11,16 +11,16 @@ class Aereo:
 
     :ivar nac: Marca da Nacionalidade da aeronave
     :ivar matr: Marca de Matrícula da aeronave
-    :ivar n_voo: Número do Voo Formato = AB1234, sendo AB a designação
-        da empresa e 1234 o número do voo. Quando não for possível
-        incluir as marcas de nacionalidade e matrícula sem hífen.
-    :ivar c_aer_emb: Aeródromo de Embarque O código de três letras IATA
-        do aeroporto de partida deverá ser incluído como primeira
-        anotação. Quando não for possível, utilizar a sigla OACI.
-    :ivar c_aer_des: Aeródromo de Destino O código de três letras IATA
-        do aeroporto de destino deverá ser incluído como primeira
-        anotação. Quando não for possível, utilizar a sigla OACI.
-    :ivar d_voo: Data do Voo Formato AAAA-MM-DD
+    :ivar nVoo: Número do Voo Formato = AB1234, sendo AB a designação da
+        empresa e 1234 o número do voo. Quando não for possível incluir
+        as marcas de nacionalidade e matrícula sem hífen.
+    :ivar cAerEmb: Aeródromo de Embarque O código de três letras IATA do
+        aeroporto de partida deverá ser incluído como primeira anotação.
+        Quando não for possível, utilizar a sigla OACI.
+    :ivar cAerDes: Aeródromo de Destino O código de três letras IATA do
+        aeroporto de destino deverá ser incluído como primeira anotação.
+        Quando não for possível, utilizar a sigla OACI.
+    :ivar dVoo: Data do Voo Formato AAAA-MM-DD
     """
     class Meta:
         name = "aereo"
@@ -48,10 +48,9 @@ class Aereo:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    n_voo: Optional[str] = field(
+    nVoo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nVoo",
             "type": "Element",
             "required": True,
             "min_length": 5,
@@ -60,10 +59,9 @@ class Aereo:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_aer_emb: Optional[str] = field(
+    cAerEmb: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cAerEmb",
             "type": "Element",
             "required": True,
             "min_length": 3,
@@ -72,10 +70,9 @@ class Aereo:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_aer_des: Optional[str] = field(
+    cAerDes: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cAerDes",
             "type": "Element",
             "required": True,
             "min_length": 3,
@@ -84,10 +81,9 @@ class Aereo:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    d_voo: Optional[str] = field(
+    dVoo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "dVoo",
             "type": "Element",
             "required": True,
             "white_space": "preserve",

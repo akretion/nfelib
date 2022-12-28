@@ -28,26 +28,26 @@ class Aquav:
     Informações do modal Aquaviário.
 
     :ivar irin: Irin do navio sempre deverá ser informado
-    :ivar tp_emb: Código do tipo de embarcação Preencher com código da
+    :ivar tpEmb: Código do tipo de embarcação Preencher com código da
         Tabela de Tipo de Embarcação definida no Ministério dos
         Transportes
-    :ivar c_embar: Código da embarcação
-    :ivar x_embar: Nome da embarcação
-    :ivar n_viag: Número da Viagem
-    :ivar c_prt_emb: Código do Porto de Embarque Preencher de acordo com
+    :ivar cEmbar: Código da embarcação
+    :ivar xEmbar: Nome da embarcação
+    :ivar nViag: Número da Viagem
+    :ivar cPrtEmb: Código do Porto de Embarque Preencher de acordo com
         Tabela de Portos definida no Ministério dos Transportes
-    :ivar c_prt_dest: Código do Porto de Destino Preencher de acordo com
+    :ivar cPrtDest: Código do Porto de Destino Preencher de acordo com
         Tabela de Portos definida no Ministério dos Transportes
-    :ivar prt_trans: Porto de Transbordo
-    :ivar tp_nav: Tipo de Navegação Preencher com: 0 - Interior; 1 -
+    :ivar prtTrans: Porto de Transbordo
+    :ivar tpNav: Tipo de Navegação Preencher com: 0 - Interior; 1 -
         Cabotagem
-    :ivar inf_term_carreg: Grupo de informações dos terminais de
+    :ivar infTermCarreg: Grupo de informações dos terminais de
         carregamento.
-    :ivar inf_term_descarreg: Grupo de informações dos terminais de
+    :ivar infTermDescarreg: Grupo de informações dos terminais de
         descarregamento.
-    :ivar inf_emb_comb: Informações das Embarcações do Comboio
-    :ivar inf_unid_carga_vazia: Informações das Undades de Carga vazias
-    :ivar inf_unid_transp_vazia: Informações das Undades de Transporte
+    :ivar infEmbComb: Informações das Embarcações do Comboio
+    :ivar infUnidCargaVazia: Informações das Undades de Carga vazias
+    :ivar infUnidTranspVazia: Informações das Undades de Transporte
         vazias
     """
     class Meta:
@@ -64,20 +64,18 @@ class Aquav:
             "white_space": "preserve",
         }
     )
-    tp_emb: Optional[str] = field(
+    tpEmb: Optional[str] = field(
         default=None,
         metadata={
-            "name": "tpEmb",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[0-9]{2}",
         }
     )
-    c_embar: Optional[str] = field(
+    cEmbar: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cEmbar",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -86,10 +84,9 @@ class Aquav:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_embar: Optional[str] = field(
+    xEmbar: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xEmbar",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -98,20 +95,18 @@ class Aquav:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    n_viag: Optional[str] = field(
+    nViag: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nViag",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[1-9]{1}[0-9]{0,9}",
         }
     )
-    c_prt_emb: Optional[str] = field(
+    cPrtEmb: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cPrtEmb",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -120,10 +115,9 @@ class Aquav:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_prt_dest: Optional[str] = field(
+    cPrtDest: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cPrtDest",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -132,10 +126,9 @@ class Aquav:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    prt_trans: Optional[str] = field(
+    prtTrans: Optional[str] = field(
         default=None,
         metadata={
-            "name": "prtTrans",
             "type": "Element",
             "min_length": 1,
             "max_length": 60,
@@ -143,49 +136,43 @@ class Aquav:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    tp_nav: Optional[AquavTpNav] = field(
+    tpNav: Optional[AquavTpNav] = field(
         default=None,
         metadata={
-            "name": "tpNav",
             "type": "Element",
             "white_space": "preserve",
         }
     )
-    inf_term_carreg: List["Aquav.InfTermCarreg"] = field(
+    infTermCarreg: List["Aquav.InfTermCarreg"] = field(
         default_factory=list,
         metadata={
-            "name": "infTermCarreg",
             "type": "Element",
             "max_occurs": 5,
         }
     )
-    inf_term_descarreg: List["Aquav.InfTermDescarreg"] = field(
+    infTermDescarreg: List["Aquav.InfTermDescarreg"] = field(
         default_factory=list,
         metadata={
-            "name": "infTermDescarreg",
             "type": "Element",
             "max_occurs": 5,
         }
     )
-    inf_emb_comb: List["Aquav.InfEmbComb"] = field(
+    infEmbComb: List["Aquav.InfEmbComb"] = field(
         default_factory=list,
         metadata={
-            "name": "infEmbComb",
             "type": "Element",
             "max_occurs": 30,
         }
     )
-    inf_unid_carga_vazia: List["Aquav.InfUnidCargaVazia"] = field(
+    infUnidCargaVazia: List["Aquav.InfUnidCargaVazia"] = field(
         default_factory=list,
         metadata={
-            "name": "infUnidCargaVazia",
             "type": "Element",
         }
     )
-    inf_unid_transp_vazia: List["Aquav.InfUnidTranspVazia"] = field(
+    infUnidTranspVazia: List["Aquav.InfUnidTranspVazia"] = field(
         default_factory=list,
         metadata={
-            "name": "infUnidTranspVazia",
             "type": "Element",
         }
     )
@@ -193,16 +180,15 @@ class Aquav:
     @dataclass
     class InfTermCarreg:
         """
-        :ivar c_term_carreg: Código do Terminal de Carregamento
-            Preencher de acordo com a Tabela de Terminais de
-            Carregamento. O código de cada Porto está definido no
-            Ministério de Transportes.
-        :ivar x_term_carreg: Nome do Terminal de Carregamento
+        :ivar cTermCarreg: Código do Terminal de Carregamento Preencher
+            de acordo com a Tabela de Terminais de Carregamento. O
+            código de cada Porto está definido no Ministério de
+            Transportes.
+        :ivar xTermCarreg: Nome do Terminal de Carregamento
         """
-        c_term_carreg: Optional[str] = field(
+        cTermCarreg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cTermCarreg",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -211,10 +197,9 @@ class Aquav:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        x_term_carreg: Optional[str] = field(
+        xTermCarreg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xTermCarreg",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -227,16 +212,15 @@ class Aquav:
     @dataclass
     class InfTermDescarreg:
         """
-        :ivar c_term_descarreg: Código do Terminal de Descarregamento
+        :ivar cTermDescarreg: Código do Terminal de Descarregamento
             Preencher de acordo com a Tabela de Terminais de
             Descarregamento. O código de cada Porto está definido no
             Ministério de Transportes.
-        :ivar x_term_descarreg: Nome do Terminal de Descarregamento
+        :ivar xTermDescarreg: Nome do Terminal de Descarregamento
         """
-        c_term_descarreg: Optional[str] = field(
+        cTermDescarreg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cTermDescarreg",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -245,10 +229,9 @@ class Aquav:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        x_term_descarreg: Optional[str] = field(
+        xTermDescarreg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xTermDescarreg",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -261,13 +244,12 @@ class Aquav:
     @dataclass
     class InfEmbComb:
         """
-        :ivar c_emb_comb: Código da embarcação do comboio
-        :ivar x_balsa: Identificador da Balsa
+        :ivar cEmbComb: Código da embarcação do comboio
+        :ivar xBalsa: Identificador da Balsa
         """
-        c_emb_comb: Optional[str] = field(
+        cEmbComb: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cEmbComb",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -276,10 +258,9 @@ class Aquav:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        x_balsa: Optional[str] = field(
+        xBalsa: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xBalsa",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -292,15 +273,13 @@ class Aquav:
     @dataclass
     class InfUnidCargaVazia:
         """
-        :ivar id_unid_carga_vazia: Identificação da unidades de carga
-            vazia
-        :ivar tp_unid_carga_vazia: Tipo da unidade de carga vazia 1 -
+        :ivar idUnidCargaVazia: Identificação da unidades de carga vazia
+        :ivar tpUnidCargaVazia: Tipo da unidade de carga vazia 1 -
             Container; 2 - ULD;3 - Pallet;4 - Outros;
         """
-        id_unid_carga_vazia: Optional[str] = field(
+        idUnidCargaVazia: Optional[str] = field(
             default=None,
             metadata={
-                "name": "idUnidCargaVazia",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -309,10 +288,9 @@ class Aquav:
                 "pattern": r"[A-Z0-9]+",
             }
         )
-        tp_unid_carga_vazia: Optional[InfUnidCargaVaziaTpUnidCargaVazia] = field(
+        tpUnidCargaVazia: Optional[InfUnidCargaVaziaTpUnidCargaVazia] = field(
             default=None,
             metadata={
-                "name": "tpUnidCargaVazia",
                 "type": "Element",
                 "required": True,
             }
@@ -321,16 +299,15 @@ class Aquav:
     @dataclass
     class InfUnidTranspVazia:
         """
-        :ivar id_unid_transp_vazia: Identificação da unidades de
-            transporte vazia
-        :ivar tp_unid_transp_vazia: Tipo da unidade de transporte vazia
+        :ivar idUnidTranspVazia: Identificação da unidades de transporte
+            vazia
+        :ivar tpUnidTranspVazia: Tipo da unidade de transporte vazia
             Deve ser preenchido com “1” para Rodoviário Tração do tipo
             caminhão ou “2” para Rodoviário reboque do tipo carreta
         """
-        id_unid_transp_vazia: Optional[str] = field(
+        idUnidTranspVazia: Optional[str] = field(
             default=None,
             metadata={
-                "name": "idUnidTranspVazia",
                 "type": "Element",
                 "required": True,
                 "min_length": 1,
@@ -339,10 +316,9 @@ class Aquav:
                 "pattern": r"[A-Z0-9]+",
             }
         )
-        tp_unid_transp_vazia: Optional[InfUnidTranspVaziaTpUnidTranspVazia] = field(
+        tpUnidTranspVazia: Optional[InfUnidTranspVaziaTpUnidTranspVazia] = field(
             default=None,
             metadata={
-                "name": "tpUnidTranspVazia",
                 "type": "Element",
                 "required": True,
             }

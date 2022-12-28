@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config xmlns="http://pypi.org/project/xsdata" version="22.7">
+  <Output maxLineLength="79">
+    <Package>generated</Package>
+    <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="false" kwOnly="false">dataclasses</Format>
+    <Structure>filenames</Structure>
+    <DocstringStyle>reStructuredText</DocstringStyle>
+    <RelativeImports>false</RelativeImports>
+    <CompoundFields defaultName="choice" forceDefaultName="false">false</CompoundFields>
+    <PostponedAnnotations>false</PostponedAnnotations>
+    <UnnestClasses>false</UnnestClasses>
+  </Output>
+  <Conventions>
+    <ClassName case="pascalCase" safePrefix="type"/>
+    <FieldName case="originalCase" safePrefix="value"/>
+    <ConstantName case="screamingSnakeCase" safePrefix="value"/>
+    <ModuleName case="snakeCase" safePrefix="mod"/>
+    <PackageName case="snakeCase" safePrefix="pkg"/>
+  </Conventions>
+  <Substitutions>
+    <Substitution type="package" search="http://www.w3.org/2001/XMLSchema" replace="xs"/>
+    <Substitution type="package" search="http://www.w3.org/XML/1998/namespace" replace="xml"/>
+    <Substitution type="package" search="http://www.w3.org/2001/XMLSchema-instance" replace="xsi"/>
+    <Substitution type="package" search="http://www.w3.org/1999/xlink" replace="xlink"/>
+    <Substitution type="package" search="http://www.w3.org/1999/xhtml" replace="xhtml"/>
+    <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
+    <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
+    <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
+    <Substitution type="class" search="Class" replace="Type"/>
+    <Substitution type="field" search="@any_element" replace="any_element"/>
+    <Substitution type="field" search="@any_attributes" replace="any_attributes"/> 
+    <Substitution type="field" search="Signature" replace="signature"/>
+    <Substitution type="field" search="CanonicalizationMethod" replace="canonicalizationMethod"/>
+    <Substitution type="field" search="DigestValue" replace="digestValue"/>
+    <Substitution type="field" search="DigestMethod" replace="digestMethod"/>
+  </Substitutions>
+</Config>

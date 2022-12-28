@@ -14,27 +14,24 @@ class TconsReciCte:
     """
     Tipo Pedido de Consulta do Recibo do Lote de CT-e.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar n_rec: Número do Recibo do lote a ser consultado
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar nRec: Número do Recibo do lote a ser consultado
     :ivar versao:
     """
     class Meta:
         name = "TConsReciCTe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    n_rec: Optional[str] = field(
+    nRec: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nRec",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -58,34 +55,31 @@ class TretConsReciCte:
     """
     Tipo Retorno do Pedido de  Consulta do Recibo do Lote de CT-e.
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar ver_aplic: Versão do Aplicativo que processou a CT-e
-    :ivar n_rec: Número do Recibo Consultado
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar verAplic: Versão do Aplicativo que processou a CT-e
+    :ivar nRec: Número do Recibo Consultado
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar c_uf: Idntificação da UF
-    :ivar prot_cte: Conjunto de CT-es processados, só existe nos casos
-        em que o lote consultado se encontra processado
+    :ivar cUF: Idntificação da UF
+    :ivar protCTe: Conjunto de CT-es processados, só existe nos casos em
+        que o lote consultado se encontra processado
     :ivar versao:
     """
     class Meta:
         name = "TRetConsReciCTe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -95,10 +89,9 @@ class TretConsReciCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    n_rec: Optional[str] = field(
+    nRec: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nRec",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -106,10 +99,9 @@ class TretConsReciCte:
             "pattern": r"[0-9]{15}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -117,10 +109,9 @@ class TretConsReciCte:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -130,19 +121,17 @@ class TretConsReciCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    prot_cte: List[TprotCte] = field(
+    protCTe: List[TprotCte] = field(
         default_factory=list,
         metadata={
-            "name": "protCTe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "max_occurs": 50,

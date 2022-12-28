@@ -14,17 +14,16 @@ class EvIncCondutorMdfe:
     """
     Schema XML de validação do evento de inclusao de condutor 110114.
 
-    :ivar desc_evento: Descrição do Evento - “Inclusao Condutor”
+    :ivar descEvento: Descrição do Evento - “Inclusao Condutor”
     :ivar condutor: Informações do(s) Condutor(s) do veículo
     """
     class Meta:
         name = "evIncCondutorMDFe"
         namespace = "http://www.portalfiscal.inf.br/mdfe"
 
-    desc_evento: Optional[EvIncCondutorMdfeDescEvento] = field(
+    descEvento: Optional[EvIncCondutorMdfeDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
@@ -41,13 +40,12 @@ class EvIncCondutorMdfe:
     @dataclass
     class Condutor:
         """
-        :ivar x_nome: Nome do Condutor
-        :ivar cpf: CPF do Condutor
+        :ivar xNome: Nome do Condutor
+        :ivar CPF: CPF do Condutor
         """
-        x_nome: Optional[str] = field(
+        xNome: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xNome",
                 "type": "Element",
                 "required": True,
                 "min_length": 2,
@@ -56,10 +54,9 @@ class EvIncCondutorMdfe:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        cpf: Optional[str] = field(
+        CPF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CPF",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",

@@ -15,27 +15,25 @@ class EvAlteracaoPoltrona:
     """
     Schema XML de validação do evento de alteração de poltrona 110116.
 
-    :ivar desc_evento: Descrição do Evento - “Alteração de Poltrona”
-    :ivar n_prot: Número do Protocolo de Status do BP-e.
+    :ivar descEvento: Descrição do Evento - “Alteração de Poltrona”
+    :ivar nProt: Número do Protocolo de Status do BP-e.
     :ivar poltrona: Número da Poltrona / assento / cabine
     """
     class Meta:
         name = "evAlteracaoPoltrona"
         namespace = "http://www.portalfiscal.inf.br/bpe"
 
-    desc_evento: Optional[EvAlteracaoPoltronaDescEvento] = field(
+    descEvento: Optional[EvAlteracaoPoltronaDescEvento] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    n_prot: Optional[str] = field(
+    nProt: Optional[str] = field(
         default=None,
         metadata={
-            "name": "nProt",
             "type": "Element",
             "required": True,
             "white_space": "preserve",

@@ -193,36 +193,32 @@ class DetEvento:
         name = "detEvento"
         namespace = "http://www.portalfiscal.inf.br/nfe"
 
-    desc_evento: Optional[DescEventoValue] = field(
+    descEvento: Optional[DescEventoValue] = field(
         default=None,
         metadata={
-            "name": "descEvento",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    c_orgao_autor: Optional[TcodUfIbge] = field(
+    cOrgaoAutor: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cOrgaoAutor",
             "type": "Element",
             "required": True,
         }
     )
-    tp_autor: Optional[TpAutorValue] = field(
+    tpAutor: Optional[TpAutorValue] = field(
         default=None,
         metadata={
-            "name": "tpAutor",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "required": True,
             "min_length": 1,
@@ -231,29 +227,26 @@ class DetEvento:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    dh_emi: Optional[str] = field(
+    dhEmi: Optional[str] = field(
         default=None,
         metadata={
-            "name": "dhEmi",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
         }
     )
-    tp_nf: Optional[TpNfValue] = field(
+    tpNF: Optional[TpNfValue] = field(
         default=None,
         metadata={
-            "name": "tpNF",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
         }
     )
-    ie: Optional[str] = field(
+    IE: Optional[str] = field(
         default=None,
         metadata={
-            "name": "IE",
             "type": "Element",
             "required": True,
             "white_space": "preserve",
@@ -279,84 +272,76 @@ class DetEvento:
     @dataclass
     class Dest:
         """
-        :ivar uf:
-        :ivar cnpj:
-        :ivar cpf:
-        :ivar id_estrangeiro: Identificador do destinatário, em caso de
+        :ivar UF:
+        :ivar CNPJ:
+        :ivar CPF:
+        :ivar idEstrangeiro: Identificador do destinatário, em caso de
             comprador estrangeiro
-        :ivar ie:
-        :ivar v_nf:
-        :ivar v_icms:
-        :ivar v_st:
+        :ivar IE:
+        :ivar vNF:
+        :ivar vICMS:
+        :ivar vST:
         """
-        uf: Optional[Tuf] = field(
+        UF: Optional[Tuf] = field(
             default=None,
             metadata={
-                "name": "UF",
                 "type": "Element",
                 "required": True,
             }
         )
-        cnpj: Optional[str] = field(
+        CNPJ: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CNPJ",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{14}",
             }
         )
-        cpf: Optional[str] = field(
+        CPF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "CPF",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{11}",
             }
         )
-        id_estrangeiro: Optional[str] = field(
+        idEstrangeiro: Optional[str] = field(
             default=None,
             metadata={
-                "name": "idEstrangeiro",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"([!-ÿ]{0}|[!-ÿ]{5,20})?",
             }
         )
-        ie: Optional[str] = field(
+        IE: Optional[str] = field(
             default=None,
             metadata={
-                "name": "IE",
                 "type": "Element",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{2,14}",
             }
         )
-        v_nf: Optional[str] = field(
+        vNF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vNF",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        v_st: Optional[str] = field(
+        vST: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vST",
                 "type": "Element",
                 "required": True,
                 "white_space": "preserve",

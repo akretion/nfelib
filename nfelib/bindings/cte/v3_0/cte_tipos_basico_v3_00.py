@@ -150,20 +150,20 @@ class TrespTec:
     """
     Tipo Dados da Responsável Técnico.
 
-    :ivar cnpj: CNPJ da pessoa jurídica responsável técnica pelo sistema
+    :ivar CNPJ: CNPJ da pessoa jurídica responsável técnica pelo sistema
         utilizado na emissão do documento fiscal eletrônico Informar o
         CNPJ da pessoa jurídica desenvolvedora do sistema utilizado na
         emissão do documento fiscal eletrônico.
-    :ivar x_contato: Nome da pessoa a ser contatada Informar o nome da
+    :ivar xContato: Nome da pessoa a ser contatada Informar o nome da
         pessoa a ser contatada na empresa desenvolvedora do sistema
         utilizado na emissão do documento fiscal eletrônico. No caso de
         pessoa física, informar o respectivo nome.
     :ivar email: Email da pessoa jurídica a ser contatada
     :ivar fone: Telefone da pessoa jurídica a ser contatada Preencher
         com o Código DDD + número do telefone.
-    :ivar id_csrt: Identificador do código de segurança do responsável
+    :ivar idCSRT: Identificador do código de segurança do responsável
         técnico Identificador do CSRT utilizado para geração do hash
-    :ivar hash_csrt: Hash do token do código de segurança do responsável
+    :ivar hashCSRT: Hash do token do código de segurança do responsável
         técnico O hashCSRT é o resultado das funções SHA-1 e base64 do
         token CSRT fornecido pelo fisco + chave de acesso do DF-e.
         (Implementação em futura NT) Observação: 28 caracteres são
@@ -172,10 +172,9 @@ class TrespTec:
     class Meta:
         name = "TRespTec"
 
-    cnpj: Optional[str] = field(
+    CNPJ: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CNPJ",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -183,10 +182,9 @@ class TrespTec:
             "pattern": r"[0-9]{14}",
         }
     )
-    x_contato: Optional[str] = field(
+    xContato: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xContato",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -218,19 +216,17 @@ class TrespTec:
             "pattern": r"[0-9]{7,12}",
         }
     )
-    id_csrt: Optional[str] = field(
+    idCSRT: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idCSRT",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "pattern": r"[0-9]{3}",
         }
     )
-    hash_csrt: Optional[bytes] = field(
+    hashCSRT: Optional[bytes] = field(
         default=None,
         metadata={
-            "name": "hashCSRT",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "length": 20,
@@ -366,27 +362,26 @@ class TendOrg:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE),
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE),
         informar 9999999 para operações com o exterior.
-    :ivar x_mun: Nome do município Informar EXTERIOR para operações com
-        o exterior.
-    :ivar cep: CEP
-    :ivar uf: Sigla da UF Informar EX para operações com o exterior.
-    :ivar c_pais: Código do país
-    :ivar x_pais: Nome do país
+    :ivar xMun: Nome do município Informar EXTERIOR para operações com o
+        exterior.
+    :ivar CEP: CEP
+    :ivar UF: Sigla da UF Informar EX para operações com o exterior.
+    :ivar cPais: Código do país
+    :ivar xPais: Nome do país
     :ivar fone: Telefone
     """
     class Meta:
         name = "TEndOrg"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -408,10 +403,9 @@ class TendOrg:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -420,10 +414,9 @@ class TendOrg:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -433,10 +426,9 @@ class TendOrg:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -444,10 +436,9 @@ class TendOrg:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -457,39 +448,35 @@ class TendOrg:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_pais: Optional[str] = field(
+    cPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{1,4}",
         }
     )
-    x_pais: Optional[str] = field(
+    xPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -514,46 +501,43 @@ class TendReEnt:
     """
     Tipo Dados do Local de Retirada ou Entrega.
 
-    :ivar cnpj: Número do CNPJ
-    :ivar cpf: Número do CPF
-    :ivar x_nome: Razão Social ou Nome
-    :ivar x_lgr: Logradouro
+    :ivar CNPJ: Número do CNPJ
+    :ivar CPF: Número do CPF
+    :ivar xNome: Razão Social ou Nome
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE)
-        Informar 9999999 para operações com o exterior.
-    :ivar x_mun: Nome do município Informar EXTERIOR para operações com
-        o exterior.
-    :ivar uf: Sigla da UF Informar EX para operações com o exterior.
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE) Informar
+        9999999 para operações com o exterior.
+    :ivar xMun: Nome do município Informar EXTERIOR para operações com o
+        exterior.
+    :ivar UF: Sigla da UF Informar EX para operações com o exterior.
     """
     class Meta:
         name = "TEndReEnt"
 
-    cnpj: Optional[str] = field(
+    CNPJ: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CNPJ",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{14}",
         }
     )
-    cpf: Optional[str] = field(
+    CPF: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CPF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{11}",
         }
     )
-    x_nome: Optional[str] = field(
+    xNome: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xNome",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -563,10 +547,9 @@ class TendReEnt:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -588,10 +571,9 @@ class TendReEnt:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -600,10 +582,9 @@ class TendReEnt:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -613,10 +594,9 @@ class TendReEnt:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -624,10 +604,9 @@ class TendReEnt:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -637,10 +616,9 @@ class TendReEnt:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -653,23 +631,22 @@ class TendeEmi:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE)
-    :ivar x_mun: Nome do município
-    :ivar cep: CEP Informar zeros não significativos
-    :ivar uf: Sigla da UF
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE)
+    :ivar xMun: Nome do município
+    :ivar CEP: CEP Informar zeros não significativos
+    :ivar UF: Sigla da UF
     :ivar fone: Telefone
     """
     class Meta:
         name = "TEndeEmi"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -691,10 +668,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -703,10 +679,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -716,10 +691,9 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -727,10 +701,9 @@ class TendeEmi:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -740,20 +713,18 @@ class TendeEmi:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[TufSemEx] = field(
+    UF: Optional[TufSemEx] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -775,26 +746,25 @@ class Tendereco:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE)
-        Informar 9999999 para operações com o exterior.
-    :ivar x_mun: Nome do município Informar EXTERIOR para operações com
-        o exterior.
-    :ivar cep: CEP Informar os zeros não significativos
-    :ivar uf: Sigla da UF Informar EX para operações com o exterior.
-    :ivar c_pais: Código do país Utilizar a tabela do BACEN
-    :ivar x_pais: Nome do país
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE) Informar
+        9999999 para operações com o exterior.
+    :ivar xMun: Nome do município Informar EXTERIOR para operações com o
+        exterior.
+    :ivar CEP: CEP Informar os zeros não significativos
+    :ivar UF: Sigla da UF Informar EX para operações com o exterior.
+    :ivar cPais: Código do país Utilizar a tabela do BACEN
+    :ivar xPais: Nome do país
     """
     class Meta:
         name = "TEndereco"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -816,10 +786,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -828,10 +797,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -841,10 +809,9 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -852,10 +819,9 @@ class Tendereco:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -865,39 +831,35 @@ class Tendereco:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_pais: Optional[str] = field(
+    cPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{1,4}",
         }
     )
-    x_pais: Optional[str] = field(
+    xPais: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xPais",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 2,
@@ -913,24 +875,23 @@ class Tendernac:
     """
     Tipo Dados do Endereço.
 
-    :ivar x_lgr: Logradouro
+    :ivar xLgr: Logradouro
     :ivar nro: Número
-    :ivar x_cpl: Complemento
-    :ivar x_bairro: Bairro
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE),
+    :ivar xCpl: Complemento
+    :ivar xBairro: Bairro
+    :ivar cMun: Código do município (utilizar a tabela do IBGE),
         informar 9999999 para operações com o exterior.
-    :ivar x_mun: Nome do município, , informar EXTERIOR para operações
+    :ivar xMun: Nome do município, , informar EXTERIOR para operações
         com o exterior.
-    :ivar cep: CEP
-    :ivar uf: Sigla da UF Informar EX para operações com o exterior.
+    :ivar CEP: CEP
+    :ivar UF: Sigla da UF Informar EX para operações com o exterior.
     """
     class Meta:
         name = "TEndernac"
 
-    x_lgr: Optional[str] = field(
+    xLgr: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xLgr",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -952,10 +913,9 @@ class Tendernac:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_cpl: Optional[str] = field(
+    xCpl: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xCpl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_length": 1,
@@ -964,10 +924,9 @@ class Tendernac:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    x_bairro: Optional[str] = field(
+    xBairro: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xBairro",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -977,10 +936,9 @@ class Tendernac:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -988,10 +946,9 @@ class Tendernac:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -1001,20 +958,18 @@ class Tendernac:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    cep: Optional[str] = field(
+    CEP: Optional[str] = field(
         default=None,
         metadata={
-            "name": "CEP",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
             "pattern": r"[0-9]{8}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -1027,73 +982,66 @@ class Timp:
     """
     Tipo Dados do Imposto CT-e.
 
-    :ivar icms00: Prestação sujeito à tributação normal do ICMS
-    :ivar icms20: Prestação sujeito à tributação com redução de BC do
+    :ivar ICMS00: Prestação sujeito à tributação normal do ICMS
+    :ivar ICMS20: Prestação sujeito à tributação com redução de BC do
         ICMS
-    :ivar icms45: ICMS  Isento, não Tributado ou diferido
-    :ivar icms60: Tributação pelo ICMS60 - ICMS cobrado por substituição
+    :ivar ICMS45: ICMS  Isento, não Tributado ou diferido
+    :ivar ICMS60: Tributação pelo ICMS60 - ICMS cobrado por substituição
         tributária.Responsabilidade do recolhimento do ICMS atribuído ao
         tomador ou 3º por ST
-    :ivar icms90: ICMS Outros
-    :ivar icmsoutra_uf: ICMS devido à UF de origem da prestação, quando
+    :ivar ICMS90: ICMS Outros
+    :ivar ICMSOutraUF: ICMS devido à UF de origem da prestação, quando
         diferente da UF do emitente
-    :ivar icmssn: Simples Nacional
+    :ivar ICMSSN: Simples Nacional
     """
     class Meta:
         name = "TImp"
 
-    icms00: Optional["Timp.Icms00"] = field(
+    ICMS00: Optional["Timp.Icms00"] = field(
         default=None,
         metadata={
-            "name": "ICMS00",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms20: Optional["Timp.Icms20"] = field(
+    ICMS20: Optional["Timp.Icms20"] = field(
         default=None,
         metadata={
-            "name": "ICMS20",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms45: Optional["Timp.Icms45"] = field(
+    ICMS45: Optional["Timp.Icms45"] = field(
         default=None,
         metadata={
-            "name": "ICMS45",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms60: Optional["Timp.Icms60"] = field(
+    ICMS60: Optional["Timp.Icms60"] = field(
         default=None,
         metadata={
-            "name": "ICMS60",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms90: Optional["Timp.Icms90"] = field(
+    ICMS90: Optional["Timp.Icms90"] = field(
         default=None,
         metadata={
-            "name": "ICMS90",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icmsoutra_uf: Optional["Timp.IcmsoutraUf"] = field(
+    ICMSOutraUF: Optional["Timp.IcmsoutraUf"] = field(
         default=None,
         metadata={
-            "name": "ICMSOutraUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icmssn: Optional["Timp.Icmssn"] = field(
+    ICMSSN: Optional["Timp.Icmssn"] = field(
         default=None,
         metadata={
-            "name": "ICMSSN",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -1102,26 +1050,24 @@ class Timp:
     @dataclass
     class Icms00:
         """
-        :ivar cst: classificação Tributária do Serviço 00 - tributação
+        :ivar CST: classificação Tributária do Serviço 00 - tributação
             normal ICMS
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms00Cst] = field(
+        CST: Optional[Icms00Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1129,10 +1075,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1140,10 +1085,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1155,27 +1099,25 @@ class Timp:
     @dataclass
     class Icms20:
         """
-        :ivar cst: Classificação Tributária do serviço 20 - tributação
+        :ivar CST: Classificação Tributária do serviço 20 - tributação
             com BC reduzida do ICMS
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms20Cst] = field(
+        CST: Optional[Icms20Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1183,10 +1125,9 @@ class Timp:
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1194,10 +1135,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1205,10 +1145,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1220,13 +1159,12 @@ class Timp:
     @dataclass
     class Icms45:
         """
-        :ivar cst: Classificação Tributária do Serviço Preencher com: 40
+        :ivar CST: Classificação Tributária do Serviço Preencher com: 40
             - ICMS isenção; 41 - ICMS não tributada; 51 - ICMS diferido
         """
-        cst: Optional[Icms45Cst] = field(
+        CST: Optional[Icms45Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1237,48 +1175,35 @@ class Timp:
     @dataclass
     class Icms60:
         """
-        :ivar cst: Classificação Tributária do Serviço 60 - ICMS cobrado
+        :ivar CST: Classificação Tributária do Serviço 60 - ICMS cobrado
             por substituição tributária
-        :ivar v_bcstret: Valor da BC do ICMS ST retido Valor do frete
+        :ivar vBCSTRet: Valor da BC do ICMS ST retido Valor do frete
             sobre o qual será calculado o ICMS a ser substituído na
             Prestação.
-        :ivar v_icmsstret: Valor do ICMS ST retido Resultado da
+        :ivar vICMSSTRet: Valor do ICMS ST retido Resultado da
             multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor
             do ICMS a ser retido pelo Substituto. Podendo o valor do
             ICMS a ser retido efetivamente, sofrer ajustes conforme a
             opção tributaria do transportador substituído.
-        :ivar p_icmsstret: Alíquota do ICMS Percentual de Alíquota
+        :ivar pICMSSTRet: Alíquota do ICMS Percentual de Alíquota
             incidente na prestação de serviço de transporte.
-        :ivar v_cred: Valor do Crédito outorgado/Presumido Preencher
+        :ivar vCred: Valor do Crédito outorgado/Presumido Preencher
             somente quando o transportador substituído, for optante pelo
             crédito outorgado previsto no Convênio 106/96 e corresponde
             ao percentual de 20% do valor do ICMS ST retido.
         """
-        cst: Optional[Icms60Cst] = field(
+        CST: Optional[Icms60Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        v_bcstret: Optional[str] = field(
+        vBCSTRet: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBCSTRet",
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/cte",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-            }
-        )
-        v_icmsstret: Optional[str] = field(
-            default=None,
-            metadata={
-                "name": "vICMSSTRet",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1286,10 +1211,19 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icmsstret: Optional[str] = field(
+        vICMSSTRet: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMSSTRet",
+                "type": "Element",
+                "namespace": "http://www.portalfiscal.inf.br/cte",
+                "required": True,
+                "white_space": "preserve",
+                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+            }
+        )
+        pICMSSTRet: Optional[str] = field(
+            default=None,
+            metadata={
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1297,10 +1231,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_cred: Optional[str] = field(
+        vCred: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vCred",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
@@ -1311,37 +1244,34 @@ class Timp:
     @dataclass
     class Icms90:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS outros
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
-        :ivar v_cred: Valor do Crédito Outorgado/Presumido
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS outros
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
+        :ivar vCred: Valor do Crédito Outorgado/Presumido
         """
-        cst: Optional[Icms90Cst] = field(
+        CST: Optional[Icms90Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1349,10 +1279,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1360,10 +1289,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1371,10 +1299,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        v_cred: Optional[str] = field(
+        vCred: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vCred",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
@@ -1385,37 +1312,34 @@ class Timp:
     @dataclass
     class IcmsoutraUf:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS Outra
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS Outra
             UF
-        :ivar p_red_bcoutra_uf: Percentual de redução da BC
-        :ivar v_bcoutra_uf: Valor da BC do ICMS
-        :ivar p_icmsoutra_uf: Alíquota do ICMS
-        :ivar v_icmsoutra_uf: Valor do ICMS devido outra UF
+        :ivar pRedBCOutraUF: Percentual de redução da BC
+        :ivar vBCOutraUF: Valor da BC do ICMS
+        :ivar pICMSOutraUF: Alíquota do ICMS
+        :ivar vICMSOutraUF: Valor do ICMS devido outra UF
         """
-        cst: Optional[IcmsoutraUfCst] = field(
+        CST: Optional[IcmsoutraUfCst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bcoutra_uf: Optional[str] = field(
+        pRedBCOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBCOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bcoutra_uf: Optional[str] = field(
+        vBCOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBCOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1423,10 +1347,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icmsoutra_uf: Optional[str] = field(
+        pICMSOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMSOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1434,10 +1357,9 @@ class Timp:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icmsoutra_uf: Optional[str] = field(
+        vICMSOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMSOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1449,25 +1371,23 @@ class Timp:
     @dataclass
     class Icmssn:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS Simples
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS Simples
             Nacional
-        :ivar ind_sn: Indica se o contribuinte é Simples Nacional
+        :ivar indSN: Indica se o contribuinte é Simples Nacional
             1=Sim
         """
-        cst: Optional[IcmssnCst] = field(
+        CST: Optional[IcmssnCst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        ind_sn: Optional[IcmssnIndSn] = field(
+        indSN: Optional[IcmssnIndSn] = field(
             default=None,
             metadata={
-                "name": "indSN",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1481,62 +1401,56 @@ class TimpOs:
     """
     Tipo Dados do Imposto para CT-e OS.
 
-    :ivar icms00: Prestação sujeito à tributação normal do ICMS
-    :ivar icms20: Prestação sujeito à tributação com redução de BC do
+    :ivar ICMS00: Prestação sujeito à tributação normal do ICMS
+    :ivar ICMS20: Prestação sujeito à tributação com redução de BC do
         ICMS
-    :ivar icms45: ICMS  Isento, não Tributado ou diferido
-    :ivar icms90: ICMS Outros
-    :ivar icmsoutra_uf: ICMS devido à UF de origem da prestação, quando
+    :ivar ICMS45: ICMS  Isento, não Tributado ou diferido
+    :ivar ICMS90: ICMS Outros
+    :ivar ICMSOutraUF: ICMS devido à UF de origem da prestação, quando
         diferente da UF do emitente
-    :ivar icmssn: Simples Nacional
+    :ivar ICMSSN: Simples Nacional
     """
     class Meta:
         name = "TImpOS"
 
-    icms00: Optional["TimpOs.Icms00"] = field(
+    ICMS00: Optional["TimpOs.Icms00"] = field(
         default=None,
         metadata={
-            "name": "ICMS00",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms20: Optional["TimpOs.Icms20"] = field(
+    ICMS20: Optional["TimpOs.Icms20"] = field(
         default=None,
         metadata={
-            "name": "ICMS20",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms45: Optional["TimpOs.Icms45"] = field(
+    ICMS45: Optional["TimpOs.Icms45"] = field(
         default=None,
         metadata={
-            "name": "ICMS45",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icms90: Optional["TimpOs.Icms90"] = field(
+    ICMS90: Optional["TimpOs.Icms90"] = field(
         default=None,
         metadata={
-            "name": "ICMS90",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icmsoutra_uf: Optional["TimpOs.IcmsoutraUf"] = field(
+    ICMSOutraUF: Optional["TimpOs.IcmsoutraUf"] = field(
         default=None,
         metadata={
-            "name": "ICMSOutraUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    icmssn: Optional["TimpOs.Icmssn"] = field(
+    ICMSSN: Optional["TimpOs.Icmssn"] = field(
         default=None,
         metadata={
-            "name": "ICMSSN",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -1545,26 +1459,24 @@ class TimpOs:
     @dataclass
     class Icms00:
         """
-        :ivar cst: classificação Tributária do Serviço 00 - tributação
+        :ivar CST: classificação Tributária do Serviço 00 - tributação
             normal ICMS
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms00Cst] = field(
+        CST: Optional[Icms00Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1572,10 +1484,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1583,10 +1494,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1598,27 +1508,25 @@ class TimpOs:
     @dataclass
     class Icms20:
         """
-        :ivar cst: Classificação Tributária do serviço 20 - tributação
+        :ivar CST: Classificação Tributária do serviço 20 - tributação
             com BC reduzida do ICMS
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
         """
-        cst: Optional[Icms20Cst] = field(
+        CST: Optional[Icms20Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1626,10 +1534,9 @@ class TimpOs:
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1637,10 +1544,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1648,10 +1554,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1663,13 +1568,12 @@ class TimpOs:
     @dataclass
     class Icms45:
         """
-        :ivar cst: Classificação Tributária do Serviço Preencher com: 40
+        :ivar CST: Classificação Tributária do Serviço Preencher com: 40
             - ICMS isenção; 41 - ICMS não tributada; 51 - ICMS diferido
         """
-        cst: Optional[Icms45Cst] = field(
+        CST: Optional[Icms45Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1680,37 +1584,34 @@ class TimpOs:
     @dataclass
     class Icms90:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - Outros
-        :ivar p_red_bc: Percentual de redução da BC
-        :ivar v_bc: Valor da BC do ICMS
-        :ivar p_icms: Alíquota do ICMS
-        :ivar v_icms: Valor do ICMS
-        :ivar v_cred: Valor do Crédito Outorgado/Presumido
+        :ivar CST: Classificação Tributária do Serviço 90 - Outros
+        :ivar pRedBC: Percentual de redução da BC
+        :ivar vBC: Valor da BC do ICMS
+        :ivar pICMS: Alíquota do ICMS
+        :ivar vICMS: Valor do ICMS
+        :ivar vCred: Valor do Crédito Outorgado/Presumido
         """
-        cst: Optional[Icms90Cst] = field(
+        CST: Optional[Icms90Cst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bc: Optional[str] = field(
+        pRedBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bc: Optional[str] = field(
+        vBC: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBC",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1718,10 +1619,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icms: Optional[str] = field(
+        pICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1729,10 +1629,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icms: Optional[str] = field(
+        vICMS: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMS",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1740,10 +1639,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        v_cred: Optional[str] = field(
+        vCred: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vCred",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
@@ -1754,37 +1652,34 @@ class TimpOs:
     @dataclass
     class IcmsoutraUf:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS Outra
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS Outra
             UF
-        :ivar p_red_bcoutra_uf: Percentual de redução da BC
-        :ivar v_bcoutra_uf: Valor da BC do ICMS
-        :ivar p_icmsoutra_uf: Alíquota do ICMS
-        :ivar v_icmsoutra_uf: Valor do ICMS devido outra UF
+        :ivar pRedBCOutraUF: Percentual de redução da BC
+        :ivar vBCOutraUF: Valor da BC do ICMS
+        :ivar pICMSOutraUF: Alíquota do ICMS
+        :ivar vICMSOutraUF: Valor do ICMS devido outra UF
         """
-        cst: Optional[IcmsoutraUfCst] = field(
+        CST: Optional[IcmsoutraUfCst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        p_red_bcoutra_uf: Optional[str] = field(
+        pRedBCOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pRedBCOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_bcoutra_uf: Optional[str] = field(
+        vBCOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vBCOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1792,10 +1687,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
             }
         )
-        p_icmsoutra_uf: Optional[str] = field(
+        pICMSOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "pICMSOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1803,10 +1697,9 @@ class TimpOs:
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
             }
         )
-        v_icmsoutra_uf: Optional[str] = field(
+        vICMSOutraUF: Optional[str] = field(
             default=None,
             metadata={
-                "name": "vICMSOutraUF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1818,25 +1711,23 @@ class TimpOs:
     @dataclass
     class Icmssn:
         """
-        :ivar cst: Classificação Tributária do Serviço 90 - ICMS Simples
+        :ivar CST: Classificação Tributária do Serviço 90 - ICMS Simples
             Nacional
-        :ivar ind_sn: Indica se o contribuinte é Simples Nacional
+        :ivar indSN: Indica se o contribuinte é Simples Nacional
             1=Sim
         """
-        cst: Optional[IcmssnCst] = field(
+        CST: Optional[IcmssnCst] = field(
             default=None,
             metadata={
-                "name": "CST",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
                 "white_space": "preserve",
             }
         )
-        ind_sn: Optional[IcmssnIndSn] = field(
+        indSN: Optional[IcmssnIndSn] = field(
             default=None,
             metadata={
-                "name": "indSN",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1850,17 +1741,16 @@ class Tlocal:
     """
     Tipo Dados do Local de Origem ou Destino.
 
-    :ivar c_mun: Código do município (utilizar a tabela do IBGE)
-    :ivar x_mun: Nome do município
-    :ivar uf: Sigla da UF
+    :ivar cMun: Código do município (utilizar a tabela do IBGE)
+    :ivar xMun: Nome do município
+    :ivar UF: Sigla da UF
     """
     class Meta:
         name = "TLocal"
 
-    c_mun: Optional[str] = field(
+    cMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -1868,10 +1758,9 @@ class Tlocal:
             "pattern": r"[0-9]{7}",
         }
     )
-    x_mun: Optional[str] = field(
+    xMun: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMun",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -1881,10 +1770,9 @@ class Tlocal:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    uf: Optional[Tuf] = field(
+    UF: Optional[Tuf] = field(
         default=None,
         metadata={
-            "name": "UF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -1897,27 +1785,25 @@ class TprotCte:
     """
     Tipo Protocolo de status resultado do processamento da CT-e.
 
-    :ivar inf_prot: Dados do protocolo de status
-    :ivar inf_fisco: Mensagem do Fisco
+    :ivar infProt: Dados do protocolo de status
+    :ivar infFisco: Mensagem do Fisco
     :ivar signature:
     :ivar versao:
     """
     class Meta:
         name = "TProtCTe"
 
-    inf_prot: Optional["TprotCte.InfProt"] = field(
+    infProt: Optional["TprotCte.InfProt"] = field(
         default=None,
         metadata={
-            "name": "infProt",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_fisco: Optional["TprotCte.InfFisco"] = field(
+    infFisco: Optional["TprotCte.InfFisco"] = field(
         default=None,
         metadata={
-            "name": "infFisco",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -1943,32 +1829,30 @@ class TprotCte:
     @dataclass
     class InfProt:
         """
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar ver_aplic: Versão do Aplicativo que processou o CT-e
-        :ivar ch_cte: Chaves de acesso da CT-e,
-        :ivar dh_recbto: Data e hora de processamento, no formato AAAA-
+        :ivar verAplic: Versão do Aplicativo que processou o CT-e
+        :ivar chCTe: Chaves de acesso da CT-e,
+        :ivar dhRecbto: Data e hora de processamento, no formato AAAA-
             MM-DDTHH:MM:SS TZD.
-        :ivar n_prot: Número do Protocolo de Status do CT-e.
-        :ivar dig_val: Digest Value da CT-e processado. Utilizado para
+        :ivar nProt: Número do Protocolo de Status do CT-e.
+        :ivar digVal: Digest Value da CT-e processado. Utilizado para
             conferir a integridade do CT-e original.
-        :ivar c_stat: Código do status do CT-e.
-        :ivar x_motivo: Descrição literal do status do CT-e.
-        :ivar id:
+        :ivar cStat: Código do status do CT-e.
+        :ivar xMotivo: Descrição literal do status do CT-e.
+        :ivar Id:
         """
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
             }
         )
-        ver_aplic: Optional[str] = field(
+        verAplic: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verAplic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1978,10 +1862,9 @@ class TprotCte:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        ch_cte: Optional[str] = field(
+        chCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -1990,10 +1873,9 @@ class TprotCte:
                 "pattern": r"[0-9]{44}",
             }
         )
-        dh_recbto: Optional[str] = field(
+        dhRecbto: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRecbto",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2001,29 +1883,26 @@ class TprotCte:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        n_prot: Optional[str] = field(
+        nProt: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nProt",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{15}",
             }
         )
-        dig_val: Optional[bytes] = field(
+        digVal: Optional[bytes] = field(
             default=None,
             metadata={
-                "name": "digVal",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "format": "base64",
             }
         )
-        c_stat: Optional[str] = field(
+        cStat: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cStat",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2031,10 +1910,9 @@ class TprotCte:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_motivo: Optional[str] = field(
+        xMotivo: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMotivo",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2044,10 +1922,9 @@ class TprotCte:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
             }
         )
@@ -2055,13 +1932,12 @@ class TprotCte:
     @dataclass
     class InfFisco:
         """
-        :ivar c_msg: Código do status da mensagem do fisco
-        :ivar x_msg: Mensagem do Fisco
+        :ivar cMsg: Código do status da mensagem do fisco
+        :ivar xMsg: Mensagem do Fisco
         """
-        c_msg: Optional[str] = field(
+        cMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2069,10 +1945,9 @@ class TprotCte:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_msg: Optional[str] = field(
+        xMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2089,27 +1964,25 @@ class TprotCteOs:
     """
     Tipo Protocolo de status resultado do processamento do CT-e OS (Modelo 67)
 
-    :ivar inf_prot: Dados do protocolo de status
-    :ivar inf_fisco: Mensagem do Fisco
+    :ivar infProt: Dados do protocolo de status
+    :ivar infFisco: Mensagem do Fisco
     :ivar signature:
     :ivar versao:
     """
     class Meta:
         name = "TProtCTeOS"
 
-    inf_prot: Optional["TprotCteOs.InfProt"] = field(
+    infProt: Optional["TprotCteOs.InfProt"] = field(
         default=None,
         metadata={
-            "name": "infProt",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_fisco: Optional["TprotCteOs.InfFisco"] = field(
+    infFisco: Optional["TprotCteOs.InfFisco"] = field(
         default=None,
         metadata={
-            "name": "infFisco",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -2135,32 +2008,30 @@ class TprotCteOs:
     @dataclass
     class InfProt:
         """
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar ver_aplic: Versão do Aplicativo que processou o CT-e
-        :ivar ch_cte: Chaves de acesso da CT-e
-        :ivar dh_recbto: Data e hora de processamento, no formato AAAA-
+        :ivar verAplic: Versão do Aplicativo que processou o CT-e
+        :ivar chCTe: Chaves de acesso da CT-e
+        :ivar dhRecbto: Data e hora de processamento, no formato AAAA-
             MM-DDTHH:MM:SS TZD.
-        :ivar n_prot: Número do Protocolo de Status do CT-e.
-        :ivar dig_val: Digest Value da CT-e processado. Utilizado para
+        :ivar nProt: Número do Protocolo de Status do CT-e.
+        :ivar digVal: Digest Value da CT-e processado. Utilizado para
             conferir a integridade do CT-e original.
-        :ivar c_stat: Código do status do CT-e.
-        :ivar x_motivo: Descrição literal do status do CT-e.
-        :ivar id:
+        :ivar cStat: Código do status do CT-e.
+        :ivar xMotivo: Descrição literal do status do CT-e.
+        :ivar Id:
         """
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
             }
         )
-        ver_aplic: Optional[str] = field(
+        verAplic: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verAplic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2170,10 +2041,9 @@ class TprotCteOs:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        ch_cte: Optional[str] = field(
+        chCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2182,10 +2052,9 @@ class TprotCteOs:
                 "pattern": r"[0-9]{44}",
             }
         )
-        dh_recbto: Optional[str] = field(
+        dhRecbto: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRecbto",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2193,29 +2062,26 @@ class TprotCteOs:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        n_prot: Optional[str] = field(
+        nProt: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nProt",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{15}",
             }
         )
-        dig_val: Optional[bytes] = field(
+        digVal: Optional[bytes] = field(
             default=None,
             metadata={
-                "name": "digVal",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "format": "base64",
             }
         )
-        c_stat: Optional[str] = field(
+        cStat: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cStat",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2223,10 +2089,9 @@ class TprotCteOs:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_motivo: Optional[str] = field(
+        xMotivo: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMotivo",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2236,10 +2101,9 @@ class TprotCteOs:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
             }
         )
@@ -2247,13 +2111,12 @@ class TprotCteOs:
     @dataclass
     class InfFisco:
         """
-        :ivar c_msg: Código do status da mensagem do fisco
-        :ivar x_msg: Mensagem do Fisco
+        :ivar cMsg: Código do status da mensagem do fisco
+        :ivar xMsg: Mensagem do Fisco
         """
-        c_msg: Optional[str] = field(
+        cMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2261,10 +2124,9 @@ class TprotCteOs:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_msg: Optional[str] = field(
+        xMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2281,27 +2143,25 @@ class TprotGtve:
     """
     Tipo Protocolo de status resultado do processamento da GTV-e (Modelo 64)
 
-    :ivar inf_prot: Dados do protocolo de status
-    :ivar inf_fisco: Mensagem do Fisco
+    :ivar infProt: Dados do protocolo de status
+    :ivar infFisco: Mensagem do Fisco
     :ivar signature:
     :ivar versao:
     """
     class Meta:
         name = "TProtGTVe"
 
-    inf_prot: Optional["TprotGtve.InfProt"] = field(
+    infProt: Optional["TprotGtve.InfProt"] = field(
         default=None,
         metadata={
-            "name": "infProt",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_fisco: Optional["TprotGtve.InfFisco"] = field(
+    infFisco: Optional["TprotGtve.InfFisco"] = field(
         default=None,
         metadata={
-            "name": "infFisco",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -2327,32 +2187,30 @@ class TprotGtve:
     @dataclass
     class InfProt:
         """
-        :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
+        :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 -
             Homologação
-        :ivar ver_aplic: Versão do Aplicativo que processou a GTV-e
-        :ivar ch_cte: Chaves de acesso da CT-e
-        :ivar dh_recbto: Data e hora de processamento, no formato AAAA-
+        :ivar verAplic: Versão do Aplicativo que processou a GTV-e
+        :ivar chCTe: Chaves de acesso da CT-e
+        :ivar dhRecbto: Data e hora de processamento, no formato AAAA-
             MM-DDTHH:MM:SS TZD.
-        :ivar n_prot: Número do Protocolo de Status da GTV-e
-        :ivar dig_val: Digest Value da GTV-e processado. Utilizado para
+        :ivar nProt: Número do Protocolo de Status da GTV-e
+        :ivar digVal: Digest Value da GTV-e processado. Utilizado para
             conferir a integridade da GTV-e original.
-        :ivar c_stat: Código do status da GTV-e.
-        :ivar x_motivo: Descrição literal do status da GTV-e.
-        :ivar id:
+        :ivar cStat: Código do status da GTV-e.
+        :ivar xMotivo: Descrição literal do status da GTV-e.
+        :ivar Id:
         """
-        tp_amb: Optional[Tamb] = field(
+        tpAmb: Optional[Tamb] = field(
             default=None,
             metadata={
-                "name": "tpAmb",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
             }
         )
-        ver_aplic: Optional[str] = field(
+        verAplic: Optional[str] = field(
             default=None,
             metadata={
-                "name": "verAplic",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2362,10 +2220,9 @@ class TprotGtve:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        ch_cte: Optional[str] = field(
+        chCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "chCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2374,10 +2231,9 @@ class TprotGtve:
                 "pattern": r"[0-9]{44}",
             }
         )
-        dh_recbto: Optional[str] = field(
+        dhRecbto: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRecbto",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2385,29 +2241,26 @@ class TprotGtve:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        n_prot: Optional[str] = field(
+        nProt: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nProt",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "white_space": "preserve",
                 "pattern": r"[0-9]{15}",
             }
         )
-        dig_val: Optional[bytes] = field(
+        digVal: Optional[bytes] = field(
             default=None,
             metadata={
-                "name": "digVal",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "format": "base64",
             }
         )
-        c_stat: Optional[str] = field(
+        cStat: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cStat",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2415,10 +2268,9 @@ class TprotGtve:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_motivo: Optional[str] = field(
+        xMotivo: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMotivo",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2428,10 +2280,9 @@ class TprotGtve:
                 "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
             }
         )
@@ -2439,13 +2290,12 @@ class TprotGtve:
     @dataclass
     class InfFisco:
         """
-        :ivar c_msg: Código do status da mensagem do fisco
-        :ivar x_msg: Mensagem do Fisco
+        :ivar cMsg: Código do status da mensagem do fisco
+        :ivar xMsg: Mensagem do Fisco
         """
-        c_msg: Optional[str] = field(
+        cMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "cMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2453,10 +2303,9 @@ class TprotGtve:
                 "pattern": r"[0-9]{3}",
             }
         )
-        x_msg: Optional[str] = field(
+        xMsg: Optional[str] = field(
             default=None,
             metadata={
-                "name": "xMsg",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2473,40 +2322,36 @@ class TretEnviCte:
     """
     Tipo Retorno do Pedido de Concessão de Autorização da CT-e.
 
-    :ivar tp_amb: Identificação do Ambiente:1 - Produção; 2 -
-        Homologação
-    :ivar c_uf: Identificação da UF
-    :ivar ver_aplic: Versão do Aplicativo que recebeu o Lote.
-    :ivar c_stat: Código do status da mensagem enviada.
-    :ivar x_motivo: Descrição literal do status do serviço solicitado.
-    :ivar inf_rec: Dados do Recibo do Lote
+    :ivar tpAmb: Identificação do Ambiente:1 - Produção; 2 - Homologação
+    :ivar cUF: Identificação da UF
+    :ivar verAplic: Versão do Aplicativo que recebeu o Lote.
+    :ivar cStat: Código do status da mensagem enviada.
+    :ivar xMotivo: Descrição literal do status do serviço solicitado.
+    :ivar infRec: Dados do Recibo do Lote
     :ivar versao:
     """
     class Meta:
         name = "TRetEnviCTe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -2516,10 +2361,9 @@ class TretEnviCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -2527,10 +2371,9 @@ class TretEnviCte:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -2540,10 +2383,9 @@ class TretEnviCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    inf_rec: Optional["TretEnviCte.InfRec"] = field(
+    infRec: Optional["TretEnviCte.InfRec"] = field(
         default=None,
         metadata={
-            "name": "infRec",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -2561,16 +2403,15 @@ class TretEnviCte:
     @dataclass
     class InfRec:
         """
-        :ivar n_rec: Número do Recibo
-        :ivar dh_recbto: Data e hora do recebimento, no formato AAAA-MM-
+        :ivar nRec: Número do Recibo
+        :ivar dhRecbto: Data e hora do recebimento, no formato AAAA-MM-
             DDTHH:MM:SS TZD
-        :ivar t_med: Tempo médio de resposta do serviço (em segundos)
-            dos últimos 5 minutos
+        :ivar tMed: Tempo médio de resposta do serviço (em segundos) dos
+            últimos 5 minutos
         """
-        n_rec: Optional[str] = field(
+        nRec: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nRec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2578,10 +2419,9 @@ class TretEnviCte:
                 "pattern": r"[0-9]{15}",
             }
         )
-        dh_recbto: Optional[str] = field(
+        dhRecbto: Optional[str] = field(
             default=None,
             metadata={
-                "name": "dhRecbto",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2589,10 +2429,9 @@ class TretEnviCte:
                 "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
             }
         )
-        t_med: Optional[str] = field(
+        tMed: Optional[str] = field(
             default=None,
             metadata={
-                "name": "tMed",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2606,30 +2445,28 @@ class TunidCarga:
     """
     Tipo Dados Unidade de Carga.
 
-    :ivar tp_unid_carga: Tipo da Unidade de Carga 1 - Container 2 - ULD
-        3 - Pallet 4 - Outros
-    :ivar id_unid_carga: Identificação da Unidade de Carga Informar a
+    :ivar tpUnidCarga: Tipo da Unidade de Carga 1 - Container 2 - ULD 3
+        - Pallet 4 - Outros
+    :ivar idUnidCarga: Identificação da Unidade de Carga Informar a
         identificação da unidade de carga, por exemplo: número do
         container.
-    :ivar lac_unid_carga: Lacres das Unidades de Carga
-    :ivar qtd_rat: Quantidade rateada (Peso,Volume)
+    :ivar lacUnidCarga: Lacres das Unidades de Carga
+    :ivar qtdRat: Quantidade rateada (Peso,Volume)
     """
     class Meta:
         name = "TUnidCarga"
 
-    tp_unid_carga: Optional[TtipoUnidCarga] = field(
+    tpUnidCarga: Optional[TtipoUnidCarga] = field(
         default=None,
         metadata={
-            "name": "tpUnidCarga",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    id_unid_carga: Optional[str] = field(
+    idUnidCarga: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idUnidCarga",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -2639,18 +2476,16 @@ class TunidCarga:
             "pattern": r"[A-Z0-9]+",
         }
     )
-    lac_unid_carga: List["TunidCarga.LacUnidCarga"] = field(
+    lacUnidCarga: List["TunidCarga.LacUnidCarga"] = field(
         default_factory=list,
         metadata={
-            "name": "lacUnidCarga",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    qtd_rat: Optional[str] = field(
+    qtdRat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "qtdRat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
@@ -2661,12 +2496,11 @@ class TunidCarga:
     @dataclass
     class LacUnidCarga:
         """
-        :ivar n_lacre: Número do lacre
+        :ivar nLacre: Número do lacre
         """
-        n_lacre: Optional[str] = field(
+        nLacre: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nLacre",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2683,27 +2517,25 @@ class TcteOs:
     """
     Tipo Conhecimento de Transporte Eletrônico Outros Serviços (Modelo 67)
 
-    :ivar inf_cte: Informações do CT-e Outros Serviços
-    :ivar inf_cte_supl: Informações suplementares do CT-e
+    :ivar infCte: Informações do CT-e Outros Serviços
+    :ivar infCTeSupl: Informações suplementares do CT-e
     :ivar signature:
     :ivar versao: Versão do leiaute
     """
     class Meta:
         name = "TCTeOS"
 
-    inf_cte: Optional["TcteOs.InfCte"] = field(
+    infCte: Optional["TcteOs.InfCte"] = field(
         default=None,
         metadata={
-            "name": "infCte",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_cte_supl: Optional["TcteOs.InfCteSupl"] = field(
+    infCTeSupl: Optional["TcteOs.InfCteSupl"] = field(
         default=None,
         metadata={
-            "name": "infCTeSupl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -2736,17 +2568,17 @@ class TcteOs:
         :ivar emit: Identificação do Emitente do CT-e OS
         :ivar toma: Informações do Tomador/Usuário do Serviço Opcional
             para Excesso de Bagagem
-        :ivar v_prest: Valores da Prestação de Serviço
+        :ivar vPrest: Valores da Prestação de Serviço
         :ivar imp: Informações relativas aos Impostos
-        :ivar inf_cte_norm: Grupo de informações do CT-e OS Normal
-        :ivar inf_cte_comp: Detalhamento do CT-e complementado
-        :ivar inf_cte_anu: Detalhamento do CT-e do tipo Anulação
-        :ivar aut_xml: Autorizados para download do XML do DF-e Informar
+        :ivar infCTeNorm: Grupo de informações do CT-e OS Normal
+        :ivar infCteComp: Detalhamento do CT-e complementado
+        :ivar infCteAnu: Detalhamento do CT-e do tipo Anulação
+        :ivar autXML: Autorizados para download do XML do DF-e Informar
             CNPJ ou CPF. Preencher os zeros não significativos.
-        :ivar inf_resp_tec: Informações do Responsável Técnico pela
+        :ivar infRespTec: Informações do Responsável Técnico pela
             emissão do DF-e
         :ivar versao: Versão do leiaute Ex: "3.00"
-        :ivar id: Identificador da tag a ser assinada Informar a chave
+        :ivar Id: Identificador da tag a ser assinada Informar a chave
             de acesso do CT-e OS e precedida do literal "CTe"
         """
         ide: Optional["TcteOs.InfCte.Ide"] = field(
@@ -2779,10 +2611,9 @@ class TcteOs:
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        v_prest: Optional["TcteOs.InfCte.VPrest"] = field(
+        vPrest: Optional["TcteOs.InfCte.VPrest"] = field(
             default=None,
             metadata={
-                "name": "vPrest",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -2796,43 +2627,38 @@ class TcteOs:
                 "required": True,
             }
         )
-        inf_cte_norm: Optional["TcteOs.InfCte.InfCteNorm"] = field(
+        infCTeNorm: Optional["TcteOs.InfCte.InfCteNorm"] = field(
             default=None,
             metadata={
-                "name": "infCTeNorm",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        inf_cte_comp: Optional["TcteOs.InfCte.InfCteComp"] = field(
+        infCteComp: Optional["TcteOs.InfCte.InfCteComp"] = field(
             default=None,
             metadata={
-                "name": "infCteComp",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        inf_cte_anu: Optional["TcteOs.InfCte.InfCteAnu"] = field(
+        infCteAnu: Optional["TcteOs.InfCte.InfCteAnu"] = field(
             default=None,
             metadata={
-                "name": "infCteAnu",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        aut_xml: List["TcteOs.InfCte.AutXml"] = field(
+        autXML: List["TcteOs.InfCte.AutXml"] = field(
             default_factory=list,
             metadata={
-                "name": "autXML",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "max_occurs": 10,
             }
         )
-        inf_resp_tec: Optional[TrespTec] = field(
+        infRespTec: Optional[TrespTec] = field(
             default=None,
             metadata={
-                "name": "infRespTec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
@@ -2846,10 +2672,9 @@ class TcteOs:
                 "pattern": r"3\.00",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"CTe[0-9]{44}",
@@ -2859,93 +2684,91 @@ class TcteOs:
         @dataclass
         class Ide:
             """
-            :ivar c_uf: Código da UF do emitente do CT-e. Utilizar a
+            :ivar cUF: Código da UF do emitente do CT-e. Utilizar a
                 Tabela do IBGE.
-            :ivar c_ct: Código numérico que compõe a Chave de Acesso.
+            :ivar cCT: Código numérico que compõe a Chave de Acesso.
                 Número aleatório gerado pelo emitente para cada CT-e,
                 com o objetivo de evitar acessos indevidos ao documento.
-            :ivar cfop: Código Fiscal de Operações e Prestações
-            :ivar nat_op: Natureza da Operação
+            :ivar CFOP: Código Fiscal de Operações e Prestações
+            :ivar natOp: Natureza da Operação
             :ivar mod: Modelo do documento fiscal Utilizar o código 67
                 para identificação do CT-e Outros Serviços, emitido em
                 substituição a Nota Fiscal Modelo 7 para transporte de
                 pessoas, valores e excesso de bagagem.
             :ivar serie: Série do CT-e OS Preencher com "0" no caso de
                 série única
-            :ivar n_ct: Número do CT-e OS
-            :ivar dh_emi: Data e hora de emissão do CT-e OS Formato
-                AAAA-MM-DDTHH:MM:DD TZD
-            :ivar tp_imp: Formato de impressão do DACTE OS Preencher
-                com: 1 - Retrato; 2 - Paisagem.
-            :ivar tp_emis: Forma de emissão do CT-e Preencher com: 1 -
+            :ivar nCT: Número do CT-e OS
+            :ivar dhEmi: Data e hora de emissão do CT-e OS Formato AAAA-
+                MM-DDTHH:MM:DD TZD
+            :ivar tpImp: Formato de impressão do DACTE OS Preencher com:
+                1 - Retrato; 2 - Paisagem.
+            :ivar tpEmis: Forma de emissão do CT-e Preencher com: 1 -
                 Normal; 5 - Contingência FSDA; 7 - Autorização pela SVC-
                 RS; 8 - Autorização pela SVC-SP
-            :ivar c_dv: Digito Verificador da chave de acesso do CT-e
+            :ivar cDV: Digito Verificador da chave de acesso do CT-e
                 Informar o dígito  de controle da chave de acesso do
                 CT-e, que deve ser calculado com a aplicação do
                 algoritmo módulo 11 (base 2,9) da chave de acesso.
-            :ivar tp_amb: Tipo do Ambiente Preencher com:1 - Produção; 2
+            :ivar tpAmb: Tipo do Ambiente Preencher com:1 - Produção; 2
                 - Homologação
-            :ivar tp_cte: Tipo do CT-e OS Preencher com: 0 - CT-e
-                Normal; 1 - CT-e Complementar; 2 - CT-e de Anulação; 3 -
-                CT-e de Substituição.
-            :ivar proc_emi: Identificador do processo de emissão do CT-e
+            :ivar tpCTe: Tipo do CT-e OS Preencher com: 0 - CT-e Normal;
+                1 - CT-e Complementar; 2 - CT-e de Anulação; 3 - CT-e de
+                Substituição.
+            :ivar procEmi: Identificador do processo de emissão do CT-e
                 OS Preencher com: 0 - emissão de CT-e com aplicativo do
                 contribuinte; 3- emissão CT-e pelo contribuinte com
                 aplicativo fornecido pelo Fisco.
-            :ivar ver_proc: Versão do processo de emissão Iinformar a
+            :ivar verProc: Versão do processo de emissão Iinformar a
                 versão do aplicativo emissor de CT-e.
-            :ivar c_mun_env: Código do Município de envio do CT-e (de
-                onde o documento foi transmitido) Utilizar a tabela do
-                IBGE. Informar 9999999 para as operações com o exterior.
-            :ivar x_mun_env: Nome do Município de envio do CT-e (de onde
-                o documento foi transmitido) Informar PAIS/Municipio
-                para as operações com o exterior.
-            :ivar ufenv: Sigla da UF de envio do CT-e (de onde o
+            :ivar cMunEnv: Código do Município de envio do CT-e (de onde
+                o documento foi transmitido) Utilizar a tabela do IBGE.
+                Informar 9999999 para as operações com o exterior.
+            :ivar xMunEnv: Nome do Município de envio do CT-e (de onde o
+                documento foi transmitido) Informar PAIS/Municipio para
+                as operações com o exterior.
+            :ivar UFEnv: Sigla da UF de envio do CT-e (de onde o
                 documento foi transmitido) Informar 'EX' para operações
                 com o exterior.
             :ivar modal: Modal do CT-e OS Preencher com: 01-Rodoviário;
                 02- Aéreo; 03 - Aquaviário; 04 - Ferroviário.
-            :ivar tp_serv: Tipo do Serviço Preencher com: 6 - Transporte
+            :ivar tpServ: Tipo do Serviço Preencher com: 6 - Transporte
                 de Pessoas; 7 - Transporte de Valores; 8 - Excesso de
                 Bagagem.
-            :ivar ind_ietoma: Indicador da IE do tomador: 1 –
+            :ivar indIEToma: Indicador da IE do tomador: 1 –
                 Contribuinte ICMS; 2 – Contribuinte isento de inscrição;
                 9 – Não Contribuinte Aplica-se ao tomador que for
                 indicado no toma3 ou toma4
-            :ivar c_mun_ini: Código do Município de início da prestação
+            :ivar cMunIni: Código do Município de início da prestação
                 Utilizar a tabela do IBGE. Informar 9999999 para
                 operações com o exterior.
-            :ivar x_mun_ini: Nome do Município do início da prestação
+            :ivar xMunIni: Nome do Município do início da prestação
                 Informar 'EXTERIOR' para operações com o exterior.
-            :ivar ufini: UF do início da prestação Informar 'EX' para
+            :ivar UFIni: UF do início da prestação Informar 'EX' para
                 operações com o exterior.
-            :ivar c_mun_fim: Código do Município de término da prestação
+            :ivar cMunFim: Código do Município de término da prestação
                 Utilizar a tabela do IBGE. Informar 9999999 para
                 operações com o exterior.
-            :ivar x_mun_fim: Nome do Município do término da prestação
+            :ivar xMunFim: Nome do Município do término da prestação
                 Informar 'EXTERIOR' para operações com o exterior.
-            :ivar uffim: UF do término da prestação Informar 'EX' para
+            :ivar UFFim: UF do término da prestação Informar 'EX' para
                 operações com o exterior.
-            :ivar inf_percurso: Informações do Percurso do CT-e Outros
+            :ivar infPercurso: Informações do Percurso do CT-e Outros
                 Serviços
-            :ivar dh_cont: Data e Hora da entrada em contingência
+            :ivar dhCont: Data e Hora da entrada em contingência
                 Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
-            :ivar x_just: Justificativa da entrada em contingência
+            :ivar xJust: Justificativa da entrada em contingência
             """
-            c_uf: Optional[TcodUfIbge] = field(
+            cUF: Optional[TcodUfIbge] = field(
                 default=None,
                 metadata={
-                    "name": "cUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            c_ct: Optional[str] = field(
+            cCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -2953,10 +2776,9 @@ class TcteOs:
                     "pattern": r"[0-9]{8}",
                 }
             )
-            cfop: Optional[str] = field(
+            CFOP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CFOP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -2964,10 +2786,9 @@ class TcteOs:
                     "pattern": r"[123567][0-9]([0-9][1-9]|[1-9][0-9])",
                 }
             )
-            nat_op: Optional[str] = field(
+            natOp: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "natOp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -2995,10 +2816,9 @@ class TcteOs:
                     "pattern": r"0|[1-9]{1}[0-9]{0,2}",
                 }
             )
-            n_ct: Optional[str] = field(
+            nCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3006,10 +2826,9 @@ class TcteOs:
                     "pattern": r"[1-9]{1}[0-9]{0,8}",
                 }
             )
-            dh_emi: Optional[str] = field(
+            dhEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3017,30 +2836,27 @@ class TcteOs:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp] = field(
+            tpImp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
-                    "name": "tpImp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis] = field(
+            tpEmis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
-                    "name": "tpEmis",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            c_dv: Optional[str] = field(
+            cDV: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDV",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3048,37 +2864,33 @@ class TcteOs:
                     "pattern": r"[0-9]{1}",
                 }
             )
-            tp_amb: Optional[Tamb] = field(
+            tpAmb: Optional[Tamb] = field(
                 default=None,
                 metadata={
-                    "name": "tpAmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            tp_cte: Optional[TfinCte] = field(
+            tpCTe: Optional[TfinCte] = field(
                 default=None,
                 metadata={
-                    "name": "tpCTe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            proc_emi: Optional[TprocEmi] = field(
+            procEmi: Optional[TprocEmi] = field(
                 default=None,
                 metadata={
-                    "name": "procEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            ver_proc: Optional[str] = field(
+            verProc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "verProc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3088,10 +2900,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            c_mun_env: Optional[str] = field(
+            cMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3099,10 +2910,9 @@ class TcteOs:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_env: Optional[str] = field(
+            xMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3112,10 +2922,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ufenv: Optional[Tuf] = field(
+            UFEnv: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3129,40 +2938,36 @@ class TcteOs:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ] = field(
+            tpServ: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
-                    "name": "tpServ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma] = field(
+            indIEToma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
-                    "name": "indIEToma",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            c_mun_ini: Optional[str] = field(
+            cMunIni: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_ini: Optional[str] = field(
+            xMunIni: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -3171,28 +2976,25 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ufini: Optional[Tuf] = field(
+            UFIni: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            c_mun_fim: Optional[str] = field(
+            cMunFim: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_fim: Optional[str] = field(
+            xMunFim: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -3201,37 +3003,33 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            uffim: Optional[Tuf] = field(
+            UFFim: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_percurso: List["TcteOs.InfCte.Ide.InfPercurso"] = field(
+            infPercurso: List["TcteOs.InfCte.Ide.InfPercurso"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "infPercurso",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 25,
                 }
             )
-            dh_cont: Optional[str] = field(
+            dhCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 15,
@@ -3244,14 +3042,13 @@ class TcteOs:
             @dataclass
             class InfPercurso:
                 """
-                :ivar ufper: Sigla das Unidades da Federação do percurso
+                :ivar UFPer: Sigla das Unidades da Federação do percurso
                     do veículo. Não é necessário repetir as UF de Início
                     e Fim
                 """
-                ufper: Optional[Tuf] = field(
+                UFPer: Optional[Tuf] = field(
                     default=None,
                     metadata={
-                        "name": "UFPer",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3261,24 +3058,23 @@ class TcteOs:
         @dataclass
         class Compl:
             """
-            :ivar x_carac_ad: Característica adicional do transporte
-                Texto livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
-            :ivar x_carac_ser: Característica adicional do serviço Texto
+            :ivar xCaracAd: Característica adicional do transporte Texto
+                livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
+            :ivar xCaracSer: Característica adicional do serviço Texto
                 livre: ENTREGA EXPRESSA; LOGÍSTICA REVERSA;
                 CONVENCIONAL; EMERGENCIAL; etc
-            :ivar x_emi: Funcionário emissor do CTe
-            :ivar x_obs: Observações Gerais
-            :ivar obs_cont: Campo de uso livre do contribuinte Informar
-                o nome do campo no atributo xCampo e o conteúdo do campo
+            :ivar xEmi: Funcionário emissor do CTe
+            :ivar xObs: Observações Gerais
+            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+                nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar obs_fisco: Campo de uso livre do contribuinte Informar
+            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
-            x_carac_ad: Optional[str] = field(
+            xCaracAd: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracAd",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -3287,10 +3083,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_carac_ser: Optional[str] = field(
+            xCaracSer: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracSer",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -3299,10 +3094,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_emi: Optional[str] = field(
+            xEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -3311,10 +3105,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_obs: Optional[str] = field(
+            xObs: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xObs",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -3323,19 +3116,17 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            obs_cont: List["TcteOs.InfCte.Compl.ObsCont"] = field(
+            ObsCont: List["TcteOs.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            obs_fisco: List["TcteOs.InfCte.Compl.ObsFisco"] = field(
+            ObsFisco: List["TcteOs.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -3345,13 +3136,12 @@ class TcteOs:
             @dataclass
             class ObsCont:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3361,10 +3151,9 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -3377,13 +3166,12 @@ class TcteOs:
             @dataclass
             class ObsFisco:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3393,10 +3181,9 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -3409,18 +3196,17 @@ class TcteOs:
         @dataclass
         class Emit:
             """
-            :ivar cnpj: CNPJ do emitente Informar zeros não
+            :ivar CNPJ: CNPJ do emitente Informar zeros não
                 significativos
-            :ivar ie: Inscrição Estadual do Emitente
-            :ivar iest: Inscrição Estadual do Substituto Tributário
-            :ivar x_nome: Razão social ou Nome do emitente
-            :ivar x_fant: Nome fantasia
-            :ivar ender_emit: Endereço do emitente
+            :ivar IE: Inscrição Estadual do Emitente
+            :ivar IEST: Inscrição Estadual do Substituto Tributário
+            :ivar xNome: Razão social ou Nome do emitente
+            :ivar xFant: Nome fantasia
+            :ivar enderEmit: Endereço do emitente
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3428,10 +3214,9 @@ class TcteOs:
                     "pattern": r"[0-9]{14}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3440,10 +3225,9 @@ class TcteOs:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            iest: Optional[str] = field(
+            IEST: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IEST",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -3451,10 +3235,9 @@ class TcteOs:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3464,10 +3247,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -3476,10 +3258,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ender_emit: Optional[TendeEmi] = field(
+            enderEmit: Optional[TendeEmi] = field(
                 default=None,
                 metadata={
-                    "name": "enderEmit",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3489,46 +3270,43 @@ class TcteOs:
         @dataclass
         class Toma:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do tomador ou
+            :ivar IE: Inscrição Estadual Informar a IE do tomador ou
                 ISENTO se tomador é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 tomador não seja contribuinte do ICMS não informar o
                 conteúdo.
-            :ivar x_nome: Razão social ou nome do tomador
-            :ivar x_fant: Nome fantasia
+            :ivar xNome: Razão social ou nome do tomador
+            :ivar xFant: Nome fantasia
             :ivar fone: Telefone
-            :ivar ender_toma: Dados do endereço
+            :ivar enderToma: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -3536,10 +3314,9 @@ class TcteOs:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3549,10 +3326,9 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -3570,10 +3346,9 @@ class TcteOs:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            ender_toma: Optional[Tendereco] = field(
+            enderToma: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderToma",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3594,15 +3369,14 @@ class TcteOs:
         @dataclass
         class VPrest:
             """
-            :ivar v_tprest: Valor Total da Prestação do Serviço Pode
+            :ivar vTPrest: Valor Total da Prestação do Serviço Pode
                 conter zeros quando o CT-e for de complemento de ICMS
-            :ivar v_rec: Valor a Receber
-            :ivar comp: Componentes do Valor da Prestação
+            :ivar vRec: Valor a Receber
+            :ivar Comp: Componentes do Valor da Prestação
             """
-            v_tprest: Optional[str] = field(
+            vTPrest: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTPrest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3610,10 +3384,9 @@ class TcteOs:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            v_rec: Optional[str] = field(
+            vRec: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vRec",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -3621,10 +3394,9 @@ class TcteOs:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            comp: List["TcteOs.InfCte.VPrest.Comp"] = field(
+            Comp: List["TcteOs.InfCte.VPrest.Comp"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -3633,14 +3405,13 @@ class TcteOs:
             @dataclass
             class Comp:
                 """
-                :ivar x_nome: Nome do componente Exxemplos: FRETE PESO,
+                :ivar xNome: Nome do componente Exxemplos: FRETE PESO,
                     FRETE VALOR, SEC/CAT, ADEME, AGENDAMENTO, etc
-                :ivar v_comp: Valor do componente
+                :ivar vComp: Valor do componente
                 """
-                x_nome: Optional[str] = field(
+                xNome: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xNome",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3650,10 +3421,9 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                v_comp: Optional[str] = field(
+                vComp: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vComp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3665,43 +3435,40 @@ class TcteOs:
         @dataclass
         class Imp:
             """
-            :ivar icms: Informações relativas ao ICMS
-            :ivar v_tot_trib: Valor Total dos Tributos
-            :ivar inf_ad_fisco: Informações adicionais de interesse do
+            :ivar ICMS: Informações relativas ao ICMS
+            :ivar vTotTrib: Valor Total dos Tributos
+            :ivar infAdFisco: Informações adicionais de interesse do
                 Fisco Norma referenciada, informações complementares,
                 etc
-            :ivar icmsuffim: Informações do ICMS de partilha com a UF de
+            :ivar ICMSUFFim: Informações do ICMS de partilha com a UF de
                 término do serviço de transporte na operação
                 interestadual Grupo a ser informado nas prestações
                 interestaduais para consumidor final, não contribuinte
                 do ICMS
-            :ivar inf_trib_fed: Informações dos tributos federais Grupo
-                a ser informado nas prestações interestaduais para
+            :ivar infTribFed: Informações dos tributos federais Grupo a
+                ser informado nas prestações interestaduais para
                 consumidor final, não contribuinte do ICMS
             """
-            icms: Optional[TimpOs] = field(
+            ICMS: Optional[TimpOs] = field(
                 default=None,
                 metadata={
-                    "name": "ICMS",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            v_tot_trib: Optional[str] = field(
+            vTotTrib: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTotTrib",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            inf_ad_fisco: Optional[str] = field(
+            infAdFisco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infAdFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -3710,18 +3477,16 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            icmsuffim: Optional["TcteOs.InfCte.Imp.Icmsuffim"] = field(
+            ICMSUFFim: Optional["TcteOs.InfCte.Imp.Icmsuffim"] = field(
                 default=None,
                 metadata={
-                    "name": "ICMSUFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_trib_fed: Optional["TcteOs.InfCte.Imp.InfTribFed"] = field(
+            infTribFed: Optional["TcteOs.InfCte.Imp.InfTribFed"] = field(
                 default=None,
                 metadata={
-                    "name": "infTribFed",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -3730,29 +3495,28 @@ class TcteOs:
             @dataclass
             class Icmsuffim:
                 """
-                :ivar v_bcuffim: Valor da BC do ICMS na UF de término da
+                :ivar vBCUFFim: Valor da BC do ICMS na UF de término da
                     prestação do serviço de transporte
-                :ivar p_fcpuffim: Percentual do ICMS relativo ao Fundo
-                    de Combate à pobreza (FCP) na UF de término da
+                :ivar pFCPUFFim: Percentual do ICMS relativo ao Fundo de
+                    Combate à pobreza (FCP) na UF de término da
                     prestação do serviço de transporte Alíquota adotada
                     nas operações internas na UF do destinatário
-                :ivar p_icmsuffim: Alíquota interna da UF de término da
+                :ivar pICMSUFFim: Alíquota interna da UF de término da
                     prestação do serviço de transporte Alíquota adotada
                     nas operações internas na UF do destinatário
-                :ivar p_icmsinter: Alíquota interestadual das UF
+                :ivar pICMSInter: Alíquota interestadual das UF
                     envolvidas Alíquota interestadual das UF envolvidas
-                :ivar v_fcpuffim: Valor do ICMS relativo ao Fundo de
+                :ivar vFCPUFFim: Valor do ICMS relativo ao Fundo de
                     Combate á Pobreza (FCP) da UF de término da
                     prestação
-                :ivar v_icmsuffim: Valor do ICMS de partilha para a UF
-                    de término da prestação do serviço de transporte
-                :ivar v_icmsufini: Valor do ICMS de partilha para a UF
-                    de início da prestação do serviço de transporte
+                :ivar vICMSUFFim: Valor do ICMS de partilha para a UF de
+                    término da prestação do serviço de transporte
+                :ivar vICMSUFIni: Valor do ICMS de partilha para a UF de
+                    início da prestação do serviço de transporte
                 """
-                v_bcuffim: Optional[str] = field(
+                vBCUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vBCUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3760,10 +3524,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                p_fcpuffim: Optional[str] = field(
+                pFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3771,10 +3534,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsuffim: Optional[str] = field(
+                pICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3782,10 +3544,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsinter: Optional[str] = field(
+                pICMSInter: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSInter",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3793,10 +3554,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                v_fcpuffim: Optional[str] = field(
+                vFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3804,10 +3564,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsuffim: Optional[str] = field(
+                vICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3815,10 +3574,9 @@ class TcteOs:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsufini: Optional[str] = field(
+                vICMSUFIni: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFIni",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -3830,56 +3588,51 @@ class TcteOs:
             @dataclass
             class InfTribFed:
                 """
-                :ivar v_pis: Valor do PIS
-                :ivar v_cofins: Valor COFINS
-                :ivar v_ir: Valor de Imposto de Renda
-                :ivar v_inss: Valor do INSS
-                :ivar v_csll: Valor do CSLL
+                :ivar vPIS: Valor do PIS
+                :ivar vCOFINS: Valor COFINS
+                :ivar vIR: Valor de Imposto de Renda
+                :ivar vINSS: Valor do INSS
+                :ivar vCSLL: Valor do CSLL
                 """
-                v_pis: Optional[str] = field(
+                vPIS: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vPIS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_cofins: Optional[str] = field(
+                vCOFINS: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vCOFINS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_ir: Optional[str] = field(
+                vIR: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vIR",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_inss: Optional[str] = field(
+                vINSS: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vINSS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_csll: Optional[str] = field(
+                vCSLL: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vCSLL",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
@@ -3890,25 +3643,23 @@ class TcteOs:
         @dataclass
         class AutXml:
             """
-            :ivar cnpj: CNPJ do autorizado Informar zeros não
+            :ivar CNPJ: CNPJ do autorizado Informar zeros não
                 significativos
-            :ivar cpf: CPF do autorizado Informar zeros não
+            :ivar CPF: CPF do autorizado Informar zeros não
                 significativos
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
@@ -3919,31 +3670,28 @@ class TcteOs:
         @dataclass
         class InfCteNorm:
             """
-            :ivar inf_servico: Informações da Prestação do Serviço
-            :ivar inf_doc_ref: Informações dos documentos referenciados
+            :ivar infServico: Informações da Prestação do Serviço
+            :ivar infDocRef: Informações dos documentos referenciados
             :ivar seg: Informações de Seguro da Carga
-            :ivar inf_modal: Informações do modal Obrigatório para
+            :ivar infModal: Informações do modal Obrigatório para
                 Pessoas e Bagagem
-            :ivar inf_cte_sub: Informações do CT-e de substituição
-            :ivar ref_cte_canc: Chave de acesso do CT-e Cancelado
-                Somente para Transporte de Valores
+            :ivar infCteSub: Informações do CT-e de substituição
+            :ivar refCTeCanc: Chave de acesso do CT-e Cancelado Somente
+                para Transporte de Valores
             :ivar cobr: Dados da cobrança do CT-e
-            :ivar inf_gtve: Informações das GTV-e relacionadas ao CT-e
-                OS
+            :ivar infGTVe: Informações das GTV-e relacionadas ao CT-e OS
             """
-            inf_servico: Optional["TcteOs.InfCte.InfCteNorm.InfServico"] = field(
+            infServico: Optional["TcteOs.InfCte.InfCteNorm.InfServico"] = field(
                 default=None,
                 metadata={
-                    "name": "infServico",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            inf_doc_ref: List["TcteOs.InfCte.InfCteNorm.InfDocRef"] = field(
+            infDocRef: List["TcteOs.InfCte.InfCteNorm.InfDocRef"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "infDocRef",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -3955,26 +3703,23 @@ class TcteOs:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_modal: Optional["TcteOs.InfCte.InfCteNorm.InfModal"] = field(
+            infModal: Optional["TcteOs.InfCte.InfCteNorm.InfModal"] = field(
                 default=None,
                 metadata={
-                    "name": "infModal",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_cte_sub: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub"] = field(
+            infCteSub: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub"] = field(
                 default=None,
                 metadata={
-                    "name": "infCteSub",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            ref_cte_canc: Optional[str] = field(
+            refCTeCanc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "refCTeCanc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 44,
@@ -3989,10 +3734,9 @@ class TcteOs:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_gtve: List["TcteOs.InfCte.InfCteNorm.InfGtve"] = field(
+            infGTVe: List["TcteOs.InfCte.InfCteNorm.InfGtve"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "infGTVe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -4001,16 +3745,15 @@ class TcteOs:
             @dataclass
             class InfServico:
                 """
-                :ivar x_desc_serv: Descrição do Serviço prestado
-                :ivar inf_q: Informações de quantidades da Carga do CT-e
+                :ivar xDescServ: Descrição do Serviço prestado
+                :ivar infQ: Informações de quantidades da Carga do CT-e
                     Para Transporte de Pessoas indicar número de
                     passageiros, para excesso de bagagem e transporte de
                     valores indicar número de Volumes/Malotes
                 """
-                x_desc_serv: Optional[str] = field(
+                xDescServ: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xDescServ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -4020,10 +3763,9 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                inf_q: Optional["TcteOs.InfCte.InfCteNorm.InfServico.InfQ"] = field(
+                infQ: Optional["TcteOs.InfCte.InfCteNorm.InfServico.InfQ"] = field(
                     default=None,
                     metadata={
-                        "name": "infQ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
@@ -4032,12 +3774,11 @@ class TcteOs:
                 @dataclass
                 class InfQ:
                     """
-                    :ivar q_carga: Quantidade
+                    :ivar qCarga: Quantidade
                     """
-                    q_carga: Optional[str] = field(
+                    qCarga: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "qCarga",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -4049,18 +3790,17 @@ class TcteOs:
             @dataclass
             class InfDocRef:
                 """
-                :ivar n_doc: Número
+                :ivar nDoc: Número
                 :ivar serie: Série
                 :ivar subserie: Subsérie
-                :ivar d_emi: Data de Emissão Formato AAAA-MM-DD
-                :ivar v_doc: Valor Transportado
-                :ivar ch_bpe: Chave de acesso do BP-e que possui eventos
+                :ivar dEmi: Data de Emissão Formato AAAA-MM-DD
+                :ivar vDoc: Valor Transportado
+                :ivar chBPe: Chave de acesso do BP-e que possui eventos
                     excesso de bagagem
                 """
-                n_doc: Optional[str] = field(
+                nDoc: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nDoc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -4091,30 +3831,27 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                d_emi: Optional[str] = field(
+                dEmi: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "dEmi",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                     }
                 )
-                v_doc: Optional[str] = field(
+                vDoc: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vDoc",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                ch_bpe: Optional[str] = field(
+                chBPe: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "chBPe",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "max_length": 44,
@@ -4126,28 +3863,24 @@ class TcteOs:
             @dataclass
             class Seg:
                 """
-                :ivar resp_seg: Responsável pelo seguro Preencher com: 4
+                :ivar respSeg: Responsável pelo seguro Preencher com: 4
                     - Emitente do CT-e; 5 - Tomador de Serviço.
-                :ivar x_seg: Nome da Seguradora
-                :ivar n_apol: Número da Apólice Obrigatório pela lei
+                :ivar xSeg: Nome da Seguradora
+                :ivar nApol: Número da Apólice Obrigatório pela lei
                     11.442/07 (RCTRC)
                 """
-                resp_seg: Optional[SegRespSeg] = field(
+                respSeg: Optional[SegRespSeg] = field(
                     default=None,
                     metadata={
-                        "name": "respSeg",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
-                        "min_length": 1,
-                        "max_length": 1,
                         "white_space": "preserve",
                     }
                 )
-                x_seg: Optional[str] = field(
+                xSeg: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xSeg",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -4156,10 +3889,9 @@ class TcteOs:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                n_apol: Optional[str] = field(
+                nApol: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "nApol",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -4185,7 +3917,7 @@ class TcteOs:
                     exemplo, o arquivo para o schema do modal Rodoviário
                     na versão 3.00 será denominado
                     "CTeModalRodoviarioOS_v3.00".
-                :ivar versao_modal: Versão do leiaute específico para o
+                :ivar versaoModal: Versão do leiaute específico para o
                     Modal
                 """
                 any_element: Optional[object] = field(
@@ -4195,10 +3927,9 @@ class TcteOs:
                         "namespace": "##any",
                     }
                 )
-                versao_modal: Optional[str] = field(
+                versaoModal: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "versaoModal",
                         "type": "Attribute",
                         "required": True,
                         "white_space": "preserve",
@@ -4209,26 +3940,24 @@ class TcteOs:
             @dataclass
             class InfCteSub:
                 """
-                :ivar ch_cte: Chave de acesso do CT-e a ser substituído
+                :ivar chCte: Chave de acesso do CT-e a ser substituído
                     (original)
-                :ivar ref_cte_anu: Chave de acesso do CT-e de Anulação
-                :ivar toma_icms: Tomador é contribuinte do ICMS, mas não
+                :ivar refCteAnu: Chave de acesso do CT-e de Anulação
+                :ivar tomaICMS: Tomador é contribuinte do ICMS, mas não
                     é emitente de documento fiscal eletrônico
                 """
-                ch_cte: Optional[str] = field(
+                chCte: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "chCte",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                ref_cte_anu: Optional[str] = field(
+                refCteAnu: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "refCteAnu",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "max_length": 44,
@@ -4236,10 +3965,9 @@ class TcteOs:
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                toma_icms: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub.TomaIcms"] = field(
+                tomaICMS: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub.TomaIcms"] = field(
                     default=None,
                     metadata={
-                        "name": "tomaICMS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
@@ -4248,17 +3976,16 @@ class TcteOs:
                 @dataclass
                 class TomaIcms:
                     """
-                    :ivar ref_nfe: Chave de acesso da NF-e emitida pelo
+                    :ivar refNFe: Chave de acesso da NF-e emitida pelo
                         Tomador
-                    :ivar ref_nf: Informação da NF ou CT emitido pelo
+                    :ivar refNF: Informação da NF ou CT emitido pelo
                         Tomador
-                    :ivar ref_cte: Chave de acesso do CT-e emitido pelo
+                    :ivar refCte: Chave de acesso do CT-e emitido pelo
                         Tomador
                     """
-                    ref_nfe: Optional[str] = field(
+                    refNFe: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "refNFe",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "max_length": 44,
@@ -4266,18 +3993,16 @@ class TcteOs:
                             "pattern": r"[0-9]{44}",
                         }
                     )
-                    ref_nf: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub.TomaIcms.RefNf"] = field(
+                    refNF: Optional["TcteOs.InfCte.InfCteNorm.InfCteSub.TomaIcms.RefNf"] = field(
                         default=None,
                         metadata={
-                            "name": "refNF",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    ref_cte: Optional[str] = field(
+                    refCte: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "refCte",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "max_length": 44,
@@ -4289,32 +4014,29 @@ class TcteOs:
                     @dataclass
                     class RefNf:
                         """
-                        :ivar cnpj: CNPJ do Emitente Informar o CNPJ do
+                        :ivar CNPJ: CNPJ do Emitente Informar o CNPJ do
                             emitente do Documento Fiscal
-                        :ivar cpf: Número do CPF Informar o CPF do
+                        :ivar CPF: Número do CPF Informar o CPF do
                             emitente do documento fiscal
                         :ivar mod: Modelo do Documento Fiscal
                         :ivar serie: Serie do documento fiscal
                         :ivar subserie: Subserie do documento fiscal
                         :ivar nro: Número do documento fiscal
                         :ivar valor: Valor do documento fiscal.
-                        :ivar d_emi: Data de emissão do documento
-                            fiscal.
+                        :ivar dEmi: Data de emissão do documento fiscal.
                         """
-                        cnpj: Optional[str] = field(
+                        CNPJ: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "CNPJ",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "white_space": "preserve",
                                 "pattern": r"[0-9]{14}",
                             }
                         )
-                        cpf: Optional[str] = field(
+                        CPF: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "CPF",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "white_space": "preserve",
@@ -4368,10 +4090,9 @@ class TcteOs:
                                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                             }
                         )
-                        d_emi: Optional[str] = field(
+                        dEmi: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "dEmi",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "required": True,
@@ -4404,15 +4125,14 @@ class TcteOs:
                 @dataclass
                 class Fat:
                     """
-                    :ivar n_fat: Número da fatura
-                    :ivar v_orig: Valor original da fatura
-                    :ivar v_desc: Valor do desconto da fatura
-                    :ivar v_liq: Valor líquido da fatura
+                    :ivar nFat: Número da fatura
+                    :ivar vOrig: Valor original da fatura
+                    :ivar vDesc: Valor do desconto da fatura
+                    :ivar vLiq: Valor líquido da fatura
                     """
-                    n_fat: Optional[str] = field(
+                    nFat: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nFat",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -4421,30 +4141,27 @@ class TcteOs:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    v_orig: Optional[str] = field(
+                    vOrig: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vOrig",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_desc: Optional[str] = field(
+                    vDesc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vDesc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_liq: Optional[str] = field(
+                    vLiq: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vLiq",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
@@ -4455,15 +4172,14 @@ class TcteOs:
                 @dataclass
                 class Dup:
                     """
-                    :ivar n_dup: Número da duplicata
-                    :ivar d_venc: Data de vencimento da duplicata (AAAA-
+                    :ivar nDup: Número da duplicata
+                    :ivar dVenc: Data de vencimento da duplicata (AAAA-
                         MM-DD)
-                    :ivar v_dup: Valor da duplicata
+                    :ivar vDup: Valor da duplicata
                     """
-                    n_dup: Optional[str] = field(
+                    nDup: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nDup",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -4472,20 +4188,18 @@ class TcteOs:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    d_venc: Optional[str] = field(
+                    dVenc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dVenc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    v_dup: Optional[str] = field(
+                    vDup: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vDup",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
@@ -4496,23 +4210,21 @@ class TcteOs:
             @dataclass
             class InfGtve:
                 """
-                :ivar ch_cte: Chave de acesso da GTV-e
-                :ivar comp: Componentes do Valor da GTVe
+                :ivar chCTe: Chave de acesso da GTV-e
+                :ivar Comp: Componentes do Valor da GTVe
                 """
-                ch_cte: Optional[str] = field(
+                chCTe: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "chCTe",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                comp: List["TcteOs.InfCte.InfCteNorm.InfGtve.Comp"] = field(
+                Comp: List["TcteOs.InfCte.InfCteNorm.InfGtve.Comp"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "Comp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_occurs": 1,
@@ -4522,28 +4234,26 @@ class TcteOs:
                 @dataclass
                 class Comp:
                     """
-                    :ivar tp_comp: Tipo do Componente 1-Custodia
+                    :ivar tpComp: Tipo do Componente 1-Custodia
                         2-Embarque 3-Tempo de espera 4-Malote 5-Ad
                         Valorem 6-Outros
-                    :ivar v_comp: Valor do componente
-                    :ivar x_comp: Nome do componente (informar apenas
+                    :ivar vComp: Valor do componente
+                    :ivar xComp: Nome do componente (informar apenas
                         para outros) Exemplos: FRETE PESO, FRETE VALOR,
                         SEC/CAT, ADEME, AGENDAMENTO, etc
                     """
-                    tp_comp: Optional[CompTpComp] = field(
+                    tpComp: Optional[CompTpComp] = field(
                         default=None,
                         metadata={
-                            "name": "tpComp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    v_comp: Optional[str] = field(
+                    vComp: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vComp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -4551,10 +4261,9 @@ class TcteOs:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    x_comp: Optional[str] = field(
+                    xComp: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "xComp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 0,
@@ -4567,12 +4276,11 @@ class TcteOs:
         @dataclass
         class InfCteComp:
             """
-            :ivar ch_cte: Chave do CT-e complementado
+            :ivar chCTe: Chave do CT-e complementado
             """
-            ch_cte: Optional[str] = field(
+            chCTe: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "chCTe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4585,25 +4293,23 @@ class TcteOs:
         @dataclass
         class InfCteAnu:
             """
-            :ivar ch_cte: Chave de acesso do CT-e original a ser anulado
+            :ivar chCte: Chave de acesso do CT-e original a ser anulado
                 e substituído
-            :ivar d_emi: Data de emissão da declaração do tomador não
+            :ivar dEmi: Data de emissão da declaração do tomador não
                 contribuinte do ICMS
             """
-            ch_cte: Optional[str] = field(
+            chCte: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "chCte",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "pattern": r"[0-9]{44}",
                 }
             )
-            d_emi: Optional[str] = field(
+            dEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4615,12 +4321,11 @@ class TcteOs:
     @dataclass
     class InfCteSupl:
         """
-        :ivar qr_cod_cte: Texto com o QR-Code impresso no DACTE
+        :ivar qrCodCTe: Texto com o QR-Code impresso no DACTE
         """
-        qr_cod_cte: Optional[str] = field(
+        qrCodCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "qrCodCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -4637,27 +4342,25 @@ class Tgtve:
     """
     Tipo Guia de Transporte de Valores Eletrônica (Modelo 64)
 
-    :ivar inf_cte: Informações do CT-e do tipo GTV-e
-    :ivar inf_cte_supl: Informações suplementares da GTV-e
+    :ivar infCte: Informações do CT-e do tipo GTV-e
+    :ivar infCTeSupl: Informações suplementares da GTV-e
     :ivar signature:
     :ivar versao: Versão do leiaute
     """
     class Meta:
         name = "TGTVe"
 
-    inf_cte: Optional["Tgtve.InfCte"] = field(
+    infCte: Optional["Tgtve.InfCte"] = field(
         default=None,
         metadata={
-            "name": "infCte",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_cte_supl: Optional["Tgtve.InfCteSupl"] = field(
+    infCTeSupl: Optional["Tgtve.InfCteSupl"] = field(
         default=None,
         metadata={
-            "name": "infCTeSupl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -4696,13 +4399,13 @@ class Tgtve:
             a multimodal. Nos demais casos deverá sempre ser informado.
         :ivar origem: Informações do endereço da origem do serviço
         :ivar destino: Informações do endereço do destino do serviço
-        :ivar det_gtv: Grupo de informações detalhadas da GTV-e
-        :ivar aut_xml: Autorizados para download do XML do DF-e Informar
+        :ivar detGTV: Grupo de informações detalhadas da GTV-e
+        :ivar autXML: Autorizados para download do XML do DF-e Informar
             CNPJ ou CPF. Preencher os zeros não significativos.
-        :ivar inf_resp_tec: Informações do Responsável Técnico pela
+        :ivar infRespTec: Informações do Responsável Técnico pela
             emissão do DF-e
         :ivar versao: Versão do leiaute Ex: "3.00"
-        :ivar id: Identificador da tag a ser assinada Informar a chave
+        :ivar Id: Identificador da tag a ser assinada Informar a chave
             de acesso do CT-e OS e precedida do literal "CTe"
         """
         ide: Optional["Tgtve.InfCte.Ide"] = field(
@@ -4758,28 +4461,25 @@ class Tgtve:
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        det_gtv: Optional["Tgtve.InfCte.DetGtv"] = field(
+        detGTV: Optional["Tgtve.InfCte.DetGtv"] = field(
             default=None,
             metadata={
-                "name": "detGTV",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
             }
         )
-        aut_xml: List["Tgtve.InfCte.AutXml"] = field(
+        autXML: List["Tgtve.InfCte.AutXml"] = field(
             default_factory=list,
             metadata={
-                "name": "autXML",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "max_occurs": 10,
             }
         )
-        inf_resp_tec: Optional[TrespTec] = field(
+        infRespTec: Optional[TrespTec] = field(
             default=None,
             metadata={
-                "name": "infRespTec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
@@ -4793,10 +4493,9 @@ class Tgtve:
                 "pattern": r"3\.00",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"CTe[0-9]{44}",
@@ -4806,75 +4505,73 @@ class Tgtve:
         @dataclass
         class Ide:
             """
-            :ivar c_uf: Código da UF do emitente da GTV-e. Utilizar a
+            :ivar cUF: Código da UF do emitente da GTV-e. Utilizar a
                 Tabela do IBGE.
-            :ivar c_ct: Código numérico que compõe a Chave de Acesso.
+            :ivar cCT: Código numérico que compõe a Chave de Acesso.
                 Número aleatório gerado pelo emitente para cada CT-e,
                 com o objetivo de evitar acessos indevidos ao documento.
-            :ivar cfop: Código Fiscal de Operações e Prestações
-            :ivar nat_op: Natureza da Operação
+            :ivar CFOP: Código Fiscal de Operações e Prestações
+            :ivar natOp: Natureza da Operação
             :ivar mod: Modelo do documento fiscal Utilizar o código 64
                 para identificação do CT-e Guia de Transporte de Valores
             :ivar serie: Série da GTV-e Preencher com "0" no caso de
                 série única
-            :ivar n_ct: Número da GTV-e
-            :ivar dh_emi: Data e hora de emissão da GTV-e Formato AAAA-
+            :ivar nCT: Número da GTV-e
+            :ivar dhEmi: Data e hora de emissão da GTV-e Formato AAAA-
                 MM-DDTHH:MM:DD TZD
-            :ivar tp_imp: Formato de impressão do DACTE Preencher com: 1
+            :ivar tpImp: Formato de impressão do DACTE Preencher com: 1
                 - Retrato; 2 - Paisagem.
-            :ivar tp_emis: Forma de emissão da GTV-e Preencher com: 1 -
+            :ivar tpEmis: Forma de emissão da GTV-e Preencher com: 1 -
                 Normal; 2- Contingencia offline 7 - Autorização pela
                 SVC-RS; 8 - Autorização pela SVC-SP
-            :ivar c_dv: Digito Verificador da chave de acesso da GTV-e
+            :ivar cDV: Digito Verificador da chave de acesso da GTV-e
                 Informar o dígito  de controle da chave de acesso do
                 CT-e, que deve ser calculado com a aplicação do
                 algoritmo módulo 11 (base 2,9) da chave de acesso.
-            :ivar tp_amb: Tipo do Ambiente Preencher com:1 - Produção; 2
+            :ivar tpAmb: Tipo do Ambiente Preencher com:1 - Produção; 2
                 - Homologação
-            :ivar tp_cte: Tipo da GTV-e Preencher com: 4 - GTV-e
-            :ivar ver_proc: Versão do processo de emissão Iinformar a
+            :ivar tpCTe: Tipo da GTV-e Preencher com: 4 - GTV-e
+            :ivar verProc: Versão do processo de emissão Iinformar a
                 versão do aplicativo emissor de CT-e.
-            :ivar c_mun_env: Código do Município de envio da GTV-e (de
+            :ivar cMunEnv: Código do Município de envio da GTV-e (de
                 onde o documento foi transmitido) Utilizar a tabela do
                 IBGE. Informar 9999999 para as operações com o exterior.
-            :ivar x_mun_env: Nome do Município de envio da GTV-e (de
-                onde o documento foi transmitido) Informar
-                PAIS/Municipio para as operações com o exterior.
-            :ivar ufenv: Sigla da UF de envio da GTV-e (de onde o
+            :ivar xMunEnv: Nome do Município de envio da GTV-e (de onde
+                o documento foi transmitido) Informar PAIS/Municipio
+                para as operações com o exterior.
+            :ivar UFEnv: Sigla da UF de envio da GTV-e (de onde o
                 documento foi transmitido) Informar 'EX' para operações
                 com o exterior.
             :ivar modal: Modal da GTV-e Preencher com: 01-Rodoviário
                 06-Multimodal
-            :ivar tp_serv: Tipo do Serviço Preencher com: 9 - GTV
-            :ivar ind_ietoma: Indicador da IE do tomador: 1 –
+            :ivar tpServ: Tipo do Serviço Preencher com: 9 - GTV
+            :ivar indIEToma: Indicador da IE do tomador: 1 –
                 Contribuinte ICMS; 2 – Contribuinte isento de inscrição;
                 9 – Não Contribuinte Aplica-se ao tomador que for
                 indicado no toma3 ou toma4
-            :ivar dh_saida_orig: Data e hora de saida da origem Formato
+            :ivar dhSaidaOrig: Data e hora de saida da origem Formato
                 AAAA-MM-DDTHH:MM:DD TZD
-            :ivar dh_chegada_dest: Data e hora de chegada no destino
+            :ivar dhChegadaDest: Data e hora de chegada no destino
                 Formato AAAA-MM-DDTHH:MM:DD TZD
             :ivar toma: Indicador do "papel" do tomador do serviço no
                 GT-e
-            :ivar toma_terceiro: Indicador do "papel" do tomador do
+            :ivar tomaTerceiro: Indicador do "papel" do tomador do
                 serviço no CTV-e
-            :ivar dh_cont: Data e Hora da entrada em contingência
+            :ivar dhCont: Data e Hora da entrada em contingência
                 Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
-            :ivar x_just: Justificativa da entrada em contingência
+            :ivar xJust: Justificativa da entrada em contingência
             """
-            c_uf: Optional[TcodUfIbge] = field(
+            cUF: Optional[TcodUfIbge] = field(
                 default=None,
                 metadata={
-                    "name": "cUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            c_ct: Optional[str] = field(
+            cCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4882,10 +4579,9 @@ class Tgtve:
                     "pattern": r"[0-9]{8}",
                 }
             )
-            cfop: Optional[str] = field(
+            CFOP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CFOP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4893,10 +4589,9 @@ class Tgtve:
                     "pattern": r"[123567][0-9]([0-9][1-9]|[1-9][0-9])",
                 }
             )
-            nat_op: Optional[str] = field(
+            natOp: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "natOp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4924,10 +4619,9 @@ class Tgtve:
                     "pattern": r"0|[1-9]{1}[0-9]{0,2}",
                 }
             )
-            n_ct: Optional[str] = field(
+            nCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4935,10 +4629,9 @@ class Tgtve:
                     "pattern": r"[1-9]{1}[0-9]{0,8}",
                 }
             )
-            dh_emi: Optional[str] = field(
+            dhEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4946,30 +4639,27 @@ class Tgtve:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp] = field(
+            tpImp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
-                    "name": "tpImp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis] = field(
+            tpEmis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
-                    "name": "tpEmis",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            c_dv: Optional[str] = field(
+            cDV: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDV",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -4977,28 +4667,25 @@ class Tgtve:
                     "pattern": r"[0-9]{1}",
                 }
             )
-            tp_amb: Optional[Tamb] = field(
+            tpAmb: Optional[Tamb] = field(
                 default=None,
                 metadata={
-                    "name": "tpAmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            tp_cte: Optional[TfinGtve] = field(
+            tpCTe: Optional[TfinGtve] = field(
                 default=None,
                 metadata={
-                    "name": "tpCTe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            ver_proc: Optional[str] = field(
+            verProc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "verProc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5008,10 +4695,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            c_mun_env: Optional[str] = field(
+            cMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5019,10 +4705,9 @@ class Tgtve:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_env: Optional[str] = field(
+            xMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5032,10 +4717,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ufenv: Optional[Tuf] = field(
+            UFEnv: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5049,30 +4733,27 @@ class Tgtve:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ] = field(
+            tpServ: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
-                    "name": "tpServ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma] = field(
+            indIEToma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
-                    "name": "indIEToma",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            dh_saida_orig: Optional[str] = field(
+            dhSaidaOrig: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhSaidaOrig",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5080,10 +4761,9 @@ class Tgtve:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            dh_chegada_dest: Optional[str] = field(
+            dhChegadaDest: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhChegadaDest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5098,28 +4778,25 @@ class Tgtve:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            toma_terceiro: Optional["Tgtve.InfCte.Ide.TomaTerceiro"] = field(
+            tomaTerceiro: Optional["Tgtve.InfCte.Ide.TomaTerceiro"] = field(
                 default=None,
                 metadata={
-                    "name": "tomaTerceiro",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            dh_cont: Optional[str] = field(
+            dhCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 15,
@@ -5151,20 +4828,20 @@ class Tgtve:
                 :ivar toma: Tomador do Serviço Preencher com: 4 - Outros
                     Obs: Informar os dados cadastrais do tomador do
                     serviço
-                :ivar cnpj: Número do CNPJ Em caso de empresa não
+                :ivar CNPJ: Número do CNPJ Em caso de empresa não
                     estabelecida no Brasil, será informado o CNPJ com
                     zeros. Informar os zeros não significativos.
-                :ivar cpf: Número do CPF Informar os zeros não
+                :ivar CPF: Número do CPF Informar os zeros não
                     significativos.
-                :ivar ie: Inscrição Estadual Informar a IE do tomador ou
+                :ivar IE: Inscrição Estadual Informar a IE do tomador ou
                     ISENTO se tomador é contribuinte do ICMS isento de
                     inscrição no cadastro de contribuintes do ICMS. Caso
                     o tomador não seja contribuinte do ICMS não informar
                     o conteúdo.
-                :ivar x_nome: Razão Social ou Nome
-                :ivar x_fant: Nome Fantasia
+                :ivar xNome: Razão Social ou Nome
+                :ivar xFant: Nome Fantasia
                 :ivar fone: Telefone
-                :ivar ender_toma: Dados do endereço
+                :ivar enderToma: Dados do endereço
                 :ivar email: Endereço de email
                 """
                 toma: Optional[TomaTerceiroToma] = field(
@@ -5176,30 +4853,27 @@ class Tgtve:
                         "white_space": "preserve",
                     }
                 )
-                cnpj: Optional[str] = field(
+                CNPJ: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CNPJ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{0}|[0-9]{14}",
                     }
                 )
-                cpf: Optional[str] = field(
+                CPF: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CPF",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{11}",
                     }
                 )
-                ie: Optional[str] = field(
+                IE: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "IE",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "max_length": 14,
@@ -5207,10 +4881,9 @@ class Tgtve:
                         "pattern": r"[0-9]{0,14}|ISENTO",
                     }
                 )
-                x_nome: Optional[str] = field(
+                xNome: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xNome",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -5220,10 +4893,9 @@ class Tgtve:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_fant: Optional[str] = field(
+                xFant: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xFant",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 2,
@@ -5241,10 +4913,9 @@ class Tgtve:
                         "pattern": r"[0-9]{6,14}",
                     }
                 )
-                ender_toma: Optional[Tendereco] = field(
+                enderToma: Optional[Tendereco] = field(
                     default=None,
                     metadata={
-                        "name": "enderToma",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -5265,24 +4936,23 @@ class Tgtve:
         @dataclass
         class Compl:
             """
-            :ivar x_carac_ad: Característica adicional do transporte
-                Texto livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
-            :ivar x_carac_ser: Característica adicional do serviço Texto
+            :ivar xCaracAd: Característica adicional do transporte Texto
+                livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
+            :ivar xCaracSer: Característica adicional do serviço Texto
                 livre: ENTREGA EXPRESSA; LOGÍSTICA REVERSA;
                 CONVENCIONAL; EMERGENCIAL; etc
-            :ivar x_emi: Funcionário emissor da GTV-e
-            :ivar x_obs: Observações Gerais
-            :ivar obs_cont: Campo de uso livre do contribuinte Informar
-                o nome do campo no atributo xCampo e o conteúdo do campo
+            :ivar xEmi: Funcionário emissor da GTV-e
+            :ivar xObs: Observações Gerais
+            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+                nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar obs_fisco: Campo de uso livre do contribuinte Informar
+            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
-            x_carac_ad: Optional[str] = field(
+            xCaracAd: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracAd",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -5291,10 +4961,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_carac_ser: Optional[str] = field(
+            xCaracSer: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracSer",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -5303,10 +4972,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_emi: Optional[str] = field(
+            xEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -5315,10 +4983,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_obs: Optional[str] = field(
+            xObs: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xObs",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -5327,19 +4994,17 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            obs_cont: List["Tgtve.InfCte.Compl.ObsCont"] = field(
+            ObsCont: List["Tgtve.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            obs_fisco: List["Tgtve.InfCte.Compl.ObsFisco"] = field(
+            ObsFisco: List["Tgtve.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -5349,13 +5014,12 @@ class Tgtve:
             @dataclass
             class ObsCont:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -5365,10 +5029,9 @@ class Tgtve:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -5381,13 +5044,12 @@ class Tgtve:
             @dataclass
             class ObsFisco:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -5397,10 +5059,9 @@ class Tgtve:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -5413,18 +5074,17 @@ class Tgtve:
         @dataclass
         class Emit:
             """
-            :ivar cnpj: CNPJ do emitente Informar zeros não
+            :ivar CNPJ: CNPJ do emitente Informar zeros não
                 significativos
-            :ivar ie: Inscrição Estadual do Emitente
-            :ivar iest: Inscrição Estadual do Substituto Tributário
-            :ivar x_nome: Razão social ou Nome do emitente
-            :ivar x_fant: Nome fantasia
-            :ivar ender_emit: Endereço do emitente
+            :ivar IE: Inscrição Estadual do Emitente
+            :ivar IEST: Inscrição Estadual do Substituto Tributário
+            :ivar xNome: Razão social ou Nome do emitente
+            :ivar xFant: Nome fantasia
+            :ivar enderEmit: Endereço do emitente
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5432,10 +5092,9 @@ class Tgtve:
                     "pattern": r"[0-9]{14}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5444,10 +5103,9 @@ class Tgtve:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            iest: Optional[str] = field(
+            IEST: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IEST",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -5455,10 +5113,9 @@ class Tgtve:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5468,10 +5125,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -5480,10 +5136,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ender_emit: Optional[TendeEmi] = field(
+            enderEmit: Optional[TendeEmi] = field(
                 default=None,
                 metadata={
-                    "name": "enderEmit",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5493,46 +5148,43 @@ class Tgtve:
         @dataclass
         class Rem:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do remetente ou
+            :ivar IE: Inscrição Estadual Informar a IE do remetente ou
                 ISENTO se remetente é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 remetente não seja contribuinte do ICMS não informar a
                 tag.
-            :ivar x_nome: Razão social ou nome do remetente
-            :ivar x_fant: Nome fantasia
+            :ivar xNome: Razão social ou nome do remetente
+            :ivar xFant: Nome fantasia
             :ivar fone: Telefone
-            :ivar ender_reme: Dados do endereço
+            :ivar enderReme: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -5540,10 +5192,9 @@ class Tgtve:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5553,10 +5204,9 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -5574,10 +5224,9 @@ class Tgtve:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            ender_reme: Optional[Tendereco] = field(
+            enderReme: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderReme",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5598,48 +5247,45 @@ class Tgtve:
         @dataclass
         class Dest:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do destinatário
+            :ivar IE: Inscrição Estadual Informar a IE do destinatário
                 ou ISENTO se destinatário é contribuinte do ICMS isento
                 de inscrição no cadastro de contribuintes do ICMS. Caso
                 o destinatário não seja contribuinte do ICMS não
                 informar o conteúdo.
-            :ivar x_nome: Razão Social ou Nome do destinatário
+            :ivar xNome: Razão Social ou Nome do destinatário
             :ivar fone: Telefone
-            :ivar isuf: Inscrição na SUFRAMA (Obrigatório nas operações
+            :ivar ISUF: Inscrição na SUFRAMA (Obrigatório nas operações
                 com as áreas com benefícios de incentivos fiscais sob
                 controle da SUFRAMA)
-            :ivar ender_dest: Dados do endereço
+            :ivar enderDest: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -5647,10 +5293,9 @@ class Tgtve:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5669,20 +5314,18 @@ class Tgtve:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            isuf: Optional[str] = field(
+            ISUF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "ISUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{8,9}",
                 }
             )
-            ender_dest: Optional[Tendereco] = field(
+            enderDest: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderDest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5703,24 +5346,22 @@ class Tgtve:
         @dataclass
         class DetGtv:
             """
-            :ivar inf_especie: Informações das Espécies transportadas
-            :ivar q_carga: Quantidade de volumes/malotes
-            :ivar inf_veiculo: Grupo de informações dos veículos
+            :ivar infEspecie: Informações das Espécies transportadas
+            :ivar qCarga: Quantidade de volumes/malotes
+            :ivar infVeiculo: Grupo de informações dos veículos
                 utilizados no transporte de valores
             """
-            inf_especie: List["Tgtve.InfCte.DetGtv.InfEspecie"] = field(
+            infEspecie: List["Tgtve.InfCte.DetGtv.InfEspecie"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "infEspecie",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_occurs": 1,
                 }
             )
-            q_carga: Optional[str] = field(
+            qCarga: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "qCarga",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -5728,10 +5369,9 @@ class Tgtve:
                     "pattern": r"0|0\.[0-9]{4}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
                 }
             )
-            inf_veiculo: List["Tgtve.InfCte.DetGtv.InfVeiculo"] = field(
+            infVeiculo: List["Tgtve.InfCte.DetGtv.InfVeiculo"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "infVeiculo",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_occurs": 1,
@@ -5741,28 +5381,26 @@ class Tgtve:
             @dataclass
             class InfEspecie:
                 """
-                :ivar tp_especie: Tipo da Espécie 1 - Cédula 2 - Cheque
-                    3 - Moeda 4 - Outros
-                :ivar v_especie: Valor Transportada em Espécie indicada
-                :ivar tp_numerario: Nacionalidade do Numerário 1 -
+                :ivar tpEspecie: Tipo da Espécie 1 - Cédula 2 - Cheque 3
+                    - Moeda 4 - Outros
+                :ivar vEspecie: Valor Transportada em Espécie indicada
+                :ivar tpNumerario: Nacionalidade do Numerário 1 -
                     Nacional 2 - Estrangeiro
-                :ivar x_moeda_estr: Nome da Moeda Informar somente se
-                    tipo de numerário for 2 - Estrangeiro
+                :ivar xMoedaEstr: Nome da Moeda Informar somente se tipo
+                    de numerário for 2 - Estrangeiro
                 """
-                tp_especie: Optional[InfEspecieTpEspecie] = field(
+                tpEspecie: Optional[InfEspecieTpEspecie] = field(
                     default=None,
                     metadata={
-                        "name": "tpEspecie",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
                         "white_space": "preserve",
                     }
                 )
-                v_especie: Optional[str] = field(
+                vEspecie: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vEspecie",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -5770,20 +5408,18 @@ class Tgtve:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                tp_numerario: Optional[InfEspecieTpNumerario] = field(
+                tpNumerario: Optional[InfEspecieTpNumerario] = field(
                     default=None,
                     metadata={
-                        "name": "tpNumerario",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
                         "white_space": "preserve",
                     }
                 )
-                x_moeda_estr: Optional[str] = field(
+                xMoedaEstr: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xMoedaEstr",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 2,
@@ -5797,9 +5433,9 @@ class Tgtve:
             class InfVeiculo:
                 """
                 :ivar placa: Placa do veículo
-                :ivar uf: UF em que veículo está licenciado Sigla da UF
+                :ivar UF: UF em que veículo está licenciado Sigla da UF
                     de licenciamento do veículo.
-                :ivar rntrc: RNTRC do transportador
+                :ivar RNTRC: RNTRC do transportador
                 """
                 placa: Optional[str] = field(
                     default=None,
@@ -5811,18 +5447,16 @@ class Tgtve:
                         "pattern": r"[A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}",
                     }
                 )
-                uf: Optional[Tuf] = field(
+                UF: Optional[Tuf] = field(
                     default=None,
                     metadata={
-                        "name": "UF",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                rntrc: Optional[str] = field(
+                RNTRC: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "RNTRC",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
@@ -5833,25 +5467,23 @@ class Tgtve:
         @dataclass
         class AutXml:
             """
-            :ivar cnpj: CNPJ do autorizado Informar zeros não
+            :ivar CNPJ: CNPJ do autorizado Informar zeros não
                 significativos
-            :ivar cpf: CPF do autorizado Informar zeros não
+            :ivar CPF: CPF do autorizado Informar zeros não
                 significativos
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
@@ -5862,12 +5494,11 @@ class Tgtve:
     @dataclass
     class InfCteSupl:
         """
-        :ivar qr_cod_cte: Texto com o QR-Code impresso no DACTE
+        :ivar qrCodCTe: Texto com o QR-Code impresso no DACTE
         """
-        qr_cod_cte: Optional[str] = field(
+        qrCodCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "qrCodCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -5884,41 +5515,37 @@ class TretCte:
     """
     Tipo Retorno do Pedido de Autorização de CT-e (Modelo 57)
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar c_uf: Identificação da UF
-    :ivar ver_aplic: Versão do Aplicativo que processou a CT-e
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar cUF: Identificação da UF
+    :ivar verAplic: Versão do Aplicativo que processou a CT-e
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar prot_cte: Reposta ao processamento do CT-e
+    :ivar protCTe: Reposta ao processamento do CT-e
     :ivar versao:
     """
     class Meta:
         name = "TRetCTe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -5928,10 +5555,9 @@ class TretCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -5939,10 +5565,9 @@ class TretCte:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -5952,10 +5577,9 @@ class TretCte:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    prot_cte: Optional[TprotCte] = field(
+    protCTe: Optional[TprotCte] = field(
         default=None,
         metadata={
-            "name": "protCTe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -5976,41 +5600,37 @@ class TretCteOs:
     """
     Tipo Retorno do Pedido de Autorização de CT-e OS (Modelo 67)
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar c_uf: Identificação da UF
-    :ivar ver_aplic: Versão do Aplicativo que processou a CT-e
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar cUF: Identificação da UF
+    :ivar verAplic: Versão do Aplicativo que processou a CT-e
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar prot_cte: Reposta ao processamento do CT-e
+    :ivar protCTe: Reposta ao processamento do CT-e
     :ivar versao:
     """
     class Meta:
         name = "TRetCTeOS"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6020,10 +5640,9 @@ class TretCteOs:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6031,10 +5650,9 @@ class TretCteOs:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6044,10 +5662,9 @@ class TretCteOs:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    prot_cte: Optional[TprotCteOs] = field(
+    protCTe: Optional[TprotCteOs] = field(
         default=None,
         metadata={
-            "name": "protCTe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -6068,41 +5685,37 @@ class TretGtve:
     """
     Tipo Retorno do Pedido de Autorização de GTV-e (Modelo 64)
 
-    :ivar tp_amb: Identificação do Ambiente: 1 - Produção 2 -
-        Homologação
-    :ivar c_uf: Identificação da UF
-    :ivar ver_aplic: Versão do Aplicativo que processou a GTV-e
-    :ivar c_stat: código do status do retorno da consulta.
-    :ivar x_motivo: Descrição literal do status do do retorno da
+    :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
+    :ivar cUF: Identificação da UF
+    :ivar verAplic: Versão do Aplicativo que processou a GTV-e
+    :ivar cStat: código do status do retorno da consulta.
+    :ivar xMotivo: Descrição literal do status do do retorno da
         consulta.
-    :ivar prot_cte: Reposta ao processamento do CT-e
+    :ivar protCTe: Reposta ao processamento do CT-e
     :ivar versao:
     """
     class Meta:
         name = "TRetGTVe"
 
-    tp_amb: Optional[Tamb] = field(
+    tpAmb: Optional[Tamb] = field(
         default=None,
         metadata={
-            "name": "tpAmb",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    c_uf: Optional[TcodUfIbge] = field(
+    cUF: Optional[TcodUfIbge] = field(
         default=None,
         metadata={
-            "name": "cUF",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    ver_aplic: Optional[str] = field(
+    verAplic: Optional[str] = field(
         default=None,
         metadata={
-            "name": "verAplic",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6112,10 +5725,9 @@ class TretGtve:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    c_stat: Optional[str] = field(
+    cStat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "cStat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6123,10 +5735,9 @@ class TretGtve:
             "pattern": r"[0-9]{3}",
         }
     )
-    x_motivo: Optional[str] = field(
+    xMotivo: Optional[str] = field(
         default=None,
         metadata={
-            "name": "xMotivo",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6136,10 +5747,9 @@ class TretGtve:
             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         }
     )
-    prot_cte: Optional[TprotGtve] = field(
+    protCTe: Optional[TprotGtve] = field(
         default=None,
         metadata={
-            "name": "protCTe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -6160,37 +5770,35 @@ class TunidadeTransp:
     """
     Tipo Dados Unidade de Transporte.
 
-    :ivar tp_unid_transp: Tipo da Unidade de Transporte 1 - Rodoviário
+    :ivar tpUnidTransp: Tipo da Unidade de Transporte 1 - Rodoviário
         Tração 2 - Rodoviário Reboque 3 - Navio 4 - Balsa 5 - Aeronave 6
         - Vagão 7 - Outros
-    :ivar id_unid_transp: Identificação da Unidade de Transporte
-        Informar a identificação conforme o tipo de unidade de
-        transporte. Por exemplo: para rodoviário tração ou reboque
-        deverá preencher com a placa do veículo.
-    :ivar lac_unid_transp: Lacres das Unidades de Transporte
-    :ivar inf_unid_carga: Informações das Unidades de Carga
+    :ivar idUnidTransp: Identificação da Unidade de Transporte Informar
+        a identificação conforme o tipo de unidade de transporte. Por
+        exemplo: para rodoviário tração ou reboque deverá preencher com
+        a placa do veículo.
+    :ivar lacUnidTransp: Lacres das Unidades de Transporte
+    :ivar infUnidCarga: Informações das Unidades de Carga
         (Containeres/ULD/Outros) Dispositivo de carga utilizada (Unit
         Load Device - ULD) significa todo tipo de contêiner de carga,
         vagão, contêiner de avião, palete de aeronave com rede ou palete
         de aeronave com rede sobre um iglu.
-    :ivar qtd_rat: Quantidade rateada (Peso,Volume)
+    :ivar qtdRat: Quantidade rateada (Peso,Volume)
     """
     class Meta:
         name = "TUnidadeTransp"
 
-    tp_unid_transp: Optional[TtipoUnidTransp] = field(
+    tpUnidTransp: Optional[TtipoUnidTransp] = field(
         default=None,
         metadata={
-            "name": "tpUnidTransp",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    id_unid_transp: Optional[str] = field(
+    idUnidTransp: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idUnidTransp",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -6200,26 +5808,23 @@ class TunidadeTransp:
             "pattern": r"[A-Z0-9]+",
         }
     )
-    lac_unid_transp: List["TunidadeTransp.LacUnidTransp"] = field(
+    lacUnidTransp: List["TunidadeTransp.LacUnidTransp"] = field(
         default_factory=list,
         metadata={
-            "name": "lacUnidTransp",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    inf_unid_carga: List[TunidCarga] = field(
+    infUnidCarga: List[TunidCarga] = field(
         default_factory=list,
         metadata={
-            "name": "infUnidCarga",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
     )
-    qtd_rat: Optional[str] = field(
+    qtdRat: Optional[str] = field(
         default=None,
         metadata={
-            "name": "qtdRat",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "white_space": "preserve",
@@ -6230,12 +5835,11 @@ class TunidadeTransp:
     @dataclass
     class LacUnidTransp:
         """
-        :ivar n_lacre: Número do lacre
+        :ivar nLacre: Número do lacre
         """
-        n_lacre: Optional[str] = field(
+        nLacre: Optional[str] = field(
             default=None,
             metadata={
-                "name": "nLacre",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -6252,26 +5856,24 @@ class Tcte:
     """
     Tipo Conhecimento de Transporte Eletrônico (Modelo 57)
 
-    :ivar inf_cte: Informações do CT-e
-    :ivar inf_cte_supl: Informações suplementares do CT-e
+    :ivar infCte: Informações do CT-e
+    :ivar infCTeSupl: Informações suplementares do CT-e
     :ivar signature:
     """
     class Meta:
         name = "TCTe"
 
-    inf_cte: Optional["Tcte.InfCte"] = field(
+    infCte: Optional["Tcte.InfCte"] = field(
         default=None,
         metadata={
-            "name": "infCte",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
         }
     )
-    inf_cte_supl: Optional["Tcte.InfCteSupl"] = field(
+    infCTeSupl: Optional["Tcte.InfCteSupl"] = field(
         default=None,
         metadata={
-            "name": "infCTeSupl",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
         }
@@ -6303,20 +5905,20 @@ class Tcte:
             informado para os CT-e de redespacho intermediário e serviço
             vinculado a multimodal. Nos demais casos deverá sempre ser
             informado.
-        :ivar v_prest: Valores da Prestação de Serviço
+        :ivar vPrest: Valores da Prestação de Serviço
         :ivar imp: Informações relativas aos Impostos
-        :ivar inf_cte_norm: Grupo de informações do CT-e Normal e
+        :ivar infCTeNorm: Grupo de informações do CT-e Normal e
             Substituto
-        :ivar inf_cte_comp: Detalhamento do CT-e complementado
-        :ivar inf_cte_anu: Detalhamento do CT-e do tipo Anulação
-        :ivar aut_xml: Autorizados para download do XML do DF-e Informar
+        :ivar infCteComp: Detalhamento do CT-e complementado
+        :ivar infCteAnu: Detalhamento do CT-e do tipo Anulação
+        :ivar autXML: Autorizados para download do XML do DF-e Informar
             CNPJ ou CPF. Preencher os zeros não significativos.
-        :ivar inf_resp_tec: Informações do Responsável Técnico pela
+        :ivar infRespTec: Informações do Responsável Técnico pela
             emissão do DF-e
-        :ivar inf_solic_nff: Grupo de informações do pedido de emissão
-            da Nota Fiscal Fácil
+        :ivar infSolicNFF: Grupo de informações do pedido de emissão da
+            Nota Fiscal Fácil
         :ivar versao: Versão do leiaute Ex: "3.00"
-        :ivar id: Identificador da tag a ser assinada Informar a chave
+        :ivar Id: Identificador da tag a ser assinada Informar a chave
             de acesso do CT-e e precedida do literal "CTe"
         """
         ide: Optional["Tcte.InfCte.Ide"] = field(
@@ -6370,10 +5972,9 @@ class Tcte:
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        v_prest: Optional["Tcte.InfCte.VPrest"] = field(
+        vPrest: Optional["Tcte.InfCte.VPrest"] = field(
             default=None,
             metadata={
-                "name": "vPrest",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -6387,51 +5988,45 @@ class Tcte:
                 "required": True,
             }
         )
-        inf_cte_norm: Optional["Tcte.InfCte.InfCteNorm"] = field(
+        infCTeNorm: Optional["Tcte.InfCte.InfCteNorm"] = field(
             default=None,
             metadata={
-                "name": "infCTeNorm",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        inf_cte_comp: Optional["Tcte.InfCte.InfCteComp"] = field(
+        infCteComp: Optional["Tcte.InfCte.InfCteComp"] = field(
             default=None,
             metadata={
-                "name": "infCteComp",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        inf_cte_anu: Optional["Tcte.InfCte.InfCteAnu"] = field(
+        infCteAnu: Optional["Tcte.InfCte.InfCteAnu"] = field(
             default=None,
             metadata={
-                "name": "infCteAnu",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        aut_xml: List["Tcte.InfCte.AutXml"] = field(
+        autXML: List["Tcte.InfCte.AutXml"] = field(
             default_factory=list,
             metadata={
-                "name": "autXML",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "max_occurs": 10,
             }
         )
-        inf_resp_tec: Optional[TrespTec] = field(
+        infRespTec: Optional[TrespTec] = field(
             default=None,
             metadata={
-                "name": "infRespTec",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
         )
-        inf_solic_nff: Optional["Tcte.InfCte.InfSolicNff"] = field(
+        infSolicNFF: Optional["Tcte.InfCte.InfSolicNff"] = field(
             default=None,
             metadata={
-                "name": "infSolicNFF",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
             }
@@ -6445,10 +6040,9 @@ class Tcte:
                 "pattern": r"3\.00",
             }
         )
-        id: Optional[str] = field(
+        Id: Optional[str] = field(
             default=None,
             metadata={
-                "name": "Id",
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"CTe[0-9]{44}",
@@ -6458,78 +6052,78 @@ class Tcte:
         @dataclass
         class Ide:
             """
-            :ivar c_uf: Código da UF do emitente do CT-e. Utilizar a
+            :ivar cUF: Código da UF do emitente do CT-e. Utilizar a
                 Tabela do IBGE.
-            :ivar c_ct: Código numérico que compõe a Chave de Acesso.
+            :ivar cCT: Código numérico que compõe a Chave de Acesso.
                 Número aleatório gerado pelo emitente para cada CT-e,
                 com o objetivo de evitar acessos indevidos ao documento.
-            :ivar cfop: Código Fiscal de Operações e Prestações
-            :ivar nat_op: Natureza da Operação
+            :ivar CFOP: Código Fiscal de Operações e Prestações
+            :ivar natOp: Natureza da Operação
             :ivar mod: Modelo do documento fiscal Utilizar o código 57
                 para identificação do CT-e, emitido em substituição aos
                 modelos de conhecimentos em papel.
             :ivar serie: Série do CT-e Preencher com "0" no caso de
                 série única
-            :ivar n_ct: Número do CT-e
-            :ivar dh_emi: Data e hora de emissão do CT-e Formato AAAA-
-                MM-DDTHH:MM:DD TZD
-            :ivar tp_imp: Formato de impressão do DACTE Preencher com: 1
+            :ivar nCT: Número do CT-e
+            :ivar dhEmi: Data e hora de emissão do CT-e Formato AAAA-MM-
+                DDTHH:MM:DD TZD
+            :ivar tpImp: Formato de impressão do DACTE Preencher com: 1
                 - Retrato; 2 - Paisagem.
-            :ivar tp_emis: Forma de emissão do CT-e Preencher com: 1 -
+            :ivar tpEmis: Forma de emissão do CT-e Preencher com: 1 -
                 Normal; 3-Regime Especial NFF;  4-EPEC pela SVC; 5 -
                 Contingência FSDA; 7 - Autorização pela SVC-RS; 8 -
                 Autorização pela SVC-SP
-            :ivar c_dv: Digito Verificador da chave de acesso do CT-e
+            :ivar cDV: Digito Verificador da chave de acesso do CT-e
                 Informar o dígito  de controle da chave de acesso do
                 CT-e, que deve ser calculado com a aplicação do
                 algoritmo módulo 11 (base 2,9) da chave de acesso.
-            :ivar tp_amb: Tipo do Ambiente Preencher com:1 - Produção; 2
+            :ivar tpAmb: Tipo do Ambiente Preencher com:1 - Produção; 2
                 - Homologação.
-            :ivar tp_cte: Tipo do CT-e Preencher com: 0 - CT-e Normal; 1
+            :ivar tpCTe: Tipo do CT-e Preencher com: 0 - CT-e Normal; 1
                 - CT-e de Complemento de Valores;     2 - CT-e de
                 Anulação; 3 - CT-e de Substituição
-            :ivar proc_emi: Identificador do processo de emissão do CT-e
+            :ivar procEmi: Identificador do processo de emissão do CT-e
                 Preencher com: 0 - emissão de CT-e com aplicativo do
                 contribuinte; 3- emissão CT-e pelo contribuinte com
                 aplicativo fornecido pelo SEBRAE.
-            :ivar ver_proc: Versão do processo de emissão Iinformar a
+            :ivar verProc: Versão do processo de emissão Iinformar a
                 versão do aplicativo emissor de CT-e.
-            :ivar ind_globalizado: Indicador de CT-e Globalizado
-                Informar valor 1 quando for Globalizado e não informar a
-                tag quando não tratar de CT-e Globalizado
-            :ivar c_mun_env: Código do Município de envio do CT-e (de
-                onde o documento foi transmitido) Utilizar a tabela do
-                IBGE. Informar 9999999 para as operações com o exterior.
-            :ivar x_mun_env: Nome do Município de envio do CT-e (de onde
-                o documento foi transmitido) Informar PAIS/Municipio
-                para as operações com o exterior.
-            :ivar ufenv: Sigla da UF de envio do CT-e (de onde o
+            :ivar indGlobalizado: Indicador de CT-e Globalizado Informar
+                valor 1 quando for Globalizado e não informar a tag
+                quando não tratar de CT-e Globalizado
+            :ivar cMunEnv: Código do Município de envio do CT-e (de onde
+                o documento foi transmitido) Utilizar a tabela do IBGE.
+                Informar 9999999 para as operações com o exterior.
+            :ivar xMunEnv: Nome do Município de envio do CT-e (de onde o
+                documento foi transmitido) Informar PAIS/Municipio para
+                as operações com o exterior.
+            :ivar UFEnv: Sigla da UF de envio do CT-e (de onde o
                 documento foi transmitido) Informar 'EX' para operações
                 com o exterior.
             :ivar modal: Modal Preencher com:01-Rodoviário;
                 02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;
-            :ivar tp_serv: Tipo do Serviço Preencher com: 0 - Normal;1 -
+            :ivar tpServ: Tipo do Serviço Preencher com: 0 - Normal;1 -
                 Subcontratação; 2 - Redespacho;3 - Redespacho
                 Intermediário; 4 - Serviço Vinculado a Multimodal
-            :ivar c_mun_ini: Código do Município de início da prestação
+            :ivar cMunIni: Código do Município de início da prestação
                 Utilizar a tabela do IBGE. Informar 9999999 para
                 operações com o exterior.
-            :ivar x_mun_ini: Nome do Município do início da prestação
+            :ivar xMunIni: Nome do Município do início da prestação
                 Informar 'EXTERIOR' para operações com o exterior.
-            :ivar ufini: UF do início da prestação Informar 'EX' para
+            :ivar UFIni: UF do início da prestação Informar 'EX' para
                 operações com o exterior.
-            :ivar c_mun_fim: Código do Município de término da prestação
+            :ivar cMunFim: Código do Município de término da prestação
                 Utilizar a tabela do IBGE. Informar 9999999 para
                 operações com o exterior.
-            :ivar x_mun_fim: Nome do Município do término da prestação
+            :ivar xMunFim: Nome do Município do término da prestação
                 Informar 'EXTERIOR' para operações com o exterior.
-            :ivar uffim: UF do término da prestação Informar 'EX' para
+            :ivar UFFim: UF do término da prestação Informar 'EX' para
                 operações com o exterior.
             :ivar retira: Indicador se o Recebedor retira no Aeroporto,
                 Filial, Porto ou Estação de Destino? Preencher com: 0 -
                 sim; 1 - não
-            :ivar x_det_retira: Detalhes do retira
-            :ivar ind_ietoma: Indicador do papel do tomador na prestação
+            :ivar xDetRetira: Detalhes do retira
+            :ivar indIEToma: Indicador do papel do tomador na prestação
                 do serviço: 1 – Contribuinte ICMS; 2 – Contribuinte
                 isento de inscrição; 9 – Não Contribuinte Aplica-se ao
                 tomador que for indicado no toma3 ou toma4
@@ -6537,23 +6131,21 @@ class Tcte:
                 CT-e
             :ivar toma4: Indicador do "papel" do tomador do serviço no
                 CT-e
-            :ivar dh_cont: Data e Hora da entrada em contingência
+            :ivar dhCont: Data e Hora da entrada em contingência
                 Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
-            :ivar x_just: Justificativa da entrada em contingência
+            :ivar xJust: Justificativa da entrada em contingência
             """
-            c_uf: Optional[TcodUfIbge] = field(
+            cUF: Optional[TcodUfIbge] = field(
                 default=None,
                 metadata={
-                    "name": "cUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            c_ct: Optional[str] = field(
+            cCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6561,10 +6153,9 @@ class Tcte:
                     "pattern": r"[0-9]{8}",
                 }
             )
-            cfop: Optional[str] = field(
+            CFOP: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CFOP",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6572,10 +6163,9 @@ class Tcte:
                     "pattern": r"[123567][0-9]([0-9][1-9]|[1-9][0-9])",
                 }
             )
-            nat_op: Optional[str] = field(
+            natOp: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "natOp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6603,10 +6193,9 @@ class Tcte:
                     "pattern": r"0|[1-9]{1}[0-9]{0,2}",
                 }
             )
-            n_ct: Optional[str] = field(
+            nCT: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "nCT",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6614,10 +6203,9 @@ class Tcte:
                     "pattern": r"[1-9]{1}[0-9]{0,8}",
                 }
             )
-            dh_emi: Optional[str] = field(
+            dhEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6625,30 +6213,27 @@ class Tcte:
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            tp_imp: Optional[IdeTpImp] = field(
+            tpImp: Optional[IdeTpImp] = field(
                 default=None,
                 metadata={
-                    "name": "tpImp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            tp_emis: Optional[IdeTpEmis] = field(
+            tpEmis: Optional[IdeTpEmis] = field(
                 default=None,
                 metadata={
-                    "name": "tpEmis",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            c_dv: Optional[str] = field(
+            cDV: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cDV",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6656,37 +6241,33 @@ class Tcte:
                     "pattern": r"[0-9]{1}",
                 }
             )
-            tp_amb: Optional[Tamb] = field(
+            tpAmb: Optional[Tamb] = field(
                 default=None,
                 metadata={
-                    "name": "tpAmb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            tp_cte: Optional[TfinCte] = field(
+            tpCTe: Optional[TfinCte] = field(
                 default=None,
                 metadata={
-                    "name": "tpCTe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            proc_emi: Optional[TprocEmi] = field(
+            procEmi: Optional[TprocEmi] = field(
                 default=None,
                 metadata={
-                    "name": "procEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            ver_proc: Optional[str] = field(
+            verProc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "verProc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6696,18 +6277,16 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ind_globalizado: Optional[IdeIndGlobalizado] = field(
+            indGlobalizado: Optional[IdeIndGlobalizado] = field(
                 default=None,
                 metadata={
-                    "name": "indGlobalizado",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            c_mun_env: Optional[str] = field(
+            cMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6715,10 +6294,9 @@ class Tcte:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_env: Optional[str] = field(
+            xMunEnv: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6728,10 +6306,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ufenv: Optional[Tuf] = field(
+            UFEnv: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFEnv",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6745,20 +6322,18 @@ class Tcte:
                     "required": True,
                 }
             )
-            tp_serv: Optional[IdeTpServ] = field(
+            tpServ: Optional[IdeTpServ] = field(
                 default=None,
                 metadata={
-                    "name": "tpServ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "white_space": "preserve",
                 }
             )
-            c_mun_ini: Optional[str] = field(
+            cMunIni: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6766,10 +6341,9 @@ class Tcte:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_ini: Optional[str] = field(
+            xMunIni: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6779,19 +6353,17 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ufini: Optional[Tuf] = field(
+            UFIni: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFIni",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            c_mun_fim: Optional[str] = field(
+            cMunFim: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "cMunFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6799,10 +6371,9 @@ class Tcte:
                     "pattern": r"[0-9]{7}",
                 }
             )
-            x_mun_fim: Optional[str] = field(
+            xMunFim: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xMunFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6812,10 +6383,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            uffim: Optional[Tuf] = field(
+            UFFim: Optional[Tuf] = field(
                 default=None,
                 metadata={
-                    "name": "UFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6830,10 +6400,9 @@ class Tcte:
                     "white_space": "preserve",
                 }
             )
-            x_det_retira: Optional[str] = field(
+            xDetRetira: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xDetRetira",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -6842,10 +6411,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ind_ietoma: Optional[IdeIndIetoma] = field(
+            indIEToma: Optional[IdeIndIetoma] = field(
                 default=None,
                 metadata={
-                    "name": "indIEToma",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -6866,20 +6434,18 @@ class Tcte:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            dh_cont: Optional[str] = field(
+            dhCont: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dhCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))T(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d([\-,\+](0[0-9]|10|11):00|([\+](12):00))",
                 }
             )
-            x_just: Optional[str] = field(
+            xJust: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xJust",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 15,
@@ -6914,20 +6480,20 @@ class Tcte:
                 :ivar toma: Tomador do Serviço Preencher com: 4 - Outros
                     Obs: Informar os dados cadastrais do tomador do
                     serviço
-                :ivar cnpj: Número do CNPJ Em caso de empresa não
+                :ivar CNPJ: Número do CNPJ Em caso de empresa não
                     estabelecida no Brasil, será informado o CNPJ com
                     zeros. Informar os zeros não significativos.
-                :ivar cpf: Número do CPF Informar os zeros não
+                :ivar CPF: Número do CPF Informar os zeros não
                     significativos.
-                :ivar ie: Inscrição Estadual Informar a IE do tomador ou
+                :ivar IE: Inscrição Estadual Informar a IE do tomador ou
                     ISENTO se tomador é contribuinte do ICMS isento de
                     inscrição no cadastro de contribuintes do ICMS. Caso
                     o tomador não seja contribuinte do ICMS não informar
                     o conteúdo.
-                :ivar x_nome: Razão Social ou Nome
-                :ivar x_fant: Nome Fantasia
+                :ivar xNome: Razão Social ou Nome
+                :ivar xFant: Nome Fantasia
                 :ivar fone: Telefone
-                :ivar ender_toma: Dados do endereço
+                :ivar enderToma: Dados do endereço
                 :ivar email: Endereço de email
                 """
                 toma: Optional[Toma4Toma] = field(
@@ -6939,30 +6505,27 @@ class Tcte:
                         "white_space": "preserve",
                     }
                 )
-                cnpj: Optional[str] = field(
+                CNPJ: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CNPJ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{0}|[0-9]{14}",
                     }
                 )
-                cpf: Optional[str] = field(
+                CPF: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "CPF",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"[0-9]{11}",
                     }
                 )
-                ie: Optional[str] = field(
+                IE: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "IE",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "max_length": 14,
@@ -6970,10 +6533,9 @@ class Tcte:
                         "pattern": r"[0-9]{0,14}|ISENTO",
                     }
                 )
-                x_nome: Optional[str] = field(
+                xNome: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xNome",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -6983,10 +6545,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_fant: Optional[str] = field(
+                xFant: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xFant",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 2,
@@ -7004,10 +6565,9 @@ class Tcte:
                         "pattern": r"[0-9]{6,14}",
                     }
                 )
-                ender_toma: Optional[Tendereco] = field(
+                enderToma: Optional[Tendereco] = field(
                     default=None,
                     metadata={
-                        "name": "enderToma",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -7028,31 +6588,30 @@ class Tcte:
         @dataclass
         class Compl:
             """
-            :ivar x_carac_ad: Característica adicional do transporte
-                Texto livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
-            :ivar x_carac_ser: Característica adicional do serviço Texto
+            :ivar xCaracAd: Característica adicional do transporte Texto
+                livre: REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc
+            :ivar xCaracSer: Característica adicional do serviço Texto
                 livre: ENTREGA EXPRESSA; LOGÍSTICA REVERSA;
                 CONVENCIONAL; EMERGENCIAL; etc
-            :ivar x_emi: Funcionário emissor do CTe
+            :ivar xEmi: Funcionário emissor do CTe
             :ivar fluxo: Previsão do fluxo da carga Preenchimento
                 obrigatório para o modal aéreo.
-            :ivar entrega: Informações ref. a previsão de entrega
-            :ivar orig_calc: Município de origem para efeito de cálculo
+            :ivar Entrega: Informações ref. a previsão de entrega
+            :ivar origCalc: Município de origem para efeito de cálculo
                 do frete
-            :ivar dest_calc: Município de destino para efeito de cálculo
+            :ivar destCalc: Município de destino para efeito de cálculo
                 do frete
-            :ivar x_obs: Observações Gerais
-            :ivar obs_cont: Campo de uso livre do contribuinte Informar
-                o nome do campo no atributo xCampo e o conteúdo do campo
+            :ivar xObs: Observações Gerais
+            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+                nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar obs_fisco: Campo de uso livre do contribuinte Informar
+            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
-            x_carac_ad: Optional[str] = field(
+            xCaracAd: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracAd",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -7061,10 +6620,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_carac_ser: Optional[str] = field(
+            xCaracSer: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xCaracSer",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -7073,10 +6631,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_emi: Optional[str] = field(
+            xEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -7092,30 +6649,16 @@ class Tcte:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            entrega: Optional["Tcte.InfCte.Compl.Entrega"] = field(
+            Entrega: Optional["Tcte.InfCte.Compl.Entrega"] = field(
                 default=None,
                 metadata={
-                    "name": "Entrega",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            orig_calc: Optional[str] = field(
+            origCalc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "origCalc",
-                    "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/cte",
-                    "min_length": 2,
-                    "max_length": 40,
-                    "white_space": "preserve",
-                    "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
-                }
-            )
-            dest_calc: Optional[str] = field(
-                default=None,
-                metadata={
-                    "name": "destCalc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -7124,10 +6667,20 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_obs: Optional[str] = field(
+            destCalc: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xObs",
+                    "type": "Element",
+                    "namespace": "http://www.portalfiscal.inf.br/cte",
+                    "min_length": 2,
+                    "max_length": 40,
+                    "white_space": "preserve",
+                    "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                }
+            )
+            xObs: Optional[str] = field(
+                default=None,
+                metadata={
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -7136,19 +6689,17 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            obs_cont: List["Tcte.InfCte.Compl.ObsCont"] = field(
+            ObsCont: List["Tcte.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            obs_fisco: List["Tcte.InfCte.Compl.ObsFisco"] = field(
+            ObsFisco: List["Tcte.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -7158,7 +6709,7 @@ class Tcte:
             @dataclass
             class Fluxo:
                 """
-                :ivar x_orig: Sigla ou código interno da
+                :ivar xOrig: Sigla ou código interno da
                     Filial/Porto/Estação/ Aeroporto de Origem
                     Observações para o modal aéreo: - Preenchimento
                     obrigatório para o modal aéreo. - O código de três
@@ -7166,19 +6717,18 @@ class Tcte:
                     incluído como primeira anotação. Quando não for
                     possível, utilizar a sigla OACI.
                 :ivar pass_value:
-                :ivar x_dest: Sigla ou código interno da
+                :ivar xDest: Sigla ou código interno da
                     Filial/Porto/Estação/Aeroporto de Destino
                     Observações para o modal aéreo: - Preenchimento
                     obrigatório para o modal aéreo. - Deverá ser
                     incluído o código de três letras IATA do aeroporto
                     de destino. Quando não for possível, utilizar a
                     sigla OACI.
-                :ivar x_rota: Código da Rota de Entrega
+                :ivar xRota: Código da Rota de Entrega
                 """
-                x_orig: Optional[str] = field(
+                xOrig: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xOrig",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -7195,10 +6745,9 @@ class Tcte:
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                x_dest: Optional[str] = field(
+                xDest: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xDest",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -7207,10 +6756,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_rota: Optional[str] = field(
+                xRota: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xRota",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -7223,7 +6771,7 @@ class Tcte:
                 @dataclass
                 class Pass:
                     """
-                    :ivar x_pass: Sigla ou código interno da
+                    :ivar xPass: Sigla ou código interno da
                         Filial/Porto/Estação/Aeroporto de Passagem
                         Observação para o modal aéreo: - O código de
                         três letras IATA, referente ao aeroporto de
@@ -7232,10 +6780,9 @@ class Tcte:
                         OACI. Qualquer solicitação de itinerário deverá
                         ser incluída.
                     """
-                    x_pass: Optional[str] = field(
+                    xPass: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "xPass",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -7248,58 +6795,52 @@ class Tcte:
             @dataclass
             class Entrega:
                 """
-                :ivar sem_data: Entrega sem data definida Esta opção é
+                :ivar semData: Entrega sem data definida Esta opção é
                     proibida para o modal aéreo.
-                :ivar com_data: Entrega com data definida
-                :ivar no_periodo: Entrega no período definido
-                :ivar sem_hora: Entrega sem hora definida
-                :ivar com_hora: Entrega com hora definida
-                :ivar no_inter: Entrega no intervalo de horário definido
+                :ivar comData: Entrega com data definida
+                :ivar noPeriodo: Entrega no período definido
+                :ivar semHora: Entrega sem hora definida
+                :ivar comHora: Entrega com hora definida
+                :ivar noInter: Entrega no intervalo de horário definido
                 """
-                sem_data: Optional["Tcte.InfCte.Compl.Entrega.SemData"] = field(
+                semData: Optional["Tcte.InfCte.Compl.Entrega.SemData"] = field(
                     default=None,
                     metadata={
-                        "name": "semData",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                com_data: Optional["Tcte.InfCte.Compl.Entrega.ComData"] = field(
+                comData: Optional["Tcte.InfCte.Compl.Entrega.ComData"] = field(
                     default=None,
                     metadata={
-                        "name": "comData",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                no_periodo: Optional["Tcte.InfCte.Compl.Entrega.NoPeriodo"] = field(
+                noPeriodo: Optional["Tcte.InfCte.Compl.Entrega.NoPeriodo"] = field(
                     default=None,
                     metadata={
-                        "name": "noPeriodo",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                sem_hora: Optional["Tcte.InfCte.Compl.Entrega.SemHora"] = field(
+                semHora: Optional["Tcte.InfCte.Compl.Entrega.SemHora"] = field(
                     default=None,
                     metadata={
-                        "name": "semHora",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                com_hora: Optional["Tcte.InfCte.Compl.Entrega.ComHora"] = field(
+                comHora: Optional["Tcte.InfCte.Compl.Entrega.ComHora"] = field(
                     default=None,
                     metadata={
-                        "name": "comHora",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                no_inter: Optional["Tcte.InfCte.Compl.Entrega.NoInter"] = field(
+                noInter: Optional["Tcte.InfCte.Compl.Entrega.NoInter"] = field(
                     default=None,
                     metadata={
-                        "name": "noInter",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
@@ -7308,13 +6849,12 @@ class Tcte:
                 @dataclass
                 class SemData:
                     """
-                    :ivar tp_per: Tipo de data/período programado para
+                    :ivar tpPer: Tipo de data/período programado para
                         entrega 0- Sem data definida
                     """
-                    tp_per: Optional[SemDataTpPer] = field(
+                    tpPer: Optional[SemDataTpPer] = field(
                         default=None,
                         metadata={
-                            "name": "tpPer",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7325,25 +6865,23 @@ class Tcte:
                 @dataclass
                 class ComData:
                     """
-                    :ivar tp_per: Tipo de data/período programado para
+                    :ivar tpPer: Tipo de data/período programado para
                         entrega Preencher com: 1-Na data; 2-Até a data;
                         3-A partir da data
-                    :ivar d_prog: Data programada Formato AAAA-MM-DD
+                    :ivar dProg: Data programada Formato AAAA-MM-DD
                     """
-                    tp_per: Optional[ComDataTpPer] = field(
+                    tpPer: Optional[ComDataTpPer] = field(
                         default=None,
                         metadata={
-                            "name": "tpPer",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    d_prog: Optional[str] = field(
+                    dProg: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dProg",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7355,24 +6893,22 @@ class Tcte:
                 @dataclass
                 class NoPeriodo:
                     """
-                    :ivar tp_per: Tipo período 4-no período
-                    :ivar d_ini: Data inicial Formato AAAA-MM-DD
-                    :ivar d_fim: Data final Formato AAAA-MM-DD
+                    :ivar tpPer: Tipo período 4-no período
+                    :ivar dIni: Data inicial Formato AAAA-MM-DD
+                    :ivar dFim: Data final Formato AAAA-MM-DD
                     """
-                    tp_per: Optional[NoPeriodoTpPer] = field(
+                    tpPer: Optional[NoPeriodoTpPer] = field(
                         default=None,
                         metadata={
-                            "name": "tpPer",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    d_ini: Optional[str] = field(
+                    dIni: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dIni",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7380,10 +6916,9 @@ class Tcte:
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    d_fim: Optional[str] = field(
+                    dFim: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dFim",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7395,12 +6930,11 @@ class Tcte:
                 @dataclass
                 class SemHora:
                     """
-                    :ivar tp_hor: Tipo de hora 0- Sem hora definida
+                    :ivar tpHor: Tipo de hora 0- Sem hora definida
                     """
-                    tp_hor: Optional[SemHoraTpHor] = field(
+                    tpHor: Optional[SemHoraTpHor] = field(
                         default=None,
                         metadata={
-                            "name": "tpHor",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7411,25 +6945,23 @@ class Tcte:
                 @dataclass
                 class ComHora:
                     """
-                    :ivar tp_hor: Tipo de hora Preencher com: 1 - No
+                    :ivar tpHor: Tipo de hora Preencher com: 1 - No
                         horário; 2 - Até o horário; 3 - A partir do
                         horário.
-                    :ivar h_prog: Hora programada Formato HH:MM:SS
+                    :ivar hProg: Hora programada Formato HH:MM:SS
                     """
-                    tp_hor: Optional[ComHoraTpHor] = field(
+                    tpHor: Optional[ComHoraTpHor] = field(
                         default=None,
                         metadata={
-                            "name": "tpHor",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    h_prog: Optional[str] = field(
+                    hProg: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "hProg",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7441,24 +6973,22 @@ class Tcte:
                 @dataclass
                 class NoInter:
                     """
-                    :ivar tp_hor: Tipo de hora 4 - No intervalo de tempo
-                    :ivar h_ini: Hora inicial Formato HH:MM:SS
-                    :ivar h_fim: Hora final Formato HH:MM:SS
+                    :ivar tpHor: Tipo de hora 4 - No intervalo de tempo
+                    :ivar hIni: Hora inicial Formato HH:MM:SS
+                    :ivar hFim: Hora final Formato HH:MM:SS
                     """
-                    tp_hor: Optional[NoInterTpHor] = field(
+                    tpHor: Optional[NoInterTpHor] = field(
                         default=None,
                         metadata={
-                            "name": "tpHor",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    h_ini: Optional[str] = field(
+                    hIni: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "hIni",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7466,10 +6996,9 @@ class Tcte:
                             "pattern": r"(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])",
                         }
                     )
-                    h_fim: Optional[str] = field(
+                    hFim: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "hFim",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -7481,13 +7010,12 @@ class Tcte:
             @dataclass
             class ObsCont:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -7497,10 +7025,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -7513,13 +7040,12 @@ class Tcte:
             @dataclass
             class ObsFisco:
                 """
-                :ivar x_texto: Conteúdo do campo
-                :ivar x_campo: Identificação do campo
+                :ivar xTexto: Conteúdo do campo
+                :ivar xCampo: Identificação do campo
                 """
-                x_texto: Optional[str] = field(
+                xTexto: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xTexto",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -7529,10 +7055,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_campo: Optional[str] = field(
+                xCampo: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCampo",
                         "type": "Attribute",
                         "required": True,
                         "min_length": 1,
@@ -7545,43 +7070,40 @@ class Tcte:
         @dataclass
         class Emit:
             """
-            :ivar cnpj: CNPJ do emitente Informar zeros não
+            :ivar CNPJ: CNPJ do emitente Informar zeros não
                 significativos
-            :ivar cpf: CPF do emitente Informar zeros não
+            :ivar CPF: CPF do emitente Informar zeros não
                 significativos. Usar com série específica 920-969 para
                 emitente pessoa física com inscrição estadual
-            :ivar ie: Inscrição Estadual do Emitente A IE do emitente
+            :ivar IE: Inscrição Estadual do Emitente A IE do emitente
                 somente ficará sem informação para o caso do Regime
                 Especial da NFF (tpEmis=3)
-            :ivar iest: Inscrição Estadual do Substituto Tributário
-            :ivar x_nome: Razão social ou Nome do emitente
-            :ivar x_fant: Nome fantasia
-            :ivar ender_emit: Endereço do emitente
+            :ivar IEST: Inscrição Estadual do Substituto Tributário
+            :ivar xNome: Razão social ou Nome do emitente
+            :ivar xFant: Nome fantasia
+            :ivar enderEmit: Endereço do emitente
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7589,10 +7111,9 @@ class Tcte:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            iest: Optional[str] = field(
+            IEST: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IEST",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7600,10 +7121,9 @@ class Tcte:
                     "pattern": r"[0-9]{2,14}",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7613,10 +7133,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -7625,10 +7144,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ender_emit: Optional[TendeEmi] = field(
+            enderEmit: Optional[TendeEmi] = field(
                 default=None,
                 metadata={
-                    "name": "enderEmit",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7638,46 +7156,43 @@ class Tcte:
         @dataclass
         class Rem:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do remetente ou
+            :ivar IE: Inscrição Estadual Informar a IE do remetente ou
                 ISENTO se remetente é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 remetente não seja contribuinte do ICMS não informar a
                 tag.
-            :ivar x_nome: Razão social ou nome do remetente
-            :ivar x_fant: Nome fantasia
+            :ivar xNome: Razão social ou nome do remetente
+            :ivar xFant: Nome fantasia
             :ivar fone: Telefone
-            :ivar ender_reme: Dados do endereço
+            :ivar enderReme: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7685,10 +7200,9 @@ class Tcte:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7698,10 +7212,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            x_fant: Optional[str] = field(
+            xFant: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xFant",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 2,
@@ -7719,10 +7232,9 @@ class Tcte:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            ender_reme: Optional[Tendereco] = field(
+            enderReme: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderReme",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7743,45 +7255,42 @@ class Tcte:
         @dataclass
         class Exped:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do expedidor ou
+            :ivar IE: Inscrição Estadual Informar a IE do expedidor ou
                 ISENTO se expedidor é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 expedidor não seja contribuinte do ICMS não informar a
                 tag.
-            :ivar x_nome: Razão Social ou Nome
+            :ivar xNome: Razão Social ou Nome
             :ivar fone: Telefone
-            :ivar ender_exped: Dados do endereço
+            :ivar enderExped: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7789,10 +7298,9 @@ class Tcte:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7811,10 +7319,9 @@ class Tcte:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            ender_exped: Optional[Tendereco] = field(
+            enderExped: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderExped",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7835,45 +7342,42 @@ class Tcte:
         @dataclass
         class Receb:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do recebedor ou
+            :ivar IE: Inscrição Estadual Informar a IE do recebedor ou
                 ISENTO se recebedor é contribuinte do ICMS isento de
                 inscrição no cadastro de contribuintes do ICMS. Caso o
                 recebedor não seja contribuinte do ICMS não informar o
                 conteúdo.
-            :ivar x_nome: Razão Social ou Nome
+            :ivar xNome: Razão Social ou Nome
             :ivar fone: Telefone
-            :ivar ender_receb: Dados do endereço
+            :ivar enderReceb: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7881,10 +7385,9 @@ class Tcte:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7903,10 +7406,9 @@ class Tcte:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            ender_receb: Optional[Tendereco] = field(
+            enderReceb: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderReceb",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7927,48 +7429,45 @@ class Tcte:
         @dataclass
         class Dest:
             """
-            :ivar cnpj: Número do CNPJ Em caso de empresa não
+            :ivar CNPJ: Número do CNPJ Em caso de empresa não
                 estabelecida no Brasil, será informado o CNPJ com zeros.
                 Informar os zeros não significativos.
-            :ivar cpf: Número do CPF Informar os zeros não
+            :ivar CPF: Número do CPF Informar os zeros não
                 significativos.
-            :ivar ie: Inscrição Estadual Informar a IE do destinatário
+            :ivar IE: Inscrição Estadual Informar a IE do destinatário
                 ou ISENTO se destinatário é contribuinte do ICMS isento
                 de inscrição no cadastro de contribuintes do ICMS. Caso
                 o destinatário não seja contribuinte do ICMS não
                 informar o conteúdo.
-            :ivar x_nome: Razão Social ou Nome do destinatário
+            :ivar xNome: Razão Social ou Nome do destinatário
             :ivar fone: Telefone
-            :ivar isuf: Inscrição na SUFRAMA (Obrigatório nas operações
+            :ivar ISUF: Inscrição na SUFRAMA (Obrigatório nas operações
                 com as áreas com benefícios de incentivos fiscais sob
                 controle da SUFRAMA)
-            :ivar ender_dest: Dados do endereço
+            :ivar enderDest: Dados do endereço
             :ivar email: Endereço de email
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{0}|[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{11}",
                 }
             )
-            ie: Optional[str] = field(
+            IE: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "IE",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_length": 14,
@@ -7976,10 +7475,9 @@ class Tcte:
                     "pattern": r"[0-9]{0,14}|ISENTO",
                 }
             )
-            x_nome: Optional[str] = field(
+            xNome: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xNome",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -7998,20 +7496,18 @@ class Tcte:
                     "pattern": r"[0-9]{6,14}",
                 }
             )
-            isuf: Optional[str] = field(
+            ISUF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "ISUF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{8,9}",
                 }
             )
-            ender_dest: Optional[Tendereco] = field(
+            enderDest: Optional[Tendereco] = field(
                 default=None,
                 metadata={
-                    "name": "enderDest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -8032,15 +7528,14 @@ class Tcte:
         @dataclass
         class VPrest:
             """
-            :ivar v_tprest: Valor Total da Prestação do Serviço Pode
+            :ivar vTPrest: Valor Total da Prestação do Serviço Pode
                 conter zeros quando o CT-e for de complemento de ICMS
-            :ivar v_rec: Valor a Receber
-            :ivar comp: Componentes do Valor da Prestação
+            :ivar vRec: Valor a Receber
+            :ivar Comp: Componentes do Valor da Prestação
             """
-            v_tprest: Optional[str] = field(
+            vTPrest: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTPrest",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -8048,10 +7543,9 @@ class Tcte:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            v_rec: Optional[str] = field(
+            vRec: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vRec",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -8059,10 +7553,9 @@ class Tcte:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            comp: List["Tcte.InfCte.VPrest.Comp"] = field(
+            Comp: List["Tcte.InfCte.VPrest.Comp"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -8071,14 +7564,13 @@ class Tcte:
             @dataclass
             class Comp:
                 """
-                :ivar x_nome: Nome do componente Exxemplos: FRETE PESO,
+                :ivar xNome: Nome do componente Exxemplos: FRETE PESO,
                     FRETE VALOR, SEC/CAT, ADEME, AGENDAMENTO, etc
-                :ivar v_comp: Valor do componente
+                :ivar vComp: Valor do componente
                 """
-                x_nome: Optional[str] = field(
+                xNome: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xNome",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8088,10 +7580,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                v_comp: Optional[str] = field(
+                vComp: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vComp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8103,40 +7594,37 @@ class Tcte:
         @dataclass
         class Imp:
             """
-            :ivar icms: Informações relativas ao ICMS
-            :ivar v_tot_trib: Valor Total dos Tributos
-            :ivar inf_ad_fisco: Informações adicionais de interesse do
+            :ivar ICMS: Informações relativas ao ICMS
+            :ivar vTotTrib: Valor Total dos Tributos
+            :ivar infAdFisco: Informações adicionais de interesse do
                 Fisco Norma referenciada, informações complementares,
                 etc
-            :ivar icmsuffim: Informações do ICMS de partilha com a UF de
+            :ivar ICMSUFFim: Informações do ICMS de partilha com a UF de
                 término do serviço de transporte na operação
                 interestadual Grupo a ser informado nas prestações
                 interestaduais para consumidor final, não contribuinte
                 do ICMS
             """
-            icms: Optional[Timp] = field(
+            ICMS: Optional[Timp] = field(
                 default=None,
                 metadata={
-                    "name": "ICMS",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            v_tot_trib: Optional[str] = field(
+            vTotTrib: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "vTotTrib",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            inf_ad_fisco: Optional[str] = field(
+            infAdFisco: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "infAdFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "min_length": 1,
@@ -8145,10 +7633,9 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            icmsuffim: Optional["Tcte.InfCte.Imp.Icmsuffim"] = field(
+            ICMSUFFim: Optional["Tcte.InfCte.Imp.Icmsuffim"] = field(
                 default=None,
                 metadata={
-                    "name": "ICMSUFFim",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -8157,29 +7644,28 @@ class Tcte:
             @dataclass
             class Icmsuffim:
                 """
-                :ivar v_bcuffim: Valor da BC do ICMS na UF de término da
+                :ivar vBCUFFim: Valor da BC do ICMS na UF de término da
                     prestação do serviço de transporte
-                :ivar p_fcpuffim: Percentual do ICMS relativo ao Fundo
-                    de Combate à pobreza (FCP) na UF de término da
+                :ivar pFCPUFFim: Percentual do ICMS relativo ao Fundo de
+                    Combate à pobreza (FCP) na UF de término da
                     prestação do serviço de transporte Alíquota adotada
                     nas operações internas na UF do destinatário
-                :ivar p_icmsuffim: Alíquota interna da UF de término da
+                :ivar pICMSUFFim: Alíquota interna da UF de término da
                     prestação do serviço de transporte Alíquota adotada
                     nas operações internas na UF do destinatário
-                :ivar p_icmsinter: Alíquota interestadual das UF
+                :ivar pICMSInter: Alíquota interestadual das UF
                     envolvidas Alíquota interestadual das UF envolvidas
-                :ivar v_fcpuffim: Valor do ICMS relativo ao Fundo de
+                :ivar vFCPUFFim: Valor do ICMS relativo ao Fundo de
                     Combate á Pobreza (FCP) da UF de término da
                     prestação
-                :ivar v_icmsuffim: Valor do ICMS de partilha para a UF
-                    de término da prestação do serviço de transporte
-                :ivar v_icmsufini: Valor do ICMS de partilha para a UF
-                    de início da prestação do serviço de transporte
+                :ivar vICMSUFFim: Valor do ICMS de partilha para a UF de
+                    término da prestação do serviço de transporte
+                :ivar vICMSUFIni: Valor do ICMS de partilha para a UF de
+                    início da prestação do serviço de transporte
                 """
-                v_bcuffim: Optional[str] = field(
+                vBCUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vBCUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8187,10 +7673,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                p_fcpuffim: Optional[str] = field(
+                pFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8198,10 +7683,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsuffim: Optional[str] = field(
+                pICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8209,10 +7693,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                p_icmsinter: Optional[str] = field(
+                pICMSInter: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "pICMSInter",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8220,10 +7703,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2})?",
                     }
                 )
-                v_fcpuffim: Optional[str] = field(
+                vFCPUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vFCPUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8231,10 +7713,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsuffim: Optional[str] = field(
+                vICMSUFFim: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFFim",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8242,10 +7723,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_icmsufini: Optional[str] = field(
+                vICMSUFIni: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vICMSUFIni",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8257,25 +7737,23 @@ class Tcte:
         @dataclass
         class AutXml:
             """
-            :ivar cnpj: CNPJ do autorizado Informar zeros não
+            :ivar CNPJ: CNPJ do autorizado Informar zeros não
                 significativos
-            :ivar cpf: CPF do autorizado Informar zeros não
+            :ivar CPF: CPF do autorizado Informar zeros não
                 significativos
             """
-            cnpj: Optional[str] = field(
+            CNPJ: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CNPJ",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
                     "pattern": r"[0-9]{14}",
                 }
             )
-            cpf: Optional[str] = field(
+            CPF: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "CPF",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "white_space": "preserve",
@@ -8286,14 +7764,13 @@ class Tcte:
         @dataclass
         class InfSolicNff:
             """
-            :ivar x_solic: Solicitação do pedido de emissão da NFF. Será
+            :ivar xSolic: Solicitação do pedido de emissão da NFF. Será
                 preenchido com a totalidade de campos informados no
                 aplicativo emissor serializado.
             """
-            x_solic: Optional[str] = field(
+            xSolic: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "xSolic",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -8307,60 +7784,55 @@ class Tcte:
         @dataclass
         class InfCteNorm:
             """
-            :ivar inf_carga: Informações da Carga do CT-e
-            :ivar inf_doc: Informações dos documentos transportados pelo
+            :ivar infCarga: Informações da Carga do CT-e
+            :ivar infDoc: Informações dos documentos transportados pelo
                 CT-e Opcional para Redespacho Intermediario e Serviço
                 vinculado a multimodal. Poderá não ser informado para os
                 CT-e de redespacho intermediário e serviço vinculado a
                 multimodal. Nos demais casos deverá sempre ser
                 informado.
-            :ivar doc_ant: Documentos de Transporte Anterior
-            :ivar inf_modal: Informações do modal
-            :ivar veic_novos: informações dos veículos transportados
+            :ivar docAnt: Documentos de Transporte Anterior
+            :ivar infModal: Informações do modal
+            :ivar veicNovos: informações dos veículos transportados
             :ivar cobr: Dados da cobrança do CT-e
-            :ivar inf_cte_sub: Informações do CT-e de substituição
-            :ivar inf_globalizado: Informações do CT-e Globalizado
-            :ivar inf_serv_vinc: Informações do Serviço Vinculado a
+            :ivar infCteSub: Informações do CT-e de substituição
+            :ivar infGlobalizado: Informações do CT-e Globalizado
+            :ivar infServVinc: Informações do Serviço Vinculado a
                 Multimodal
             """
-            inf_carga: Optional["Tcte.InfCte.InfCteNorm.InfCarga"] = field(
+            infCarga: Optional["Tcte.InfCte.InfCteNorm.InfCarga"] = field(
                 default=None,
                 metadata={
-                    "name": "infCarga",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            inf_doc: Optional["Tcte.InfCte.InfCteNorm.InfDoc"] = field(
+            infDoc: Optional["Tcte.InfCte.InfCteNorm.InfDoc"] = field(
                 default=None,
                 metadata={
-                    "name": "infDoc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            doc_ant: Optional["Tcte.InfCte.InfCteNorm.DocAnt"] = field(
+            docAnt: Optional["Tcte.InfCte.InfCteNorm.DocAnt"] = field(
                 default=None,
                 metadata={
-                    "name": "docAnt",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_modal: Optional["Tcte.InfCte.InfCteNorm.InfModal"] = field(
+            infModal: Optional["Tcte.InfCte.InfCteNorm.InfModal"] = field(
                 default=None,
                 metadata={
-                    "name": "infModal",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                 }
             )
-            veic_novos: List["Tcte.InfCte.InfCteNorm.VeicNovos"] = field(
+            veicNovos: List["Tcte.InfCte.InfCteNorm.VeicNovos"] = field(
                 default_factory=list,
                 metadata={
-                    "name": "veicNovos",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -8372,26 +7844,23 @@ class Tcte:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_cte_sub: Optional["Tcte.InfCte.InfCteNorm.InfCteSub"] = field(
+            infCteSub: Optional["Tcte.InfCte.InfCteNorm.InfCteSub"] = field(
                 default=None,
                 metadata={
-                    "name": "infCteSub",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_globalizado: Optional["Tcte.InfCte.InfCteNorm.InfGlobalizado"] = field(
+            infGlobalizado: Optional["Tcte.InfCte.InfCteNorm.InfGlobalizado"] = field(
                 default=None,
                 metadata={
-                    "name": "infGlobalizado",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            inf_serv_vinc: Optional["Tcte.InfCte.InfCteNorm.InfServVinc"] = field(
+            infServVinc: Optional["Tcte.InfCte.InfCteNorm.InfServVinc"] = field(
                 default=None,
                 metadata={
-                    "name": "infServVinc",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -8400,13 +7869,13 @@ class Tcte:
             @dataclass
             class InfCarga:
                 """
-                :ivar v_carga: Valor total da carga Dever ser informado
+                :ivar vCarga: Valor total da carga Dever ser informado
                     para todos os modais, com exceção para o Dutoviário.
-                :ivar pro_pred: Produto predominante Informar a
-                    descrição do produto predominante
-                :ivar x_out_cat: Outras características da carga "FRIA",
+                :ivar proPred: Produto predominante Informar a descrição
+                    do produto predominante
+                :ivar xOutCat: Outras características da carga "FRIA",
                     "GRANEL", "REFRIGERADA", "Medidas: 12X12X12"
-                :ivar inf_q: Informações de quantidades da Carga do CT-e
+                :ivar infQ: Informações de quantidades da Carga do CT-e
                     Para o Aéreo é obrigatório o preenchimento desse
                     campo da seguinte forma. 1 - Peso Bruto, sempre em
                     quilogramas (obrigatório); 2 - Peso Cubado; sempre
@@ -8415,7 +7884,7 @@ class Tcte:
                     metros cúbicos (obrigatório apenas quando for
                     impossível preencher as dimensões da(s)
                     embalagem(ens) na tag xDime do leiaute do Aéreo).
-                :ivar v_carga_averb: Valor da Carga para efeito de
+                :ivar vCargaAverb: Valor da Carga para efeito de
                     averbação Normalmente igual ao valor declarado da
                     mercadoria, diferente por exemplo, quando a
                     mercadoria transportada é isenta de tributos
@@ -8423,20 +7892,18 @@ class Tcte:
                     valor maior, pois no caso de indenização, o valor a
                     ser pago será maior
                 """
-                v_carga: Optional[str] = field(
+                vCarga: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vCarga",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                pro_pred: Optional[str] = field(
+                proPred: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "proPred",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -8446,10 +7913,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_out_cat: Optional[str] = field(
+                xOutCat: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xOutCat",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_length": 1,
@@ -8458,19 +7924,17 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                inf_q: List["Tcte.InfCte.InfCteNorm.InfCarga.InfQ"] = field(
+                infQ: List["Tcte.InfCte.InfCteNorm.InfCarga.InfQ"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "infQ",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_occurs": 1,
                     }
                 )
-                v_carga_averb: Optional[str] = field(
+                vCargaAverb: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vCargaAverb",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "white_space": "preserve",
@@ -8481,29 +7945,27 @@ class Tcte:
                 @dataclass
                 class InfQ:
                     """
-                    :ivar c_unid: Código da Unidade de Medida Preencher
+                    :ivar cUnid: Código da Unidade de Medida Preencher
                         com: 00-M3; 01-KG; 02-TON; 03-UNIDADE;
                         04-LITROS; 05-MMBTU
-                    :ivar tp_med: Tipo da Medida Exemplos: PESO BRUTO,
+                    :ivar tpMed: Tipo da Medida Exemplos: PESO BRUTO,
                         PESO DECLARADO, PESO CUBADO, PESO AFORADO, PESO
                         AFERIDO, PESO BASE DE CÁLCULO, LITRAGEM, CAIXAS
                         e etc
-                    :ivar q_carga: Quantidade
+                    :ivar qCarga: Quantidade
                     """
-                    c_unid: Optional[InfQCUnid] = field(
+                    cUnid: Optional[InfQCUnid] = field(
                         default=None,
                         metadata={
-                            "name": "cUnid",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    tp_med: Optional[str] = field(
+                    tpMed: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "tpMed",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8513,10 +7975,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    q_carga: Optional[str] = field(
+                    qCarga: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "qCarga",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8528,31 +7989,28 @@ class Tcte:
             @dataclass
             class InfDoc:
                 """
-                :ivar inf_nf: Informações das NF Este grupo deve ser
+                :ivar infNF: Informações das NF Este grupo deve ser
                     informado quando o documento originário for NF
-                :ivar inf_nfe: Informações das NF-e
-                :ivar inf_outros: Informações dos demais documentos
+                :ivar infNFe: Informações das NF-e
+                :ivar infOutros: Informações dos demais documentos
                 """
-                inf_nf: List["Tcte.InfCte.InfCteNorm.InfDoc.InfNf"] = field(
+                infNF: List["Tcte.InfCte.InfCteNorm.InfDoc.InfNf"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "infNF",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                inf_nfe: List["Tcte.InfCte.InfCteNorm.InfDoc.InfNfe"] = field(
+                infNFe: List["Tcte.InfCte.InfCteNorm.InfDoc.InfNfe"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "infNFe",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                inf_outros: List["Tcte.InfCte.InfCteNorm.InfDoc.InfOutros"] = field(
+                infOutros: List["Tcte.InfCte.InfCteNorm.InfDoc.InfOutros"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "infOutros",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
@@ -8561,43 +8019,42 @@ class Tcte:
                 @dataclass
                 class InfNf:
                     """
-                    :ivar n_roma: Número do Romaneio da NF
-                    :ivar n_ped: Número do Pedido da NF
+                    :ivar nRoma: Número do Romaneio da NF
+                    :ivar nPed: Número do Pedido da NF
                     :ivar mod: Modelo da Nota Fiscal Preencher com: 01 -
                         NF Modelo 01/1A e Avulsa; 04 - NF de Produtor
                     :ivar serie: Série
-                    :ivar n_doc: Número
-                    :ivar d_emi: Data de Emissão Formato AAAA-MM-DD
-                    :ivar v_bc: Valor da Base de Cálculo do ICMS
-                    :ivar v_icms: Valor Total do ICMS
-                    :ivar v_bcst: Valor da Base de Cálculo do ICMS ST
-                    :ivar v_st: Valor Total do ICMS ST
-                    :ivar v_prod: Valor Total dos Produtos
-                    :ivar v_nf: Valor Total da NF
-                    :ivar n_cfop: CFOP Predominante CFOP da NF ou, na
+                    :ivar nDoc: Número
+                    :ivar dEmi: Data de Emissão Formato AAAA-MM-DD
+                    :ivar vBC: Valor da Base de Cálculo do ICMS
+                    :ivar vICMS: Valor Total do ICMS
+                    :ivar vBCST: Valor da Base de Cálculo do ICMS ST
+                    :ivar vST: Valor Total do ICMS ST
+                    :ivar vProd: Valor Total dos Produtos
+                    :ivar vNF: Valor Total da NF
+                    :ivar nCFOP: CFOP Predominante CFOP da NF ou, na
                         existência de mais de um, predominância pelo
                         critério de valor econômico.
-                    :ivar n_peso: Peso total em Kg
-                    :ivar pin: PIN SUFRAMA PIN atribuído pela SUFRAMA
+                    :ivar nPeso: Peso total em Kg
+                    :ivar PIN: PIN SUFRAMA PIN atribuído pela SUFRAMA
                         para a operação.
-                    :ivar d_prev: Data prevista de entrega Formato AAAA-
+                    :ivar dPrev: Data prevista de entrega Formato AAAA-
                         MM-DD
-                    :ivar inf_unid_carga: Informações das Unidades de
+                    :ivar infUnidCarga: Informações das Unidades de
                         Carga (Containeres/ULD/Outros) Dispositivo de
                         carga utilizada (Unit Load Device - ULD)
                         significa todo tipo de contêiner de carga,
                         vagão, contêiner de avião, palete de aeronave
                         com rede ou palete de aeronave com rede sobre um
                         iglu.
-                    :ivar inf_unid_transp: Informações das Unidades de
+                    :ivar infUnidTransp: Informações das Unidades de
                         Transporte (Carreta/Reboque/Vagão) Deve ser
                         preenchido com as informações das unidades de
                         transporte utilizadas.
                     """
-                    n_roma: Optional[str] = field(
+                    nRoma: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nRoma",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -8606,10 +8063,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    n_ped: Optional[str] = field(
+                    nPed: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nPed",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -8638,10 +8094,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    n_doc: Optional[str] = field(
+                    nDoc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nDoc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8651,10 +8106,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    d_emi: Optional[str] = field(
+                    dEmi: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dEmi",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8662,10 +8116,9 @@ class Tcte:
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    v_bc: Optional[str] = field(
+                    vBC: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vBC",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8673,10 +8126,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_icms: Optional[str] = field(
+                    vICMS: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vICMS",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8684,10 +8136,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_bcst: Optional[str] = field(
+                    vBCST: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vBCST",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8695,10 +8146,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_st: Optional[str] = field(
+                    vST: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vST",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8706,10 +8156,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_prod: Optional[str] = field(
+                    vProd: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vProd",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8717,10 +8166,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_nf: Optional[str] = field(
+                    vNF: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vNF",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8728,10 +8176,9 @@ class Tcte:
                             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    n_cfop: Optional[str] = field(
+                    nCFOP: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nCFOP",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -8739,20 +8186,18 @@ class Tcte:
                             "pattern": r"[123567][0-9]([0-9][1-9]|[1-9][0-9])",
                         }
                     )
-                    n_peso: Optional[str] = field(
+                    nPeso: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nPeso",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[1-9]{1}[0-9]{2}|0\.[0-9]{2}[1-9]{1}|0\.[0-9]{1}[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,11}(\.[0-9]{3})?",
                         }
                     )
-                    pin: Optional[str] = field(
+                    PIN: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "PIN",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 2,
@@ -8761,28 +8206,25 @@ class Tcte:
                             "pattern": r"[1-9]{1}[0-9]{1,8}",
                         }
                     )
-                    d_prev: Optional[str] = field(
+                    dPrev: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dPrev",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    inf_unid_carga: List[TunidCarga] = field(
+                    infUnidCarga: List[TunidCarga] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidCarga",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    inf_unid_transp: List[TunidadeTransp] = field(
+                    infUnidTransp: List[TunidadeTransp] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidTransp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
@@ -8792,18 +8234,18 @@ class Tcte:
                 class InfNfe:
                     """
                     :ivar chave: Chave de acesso da NF-e
-                    :ivar pin: PIN SUFRAMA PIN atribuído pela SUFRAMA
+                    :ivar PIN: PIN SUFRAMA PIN atribuído pela SUFRAMA
                         para a operação.
-                    :ivar d_prev: Data prevista de entrega Formato AAAA-
+                    :ivar dPrev: Data prevista de entrega Formato AAAA-
                         MM-DD
-                    :ivar inf_unid_carga: Informações das Unidades de
+                    :ivar infUnidCarga: Informações das Unidades de
                         Carga (Containeres/ULD/Outros) Dispositivo de
                         carga utilizada (Unit Load Device - ULD)
                         significa todo tipo de contêiner de carga,
                         vagão, contêiner de avião, palete de aeronave
                         com rede ou palete de aeronave com rede sobre um
                         iglu.
-                    :ivar inf_unid_transp: Informações das Unidades de
+                    :ivar infUnidTransp: Informações das Unidades de
                         Transporte (Carreta/Reboque/Vagão) Deve ser
                         preenchido com as informações das unidades de
                         transporte utilizadas.
@@ -8819,10 +8261,9 @@ class Tcte:
                             "pattern": r"[0-9]{44}",
                         }
                     )
-                    pin: Optional[str] = field(
+                    PIN: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "PIN",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 2,
@@ -8831,28 +8272,25 @@ class Tcte:
                             "pattern": r"[1-9]{1}[0-9]{1,8}",
                         }
                     )
-                    d_prev: Optional[str] = field(
+                    dPrev: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dPrev",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    inf_unid_carga: List[TunidCarga] = field(
+                    infUnidCarga: List[TunidCarga] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidCarga",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    inf_unid_transp: List[TunidadeTransp] = field(
+                    infUnidTransp: List[TunidadeTransp] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidTransp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
@@ -8861,41 +8299,39 @@ class Tcte:
                 @dataclass
                 class InfOutros:
                     """
-                    :ivar tp_doc: Tipo de documento originário Preencher
+                    :ivar tpDoc: Tipo de documento originário Preencher
                         com: 00 - Declaração; 10 - Dutoviário; 59 - CF-e
                         SAT; 65 - NFC-e; 99 - Outros
-                    :ivar desc_outros: Descrição do documento
-                    :ivar n_doc: Número
-                    :ivar d_emi: Data de Emissão Formato AAAA-MM-DD
-                    :ivar v_doc_fisc: Valor do documento
-                    :ivar d_prev: Data prevista de entrega Formato AAAA-
+                    :ivar descOutros: Descrição do documento
+                    :ivar nDoc: Número
+                    :ivar dEmi: Data de Emissão Formato AAAA-MM-DD
+                    :ivar vDocFisc: Valor do documento
+                    :ivar dPrev: Data prevista de entrega Formato AAAA-
                         MM-DD
-                    :ivar inf_unid_carga: Informações das Unidades de
+                    :ivar infUnidCarga: Informações das Unidades de
                         Carga (Containeres/ULD/Outros) Dispositivo de
                         carga utilizada (Unit Load Device - ULD)
                         significa todo tipo de contêiner de carga,
                         vagão, contêiner de avião, palete de aeronave
                         com rede ou palete de aeronave com rede sobre um
                         iglu.
-                    :ivar inf_unid_transp: Informações das Unidades de
+                    :ivar infUnidTransp: Informações das Unidades de
                         Transporte (Carreta/Reboque/Vagão) Deve ser
                         preenchido com as informações das unidades de
                         transporte utilizadas.
                     """
-                    tp_doc: Optional[InfOutrosTpDoc] = field(
+                    tpDoc: Optional[InfOutrosTpDoc] = field(
                         default=None,
                         metadata={
-                            "name": "tpDoc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
                             "white_space": "preserve",
                         }
                     )
-                    desc_outros: Optional[str] = field(
+                    descOutros: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "descOutros",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -8904,10 +8340,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    n_doc: Optional[str] = field(
+                    nDoc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nDoc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -8916,48 +8351,43 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    d_emi: Optional[str] = field(
+                    dEmi: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dEmi",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    v_doc_fisc: Optional[str] = field(
+                    vDocFisc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vDocFisc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    d_prev: Optional[str] = field(
+                    dPrev: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dPrev",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    inf_unid_carga: List[TunidCarga] = field(
+                    infUnidCarga: List[TunidCarga] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidCarga",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    inf_unid_transp: List[TunidadeTransp] = field(
+                    infUnidTransp: List[TunidadeTransp] = field(
                         default_factory=list,
                         metadata={
-                            "name": "infUnidTransp",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
@@ -8966,12 +8396,11 @@ class Tcte:
             @dataclass
             class DocAnt:
                 """
-                :ivar emi_doc_ant: Emissor do documento anterior
+                :ivar emiDocAnt: Emissor do documento anterior
                 """
-                emi_doc_ant: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt"] = field(
+                emiDocAnt: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "emiDocAnt",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_occurs": 1,
@@ -8981,42 +8410,39 @@ class Tcte:
                 @dataclass
                 class EmiDocAnt:
                     """
-                    :ivar cnpj: Número do CNPJ Em caso de empresa não
+                    :ivar CNPJ: Número do CNPJ Em caso de empresa não
                         estabelecida no Brasil, será informado o CNPJ
                         com zeros. Informar os zeros não significativos.
-                    :ivar cpf: Número do CPF Informar os zeros não
+                    :ivar CPF: Número do CPF Informar os zeros não
                         significativos.
-                    :ivar ie: Inscrição Estadual
-                    :ivar uf: Sigla da UF Informar EX para operações com
+                    :ivar IE: Inscrição Estadual
+                    :ivar UF: Sigla da UF Informar EX para operações com
                         o exterior.
-                    :ivar x_nome: Razão Social ou Nome do expedidor
-                    :ivar id_doc_ant: Informações de identificação dos
+                    :ivar xNome: Razão Social ou Nome do expedidor
+                    :ivar idDocAnt: Informações de identificação dos
                         documentos de Transporte Anterior
                     """
-                    cnpj: Optional[str] = field(
+                    CNPJ: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "CNPJ",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"[0-9]{0}|[0-9]{14}",
                         }
                     )
-                    cpf: Optional[str] = field(
+                    CPF: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "CPF",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"[0-9]{11}",
                         }
                     )
-                    ie: Optional[str] = field(
+                    IE: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "IE",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "max_length": 14,
@@ -9024,18 +8450,16 @@ class Tcte:
                             "pattern": r"[0-9]{2,14}",
                         }
                     )
-                    uf: Optional[Tuf] = field(
+                    UF: Optional[Tuf] = field(
                         default=None,
                         metadata={
-                            "name": "UF",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    x_nome: Optional[str] = field(
+                    xNome: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "xNome",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -9045,10 +8469,9 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    id_doc_ant: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt"] = field(
+                    idDocAnt: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt"] = field(
                         default_factory=list,
                         metadata={
-                            "name": "idDocAnt",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_occurs": 1,
@@ -9059,23 +8482,21 @@ class Tcte:
                     @dataclass
                     class IdDocAnt:
                         """
-                        :ivar id_doc_ant_pap: Documentos de transporte
+                        :ivar idDocAntPap: Documentos de transporte
                             anterior em papel
-                        :ivar id_doc_ant_ele: Documentos de transporte
+                        :ivar idDocAntEle: Documentos de transporte
                             anterior eletrônicos
                         """
-                        id_doc_ant_pap: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt.IdDocAntPap"] = field(
+                        idDocAntPap: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt.IdDocAntPap"] = field(
                             default_factory=list,
                             metadata={
-                                "name": "idDocAntPap",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                             }
                         )
-                        id_doc_ant_ele: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt.IdDocAntEle"] = field(
+                        idDocAntEle: List["Tcte.InfCte.InfCteNorm.DocAnt.EmiDocAnt.IdDocAnt.IdDocAntEle"] = field(
                             default_factory=list,
                             metadata={
-                                "name": "idDocAntEle",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                             }
@@ -9084,24 +8505,22 @@ class Tcte:
                         @dataclass
                         class IdDocAntPap:
                             """
-                            :ivar tp_doc: Tipo do Documento de
-                                Transporte Anterior Preencher com:
-                                07-ATRE; 08-DTA (Despacho de Transito
-                                Aduaneiro); 09-Conhecimento Aéreo
-                                Internacional; 10 – Conhecimento - Carta
-                                de Porte Internacional; 11 –
-                                Conhecimento Avulso; 12-TIF (Transporte
-                                Internacional Ferroviário); 13-BL (Bill
-                                of Lading)
+                            :ivar tpDoc: Tipo do Documento de Transporte
+                                Anterior Preencher com: 07-ATRE; 08-DTA
+                                (Despacho de Transito Aduaneiro);
+                                09-Conhecimento Aéreo Internacional; 10
+                                – Conhecimento - Carta de Porte
+                                Internacional; 11 – Conhecimento Avulso;
+                                12-TIF (Transporte Internacional
+                                Ferroviário); 13-BL (Bill of Lading)
                             :ivar serie: Série do Documento Fiscal
                             :ivar subser: Série do Documento Fiscal
-                            :ivar n_doc: Número do Documento Fiscal
-                            :ivar d_emi: Data de emissão (AAAA-MM-DD)
+                            :ivar nDoc: Número do Documento Fiscal
+                            :ivar dEmi: Data de emissão (AAAA-MM-DD)
                             """
-                            tp_doc: Optional[TdocAssoc] = field(
+                            tpDoc: Optional[TdocAssoc] = field(
                                 default=None,
                                 metadata={
-                                    "name": "tpDoc",
                                     "type": "Element",
                                     "namespace": "http://www.portalfiscal.inf.br/cte",
                                     "required": True,
@@ -9130,10 +8549,9 @@ class Tcte:
                                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                                 }
                             )
-                            n_doc: Optional[str] = field(
+                            nDoc: Optional[str] = field(
                                 default=None,
                                 metadata={
-                                    "name": "nDoc",
                                     "type": "Element",
                                     "namespace": "http://www.portalfiscal.inf.br/cte",
                                     "required": True,
@@ -9143,10 +8561,9 @@ class Tcte:
                                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                                 }
                             )
-                            d_emi: Optional[str] = field(
+                            dEmi: Optional[str] = field(
                                 default=None,
                                 metadata={
-                                    "name": "dEmi",
                                     "type": "Element",
                                     "namespace": "http://www.portalfiscal.inf.br/cte",
                                     "required": True,
@@ -9158,12 +8575,11 @@ class Tcte:
                         @dataclass
                         class IdDocAntEle:
                             """
-                            :ivar ch_cte: Chave de acesso do CT-e
+                            :ivar chCTe: Chave de acesso do CT-e
                             """
-                            ch_cte: Optional[str] = field(
+                            chCTe: Optional[str] = field(
                                 default=None,
                                 metadata={
-                                    "name": "chCTe",
                                     "type": "Element",
                                     "namespace": "http://www.portalfiscal.inf.br/cte",
                                     "required": True,
@@ -9194,7 +8610,7 @@ class Tcte:
                     genérica para a versão do arquivo. Por exemplo, o
                     arquivo para o schema do modal Rodoviário na versão
                     1.04 será denominado "CTeModalRodoviario_v1.04".
-                :ivar versao_modal: Versão do leiaute específico para o
+                :ivar versaoModal: Versão do leiaute específico para o
                     Modal
                 """
                 any_element: Optional[object] = field(
@@ -9204,10 +8620,9 @@ class Tcte:
                         "namespace": "##any",
                     }
                 )
-                versao_modal: Optional[str] = field(
+                versaoModal: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "versaoModal",
                         "type": "Attribute",
                         "required": True,
                         "white_space": "preserve",
@@ -9219,11 +8634,11 @@ class Tcte:
             class VeicNovos:
                 """
                 :ivar chassi: Chassi do veículo
-                :ivar c_cor: Cor do veículo Código de cada montadora
-                :ivar x_cor: Descrição da cor
-                :ivar c_mod: Código Marca Modelo Utilizar tabela RENAVAM
-                :ivar v_unit: Valor Unitário do Veículo
-                :ivar v_frete: Frete Unitário
+                :ivar cCor: Cor do veículo Código de cada montadora
+                :ivar xCor: Descrição da cor
+                :ivar cMod: Código Marca Modelo Utilizar tabela RENAVAM
+                :ivar vUnit: Valor Unitário do Veículo
+                :ivar vFrete: Frete Unitário
                 """
                 chassi: Optional[str] = field(
                     default=None,
@@ -9236,10 +8651,9 @@ class Tcte:
                         "pattern": r"[A-Z0-9]+",
                     }
                 )
-                c_cor: Optional[str] = field(
+                cCor: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "cCor",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9249,10 +8663,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                x_cor: Optional[str] = field(
+                xCor: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xCor",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9262,10 +8675,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                c_mod: Optional[str] = field(
+                cMod: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "cMod",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9275,10 +8687,9 @@ class Tcte:
                         "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                     }
                 )
-                v_unit: Optional[str] = field(
+                vUnit: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vUnit",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9286,10 +8697,9 @@ class Tcte:
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
                 )
-                v_frete: Optional[str] = field(
+                vFrete: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "vFrete",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9322,15 +8732,14 @@ class Tcte:
                 @dataclass
                 class Fat:
                     """
-                    :ivar n_fat: Número da fatura
-                    :ivar v_orig: Valor original da fatura
-                    :ivar v_desc: Valor do desconto da fatura
-                    :ivar v_liq: Valor líquido da fatura
+                    :ivar nFat: Número da fatura
+                    :ivar vOrig: Valor original da fatura
+                    :ivar vDesc: Valor do desconto da fatura
+                    :ivar vLiq: Valor líquido da fatura
                     """
-                    n_fat: Optional[str] = field(
+                    nFat: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nFat",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -9339,30 +8748,27 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    v_orig: Optional[str] = field(
+                    vOrig: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vOrig",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_desc: Optional[str] = field(
+                    vDesc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vDesc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"0\.[0-9]{1}[1-9]{1}|0\.[1-9]{1}[0-9]{1}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                         }
                     )
-                    v_liq: Optional[str] = field(
+                    vLiq: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vLiq",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
@@ -9373,15 +8779,14 @@ class Tcte:
                 @dataclass
                 class Dup:
                     """
-                    :ivar n_dup: Número da duplicata
-                    :ivar d_venc: Data de vencimento da duplicata (AAAA-
+                    :ivar nDup: Número da duplicata
+                    :ivar dVenc: Data de vencimento da duplicata (AAAA-
                         MM-DD)
-                    :ivar v_dup: Valor da duplicata
+                    :ivar vDup: Valor da duplicata
                     """
-                    n_dup: Optional[str] = field(
+                    nDup: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "nDup",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "min_length": 1,
@@ -9390,20 +8795,18 @@ class Tcte:
                             "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                         }
                     )
-                    d_venc: Optional[str] = field(
+                    dVenc: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "dVenc",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
                             "pattern": r"(((20(([02468][048])|([13579][26]))-02-29))|(20[0-9][0-9])-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))",
                         }
                     )
-                    v_dup: Optional[str] = field(
+                    vDup: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "vDup",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "white_space": "preserve",
@@ -9414,28 +8817,26 @@ class Tcte:
             @dataclass
             class InfCteSub:
                 """
-                :ivar ch_cte: Chave de acesso do CT-e a ser substituído
+                :ivar chCte: Chave de acesso do CT-e a ser substituído
                     (original)
-                :ivar ref_cte_anu: Chave de acesso do CT-e de Anulação
-                :ivar toma_icms: Tomador é contribuinte do ICMS, mas não
+                :ivar refCteAnu: Chave de acesso do CT-e de Anulação
+                :ivar tomaICMS: Tomador é contribuinte do ICMS, mas não
                     é emitente de documento fiscal eletrônico
-                :ivar ind_altera_toma: Indicador de CT-e Alteração de
+                :ivar indAlteraToma: Indicador de CT-e Alteração de
                     Tomador
                 """
-                ch_cte: Optional[str] = field(
+                chCte: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "chCte",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                ref_cte_anu: Optional[str] = field(
+                refCteAnu: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "refCteAnu",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "max_length": 44,
@@ -9443,18 +8844,16 @@ class Tcte:
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                toma_icms: Optional["Tcte.InfCte.InfCteNorm.InfCteSub.TomaIcms"] = field(
+                tomaICMS: Optional["Tcte.InfCte.InfCteNorm.InfCteSub.TomaIcms"] = field(
                     default=None,
                     metadata={
-                        "name": "tomaICMS",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
                 )
-                ind_altera_toma: Optional[InfCteSubIndAlteraToma] = field(
+                indAlteraToma: Optional[InfCteSubIndAlteraToma] = field(
                     default=None,
                     metadata={
-                        "name": "indAlteraToma",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                     }
@@ -9463,17 +8862,16 @@ class Tcte:
                 @dataclass
                 class TomaIcms:
                     """
-                    :ivar ref_nfe: Chave de acesso da NF-e emitida pelo
+                    :ivar refNFe: Chave de acesso da NF-e emitida pelo
                         Tomador
-                    :ivar ref_nf: Informação da NF ou CT emitido pelo
+                    :ivar refNF: Informação da NF ou CT emitido pelo
                         Tomador
-                    :ivar ref_cte: Chave de acesso do CT-e emitido pelo
+                    :ivar refCte: Chave de acesso do CT-e emitido pelo
                         Tomador
                     """
-                    ref_nfe: Optional[str] = field(
+                    refNFe: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "refNFe",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "max_length": 44,
@@ -9481,18 +8879,16 @@ class Tcte:
                             "pattern": r"[0-9]{44}",
                         }
                     )
-                    ref_nf: Optional["Tcte.InfCte.InfCteNorm.InfCteSub.TomaIcms.RefNf"] = field(
+                    refNF: Optional["Tcte.InfCte.InfCteNorm.InfCteSub.TomaIcms.RefNf"] = field(
                         default=None,
                         metadata={
-                            "name": "refNF",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                         }
                     )
-                    ref_cte: Optional[str] = field(
+                    refCte: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "refCte",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "max_length": 44,
@@ -9504,32 +8900,29 @@ class Tcte:
                     @dataclass
                     class RefNf:
                         """
-                        :ivar cnpj: CNPJ do Emitente Informar o CNPJ do
+                        :ivar CNPJ: CNPJ do Emitente Informar o CNPJ do
                             emitente do Documento Fiscal
-                        :ivar cpf: Número do CPF Informar o CPF do
+                        :ivar CPF: Número do CPF Informar o CPF do
                             emitente do documento fiscal
                         :ivar mod: Modelo do Documento Fiscal
                         :ivar serie: Serie do documento fiscal
                         :ivar subserie: Subserie do documento fiscal
                         :ivar nro: Número do documento fiscal
                         :ivar valor: Valor do documento fiscal.
-                        :ivar d_emi: Data de emissão do documento
-                            fiscal.
+                        :ivar dEmi: Data de emissão do documento fiscal.
                         """
-                        cnpj: Optional[str] = field(
+                        CNPJ: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "CNPJ",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "white_space": "preserve",
                                 "pattern": r"[0-9]{14}",
                             }
                         )
-                        cpf: Optional[str] = field(
+                        CPF: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "CPF",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "white_space": "preserve",
@@ -9583,10 +8976,9 @@ class Tcte:
                                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                             }
                         )
-                        d_emi: Optional[str] = field(
+                        dEmi: Optional[str] = field(
                             default=None,
                             metadata={
-                                "name": "dEmi",
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/cte",
                                 "required": True,
@@ -9598,13 +8990,12 @@ class Tcte:
             @dataclass
             class InfGlobalizado:
                 """
-                :ivar x_obs: Preencher com informações adicionais,
+                :ivar xObs: Preencher com informações adicionais,
                     legislação do regime especial, etc
                 """
-                x_obs: Optional[str] = field(
+                xObs: Optional[str] = field(
                     default=None,
                     metadata={
-                        "name": "xObs",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "required": True,
@@ -9618,13 +9009,12 @@ class Tcte:
             @dataclass
             class InfServVinc:
                 """
-                :ivar inf_cte_multimodal: informações do CT-e multimodal
+                :ivar infCTeMultimodal: informações do CT-e multimodal
                     vinculado
                 """
-                inf_cte_multimodal: List["Tcte.InfCte.InfCteNorm.InfServVinc.InfCteMultimodal"] = field(
+                infCTeMultimodal: List["Tcte.InfCte.InfCteNorm.InfServVinc.InfCteMultimodal"] = field(
                     default_factory=list,
                     metadata={
-                        "name": "infCTeMultimodal",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_occurs": 1,
@@ -9634,13 +9024,12 @@ class Tcte:
                 @dataclass
                 class InfCteMultimodal:
                     """
-                    :ivar ch_cte_multimodal: Chave de acesso do CT-e
+                    :ivar chCTeMultimodal: Chave de acesso do CT-e
                         Multimodal
                     """
-                    ch_cte_multimodal: Optional[str] = field(
+                    chCTeMultimodal: Optional[str] = field(
                         default=None,
                         metadata={
-                            "name": "chCTeMultimodal",
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/cte",
                             "required": True,
@@ -9653,12 +9042,11 @@ class Tcte:
         @dataclass
         class InfCteComp:
             """
-            :ivar ch_cte: Chave do CT-e complementado
+            :ivar chCTe: Chave do CT-e complementado
             """
-            ch_cte: Optional[str] = field(
+            chCTe: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "chCTe",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -9671,25 +9059,23 @@ class Tcte:
         @dataclass
         class InfCteAnu:
             """
-            :ivar ch_cte: Chave de acesso do CT-e original a ser anulado
+            :ivar chCte: Chave de acesso do CT-e original a ser anulado
                 e substituído
-            :ivar d_emi: Data de emissão da declaração do tomador não
+            :ivar dEmi: Data de emissão da declaração do tomador não
                 contribuinte do ICMS
             """
-            ch_cte: Optional[str] = field(
+            chCte: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "chCte",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
                     "pattern": r"[0-9]{44}",
                 }
             )
-            d_emi: Optional[str] = field(
+            dEmi: Optional[str] = field(
                 default=None,
                 metadata={
-                    "name": "dEmi",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "required": True,
@@ -9701,12 +9087,11 @@ class Tcte:
     @dataclass
     class InfCteSupl:
         """
-        :ivar qr_cod_cte: Texto com o QR-Code impresso no DACTE
+        :ivar qrCodCTe: Texto com o QR-Code impresso no DACTE
         """
-        qr_cod_cte: Optional[str] = field(
+        qrCodCTe: Optional[str] = field(
             default=None,
             metadata={
-                "name": "qrCodCTe",
                 "type": "Element",
                 "namespace": "http://www.portalfiscal.inf.br/cte",
                 "required": True,
@@ -9726,10 +9111,9 @@ class TenviCte:
     class Meta:
         name = "TEnviCTe"
 
-    id_lote: Optional[str] = field(
+    idLote: Optional[str] = field(
         default=None,
         metadata={
-            "name": "idLote",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "required": True,
@@ -9737,10 +9121,9 @@ class TenviCte:
             "pattern": r"[0-9]{1,15}",
         }
     )
-    cte: List[Tcte] = field(
+    CTe: List[Tcte] = field(
         default_factory=list,
         metadata={
-            "name": "CTe",
             "type": "Element",
             "namespace": "http://www.portalfiscal.inf.br/cte",
             "min_occurs": 1,

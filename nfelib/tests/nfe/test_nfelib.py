@@ -3,18 +3,21 @@
 import os
 import sys
 from os import path
+import importlib
 import inspect
 from enum import EnumMeta
 from xmldiff import main
-sys.path.append(path.join(path.dirname(__file__), '..', 'nfelib'))
+
+sys.path.append(path.join(path.dirname(__file__), "..", "nfelib"))
 
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
+import pkgutil
 
 from nfelib.bindings.nfe.v4_0 import leiaute_nfe_v4_00
-from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00  import NfeProc
+from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00 import NfeProc
 from nfelib.bindings.nfe.v4_0.inut_nfe_v4_00 import InutNfe
 from nfelib.bindings.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
 from nfelib.bindings.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
@@ -22,6 +25,7 @@ from nfelib.bindings.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 from nfelib.bindings.nfe_dist_dfe.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 
 from nfelib.bindings.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEvento
+
 
 def test_in_out_leiauteNFe():
     path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteNFe")
@@ -31,22 +35,22 @@ def test_in_out_leiauteNFe():
         obj = parser.from_path(Path(input_file), NfeProc)
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
-            obj=obj,
-            ns_map={None:"http://www.portalfiscal.inf.br/nfe"}
+            obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
         # agora podemos trabalhar em cima do objeto e fazer operaçoes como:
         # TODO FIXME
-#        obj.infNFe.emit.CNPJ
+        #        obj.infNFe.emit.CNPJ
 
-        output_file = 'nfelib/tests/output_nfe.xml'
-        with open(output_file, 'w') as f:
+        output_file = "nfelib/tests/output_nfe.xml"
+        with open(output_file, "w") as f:
             f.write(xml)
 
         diff = main.diff_files(input_file, output_file)
         assert len(diff) == 0
         if len(diff) != 0:
             break
+
 
 def test_in_out_leiauteInutNFe():
     path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteInutNFe")
@@ -56,64 +60,67 @@ def test_in_out_leiauteInutNFe():
         obj = parser.from_path(Path(input_file), InutNfe)
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
-            obj=obj,
-            ns_map={None:"http://www.portalfiscal.inf.br/nfe"}
+            obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
         # TODO FIXME
-#        doc = retInutNFe.parsexml_(inputfile, None)
-#        obj = retInutNFe.TInutNFe.factory().build(doc.getroot())
+        #        doc = retInutNFe.parsexml_(inputfile, None)
+        #        obj = retInutNFe.TInutNFe.factory().build(doc.getroot())
 
-        output_file = 'nfelib/tests/output.xml'
-        with open(output_file, 'w') as f:
+        output_file = "nfelib/tests/output.xml"
+        with open(output_file, "w") as f:
             f.write(xml)
 
         diff = main.diff_files(input_file, output_file)
         assert len(diff) == 0
 
+
 #        with open(outputfile, 'w') as f:
 #            obj.export(f, level=0, name_='inutNFe',
 #                namespacedef_='xmlns="http://www.portalfiscal.inf.br/nfe"')
 
+
 def test_stat():
     obj = TconsStatServ(
-        versao='4.00',
-        tpAmb='1',
-        cUF='SP',
-        xServ='STATUS',
+        versao="4.00",
+        tpAmb="1",
+        cUF="SP",
+        xServ="STATUS",
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
+
 
 def test_cons_sit():
     obj = TconsSitNfe(
-        versao='4.00',
-        tpAmb='1',
-        xServ='CONSULTAR',
-        chNFe='NFe35180803102452000172550010000474641681223493',
+        versao="4.00",
+        tpAmb="1",
+        xServ="CONSULTAR",
+        chNFe="NFe35180803102452000172550010000474641681223493",
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
+
 
 def test_distDFe():
     obj = DistDfeInt(
-        versao='4.00',
-        tp_amb='1',
-        c_ufautor='SP',
-        dist_nsu=DistDfeInt.DistNsu(
-            ult_nsu='35180803102452000172550010000474641681223493'
+        versao="4.00",
+        tpAmb="1",
+        cUFAutor="SP",
+        distNSU=DistDfeInt.DistNsu(
+            ultNSU="35180803102452000172550010000474641681223493"
         ),
-        cons_nsu=DistDfeInt.ConsNsu(
-            nsu='35180803102452000172550010000474641681223493'
-        ),
+        consNSU=DistDfeInt.ConsNsu(NSU="35180803102452000172550010000474641681223493"),
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
 
+
 def test_evento_generico():
-    obj = TenvEvento(versao="1.00", id_lote='42')
+    obj = TenvEvento(versao="1.00", idLote="42")
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
+
 
 # def test_evento_cancelamento():
 #     retEnvEventoCancNFe.TEvento()
@@ -166,19 +173,41 @@ def visit_nested_classes(cls, classes):
     classes.add(cls)
     for attr in dir(cls):
         nested = getattr(cls, attr)
-        if not inspect.isclass(nested) or nested.__name__ == "type" or nested.__name__.endswith(".Meta"):
+        if (
+            not inspect.isclass(nested)
+            or nested.__name__ == "type"
+            or nested.__name__.endswith(".Meta")
+        ):
             continue
         visit_nested_classes(nested, classes)
 
+
 def test_init_all():
-    output_file = 'log.txt'
-    with open(output_file, 'w') as f:
-        for mod in [leiaute_nfe_v4_00]:#, retInutNFe, distDFeInt, retDistDFeInt, retEnvEvento,
-            for _klass_name, klass in mod.__dict__.items():
-                 if isinstance(klass, type) and type(klass) != EnumMeta:
-                     f.write("\n" + _klass_name)
-                     classes = set()
-                     visit_nested_classes(klass, classes)
-                     for cls in classes:
-                         cls()
-#                         f.write("\n    " + str(cls))
+    for binding in pkgutil.walk_packages(["nfelib/bindings"]):
+        if binding.name in ("nfe_epec"):
+            # FIXME this binding is buggy!! (circular def)
+            continue
+        binding_path = "nfelib/bindings/" + binding.name
+        for version in pkgutil.walk_packages([binding_path]):
+            version_path = "nfelib/bindings/%s/%s" % (
+                binding.name,
+                version.name,
+            )
+            for modpkg in pkgutil.walk_packages([version_path]):
+                if modpkg.name in ("e110140_v1_00", "leiaute_epec_v1_00"):
+                    continue
+                mod_name = "nfelib.bindings.%s.%s.%s" % (
+                    binding.name,
+                    version.name,
+                    modpkg.name,
+                )
+                mod = importlib.import_module(mod_name)
+
+                for _klass_name, klass in mod.__dict__.items():
+                    if isinstance(klass, type) and type(klass) != EnumMeta:
+                        classes = set()
+                        visit_nested_classes(klass, classes)
+                        for cls in classes:
+                            if cls.__name__ in ("XmlDateTime",):
+                                continue
+                            cls()

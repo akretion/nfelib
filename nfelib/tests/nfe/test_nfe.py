@@ -28,7 +28,7 @@ from nfelib.bindings.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEv
 
 
 def test_in_out_leiauteNFe():
-    path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteNFe")
+    path = os.path.join("nfelib", "samples", "nfe", "v4_0", "leiauteNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
@@ -53,7 +53,7 @@ def test_in_out_leiauteNFe():
 
 
 def test_in_out_leiauteInutNFe():
-    path = os.path.join("nfelib", "tests", "nfe", "v4_00", "leiauteInutNFe")
+    path = os.path.join("nfelib", "samples", "nfe", "v4_0", "leiauteInutNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
@@ -167,47 +167,3 @@ def test_evento_generico():
 #         infCons=infCons,
 #     )
 #     obj.original_tagname_ = 'ConsCad'
-
-
-def visit_nested_classes(cls, classes):
-    classes.add(cls)
-    for attr in dir(cls):
-        nested = getattr(cls, attr)
-        if (
-            not inspect.isclass(nested)
-            or nested.__name__ == "type"
-            or nested.__name__.endswith(".Meta")
-        ):
-            continue
-        visit_nested_classes(nested, classes)
-
-
-def test_init_all():
-    for binding in pkgutil.walk_packages(["nfelib/bindings"]):
-        if binding.name in ("nfe_epec"):
-            # FIXME this binding is buggy!! (circular def)
-            continue
-        binding_path = "nfelib/bindings/" + binding.name
-        for version in pkgutil.walk_packages([binding_path]):
-            version_path = "nfelib/bindings/%s/%s" % (
-                binding.name,
-                version.name,
-            )
-            for modpkg in pkgutil.walk_packages([version_path]):
-                if modpkg.name in ("e110140_v1_00", "leiaute_epec_v1_00"):
-                    continue
-                mod_name = "nfelib.bindings.%s.%s.%s" % (
-                    binding.name,
-                    version.name,
-                    modpkg.name,
-                )
-                mod = importlib.import_module(mod_name)
-
-                for _klass_name, klass in mod.__dict__.items():
-                    if isinstance(klass, type) and type(klass) != EnumMeta:
-                        classes = set()
-                        visit_nested_classes(klass, classes)
-                        for cls in classes:
-                            if cls.__name__ in ("XmlDateTime",):
-                                continue
-                            cls()

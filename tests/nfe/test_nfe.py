@@ -37,12 +37,10 @@ def test_in_out_leiauteNFe():
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
-
         # agora podemos trabalhar em cima do objeto e fazer operaçoes como:
-        # TODO FIXME
         #        obj.infNFe.emit.CNPJ
 
-        output_file = "nfelib/tests/output_nfe.xml"
+        output_file = "tests/output_nfe.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
@@ -63,21 +61,12 @@ def test_in_out_leiauteInutNFe():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        # TODO FIXME
-        #        doc = retInutNFe.parsexml_(inputfile, None)
-        #        obj = retInutNFe.TInutNFe.factory().build(doc.getroot())
-
-        output_file = "nfelib/tests/output.xml"
+        output_file = "tests/output.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
         diff = main.diff_files(input_file, output_file)
         assert len(diff) == 0
-
-
-#        with open(outputfile, 'w') as f:
-#            obj.export(f, level=0, name_='inutNFe',
-#                namespacedef_='xmlns="http://www.portalfiscal.inf.br/nfe"')
 
 
 def test_stat():

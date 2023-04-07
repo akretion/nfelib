@@ -31,7 +31,7 @@ def test_in_out_nfse():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        output_file = "nfelib/tests/output_nfe.xml"
+        output_file = "tests/output_nfe.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
@@ -51,7 +51,7 @@ def test_in_out_dps():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        output_file = "nfelib/tests/output_nfe.xml"
+        output_file = "tests/output_nfe.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
@@ -71,7 +71,7 @@ def test_in_out_pedRegEvento():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        output_file = "nfelib/tests/output_nfe.xml"
+        output_file = "tests/output_nfe.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 

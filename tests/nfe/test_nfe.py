@@ -17,8 +17,6 @@ from pathlib import Path
 import pkgutil
 
 from nfelib.bindings.nfe.v4_0 import leiaute_nfe_v4_00
-from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00 import NfeProc
-from nfelib.bindings.nfe.v4_0.inut_nfe_v4_00 import InutNfe
 from nfelib.bindings.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
 from nfelib.bindings.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 
@@ -32,7 +30,7 @@ def test_in_out_leiauteNFe():
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
-        obj = parser.from_path(Path(input_file), NfeProc)
+        obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
@@ -40,7 +38,7 @@ def test_in_out_leiauteNFe():
         # agora podemos trabalhar em cima do objeto e fazer operaçoes como:
         #        obj.infNFe.emit.CNPJ
 
-        output_file = "tests/output_nfe.xml"
+        output_file = "tests/output_nfe2.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
@@ -55,7 +53,7 @@ def test_in_out_leiauteInutNFe():
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
-        obj = parser.from_path(Path(input_file), InutNfe)
+        obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
@@ -73,7 +71,7 @@ def test_stat():
     obj = TconsStatServ(
         versao="4.00",
         tpAmb="1",
-        cUF="SP",
+        cUF="12",
         xServ="STATUS",
     )
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))

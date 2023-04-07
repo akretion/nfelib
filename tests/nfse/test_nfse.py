@@ -25,7 +25,7 @@ def test_in_out_nfse():
     for filename in ["ConsultarNFSeEnvio-ped-sitnfse.xml"]:
         input_file = os.path.join(path, filename)
         parser = XmlParser()
-        obj = parser.from_path(Path(input_file), )
+        obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
@@ -45,7 +45,7 @@ def test_in_out_dps():
     for filename in ["GerarNFSeEnvio-env-loterps.xml", "ConsultarNFSeRPS-ped-sitnfserps.xml"]:
         input_file = os.path.join(path, filename)
         parser = XmlParser()
-        obj = parser.from_path(Path(input_file), )
+        obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
@@ -65,7 +65,7 @@ def test_in_out_pedRegEvento():
     for filename in ["CancelarNFSe-ped-cannfse.xml"]:
         input_file = os.path.join(path, filename)
         parser = XmlParser()
-        obj = parser.from_path(Path(input_file), )
+        obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}

@@ -177,7 +177,7 @@ except ModulenotfoundExp_ :
 try:
     from generatedssuper import GeneratedsSuper
 except ModulenotfoundExp_ as exp:
-    
+
     class GeneratedsSuper(object):
         __hash__ = object.__hash__
         tzoff_pattern = re_.compile(r'(\+|-)((0\d|1[0-3]):[0-5]\d|14:00)$')
@@ -660,8 +660,8 @@ except ModulenotfoundExp_ as exp:
                     self.gds_elementtree_node_.sourceline)
             else:
                 return ""
-    
-    
+
+
     def getSubclassFromModule_(module, class_):
         '''Get the subclass of a class from a specific module.'''
         name = class_.__name__ + 'Sub'
@@ -32000,7 +32000,7 @@ class infProtType(GeneratedsSuper):
         if self.digVal is not None:
             namespaceprefix_ = self.digVal_nsprefix_ + ':' if (UseCapturedNS_ and self.digVal_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sdigVal>%s</%sdigVal>%s' % (namespaceprefix_ , self.gds_format_base64(self.digVal, input_name='digVal'), namespaceprefix_ , eol_))
+            outfile.write('<%sdigVal>%s</%sdigVal>%s' % (namespaceprefix_ , self.gds_format_base64(self.digVal, input_name='digVal').decode(), namespaceprefix_ , eol_))
         if self.cStat is not None:
             namespaceprefix_ = self.cStat_nsprefix_ + ':' if (UseCapturedNS_ and self.cStat_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)

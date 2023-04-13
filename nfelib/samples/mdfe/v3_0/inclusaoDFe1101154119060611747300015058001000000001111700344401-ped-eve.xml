@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<eventoMDFe versao="3.00" xmlns="http://www.portalfiscal.inf.br/mdfe">
+  <infEvento Id="ID1101154119060611747300015058001000000001111700344401">
+    <cOrgao>41</cOrgao>
+    <tpAmb>2</tpAmb>
+    <CNPJ>06117473000150</CNPJ>
+    <chMDFe>41190606117473000150580010000000011117003444</chMDFe>
+    <dhEvento>2019-06-18T08:36:20-02:00</dhEvento>
+    <tpEvento>110115</tpEvento>
+    <nSeqEvento>1</nSeqEvento>
+    <detEvento versaoEvento="3.00">
+      <evIncDFeMDFe>
+        <descEvento>Inclusao DF-e</descEvento>
+        <nProt>941190000014312</nProt>
+        <cMunCarrega>4118402</cMunCarrega>
+        <xMunCarrega>PARANAVAI</xMunCarrega>
+        <infDoc>
+          <cMunDescarga>4117107</cMunDescarga>
+          <xMunDescarga>NOVA LONDRINA</xMunDescarga>
+          <chNFe>41190606117473000150550020000025691118027981</chNFe>
+        </infDoc>
+      </evIncDFeMDFe>
+    </detEvento>
+  </infEvento>
+</eventoMDFe>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<eventoMDFe xmlns="http://www.portalfiscal.inf.br/mdfe" versao="3.00">
+  <infEvento Id="ID1101143113122386483800012958000000000005100300000301">
+    <cOrgao>31</cOrgao>
+    <tpAmb>2</tpAmb>
+    <CNPJ>23864838000129</CNPJ>
+    <chMDFe>31131223864838000129580000000000051003000003</chMDFe>
+    <dhEvento>2013-12-10T14:28:06-02:00</dhEvento>
+    <tpEvento>110114</tpEvento>
+    <nSeqEvento>1</nSeqEvento>
+    <detEvento versaoEvento="3.00">
+      <evIncCondutorMDFe>
+        <descEvento>Inclusao Condutor</descEvento>
+        <condutor>
+          <xNome>JOSE ALMEIDA</xNome>
+          <CPF>00000000191</CPF>
+        </condutor>
+      </evIncCondutorMDFe>
+    </detEvento>
+  </infEvento>
+</eventoMDFe>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<eventoMDFe versao="3.00" xmlns="http://www.portalfiscal.inf.br/mdfe">
+  <infEvento Id="ID1101164120039999999999999958001000000999999999999901">
+    <cOrgao>41</cOrgao>
+    <tpAmb>2</tpAmb>
+    <CNPJ>99999999999999</CNPJ>
+    <chMDFe>41200399999999999999580010000009999999999999</chMDFe>
+    <dhEvento>2021-07-28T16:02:49-03:00</dhEvento>
+    <tpEvento>110116</tpEvento>
+    <nSeqEvento>1</nSeqEvento>
+    <detEvento versaoEvento="3.00">
+      <evPagtoOperMDFe>
+        <descEvento>Pagamento Operacao MDF-e</descEvento>
+        <nProt>999999999999999</nProt>
+        <infViagens>
+          <qtdViagens>1</qtdViagens>
+          <nroViagem>7184</nroViagem>
+        </infViagens>
+        <infPag>
+          <xNome>TESTE TRANSPORTE E OPERACOES LTDA</xNome>
+          <CNPJ>00000000000000</CNPJ>
+          <Comp>
+            <tpComp>99</tpComp>
+            <vComp>2000.00</vComp>
+            <xComp>PAGAMENTO DE FRETE</xComp>
+          </Comp>
+          <Comp>
+            <tpComp>01</tpComp>
+            <vComp>500.00</vComp>
+          </Comp>
+          <Comp>
+            <tpComp>99</tpComp>
+            <vComp>500.00</vComp>
+            <xComp>COMPRA DE PNEUS</xComp>
+          </Comp>
+          <vContrato>3000.00</vContrato>
+          <indPag>1</indPag>
+          <vAdiant>500.00</vAdiant>
+          <infPrazo>
+            <nParcela>001</nParcela>
+            <dVenc>2021-08-17</dVenc>
+            <vParcela>2000.00</vParcela>
+          </infPrazo>
+          <infPrazo>
+            <nParcela>002</nParcela>
+            <dVenc>2021-09-06</dVenc>
+            <vParcela>500.00</vParcela>
+          </infPrazo>
+          <infBanc>
+            <PIX>+5544993333223</PIX>
+          </infBanc>
+        </infPag>
+      </evPagtoOperMDFe>
+    </detEvento>
+  </infEvento>
+</eventoMDFe>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MDFe xmlns="http://www.portalfiscal.inf.br/mdfe">
+  <infMDFe Id="MDFe41190876676436000167580010000500001000437558" versao="3.00">
+    <ide>
+      <cUF>41</cUF>
+      <tpAmb>2</tpAmb>
+      <tpEmit>2</tpEmit>
+      <mod>58</mod>
+      <serie>1</serie>
+      <nMDF>50000</nMDF>
+      <cMDF>00043755</cMDF>
+      <cDV>8</cDV>
+      <modal>1</modal>
+      <dhEmi>2019-08-16T15:00:00-02:00</dhEmi>
+      <tpEmis>1</tpEmis>
+      <procEmi>0</procEmi>
+      <verProc>71411</verProc>
+      <UFIni>PR</UFIni>
+      <UFFim>SC</UFFim>
+      <infMunCarrega>
+        <cMunCarrega>4101804</cMunCarrega>
+        <xMunCarrega>ARAUCARIA</xMunCarrega>
+      </infMunCarrega>
+    </ide>
+    <emit>
+      <CNPJ>76676436000167</CNPJ>
+      <IE>1015495185</IE>
+      <xNome>SUL DEFENSIVOS AGRICOLAS LTDA</xNome>
+      <xFant>SUL AGRICOLA</xFant>
+      <enderEmit>
+        <xLgr>AV. DOS PINHEIRAIS</xLgr>
+        <nro>3451</nro>
+        <xBairro>JARDIM CONDOR</xBairro>
+        <cMun>4101804</cMun>
+        <xMun>ARAUCARIA</xMun>
+        <CEP>83705570</CEP>
+        <UF>PR</UF>
+        <fone>4121172288</fone>
+      </enderEmit>
+    </emit>
+    <infModal versaoModal="3.00">
+      <rodo>
+        <infANTT>
+          <RNTRC>12345678</RNTRC>
+        </infANTT>
+        <veicTracao>
+          <cInt>1</cInt>
+          <placa>AAA1234</placa>
+          <tara>15000</tara>
+          <condutor>
+            <xNome>MAURICIO ROBERTO MOLLER</xNome>
+            <CPF>03720677940</CPF>
+          </condutor>
+          <tpRod>03</tpRod>
+          <tpCar>00</tpCar>
+          <UF>PR</UF>
+        </veicTracao>
+        <veicReboque>
+          <placa>REE4343</placa>
+          <tara>7500</tara>
+          <capKG>42500</capKG>
+          <tpCar>02</tpCar>
+          <UF>AC</UF>
+        </veicReboque>
+        <veicReboque>
+          <placa>RER7878</placa>
+          <tara>7500</tara>
+          <capKG>42500</capKG>
+          <tpCar>02</tpCar>
+          <UF>RS</UF>
+        </veicReboque>
+      </rodo>
+    </infModal>
+    <infDoc>
+      <infMunDescarga>
+        <cMunDescarga>4209102</cMunDescarga>
+        <xMunDescarga>JOINVILLE</xMunDescarga>
+        <infNFe>
+          <chNFe>41190806117473000150550010000586251016759484</chNFe>
+        </infNFe>
+      </infMunDescarga>
+    </infDoc>
+    <tot>
+      <qNFe>1</qNFe>
+      <vCarga>33.19</vCarga>
+      <cUnid>01</cUnid>
+      <qCarga>10.0000</qCarga>
+    </tot>
+    <infAdic>
+      <infCpl>Distancia: 12 KM Passar por: BR105</infCpl>
+    </infAdic>
+    <infRespTec>
+      <CNPJ>06117473000150</CNPJ>
+      <xContato>WANDREY MUNDIN FERREIRA</xContato>
+      <email>wandrey@unimake.com.br</email>
+      <fone>04431414900</fone>
+    </infRespTec>
+  </infMDFe>
+</MDFe>

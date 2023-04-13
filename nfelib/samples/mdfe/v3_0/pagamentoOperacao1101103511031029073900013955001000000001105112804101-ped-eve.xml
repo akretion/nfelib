@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventoMDFe versao="3.00" xmlns="http://www.portalfiscal.inf.br/mdfe">
+  <infEvento Id="ID1101113511031029073900013955001000000001105112804102">
+   <cOrgao>35</cOrgao>
+    <tpAmb>2</tpAmb>
+    <CNPJ>10290739000139</CNPJ>
+    <chMDFe>35110310290739000139550010000000011051128041</chMDFe>
+    <dhEvento>2020-03-17T15:46:40-03:00</dhEvento>
+    <tpEvento>110116</tpEvento>
+    <nSeqEvento>3</nSeqEvento>
+    <detEvento versaoEvento="3.00">
+      <evPagtoOperMDFe>
+        <descEvento>Pagamento Operação MDF-e</descEvento>
+        <nProt>935200000016234</nProt>
+        <infViagens>
+          <qtdViagens>1</qtdViagens>
+          <nroViagem>1795</nroViagem>
+        </infViagens>
+        <infPag>
+          <xNome>CT-E EMITIDO EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+          <CNPJ>10290739000139</CNPJ>
+          <Comp>
+            <tpComp>99</tpComp>
+            <vComp>3003.51</vComp>
+            <xComp>VALOR DO FRETE</xComp>
+          </Comp>
+          <vContrato>3003.51</vContrato>
+          <indPag>1</indPag>
+          <infPrazo>
+            <nParcela>001</nParcela>
+            <dVenc>2020-03-19</dVenc>
+            <vParcela>3003.51</vParcela>
+          </infPrazo>
+          <infBanc>
+            <CNPJIPEF>10290739000139</CNPJIPEF>
+          </infBanc>
+        </infPag>
+      </evPagtoOperMDFe>
+    </detEvento>
+  </infEvento>
+</eventoMDFe>

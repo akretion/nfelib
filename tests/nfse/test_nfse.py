@@ -8,8 +8,6 @@ import inspect
 from enum import EnumMeta
 from xmldiff import main
 
-sys.path.append(path.join(path.dirname(__file__), "..", "nfelib"))
-
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
@@ -51,7 +49,7 @@ def test_in_out_dps():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        output_file = "tests/output_nfse.xml"
+        output_file = "tests/output_nfse_dps.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 
@@ -71,7 +69,7 @@ def test_in_out_pedRegEvento():
             obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
 
-        output_file = "tests/output_nfse.xml"
+        output_file = "tests/output_nfse_pedRegEvento.xml"
         with open(output_file, "w") as f:
             f.write(xml)
 

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CTeOS versao="3.00" xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte versao="3.00" Id="CTe35170799999999999999670000000000261309301440">
+    <ide>
+      <cUF>35</cUF>
+      <cCT>30930144</cCT>
+      <CFOP>5357</CFOP>
+      <natOp>VENDA DE MERCADORIA ADQUIRIDA OU RECEBIDA DE TERCEIROS</natOp>
+      <mod>67</mod>
+      <serie>0</serie>
+      <nCT>26</nCT>
+      <dhEmi>2017-07-26T11:47:36-03:00</dhEmi>
+      <tpImp>1</tpImp>
+      <tpEmis>1</tpEmis>
+      <cDV>0</cDV>
+      <tpAmb>2</tpAmb>
+      <tpCTe>0</tpCTe>
+      <procEmi>0</procEmi>
+      <verProc>JB CTe 2017 3.0</verProc>
+      <cMunEnv>3534401</cMunEnv>
+      <xMunEnv>SAO PAULO</xMunEnv>
+      <UFEnv>SP</UFEnv>
+      <modal>01</modal>
+      <tpServ>6</tpServ>
+      <indIEToma>1</indIEToma>
+      <cMunIni>3550308</cMunIni>
+      <xMunIni>SAO PAULO</xMunIni>
+      <UFIni>SP</UFIni>
+      <cMunFim>3502507</cMunFim>
+      <xMunFim>APARECIDA DO NORTE</xMunFim>
+      <UFFim>SP</UFFim>
+      <infPercurso>
+        <UFPer>MG</UFPer>
+      </infPercurso>
+    </ide>
+    <compl>
+      <xObs>.....</xObs>
+    </compl>
+    <emit>
+      <CNPJ>99999999999999</CNPJ>
+      <IE>999999999999</IE>
+      <xNome>CT-E EMITIDO EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+      <enderEmit>
+        <xLgr>XXXXXXXXXXXXXXXX</xLgr>
+        <nro>720</nro>
+        <xBairro>XXXXXXXXXXX</xBairro>
+        <cMun>3534401</cMun>
+        <xMun>SAO PAULO</xMun>
+        <CEP>99999999</CEP>
+        <UF>SP</UF>
+        <fone>9999999999</fone>
+      </enderEmit>
+    </emit>
+    <toma>
+      <CNPJ>99999999999999</CNPJ>
+      <IE>999999999999</IE>
+      <xNome>XXXXXXXXXXXXXXXXXXXXXX</xNome>
+      <fone>9999999999</fone>
+      <enderToma>
+        <xLgr>XXXXXXXXXXXXXXXXXXXX</xLgr>
+        <nro>209</nro>
+        <xBairro>XXXXXXXXXXXXX</xBairro>
+        <cMun>3550308</cMun>
+        <xMun>SAO PAULO</xMun>
+        <CEP>99999999</CEP>
+        <UF>SP</UF>
+        <cPais>1058</cPais>
+        <xPais>Brasil</xPais>
+      </enderToma>
+      <email>xxxxxx@xxxxxxx.com.br</email>
+    </toma>
+    <vPrest>
+      <vTPrest>2500.00</vTPrest>
+      <vRec>2500.00</vRec>
+      <Comp>
+        <xNome>FRET.INTERMUNIC</xNome>
+        <vComp>2500.00</vComp>
+      </Comp>
+    </vPrest>
+    <imp>
+      <ICMS>
+        <ICMS00>
+          <CST>00</CST>
+          <vBC>2500.00</vBC>
+          <pICMS>18.00</pICMS>
+          <vICMS>450.00</vICMS>
+        </ICMS00>
+      </ICMS>
+      <infTribFed>
+        <vPIS>0.00</vPIS>
+        <vCOFINS>0.00</vCOFINS>
+        <vIR>0.00</vIR>
+        <vINSS>0.00</vINSS>
+        <vCSLL>0.00</vCSLL>
+      </infTribFed>
+    </imp>
+    <infCTeNorm>
+      <infServico>
+        <xDescServ>TRANSPORTE DE PASSAGEIROS</xDescServ>
+        <infQ>
+          <qCarga>45.0000</qCarga>
+        </infQ>
+      </infServico>
+      <seg>
+        <respSeg>4</respSeg>
+      </seg>
+      <infModal versaoModal="3.00">
+        <rodoOS>
+          <TAF>999999999999</TAF>
+          <veic>
+            <placa>XXX9999</placa>
+            <RENAVAM>999999999</RENAVAM>
+            <UF>SP</UF>
+          </veic>
+        </rodoOS>
+      </infModal>
+    </infCTeNorm>
+  </infCte>
+</CTeOS>

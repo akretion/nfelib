@@ -18,6 +18,7 @@
     <PackageName case="snakeCase" safePrefix="pkg"/>
   </Conventions>
   <Substitutions>
+    <!-- NFe and others: -->
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema" replace="xs"/>
     <Substitution type="package" search="http://www.w3.org/XML/1998/namespace" replace="xml"/>
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema-instance" replace="xsi"/>
@@ -26,12 +27,19 @@
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
-    <Substitution type="class" search="Class" replace="Type"/>
-    <Substitution type="field" search="@any_element" replace="any_element"/>
-    <Substitution type="field" search="@any_attributes" replace="any_attributes"/> 
-    <Substitution type="field" search="Signature" replace="signature"/>
-    <Substitution type="field" search="CanonicalizationMethod" replace="canonicalizationMethod"/>
-    <Substitution type="field" search="DigestValue" replace="digestValue"/>
-    <Substitution type="field" search="DigestMethod" replace="digestMethod"/>
+    <Substitution type="class" search="^Class$" replace="Type"/>
+    <Substitution type="field" search="^@any_element$" replace="any_element"/>
+    <Substitution type="field" search="^@any_attributes$" replace="any_attributes"/> 
+    <Substitution type="field" search="^Signature$" replace="signature"/>
+    <Substitution type="field" search="^SignatureMethod$" replace="signatureMethod"/>
+    <Substitution type="field" search="^SignatureValue$" replace="signatureValue"/>
+    <Substitution type="field" search="^CanonicalizationMethod$" replace="canonicalizationMethod"/>
+    <Substitution type="field" search="^DigestValue$" replace="digestValue"/>
+    <Substitution type="field" search="^DigestMethod$" replace="digestMethod"/>
+    <!-- CTe: -->
+    <Substitution type="field" search="^Comp$" replace="comp"/>
+    <Substitution type="field" search="^Entrega$" replace="entrega"/>
+    <Substitution type="field" search="^ObsCont$" replace="obsCont"/>
+    <Substitution type="field" search="^ObsFisco$" replace="obsFisco"/>
   </Substitutions>
 </Config>

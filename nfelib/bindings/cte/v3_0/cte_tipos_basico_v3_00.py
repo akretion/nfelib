@@ -3065,10 +3065,10 @@ class TcteOs:
                 CONVENCIONAL; EMERGENCIAL; etc
             :ivar xEmi: Funcionário emissor do CTe
             :ivar xObs: Observações Gerais
-            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+            :ivar obsCont: Campo de uso livre do contribuinte Informar o
                 nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
+            :ivar obsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
@@ -3116,17 +3116,19 @@ class TcteOs:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ObsCont: List["TcteOs.InfCte.Compl.ObsCont"] = field(
+            obsCont: List["TcteOs.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            ObsFisco: List["TcteOs.InfCte.Compl.ObsFisco"] = field(
+            obsFisco: List["TcteOs.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -3372,7 +3374,7 @@ class TcteOs:
             :ivar vTPrest: Valor Total da Prestação do Serviço Pode
                 conter zeros quando o CT-e for de complemento de ICMS
             :ivar vRec: Valor a Receber
-            :ivar Comp: Componentes do Valor da Prestação
+            :ivar comp: Componentes do Valor da Prestação
             """
             vTPrest: Optional[str] = field(
                 default=None,
@@ -3394,9 +3396,10 @@ class TcteOs:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            Comp: List["TcteOs.InfCte.VPrest.Comp"] = field(
+            comp: List["TcteOs.InfCte.VPrest.Comp"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -4211,7 +4214,7 @@ class TcteOs:
             class InfGtve:
                 """
                 :ivar chCTe: Chave de acesso da GTV-e
-                :ivar Comp: Componentes do Valor da GTVe
+                :ivar comp: Componentes do Valor da GTVe
                 """
                 chCTe: Optional[str] = field(
                     default=None,
@@ -4222,9 +4225,10 @@ class TcteOs:
                         "pattern": r"[0-9]{44}",
                     }
                 )
-                Comp: List["TcteOs.InfCte.InfCteNorm.InfGtve.Comp"] = field(
+                comp: List["TcteOs.InfCte.InfCteNorm.InfGtve.Comp"] = field(
                     default_factory=list,
                     metadata={
+                        "name": "Comp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/cte",
                         "min_occurs": 1,
@@ -4943,10 +4947,10 @@ class Tgtve:
                 CONVENCIONAL; EMERGENCIAL; etc
             :ivar xEmi: Funcionário emissor da GTV-e
             :ivar xObs: Observações Gerais
-            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+            :ivar obsCont: Campo de uso livre do contribuinte Informar o
                 nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
+            :ivar obsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
@@ -4994,17 +4998,19 @@ class Tgtve:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ObsCont: List["Tgtve.InfCte.Compl.ObsCont"] = field(
+            obsCont: List["Tgtve.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            ObsFisco: List["Tgtve.InfCte.Compl.ObsFisco"] = field(
+            obsFisco: List["Tgtve.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -6596,16 +6602,16 @@ class Tcte:
             :ivar xEmi: Funcionário emissor do CTe
             :ivar fluxo: Previsão do fluxo da carga Preenchimento
                 obrigatório para o modal aéreo.
-            :ivar Entrega: Informações ref. a previsão de entrega
+            :ivar entrega: Informações ref. a previsão de entrega
             :ivar origCalc: Município de origem para efeito de cálculo
                 do frete
             :ivar destCalc: Município de destino para efeito de cálculo
                 do frete
             :ivar xObs: Observações Gerais
-            :ivar ObsCont: Campo de uso livre do contribuinte Informar o
+            :ivar obsCont: Campo de uso livre do contribuinte Informar o
                 nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
-            :ivar ObsFisco: Campo de uso livre do contribuinte Informar
+            :ivar obsFisco: Campo de uso livre do contribuinte Informar
                 o nome do campo no atributo xCampo e o conteúdo do campo
                 no XTexto
             """
@@ -6649,9 +6655,10 @@ class Tcte:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
             )
-            Entrega: Optional["Tcte.InfCte.Compl.Entrega"] = field(
+            entrega: Optional["Tcte.InfCte.Compl.Entrega"] = field(
                 default=None,
                 metadata={
+                    "name": "Entrega",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }
@@ -6689,17 +6696,19 @@ class Tcte:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            ObsCont: List["Tcte.InfCte.Compl.ObsCont"] = field(
+            obsCont: List["Tcte.InfCte.Compl.ObsCont"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsCont",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
                 }
             )
-            ObsFisco: List["Tcte.InfCte.Compl.ObsFisco"] = field(
+            obsFisco: List["Tcte.InfCte.Compl.ObsFisco"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "ObsFisco",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                     "max_occurs": 10,
@@ -7531,7 +7540,7 @@ class Tcte:
             :ivar vTPrest: Valor Total da Prestação do Serviço Pode
                 conter zeros quando o CT-e for de complemento de ICMS
             :ivar vRec: Valor a Receber
-            :ivar Comp: Componentes do Valor da Prestação
+            :ivar comp: Componentes do Valor da Prestação
             """
             vTPrest: Optional[str] = field(
                 default=None,
@@ -7553,9 +7562,10 @@ class Tcte:
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                 }
             )
-            Comp: List["Tcte.InfCte.VPrest.Comp"] = field(
+            comp: List["Tcte.InfCte.VPrest.Comp"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 }

@@ -34,13 +34,5 @@ jobs:
       - name: Test
         run: |
           tox -e py -v --color=yes
-      - name: Upload coverage to Coveralls
-        # Upload coverage if we are on the main repository and
-        # we're running on Linux (this action only supports Linux)
-        if: github.repository == 'psf/black' && matrix.os == 'ubuntu-latest'
-        uses: AndreMiras/coveralls-python-action@v20201129
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel: true
-          flag-name: py${{ matrix.python-version }}-${{ matrix.os }}
-          debug: true
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3

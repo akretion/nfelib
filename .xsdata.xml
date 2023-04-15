@@ -18,7 +18,7 @@
     <PackageName case="snakeCase" safePrefix="pkg"/>
   </Conventions>
   <Substitutions>
-    <!-- NFe and others: -->
+    <!-- defaults : -->
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema" replace="xs"/>
     <Substitution type="package" search="http://www.w3.org/XML/1998/namespace" replace="xml"/>
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema-instance" replace="xsi"/>
@@ -27,8 +27,10 @@
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
-    <Substitution type="class" search="^Class$" replace="Type"/>
+ 
+    <!-- xmldsig : -->
     <Substitution type="field" search="^@any_element$" replace="any_element"/>
+    <Substitution type="field" search="^@other_element$" replace="other_element"/>
     <Substitution type="field" search="^@any_attributes$" replace="any_attributes"/> 
     <Substitution type="field" search="^Signature$" replace="signature"/>
     <Substitution type="field" search="^SignatureMethod$" replace="signatureMethod"/>
@@ -36,6 +38,21 @@
     <Substitution type="field" search="^CanonicalizationMethod$" replace="canonicalizationMethod"/>
     <Substitution type="field" search="^DigestValue$" replace="digestValue"/>
     <Substitution type="field" search="^DigestMethod$" replace="digestMethod"/>
+    <Substitution type="field" search="^SignatureProperty$" replace="signatureProperty"/>
+    <Substitution type="field" search="^SignaturePropertiesType$" replace="signaturePropertiesType"/>
+    <Substitution type="field" search="^Transform$" replace="transform"/>
+    <Substitution type="field" search="^Transforms$" replace="transforms"/>
+    <Substitution type="field" search="^TransformType$" replace="transformType"/>
+    <Substitution type="field" search="^TransformsType$" replace="transformsType"/>
+    <Substitution type="field" search="^Reference$" replace="reference"/>
+    <Substitution type="field" search="^SignedInfo$" replace="signedInfo"/>
+    <Substitution type="field" search="^KeyInfo$" replace="keyInfo"/>
+
+    <!-- generics (NFe and others): -->
+    <Substitution type="class" search="^Class$" replace="Type"/>
+    <Substitution type="class" search="^Object$" replace="_Object"/>
+    <Substitution type="class" search="^Id$" replace="id"/>
+
     <!-- CTe: -->
     <Substitution type="field" search="^Comp$" replace="comp"/>
     <Substitution type="field" search="^Entrega$" replace="entrega"/>

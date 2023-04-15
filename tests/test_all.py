@@ -8,8 +8,6 @@ import inspect
 from enum import EnumMeta
 from xmldiff import main
 
-sys.path.append(path.join(path.dirname(__file__), "..", "nfelib"))
-
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer

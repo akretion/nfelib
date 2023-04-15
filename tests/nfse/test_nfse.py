@@ -26,7 +26,7 @@ def test_in_out_nfse():
         obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
-            obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
+            obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}
         )
 
         output_file = "tests/output_nfse.xml"
@@ -46,7 +46,7 @@ def test_in_out_dps():
         obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
-            obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
+            obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}
         )
 
         output_file = "tests/output_nfse_dps.xml"
@@ -66,7 +66,7 @@ def test_in_out_pedRegEvento():
         obj = parser.from_path(Path(input_file))
         serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
         xml = serializer.render(
-            obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
+            obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}
         )
 
         output_file = "tests/output_nfse_pedRegEvento.xml"

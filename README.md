@@ -1,5 +1,3 @@
-<h2 align="center">nfelib Python Library</h2>
-
 <p align="center">
 <a href="https://github.com/akretion/nfelib" > 
  <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfe.jpg"/> 

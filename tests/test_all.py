@@ -13,6 +13,9 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 import pkgutil
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 def visit_nested_classes(cls, classes):
@@ -29,24 +32,22 @@ def visit_nested_classes(cls, classes):
 
 
 def test_init_all():
-    for binding in pkgutil.walk_packages(["nfelib/bindings"]):
-        if binding.name in ("nfe_epec"):
-            # FIXME this binding is buggy!! (circular def)
-            continue
+    for binding in pkgutil.walk_packages(["/tmp/nfelib/nfelib/bindings"]):
         binding_path = "nfelib/bindings/" + binding.name
+        #        _logger.info(binding_path)
         for version in pkgutil.walk_packages([binding_path]):
             version_path = "nfelib/bindings/%s/%s" % (
                 binding.name,
                 version.name,
             )
+            _logger.info("walking over:  " + version_path)
             for modpkg in pkgutil.walk_packages([version_path]):
-                if modpkg.name in ("e110140_v1_00", "leiaute_epec_v1_00"):
-                    continue
                 mod_name = "nfelib.bindings.%s.%s.%s" % (
                     binding.name,
                     version.name,
                     modpkg.name,
                 )
+                #                _logger.info(mod_name)
                 mod = importlib.import_module(mod_name)
 
                 for _klass_name, klass in mod.__dict__.items():

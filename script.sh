@@ -76,6 +76,9 @@ if [$DOWNLOAD_SCHEMAS]; then
   cp -rf /tmp/generated/schemas/nfe_ator_interessado nfelib/schemas/nfe_epec
 fi
 xsdata generate nfelib/schemas/nfe_epec/v1_0 --package nfelib.bindings.nfe_epec.v1_0
+# fix the main two files with -ss single-package to avoid circular deps
+xsdata generate nfelib/schemas/nfe_epec/v1_0/e110140_v1.00.xsd -ss single-package --package=nfelib/bindings/nfe_epec/v1_0/e110140_v1_00.py
+xsdata generate nfelib/schemas/nfe_epec/v1_0/leiauteEPEC_v1.00.xsd -ss single-package --package=nfelib/bindings/nfe_epec/v1_0/leiaute_epec_v1_00.py
 
 # Evento Comprovante Entrega da NF-e . Publicado em 19/05/2021 (Atualizado em 15/06/2021)
 if [$DOWNLOAD_SCHEMAS]; then

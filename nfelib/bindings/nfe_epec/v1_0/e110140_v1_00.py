@@ -1,11 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from nfelib.bindings.nfe_epec.v1_0.leiaute_epec_v1_00 import DetEventoVersao
-from nfelib.bindings.nfe_epec.v1_0.tipos_basico_v1_03 import (
-    TcodUfIbge,
-    Tuf,
-)
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 
@@ -30,8 +25,79 @@ class Ie:
     )
 
 
+class TcodUfIbge(Enum):
+    """
+    Tipo Código da UF da tabela do IBGE.
+    """
+    VALUE_11 = "11"
+    VALUE_12 = "12"
+    VALUE_13 = "13"
+    VALUE_14 = "14"
+    VALUE_15 = "15"
+    VALUE_16 = "16"
+    VALUE_17 = "17"
+    VALUE_21 = "21"
+    VALUE_22 = "22"
+    VALUE_23 = "23"
+    VALUE_24 = "24"
+    VALUE_25 = "25"
+    VALUE_26 = "26"
+    VALUE_27 = "27"
+    VALUE_28 = "28"
+    VALUE_29 = "29"
+    VALUE_31 = "31"
+    VALUE_32 = "32"
+    VALUE_33 = "33"
+    VALUE_35 = "35"
+    VALUE_41 = "41"
+    VALUE_42 = "42"
+    VALUE_43 = "43"
+    VALUE_50 = "50"
+    VALUE_51 = "51"
+    VALUE_52 = "52"
+    VALUE_53 = "53"
+
+
+class Tuf(Enum):
+    """
+    Tipo Sigla da UF.
+    """
+    AC = "AC"
+    AL = "AL"
+    AM = "AM"
+    AP = "AP"
+    BA = "BA"
+    CE = "CE"
+    DF = "DF"
+    ES = "ES"
+    GO = "GO"
+    MA = "MA"
+    MG = "MG"
+    MS = "MS"
+    MT = "MT"
+    PA = "PA"
+    PB = "PB"
+    PE = "PE"
+    PI = "PI"
+    PR = "PR"
+    RJ = "RJ"
+    RN = "RN"
+    RO = "RO"
+    RR = "RR"
+    RS = "RS"
+    SC = "SC"
+    SE = "SE"
+    SP = "SP"
+    TO = "TO"
+    EX = "EX"
+
+
 class DescEventoValue(Enum):
     EPEC = "EPEC"
+
+
+class DetEventoVersao(Enum):
+    VALUE_1_00 = "1.00"
 
 
 @dataclass

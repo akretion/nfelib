@@ -1,5 +1,5 @@
 from nfelib.bindings.nfe_evento_mde.v1_0.conf_recebto_v1_00 import Evento
-from nfelib.bindings.nfe_evento_mde.v1_0.e210210_v1_00 import DetEvento
+from nfelib.bindings.nfe_evento_mde.v1_0.e210240_v1_00 import DetEvento
 from nfelib.bindings.nfe_evento_mde.v1_0.env_conf_recebto_v1_00 import EnvEvento
 from nfelib.bindings.nfe_evento_mde.v1_0.leiaute_conf_recebto_v1_00 import (
     TcorgaoIbge,

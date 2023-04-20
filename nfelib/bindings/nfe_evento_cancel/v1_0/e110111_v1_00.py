@@ -1,11 +1,16 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Optional
-from nfelib.bindings.nfe_evento_cancel.v1_0.leiaute_evento_canc_nfe_v1_00 import (
-    DetEventoDescEvento,
-    DetEventoVersao,
-)
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
+
+
+class DetEventoDescEvento(Enum):
+    CANCELAMENTO = "Cancelamento"
+
+
+class DetEventoVersao(Enum):
+    VALUE_1_00 = "1.00"
 
 
 @dataclass

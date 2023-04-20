@@ -50,8 +50,8 @@ class TloteDistDfe:
     class Proc:
         """
         :ivar any_element: informação do proc
-        :ivar schema: Identificação do Schema XML de validação do proc,
-            Ex. procMDFe_v1.00.xsd.
+        :ivar schema_value: Identificação do Schema XML de validação do
+            proc, Ex. procMDFe_v1.00.xsd.
         :ivar NSU: número sequencial único do Ambiente Autorizador
         :ivar ipTransmissor:
         """
@@ -62,9 +62,10 @@ class TloteDistDfe:
                 "namespace": "##any",
             }
         )
-        schema: Optional[str] = field(
+        schema_value: Optional[str] = field(
             default=None,
             metadata={
+                "name": "schema",
                 "type": "Attribute",
                 "required": True,
             }

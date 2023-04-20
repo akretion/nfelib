@@ -2101,7 +2101,7 @@ class Tbpe:
                 concedido
             :ivar cDesconto: Código do desconto quando informado com
                 tipo 99 - Outros
-            :ivar Comp: Componentes do Valor do Bilhete
+            :ivar comp: Componentes do Valor do Bilhete
             """
             vBP: Optional[str] = field(
                 default=None,
@@ -2173,9 +2173,10 @@ class Tbpe:
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
                 }
             )
-            Comp: List["Tbpe.InfBpe.InfValorBpe.Comp"] = field(
+            comp: List["Tbpe.InfBpe.InfValorBpe.Comp"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "Comp",
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "min_occurs": 1,
@@ -3130,7 +3131,7 @@ class TbpeTm:
                     viagem Pode conter zeros quando o BP-e for de
                     complemento de ICMS
                 :ivar imp: Informações relativas aos Impostos
-                :ivar Comp: Componentes da viagem
+                :ivar comp: Componentes da viagem
                 :ivar nViagem:
                 """
                 cMunIni: Optional[str] = field(
@@ -3201,9 +3202,10 @@ class TbpeTm:
                         "required": True,
                     }
                 )
-                Comp: List["TbpeTm.InfBpe.DetBpeTm.Det.Comp"] = field(
+                comp: List["TbpeTm.InfBpe.DetBpeTm.Det.Comp"] = field(
                     default_factory=list,
                     metadata={
+                        "name": "Comp",
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/bpe",
                         "min_occurs": 1,

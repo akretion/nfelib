@@ -78,9 +78,10 @@ class TransformType:
 
 @dataclass
 class TransformsType:
-    Transform: List[TransformType] = field(
+    transform: List[TransformType] = field(
         default_factory=list,
         metadata={
+            "name": "Transform",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "min_occurs": 2,
@@ -91,9 +92,10 @@ class TransformsType:
 
 @dataclass
 class ReferenceType:
-    Transforms: Optional[TransformsType] = field(
+    transforms: Optional[TransformsType] = field(
         default=None,
         metadata={
+            "name": "Transforms",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "required": True,
@@ -172,9 +174,10 @@ class SignedInfoType:
             "required": True,
         }
     )
-    Reference: Optional[ReferenceType] = field(
+    reference: Optional[ReferenceType] = field(
         default=None,
         metadata={
+            "name": "Reference",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "required": True,
@@ -212,9 +215,10 @@ class SignedInfoType:
 
 @dataclass
 class SignatureType:
-    SignedInfo: Optional[SignedInfoType] = field(
+    signedInfo: Optional[SignedInfoType] = field(
         default=None,
         metadata={
+            "name": "SignedInfo",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "required": True,
@@ -229,9 +233,10 @@ class SignatureType:
             "required": True,
         }
     )
-    KeyInfo: Optional[KeyInfoType] = field(
+    keyInfo: Optional[KeyInfoType] = field(
         default=None,
         metadata={
+            "name": "KeyInfo",
             "type": "Element",
             "namespace": "http://www.w3.org/2000/09/xmldsig#",
             "required": True,

@@ -39,8 +39,10 @@ from nfelib.bindings.mdfe.v3_0.ev_inclusao_dfe_mdfe_v3_00 import (
     EvIncDfeMdfeDescEvento,
 )
 from nfelib.bindings.mdfe.v3_0.ev_pagto_oper_mdfe_v3_00 import (
+    CompTpComp,
     EvPagtoOperMdfe,
     EvPagtoOperMdfeDescEvento,
+    InfPagIndPag,
 )
 from nfelib.bindings.mdfe.v3_0.evento_mdfe_tipos_basico_v3_00 import (
     Tevento,
@@ -70,10 +72,8 @@ from nfelib.bindings.mdfe.v3_0.mdfe_modal_aquaviario_v3_00 import (
 )
 from nfelib.bindings.mdfe.v3_0.mdfe_modal_ferroviario_v3_00 import Ferrov
 from nfelib.bindings.mdfe.v3_0.mdfe_modal_rodoviario_v3_00 import (
-    CompTpComp,
     DispTpValePed,
     InfPagIndAltoDesemp,
-    InfPagIndPag,
     PropTpProp,
     Rodo,
     ValePedCategCombVeic,
@@ -113,7 +113,7 @@ from nfelib.bindings.mdfe.v3_0.mdfe_tipos_basico_v3_00 import (
 from nfelib.bindings.mdfe.v3_0.mdfe_v3_00 import Mdfe
 from nfelib.bindings.mdfe.v3_0.proc_evento_mdfe_v3_00 import ProcEventoMdfe
 from nfelib.bindings.mdfe.v3_0.proc_mdfe_v3_00 import MdfeProc
-from nfelib.bindings.mdfe.v3_0.ret_cons_mdfe_nao_enc_v1_00 import RetConsMdfeNaoEnc
+from nfelib.bindings.mdfe.v3_0.ret_cons_mdfe_nao_enc_v3_00 import RetConsMdfeNaoEnc
 from nfelib.bindings.mdfe.v3_0.ret_cons_reci_mdfe_v3_00 import RetConsReciMdfe
 from nfelib.bindings.mdfe.v3_0.ret_cons_sit_mdfe_v3_00 import RetConsSitMdfe
 from nfelib.bindings.mdfe.v3_0.ret_cons_stat_serv_mdfe_v3_00 import RetConsStatServMdfe
@@ -172,8 +172,10 @@ __all__ = [
     "EvIncCondutorMdfeDescEvento",
     "EvIncDfeMdfe",
     "EvIncDfeMdfeDescEvento",
+    "CompTpComp",
     "EvPagtoOperMdfe",
     "EvPagtoOperMdfeDescEvento",
+    "InfPagIndPag",
     "Tevento",
     "TprocEvento",
     "TretEvento",
@@ -193,10 +195,8 @@ __all__ = [
     "InfUnidCargaVaziaTpUnidCargaVazia",
     "InfUnidTranspVaziaTpUnidTranspVazia",
     "Ferrov",
-    "CompTpComp",
     "DispTpValePed",
     "InfPagIndAltoDesemp",
-    "InfPagIndPag",
     "PropTpProp",
     "Rodo",
     "ValePedCategCombVeic",

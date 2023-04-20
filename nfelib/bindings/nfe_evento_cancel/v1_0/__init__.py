@@ -1,4 +1,8 @@
-from nfelib.bindings.nfe_evento_cancel.v1_0.e110111_v1_00 import DetEvento
+from nfelib.bindings.nfe_evento_cancel.v1_0.e110111_v1_00 import (
+    DetEvento,
+    DetEventoDescEvento,
+    DetEventoVersao,
+)
 from nfelib.bindings.nfe_evento_cancel.v1_0.env_evento_canc_nfe_v1_00 import EnvEvento
 from nfelib.bindings.nfe_evento_cancel.v1_0.evento_canc_nfe_v1_00 import Evento
 from nfelib.bindings.nfe_evento_cancel.v1_0.leiaute_evento_canc_nfe_v1_00 import (
@@ -7,8 +11,6 @@ from nfelib.bindings.nfe_evento_cancel.v1_0.leiaute_evento_canc_nfe_v1_00 import
     TprocEvento,
     TretEnvEvento,
     TretEvento,
-    DetEventoDescEvento,
-    DetEventoVersao,
     InfEventoTpEvento,
     InfEventoVerEvento,
 )
@@ -33,6 +35,8 @@ from nfelib.bindings.nfe_evento_cancel.v1_0.xmldsig_core_schema_v1_01 import (
 
 __all__ = [
     "DetEvento",
+    "DetEventoDescEvento",
+    "DetEventoVersao",
     "EnvEvento",
     "Evento",
     "TenvEvento",
@@ -40,8 +44,6 @@ __all__ = [
     "TprocEvento",
     "TretEnvEvento",
     "TretEvento",
-    "DetEventoDescEvento",
-    "DetEventoVersao",
     "InfEventoTpEvento",
     "InfEventoVerEvento",
     "ProcEventoNfe",

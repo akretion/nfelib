@@ -1,6 +1,10 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional
+from nfelib.bindings.nfe_evento_cancel.v1_0.e110111_v1_00 import (
+    DetEventoDescEvento,
+    DetEventoVersao,
+)
 from nfelib.bindings.nfe_evento_cancel.v1_0.tipos_basico_v1_03 import (
     Tamb,
     TcorgaoIbge,
@@ -8,14 +12,6 @@ from nfelib.bindings.nfe_evento_cancel.v1_0.tipos_basico_v1_03 import (
 from nfelib.bindings.nfe_evento_cancel.v1_0.xmldsig_core_schema_v1_01 import Signature
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
-
-
-class DetEventoDescEvento(Enum):
-    CANCELAMENTO = "Cancelamento"
-
-
-class DetEventoVersao(Enum):
-    VALUE_1_00 = "1.00"
 
 
 class InfEventoTpEvento(Enum):

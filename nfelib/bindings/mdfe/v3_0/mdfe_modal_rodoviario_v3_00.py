@@ -1,16 +1,13 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional
+from nfelib.bindings.mdfe.v3_0.ev_pagto_oper_mdfe_v3_00 import (
+    CompTpComp,
+    InfPagIndPag,
+)
 from nfelib.bindings.mdfe.v3_0.tipos_geral_mdfe_v3_00 import Tuf
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
-
-
-class CompTpComp(Enum):
-    VALUE_01 = "01"
-    VALUE_02 = "02"
-    VALUE_03 = "03"
-    VALUE_99 = "99"
 
 
 class DispTpValePed(Enum):
@@ -20,11 +17,6 @@ class DispTpValePed(Enum):
 
 
 class InfPagIndAltoDesemp(Enum):
-    VALUE_1 = "1"
-
-
-class InfPagIndPag(Enum):
-    VALUE_0 = "0"
     VALUE_1 = "1"
 
 
@@ -375,7 +367,7 @@ class Rodo:
                 os zeros não significativos.
             :ivar idEstrangeiro: Identificador do responsável pelo pgto
                 em caso de ser estrangeiro
-            :ivar Comp: Componentes do Pagamentoi do Frete
+            :ivar comp: Componentes do Pagamentoi do Frete
             :ivar vContrato: Valor Total do Contrato
             :ivar indAltoDesemp: Indicador de operação de transporte de
                 alto desempenho Operação de transporte com utilização de
@@ -426,9 +418,10 @@ class Rodo:
                     "pattern": r"([!-ÿ]{0}|[!-ÿ]{5,20})?",
                 }
             )
-            Comp: List["Rodo.InfAntt.InfPag.Comp"] = field(
+            comp: List["Rodo.InfAntt.InfPag.Comp"] = field(
                 default_factory=list,
                 metadata={
+                    "name": "Comp",
                     "type": "Element",
                     "min_occurs": 1,
                 }

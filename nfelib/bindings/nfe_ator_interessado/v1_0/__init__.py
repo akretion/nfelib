@@ -6,15 +6,17 @@ from nfelib.bindings.nfe_ator_interessado.v1_0.leiaute_evento_ator_interessado_v
     TprocEvento,
     TretEnvEvento,
     TretEvento,
+    InfEventoTpEvento,
+    InfEventoVerEvento,
+)
+from nfelib.bindings.nfe_ator_interessado.v1_0.mod_110150_v1_00 import (
+    DetEvento,
     DetEventoDescEvento,
     DetEventoTpAutor,
     DetEventoTpAutorizacao,
     DetEventoVersao,
     DetEventoXCondUso,
-    InfEventoTpEvento,
-    InfEventoVerEvento,
 )
-from nfelib.bindings.nfe_ator_interessado.v1_0.mod_110150_v1_00 import DetEvento
 from nfelib.bindings.nfe_ator_interessado.v1_0.proc_evento_ator_interessado_v1_00 import ProcEventoNfe
 from nfelib.bindings.nfe_ator_interessado.v1_0.ret_env_evento_ator_interessado_v1_00 import RetEnvEvento
 from nfelib.bindings.nfe_ator_interessado.v1_0.tipos_basico_v1_03 import (
@@ -43,14 +45,14 @@ __all__ = [
     "TprocEvento",
     "TretEnvEvento",
     "TretEvento",
+    "InfEventoTpEvento",
+    "InfEventoVerEvento",
+    "DetEvento",
     "DetEventoDescEvento",
     "DetEventoTpAutor",
     "DetEventoTpAutorizacao",
     "DetEventoVersao",
     "DetEventoXCondUso",
-    "InfEventoTpEvento",
-    "InfEventoVerEvento",
-    "DetEvento",
     "ProcEventoNfe",
     "RetEnvEvento",
     "Tamb",

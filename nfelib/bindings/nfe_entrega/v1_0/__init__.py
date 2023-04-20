@@ -15,7 +15,7 @@ from nfelib.bindings.nfe_entrega.v1_0.leiaute_evento_entrega_nfe_v1_00 import (
     InfEventoTpEvento,
     InfEventoVerEvento,
 )
-from nfelib.bindings.nfe_entrega.v1_0.proc_evento_canc_entrega_nfe_v1_00 import ProcEventoNfe
+from nfelib.bindings.nfe_entrega.v1_0.proc_evento_entrega_nfe_v1_00 import ProcEventoNfe
 from nfelib.bindings.nfe_entrega.v1_0.ret_evento_entrega_nfe_v1_00 import RetEnvEvento
 from nfelib.bindings.nfe_entrega.v1_0.tipos_basico_v1_03 import (
     Tamb,

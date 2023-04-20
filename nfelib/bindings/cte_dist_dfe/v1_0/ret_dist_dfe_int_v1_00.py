@@ -133,10 +133,11 @@ class RetDistDfeInt:
             """
             :ivar value:
             :ivar NSU: NSU do documento fiscal
-            :ivar schema: Identificação do Schema XML que será utilizado
-                para validar o XML existente no conteúdo da tag docZip.
-                Vai identificar o tipo do documento e sua versão.
-                Exemplos: procCTe_v2.00.xsd, procEventoCTe_v2.00.xsd
+            :ivar schema_value: Identificação do Schema XML que será
+                utilizado para validar o XML existente no conteúdo da
+                tag docZip. Vai identificar o tipo do documento e sua
+                versão. Exemplos: procCTe_v2.00.xsd,
+                procEventoCTe_v2.00.xsd
             """
             value: Optional[bytes] = field(
                 default=None,
@@ -153,9 +154,10 @@ class RetDistDfeInt:
                     "pattern": r"[0-9]{15}",
                 }
             )
-            schema: Optional[str] = field(
+            schema_value: Optional[str] = field(
                 default=None,
                 metadata={
+                    "name": "schema",
                     "type": "Attribute",
                     "required": True,
                 }

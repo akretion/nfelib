@@ -32,7 +32,7 @@ def visit_nested_classes(cls, classes):
 
 
 def test_init_all():
-    for binding in pkgutil.walk_packages(["/tmp/nfelib/nfelib/bindings"]):
+    for binding in pkgutil.walk_packages(["nfelib/bindings"]):
         binding_path = "nfelib/bindings/" + binding.name
         #        _logger.info(binding_path)
         for version in pkgutil.walk_packages([binding_path]):
@@ -47,7 +47,7 @@ def test_init_all():
                     version.name,
                     modpkg.name,
                 )
-                #                _logger.info(mod_name)
+                _logger.info(mod_name)
                 mod = importlib.import_module(mod_name)
 
                 for _klass_name, klass in mod.__dict__.items():

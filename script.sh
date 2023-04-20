@@ -75,10 +75,10 @@ if [$DOWNLOAD_SCHEMAS]; then
   rm -rf nfelib/schemas/nfe_epec
   cp -rf /tmp/generated/schemas/nfe_ator_interessado nfelib/schemas/nfe_epec
 fi
-xsdata generate nfelib/schemas/nfe_epec/v1_0 --package nfelib.bindings.nfe_epec.v1_0
-# fix the main two files with -ss single-package to avoid circular deps
-xsdata generate nfelib/schemas/nfe_epec/v1_0/e110140_v1.00.xsd -ss single-package --package=nfelib/bindings/nfe_epec/v1_0/e110140_v1_00.py
-xsdata generate nfelib/schemas/nfe_epec/v1_0/leiauteEPEC_v1.00.xsd -ss single-package --package=nfelib/bindings/nfe_epec/v1_0/leiaute_epec_v1_00.py
+# xsdata generate nfelib/schemas/nfe_epec/v1_0 --package nfelib.bindings.nfe_epec.v1_0
+# fix the main two files with -ss single-package to avoid circular deps:
+xsdata generate nfelib/schemas/nfe_epec/v1_0/e110140_v1.00.xsd -ss single-package --package=nfelib.bindings.nfe_epec.v1_0.e110140_v1_00
+xsdata generate nfelib/schemas/nfe_epec/v1_0/leiauteEPEC_v1.00.xsd -ss single-package --package=nfelib.bindings.nfe_epec.v1_0.leiaute_epec_v1_00
 
 # Evento Comprovante Entrega da NF-e . Publicado em 19/05/2021 (Atualizado em 15/06/2021)
 if [$DOWNLOAD_SCHEMAS]; then
@@ -123,7 +123,9 @@ fi
 xsdata generate nfelib/schemas/bpe/v1_0 --package nfelib.bindings.bpe.v1_0
 
 # NFS-e Pacote de esquemas XSD V1.00.02 - (16/09/2022)
-rm -rf nfelib/schemas/nfse
-erpbrasil-edoc-gen-download-schema -n nfse -v v1_0 -u https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip 
-cp -rf /tmp/generated/schemas/nfse nfelib/schemas/nfse
-xsdata generate nfelib/schemas/nfse/v1_0 --package nfelib.bindings.nfse.v1_0
+if [$DOWNLOAD_SCHEMAS]; then
+  rm -rf nfelib/schemas/nfse
+  erpbrasil-edoc-gen-download-schema -n nfse -v v1_0 -u https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip 
+  cp -rf /tmp/generated/schemas/nfse nfelib/schemas/nfse
+  xsdata generate nfelib/schemas/nfse/v1_0 --package nfelib.bindings.nfse.v1_0
+fi

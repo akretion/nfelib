@@ -47,8 +47,8 @@ def schema_validation(inFilename, **kwargs):
     validation_messages = []
 
     parser_path = os.path.join(
-        os.path.dirname(__file__), '..', '..', 'schemas', 'nfe',
-        'v4_00', 'nfe_v4.00.xsd')
+        os.path.dirname(__file__), '..', 'schemas', 'nfe',
+        'v4_0', 'leiauteNFe_v4.00.xsd')
 
     xmlschema_doc = etree_.parse(parser_path)
     parser = etree_.XMLSchema(xmlschema_doc)

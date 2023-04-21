@@ -1,8 +1,16 @@
 # Copyright (C) 2018 - TODAY Luis Felipe Mileo - KMEE INFORMATICA LTDA
+# (adapted here by Raphaël Valyi)
 
 from erpbrasil.assinatura.assinatura import Assinatura
-from erpbrasil.edoc.edoc import DocumentoEletronico
-from erpbrasil.edoc.resposta import RetornoSoap
+
+try:
+    from erpbrasil.edoc.edoc import DocumentoEletronico
+    from erpbrasil.edoc.resposta import RetornoSoap
+except ImportError:
+    raise RuntimeError(
+        "You need to install the erpbrasil.edoc package to use this legacy webservice layer."
+    )
+
 from lxml import etree
 from lxml.etree import _Element
 import re
@@ -14,8 +22,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 def analisar_retorno_raw_xsdata(operacao, raiz, xml, retorno, classe):
     retorno.raise_for_status()
-    match = re.search('<soap:Body>(.*?)</soap:Body>',
-                      retorno.text.replace('\n', ''))
+    match = re.search("<soap:Body>(.*?)</soap:Body>", retorno.text.replace("\n", ""))
     if match:
         xml_resposta = match.group(1)
         # pega a resposta de dentro do envelope
@@ -26,7 +33,6 @@ def analisar_retorno_raw_xsdata(operacao, raiz, xml, retorno, classe):
 
 
 class DocumentoElectronicoLegacy(DocumentoEletronico):
-
     def render_edoc_xsdata(self, edoc, pretty_print=False):
         """
         Same as _generateds_to_string_etree but for xsdata bindings.
@@ -42,17 +48,13 @@ class DocumentoElectronicoLegacy(DocumentoEletronico):
         else:
             ns_map = None
 
-        xml_string = serializer.render(
-            obj=edoc, ns_map=ns_map
-        )
+        xml_string = serializer.render(obj=edoc, ns_map=ns_map)
         return xml_string, etree.fromstring(xml_string.encode())
 
     def _post_xsdata(self, raiz, url, operacao, classe):
         xml_string, xml_etree = self.render_edoc_xsdata(raiz)
         with self._transmissao.cliente(url):
-            retorno = self._transmissao.enviar(
-                operacao, xml_etree
-            )
+            retorno = self._transmissao.enviar(operacao, xml_etree)
             return analisar_retorno_raw_xsdata(
                 operacao, raiz, xml_string, retorno, classe
             )
@@ -63,4 +65,3 @@ class DocumentoElectronicoLegacy(DocumentoEletronico):
             xml_etree, id, getchildren
         )
         return xml_assinado
-

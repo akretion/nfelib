@@ -47,7 +47,6 @@ def test_init_all():
                     version.name,
                 )
             _logger.info("  walking over:  " + version_path)
-            #            continue
             for modpkg in pkgutil.walk_packages([version_path]):
                 if pkg_name.name == "v4_00":
                     mod_name = (pkg_path + "/" + modpkg.name).replace("/", ".")

@@ -56,7 +56,7 @@ def schema_validation(inFilename, **kwargs):
         "nfe",
         "schemas",
         "v4_0",
-        "leiauteNFe_v4.00.xsd",
+        "nfe_v4.00.xsd",
     )
 
     xmlschema_doc = etree_.parse(parser_path)

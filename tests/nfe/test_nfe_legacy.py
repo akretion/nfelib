@@ -20,7 +20,7 @@ from nfelib.v4_00 import retConsCad
 
 
 def test_in_out_leiauteNFe():
-    path = 'nfelib/samples/nfe/v4_0/leiauteNFe'
+    path = 'nfelib/nfe/samples/v4_0/leiauteNFe'
     for filename in os.listdir(path):
         # primeiro filtramos a root tag e a possivel assinatura:
         subtree = nfe_sub.parsexml_('%s/%s' % (path, filename,))
@@ -41,7 +41,7 @@ def test_in_out_leiauteNFe():
         assert len(diff) == 0
 
 def test_in_out_leiauteInutNFe():
-    path = 'nfelib/samples/nfe/v4_0/leiauteInutNFe'
+    path = 'nfelib/nfe/samples/v4_0/leiauteInutNFe'
     for filename in os.listdir(path):
         inputfile = '%s/%s' % (path, filename,)
         doc = retInutNFe.parsexml_(inputfile, None)
@@ -96,7 +96,7 @@ def test_cce():
     retEnvCCe.detEventoType()
 
 def test_in_out_leiauteCCe():
-    path = 'nfelib/samples/nfe_evento_cce/v1_0'
+    path = 'nfelib/nfe_evento_cce/samples/v1_0'
     for filename in os.listdir(path):
         inputfile = '%s/%s' % (path, filename,)
         doc = retInutNFe.parsexml_(inputfile, None)

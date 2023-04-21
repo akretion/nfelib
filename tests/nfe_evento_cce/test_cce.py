@@ -8,11 +8,11 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
-from nfelib.bindings.nfe_evento_cce.v1_0.cce_v1_00 import Evento
+from nfelib.nfe_evento_cce.bindings.v1_0.cce_v1_00 import Evento
 
 
 def test_in_out_leiauteCCe():
-    path = os.path.join("nfelib", "samples", "nfe_evento_cce", "v1_0")
+    path = os.path.join("nfelib", "nfe_evento_cce", "samples", "v1_0")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()

@@ -1,30 +1,24 @@
 # Copyright (C) 2019 - TODAY Raphaël Valyi - Akretion
 
 import os
-import sys
-from os import path
-import importlib
-import inspect
-from enum import EnumMeta
 from xmldiff import main
 
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
-import pkgutil
 
-from nfelib.bindings.nfe.v4_0 import leiaute_nfe_v4_00
-from nfelib.bindings.nfe.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
-from nfelib.bindings.nfe.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
+from nfelib.nfe.bindings.v4_0 import leiaute_nfe_v4_00
+from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
+from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 
-from nfelib.bindings.nfe_dist_dfe.v1_0.dist_dfe_int_v1_01 import DistDfeInt
+from nfelib.nfe_dist_dfe.bindings.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 
-from nfelib.bindings.nfe_evento_generico.v1_0.leiaute_evento_v1_00 import TenvEvento
+from nfelib.nfe_evento_generico.bindings.v1_0.leiaute_evento_v1_00 import TenvEvento
 
 
 def test_in_out_leiauteNFe():
-    path = os.path.join("nfelib", "samples", "nfe", "v4_0", "leiauteNFe")
+    path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
@@ -47,7 +41,7 @@ def test_in_out_leiauteNFe():
 
 
 def test_in_out_leiauteInutNFe():
-    path = os.path.join("nfelib", "samples", "nfe", "v4_0", "leiauteInutNFe")
+    path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteInutNFe")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()

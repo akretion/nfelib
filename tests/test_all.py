@@ -32,22 +32,32 @@ def visit_nested_classes(cls, classes):
 
 
 def test_init_all():
-    for binding in pkgutil.walk_packages(["nfelib/"]):
-        binding_path = "nfelib/" + binding.name
-        #        _logger.info(binding_path)
-        for version in pkgutil.walk_packages([binding_path]):
-            version_path = "nfelib/%s/bindings/%s" % (
-                binding.name,
-                version.name,
-            )
-            _logger.info("walking over:  " + version_path)
-            for modpkg in pkgutil.walk_packages([version_path]):
-                mod_name = "nfelib.bindings.%s.%s.%s" % (
-                    binding.name,
+    for pkg_name in pkgutil.walk_packages(["nfelib/"]):
+        if pkg_name.name == "v4_00":
+            pkg_path = "nfelib/v4_00"
+        else:
+            pkg_path = "nfelib/" + pkg_name.name + "/bindings"
+        _logger.info(pkg_path)
+        for version in pkgutil.walk_packages([pkg_path]):
+            if pkg_name.name == "v4_00":
+                version_path = pkg_path
+            else:
+                version_path = "nfelib/%s/bindings/%s" % (
+                    pkg_name.name,
                     version.name,
-                    modpkg.name,
                 )
-                _logger.info(mod_name)
+            _logger.info("  walking over:  " + version_path)
+            #            continue
+            for modpkg in pkgutil.walk_packages([version_path]):
+                if pkg_name.name == "v4_00":
+                    mod_name = (pkg_path + "/" + modpkg.name).replace("/", ".")
+                else:
+                    mod_name = "nfelib.%s.bindings.%s.%s" % (
+                        pkg_name.name,
+                        version.name,
+                        modpkg.name,
+                    )
+                _logger.info("    " + mod_name)
                 mod = importlib.import_module(mod_name)
 
                 for _klass_name, klass in mod.__dict__.items():
@@ -55,6 +65,10 @@ def test_init_all():
                         classes = set()
                         visit_nested_classes(klass, classes)
                         for cls in classes:
-                            if cls.__name__ in ("XmlDateTime", "XmlDate"):
+                            if (
+                                cls.__name__
+                                in ("XmlDateTime", "XmlDate", "MixedContainer")
+                                or "FixedOffsetTZ" in cls.__name__
+                            ):
                                 continue
                             cls()

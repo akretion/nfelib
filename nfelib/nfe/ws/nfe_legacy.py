@@ -25,30 +25,30 @@ except ImportError:
         "You need to install the erpbrasil.edoc package to use this legacy webservice layer."
     )
 
-from nfelib.bindings.nfe.v4_0.proc_nfe_v4_00 import NfeProc
-from nfelib.bindings.nfe.v4_0.inut_nfe_v4_00 import InutNfe
-from nfelib.bindings.nfe.v4_0.ret_inut_nfe_v4_00 import RetInutNfe
-from nfelib.bindings.nfe.v4_0.cons_stat_serv_v4_00 import ConsStatServ
-from nfelib.bindings.nfe.v4_0.ret_cons_stat_serv_v4_00 import RetConsStatServ
-from nfelib.bindings.nfe.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
-from nfelib.bindings.nfe.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
-from nfelib.bindings.nfe.v4_0.envi_nfe_v4_00 import EnviNfe
-from nfelib.bindings.nfe.v4_0.ret_envi_nfe_v4_00 import RetEnviNfe
-from nfelib.bindings.nfe.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
-from nfelib.bindings.nfe.v4_0.ret_cons_reci_nfe_v4_00 import RetConsReciNfe
-from nfelib.bindings.nfe_dist_dfe.v1_0 import DistDfeInt
-from nfelib.bindings.nfe_dist_dfe.v1_0 import RetDistDfeInt
-from nfelib.bindings.nfe_evento_generico.v1_0.env_evento_v1_00 import (
+from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
+from nfelib.nfe.bindings.v4_0.inut_nfe_v4_00 import InutNfe
+from nfelib.nfe.bindings.v4_0.ret_inut_nfe_v4_00 import RetInutNfe
+from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
+from nfelib.nfe.bindings.v4_0.ret_cons_stat_serv_v4_00 import RetConsStatServ
+from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
+from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
+from nfelib.nfe.bindings.v4_0.envi_nfe_v4_00 import EnviNfe
+from nfelib.nfe.bindings.v4_0.ret_envi_nfe_v4_00 import RetEnviNfe
+from nfelib.nfe.bindings.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
+from nfelib.nfe.bindings.v4_0.ret_cons_reci_nfe_v4_00 import RetConsReciNfe
+from nfelib.nfe_dist_dfe.bindings.v1_0 import DistDfeInt
+from nfelib.nfe_dist_dfe.bindings.v1_0 import RetDistDfeInt
+from nfelib.nfe_evento_generico.bindings.v1_0.env_evento_v1_00 import (
     EnvEvento as EnvEventoGenerico,
 )
-from nfelib.bindings.nfe_evento_cce.v1_0.leiaute_cce_v1_00 import Tevento as TeventoCCe
-from nfelib.bindings.nfe_evento_generico.v1_0.ret_env_evento_v1_00 import (
+from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import Tevento as TeventoCCe
+from nfelib.nfe_evento_generico.bindings.v1_0.ret_env_evento_v1_00 import (
     RetEnvEvento as RetEnvEventoGenerico,
 )
-from nfelib.bindings.nfe_evento_cancel.v1_0.evento_canc_nfe_v1_00 import (
+from nfelib.nfe_evento_cancel.bindings.v1_0.evento_canc_nfe_v1_00 import (
     Evento as EventoCancNfe,
 )
-from nfelib.bindings.nfe_evento_cce.v1_0.cce_v1_00 import Evento as EventoCCe
+from nfelib.nfe_evento_cce.bindings.v1_0.cce_v1_00 import Evento as EventoCCe
 
 from .edoc_legacy import DocumentoElectronicoLegacy
 

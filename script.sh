@@ -113,6 +113,14 @@ if [$DOWNLOAD_SCHEMAS]; then
 fi
 xsdata generate nfelib/mdfe/schemas/v3_0 --package nfelib.mdfe.bindings.v3_0
 
+# MDF-e - Web Service Distribuição de DF-e de Interesse dos Atores do MDF-e
+if [$DOWNLOAD_SCHEMAS]; then
+  erpbrasil-edoc-gen-download-schema -n cte_dist_dfe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFeDistDFe_100.zip
+  rm -rf nfelib/mdfe_dist_dfe/schemas
+  cp -rf /tmp/generated/mdfe_dist_dfe/schemas nfelib/mdfe_dist_dfe/schemas
+fi
+xsdata generate nfelib/mdfe_dist_dfe/schemas/v1_0 --package nfelib.mdfe_dist_dfe.bindings.v1_0
+
 # BP-e - Bilhete de Passagem Eletrônico - Schemas NT 2021.001 (26/01/2021)
 if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n bpe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip

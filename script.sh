@@ -10,6 +10,12 @@ if [$DOWNLOAD_SCHEMAS]; then
 fi
 xsdata generate nfelib/nfe/schemas/v4_0 --package nfelib.nfe.bindings.v4_0
 
+# patch o campo IPI caso o patch no xsdata não foi aplicado
+# ver detalhes aqui https://github.com/akretion/nfelib/issues/40
+# sed  -e 's/IPI: List\[Tipi\] = field(/IPI: Optional\[Tipi\] = field(/' -i nfelib/nfe/bindings/v4_0/leiaute_nfe_v4_00.py
+# infelizmente teria que trocar a outra linha depois tb default_factory=List por default=None para funcionar.
+# vou deixar essa tentativa de patch com sed desativada por enquanto.
+
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
 if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n nfe_dist_dfe -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=n3Kn9%20YZNak=

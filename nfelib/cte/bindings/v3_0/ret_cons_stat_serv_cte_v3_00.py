@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 @dataclass
 class RetConsStatServCte(TretConsStatServ):
     """
-    Schema XML de validação do Resultado da Consulta do Status do Serviço de
-    CT-e.
+    Schema XML de validação do Resultado da Consulta do Status do Serviço de CT-e.
     """
     class Meta:
         name = "retConsStatServCte"

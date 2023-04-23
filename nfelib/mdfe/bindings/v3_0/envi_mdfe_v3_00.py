@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 @dataclass
 class EnviMdfe(TenviMdfe):
     """
-    Schema XML de validação do Envio de Lote MDF-e para concessão de
-    autorização.
+    Schema XML de validação do Envio de Lote MDF-e para concessão de autorização.
     """
     class Meta:
         name = "enviMDFe"

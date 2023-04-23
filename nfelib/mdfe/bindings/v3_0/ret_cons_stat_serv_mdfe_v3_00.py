@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 @dataclass
 class RetConsStatServMdfe(TretConsStatServ):
     """
-    Schema XML de validação do Resultado da Consulta do Status do Serviço de
-    MDF-e.
+    Schema XML de validação do Resultado da Consulta do Status do Serviço de MDF-e.
     """
     class Meta:
         name = "retConsStatServMDFe"

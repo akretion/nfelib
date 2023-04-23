@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 @dataclass
 class InutNfe(TinutNfe):
     """
-    Schema XML de validação do Pedido de Inutilização de Numeração da Nota
-    Fiscal Eletrônica.
+    Schema XML de validação do Pedido de Inutilização de Numeração da Nota Fiscal
+    Eletrônica.
     """
     class Meta:
         name = "inutNFe"

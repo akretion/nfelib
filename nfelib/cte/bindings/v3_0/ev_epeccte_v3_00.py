@@ -19,8 +19,8 @@ class EvEpeccteTpCte(Enum):
 @dataclass
 class EvEpeccte:
     """
-    Schema XML de validação do evento de emissão prévia de emissão em
-    contingência 110113.
+    Schema XML de validação do evento de emissão prévia de emissão em contingência
+    110113.
 
     :ivar descEvento: Descrição do Evento - “EPEC”
     :ivar xJust: Justificativa da Entrada em Contingencia

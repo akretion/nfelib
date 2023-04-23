@@ -7,7 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 @dataclass
 class DistMdfe(TdistDfe):
     """
-    solicitação de distribuição de MDF-e para o Ambiente Autorizador.
+    Solicitação de distribuição de MDF-e para o Ambiente Autorizador.
     """
     class Meta:
         name = "distMDFe"

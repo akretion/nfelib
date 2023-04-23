@@ -4729,12 +4729,11 @@ class Tnfe:
                         "namespace": "http://www.portalfiscal.inf.br/nfe",
                     }
                 )
-                IPI: List[Tipi] = field(
-                    default_factory=list,
+                IPI: Optional[Tipi] = field(
+                    default=None,
                     metadata={
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/nfe",
-                        "max_occurs": 2,
                     }
                 )
                 II: Optional["Tnfe.InfNfe.Det.Imposto.Ii"] = field(

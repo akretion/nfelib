@@ -171,8 +171,7 @@ class TdistDfe:
 @dataclass
 class TretDistDfe:
     """
-    Schema XML de validação do lote de retorno de documentos ficais
-    eletronicos.
+    Schema XML de validação do lote de retorno de documentos ficais eletronicos.
 
     :ivar tpAmb: Identificação do Ambiente:  1 - Produção  2 -
         Homologação

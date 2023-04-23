@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/bpe"
 @dataclass
 class RetConsStatServBpe(TretConsStatServ):
     """
-    Schema XML de validação do Resultado da Consulta do Status do Serviço de
-    BP-e.
+    Schema XML de validação do Resultado da Consulta do Status do Serviço de BP-e.
     """
     class Meta:
         name = "retConsStatServBPe"

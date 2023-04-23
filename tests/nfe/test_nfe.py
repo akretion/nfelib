@@ -9,12 +9,33 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
 from nfelib.nfe.bindings.v4_0 import leiaute_nfe_v4_00
+from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import Tnfe
 from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
 from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 
 from nfelib.nfe_dist_dfe.bindings.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 
 from nfelib.nfe_evento_generico.bindings.v1_0.leiaute_evento_v1_00 import TenvEvento
+
+
+def test_patched_xsdata_for_ipi():
+    # o xsdata precisa de uma linha de patch para funcionar legal para a NFe
+    # (de forma simples/backward compatible no Odoo)
+    # uma alternativa seria usar a opção --compound-fields do xsdata mas
+    # deixaria o uso mais complexo no Odoo de forma desnecessaria. A gestão dos campos
+    # compostos/compound esta sendo retrabalhada no xsdata de qualquer forma.
+    # Enfim hoje o mais simples é aplicar um patch de uma linha no xsdata.
+    # Se vc instalar o pacote xsdata-odoo e fizer export XSD_SCHEMA=nfe,
+    # o xsdata-odoo aplica esse monkey patch para você.
+    # ver detalhes aqui: https://github.com/akretion/nfelib/issues/40
+    assert (
+        str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"]).startswith(
+            "typing.Optional"
+        )
+        # Python < 3.9:
+        or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"])
+        == "typing.Union[nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00.Tipi, NoneType]"
+    )
 
 
 def test_in_out_leiauteNFe():

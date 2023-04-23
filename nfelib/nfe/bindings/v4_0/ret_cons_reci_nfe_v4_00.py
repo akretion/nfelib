@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 @dataclass
 class RetConsReciNfe(TretConsReciNfe):
     """
-    Schema XML de validação do retorno do Pedido de  Consulta do Recido do Lote
-    de Notas Fiscais Eletrônicas.
+    Schema XML de validação do retorno do Pedido de  Consulta do Recido do Lote de
+    Notas Fiscais Eletrônicas.
     """
     class Meta:
         name = "retConsReciNFe"

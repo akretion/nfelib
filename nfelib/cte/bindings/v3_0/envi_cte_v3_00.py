@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 @dataclass
 class EnviCte(TenviCte):
     """
-    Schema XML de validação do Envio de Lote CT-e para concessão de
-    autorização.
+    Schema XML de validação do Envio de Lote CT-e para concessão de autorização.
     """
     class Meta:
         name = "enviCTe"

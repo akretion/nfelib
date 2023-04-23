@@ -795,8 +795,7 @@ class TprocEvento:
 @dataclass
 class TretConsSitNfe:
     """
-    Tipo Retorno de Pedido de Consulta da Situação Atual da Nota Fiscal
-    Eletrônica.
+    Tipo Retorno de Pedido de Consulta da Situação Atual da Nota Fiscal Eletrônica.
 
     :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
     :ivar verAplic: Versão do Aplicativo que processou a NF-e

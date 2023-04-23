@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 @dataclass
 class ConsSitNfe(TconsSitNfe):
     """
-    Schema de validação XML dp Pedido de Consulta da Situação Atual da Nota
-    Fiscal Eletrônica.
+    Schema de validação XML dp Pedido de Consulta da Situação Atual da Nota Fiscal
+    Eletrônica.
     """
     class Meta:
         name = "consSitNFe"

@@ -12,8 +12,8 @@ class Tamb(Enum):
 
 
 class TcorgaoIbge(Enum):
-    """Tipo Código de orgão (UF da tabela do IBGE + 90 SUFRAMA + 91 RFB +  94
-    SVC-RS + 95 SVC-SP + 96  Sinc.
+    """Tipo Código de orgão (UF da tabela do IBGE + 90 SUFRAMA + 91 RFB +  94 SVC-
+    RS + 95 SVC-SP + 96  Sinc.
 
     Chaves do RS para SVSP
     """

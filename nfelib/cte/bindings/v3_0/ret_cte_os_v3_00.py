@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 @dataclass
 class RetCteOs(TretCteOs):
     """
-    Schema XML de validação do retorno do recibo de envio do CT-e OS (Modelo
-    67)
+    Schema XML de validação do retorno do recibo de envio do CT-e OS (Modelo 67)
     """
     class Meta:
         name = "retCTeOS"

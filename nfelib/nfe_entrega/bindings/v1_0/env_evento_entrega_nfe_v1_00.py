@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 @dataclass
 class EnvEvento(TenvEvento):
     """
-    Schema XML de validação do lote de envio do evento de Comprovante de
-    Entrega da NFe.
+    Schema XML de validação do lote de envio do evento de Comprovante de Entrega da
+    NFe.
     """
     class Meta:
         name = "envEvento"

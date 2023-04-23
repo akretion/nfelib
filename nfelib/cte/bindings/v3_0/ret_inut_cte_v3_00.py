@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 @dataclass
 class RetInutCte(TretInutCte):
     """
-    Schema XML de validação do retorno do Pedido de Inutilização de Numeração
-    do CT-e.
+    Schema XML de validação do retorno do Pedido de Inutilização de Numeração do
+    CT-e.
     """
     class Meta:
         name = "retInutCTe"

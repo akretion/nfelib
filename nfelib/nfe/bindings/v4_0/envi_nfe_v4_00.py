@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/nfe"
 @dataclass
 class EnviNfe(TenviNfe):
     """
-    Schema XML de validação do Pedido de Concessão de Autorização da Nota
-    Fiscal Eletrônica.
+    Schema XML de validação do Pedido de Concessão de Autorização da Nota Fiscal
+    Eletrônica.
     """
     class Meta:
         name = "enviNFe"

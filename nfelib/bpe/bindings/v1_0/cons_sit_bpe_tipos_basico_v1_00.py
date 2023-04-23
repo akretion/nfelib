@@ -13,8 +13,7 @@ __NAMESPACE__ = "http://www.portalfiscal.inf.br/bpe"
 @dataclass
 class TconsSitBpe:
     """
-    Tipo Pedido de Consulta da Situação Atual do Bilhete de Passagem
-    Eletrônico.
+    Tipo Pedido de Consulta da Situação Atual do Bilhete de Passagem Eletrônico.
 
     :ivar tpAmb: Identificação do Ambiente: 1 - Produção 2 - Homologação
     :ivar xServ: Serviço Solicitado

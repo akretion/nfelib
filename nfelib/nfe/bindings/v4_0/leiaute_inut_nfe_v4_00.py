@@ -178,8 +178,7 @@ class TinutNfe:
 @dataclass
 class TretInutNfe:
     """
-    Tipo retorno do Pedido de Inutilização de Numeração da Nota Fiscal
-    Eletrônica.
+    Tipo retorno do Pedido de Inutilização de Numeração da Nota Fiscal Eletrônica.
 
     :ivar infInut: Dados do Retorno do Pedido de Inutilização de
         Numeração da Nota Fiscal Eletrônica

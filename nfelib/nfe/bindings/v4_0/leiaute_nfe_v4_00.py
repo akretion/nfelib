@@ -97,6 +97,10 @@ class Icms00ModBc(Enum):
     VALUE_3 = "3"
 
 
+class Icms02Cst(Enum):
+    VALUE_02 = "02"
+
+
 class Icms10Cst(Enum):
     VALUE_10 = "10"
 
@@ -122,6 +126,15 @@ class Icms10MotDesIcmsst(Enum):
     VALUE_3 = "3"
     VALUE_9 = "9"
     VALUE_12 = "12"
+
+
+class Icms15Cst(Enum):
+    VALUE_15 = "15"
+
+
+class Icms15MotRedAdRem(Enum):
+    VALUE_1 = "1"
+    VALUE_9 = "9"
 
 
 class Icms20Cst(Enum):
@@ -193,8 +206,16 @@ class Icms51ModBc(Enum):
     VALUE_3 = "3"
 
 
+class Icms53Cst(Enum):
+    VALUE_53 = "53"
+
+
 class Icms60Cst(Enum):
     VALUE_60 = "60"
+
+
+class Icms61Cst(Enum):
+    VALUE_61 = "61"
 
 
 class Icms70Cst(Enum):
@@ -455,211 +476,6 @@ class PisstIndSomaPisst(Enum):
     VALUE_1 = "1"
 
 
-class TclistServ(Enum):
-    """
-    Tipo Código da Lista de Serviços LC 116/2003.
-    """
-    VALUE_01_01 = "01.01"
-    VALUE_01_02 = "01.02"
-    VALUE_01_03 = "01.03"
-    VALUE_01_04 = "01.04"
-    VALUE_01_05 = "01.05"
-    VALUE_01_06 = "01.06"
-    VALUE_01_07 = "01.07"
-    VALUE_01_08 = "01.08"
-    VALUE_01_09 = "01.09"
-    VALUE_02_01 = "02.01"
-    VALUE_03_02 = "03.02"
-    VALUE_03_03 = "03.03"
-    VALUE_03_04 = "03.04"
-    VALUE_03_05 = "03.05"
-    VALUE_04_01 = "04.01"
-    VALUE_04_02 = "04.02"
-    VALUE_04_03 = "04.03"
-    VALUE_04_04 = "04.04"
-    VALUE_04_05 = "04.05"
-    VALUE_04_06 = "04.06"
-    VALUE_04_07 = "04.07"
-    VALUE_04_08 = "04.08"
-    VALUE_04_09 = "04.09"
-    VALUE_04_10 = "04.10"
-    VALUE_04_11 = "04.11"
-    VALUE_04_12 = "04.12"
-    VALUE_04_13 = "04.13"
-    VALUE_04_14 = "04.14"
-    VALUE_04_15 = "04.15"
-    VALUE_04_16 = "04.16"
-    VALUE_04_17 = "04.17"
-    VALUE_04_18 = "04.18"
-    VALUE_04_19 = "04.19"
-    VALUE_04_20 = "04.20"
-    VALUE_04_21 = "04.21"
-    VALUE_04_22 = "04.22"
-    VALUE_04_23 = "04.23"
-    VALUE_05_01 = "05.01"
-    VALUE_05_02 = "05.02"
-    VALUE_05_03 = "05.03"
-    VALUE_05_04 = "05.04"
-    VALUE_05_05 = "05.05"
-    VALUE_05_06 = "05.06"
-    VALUE_05_07 = "05.07"
-    VALUE_05_08 = "05.08"
-    VALUE_05_09 = "05.09"
-    VALUE_06_01 = "06.01"
-    VALUE_06_02 = "06.02"
-    VALUE_06_03 = "06.03"
-    VALUE_06_04 = "06.04"
-    VALUE_06_05 = "06.05"
-    VALUE_06_06 = "06.06"
-    VALUE_07_01 = "07.01"
-    VALUE_07_02 = "07.02"
-    VALUE_07_03 = "07.03"
-    VALUE_07_04 = "07.04"
-    VALUE_07_05 = "07.05"
-    VALUE_07_06 = "07.06"
-    VALUE_07_07 = "07.07"
-    VALUE_07_08 = "07.08"
-    VALUE_07_09 = "07.09"
-    VALUE_07_10 = "07.10"
-    VALUE_07_11 = "07.11"
-    VALUE_07_12 = "07.12"
-    VALUE_07_13 = "07.13"
-    VALUE_07_16 = "07.16"
-    VALUE_07_17 = "07.17"
-    VALUE_07_18 = "07.18"
-    VALUE_07_19 = "07.19"
-    VALUE_07_20 = "07.20"
-    VALUE_07_21 = "07.21"
-    VALUE_07_22 = "07.22"
-    VALUE_08_01 = "08.01"
-    VALUE_08_02 = "08.02"
-    VALUE_09_01 = "09.01"
-    VALUE_09_02 = "09.02"
-    VALUE_09_03 = "09.03"
-    VALUE_10_01 = "10.01"
-    VALUE_10_02 = "10.02"
-    VALUE_10_03 = "10.03"
-    VALUE_10_04 = "10.04"
-    VALUE_10_05 = "10.05"
-    VALUE_10_06 = "10.06"
-    VALUE_10_07 = "10.07"
-    VALUE_10_08 = "10.08"
-    VALUE_10_09 = "10.09"
-    VALUE_10_10 = "10.10"
-    VALUE_11_01 = "11.01"
-    VALUE_11_02 = "11.02"
-    VALUE_11_03 = "11.03"
-    VALUE_11_04 = "11.04"
-    VALUE_12_01 = "12.01"
-    VALUE_12_02 = "12.02"
-    VALUE_12_03 = "12.03"
-    VALUE_12_04 = "12.04"
-    VALUE_12_05 = "12.05"
-    VALUE_12_06 = "12.06"
-    VALUE_12_07 = "12.07"
-    VALUE_12_08 = "12.08"
-    VALUE_12_09 = "12.09"
-    VALUE_12_10 = "12.10"
-    VALUE_12_11 = "12.11"
-    VALUE_12_12 = "12.12"
-    VALUE_12_13 = "12.13"
-    VALUE_12_14 = "12.14"
-    VALUE_12_15 = "12.15"
-    VALUE_12_16 = "12.16"
-    VALUE_12_17 = "12.17"
-    VALUE_13_02 = "13.02"
-    VALUE_13_03 = "13.03"
-    VALUE_13_04 = "13.04"
-    VALUE_13_05 = "13.05"
-    VALUE_14_01 = "14.01"
-    VALUE_14_02 = "14.02"
-    VALUE_14_03 = "14.03"
-    VALUE_14_04 = "14.04"
-    VALUE_14_05 = "14.05"
-    VALUE_14_06 = "14.06"
-    VALUE_14_07 = "14.07"
-    VALUE_14_08 = "14.08"
-    VALUE_14_09 = "14.09"
-    VALUE_14_10 = "14.10"
-    VALUE_14_11 = "14.11"
-    VALUE_14_12 = "14.12"
-    VALUE_14_13 = "14.13"
-    VALUE_14_14 = "14.14"
-    VALUE_15_01 = "15.01"
-    VALUE_15_02 = "15.02"
-    VALUE_15_03 = "15.03"
-    VALUE_15_04 = "15.04"
-    VALUE_15_05 = "15.05"
-    VALUE_15_06 = "15.06"
-    VALUE_15_07 = "15.07"
-    VALUE_15_08 = "15.08"
-    VALUE_15_09 = "15.09"
-    VALUE_15_10 = "15.10"
-    VALUE_15_11 = "15.11"
-    VALUE_15_12 = "15.12"
-    VALUE_15_13 = "15.13"
-    VALUE_15_14 = "15.14"
-    VALUE_15_15 = "15.15"
-    VALUE_15_16 = "15.16"
-    VALUE_15_17 = "15.17"
-    VALUE_15_18 = "15.18"
-    VALUE_16_01 = "16.01"
-    VALUE_16_02 = "16.02"
-    VALUE_17_01 = "17.01"
-    VALUE_17_02 = "17.02"
-    VALUE_17_03 = "17.03"
-    VALUE_17_04 = "17.04"
-    VALUE_17_05 = "17.05"
-    VALUE_17_06 = "17.06"
-    VALUE_17_08 = "17.08"
-    VALUE_17_09 = "17.09"
-    VALUE_17_10 = "17.10"
-    VALUE_17_11 = "17.11"
-    VALUE_17_12 = "17.12"
-    VALUE_17_13 = "17.13"
-    VALUE_17_14 = "17.14"
-    VALUE_17_15 = "17.15"
-    VALUE_17_16 = "17.16"
-    VALUE_17_17 = "17.17"
-    VALUE_17_18 = "17.18"
-    VALUE_17_19 = "17.19"
-    VALUE_17_20 = "17.20"
-    VALUE_17_21 = "17.21"
-    VALUE_17_22 = "17.22"
-    VALUE_17_23 = "17.23"
-    VALUE_17_24 = "17.24"
-    VALUE_17_25 = "17.25"
-    VALUE_18_01 = "18.01"
-    VALUE_19_01 = "19.01"
-    VALUE_20_01 = "20.01"
-    VALUE_20_02 = "20.02"
-    VALUE_20_03 = "20.03"
-    VALUE_21_01 = "21.01"
-    VALUE_22_01 = "22.01"
-    VALUE_23_01 = "23.01"
-    VALUE_24_01 = "24.01"
-    VALUE_25_01 = "25.01"
-    VALUE_25_02 = "25.02"
-    VALUE_25_03 = "25.03"
-    VALUE_25_04 = "25.04"
-    VALUE_25_05 = "25.05"
-    VALUE_26_01 = "26.01"
-    VALUE_27_01 = "27.01"
-    VALUE_28_01 = "28.01"
-    VALUE_29_01 = "29.01"
-    VALUE_30_01 = "30.01"
-    VALUE_31_01 = "31.01"
-    VALUE_32_01 = "32.01"
-    VALUE_33_01 = "33.01"
-    VALUE_34_01 = "34.01"
-    VALUE_35_01 = "35.01"
-    VALUE_36_01 = "36.01"
-    VALUE_37_01 = "37.01"
-    VALUE_38_01 = "38.01"
-    VALUE_39_01 = "39.01"
-    VALUE_40_01 = "40.01"
-
-
 class TenderEmiCPais(Enum):
     VALUE_1058 = "1058"
 
@@ -784,11 +600,7 @@ class TprocEmi(Enum):
 
 
 class Torig(Enum):
-    """Tipo Origem da mercadoria CST ICMS  origem da mercadoria: 0-Nacional exceto
-    as indicadas nos códigos 3, 4, 5 e 8;
-
-    1-Estrangeira - Importação direta; 2-Estrangeira - Adquirida no mercado interno; 3-Nacional, conteudo superior 40% e inferior ou igual a 70%; 4-Nacional, processos produtivos básicos; 5-Nacional, conteudo inferior 40%; 6-Estrangeira - Importação direta, com similar nacional, lista CAMEX; 7-Estrangeira - mercado interno, sem simular,lista CAMEX;8-Nacional, Conteúdo de Importação superior a 70%.
-    """
+    """Tipo Origem da mercadoria CST ICMS  origem da mercadoria: 0-Nacional exceto as indicadas nos códigos 3, 4, 5 e 8;1-Estrangeira - Importação direta; 2-Estrangeira - Adquirida no mercado interno; 3-Nacional, conteudo superior 40% e inferior ou igual a 70%; 4-Nacional, processos produtivos básicos; 5-Nacional, conteudo inferior 40%; 6-Estrangeira - Importação direta, com similar nacional, lista CAMEX; 7-Estrangeira - mercado interno, sem simular,lista CAMEX;8-Nacional, Conteúdo de Importação superior a 70%."""
     VALUE_0 = "0"
     VALUE_1 = "1"
     VALUE_2 = "2"
@@ -878,12 +690,23 @@ class IdeTpNf(Enum):
     VALUE_1 = "1"
 
 
+class OrigCombIndImport(Enum):
+    VALUE_0 = "0"
+    VALUE_1 = "1"
+
+
 class ProcRefIndProc(Enum):
     VALUE_0 = "0"
     VALUE_1 = "1"
     VALUE_2 = "2"
     VALUE_3 = "3"
     VALUE_9 = "9"
+
+
+class ProcRefTpAto(Enum):
+    VALUE_08 = "08"
+    VALUE_10 = "10"
+    VALUE_12 = "12"
 
 
 class ProdIndEscala(Enum):
@@ -2448,7 +2271,7 @@ class Tnfe:
                 metadata={
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
-                    "max_occurs": 500,
+                    "max_occurs": 999,
                 }
             )
 
@@ -2460,6 +2283,10 @@ class Tnfe:
                     do IBGE) + AAMM da emissão + CNPJ do Emitente +
                     modelo, série e número da NF-e Referenciada + Código
                     Numérico + DV.
+                :ivar refNFeSig: Referencia uma NF-e (modelo 55) emitida
+                    anteriormente pela sua Chave de Acesso com código
+                    numérico zerado, permitindo manter o sigilo da NF-e
+                    referenciada.
                 :ivar refNF: Dados da NF modelo 1/1A referenciada ou NF
                     modelo 2 referenciada
                 :ivar refNFP: Grupo com as informações NF de produtor
@@ -2469,6 +2296,16 @@ class Tnfe:
                 :ivar refECF: Grupo do Cupom Fiscal vinculado à NF-e
                 """
                 refNFe: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "max_length": 44,
+                        "white_space": "preserve",
+                        "pattern": r"[0-9]{44}",
+                    }
+                )
+                refNFeSig: Optional[str] = field(
                     default=None,
                     metadata={
                         "type": "Element",
@@ -3131,6 +2968,8 @@ class Tnfe:
             :ivar impostoDevol:
             :ivar infAdProd: Informações adicionais do produto (norma
                 referenciada, informações complementares, etc)
+            :ivar obsItem: Grupo de observações de uso livre (para o
+                item da NF-e)
             :ivar nItem: Número do item do NF
             """
             prod: Optional["Tnfe.InfNfe.Det.Prod"] = field(
@@ -3165,6 +3004,13 @@ class Tnfe:
                     "max_length": 500,
                     "white_space": "preserve",
                     "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                }
+            )
+            obsItem: Optional["Tnfe.InfNfe.Det.ObsItem"] = field(
+                default=None,
+                metadata={
+                    "type": "Element",
+                    "namespace": "http://www.portalfiscal.inf.br/nfe",
                 }
             )
             nItem: Optional[str] = field(
@@ -4370,7 +4216,7 @@ class Tnfe:
                             "namespace": "http://www.portalfiscal.inf.br/nfe",
                             "required": True,
                             "white_space": "preserve",
-                            "pattern": r"[0-9]{13}|ISENTO",
+                            "pattern": r"[0-9]{11}|[0-9]{13}|ISENTO",
                         }
                     )
                     xMotivoIsencao: Optional[str] = field(
@@ -4494,6 +4340,11 @@ class Tnfe:
                     :ivar CIDE: CIDE Combustíveis
                     :ivar encerrante: Informações do grupo de
                         "encerrante"
+                    :ivar pBio: Percentual do índice de mistura do
+                        Biodiesel (B100) no Óleo Diesel B instituído
+                        pelo órgão regulamentador
+                    :ivar origComb: Grupo indicador da origem do
+                        combustível
                     """
                     cProdANP: Optional[str] = field(
                         default=None,
@@ -4589,6 +4440,23 @@ class Tnfe:
                         metadata={
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        }
+                    )
+                    pBio: Optional[str] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                            "white_space": "preserve",
+                            "pattern": r"0(\.[1-9][0-9]{0,3})|0(\.[0][1-9][0-9]{0,2})|0(\.[0][0][1-9][0-9]{0,1})|0(\.[0][0][0][1-9])|100(\.[0]{1,4})?|[1-9]{1}[0-9]{0,1}(\.[0-9]{1,4})?",
+                        }
+                    )
+                    origComb: List["Tnfe.InfNfe.Det.Prod.Comb.OrigComb"] = field(
+                        default_factory=list,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                            "max_occurs": 30,
                         }
                     )
 
@@ -4692,6 +4560,43 @@ class Tnfe:
                                 "required": True,
                                 "white_space": "preserve",
                                 "pattern": r"0|0\.[0-9]{3}|[1-9]{1}[0-9]{0,11}(\.[0-9]{3})?",
+                            }
+                        )
+
+                    @dataclass
+                    class OrigComb:
+                        """
+                        :ivar indImport: Indicador de importação
+                            0=Nacional; 1=Importado;
+                        :ivar cUFOrig: UF de origem do produtor ou do
+                            importado
+                        :ivar pOrig: Percentual originário para a UF
+                        """
+                        indImport: Optional[OrigCombIndImport] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                            }
+                        )
+                        cUFOrig: Optional[TcodUfIbge] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                            }
+                        )
+                        pOrig: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0(\.[1-9][0-9]{0,3})|0(\.[0][1-9][0-9]{0,2})|0(\.[0][0][1-9][0-9]{0,1})|0(\.[0][0][0][1-9])|100(\.[0]{1,4})?|[1-9]{1}[0-9]{0,1}(\.[0-9]{1,4})?",
                             }
                         )
 
@@ -5623,8 +5528,13 @@ class Tnfe:
                     """
                     :ivar ICMS00: Tributação pelo ICMS 00 - Tributada
                         integralmente
+                    :ivar ICMS02: Tributação monofásica própria sobre
+                        combustíveis
                     :ivar ICMS10: Tributação pelo ICMS 10 - Tributada e
                         com cobrança do ICMS por substituição tributária
+                    :ivar ICMS15: Tributação monofásica própria e com
+                        responsabilidade pela retenção sobre
+                        combustíveis
                     :ivar ICMS20: Tributção pelo ICMS 20 - Com redução
                         de base de cálculo
                     :ivar ICMS30: Tributação pelo ICMS 30 - Isenta ou
@@ -5635,8 +5545,12 @@ class Tnfe:
                     :ivar ICMS51: Tributção pelo ICMS 51 - Diferimento A
                         exigência do preenchimento das informações do
                         ICMS diferido fica à critério de cada UF.
+                    :ivar ICMS53: Tributação monofásica sobre
+                        combustíveis com recolhimento diferido
                     :ivar ICMS60: Tributação pelo ICMS 60 - ICMS cobrado
                         anteriormente por substituição tributária
+                    :ivar ICMS61: Tributação monofásica sobre
+                        combustíveis cobrada anteriormente;
                     :ivar ICMS70: Tributação pelo ICMS 70 - Com redução
                         de base de cálculo e cobrança do ICMS por
                         substituição tributária
@@ -5676,7 +5590,21 @@ class Tnfe:
                             "namespace": "http://www.portalfiscal.inf.br/nfe",
                         }
                     )
+                    ICMS02: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms02"] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        }
+                    )
                     ICMS10: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms10"] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        }
+                    )
+                    ICMS15: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms15"] = field(
                         default=None,
                         metadata={
                             "type": "Element",
@@ -5711,7 +5639,21 @@ class Tnfe:
                             "namespace": "http://www.portalfiscal.inf.br/nfe",
                         }
                     )
+                    ICMS53: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms53"] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        }
+                    )
                     ICMS60: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms60"] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        }
+                    )
+                    ICMS61: Optional["Tnfe.InfNfe.Det.Imposto.Icms.Icms61"] = field(
                         default=None,
                         metadata={
                             "type": "Element",
@@ -5879,6 +5821,63 @@ class Tnfe:
                             metadata={
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+
+                    @dataclass
+                    class Icms02:
+                        """
+                        :ivar orig: origem da mercadoria
+                        :ivar CST: Tributção pelo ICMS 02= Tributação
+                            monofásica própria sobre combustíveis;
+                        :ivar qBCMono: Quantidade tributada.
+                        :ivar adRemICMS: Alíquota ad rem do imposto.
+                        :ivar vICMSMono: Valor do ICMS própri
+                        """
+                        orig: Optional[Torig] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                            }
+                        )
+                        CST: Optional[Icms02Cst] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                            }
+                        )
+                        qBCMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMS: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vICMSMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
                                 "white_space": "preserve",
                                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                             }
@@ -6105,6 +6104,120 @@ class Tnfe:
                             }
                         )
                         motDesICMSST: Optional[Icms10MotDesIcmsst] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                            }
+                        )
+
+                    @dataclass
+                    class Icms15:
+                        """
+                        :ivar orig: origem da mercadoria
+                        :ivar CST: Tributção pelo ICMS 15= Tributação
+                            monofásica própria e com responsabilidade
+                            pela retenção sobre combustíveis;
+                        :ivar qBCMono: Quantidade tributada.
+                        :ivar adRemICMS: Alíquota ad rem do imposto.
+                        :ivar vICMSMono: Valor do ICMS próprio
+                        :ivar qBCMonoReten: Quantidade tributada sujeita
+                            a retenção.
+                        :ivar adRemICMSReten: Alíquota ad rem do imposto
+                            com retenção.
+                        :ivar vICMSMonoReten: Valor do ICMS com retenção
+                        :ivar pRedAdRem: Percentual de redução do valor
+                            da alíquota ad rem do ICMS.
+                        :ivar motRedAdRem: Motivo da redução do adrem 1=
+                            Transporte coletivo de passageiros;
+                            9=Outros;
+                        """
+                        orig: Optional[Torig] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                            }
+                        )
+                        CST: Optional[Icms15Cst] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                            }
+                        )
+                        qBCMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMS: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vICMSMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        qBCMonoReten: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMSReten: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vICMSMonoReten: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        pRedAdRem: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0(\.[0-9]{2})?|100(\.00)?|[1-9]{1}[0-9]{0,1}(\.[0-9]{2})?",
+                            }
+                        )
+                        motRedAdRem: Optional[Icms15MotRedAdRem] = field(
                             default=None,
                             metadata={
                                 "type": "Element",
@@ -6639,6 +6752,113 @@ class Tnfe:
                         )
 
                     @dataclass
+                    class Icms53:
+                        """
+                        :ivar orig: origem da mercadoria
+                        :ivar CST: Tributção pelo ICMS 53= Tributação
+                            monofásica sobre combustíveis com
+                            recolhimento diferido;
+                        :ivar qBCMono: Quantidade tributada.
+                        :ivar adRemICMS: Alíquota ad rem do imposto.
+                        :ivar vICMSMonoOp: Valor do ICMS da operação
+                        :ivar pDif: Percentual do diferemento
+                        :ivar vICMSMonoDif: Valor do ICMS diferido
+                        :ivar vICMSMono: Valor do ICMS próprio devido
+                        :ivar qBCMonoDif: Quantidade tributada diferida.
+                        :ivar adRemICMSDif: Alíquota ad rem do imposto
+                            diferido
+                        """
+                        orig: Optional[Torig] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                            }
+                        )
+                        CST: Optional[Icms53Cst] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                            }
+                        )
+                        qBCMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMS: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vICMSMonoOp: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        pDif: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0(\.[0-9]{2,4})?|[1-9]{1}[0-9]{0,1}(\.[0-9]{2,4})?|100(\.0{2,4})?",
+                            }
+                        )
+                        vICMSMonoDif: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        vICMSMono: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        qBCMonoDif: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMSDif: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+
+                    @dataclass
                     class Icms60:
                         """
                         :ivar orig: origem da mercadoria: 0 - Nacional 1
@@ -6779,6 +6999,67 @@ class Tnfe:
                             metadata={
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+
+                    @dataclass
+                    class Icms61:
+                        """
+                        :ivar orig: origem da mercadoria
+                        :ivar CST: Tributção pelo ICMS 61= Tributação
+                            monofásica sobre combustíveis cobrada
+                            anteriormente
+                        :ivar qBCMonoRet: Quantidade tributada retida
+                            anteriormente
+                        :ivar adRemICMSRet: Alíquota ad rem do imposto
+                            retido anteriormente
+                        :ivar vICMSMonoRet: Valor do ICMS retido
+                            anteriormente
+                        """
+                        orig: Optional[Torig] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                            }
+                        )
+                        CST: Optional[Icms61Cst] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                            }
+                        )
+                        qBCMonoRet: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{1,4}|[1-9]{1}[0-9]{0,10}|[1-9]{1}[0-9]{0,10}(\.[0-9]{1,4})?",
+                            }
+                        )
+                        adRemICMSRet: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vICMSMonoRet: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "required": True,
                                 "white_space": "preserve",
                                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                             }
@@ -7328,6 +7609,12 @@ class Tnfe:
                         :ivar vBCST: Valor da BC do ICMS ST
                         :ivar pICMSST: Alíquota do ICMS ST
                         :ivar vICMSST: Valor do ICMS ST
+                        :ivar vBCFCPST: Valor da Base de cálculo do FCP
+                            retido por substituicao tributaria.
+                        :ivar pFCPST: Percentual de FCP retido por
+                            substituição tributária.
+                        :ivar vFCPST: Valor do FCP retido por
+                            substituição tributária.
                         :ivar pBCOp: Percentual para determinação do
                             valor  da Base de Cálculo da operação
                             própria.
@@ -7452,6 +7739,33 @@ class Tnfe:
                                 "type": "Element",
                                 "namespace": "http://www.portalfiscal.inf.br/nfe",
                                 "required": True,
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        vBCFCPST: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                            }
+                        )
+                        pFCPST: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
+                                "white_space": "preserve",
+                                "pattern": r"0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
+                            }
+                        )
+                        vFCPST: Optional[str] = field(
+                            default=None,
+                            metadata={
+                                "type": "Element",
+                                "namespace": "http://www.portalfiscal.inf.br/nfe",
                                 "white_space": "preserve",
                                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                             }
@@ -8495,12 +8809,14 @@ class Tnfe:
                             "pattern": r"[0-9]{7}",
                         }
                     )
-                    cListServ: Optional[TclistServ] = field(
+                    cListServ: Optional[str] = field(
                         default=None,
                         metadata={
                             "type": "Element",
                             "namespace": "http://www.portalfiscal.inf.br/nfe",
                             "required": True,
+                            "white_space": "preserve",
+                            "pattern": r"[0-9]{2}.[0-9]{2}",
                         }
                     )
                     vDeducao: Optional[str] = field(
@@ -8646,6 +8962,81 @@ class Tnfe:
                         }
                     )
 
+            @dataclass
+            class ObsItem:
+                """
+                :ivar obsCont: Grupo de observações de uso livre (para o
+                    item da NF-e)
+                :ivar obsFisco: Grupo de observações de uso livre (para
+                    o item da NF-e)
+                """
+                obsCont: Optional["Tnfe.InfNfe.Det.ObsItem.ObsCont"] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                    }
+                )
+                obsFisco: Optional["Tnfe.InfNfe.Det.ObsItem.ObsFisco"] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                    }
+                )
+
+                @dataclass
+                class ObsCont:
+                    xTexto: Optional[str] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                            "required": True,
+                            "min_length": 1,
+                            "max_length": 60,
+                            "white_space": "preserve",
+                            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                        }
+                    )
+                    xCampo: Optional[str] = field(
+                        default=None,
+                        metadata={
+                            "type": "Attribute",
+                            "required": True,
+                            "min_length": 1,
+                            "max_length": 20,
+                            "white_space": "preserve",
+                            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                        }
+                    )
+
+                @dataclass
+                class ObsFisco:
+                    xTexto: Optional[str] = field(
+                        default=None,
+                        metadata={
+                            "type": "Element",
+                            "namespace": "http://www.portalfiscal.inf.br/nfe",
+                            "required": True,
+                            "min_length": 1,
+                            "max_length": 60,
+                            "white_space": "preserve",
+                            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                        }
+                    )
+                    xCampo: Optional[str] = field(
+                        default=None,
+                        metadata={
+                            "type": "Attribute",
+                            "required": True,
+                            "min_length": 1,
+                            "max_length": 20,
+                            "white_space": "preserve",
+                            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
+                        }
+                    )
+
         @dataclass
         class Total:
             """
@@ -8697,6 +9088,17 @@ class Tnfe:
                 :ivar vFCPSTRet: Valor Total do FCP (Fundo de Combate à
                     Pobreza) retido anteriormente por substituição
                     tributária.
+                :ivar qBCMono: Valor total da quantidade tributada do
+                    ICMS monofásico próprio
+                :ivar vICMSMono: Valor total do ICMS monofásico próprio
+                :ivar qBCMonoReten: Valor total da quantidade tributada
+                    do ICMS monofásico sujeito a retenção
+                :ivar vICMSMonoReten: Valor total do ICMS monofásico
+                    sujeito a retenção
+                :ivar qBCMonoRet: Valor total da quantidade tributada do
+                    ICMS monofásico retido anteriormente
+                :ivar vICMSMonoRet: Valor do ICMS monofásico retido
+                    anteriormente
                 :ivar vProd: Valor Total dos produtos e serviços
                 :ivar vFrete: Valor Total do Frete
                 :ivar vSeg: Valor Total do Seguro
@@ -8818,6 +9220,60 @@ class Tnfe:
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/nfe",
                         "required": True,
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                qBCMono: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                vICMSMono: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                qBCMonoReten: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                vICMSMonoReten: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                qBCMonoRet: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "white_space": "preserve",
+                        "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
+                    }
+                )
+                vICMSMonoRet: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
                         "white_space": "preserve",
                         "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
                     }
@@ -9888,6 +10344,10 @@ class Tnfe:
                 :ivar indProc: Origem do processo, informar com: 0 -
                     SEFAZ; 1 - Justiça Federal; 2 - Justiça Estadual; 3
                     - Secex/RFB; 9 - Outros
+                :ivar tpAto: Tipo do ato concessório Para origem do
+                    Processo na SEFAZ (indProc=0), informar o tipo de
+                    ato concessório: 08=Termo de Acordo; 10=Regime
+                    Especial; 12=Autorização específica;
                 """
                 nProc: Optional[str] = field(
                     default=None,
@@ -9907,6 +10367,14 @@ class Tnfe:
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/nfe",
                         "required": True,
+                        "white_space": "preserve",
+                    }
+                )
+                tpAto: Optional[ProcRefTpAto] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
                         "white_space": "preserve",
                     }
                 )
@@ -10175,7 +10643,7 @@ class Tnfe:
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
                     "required": True,
                     "min_length": 2,
-                    "max_length": 2000,
+                    "max_length": 5000,
                 }
             )
 
@@ -10196,7 +10664,7 @@ class Tnfe:
                 "min_length": 100,
                 "max_length": 600,
                 "white_space": "preserve",
-                "pattern": r"(((HTTPS?|https?)://.*\?chNFe=[0-9]{44}&nVersao=100&tpAmb=[1-2](&cDest=([A-Za-z0-9.:+-/)(]{0}|[A-Za-z0-9.:+-/)(]{5,20})?)?&dhEmi=[A-Fa-f0-9]{50}&vNF=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&vICMS=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&digVal=[A-Fa-f0-9]{56}&cIdToken=[0-9]{6}&cHashQRCode=[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\?p=([0-9]{34}(1|4)[0-9]{9})\|[2]\|[1-2]\|(0|[1-9]{1}([0-9]{1,5})?)\|[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\?p=([0-9]{34}9[0-9]{9})\|[2]\|[1-2]\|([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-1]{1})\|(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)\|[A-Fa-f0-9]{56}\|(0|[1-9]{1}([0-9]{1,5})?)\|[A-Fa-f0-9]{40}))",
+                "pattern": r"(((HTTPS?|https?)://.*\?chNFe=[0-9]{44}&nVersao=100&tpAmb=[1-2](&cDest=([A-Za-z0-9.:+-/)(]{0}|[A-Za-z0-9.:+-/)(]{5,20})?)?&dhEmi=[A-Fa-f0-9]{50}&vNF=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&vICMS=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&digVal=[A-Fa-f0-9]{56}&cIdToken=[0-9]{6}&cHashQRCode=[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\?p=([0-9]{34}(1|3|4)[0-9]{9})\|[2]\|[1-2]\|(0|[1-9]{1}([0-9]{1,5})?)\|[A-Fa-f0-9]{40})|((HTTPS?|https?)://.*\?p=([0-9]{34}9[0-9]{9})\|[2]\|[1-2]\|([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-1]{1})\|(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)\|[A-Fa-f0-9]{56}\|(0|[1-9]{1}([0-9]{1,5})?)\|[A-Fa-f0-9]{40}))",
             }
         )
         urlChave: Optional[str] = field(

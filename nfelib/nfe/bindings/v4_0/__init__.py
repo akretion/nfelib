@@ -1,3 +1,4 @@
+from nfelib.nfe.bindings.v4_0.cons_cad_v2_00 import ConsCad
 from nfelib.nfe.bindings.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
 from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
 from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
@@ -19,6 +20,15 @@ from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import (
     TconsStatServXServ,
     TretConsStatServ,
 )
+from nfelib.nfe.bindings.v4_0.leiaute_consulta_cadastro_v2_00 import (
+    TconsCad,
+    TretConsCad,
+    TufCons,
+    InfCadCSit,
+    InfCadIndCredCte,
+    InfCadIndCredNfe,
+    InfConsXServ,
+)
 from nfelib.nfe.bindings.v4_0.leiaute_inut_nfe_v4_00 import (
     TinutNfe,
     TprocInutNfe,
@@ -35,10 +45,13 @@ from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import (
     DiTpViaTransp,
     Icms00Cst,
     Icms00ModBc,
+    Icms02Cst,
     Icms10Cst,
     Icms10ModBc,
     Icms10ModBcst,
     Icms10MotDesIcmsst,
+    Icms15Cst,
+    Icms15MotRedAdRem,
     Icms20Cst,
     Icms20ModBc,
     Icms20MotDesIcms,
@@ -49,7 +62,9 @@ from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import (
     Icms40MotDesIcms,
     Icms51Cst,
     Icms51ModBc,
+    Icms53Cst,
     Icms60Cst,
+    Icms61Cst,
     Icms70Cst,
     Icms70ModBc,
     Icms70ModBcst,
@@ -85,7 +100,6 @@ from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import (
     PisoutrCst,
     PisqtdeCst,
     PisstIndSomaPisst,
-    TclistServ,
     TconsReciNfe,
     TenderEmi,
     TenderEmiCPais,
@@ -116,7 +130,9 @@ from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import (
     IdeTpEmis,
     IdeTpImp,
     IdeTpNf,
+    OrigCombIndImport,
     ProcRefIndProc,
+    ProcRefTpAto,
     ProdIndEscala,
     ProdIndTot,
     RefEcfMod,
@@ -131,6 +147,7 @@ from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import (
 from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
 from nfelib.nfe.bindings.v4_0.proc_inut_nfe_v4_00 import ProcInutNfe
 from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
+from nfelib.nfe.bindings.v4_0.ret_cons_cad_v2_00 import RetConsCad
 from nfelib.nfe.bindings.v4_0.ret_cons_reci_nfe_v4_00 import RetConsReciNfe
 from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
 from nfelib.nfe.bindings.v4_0.ret_cons_stat_serv_v4_00 import RetConsStatServ
@@ -158,6 +175,7 @@ from nfelib.nfe.bindings.v4_0.xmldsig_core_schema_v1_01 import (
 )
 
 __all__ = [
+    "ConsCad",
     "ConsReciNfe",
     "ConsSitNfe",
     "ConsStatServ",
@@ -175,6 +193,13 @@ __all__ = [
     "TconsStatServ",
     "TconsStatServXServ",
     "TretConsStatServ",
+    "TconsCad",
+    "TretConsCad",
+    "TufCons",
+    "InfCadCSit",
+    "InfCadIndCredCte",
+    "InfCadIndCredNfe",
+    "InfConsXServ",
     "TinutNfe",
     "TprocInutNfe",
     "TretInutNfe",
@@ -188,10 +213,13 @@ __all__ = [
     "DiTpViaTransp",
     "Icms00Cst",
     "Icms00ModBc",
+    "Icms02Cst",
     "Icms10Cst",
     "Icms10ModBc",
     "Icms10ModBcst",
     "Icms10MotDesIcmsst",
+    "Icms15Cst",
+    "Icms15MotRedAdRem",
     "Icms20Cst",
     "Icms20ModBc",
     "Icms20MotDesIcms",
@@ -202,7 +230,9 @@ __all__ = [
     "Icms40MotDesIcms",
     "Icms51Cst",
     "Icms51ModBc",
+    "Icms53Cst",
     "Icms60Cst",
+    "Icms61Cst",
     "Icms70Cst",
     "Icms70ModBc",
     "Icms70ModBcst",
@@ -238,7 +268,6 @@ __all__ = [
     "PisoutrCst",
     "PisqtdeCst",
     "PisstIndSomaPisst",
-    "TclistServ",
     "TconsReciNfe",
     "TenderEmi",
     "TenderEmiCPais",
@@ -269,7 +298,9 @@ __all__ = [
     "IdeTpEmis",
     "IdeTpImp",
     "IdeTpNf",
+    "OrigCombIndImport",
     "ProcRefIndProc",
+    "ProcRefTpAto",
     "ProdIndEscala",
     "ProdIndTot",
     "RefEcfMod",
@@ -283,6 +314,7 @@ __all__ = [
     "Nfe",
     "ProcInutNfe",
     "NfeProc",
+    "RetConsCad",
     "RetConsReciNfe",
     "RetConsSitNfe",
     "RetConsStatServ",

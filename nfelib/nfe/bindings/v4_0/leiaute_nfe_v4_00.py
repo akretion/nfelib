@@ -579,11 +579,7 @@ class TprocEmi(Enum):
 
 
 class Torig(Enum):
-    """Tipo Origem da mercadoria CST ICMS  origem da mercadoria: 0-Nacional exceto
-    as indicadas nos códigos 3, 4, 5 e 8;
-
-    1-Estrangeira - Importação direta; 2-Estrangeira - Adquirida no mercado interno; 3-Nacional, conteudo superior 40% e inferior ou igual a 70%; 4-Nacional, processos produtivos básicos; 5-Nacional, conteudo inferior 40%; 6-Estrangeira - Importação direta, com similar nacional, lista CAMEX; 7-Estrangeira - mercado interno, sem simular,lista CAMEX;8-Nacional, Conteúdo de Importação superior a 70%.
-    """
+    """Tipo Origem da mercadoria CST ICMS  origem da mercadoria: 0-Nacional exceto as indicadas nos códigos 3, 4, 5 e 8;1-Estrangeira - Importação direta; 2-Estrangeira - Adquirida no mercado interno; 3-Nacional, conteudo superior 40% e inferior ou igual a 70%; 4-Nacional, processos produtivos básicos; 5-Nacional, conteudo inferior 40%; 6-Estrangeira - Importação direta, com similar nacional, lista CAMEX; 7-Estrangeira - mercado interno, sem simular,lista CAMEX;8-Nacional, Conteúdo de Importação superior a 70%."""
     VALUE_0 = "0"
     VALUE_1 = "1"
     VALUE_2 = "2"
@@ -2249,7 +2245,7 @@ class Tnfe:
                 metadata={
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
-                    "max_occurs": 500,
+                    "max_occurs": 999,
                 }
             )
 
@@ -2261,6 +2257,10 @@ class Tnfe:
                     do IBGE) + AAMM da emissão + CNPJ do Emitente +
                     modelo, série e número da NF-e Referenciada + Código
                     Numérico + DV.
+                :ivar refNFeSig: Referencia uma NF-e (modelo 55) emitida
+                    anteriormente pela sua Chave de Acesso com código
+                    numérico zerado, permitindo manter o sigilo da NF-e
+                    referenciada.
                 :ivar refNF: Dados da NF modelo 1/1A referenciada ou NF
                     modelo 2 referenciada
                 :ivar refNFP: Grupo com as informações NF de produtor
@@ -2270,6 +2270,16 @@ class Tnfe:
                 :ivar refECF: Grupo do Cupom Fiscal vinculado à NF-e
                 """
                 refNFe: Optional[str] = field(
+                    default=None,
+                    metadata={
+                        "type": "Element",
+                        "namespace": "http://www.portalfiscal.inf.br/nfe",
+                        "max_length": 44,
+                        "white_space": "preserve",
+                        "pattern": r"[0-9]{44}",
+                    }
+                )
+                refNFeSig: Optional[str] = field(
                     default=None,
                     metadata={
                         "type": "Element",

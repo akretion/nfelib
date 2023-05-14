@@ -2,9 +2,9 @@
 
 #DOWNLOAD_SCHEMAS=1
 
-# Pacote de Liberação nº 9i (Novo leiaute da NF-e, NT 2021.004 v.1.00d). Publicado em 17/05/22
+# Pacote de Liberação nº 9j (Novo leiaute da NF-e, NT 2022.003 v.1.00b). Publicado em 05/01/2023
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=jkJ62OcEpnY=
+  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=P3TfrfqQ38U=
   rm -rf nfelib/nfe/schemas
   cp -rf /tmp/generated/nfe/schemas nfelib/nfe/schemas
 fi

@@ -10,7 +10,7 @@ by
 
 <p align="center">
 <a href="https://codecov.io/gh/akretion/nfelib" > 
- <img src="https://codecov.io/gh/akretion/nfelib/branch/master-xsdata/graph/badge.svg?token=IqcCHJzhuw"/> 
+ <img src="https://codecov.io/gh/akretion/nfelib/branch/master/graph/badge.svg?token=IqcCHJzhuw"/> 
 </a>
 <a href="https://pypi.org/project/nfelib/"><img alt="PyPI" src="https://img.shields.io/pypi/v/nfelib"></a>
 <a href="https://pepy.tech/project/nfelib"><img alt="Downloads" src="https://pepy.tech/badge/nfelib"></a>

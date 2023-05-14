@@ -2,19 +2,16 @@
 
 #DOWNLOAD_SCHEMAS=1
 
-# Pacote de Liberação nº 9 (Novo leiaute da NF-e, NT 2020.005, 2020.006 e NT 2021.002). Publicado em 29/06/2021.
+# Pacote de Liberação nº 9i (Novo leiaute da NF-e, NT 2021.004 v.1.00d). Publicado em 17/05/22
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=lhqXSmnywl4=
+  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=jkJ62OcEpnY=
   rm -rf nfelib/nfe/schemas
   cp -rf /tmp/generated/nfe/schemas nfelib/nfe/schemas
 fi
+export XSDATA_SCHEMA="nfe"  # se xsdata-odoo tiver instalado, ativa um patch do xsdata
+                            # detalhes aqui https://github.com/akretion/nfelib/issues/40
 xsdata generate nfelib/nfe/schemas/v4_0 --package nfelib.nfe.bindings.v4_0
-
-# patch o campo IPI caso o patch no xsdata não foi aplicado
-# ver detalhes aqui https://github.com/akretion/nfelib/issues/40
-# sed  -e 's/IPI: List\[Tipi\] = field(/IPI: Optional\[Tipi\] = field(/' -i nfelib/nfe/bindings/v4_0/leiaute_nfe_v4_00.py
-# infelizmente teria que trocar a outra linha depois tb default_factory=List por default=None para funcionar.
-# vou deixar essa tentativa de patch com sed desativada por enquanto.
+unset XSDATA_SCHEMA
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
 if [$DOWNLOAD_SCHEMAS]; then

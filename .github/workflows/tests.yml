@@ -2,9 +2,9 @@ name: tests
 
 on:
   push:
-    branches: [ master-xsdata ]
+    branches: [ master ]
   pull_request:
-    branches: [ master-xsdata ]
+    branches: [ master ]
 
 jobs:
   tests:

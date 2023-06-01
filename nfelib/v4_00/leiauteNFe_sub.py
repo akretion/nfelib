@@ -55,7 +55,7 @@ def schema_validation(inFilename, **kwargs):
         "..",
         "nfe",
         "schemas",
-        "v4_0",
+        "v4_0_legacy",
         "nfe_v4.00.xsd",
     )
 

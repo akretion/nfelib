@@ -1,0 +1,14 @@
+{
+    "nfe": [
+        "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=BMPFMBoln3w=",
+        "c97f204b214a7ef70003dbce455dbac6"
+    ],
+    "cte": [
+        "https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=0xlG1bdBass=",
+        "8931c120a3a6713e3b9235793b59da7e"
+    ],
+    "nfse": [
+        "https://www.gov.br/nfse/pt-br/documentacao-tecnica",
+        "ef832452035e8b58e5519909bdd52f61"
+    ]
+}

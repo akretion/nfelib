@@ -3,7 +3,6 @@
 
 import os
 import sys
-from os import path
 from xmldiff import main
 from nfelib.v4_00 import leiauteNFe_sub as nfe_sub
 from nfelib.v4_00 import retEnviNFe as nfe

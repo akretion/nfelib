@@ -8,11 +8,11 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
-from nfelib.cte.bindings import v3_0
+from nfelib.cte.bindings import v4_0
 
 
 def test_in_out_cte():
-    path = os.path.join("nfelib", "cte", "samples", "v3_0")
+    path = os.path.join("nfelib", "cte", "samples", "v4_0")
     for filename in os.listdir(path):
         input_file = os.path.join(path, filename)
         parser = XmlParser()

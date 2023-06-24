@@ -1,3 +1,5 @@
+nfelib - bindings Python para gerir e ler arquivos XML de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e
+===
 <p align="center">
 <a href="https://github.com/akretion/nfelib" > 
  <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfe.jpg"/> 
@@ -17,54 +19,124 @@ by
 </p>
 
 
-# nfelib Python Library
+## Porque escolher a nfelib
 
-**IMPORTANTE - VERSÂO 2 CHEGANDO AQUI (o codigo nesta branch esta pronto, so falta documentar e empacotar, sera feito em breve)**
+* **Simples e confiável**. As outras bibliotecas costumam ter dezenas de milhares de linhas de código feito tudo manualmente para fazer o que o xsdata faz tudo automaticamente com algumas linhas para gerir código com o [xsdata](https://xsdata.readthedocs.io/) a partir dos últimos pacotes xsd da Fazenda. O xsdata é uma biblioteca de databinding extremamente bem escrita e bem testada. A própria nfelib tem testes para ler e gerir todos documentos fiscais.
+* **Completa**: já que gerir os bindings ficou trivial, a nfelib mantém atualizada lista de todos os bindings para interagir com todos os serviços de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e e os eventos deles. Os testes detetam também quando sai uma nova versão de algum esquema.
 
-A nfelib é uma biblioteca para ler e gerar notas fiscais eletrônicas brasileiras (NFe's).
-
-* Para transmitir as NFe's para a receita, aconselhamos a biblioteca Python Zeep, PyNFe ou entao por examplo https://github.com/erpbrasil/erpbrasil.edoc.
-* E para imprimir o DANFE, é possivel usar https://github.com/erpbrasil/erpbrasil.edoc.pdf
-
-Na versão 1.x os "bindings" eram gerados usando generateDS e agora na versão 2.x usamos [xsdata](https://xsdata.readthedocs.io/en/latest/).
+**Importante** Esta é a nova **versão 2.x** da nfelib onde os bindings são geridos com xsdata. Na versão 1.x os "bindings" eram geridos com generateDS. Fora algumas exceções listadas nos elementos *Substitution* no arquivo de configuração ```.xsdata.xml```, os novos bindings tem os mesmos campos que também correspondem aos atributos dos xsd. O nome das classes dos bindings ficou diferente (mais "pythonico") porém então para ler os bindings a compatibilidade é quase perfeita, mas para montar bindings o código deve ser adaptado.
+Para facilitar a fase de transição para a nfelib 2.0, as primeiras versões da nfelib 2.0 estão empacotando também os antigos bindings da versão 1.x, no mesmo caminho ```nfelib/v4_00```.
 Se vc estiver procurando o codigo "legacy da versão 1.x, ele esta na branch [master_gen_v4_00](https://github.com/akretion/nfelib/tree/master_gen_v4_00)
 
-A nfelib permite de:
-
-* Gerir os XMLs dos documentos fiscais.
-* Validar os dados com **as mesmas validações dos XSD's ao montar os objetos**, o que evita detectar os erros apenas ao transmitir o XML.
-* Importar XMLs e transforma-los em objetos Python. Usando um sistema de sub-classes, fica fácil mapear esses objetos em outros objetos ou adicionar qualquer método customizado.
-
-A nfelib é:
-
-* **Simples e confiável**. O código é gerido pelo generateDS a partir dos XSD's da Fazenda. Ele **reflete exatamente a especificação fiscal** da versão do esquema escolhida sem que você deva se perguntar qual é o grau de aderência do código.
-* Compatível com **Python 3** (e com Python 2 se botar patches no generateDS e usar uma versao anterior)
-* Capaz de carregar **várias versões dos esquemas**. Isso pode ser bem útil ao receber uma nota fiscal com um leiaute antigo.
-
-Além disso, usando outros recursos do GenerateDS, é possível ir além dessa biblioteca nfelib e gerir automaticamente o modelo de dados do ERP pelo menos no ERP Odoo que tem um framework bastante poderoso. Sendo assim, é possivel montar dinamicamente as telas do usuário, a geração do XML ou a importação do XML quase que sem escrever código (apenas relacionar os campos mapeados com os campos já existentes do ERP). Fica então bem mais razoável para manter quando tem que atualizar os esquemas e assim também fica finalmente possível manter os dados do SPED dentro do ERP com um custo de manutenção compatível com o modelo open source.
-
-Você pode aprender mais sobre o generateDS [aqui](http://www.davekuhlman.org/generateDS.html)
-
-# Como Instalar
+## Instalação
 
 ```bash
-pip install nfelib-xsdata
-```
-# Gerir a lib novamente / processo de release
-TODO
-
+pip install nfelib
 ```
 
-# Rodar os testes
+## Como usar
+
+**NF-e**
+```python
+>>> # Ler o XML de uma NF-e:
+>>> from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
+>>> nfe_proc = NfeProc.from_path("nfelib/nfe/samples/v4_0/leiauteNFe/NFe35200159594315000157550010000000012062777161.xml")
+>>> # (pode ser usado também o metodo from_xml(xml) )
+>>>
+>>> nfe_proc.NFe.infNFe.emit.CNPJ
+'59594315000157'
+>>> nfe_proc.NFe.infNFe.emit
+Tnfe.InfNfe.Emit(CNPJ='59594315000157', CPF=None, xNome='Akretion LTDA', xFant='Akretion', enderEmit=TenderEmi(xLgr='Rua Paulo Dias', nro='586', xCpl=None, xBairro=None, cMun='3501152', xMun='Alumínio', UF=<TufEmi.SP: 'SP'>, CEP='18125000', cPais=<TenderEmiCPais.VALUE_1058: '1058'>, xPais=<TenderEmiXPais.BRASIL: 'Brasil'>, fone='2130109965'), IE='755338250133', IEST=None, IM=None, CNAE=None, CRT=<EmitCrt.VALUE_1: '1'>)
+>>> nfe_proc.NFe.infNFe.emit.enderEmit.UF.value
+'SP'
+>>>
+>>> # Serializar uma NF-e:
+>>> nfe_proc.to_xml()
+'<?xml version="1.0" encoding="UTF-8"?>\n<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">\n  <NFe>\n    <infNFe versao="4.00" Id="35200159594315000157550010000000012062777161">\n      <ide>\n        <cUF>35</cUF>\n        <cNF>06277716</cNF>\n        <natOp>Venda</natOp>\n        <mod>55</mod>\n        <serie>1</serie>\n        <nNF>1</nNF>\n        <dhEmi>2020-01-01T12:00:00+01:00</dhEmi>\n        <dhSaiEnt>2020-01-01T12:00:00+01:00</dhSaiEnt>\n        <tpNF>1</tpNF>\n        <idDest>1</idDest>\n [...]
+>>>
+>>> # Montar uma NFe do zero:
+>>> from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
+>>> nfe=Nfe(infNFe=Nfe.InfNfe(emit=Nfe.InfNfe.Emit(xNome="Minha Empresa", CNPJ='59594315000157')))
+>>> nfe
+Nfe(infNFe=Tnfe.InfNfe(ide=None, emit=Tnfe.InfNfe.Emit(CNPJ='59594315000157', CPF=None, xNome='Minha Empresa', xFant=None, enderEmit=None, IE=None, IEST=None, IM=None, CNAE=None, CRT=None), avulsa=None, dest=None, retirada=None, entrega=None, autXML=[], det=[], total=None, transp=None, cobr=None, pag=None, infIntermed=None, infAdic=None, exporta=None, compra=None, cana=None, infRespTec=None, infSolicNFF=None, versao=None, Id=None), infNFeSupl=None, signature=None)
+>>> 
+>>> # Validar o XML de uma nota:
+>>> nfe.validate_xml()
+["Element '{http://www.portalfiscal.inf.br/nfe}infNFe': The attribute 'versao' is required but missing.", "Element '{http://www.portalfiscal.inf.br/nfe}infNFe': The attribute 'Id' is required but missing." [...]
+```
+
+**NFS-e padrão nacional**
+```python
+>>> # Ler uma NFS-e:
+>>>> from nfelib.nfse.bindings.v1_0.nfse_v1_00 import Nfse
+>>> nfse = Nfse.from_path("alguma_nfse.xml")
+>>>
+>>> # Serializar uma MDF-e:
+>>> nfse.to_xml()
+>>> # Ler uma DPS:
+>>>> from nfelib.nfse.bindings.v1_0.dps_v1_00 import Dps
+>>> dps = Nfse.from_path("nfelib/nfse/samples/v1_0/GerarNFSeEnvio-env-loterps.xml")
+>>>
+>>> # Serializar uma DPS:
+>>> dps.to_xml()
+```
+
+**MDF-e**
+```python
+>>> # Ler um MDF-e:
+>>>> from nfelib.mdfe.bindings.v3_0.mdfe_v3_00 import Mdfe
+>>> mdfe = Mdfe.from_path("nfelib/mdfe/samples/v3_0/ComPagtoPIX_41210780568835000181580010402005751006005791-procMDFe.xml")
+>>>
+>>> # Serializar um MDF-e:
+>>> mdfe.to_xml()
+```
+
+**CT-e**
+```python
+>>> # Ler um CT-e:
+>>>> from nfelib.cte.bindings.v4_0.cte_v4_00 import Cte
+>>> cte = Cte.from_path("nfelib/cte/samples/v4_0/43120178408960000182570010000000041000000047-cte.xml")
+>>>
+>>> # Serializar um CT-e:
+>>> cte.to_xml()
+```
+
+**PB-e**
+```python
+>>> # Ler um BP-e:
+>>>> from nfelib.bpe.bindings.v1_0.bpe_v1_00 import Bpe
+>>> bpe = Bpe.from_path("algum_bpe.xml")
+>>>
+>>> # Serializar um BP-e:
+>>> bpe.to_xml()
+```
+
+
+## Desenvolvimento / testes
+
+Para rodar os testes:
 
 ```bash
 pytest
 ```
 
-# Como Usar
+Para atualizar os bindings:
 
-TODO
+1. baixar o novo zip dos esquemas e atualizar a pasta ```nfelib/<nfe|nfse|cte|mdfe|bpe>/schemas/<versao>/```
+2. gerir os bindings de um pacote de esquemas xsd, por examplo da NF-e:
 
-# Uso no ERP Odoo
+    ```bash
+    xsdata generate nfelib/nfe/schemas/v4_0 --package nfelib.nfe.bindings.v4_0
+    ```
 
-TODO
+Para gerir todos bindings com xsdata:
+
+```bash
+./script.sh
+```
+
+## Versões dos esquemas e pastas
+
+A nfelib usa apenas 2 dígitos para caracterizar a versão. Isso foi decidido observando que a Fazenda nunca usa o terceiro dígito da versão e que a mudança do segundo dígito já caracteriza uma mudança maior. Nisso qualquer alteração de esquema que não mudar o primeiro nem o segundo dígito da versão do esquema vai na mesma pasta e se sobreponha a antiga versão, assumindo que é possível usar o mais novo esquema no lugar do antigo (por exemplo é possível ler uma NFe 4.00 pacote nº 9j (NT 2022.003 v.1.00b) com os bindings da versão nfe pacote nº 9k (NT 2023.001 v.1.20).
+
+Pelo contrário, caso houver uma mudança maior afetando os 2 primeiros dígitos como NFe 3.0 e NFe 3.1 ou NFe 3.1 e NFe 4.0, será possível também suportar as várias versões ao mesmo tempo usando pastas diferentes. Assim seria possível por exemplo emitir a futura NFe 5.0 e ainda importar uma NFe 4.0.

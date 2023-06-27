@@ -1,22 +1,28 @@
 # Copyright 2018 - TODAY Luis Felipe Mileo - KMEE INFORMATICA LTDA
 # Copyright 2023 - TODAY Akretion - Raphaël Valyi <raphael.valyi@akretion.com>
 
-from erpbrasil.assinatura.assinatura import Assinatura
 from dataclasses import is_dataclass
+
+from erpbrasil.assinatura.assinatura import Assinatura
 
 try:
     from erpbrasil.edoc.edoc import DocumentoEletronico
-    from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
+    from erpbrasil.edoc.mde import MDe
+    from erpbrasil.edoc.mdfe import MDFe
+    from erpbrasil.edoc.nfce import NFCe
     from erpbrasil.edoc.nfe import NFe
+    from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
+
 
 except ImportError:
     raise RuntimeError(
         "You need to install the erpbrasil.edoc package to use this legacy webservice layer."
     )
 
+import re
+
 from lxml import etree
 from lxml.etree import _Element
-import re
 from xsdata.formats.dataclass.context import XmlContext
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
@@ -89,4 +95,16 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
 
 
 class NFeAdapter(DocumentoElectronicoAdapter, NFe):
+    pass
+
+
+class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):
+    pass
+
+
+class MDeAdapter(DocumentoElectronicoAdapter, MDe):
+    pass
+
+
+class MDFeAdapter(DocumentoElectronicoAdapter, MDFe):
     pass

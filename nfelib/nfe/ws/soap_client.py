@@ -55,6 +55,8 @@ class NfeSoapClient(SoapClient):
     # Webservices
     ######################################
 
+    # NOTE in wmixvideo
+    # consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo
     def status_servico(self, xServ: str = "STATUS") -> RetConsStatServ:
         return self.send(
             NfeStatusServico4SoapNfeStatusServicoNf,
@@ -67,6 +69,8 @@ class NfeSoapClient(SoapClient):
             RetConsStatServ,
         )
 
+    # NOTE in wmixvideo
+    # consultaLote(final String numeroRecibo, final DFModelo modelo) for NFe and NFCe
     def consulta_documento(self, chave: str, xServ: str = "CONSULTAR") -> RetConsSitNfe:
         return self.send(
             NfeConsultaProtocolo4SoapNfeConsultaNf,
@@ -81,6 +85,8 @@ class NfeSoapClient(SoapClient):
 
     # NOTE: I changed the signature from erpbrasil.edoc
     # shouldn't we have a list of signed_nfe??
+    # in wmixvideo enviaLote(final NFLoteEnvio lote, boolean validarXML) (not signed)
+    # and enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo)
     def envia_documento(self, signed_nfe: str) -> RetEnviNfe:
         return self.send(
             NfeAutorizacao4SoapNfeAutorizacaoLote,
@@ -98,6 +104,8 @@ class NfeSoapClient(SoapClient):
         )
 
     # NOTE erpbrasil.edoc coupling with TinutNfe seems bad, better take signed xml?
+    # in wmixvideo inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo)
+    # and inutilizaNotaAssinada(final eventoAssinadoXml, modelo)
     def envia_inutilizacao(self, evento: InutNfe.InfInut) -> RetInutNfe:
         # NOTE: sure we don't take a signed xml input?
         evento_xml = self.serializer.render(
@@ -136,6 +144,10 @@ class NfeSoapClient(SoapClient):
             RetConsReciNfe,
         )
 
+    # NOTE bad name from erpbrasil.edoc
+    # in wmixvideo cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento)
+    # and cancelaNotaAssinada(chave, eventoAssinadoXml)
+    # ver tb cancelaNotaPorSubstituicao permitido para a NFCe
     def enviar_lote_evento(self, lista_eventos, numero_lote: str = "") -> TretEnvEvento:
         if not numero_lote:
             numero_lote = self._gera_numero_lote()
@@ -160,6 +172,10 @@ class NfeSoapClient(SoapClient):
             placeholder_exp='<ns2:TEnvEvento versao="1.00"><evento/></ns2:TEnvEvento>', #"<TEnvento/>",
             placeholder_content=signed_events_xml,
         )
+
+    # TODO
+    # consultaCadastro(final String cnpj, final DFUnidadeFederativa uf)
+    # Realiza a consulta de cadastro de pessoa juridica com inscricao estadual
 
     ######################################
     # Binding façades
@@ -192,6 +208,8 @@ class NfeSoapClient(SoapClient):
             ),
         )
 
+    # in wmixvideo corrigeNota(String chaveDeAcesso, String textoCorrecao, int numeroSequencialEvento)
+    # and corrigeNotaAssinada(chave, eventoAssinadoXml)
     def carta_correcao(
         self, chave: str, sequencia: str, justificativa: str, data_hora_evento: str = ""
     ):

@@ -2,7 +2,6 @@
 
 import os
 import sys
-from os import path
 import importlib
 import inspect
 from enum import EnumMeta

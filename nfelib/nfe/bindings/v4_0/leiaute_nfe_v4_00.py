@@ -5,6 +5,7 @@ See: https://xsdata.readthedocs.io/
 """
 from dataclasses import dataclass, field
 from enum import Enum
+from nfelib.nfe import NFeValidator
 from typing import List, Optional
 from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TprotNfe
 from nfelib.nfe.bindings.v4_0.tipos_basico_v4_00 import (
@@ -1763,7 +1764,7 @@ class Tveiculo:
 
 
 @dataclass
-class Tnfe:
+class Tnfe(NFeValidator):
     """
     Tipo Nota Fiscal Eletrônica.
 
@@ -10738,7 +10739,7 @@ class TenviNfe:
 
 
 @dataclass
-class TnfeProc:
+class TnfeProc(NFeValidator):
     """
     Tipo da NF-e processada.
     """

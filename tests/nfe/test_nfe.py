@@ -1,20 +1,19 @@
 # Copyright (C) 2019 - TODAY Raphaël Valyi - Akretion
 
 import os
-from xmldiff import main
-
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
-from xsdata.formats.dataclass.parsers import XmlParser
-from xsdata.formats.dataclass.serializers import XmlSerializer
 from pathlib import Path
 
+from xmldiff import main
+from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.formats.dataclass.serializers import XmlSerializer
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
+
 from nfelib.nfe.bindings.v4_0 import leiaute_nfe_v4_00
-from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import Tnfe
-from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
 from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
-
+from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
+from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import Tnfe
+from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
 from nfelib.nfe_dist_dfe.bindings.v1_0.dist_dfe_int_v1_01 import DistDfeInt
-
 from nfelib.nfe_evento_generico.bindings.v1_0.leiaute_evento_v1_00 import TenvEvento
 
 
@@ -120,6 +119,22 @@ def test_evento_generico():
     obj = TenvEvento(versao="1.00", idLote="42")
     serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
     xml = serializer.render(obj=obj)
+
+
+def test_validator():
+    path = os.path.join(
+        "nfelib",
+        "nfe",
+        "samples",
+        "v4_0",
+        "leiauteNFe",
+        "NFe35200159594315000157550010000000012062777161.xml",
+    )
+    parser = XmlParser()
+    nfe_proc = parser.from_path(Path(path))
+    assert (
+        len(Nfe(infNFe=nfe_proc.NFe.infNFe).validate_xml()) == 3
+    )  # (we know this file has 3 schema errors)
 
 
 # def test_evento_cancelamento():

@@ -1,18 +1,14 @@
 nfelib - bindings Python para gerir e ler arquivos XML de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e
 ===
 <p align="center">
-<a href="https://github.com/akretion/nfelib" > 
- <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfe.jpg"/> 
-</a>
-by
 <a href="https://akretion.com/pt_BR" > 
- <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/akretion-logo2.png"/> 
+ <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfelib.jpg"/>
 </a>
 </p>
 
 <p align="center">
 <a href="https://codecov.io/gh/akretion/nfelib" > 
- <img src="https://codecov.io/gh/akretion/nfelib/branch/master/graph/badge.svg?token=IqcCHJzhuw"/> 
+ <img src="https://codecov.io/gh/akretion/nfelib/branch/master/graph/badge.svg?token=IqcCHJzhuw"/>
 </a>
 <a href="https://pypi.org/project/nfelib/"><img alt="PyPI" src="https://img.shields.io/pypi/v/nfelib"></a>
 <a href="https://pepy.tech/project/nfelib"><img alt="Downloads" src="https://pepy.tech/badge/nfelib"></a>

@@ -67,7 +67,7 @@ Nfe(infNFe=Tnfe.InfNfe(ide=None, emit=Tnfe.InfNfe.Emit(CNPJ='59594315000157', CP
 >>>> from nfelib.nfse.bindings.v1_0.nfse_v1_00 import Nfse
 >>> nfse = Nfse.from_path("alguma_nfse.xml")
 >>>
->>> # Serializar uma MDF-e:
+>>> # Serializar uma NFS-e:
 >>> nfse.to_xml()
 >>> # Ler uma DPS:
 >>>> from nfelib.nfse.bindings.v1_0.dps_v1_00 import Dps

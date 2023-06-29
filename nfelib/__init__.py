@@ -9,6 +9,9 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 
+__version__ = "2.0.3"
+
+
 class CommonMixin:
     """
     Generic validator class that is meant to be overriden for specific fiscal documents.

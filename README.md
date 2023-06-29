@@ -1,4 +1,4 @@
-nfelib - bindings Python para gerir e ler arquivos XML de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e
+nfelib - bindings Python para e ler e gerir XML de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e
 ===
 <p align="center">
 <a href="https://akretion.com/pt_BR" > 
@@ -97,7 +97,7 @@ Nfe(infNFe=Tnfe.InfNfe(ide=None, emit=Tnfe.InfNfe.Emit(CNPJ='59594315000157', CP
 >>> cte.to_xml()
 ```
 
-**PB-e**
+**BP-e**
 ```python
 >>> # Ler um BP-e:
 >>>> from nfelib.bpe.bindings.v1_0.bpe_v1_00 import Bpe

@@ -1,7 +1,7 @@
 nfelib - bindings Python para e ler e gerir XML de NF-e, NFS-e nacional, CT-e, MDF-e, BP-e
 ===
 <p align="center">
-<a href="https://akretion.com/pt_BR" > 
+<a href="https://akretion.com/pt-BR" > 
  <img src="https://raw.githubusercontent.com/akretion/nfelib/master/ext/nfelib.jpg"/>
 </a>
 </p>

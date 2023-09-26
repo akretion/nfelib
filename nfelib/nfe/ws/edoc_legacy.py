@@ -2,6 +2,9 @@
 # Copyright 2023 - TODAY Akretion - Raphaël Valyi <raphael.valyi@akretion.com>
 
 from dataclasses import is_dataclass
+import base64
+from lxml import etree
+
 
 from erpbrasil.assinatura.assinatura import Assinatura
 
@@ -107,4 +110,17 @@ class MDeAdapter(DocumentoElectronicoAdapter, MDe):
 
 
 class MDFeAdapter(DocumentoElectronicoAdapter, MDFe):
-    pass
+    NAMESPACES = {
+        "mdfe": "http://www.portalfiscal.inf.br/mdfe",
+        "ds": "http://www.w3.org/2000/09/xmldsig#",
+    }
+
+    def assina_raiz(self, raiz, id, getchildren=False):
+        xml_assinado = super(MDFeAdapter, self).assina_raiz(raiz, id, getchildren)
+
+        xml_assinado = etree.fromstring(xml_assinado)
+        # MDFe requires certificate to be base64 encoded
+        cert_tag = xml_assinado.find('.//ds:X509Certificate', namespaces=self.NAMESPACES)
+        cert_tag.text = base64.b64encode(cert_tag.text.encode())
+
+        return etree.tostring(xml_assinado).decode()

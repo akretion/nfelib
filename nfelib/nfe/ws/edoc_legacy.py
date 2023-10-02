@@ -73,7 +73,7 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
             xml_string, xml_etree = self._generateds_to_string_etree(raiz)
         with self._transmissao.cliente(url):
             retorno = self._transmissao.enviar(operacao, xml_etree)
-            if is_dataclass(raiz):
+            if is_dataclass(classe):
                 return analisar_retorno_raw_xsdata(
                     operacao, raiz, xml_string, retorno, classe
                 )

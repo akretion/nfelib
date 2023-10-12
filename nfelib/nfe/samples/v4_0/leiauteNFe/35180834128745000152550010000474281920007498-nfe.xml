@@ -502,6 +502,12 @@
       <infAdic>
         <infCpl>VALORES TOTAIS DO ICMS INTERESTADUAL: DIFAL UF DESTINO R$ 20,33 + FCP 0,00: DIFAL UF ORIGEM: R$ 5,07</infCpl>
       </infAdic>
+      <infRespTec>
+        <CNPJ>11034414000158</CNPJ>
+        <xContato>AKRETION LTDA ME</xContato>
+        <email>suporte@akretion.com.br</email>
+        <fone>1131649168</fone>
+      </infRespTec>
     </infNFe>
     <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
       <SignedInfo>

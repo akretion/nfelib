@@ -12,6 +12,7 @@ try:
     from erpbrasil.edoc.edoc import DocumentoEletronico
     from erpbrasil.edoc.mde import MDe
     from erpbrasil.edoc.mdfe import MDFe
+    from erpbrasil.edoc.cte import CTe
     from erpbrasil.edoc.nfce import NFCe
     from erpbrasil.edoc.nfe import NFe
     from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
@@ -106,6 +107,10 @@ class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):
 
 
 class MDeAdapter(DocumentoElectronicoAdapter, MDe):
+    pass
+
+
+class CTeAdapter(DocumentoElectronicoAdapter, CTe):
     pass
 
 

@@ -15,6 +15,7 @@ try:
     from erpbrasil.edoc.edoc import DocumentoEletronico
     from erpbrasil.edoc.mde import MDe
     from erpbrasil.edoc.mdfe import MDFe
+    from erpbrasil.edoc.cte import CTe
     from erpbrasil.edoc.nfce import NFCe
     from erpbrasil.edoc.nfe import NFe, localizar_url, WS_NFE_CONSULTA
     from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
@@ -139,6 +140,24 @@ class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):
 
 class MDeAdapter(DocumentoElectronicoAdapter, MDe):
     pass
+
+
+class CTeAdapter(DocumentoElectronicoAdapter, CTe):
+
+    def _post(self, raiz, url, operacao, classe):
+
+        if is_dataclass(raiz):
+            xml_string, xml_etree = self.render_edoc_xsdata(raiz)
+        else:
+            xml_etree = xml_string = raiz
+        with self._transmissao.cliente(url):
+            retorno = self._transmissao.enviar(operacao, xml_etree)
+            if is_dataclass(classe):
+                return analisar_retorno_raw_xsdata(
+                    operacao, raiz, xml_string, retorno, classe
+                )
+            else:
+                return analisar_retorno_raw(operacao, raiz, xml_string, retorno, classe)
 
 
 class MDFeAdapter(DocumentoElectronicoAdapter, MDFe):

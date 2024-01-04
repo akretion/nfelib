@@ -94,7 +94,7 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
             xml_assinado = Assinatura(self._transmissao.certificado).assina_xml2(
                 xml_etree, id, getchildren
             )
-        return xml_assinado
+        return xml_assinado.replace('\n', '').replace('\r', '')
 
 
 class NFeAdapter(DocumentoElectronicoAdapter, NFe):

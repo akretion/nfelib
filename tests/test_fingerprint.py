@@ -29,7 +29,7 @@ PAGES = {
         "conteudoDinamico",
     ),
     "nfse": (
-        "https://www.gov.br/nfse/pt-br/documentacao-tecnica",
+        "https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica",
         "div",
         "id",
         "content-core",
@@ -46,19 +46,21 @@ def test_fingerprint():
     fingerprint = {}
     for code, scrap_params in PAGES.items():
         url = scrap_params[0]
+        md5 = "ELEMENT NOT FOUND"
         _logger.info("Fetching %s ..." % (url,))
         if len(scrap_params) > 1:
             page = requests.get(url, headers=HEADERS)
             soup = BeautifulSoup(page.text, "html.parser")
-            if scrap_params[2] == "id":
+            if scrap_params[2] == "id" and soup.find(
+                    scrap_params[1], {"id": scrap_params[3]}
+                ):
                 fragment = soup.find(
                     scrap_params[1], {"id": scrap_params[3]}
                 ).text.encode("utf-8")
-            else:
-                fragment = b"TODO"  # MDF-e
+                md5 = hashlib.md5(fragment).hexdigest()
         else:
             fragment = requests.get(url, headers=HEADERS).content  # .decode('utf-8')
-        md5 = hashlib.md5(fragment).hexdigest()
+            md5 = hashlib.md5(fragment).hexdigest()
         fingerprint[code] = (url, md5)
 
     _logger.info(fingerprint)

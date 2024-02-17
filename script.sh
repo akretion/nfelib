@@ -91,9 +91,9 @@ if [$DOWNLOAD_SCHEMAS]; then
 fi
 xsdata generate --include-header nfelib/nfe_entrega/schemas/v1_0 --package nfelib.nfe_entrega.bindings.v1_0
 
-# CT-e - Pacote de Liberação 4.00a (ZIP) - (NT 2021.001) (Publicado em 30/01/2023) Atualizado em 28/04/2023
+# CT-e - Pacote de Liberação 4.00a (ZIP) (ref. NT 2024.001) - (Publicado em 17/01/2024)
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n cte -v v4_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=kNBS3lIIyOY=
+  erpbrasil-edoc-gen-download-schema -n cte -v v4_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=JNinH9Eium8=
   rm -rf nfelib/cte/schemas
   cp -rf /tmp/generated/cte/schemas nfelib/cte/schemas
 fi

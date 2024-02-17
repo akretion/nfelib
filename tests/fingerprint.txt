@@ -1,14 +1,14 @@
 {
     "nfe": [
         "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=BMPFMBoln3w=",
-        "85858f8acadc424a0d47a77ae6822dda"
+        "c785b283d7ee2a563b15bab44db8bbd5"
     ],
     "cte": [
         "https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=0xlG1bdBass=",
-        "8931c120a3a6713e3b9235793b59da7e"
+        "d4721c910c48bedb1aabeca281a8d486"
     ],
     "nfse": [
-        "https://www.gov.br/nfse/pt-br/documentacao-tecnica",
-        "ef832452035e8b58e5519909bdd52f61"
+        "https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica",
+        "788aaa5c930fbc91000a4b8d36311c0f"
     ]
 }

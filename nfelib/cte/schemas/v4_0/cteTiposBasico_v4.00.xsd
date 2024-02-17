@@ -3664,9 +3664,9 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 										<xs:annotation>
 											<xs:documentation>Forma de emissão do CT-e</xs:documentation>
 											<xs:documentation>Preencher com:
-1 - Normal;
+ 1 - Normal;
  5 - Contingência FSDA;
-7 - Autorização pela SVC-RS;
+ 7 - Autorização pela SVC-RS;
  8 - Autorização pela SVC-SP</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
@@ -5371,6 +5371,29 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do ICMS</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5397,6 +5420,29 @@ Somente para Transporte de Valores</xs:documentation>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5442,6 +5488,28 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20% do valor do ICMS ST retido. </xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5488,6 +5556,28 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do Crédito Outorgado/Presumido</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF </xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5529,6 +5619,29 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do ICMS devido outra UF</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5645,6 +5758,29 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do ICMS</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5671,6 +5807,29 @@ Somente para Transporte de Valores</xs:documentation>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5717,6 +5876,29 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do Crédito Outorgado/Presumido</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -5758,6 +5940,29 @@ Somente para Transporte de Valores</xs:documentation>
 								<xs:documentation>Valor do ICMS devido outra UF</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF</xs:documentation>
+									<xs:documentation>Código de Benefício Fiscal utilizado pela UF
+</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>

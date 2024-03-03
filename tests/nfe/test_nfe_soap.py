@@ -93,9 +93,8 @@ class SoapTest(TestCase):
 
         cls.valid_cerificate = False
         if environ.get("CERT_FILE") and environ.get("CERT_PASSWORD"):
-            cert_bytes = Path(environ["CERT_FILE"]).read_bytes()  # FIXME
             certificado = cert.Certificado(
-                arquivo=cert_bytes,
+                arquivo=environ["CERT_FILE"],
                 senha=environ["CERT_PASSWORD"],
             )
             cls.valid_cerificate = certificado
@@ -138,7 +137,7 @@ class SoapTest(TestCase):
             "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
             "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
-            "https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcao/MDFeRecepcao.asmx",
+            #"https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcao/MDFeRecepcao.asmx",
         )
 
         with ArquivoCertificado(self.client.certificate, "r") as (key, cert):

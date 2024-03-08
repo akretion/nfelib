@@ -5,6 +5,9 @@ from dataclasses import is_dataclass
 import base64
 from lxml import etree
 
+from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
+from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
+
 
 from erpbrasil.assinatura.assinatura import Assinatura
 
@@ -13,7 +16,7 @@ try:
     from erpbrasil.edoc.mde import MDe
     from erpbrasil.edoc.mdfe import MDFe
     from erpbrasil.edoc.nfce import NFCe
-    from erpbrasil.edoc.nfe import NFe
+    from erpbrasil.edoc.nfe import NFe, localizar_url, WS_NFE_CONSULTA
     from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
 
 
@@ -98,7 +101,24 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
 
 
 class NFeAdapter(DocumentoElectronicoAdapter, NFe):
-    pass
+    def consulta_documento(self, chave):
+        raiz = ConsSitNfe(
+            versao=self.versao,
+            tpAmb=self.ambiente,
+            xServ="CONSULTAR",
+            chNFe=chave,
+        )
+        return self._post(
+            raiz=raiz,
+            url=localizar_url(
+                WS_NFE_CONSULTA,
+                str(self.uf),
+                self.mod,
+                int(self.ambiente)
+            ),
+            operacao="nfeConsultaNF",
+            classe=RetConsSitNfe,
+        )
 
 
 class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):

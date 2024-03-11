@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from xsdata.models.datatype import XmlDate
+from nfelib import CommonMixin
 from nfelib.nfse.bindings.v1_0.tipos_simples_v1_00 import (
     TcobjetoLocacao,
     TsambGeradorNfse,
@@ -3092,7 +3093,7 @@ class TcinfNfse:
 
 
 @dataclass
-class Tcnfse:
+class Tcnfse(CommonMixin):
     class Meta:
         name = "TCNFSe"
 

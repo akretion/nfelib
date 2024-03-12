@@ -21,7 +21,7 @@
     <PackageName case="snakeCase" safePrefix="pkg"/>
   </Conventions>
   <Substitutions>
-    <!-- defaults : -->
+    <!-- defaults: -->
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema" replace="xs"/>
     <Substitution type="package" search="http://www.w3.org/XML/1998/namespace" replace="xml"/>
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema-instance" replace="xsi"/>
@@ -30,8 +30,13 @@
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
- 
-    <!-- xmldsig : -->
+
+    <!-- soap: -->
+    <Substitution type="field" search="Header" replace="header"/>
+    <Substitution type="field" search="Body" replace="body"/>
+    <Substitution type="field" search="Fault" replace="fault"/>
+
+    <!-- xmldsig: -->
     <Substitution type="field" search="^@any_element$" replace="any_element"/>
     <Substitution type="field" search="^@other_element$" replace="other_element"/>
     <Substitution type="field" search="^@any_attributes$" replace="any_attributes"/> 

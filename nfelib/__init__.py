@@ -1,6 +1,7 @@
 # Copyright (C) 2023  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
 import os
+from os import environ
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -96,6 +97,33 @@ class CommonMixin:
             )
         return "undef"
 
+    @classmethod
+    def sign_xml(
+        cls,
+        xml: str,
+        pkcs12_data: Optional[bytes] = None,
+        pkcs12_password: Optional[str] = None,
+        doc_id: Optional[str] = None,
+    ) -> str:
+        """Sign xml file with pkcs12_data/pkcs12_password certificate.
+
+        Sometimes you need to test with a real certificate.
+        You can use the CERT_FILE and CERT_PASSWORD environment
+        variables to do tests with a real certificate data.
+        """
+        try:
+            from erpbrasil.assinatura import certificado as cert
+            from erpbrasil.assinatura.assinatura import Assinatura
+        except ImportError:
+            raise (RuntimeError("erpbrasil.assinatura package is not installed!"))
+
+        certificate = cert.Certificado(
+            arquivo=environ.get("CERT_FILE", pkcs12_data),
+            senha=environ.get("CERT_PASSWORD", pkcs12_password),
+        )
+        xml_etree = etree.fromstring(xml.encode("utf-8"))
+        return Assinatura(certificate).assina_xml2(xml_etree, doc_id)
+
     def to_xml(self, pretty_print: bool = True, ns_map: Optional[Dict] = None) -> str:
         """Serialize binding as an xml string."""
         serializer = XmlSerializer(SerializerConfig(pretty_print=pretty_print))
@@ -113,3 +141,12 @@ class CommonMixin:
         """Serialize binding as xml, validate it and return possible errors."""
         xml = self.to_xml()
         return self.schema_validation(xml, schema_path)
+
+    # this was an attempt to keep the signature inside the
+    # binding before serializing it again. But at the moment it fails
+    # because xsdata will serialize the Signature elements with their namespaces.
+    # def sign(self, pkcs12_data: bytes = None, pkcs12_password: str = None, doc_id: str=None):
+    #     xml = self.to_xml(pretty_print=False)
+    #     signed_xml = self.sign_xml(xml, pkcs12_data, pkcs12_password, element)
+    #     nfe = self.from_xml(signed_xml)
+    #     return nfe

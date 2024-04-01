@@ -36,6 +36,37 @@ class ClientTests(TestCase):
             == "typing.Union[nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00.Tipi, NoneType]"
         )
 
+    def test_sign(self):
+        path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
+        filename = "42210775277525000178550030000266631762885493-procNFe.xml"
+        input_file = os.path.join(path, filename)
+        parser = XmlParser()
+        nfe = parser.from_path(Path(input_file))
+        serializer = XmlSerializer(config=SerializerConfig(pretty_print=False))
+        xml = serializer.render(
+            obj=nfe, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
+        )
+        self.assertNotIn("<X509Certificate>", xml)
+        valid = (True,)
+        cert_password = "123456"
+        issuer = "EMISSOR A TESTE"
+        country = "BR"
+        subject = "CERTIFICADO VALIDO TESTE"
+        from erpbrasil.assinatura import misc
+
+        cert_data = misc.create_fake_certificate_file(
+            valid, cert_password, issuer, country, subject
+        )
+        signed_xml = nfe.sign_xml(xml, cert_data, cert_password, nfe.NFe.infNFe.Id)
+        self.assertIn("<X509Certificate>", signed_xml)
+
+        # this was an attempt to keep the signature inside the
+        # binding before serializing it again. But at the moment it fails
+        # because xsdata will serialize the Signature elements with their namespaces.
+        # signed_nfe = nfe.sign(cert_data, cert_password, nfe.NFe.infNFe.Id)
+        # signed_xml2 = signed_nfe.to_xml(pretty_print=False)
+        # self.assertEqual(signed_xml, signed_xml2)
+
     def test_in_out_leiauteNFe(self):
         path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
         for filename in os.listdir(path):

@@ -2,35 +2,36 @@
 
 import os
 from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 from lxml import etree
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-
 __version__ = "2.0.4"
 
 
 class CommonMixin:
-    """
-    Generic validator class that is meant to be overriden for specific fiscal documents.
-    """
+    """Generic helper class. Can be overriden for specific documents."""
 
     schema_path = None
     namespace = None
 
     @classmethod
-    def from_xml(cls, xml):
+    def from_xml(cls, xml: str) -> Any:
+        """Parse xml and retun an instance of the class."""
         return XmlParser().from_string(xml)
 
     @classmethod
-    def from_path(cls, path):
+    def from_path(cls, path: str) -> Any:
+        """Parse xml at given path and return an instance of the class."""
         xml = Path(path).read_text()
         return cls.from_xml(xml)
 
     @classmethod
-    def schema_validation(cls, xml, schema_path=None):
+    def schema_validation(cls, xml: str, schema_path: Optional[str] = None) -> List:
+        """Validate xml against xsd schema at given path."""
         validation_messages = []
         doc_etree = etree.fromstring(xml.encode("utf-8"))
         if schema_path is None:
@@ -47,11 +48,11 @@ class CommonMixin:
         return validation_messages
 
     @classmethod
-    def _get_package(cls):
+    def _get_package(cls) -> str:
         return cls.__module__.split("nfelib.")[1].split(".bindings")[0].split("_")[0]
 
     @classmethod
-    def _get_schema_path(cls):
+    def _get_schema_path(cls) -> str:
         package = cls._get_package()
         if package == "nfe":
             return os.path.join(
@@ -61,7 +62,7 @@ class CommonMixin:
                 "v4_0",
                 "nfe_v4.00.xsd",
             )
-        elif package == "nfse":
+        if package == "nfse":
             return os.path.join(
                 os.path.dirname(__file__),
                 "nfse",
@@ -69,7 +70,7 @@ class CommonMixin:
                 "v1_0",
                 "DPS_v1.00.xsd",
             )
-        elif package == "mdfe":
+        if package == "mdfe":
             return os.path.join(
                 os.path.dirname(__file__),
                 "mdfe",
@@ -77,7 +78,7 @@ class CommonMixin:
                 "v3_0",
                 "mdfe_v3.00.xsd",
             )
-        elif package == "cte":
+        if package == "cte":
             return os.path.join(
                 os.path.dirname(__file__),
                 "cte",
@@ -85,7 +86,7 @@ class CommonMixin:
                 "v4_0",
                 "cte_v4.00.xsd",
             )
-        elif package == "bpe":
+        if package == "bpe":
             return os.path.join(
                 os.path.dirname(__file__),
                 "bpe",
@@ -93,10 +94,10 @@ class CommonMixin:
                 "v1_0",
                 "bpe_v1.00.xsd",
             )
-        else:
-            return "undef"
+        return "undef"
 
-    def to_xml(self, pretty_print=True, ns_map=None):
+    def to_xml(self, pretty_print: bool = True, ns_map: Optional[Dict] = None) -> str:
+        """Serialize binding as an xml string."""
         serializer = XmlSerializer(SerializerConfig(pretty_print=pretty_print))
         if ns_map is None:
             if self.namespace:
@@ -108,6 +109,7 @@ class CommonMixin:
                 ns_map = {None: f"http://www.portalfiscal.inf.br/{package}"}
         return serializer.render(obj=self, ns_map=ns_map)
 
-    def validate_xml(self, schema_path=None):
+    def validate_xml(self, schema_path: Optional[str] = None) -> List:
+        """Serialize binding as xml, validate it and return possible errors."""
         xml = self.to_xml()
         return self.schema_validation(xml, schema_path)

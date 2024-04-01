@@ -124,8 +124,15 @@ class CommonMixin:
         xml_etree = etree.fromstring(xml.encode("utf-8"))
         return Assinatura(certificate).assina_xml2(xml_etree, doc_id)
 
-    def to_xml(self, pretty_print: bool = True, ns_map: Optional[Dict] = None) -> str:
-        """Serialize binding as an xml string."""
+    def to_xml(
+        self,
+        pretty_print: str = True,
+        ns_map: Optional[dict] = None,
+        pkcs12_data: Optional[bytes] = None,
+        pkcs12_password: Optional[str] = None,
+        doc_id: Optional[str] = None,
+    ) -> str:
+        """Serialize binding as xml. You can fill the signature params to sign it."""
         serializer = XmlSerializer(SerializerConfig(pretty_print=pretty_print))
         if ns_map is None:
             if self.namespace:
@@ -135,7 +142,10 @@ class CommonMixin:
             else:
                 package = self._get_package()
                 ns_map = {None: f"http://www.portalfiscal.inf.br/{package}"}
-        return serializer.render(obj=self, ns_map=ns_map)
+        xml = serializer.render(obj=self, ns_map=ns_map)
+        if doc_id:
+            return self.sign_xml(self, xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
+        return xml
 
     def validate_xml(self, schema_path: Optional[str] = None) -> List:
         """Serialize binding as xml, validate it and return possible errors."""
@@ -145,7 +155,9 @@ class CommonMixin:
     # this was an attempt to keep the signature inside the
     # binding before serializing it again. But at the moment it fails
     # because xsdata will serialize the Signature elements with their namespaces.
-    # def sign(self, pkcs12_data: bytes = None, pkcs12_password: str = None, doc_id: str=None):
+    # def sign(self, pkcs12_data: bytes = None, pkcs12_password: str = None,
+    #     doc_id: str=None
+    # ) -> str:
     #     xml = self.to_xml(pretty_print=False)
     #     signed_xml = self.sign_xml(xml, pkcs12_data, pkcs12_password, element)
     #     nfe = self.from_xml(signed_xml)

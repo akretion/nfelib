@@ -3,7 +3,7 @@
 import os
 from os import environ
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 
 from lxml import etree
 from xsdata.formats.dataclass.parsers import XmlParser
@@ -124,6 +124,36 @@ class CommonMixin:
         xml_etree = etree.fromstring(xml.encode("utf-8"))
         return Assinatura(certificate).assina_xml2(xml_etree, doc_id)
 
+    @classmethod
+    def xmls_to_pdf(
+        self,
+        xml_list: List,
+        engine: str = "brazilfiscalreport",
+        image: Optional[str] = None,  # (base64 image)
+        cfg_layout: str = "ICMS_IPI",
+        receipt_pos: str = "top",
+    ) -> bytes:
+        """Serialize a list of xmls strings (usually only one) to a pdf."""
+        xml_bytes_list = [
+            xml.encode() if isinstance(xml, str) else xml for xml in xml_list
+        ]
+        if engine == "brazilfiscalreport":
+            try:
+                from brazilfiscalreport.pdf_docs import Danfe
+            except ImportError:
+                raise (RuntimeError("brazilfiscalreport package is not installed!"))
+            return bytes(Danfe(
+                xmls=xml_bytes_list,
+                image=image,
+                cfg_layout=cfg_layout,
+                receipt_pos=receipt_pos,
+            ).output(dest="S"))
+        try:
+            from erpbrasil.edoc.pdf import base
+        except ImportError:
+            raise (RuntimeError("erpbrasil.edoc.pdf package is not installed!"))
+        return base.ImprimirXml.imprimir(string_xml=xml_bytes_list[0])
+
     def to_xml(
         self,
         pretty_print: str = True,
@@ -143,14 +173,30 @@ class CommonMixin:
                 package = self._get_package()
                 ns_map = {None: f"http://www.portalfiscal.inf.br/{package}"}
         xml = serializer.render(obj=self, ns_map=ns_map)
-        if doc_id:
-            return self.sign_xml(self, xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
+        if pkcs12_data:
+            return self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
         return xml
 
     def validate_xml(self, schema_path: Optional[str] = None) -> List:
         """Serialize binding as xml, validate it and return possible errors."""
         xml = self.to_xml()
         return self.schema_validation(xml, schema_path)
+
+    def to_pdf(
+        self,
+        engine: str = "brazilfiscalreport",
+        image: Optional[str] = None,  # (base64 image)
+        cfg_layout: str = "ICMS_IPI",
+        receipt_pos: str = "top",
+        pkcs12_data: Optional[bytes] = None,
+        pkcs12_password: Optional[str] = None,
+        doc_id: Optional[str] = None,
+    ) -> bytes:
+        """Serialize binding into pdf bytes."""
+        xml = self.to_xml()
+        if pkcs12_data:
+            xml = self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id)
+        return self.xmls_to_pdf([xml.encode()], engine, image, cfg_layout, receipt_pos)
 
     # this was an attempt to keep the signature inside the
     # binding before serializing it again. But at the moment it fails

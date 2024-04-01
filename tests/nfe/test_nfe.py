@@ -67,6 +67,22 @@ class ClientTests(TestCase):
         # signed_xml2 = signed_nfe.to_xml(pretty_print=False)
         # self.assertEqual(signed_xml, signed_xml2)
 
+        pdf_bytes = nfe.to_pdf(
+            pkcs12_data=cert_data,
+            pkcs12_password=cert_password,
+            doc_id=nfe.NFe.infNFe.Id,
+        )
+        self.assertEqual(type(pdf_bytes), bytes)
+
+    def test_pdf(self):
+        path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
+        filename = "42210775277525000178550030000266631762885493-procNFe.xml"
+        input_file = os.path.join(path, filename)
+        parser = XmlParser()
+        nfe = parser.from_path(Path(input_file))
+        pdf_bytes = nfe.to_pdf()
+        self.assertEqual(type(pdf_bytes), bytes)
+
     def test_in_out_leiauteNFe(self):
         path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
         for filename in os.listdir(path):

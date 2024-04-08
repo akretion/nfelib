@@ -1,10 +1,12 @@
 # Copyright (C) 2023  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
 import os
+import warnings
 from os import environ
 from pathlib import Path
 from typing import Any, List, Optional
 
+import xsdata
 from lxml import etree
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
@@ -142,12 +144,14 @@ class CommonMixin:
                 from brazilfiscalreport.pdf_docs import Danfe
             except ImportError:
                 raise (RuntimeError("brazilfiscalreport package is not installed!"))
-            return bytes(Danfe(
-                xmls=xml_bytes_list,
-                image=image,
-                cfg_layout=cfg_layout,
-                receipt_pos=receipt_pos,
-            ).output(dest="S"))
+            return bytes(
+                Danfe(
+                    xmls=xml_bytes_list,
+                    image=image,
+                    cfg_layout=cfg_layout,
+                    receipt_pos=receipt_pos,
+                ).output(dest="S")
+            )
         try:
             from erpbrasil.edoc.pdf import base
         except ImportError:
@@ -156,14 +160,37 @@ class CommonMixin:
 
     def to_xml(
         self,
-        pretty_print: str = True,
+        indent: str = "  ",
         ns_map: Optional[dict] = None,
         pkcs12_data: Optional[bytes] = None,
         pkcs12_password: Optional[str] = None,
         doc_id: Optional[str] = None,
+        pretty_print: Optional[str] = None,  # deprecated
     ) -> str:
         """Serialize binding as xml. You can fill the signature params to sign it."""
-        serializer = XmlSerializer(SerializerConfig(pretty_print=pretty_print))
+
+        if xsdata.__version__.split(".")[0] in ("20", "21", "22", "23"):
+            serializer = XmlSerializer(
+                config=SerializerConfig(pretty_print=pretty_print)
+            )
+        else:
+            # deal with pretty_print deprecation in xsdata >= 24:
+            if indent is True:  # (means pretty_print was passed)
+                indent = "  "
+            if pretty_print:
+                warnings.warn(
+                    "Setting `pretty_print` is deprecated, use `indent` instead",
+                    DeprecationWarning,
+                )
+                indent = "  "
+            elif pretty_print is False:
+                indent = None
+
+            if pkcs12_data:
+                indent = None
+
+            serializer = XmlSerializer(config=SerializerConfig(indent=indent))
+
         if ns_map is None:
             if self.namespace:
                 ns_map = {None: self.namespace}
@@ -204,7 +231,7 @@ class CommonMixin:
     # def sign(self, pkcs12_data: bytes = None, pkcs12_password: str = None,
     #     doc_id: str=None
     # ) -> str:
-    #     xml = self.to_xml(pretty_print=False)
+    #     xml = self.to_xml(indent=None)
     #     signed_xml = self.sign_xml(xml, pkcs12_data, pkcs12_password, element)
     #     nfe = self.from_xml(signed_xml)
     #     return nfe

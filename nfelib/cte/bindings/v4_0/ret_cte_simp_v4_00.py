@@ -5,17 +5,18 @@ See: https://xsdata.readthedocs.io/
 """
 from dataclasses import dataclass
 
-from nfelib.cte.bindings.v4_0.inut_cte_tipos_basico_v4_00 import TprocInutCte
+from nfelib.cte.bindings.v4_0.cte_tipos_basico_v4_00 import TretCteSimp
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 
 
 @dataclass
-class ProcInutCte(TprocInutCte):
+class RetCteSimp(TretCteSimp):
     """
-    Pedido de inutilzação de numeração de CT-e processado.
+    Schema XML de validação do retorno do recibo de envio do CT-e Simplificado
+    (Modelo 57)
     """
 
     class Meta:
-        name = "procInutCTe"
+        name = "retCTeSimp"
         namespace = "http://www.portalfiscal.inf.br/cte"

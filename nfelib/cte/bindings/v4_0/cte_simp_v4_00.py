@@ -5,17 +5,17 @@ See: https://xsdata.readthedocs.io/
 """
 from dataclasses import dataclass
 
-from nfelib.cte.bindings.v4_0.inut_cte_tipos_basico_v4_00 import TprocInutCte
+from nfelib.cte.bindings.v4_0.cte_tipos_basico_v4_00 import TcteSimp
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 
 
 @dataclass
-class ProcInutCte(TprocInutCte):
+class CteSimp(TcteSimp):
     """
-    Pedido de inutilzação de numeração de CT-e processado.
+    Conhecimento de Transporte Eletrônico Simplificado.
     """
 
     class Meta:
-        name = "procInutCTe"
+        name = "CTeSimp"
         namespace = "http://www.portalfiscal.inf.br/cte"

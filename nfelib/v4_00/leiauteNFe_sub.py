@@ -3,9 +3,22 @@
 import sys
 import os
 from lxml import etree as etree_
+import warnings
 
 sys.path.append(os.path.dirname(__file__))
 import retEnviNFe as supermod
+
+
+warnings.warn(
+    (
+        "These nfelib 1.x bindings (nfelib.v4_00; generated with GenerateDS) "
+        "are deprecated and will be removed after 01/06/2024. "
+        "\nYou should use the nfelib 2.x xsdata bindings in nfelib.nfe.bindings "
+        "instead.\nYou can learn about the migration process here: "
+        "https://github.com/akretion/nfelib/issues/59"
+    ),
+    DeprecationWarning,
+)
 
 
 def parsexml_(infile, parser=None, keep_signature=False, **kwargs):

@@ -5,7 +5,7 @@
     ],
     "cte": [
         "https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=0xlG1bdBass=",
-        "d4721c910c48bedb1aabeca281a8d486"
+        "68c476b64cff31710cd6170170ae984c"
     ],
     "nfse": [
         "https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica",

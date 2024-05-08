@@ -126,38 +126,6 @@ class CommonMixin:
         xml_etree = etree.fromstring(xml.encode("utf-8"))
         return Assinatura(certificate).assina_xml2(xml_etree, doc_id)
 
-    @classmethod
-    def xmls_to_pdf(
-        self,
-        xml_list: List,
-        engine: str = "brazilfiscalreport",
-        image: Optional[str] = None,  # (base64 image)
-        cfg_layout: str = "ICMS_IPI",
-        receipt_pos: str = "top",
-    ) -> bytes:
-        """Serialize a list of xmls strings (usually only one) to a pdf."""
-        xml_bytes_list = [
-            xml.encode() if isinstance(xml, str) else xml for xml in xml_list
-        ]
-        if engine == "brazilfiscalreport":
-            try:
-                from brazilfiscalreport.pdf_docs import Danfe
-            except ImportError:
-                raise (RuntimeError("brazilfiscalreport package is not installed!"))
-            return bytes(
-                Danfe(
-                    xmls=xml_bytes_list,
-                    image=image,
-                    cfg_layout=cfg_layout,
-                    receipt_pos=receipt_pos,
-                ).output(dest="S")
-            )
-        try:
-            from erpbrasil.edoc.pdf import base
-        except ImportError:
-            raise (RuntimeError("erpbrasil.edoc.pdf package is not installed!"))
-        return base.ImprimirXml.imprimir(string_xml=xml_bytes_list[0])
-
     def to_xml(
         self,
         indent: str = "  ",
@@ -212,9 +180,7 @@ class CommonMixin:
     def to_pdf(
         self,
         engine: str = "brazilfiscalreport",
-        image: Optional[str] = None,  # (base64 image)
-        cfg_layout: str = "ICMS_IPI",
-        receipt_pos: str = "top",
+        config: Any = None,  # (actually expects a DanfeConfig)
         pkcs12_data: Optional[bytes] = None,
         pkcs12_password: Optional[str] = None,
         doc_id: Optional[str] = None,
@@ -223,7 +189,23 @@ class CommonMixin:
         xml = self.to_xml()
         if pkcs12_data:
             xml = self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id)
-        return self.xmls_to_pdf([xml.encode()], engine, image, cfg_layout, receipt_pos)
+
+        if engine == "brazilfiscalreport":
+            try:
+                from brazilfiscalreport.danfe import Danfe
+            except ImportError:
+                raise (RuntimeError("the BrazilFiscalReport package is not installed!"))
+            return bytes(
+                Danfe(
+                    xml=xml,
+                    config=config,
+                ).output(dest="S")
+            )
+        try:
+            from erpbrasil.edoc.pdf import base
+        except ImportError:
+            raise (RuntimeError("the erpbrasil.edoc.pdf package is not installed!"))
+        return base.ImprimirXml.imprimir(string_xml=xml)
 
     # this was an attempt to keep the signature inside the
     # binding before serializing it again. But at the moment it fails

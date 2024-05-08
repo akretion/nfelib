@@ -91,6 +91,15 @@ if [$DOWNLOAD_SCHEMAS]; then
 fi
 xsdata generate --include-header nfelib/nfe_entrega/schemas/v1_0 --package nfelib.nfe_entrega.bindings.v1_0
 
+# Evento Insucesso na Entrega da NF-e. Publicado em 26/04/2024
+if [$DOWNLOAD_SCHEMAS]; then
+  erpbrasil-edoc-gen-download-schema -n nfe_insucesso -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=qvyq5vuft74=
+  rm -rf nfelib/nfe_insucesso/schemas
+  cp -rf /tmp/generated/nfe_insucesso/schemas nfelib/nfe_insucesso/schemas
+fi
+xsdata generate --include-header nfelib/nfe_insucesso/schemas/v1_0 --package nfelib.nfe_insucesso.bindings.v1_0
+
+
 # CT-e - Pacote de Liberação 4.00 (ZIP) (ref. NT 2024.002) - (Publicado em 08/04/2024)
 if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n cte -v v4_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=1hNQGC4YA/o=

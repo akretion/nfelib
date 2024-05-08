@@ -58,6 +58,28 @@ Nfe(infNFe=Tnfe.InfNfe(ide=None, emit=Tnfe.InfNfe.Emit(CNPJ='59594315000157', CP
 ["Element '{http://www.portalfiscal.inf.br/nfe}infNFe': The attribute 'versao' is required but missing.", "Element '{http://www.portalfiscal.inf.br/nfe}infNFe': The attribute 'Id' is required but missing." [...]
 ```
 
+Assinar o XML de uma nota usando a lib [erpbrasil.assinatura](https://github.com/erpbrasil/erpbrasil.assinatura) (funciona com os outros documentos eletrônicos também)
+```
+>>> # Assinar o XML de uma nota:
+>>> with open(path_to_your_pkcs12_certificate, "rb") as pkcs12_buffer:
+    pkcs12_data = pkcs12_buffer.read()
+>>> signed_xml = nfe.sign_xml(xml, pkcs12_data, cert_password, nfe.NFe.infNFe.Id)
+```
+
+Imprimir o DANFE usando a lib [BrazilFiscalReport](https://github.com/Engenere/BrazilFiscalReport) ou a lib [erpbrasil.edoc.pdf](https://github.com/erpbrasil/erpbrasil.edoc.pdf) (futuramente BrazilFiscalReport deve imprimir o pdf de outros documentos eletrônicos também; erpbrasil.edoc.pdf é uma lib mais 'legacy')
+```
+>>> # Imprimir o pdf de uma nota usando BrazilFiscalReport:
+>>> pdf_bytes = nfe.to_pdf()
+>>> # Imprimir o pdf de uma nota usando erpbrasil.edoc.pdf:
+>>> pdf_bytes = nfe.to_pdf(engine="erpbrasil.edoc.pdf")
+>>> # Ou então para imprimir e assinar junto:
+>>> pdf_bytes = nfe.to_pdf(
+    pkcs12_data=cert_data,
+    pkcs12_password=cert_password,
+    doc_id=nfe.NFe.infNFe.Id,
+    )
+```
+
 **NFS-e padrão nacional**
 ```python
 >>> # Ler uma NFS-e:

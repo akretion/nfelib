@@ -22,9 +22,12 @@ class CommonMixin:
     namespace = None
 
     @classmethod
-    def from_xml(cls, xml: str) -> Any:
+    def from_xml(cls, xml: str, config=None) -> Any:
         """Parse xml and retun an instance of the class."""
-        return XmlParser().from_string(xml)
+        if config is None:
+            return XmlParser().from_string(xml)
+        else:
+            return XmlParser(config=config).from_string(xml)
 
     @classmethod
     def from_path(cls, path: str) -> Any:

@@ -108,17 +108,29 @@ class NFeAdapter(DocumentoElectronicoAdapter, NFe):
             xServ="CONSULTAR",
             chNFe=chave,
         )
-        return self._post(
-            raiz=raiz,
-            url=localizar_url(
+
+        # Check if the method ´_get_ws_endpoint´ exists to ensure compatibility 
+        # with different versions of the erpbrasil.edoc library.
+        if hasattr(self, '_get_ws_endpoint'):
+            url = self._get_ws_endpoint(WS_NFE_CONSULTA)
+        else:
+            # TODO: Remove this fallback in the next few months.
+            # The following block is a temporary solution to support older versions.
+            # After transitioning, remove the localizar_url method call.
+            url = localizar_url(
                 WS_NFE_CONSULTA,
                 str(self.uf),
                 self.mod,
                 int(self.ambiente)
-            ),
+            )
+
+        return self._post(
+            raiz=raiz,
+            url=url,
             operacao="nfeConsultaNF",
             classe=RetConsSitNfe,
         )
+
 
 
 class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):

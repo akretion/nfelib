@@ -40,11 +40,11 @@
 					<tribISSQN>1</tribISSQN>
 					<tpRetISSQN>1</tpRetISSQN>
 				</tribMun>
-				<tribNac>
+				<tribFed>
 					<vRetCP>8.99</vRetCP>
 					<vRetIRRF>9.99</vRetIRRF>
 					<vRetCSLL>9.99</vRetCSLL>
-				</tribNac>
+				</tribFed>
 				<totTrib>
 					<pTotTribSN>0.01</pTotTribSN>
 				</totTrib>

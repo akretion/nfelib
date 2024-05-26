@@ -34,21 +34,16 @@
 			<vDescCondIncond>
 				<vDescIncond>9999999.99</vDescIncond>
 				<vDescCond>9.99</vDescCond>
-			</vDescCondIncond>
-			<trib>
-				<tribMun>
-					<tribISSQN>1</tribISSQN>
-					<tpRetISSQN>1</tpRetISSQN>
-				</tribMun>
-				<tribNac>
-					<vRetCP>8.99</vRetCP>
-					<vRetIRRF>9.99</vRetIRRF>
-					<vRetCSLL>9.99</vRetCSLL>
-				</tribNac>
-				<totTrib>
-					<pTotTribSN>0.01</pTotTribSN>
-				</totTrib>
-			</trib>
+            </vDescCondIncond>
+            <trib>
+                <tribMun>
+                    <tribISSQN>1</tribISSQN>
+                    <tpRetISSQN>1</tpRetISSQN>
+                </tribMun>
+                <totTrib>
+                    <pTotTribSN>0.01</pTotTribSN>
+                </totTrib>
+            </trib>
 		</valores>
 	</infDPS>
 </DPS>

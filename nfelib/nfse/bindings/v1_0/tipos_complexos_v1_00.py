@@ -2453,7 +2453,7 @@ class TcinfoTributacao(CommonMixin):
     """
     :ivar tribMun: Grupo de informações relacionados ao Imposto Sobre
         Serviços de Qualquer Natureza - ISSQN
-    :ivar tribNac: Grupo de informações de outros tributos relacionados
+    :ivar tribFed: Grupo de informações de outros tributos relacionados
         ao serviço prestado
     :ivar totTrib: Grupo de informações para totais aproximados dos
         tributos relacionados ao serviço prestado
@@ -2470,7 +2470,7 @@ class TcinfoTributacao(CommonMixin):
             "required": True,
         },
     )
-    tribNac: Optional[TctribNacional] = field(
+    tribFed: Optional[TctribNacional] = field(
         default=None,
         metadata={
             "type": "Element",

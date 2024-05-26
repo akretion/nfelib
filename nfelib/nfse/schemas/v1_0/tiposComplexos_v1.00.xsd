@@ -1255,7 +1255,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="tribNac" type="TCTribNacional" minOccurs="0">
+      <xs:element name="tribFed" type="TCTribNacional" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             Grupo de informações de outros tributos relacionados ao serviço prestado

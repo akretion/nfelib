@@ -12,7 +12,7 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-__version__ = "2.0.6"
+__version__ = "2.0.7"
 
 
 class CommonMixin:

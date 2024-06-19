@@ -1,7 +1,7 @@
 {
     "nfe": [
         "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=BMPFMBoln3w=",
-        "9eb5a858cab3085819274edddd7802b6"
+        "7b16af42147abbdf19942b4863360fc4"
     ],
     "cte": [
         "https://www.cte.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=0xlG1bdBass=",

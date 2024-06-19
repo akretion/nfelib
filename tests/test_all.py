@@ -32,10 +32,7 @@ def visit_nested_classes(cls, classes):
 
 def test_init_all():
     for pkg_name in pkgutil.walk_packages(["nfelib/"]):
-        if pkg_name.name == "v4_00":
-            pkg_path = "nfelib/v4_00"
-        else:
-            pkg_path = "nfelib/" + pkg_name.name + "/bindings"
+        pkg_path = "nfelib/" + pkg_name.name + "/bindings"
         _logger.info(pkg_path)
         for version in pkgutil.walk_packages([pkg_path]):
             if pkg_name.name == "v4_00":

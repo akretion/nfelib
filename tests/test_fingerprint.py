@@ -1,7 +1,9 @@
+from unittest import TestCase
+
 import hashlib
 import json
 import logging
-from os import environ, path
+from os import environ
 from pathlib import Path
 
 import requests
@@ -39,33 +41,36 @@ PAGES = {
 }
 
 
-def test_fingerprint():
-    if environ.get("SKIP_FINGERPRINT"):
-        _logger.info("Skipping fingerprint test")
-        return True
-    fingerprint = {}
-    for code, scrap_params in PAGES.items():
-        url = scrap_params[0]
-        md5 = "ELEMENT NOT FOUND"
-        _logger.info("Fetching %s ..." % (url,))
-        if len(scrap_params) > 1:
-            page = requests.get(url, headers=HEADERS)
-            soup = BeautifulSoup(page.text, "html.parser")
-            if scrap_params[2] == "id" and soup.find(
+class FingerPrintTests(TestCase):
+    def test_fingerprint(self):
+        if environ.get("SKIP_FINGERPRINT"):
+            _logger.info("Skipping fingerprint test")
+            return True
+        fingerprint = {}
+        for code, scrap_params in PAGES.items():
+            url = scrap_params[0]
+            md5 = "ELEMENT NOT FOUND"
+            _logger.info("Fetching %s ..." % (url,))
+            if len(scrap_params) > 1:
+                page = requests.get(url, headers=HEADERS)
+                soup = BeautifulSoup(page.text, "html.parser")
+                if scrap_params[2] == "id" and soup.find(
                     scrap_params[1], {"id": scrap_params[3]}
                 ):
-                fragment = soup.find(
-                    scrap_params[1], {"id": scrap_params[3]}
-                ).text.encode("utf-8")
+                    fragment = soup.find(
+                        scrap_params[1], {"id": scrap_params[3]}
+                    ).text.encode("utf-8")
+                    md5 = hashlib.md5(fragment).hexdigest()
+            else:
+                fragment = requests.get(
+                    url, headers=HEADERS
+                ).content  # .decode('utf-8')
                 md5 = hashlib.md5(fragment).hexdigest()
-        else:
-            fragment = requests.get(url, headers=HEADERS).content  # .decode('utf-8')
-            md5 = hashlib.md5(fragment).hexdigest()
-        fingerprint[code] = (url, md5)
+            fingerprint[code] = (url, md5)
 
-    _logger.info(fingerprint)
-    json_string = json.dumps(fingerprint, indent=4)
-    target = Path("tests/fingerprint.txt").read_text()
-    with open("tests/fingerprint.txt", "w") as outfile:
-        outfile.write(json_string)
-    assert target.strip() == json_string.strip()
+        _logger.info(fingerprint)
+        json_string = json.dumps(fingerprint, indent=4)
+        target = Path("tests/fingerprint.txt").read_text()
+        with open("tests/fingerprint.txt", "w") as outfile:
+            outfile.write(json_string)
+        self.assertEqual(target.strip(), json_string.strip())

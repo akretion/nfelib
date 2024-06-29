@@ -1,0 +1,133 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["nfelib*"]
+
+[project]
+name = "nfelib"
+description = "nfelib: electronic invoicing library for Brazil"
+authors = [{name = "Raphaël Valyi", email = "raphael.valyi@akretion.com.br"}]
+license = {text = "MIT"}
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+keywords = ["e-invoicing", "ERP", "Odoo", "NFe", "CTe", "MDFe", "BPe", "NFSe"]
+requires-python = ">=3.8"
+dependencies = [
+    "xsdata",
+]
+dynamic = ["version"]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://github.com/akretion/nfelib"
+Source = "https://github.com/akretion/nfelib"
+Documentation = "https://nfelib.readthedocs.io/"
+Changelog = "https://nfelib.readthedocs.io/en/latest/changelog/"
+
+[project.optional-dependencies]
+sign = [
+    "erpbrasil.assinatura",
+]
+pdf = [
+    "brazilfiscalreport",
+]
+test = [
+    "pre-commit",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "xmldiff",
+    "requests",
+    "beautifulsoup4",
+    "erpbrasil.assinatura",
+    "brazilfiscalreport",
+]
+
+[tool.setuptools]
+include-package-data = true
+license-files = ["MIT-LICENSE"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nfelib.__version__"}
+
+[tool.ruff]
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # flake8-annotations
+    "ANN",
+    # flake8-comprehensions
+    "C4",
+    # isort
+    "I",
+    # pydocstyle
+    "D",
+    # flake-raise
+    "RSE",
+    # flake-return
+    "RET",
+    # Ruff rules
+    "RUF",
+]
+
+ignore = [
+    "ANN101",
+    "ANN102",
+    "ANN201",
+    "ANN202",
+    "ANN204",
+    "ANN206",
+    "ANN401",
+    "E203",
+    "B028",
+    "B904",
+    "D100",
+    "D104",
+    "D107",
+    "RUF009",
+    "RUF012",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/{tests}/*" = ["ANN001", "ANN002", "ANN003", "E501", "B018", "D"]
+"**/utils/testing.py" = ["D"]
+"docs/*" = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.pytest.ini_options]
+addopts = "--color=yes"
+doctest_optionflags = "NORMALIZE_WHITESPACE"

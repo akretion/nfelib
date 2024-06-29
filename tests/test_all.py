@@ -1,16 +1,9 @@
 # Copyright (C) 2019 - TODAY Raphaël Valyi - Akretion
 
-import os
-import sys
 import importlib
 import inspect
 from enum import EnumMeta
-from xmldiff import main
 
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
-from xsdata.formats.dataclass.parsers import XmlParser
-from xsdata.formats.dataclass.serializers import XmlSerializer
-from pathlib import Path
 import pkgutil
 import logging
 

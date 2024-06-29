@@ -30,11 +30,11 @@
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
- 
+
     <!-- xmldsig : -->
     <Substitution type="field" search="^@any_element$" replace="any_element"/>
     <Substitution type="field" search="^@other_element$" replace="other_element"/>
-    <Substitution type="field" search="^@any_attributes$" replace="any_attributes"/> 
+    <Substitution type="field" search="^@any_attributes$" replace="any_attributes"/>
     <Substitution type="field" search="^Signature$" replace="signature"/>
     <Substitution type="field" search="^SignatureMethod$" replace="signatureMethod"/>
     <Substitution type="field" search="^SignatureValue$" replace="signatureValue"/>

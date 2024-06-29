@@ -1,54 +1,38 @@
 exclude: |
   (?x)
-  setup.cfg|
-  ^tests|
-repos:
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v2.10.1
-    hooks:
-      - id: pyupgrade
-        args: [--py37-plus]
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.4.0
-    hooks:
-      - id: reorder-python-imports
-  - repo: https://github.com/ambv/black
-    rev: 22.3.0
-    hooks:
-      - id: black
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.0
-    hooks:
-      - id: flake8
-        additional_dependencies: [
-          flake8-bugbear,
-          flake8-annotations,
-          flake8-comprehensions,
-        ]
-        args: ["--suppress-none-returning"]
+  ^README\.md$
 
+repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: debug-statements
-  - repo: git@github.com:humitos/mirrors-docformatter.git
-    rev: v1.0
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.22.9
     hooks:
-      - id: docformatter
-        args: ["--in-place", "--pre-summary-newline"]
+      - id: typos
+        exclude: ^tests/|.xsd$
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.0
+    hooks:
+      - id: ruff
+        args: [ --fix, --show-fixes]
+      - id: ruff-format
+        exclude: ^nfelib/[^/]+\.py$
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.812
+    rev: v1.10.1
     hooks:
       - id: mypy
-        additional_dependencies: [tokenize-rt]
-  - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.17.0
+        files: ^(nfelib/)
+        args: [ "--check-untyped-defs", "--ignore-missing-imports" ]
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
     hooks:
-      - id: setup-cfg-fmt
-        args: ["--max-py-version=3.9"]
-  - repo: https://github.com/PyCQA/doc8
-    rev: 0.9.0a1
-    hooks:
-      - id: doc8
+      - id: prettier
+        additional_dependencies:
+          - prettier@3.2.5
+        types_or: [markdown]
+        args: [--prose-wrap=always, --print-width=88]
+        exclude: ^nfelib/[^/]+\.xml$

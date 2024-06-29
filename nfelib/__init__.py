@@ -9,25 +9,26 @@ from typing import Any, List, Optional
 import xsdata
 from lxml import etree
 from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 __version__ = "2.0.7"
 
 
+# mypy: disable-error-code = attr-defined
 class CommonMixin:
-    """Generic helper class. Can be overriden for specific documents."""
+    """Generic helper class. Can be overridden for specific documents."""
 
     schema_path = None
     namespace = None
 
     @classmethod
-    def from_xml(cls, xml: str, config=None) -> Any:
-        """Parse xml and retun an instance of the class."""
+    def from_xml(cls, xml: str, config: ParserConfig=None) -> Any:
+        """Parse xml and return an instance of the class."""
         if config is None:
             return XmlParser().from_string(xml)
-        else:
-            return XmlParser(config=config).from_string(xml)
+        return XmlParser(config=config).from_string(xml)
 
     @classmethod
     def from_path(cls, path: str) -> Any:
@@ -139,7 +140,6 @@ class CommonMixin:
         pretty_print: Optional[str] = None,  # deprecated
     ) -> str:
         """Serialize binding as xml. You can fill the signature params to sign it."""
-
         if xsdata.__version__.split(".")[0] in ("20", "21", "22", "23"):
             serializer = XmlSerializer(
                 config=SerializerConfig(pretty_print=pretty_print)
@@ -155,10 +155,10 @@ class CommonMixin:
                 )
                 indent = "  "
             elif pretty_print is False:
-                indent = None
+                indent = ""
 
             if pkcs12_data:
-                indent = None
+                indent = ""
 
             serializer = XmlSerializer(config=SerializerConfig(indent=indent))
 

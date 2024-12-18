@@ -17,7 +17,6 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -27,7 +26,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 keywords = ["e-invoicing", "ERP", "Odoo", "NFe", "CTe", "MDFe", "BPe", "NFSe"]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "lxml",
     "xsdata",
@@ -71,7 +70,7 @@ license-files = ["MIT-LICENSE"]
 version = {attr = "nfelib.__version__"}
 
 [tool.ruff]
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
 select = [

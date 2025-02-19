@@ -38,7 +38,10 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 def analisar_retorno_raw_xsdata(operacao, raiz, xml, retorno, classe):
     retorno.raise_for_status()
-    match = re.search("<soap:Body>(.*?)</soap:Body>", retorno.text.replace("\n", ""))
+    # Pattern to grab <soap:Body ... > OR <env:Body ... >
+    # The prefix (soap or env) varies depending on the UF
+    pattern = r"<(?:env|soap|soapenv):Body[^>]*>(.*?)</(?:env|soap|soapenv):Body>"
+    match = re.search(pattern, retorno.text.replace("\n", ""))
     if match:
         xml_resposta = match.group(1)
         # pega a resposta de dentro do envelope

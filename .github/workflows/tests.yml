@@ -37,7 +37,7 @@ jobs:
           python -m pip install .[test]
       - name: Test
         run: |
-          pytest --cov=./nfelib --cov-report=xml --cov-branch --doctest-glob="docs/*.md"
+          pytest --cov --cov-report=xml --cov-branch --doctest-glob="docs/*.md"
       - name: Debug Coverage File
         run: cat coverage.xml
       - name: Upload coverage to Codecov

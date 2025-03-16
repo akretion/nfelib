@@ -38,8 +38,6 @@ jobs:
       - name: Test
         run: |
           pytest --cov --cov-report=xml --cov-branch --doctest-glob="docs/*.md"
-      - name: Debug Coverage File
-        run: cat coverage.xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:

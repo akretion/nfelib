@@ -70,7 +70,7 @@ class FingerPrintTests(TestCase):
 
         _logger.info(fingerprint)
         json_string = json.dumps(fingerprint, indent=4)
-        target = Path("tests/fingerprint.txt").read_text()
-        with open("tests/fingerprint.txt", "w") as outfile:
+        target = Path("tests/fingerprints.json").read_text()
+        with open("tests/fingerprint.json", "w") as outfile:
             outfile.write(json_string)
         self.assertEqual(target.strip(), json_string.strip())

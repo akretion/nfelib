@@ -1,4 +1,6 @@
 import logging
+import subprocess
+import sys
 import os
 from os import environ
 import urllib3
@@ -20,7 +22,7 @@ WSDL_DIRS = {
 }
 
 
-def download_wsdl_files(*wsdl_urls):
+def download_wsdl_files(*wsdl_urls, generate=False):
     """Download WSDL files for NF-e, CT-e, MDF-e, and BP-e."""
 
     # Access the certificate and password from environment variables
@@ -90,3 +92,19 @@ def download_wsdl_files(*wsdl_urls):
         except Exception as e:
             _logger.error(f"Failed to download or save WSDL from {url}: {e}")
             raise
+
+    if generate:
+        soap_dir = wsdl_dir.replace("wsdl", "soap")
+        command = [
+            "xsdata",
+            "generate",
+            "--package",
+            soap_dir,
+            wsdl_dir,
+        ]
+        try:
+            subprocess.run(command, check=True)
+            logging.info("Successfully generated SOAP bindings.")
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Failed to generate SOAP bindings: {e}")
+            sys.exit(1)

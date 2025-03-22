@@ -1,8 +1,21 @@
 # Auto-generated file. Do not edit manually.
 
+# Constants
+NFEINUTILIZACAO = "NfeInutilizacao"
+NFECONSULTAPROTOCOLO = "NfeConsultaProtocolo"
+NFESTATUSSERVICO = "NfeStatusServico"
+NFECONSULTACADASTRO = "NfeConsultaCadastro"
+RECEPCAOEVENTO = "RecepcaoEvento"
+NFEAUTORIZACAO = "NFeAutorizacao"
+NFERETAUTORIZACAO = "NFeRetAutorizacao"
+NFEDISTRIBUICAODFE = "NFeDistribuicaoDFe"
+
+# Servers
+
+
 servers = {
     'AM': {
-        'prod_server': 'homnfe.sefaz.am.gov.br',
+        'prod_server': 'nfe.sefaz.am.gov.br',
         'dev_server': 'homnfe.sefaz.am.gov.br',
         'NfeInutilizacao': '/services2/services/NfeInutilizacao4',
         'NfeConsultaProtocolo': '/services2/services/NfeConsulta4',
@@ -13,7 +26,7 @@ servers = {
         'NFeRetAutorizacao': '/services2/services/NfeRetAutorizacao4',
     },
     'BA': {
-        'prod_server': 'hnfe.sefaz.ba.gov.br',
+        'prod_server': 'nfe.sefaz.ba.gov.br',
         'dev_server': 'hnfe.sefaz.ba.gov.br',
         'NfeInutilizacao': '/webservices/NFeInutilizacao4/NFeInutilizacao4.asmx',
         'NfeConsultaProtocolo': '/webservices/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx',
@@ -24,7 +37,7 @@ servers = {
         'NFeRetAutorizacao': '/webservices/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx',
     },
     'GO': {
-        'prod_server': 'homolog.sefaz.go.gov.br',
+        'prod_server': 'nfe.sefaz.go.gov.br',
         'dev_server': 'homolog.sefaz.go.gov.br',
         'NfeInutilizacao': '/nfe/services/NFeInutilizacao4?wsdl',
         'NfeConsultaProtocolo': '/nfe/services/NFeConsultaProtocolo4?wsdl',
@@ -35,7 +48,7 @@ servers = {
         'NFeRetAutorizacao': '/nfe/services/NFeRetAutorizacao4?wsdl',
     },
     'MG': {
-        'prod_server': 'hnfe.fazenda.mg.gov.br',
+        'prod_server': 'nfe.fazenda.mg.gov.br',
         'dev_server': 'hnfe.fazenda.mg.gov.br',
         'NfeInutilizacao': '/nfe2/services/NFeInutilizacao4',
         'NfeConsultaProtocolo': '/nfe2/services/NFeConsultaProtocolo4',
@@ -46,7 +59,7 @@ servers = {
         'NFeRetAutorizacao': '/nfe2/services/NFeRetAutorizacao4',
     },
     'MS': {
-        'prod_server': 'hom.nfe.sefaz.ms.gov.br',
+        'prod_server': 'nfe.sefaz.ms.gov.br',
         'dev_server': 'hom.nfe.sefaz.ms.gov.br',
         'NfeInutilizacao': '/ws/NFeInutilizacao4',
         'NfeConsultaProtocolo': '/ws/NFeConsultaProtocolo4',
@@ -57,7 +70,7 @@ servers = {
         'NFeRetAutorizacao': '/ws/NFeRetAutorizacao4',
     },
     'MT': {
-        'prod_server': 'homologacao.sefaz.mt.gov.br',
+        'prod_server': 'nfe.sefaz.mt.gov.br',
         'dev_server': 'homologacao.sefaz.mt.gov.br',
         'NfeInutilizacao': '/nfews/v2/services/NfeInutilizacao4?wsdl',
         'NfeConsultaProtocolo': '/nfews/v2/services/NfeConsulta4?wsdl',
@@ -68,18 +81,18 @@ servers = {
         'NFeRetAutorizacao': '/nfews/v2/services/NfeRetAutorizacao4?wsdl',
     },
     'PE': {
-        'prod_server': 'nfehomolog.sefaz.pe.gov.br',
+        'prod_server': 'nfe.sefaz.pe.gov.br',
         'dev_server': 'nfehomolog.sefaz.pe.gov.br',
-        'NfeInutilizacao': '/nfe-service/services/NFeInutilizacao4?wsdl',
-        'NfeConsultaProtocolo': '/nfe-service/services/NFeConsultaProtocolo4?wsdl',
-        'NfeStatusServico': '/nfe-service/services/NFeStatusServico4?wsdl',
+        'NfeInutilizacao': '/nfe-service/services/NFeInutilizacao4',
+        'NfeConsultaProtocolo': '/nfe-service/services/NFeConsultaProtocolo4',
+        'NfeStatusServico': '/nfe-service/services/NFeStatusServico4',
         'NfeConsultaCadastro': '/nfe-service/services/CadConsultaCadastro4?wsdl',
-        'RecepcaoEvento': '/nfe-service/services/NFeRecepcaoEvento4?wsdl',
-        'NFeAutorizacao': '/nfe-service/services/NFeAutorizacao4?wsdl',
-        'NFeRetAutorizacao': '/nfe-service/services/NFeRetAutorizacao4?wsdl',
+        'RecepcaoEvento': '/nfe-service/services/NFeRecepcaoEvento4',
+        'NFeAutorizacao': '/nfe-service/services/NFeAutorizacao4',
+        'NFeRetAutorizacao': '/nfe-service/services/NFeRetAutorizacao4',
     },
     'PR': {
-        'prod_server': 'homologacao.nfe.sefa.pr.gov.br',
+        'prod_server': 'nfe.sefa.pr.gov.br',
         'dev_server': 'homologacao.nfe.sefa.pr.gov.br',
         'NfeInutilizacao': '/nfe/NFeInutilizacao4?wsdl',
         'NfeConsultaProtocolo': '/nfe/NFeConsultaProtocolo4?wsdl',
@@ -90,7 +103,7 @@ servers = {
         'NFeRetAutorizacao': '/nfe/NFeRetAutorizacao4?wsdl',
     },
     'RS': {
-        'prod_server': 'nfe-homologacao.sefazrs.rs.gov.br',
+        'prod_server': 'nfe.sefazrs.rs.gov.br',
         'dev_server': 'nfe-homologacao.sefazrs.rs.gov.br',
         'NfeInutilizacao': '/ws/nfeinutilizacao/nfeinutilizacao4.asmx',
         'NfeConsultaProtocolo': '/ws/NfeConsulta/NfeConsulta4.asmx',
@@ -101,7 +114,7 @@ servers = {
         'NFeRetAutorizacao': '/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx',
     },
     'SP': {
-        'prod_server': 'homologacao.nfe.fazenda.sp.gov.br',
+        'prod_server': 'nfe.fazenda.sp.gov.br',
         'dev_server': 'homologacao.nfe.fazenda.sp.gov.br',
         'NfeInutilizacao': '/ws/nfeinutilizacao4.asmx',
         'NfeConsultaProtocolo': '/ws/nfeconsultaprotocolo4.asmx',
@@ -112,7 +125,7 @@ servers = {
         'NFeRetAutorizacao': '/ws/nferetautorizacao4.asmx',
     },
     'SVAN': {
-        'prod_server': 'hom.sefazvirtual.fazenda.gov.br',
+        'prod_server': 'www.sefazvirtual.fazenda.gov.br',
         'dev_server': 'hom.sefazvirtual.fazenda.gov.br',
         'NfeInutilizacao': '/NFeInutilizacao4/NFeInutilizacao4.asmx',
         'NfeConsultaProtocolo': '/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx',
@@ -122,7 +135,7 @@ servers = {
         'NFeRetAutorizacao': '/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx',
     },
     'SVRS': {
-        'prod_server': 'nfe-homologacao.svrs.rs.gov.br',
+        'prod_server': 'nfe.svrs.rs.gov.br',
         'dev_server': 'nfe-homologacao.svrs.rs.gov.br',
         'NfeInutilizacao': '/ws/nfeinutilizacao/nfeinutilizacao4.asmx',
         'NfeConsultaProtocolo': '/ws/NfeConsulta/NfeConsulta4.asmx',
@@ -133,7 +146,7 @@ servers = {
         'NFeRetAutorizacao': '/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx',
     },
     'SVC-AN': {
-        'prod_server': 'hom.sefazvirtual.fazenda.gov.br',
+        'prod_server': 'www.sefazvirtual.fazenda.gov.br',
         'dev_server': 'hom.sefazvirtual.fazenda.gov.br',
         'NfeInutilizacao': '/NFeInutilizacao4/NFeInutilizacao4.asmx',
         'NfeConsultaProtocolo': '/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx',
@@ -143,7 +156,7 @@ servers = {
         'NFeRetAutorizacao': '/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx',
     },
     'SVC-RS': {
-        'prod_server': 'nfe-homologacao.svrs.rs.gov.br',
+        'prod_server': 'nfe.svrs.rs.gov.br',
         'dev_server': 'nfe-homologacao.svrs.rs.gov.br',
         'NfeConsultaProtocolo': '/ws/NfeConsulta/NfeConsulta4.asmx',
         'NfeStatusServico': '/ws/NfeStatusServico/NfeStatusServico4.asmx',
@@ -152,10 +165,10 @@ servers = {
         'NFeRetAutorizacao': '/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx',
     },
     'AN': {
-        'prod_server': 'hom1.nfe.fazenda.gov.br',
+        'prod_server': 'www.nfe.fazenda.gov.br',
         'dev_server': 'hom1.nfe.fazenda.gov.br',
-        'NFeDistribuicaoDFe': '/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
         'RecepcaoEvento': '/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
+        'NFeDistribuicaoDFe': '/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
     },
 }
 

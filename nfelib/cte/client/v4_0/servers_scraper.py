@@ -1,12 +1,6 @@
-import logging
-from pathlib import Path
-from typing import Dict, Any
-from io import StringIO  # Add this import
 
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-from xsdata.formats.dataclass.serializers import PycodeSerializer
+from pathlib import Path
+
 from nfelib.utils.servers_scraper import fetch_servers, save_servers
 
 # Constants

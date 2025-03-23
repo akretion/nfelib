@@ -63,6 +63,7 @@ test = [
     "brazilfiscalreport",
     "beautifulsoup4",
     "pandas",
+    "brazil-fiscal-client",
 ]
 
 [tool.setuptools]

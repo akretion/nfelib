@@ -58,6 +58,7 @@ test = [
     "pytest-cov",
     "xmldiff",
     "requests",
+    "decorator",
     "beautifulsoup4",
     "erpbrasil.assinatura",
     "brazilfiscalreport",

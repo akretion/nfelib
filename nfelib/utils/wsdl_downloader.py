@@ -1,10 +1,11 @@
-import logging
-import subprocess
-import sys
-import os
-from os import environ
-import urllib3
+# Copyright (C) 2024  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
+import logging
+import os
+import subprocess
+from os import environ
+
+import urllib3
 from requests import Session
 from requests_pkcs12 import Pkcs12Adapter
 
@@ -24,7 +25,6 @@ WSDL_DIRS = {
 
 def download_wsdl_files(*wsdl_urls, generate=False):
     """Download WSDL files for NF-e, CT-e, MDF-e, and BP-e."""
-
     # Access the certificate and password from environment variables
     CERT_FILE = environ.get("CERT_FILE")
     CERT_PASSWORD = environ.get("CERT_PASSWORD")
@@ -89,22 +89,24 @@ def download_wsdl_files(*wsdl_urls, generate=False):
             with open(wsdl_file, "w") as file:
                 file.write(response.text)
 
+            if generate:
+                soap_dir = wsdl_dir.replace("wsdl", "soap").replace("/", ".")
+                command = [
+                    "xsdata",
+                    "generate",
+                    "--package",
+                    soap_dir,
+                    "--include-header",
+                    wsdl_file,
+                ]
+                try:
+                    subprocess.run(command, check=True)
+                    logging.info("Successfully generated SOAP bindings for {wsdl_file}")
+                except subprocess.CalledProcessError as e:
+                    logging.error(
+                        f"Failed to generate SOAP bindings for {wsdl_file}: {e}"
+                    )
+
         except Exception as e:
             _logger.error(f"Failed to download or save WSDL from {url}: {e}")
             raise
-
-    if generate:
-        soap_dir = wsdl_dir.replace("wsdl", "soap")
-        command = [
-            "xsdata",
-            "generate",
-            "--package",
-            soap_dir,
-            wsdl_dir,
-        ]
-        try:
-            subprocess.run(command, check=True)
-            logging.info("Successfully generated SOAP bindings.")
-        except subprocess.CalledProcessError as e:
-            logging.error(f"Failed to generate SOAP bindings: {e}")
-            sys.exit(1)

@@ -1,7 +1,9 @@
+# Copyright (C) 2024  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
+
 import logging
 from pathlib import Path
-from typing import Dict, Any
-from io import StringIO  # Add this import
+from typing import Dict, Any, Tuple
+from io import StringIO
 
 import pandas as pd
 import requests
@@ -17,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def fetch_servers(prod_url: str, dev_url: str) -> Dict[str, Any]:
+def fetch_servers(prod_url: str, dev_url: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """Fetches the NFe server list from the webpage using pandas and BeautifulSoup."""
     servers = {}
     constants = {}  # To store dynamically generated constants

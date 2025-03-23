@@ -75,7 +75,7 @@ class SoapTest(TestCase):
         if environ.get("NFE_FILE"):
             nfe_path = environ["NFE_FILE"]
         else:
-            nfe_path = "tests/nfe/procNFe.xml"
+            nfe_path = "tests/nfe/fixtures/procNFe.xml"
 
         nfe_proc = parser.from_path(
             Path(nfe_path),

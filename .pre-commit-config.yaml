@@ -27,7 +27,8 @@ repos:
     hooks:
       - id: mypy
         files: ^(nfelib/)
-        args: [ "--check-untyped-defs", "--ignore-missing-imports" ]
+        additional_dependencies:
+          - types-requests
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:

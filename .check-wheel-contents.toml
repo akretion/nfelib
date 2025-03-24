@@ -1,0 +1,2 @@
+[tool.check-wheel-contents]
+ignore = ["W002"]

@@ -437,6 +437,3 @@ class NfeClient(FiscalClient):
     #                    self._generateds_to_string_etree(nfe_proc)[0]
     #                proc_recibo.protocolo = protocolo
     #            return True
-
-    def consultar_cadastro(self, uf, cnpj=None, cpf=None, ie=None):
-        pass

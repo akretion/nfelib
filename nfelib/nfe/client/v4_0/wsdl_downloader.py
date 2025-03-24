@@ -1,11 +1,11 @@
 import logging
-import os
-import subprocess
 import sys
+
 from nfelib.utils.wsdl_downloader import download_wsdl_files
 
 
-def main():
+def main() -> None:
+    """Cli entry point."""
     logging.basicConfig(level=logging.INFO)
 
     generate = False

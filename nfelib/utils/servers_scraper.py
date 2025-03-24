@@ -1,5 +1,7 @@
 # Copyright (C) 2024  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
+from __future__ import annotations  # Python 3.8 compat
+
 import logging
 from io import StringIO
 from pathlib import Path

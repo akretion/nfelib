@@ -9,6 +9,7 @@ OUTPUT_FILE = Path("nfelib/nfe/client/servers.py")
 
 
 def main():
+    """Cli entry point."""
     servers, constants = fetch_servers(PROD_URL, DEV_URL)
     if servers:
         save_servers(servers, constants, OUTPUT_FILE)

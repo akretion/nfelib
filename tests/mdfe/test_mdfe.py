@@ -1,13 +1,13 @@
 # Copyright (C) 2023 - TODAY Raphaël Valyi - Akretion
 
 import os
-from xmldiff import main
+from pathlib import Path
 from unittest import TestCase
 
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
+from xmldiff import main
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
-from pathlib import Path
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from nfelib.mdfe.bindings import v3_0  # noqa: F401
 

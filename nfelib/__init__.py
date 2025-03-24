@@ -1,10 +1,12 @@
 # Copyright (C) 2023  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
+from __future__ import annotations  # Python 3.8 compat
+
 import os
 import warnings
 from os import environ
 from pathlib import Path
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 import xsdata
 from lxml import etree
@@ -24,7 +26,7 @@ class CommonMixin:
     namespace = None
 
     @classmethod
-    def from_xml(cls, xml: str, config: ParserConfig=None) -> Any:
+    def from_xml(cls, xml: str, config: ParserConfig = None) -> Any:
         """Parse xml and return an instance of the class."""
         if config is None:
             return XmlParser().from_string(xml)
@@ -37,7 +39,7 @@ class CommonMixin:
         return cls.from_xml(xml)
 
     @classmethod
-    def schema_validation(cls, xml: str, schema_path: Optional[str] = None) -> List:
+    def schema_validation(cls, xml: str, schema_path: Optional[str] = None) -> list:
         """Validate xml against xsd schema at given path."""
         validation_messages = []
         doc_etree = etree.fromstring(xml.encode("utf-8"))
@@ -175,7 +177,7 @@ class CommonMixin:
             return self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
         return xml
 
-    def validate_xml(self, schema_path: Optional[str] = None) -> List:
+    def validate_xml(self, schema_path: Optional[str] = None) -> list:
         """Serialize binding as xml, validate it and return possible errors."""
         xml = self.to_xml()
         return self.schema_validation(xml, schema_path)

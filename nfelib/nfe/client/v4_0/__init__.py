@@ -310,8 +310,7 @@ class NfeClient(FiscalClient):
         justificativa: str,
         data_hora_evento=False,
     ):
-        """
-        Binding details in:
+        """Binding details in:
         nfelib/nfe_evento_cancel/bindings/v1_0/leiaute_evento_canc_nfe_v1_00.py
         """
         tipo_evento = "110111"
@@ -371,8 +370,7 @@ class NfeClient(FiscalClient):
         num_fin: str,
         justificativa: str,
     ) -> TinutNfe:
-        """
-        Binding details in:
+        """Binding details in:
         nfelib/nfe/bindings/v4_0/leiaute_inut_nfe_v4_00.py
         """
         year = str(date.today().year)[2:]

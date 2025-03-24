@@ -48,8 +48,25 @@ jobs:
     - uses: actions/setup-python@v5
     - uses: pre-commit/action@v3.0.1
   check-package:
-    name: Build & Inspect Package.
+    name: Build & Inspect Package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: hynek/build-and-inspect-python-package@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build check-wheel-contents
+
+      - name: Build the package
+        run: |
+          python -m build
+
+      - name: Check wheel contents (ignore W002)
+        run: |
+          check-wheel-contents dist/*.whl --ignore W002

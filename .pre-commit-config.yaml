@@ -8,6 +8,7 @@ exclude: |
   nfelib/nfe/ws/edoc_legacy.py|
   nfelib/nfe/client/v4_0/servers.py|
   nfelib/cte/client/v4_0/servers.py|
+  nfelib/mdfe/client/v3_0/servers.py|
   ^README\.md$
 
 repos:

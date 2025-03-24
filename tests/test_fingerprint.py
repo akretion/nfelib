@@ -41,7 +41,7 @@ PAGES = {
 
 
 class FingerPrintTests(TestCase):
-    def test_fingerprint(self):
+    def test_fingerprint(self) -> None:
         if environ.get("SKIP_FINGERPRINT"):
             _logger.info("Skipping fingerprint test")
             return True
@@ -49,7 +49,7 @@ class FingerPrintTests(TestCase):
         for code, scrap_params in PAGES.items():
             url = scrap_params[0]
             md5 = "ELEMENT NOT FOUND"
-            _logger.info("Fetching %s ..." % (url,))
+            _logger.info(f"Fetching {url} ...")
             if len(scrap_params) > 1:
                 page = requests.get(url, headers=HEADERS)
                 soup = BeautifulSoup(page.text, "html.parser")

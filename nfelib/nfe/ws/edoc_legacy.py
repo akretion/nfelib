@@ -8,6 +8,7 @@ from erpbrasil.assinatura.assinatura import Assinatura
 from lxml import etree
 
 from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
+from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfeXServ
 from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
 
 try:
@@ -108,7 +109,7 @@ class NFeAdapter(DocumentoElectronicoAdapter, NFe):
         raiz = ConsSitNfe(
             versao=self.versao,
             tpAmb=self.ambiente,
-            xServ="CONSULTAR",
+            xServ=TconsSitNfeXServ(value="CONSULTAR"),
             chNFe=chave,
         )
 

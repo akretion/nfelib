@@ -6,6 +6,8 @@ exclude: |
   .*/wsdl/.*\.wsdl$|
   .*/soap/.*\.py$|
   nfelib/nfe/ws/edoc_legacy.py|
+  nfelib/nfe/client/v4_0/servers.py|
+  nfelib/ctee/client/v4_0/servers.py|
   ^README\.md$
 
 repos:

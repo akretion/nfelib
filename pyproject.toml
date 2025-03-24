@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",  # (Odoo 14.0)
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -26,7 +27,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 keywords = ["e-invoicing", "ERP", "Odoo", "NFe", "CTe", "MDFe", "BPe", "NFSe"]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dependencies = [
     "lxml",
     "xsdata",

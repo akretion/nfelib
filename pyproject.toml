@@ -51,6 +51,11 @@ sign = [
 pdf = [
     "brazilfiscalreport",
 ]
+soap = [
+    "xsdata[soap]",
+    "erpbrasil.assinatura",
+    "brazil-fiscal-client",
+]
 test = [
     "pre-commit",
     "pytest",

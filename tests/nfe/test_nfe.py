@@ -4,16 +4,17 @@ import os
 from pathlib import Path
 from unittest import TestCase
 
+from xmldiff import main
+from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.formats.dataclass.serializers import XmlSerializer
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
+
 from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfe
 from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServ
 from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import Tnfe
 from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
 from nfelib.nfe_dist_dfe.bindings.v1_0.dist_dfe_int_v1_01 import DistDfeInt
 from nfelib.nfe_evento_generico.bindings.v1_0.leiaute_evento_v1_00 import TenvEvento
-from xmldiff import main
-from xsdata.formats.dataclass.parsers import XmlParser
-from xsdata.formats.dataclass.serializers import XmlSerializer
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 
 class ClientTests(TestCase):

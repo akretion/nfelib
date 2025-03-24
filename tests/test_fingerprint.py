@@ -1,10 +1,9 @@
-from unittest import TestCase
-
 import hashlib
 import json
 import logging
 from os import environ
 from pathlib import Path
+from unittest import TestCase
 
 import requests
 from bs4 import BeautifulSoup

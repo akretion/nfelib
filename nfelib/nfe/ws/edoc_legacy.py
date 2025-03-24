@@ -1,23 +1,22 @@
 # Copyright 2018 - TODAY Luis Felipe Mileo - KMEE INFORMATICA LTDA
 # Copyright 2023 - TODAY Akretion - Raphaël Valyi <raphael.valyi@akretion.com>
 
-from dataclasses import is_dataclass
 import base64
+from dataclasses import is_dataclass
+
+from erpbrasil.assinatura.assinatura import Assinatura
 from lxml import etree
 
 from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
 from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
 
-
-from erpbrasil.assinatura.assinatura import Assinatura
-
 try:
+    from erpbrasil.edoc.cte import CTe
     from erpbrasil.edoc.edoc import DocumentoEletronico
     from erpbrasil.edoc.mde import MDe
     from erpbrasil.edoc.mdfe import MDFe
-    from erpbrasil.edoc.cte import CTe
     from erpbrasil.edoc.nfce import NFCe
-    from erpbrasil.edoc.nfe import NFe, localizar_url, WS_NFE_CONSULTA
+    from erpbrasil.edoc.nfe import WS_NFE_CONSULTA, NFe, localizar_url
     from erpbrasil.edoc.resposta import RetornoSoap, analisar_retorno_raw
 
 
@@ -101,7 +100,7 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
             xml_assinado = Assinatura(self._transmissao.certificado).assina_xml2(
                 xml_etree, id, getchildren
             )
-        return xml_assinado.replace('\n', '').replace('\r', '')
+        return xml_assinado.replace("\n", "").replace("\r", "")
 
 
 class NFeAdapter(DocumentoElectronicoAdapter, NFe):
@@ -113,19 +112,16 @@ class NFeAdapter(DocumentoElectronicoAdapter, NFe):
             chNFe=chave,
         )
 
-        # Check if the method ´_get_ws_endpoint´ exists to ensure compatibility 
+        # Check if the method ´_get_ws_endpoint´ exists to ensure compatibility
         # with different versions of the erpbrasil.edoc library.
-        if hasattr(self, '_get_ws_endpoint'):
+        if hasattr(self, "_get_ws_endpoint"):
             url = self._get_ws_endpoint(WS_NFE_CONSULTA)
         else:
             # TODO: Remove this fallback in the next few months.
             # The following block is a temporary solution to support older versions.
             # After transitioning, remove the localizar_url method call.
             url = localizar_url(
-                WS_NFE_CONSULTA,
-                str(self.uf),
-                self.mod,
-                int(self.ambiente)
+                WS_NFE_CONSULTA, str(self.uf), self.mod, int(self.ambiente)
             )
 
         return self._post(
@@ -134,7 +130,6 @@ class NFeAdapter(DocumentoElectronicoAdapter, NFe):
             operacao="nfeConsultaNF",
             classe=RetConsSitNfe,
         )
-
 
 
 class NFCeAdapter(DocumentoElectronicoAdapter, NFCe):
@@ -146,9 +141,7 @@ class MDeAdapter(DocumentoElectronicoAdapter, MDe):
 
 
 class CTeAdapter(DocumentoElectronicoAdapter, CTe):
-
     def _post(self, raiz, url, operacao, classe):
-
         if is_dataclass(raiz):
             xml_string, xml_etree = self.render_edoc_xsdata(raiz)
         else:
@@ -174,7 +167,9 @@ class MDFeAdapter(DocumentoElectronicoAdapter, MDFe):
 
         xml_assinado = etree.fromstring(xml_assinado)
         # MDFe requires certificate to be base64 encoded
-        cert_tag = xml_assinado.find('.//ds:X509Certificate', namespaces=self.NAMESPACES)
+        cert_tag = xml_assinado.find(
+            ".//ds:X509Certificate", namespaces=self.NAMESPACES
+        )
         cert_tag.text = base64.b64encode(cert_tag.text.encode())
 
         return etree.tostring(xml_assinado).decode()

@@ -2,10 +2,9 @@
 
 import importlib
 import inspect
-from enum import EnumMeta
-
-import pkgutil
 import logging
+import pkgutil
+from enum import EnumMeta
 
 _logger = logging.getLogger(__name__)
 

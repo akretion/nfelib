@@ -10,20 +10,20 @@ exclude: |
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: debug-statements
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.11.2
     hooks:
       - id: ruff
         args: [ --fix, --show-fixes]
       - id: ruff-format
         exclude: ^nfelib/[^/]+\.py$
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.1
+    rev: v1.15.0
     hooks:
       - id: mypy
         files: ^(nfelib/)

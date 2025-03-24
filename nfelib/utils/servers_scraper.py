@@ -1,9 +1,9 @@
 # Copyright (C) 2024  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
 import logging
-from pathlib import Path
-from typing import Dict, Any, Tuple
 from io import StringIO
+from pathlib import Path
+from typing import Any
 
 import pandas as pd
 import requests
@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def fetch_servers(prod_url: str, dev_url: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str, Any]]:
     """Fetches the NFe server list from the webpage using pandas and BeautifulSoup."""
     servers = {}
     constants = {}  # To store dynamically generated constants
@@ -88,15 +88,13 @@ def fetch_servers(prod_url: str, dev_url: str) -> Tuple[Dict[str, Any], Dict[str
                     action_dict[constants[constant_name]] = path
 
             # Handle special case for Ambiente Nacional (AN)
-            if server == "AN":
-                # Ensure NFeDistribuicaoDFe is included
-                if "NFeDistribuicaoDFe" in actions:
-                    constant_name = "NFEDISTRIBUICAODFE"
-                    if constant_name not in constants:
-                        constants[constant_name] = "NFeDistribuicaoDFe"
-                    action_dict[constants[constant_name]] = paths[
-                        actions.index("NFeDistribuicaoDFe")
-                    ]
+            if server == "AN" and "NFeDistribuicaoDFe" in actions:
+                constant_name = "NFEDISTRIBUICAODFE"
+                if constant_name not in constants:
+                    constants[constant_name] = "NFeDistribuicaoDFe"
+                action_dict[constants[constant_name]] = paths[
+                    actions.index("NFeDistribuicaoDFe")
+                ]
 
             servers[server] = action_dict
 
@@ -112,7 +110,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> Tuple[Dict[str, Any], Dict[str
 
 
 def save_servers(
-    servers: Dict[str, Any], constants: Dict[str, str], output_file: Path
+    servers: dict[str, Any], constants: dict[str, str], output_file: Path
 ) -> None:
     """Saves the extracted server data and constants as a Python file."""
     # Generate the constants section

@@ -23,7 +23,7 @@ WSDL_DIRS = {
 }
 
 
-def download_wsdl_files(*wsdl_urls, generate=False):
+def download_wsdl_files(*wsdl_urls: str, generate: bool = False):
     """Download WSDL files for NF-e, CT-e, MDF-e, and BP-e."""
     # Access the certificate and password from environment variables
     CERT_FILE = environ.get("CERT_FILE")
@@ -72,7 +72,7 @@ def download_wsdl_files(*wsdl_urls, generate=False):
 
             # Identify the document type (NF-e, CT-e, MDF-e, BP-e)
             doc_type = None
-            for key, (_, prefix) in WSDL_DIRS.items():
+            for key, (_, _prefix) in WSDL_DIRS.items():
                 if key in url.lower():
                     doc_type = key
                     break

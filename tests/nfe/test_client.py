@@ -1,22 +1,17 @@
 import logging
-import io
-import os
 import time
 from os import environ
 from pathlib import Path
 from unittest import TestCase, mock
 
 from decorator import decorate
-from erpbrasil.assinatura import certificado as cert
 from erpbrasil.assinatura import misc
-from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
-from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import TnfeProc
-from requests import Session
-from requests_pkcs12 import Pkcs12Adapter
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.transports import DefaultTransport
 
+from nfelib.nfe.bindings.v4_0.nfe_v4_00 import Nfe
+from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import TnfeProc
 from nfelib.nfe.client.v4_0 import NfeClient
 
 response_status = b"""
@@ -113,7 +108,11 @@ class SoapTest(TestCase):
             pkcs12_password=cls.cert_password,
             fake_certificate=cls.fake_certificate,
         )
-        cls.signed_nfe_xml = cls.nfe.to_xml(pkcs12_data=cls.cert_data, pkcs12_password=cls.cert_password, doc_id=cls.nfe.infNFe.Id)
+        cls.signed_nfe_xml = cls.nfe.to_xml(
+            pkcs12_data=cls.cert_data,
+            pkcs12_password=cls.cert_password,
+            doc_id=cls.nfe.infNFe.Id,
+        )
 
     @only_if_valid_certificate
     def test_0_status(self):
@@ -131,7 +130,6 @@ class SoapTest(TestCase):
         res = self.client.envia_documento([self.signed_nfe_xml])
         self.assertEqual(res.cStat, "103")
         print(res)
-        import time
 
         time.sleep(int(res.infRec.tMed))
         res = self.client.consulta_recibo(numero=res.infRec.nRec)
@@ -205,4 +203,3 @@ class SoapTest(TestCase):
             "81583054000129", "55", "1", "2", "2", "Era apenas um teste"
         )
         self.client.envia_inutilizacao(inut_event)
-

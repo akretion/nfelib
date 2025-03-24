@@ -5,6 +5,7 @@ exclude: |
   .*/samples/.*\.xml$|
   .*/wsdl/.*\.wsdl$|
   .*/soap/.*\.py$|
+  nfelib/nfe/ws/edoc_legacy.py|
   ^README\.md$
 
 repos:

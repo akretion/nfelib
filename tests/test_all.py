@@ -30,25 +30,20 @@ def test_init_all():
             if pkg_name.name == "v4_00":
                 version_path = pkg_path
             else:
-                version_path = "nfelib/%s/bindings/%s" % (
-                    pkg_name.name,
-                    version.name,
-                )
+                version_path = f"nfelib/{pkg_name.name}/bindings/{version.name}"
             _logger.info("  walking over:  " + version_path)
             for modpkg in pkgutil.walk_packages([version_path]):
                 if pkg_name.name == "v4_00":
                     mod_name = (pkg_path + "/" + modpkg.name).replace("/", ".")
                 else:
-                    mod_name = "nfelib.%s.bindings.%s.%s" % (
-                        pkg_name.name,
-                        version.name,
-                        modpkg.name,
+                    mod_name = (
+                        f"nfelib.{pkg_name.name}.bindings.{version.name}.{modpkg.name}"
                     )
                 _logger.info("    " + mod_name)
                 mod = importlib.import_module(mod_name)
 
                 for _klass_name, klass in mod.__dict__.items():
-                    if isinstance(klass, type) and type(klass) != EnumMeta:
+                    if isinstance(klass, type) and type(klass) is not EnumMeta:
                         classes = set()
                         visit_nested_classes(klass, classes)
                         for cls in classes:

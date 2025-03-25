@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4">
+      <s:element name="cteDadosMsg">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cteConsultaCTResult">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="cteConsultaCTSoap12In">
+    <wsdl:part name="cteDadosMsg" element="tns:cteDadosMsg" />
+  </wsdl:message>
+  <wsdl:message name="cteConsultaCTSoap12Out">
+    <wsdl:part name="cteConsultaCTResult" element="tns:cteConsultaCTResult" />
+  </wsdl:message>
+  <wsdl:portType name="CTeConsultaV4Soap12">
+    <wsdl:operation name="cteConsultaCT">
+      <wsdl:input message="tns:cteConsultaCTSoap12In" />
+      <wsdl:output message="tns:cteConsultaCTSoap12Out" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CTeConsultaV4Soap12" type="tns:CTeConsultaV4Soap12">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="cteConsultaCT">
+      <soap12:operation soapAction="http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4/cteConsultaCT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CTeConsultaV4">
+    <wsdl:port name="CTeConsultaV4Soap12" binding="tns:CTeConsultaV4Soap12">
+      <soap12:address location="https://cte.svrs.rs.gov.br/ws/CTeConsultaV4/CTeConsultaV4.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

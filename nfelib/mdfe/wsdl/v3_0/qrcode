@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+* INSPINIA - Responsive Admin Theme
+* Version 2.4
+*
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/Content/img/favicon.ico" type="image/x-icon" />
+    <title page-title>Portal dos Documentos Fiscais Eletrônicos - SVRS</title>
+
+    <link href="/font-awesome/css?v=LPR2FUthMPArCGamNRBGrdkg90sICorugleoN_OBjm81" rel="stylesheet"/>
+
+    <link href="/bundles/css?v=C-Tlkg4vKVYYP2HpsGgMyz_X41e2BUYclhsj95NZdKU1" rel="stylesheet"/>
+
+
+    
+</head>
+
+<body class="fixed-nav md-skin">
+
+    
+
+
+<form action="/Mdfe/QrCode" id="frmConsultaQrCode" method="post"><input id="pesq_Sistema" name="pesq.Sistema" type="hidden" value="Mdfe" /><input id="pesq_tpAmb" name="pesq.tpAmb" type="hidden" value="" /><input id="pesq_chBpe" name="pesq.chBpe" type="hidden" value="" /><input id="pesq_chCte" name="pesq.chCte" type="hidden" value="" /><input id="pesq_chMdfe" name="pesq.chMdfe" type="hidden" value="" /></form><script>
+    window.onload = function (e) {
+        document.getElementById("frmConsultaQrCode").submit();
+    }
+</script>
+
+
+    <script src="/bundles/jquery?v=DilzeZuJxdbQsfc_JOwsWB4VFDhTPM73urYeggaKdL81"></script>
+
+    <script src="/bundles/bootstrap?v=lescQEuG5u4jd-GcVDBcbpUOSyTDIg0Kk9zHDX55GCw1"></script>
+
+    <script src="/plugins/metsiMenu?v=lX3z5tSNjqKf9dJbUlN8hxZPs8-QOZcSMSAXXTflEKU1"></script>
+
+    <script src="/plugins/pace?v=T0xxEq2YEiraT0k37gLqzlpoxdcu1Dwr81r_VU-cH6Q1"></script>
+
+    <script src="/plugins/slimScroll?v=Uin95EwzswHK3MjnPYJT0IIu_sfIoxGwdr5n_SnamSE1"></script>
+
+    <script src="/bundles/inspinia?v=EToPARxpDaZ7v4xqljll42im7zb6QMB2ysBr-CZ19pk1"></script>
+
+
+    
+</body>
+</html>
+<!-- SRVPRO963 -->

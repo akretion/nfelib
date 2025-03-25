@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc">
+      <s:element name="mdfeDadosMsg" type="s:string" />
+      <s:element name="mdfeRecepcaoResult">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="mdfeRecepcaoSoap12In">
+    <wsdl:part name="mdfeDadosMsg" element="tns:mdfeDadosMsg" />
+  </wsdl:message>
+  <wsdl:message name="mdfeRecepcaoSoap12Out">
+    <wsdl:part name="mdfeRecepcaoResult" element="tns:mdfeRecepcaoResult" />
+  </wsdl:message>
+  <wsdl:portType name="MDFeRecepcaoSincSoap12">
+    <wsdl:operation name="mdfeRecepcao">
+      <wsdl:input message="tns:mdfeRecepcaoSoap12In" />
+      <wsdl:output message="tns:mdfeRecepcaoSoap12Out" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MDFeRecepcaoSincSoap12" type="tns:MDFeRecepcaoSincSoap12">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="mdfeRecepcao">
+      <soap12:operation soapAction="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc/mdfeRecepcao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MDFeRecepcaoSinc">
+    <wsdl:port name="MDFeRecepcaoSincSoap12" binding="tns:MDFeRecepcaoSincSoap12">
+      <soap12:address location="https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

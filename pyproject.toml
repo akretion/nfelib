@@ -51,6 +51,11 @@ sign = [
 pdf = [
     "brazilfiscalreport",
 ]
+soap = [
+    "xsdata[soap]",
+    "erpbrasil.assinatura",
+    "brazil-fiscal-client",
+]
 test = [
     "pre-commit",
     "pytest",
@@ -59,11 +64,13 @@ test = [
     "xmldiff",
     "requests",
     "requests_pkcs12",
+    "decorator",
     "beautifulsoup4",
     "erpbrasil.assinatura",
     "brazilfiscalreport",
     "beautifulsoup4",
     "pandas",
+    "brazil-fiscal-client",
 ]
 
 [tool.setuptools]

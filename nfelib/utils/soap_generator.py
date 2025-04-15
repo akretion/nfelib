@@ -1,5 +1,7 @@
 # Copyright (C) 2024  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
 
+from __future__ import annotations  # Python 3.8 compat
+
 import logging
 import os
 import subprocess
@@ -34,7 +36,7 @@ def generate_soap(
     # Access the certificate and password from environment variables
     server = servers[SERVER]["prod_server"]
     wsdl_urls = [
-        f"https://{server}{servers[SERVER]['endpoints'].get(value, 'SKIP ' + key)}"
+        f"https://{server}{servers[SERVER]['endpoints'].get(value, ' SKIP ' + key)}"
         for key, value in endpoints.items()
     ]
 
@@ -43,8 +45,10 @@ def generate_soap(
         "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"
     )
 
+    doc_type = None
+    wsdl_dir = ""
     for url in wsdl_urls:
-        if "SKIP" in url:
+        if "SKIP" in url and "NFeDistribuicaoDFe" not in url:
             _logger.error(
                 f"Skipping WSDL download for {url} (not found on server {server})"
             )
@@ -65,14 +69,21 @@ def generate_soap(
                 .lower()
             )
 
-            # Identify the document type (NF-e, CT-e, MDF-e, BP-e)
-            doc_type = None
-            for key, (_, _prefix) in WSDL_DIRS.items():
-                if key in url.lower():
-                    doc_type = key
-                    break
-            if not doc_type:
-                raise ValueError(f"Cannot determine document type for URL: {url}")
+            if doc_type is None:
+                # Identify the document type (NF-e, CT-e, MDF-e, BP-e)
+                for key, (_, _prefix) in WSDL_DIRS.items():
+                    if key in url.lower():
+                        doc_type = key
+                        break
+                if not doc_type:
+                    raise ValueError(f"Cannot determine document type for URL: {url}")
+
+            if doc_type == "nfe":
+                if "cadconsultacadastro4" in url:
+                    "the server is different in this case"
+                    url = "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx"
+            elif "NFeDistribuicaoDFe" in url:  # only for NFe
+                continue
 
             # Create the output directory if it doesn't exist
             wsdl_dir, _ = WSDL_DIRS[doc_type]
@@ -128,3 +139,9 @@ def generate_soap(
         except Exception as e:
             _logger.error(f"Failed to download or save WSDL from {url}: {e}")
             continue
+
+    if generate:
+        # reset the __init__.py file to avoid arbitrary imports depending on gen order
+        init_file = os.path.join(wsdl_dir.replace("wsdl", "soap"), "__init__.py")
+        with open(init_file, "w") as file:
+            file.write("")

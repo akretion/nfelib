@@ -58,9 +58,12 @@ test = [
     "pytest-cov",
     "xmldiff",
     "requests",
+    "requests_pkcs12",
     "beautifulsoup4",
     "erpbrasil.assinatura",
     "brazilfiscalreport",
+    "beautifulsoup4",
+    "pandas",
 ]
 
 [tool.setuptools]

@@ -10,9 +10,9 @@
     <PostponedAnnotations>false</PostponedAnnotations>
     <UnnestClasses>false</UnnestClasses>
   </Output>
-  <Extensions>
+  <!--Extensions>
     <Extension type="class" class=".*" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
-  </Extensions>
+  </Extensions-->
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>
     <FieldName case="originalCase" safePrefix="value"/>
@@ -21,6 +21,12 @@
     <PackageName case="snakeCase" safePrefix="pkg"/>
   </Conventions>
   <Substitutions>
+	  <!-- Because we use the originalCase options, some dataclass attributes
+		might have the same names as dataclass types, typically starting
+		  with an upper case. In these few cases, we use the xsdata substitution
+		  system to replace these attributes starting with a lower case.
+	  -->
+
     <!-- defaults : -->
     <Substitution type="package" search="http://www.w3.org/2001/XMLSchema" replace="xs"/>
     <Substitution type="package" search="http://www.w3.org/XML/1998/namespace" replace="xml"/>
@@ -30,6 +36,11 @@
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap/" replace="soap"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/wsdl/soap12/" replace="soap12"/>
     <Substitution type="package" search="http://schemas.xmlsoap.org/soap/envelope/" replace="soapenv"/>
+
+    <!-- soap: -->
+    <Substitution type="field" search="Header" replace="header"/>
+    <Substitution type="field" search="Body" replace="body"/>
+    <Substitution type="field" search="Fault" replace="fault"/>
 
     <!-- xmldsig : -->
     <Substitution type="field" search="^@any_element$" replace="any_element"/>

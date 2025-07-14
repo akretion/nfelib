@@ -64,12 +64,34 @@
 			<xs:pattern value="0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="TOperCompraGov">
+		<xs:annotation>
+			<xs:documentation>Tipo da Operação com Ente Governamental</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="TEnteGov">
 		<xs:annotation>
 			<xs:documentation>Tipo de Ente Governamental</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TTpCredPresIBSZFM">
+		<xs:annotation>
+			<xs:documentation>Tipo de classificação do Crédito Presumido IBS ZFM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
 			<xs:enumeration value="1"/>
 			<xs:enumeration value="2"/>
 			<xs:enumeration value="3"/>
@@ -173,6 +195,11 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
+			<xs:element name="gCredPresIBSZFM" type="TCredPresIBSZFM" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Classificação de acordo com o art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido na ZFM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TIS">
@@ -514,31 +541,33 @@
 			<xs:annotation>
 				<xs:documentation>Monofasia</xs:documentation>
 			</xs:annotation>
-			<xs:element name="qBCMono" type="TDec_1104Op">
-				<xs:annotation>
-					<xs:documentation>Quantidade tributada.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="adRemIBS" type="TDec_0302_04">
-				<xs:annotation>
-					<xs:documentation>Alíquota específica do IBS.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="adRemCBS" type="TDec_0302_04">
-				<xs:annotation>
-					<xs:documentation>Alíquota específiac da CBS.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="vIBSMono" type="TDec1302">
-				<xs:annotation>
-					<xs:documentation>Valor do IBS monofásico</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="vCBSMono" type="TDec1302">
-				<xs:annotation>
-					<xs:documentation>Valor da CBS monofásica</xs:documentation>
-				</xs:annotation>
-			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:element name="qBCMono" type="TDec_1104Op">
+					<xs:annotation>
+						<xs:documentation>Quantidade tributada na monofasia</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="adRemIBS" type="TDec_0302_04">
+					<xs:annotation>
+						<xs:documentation>Alíquota ad rem do IBS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="adRemCBS" type="TDec_0302_04">
+					<xs:annotation>
+						<xs:documentation>Alíquota ad rem da CBS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vIBSMono" type="TDec1302">
+					<xs:annotation>
+						<xs:documentation>Valor do IBS monofásico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="vCBSMono" type="TDec1302">
+					<xs:annotation>
+						<xs:documentation>Valor da CBS monofásica</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
 			<xs:sequence minOccurs="0">
 				<xs:element name="qBCMonoReten" type="TDec_1104Op">
 					<xs:annotation>
@@ -757,6 +786,11 @@
 					<xs:documentation>Grupo de Informações do Crédito Presumido referente a CBS, quando aproveitado pelo emitente do documento. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="gTribCompraGov" type="TTribCompraGov" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Grupo de informações da composição do valor do IBS e da CBS em compras governamental</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TRed">
@@ -766,7 +800,7 @@
 		<xs:sequence>
 			<xs:element name="pRedAliq" type="TDec_0302_04">
 				<xs:annotation>
-					<xs:documentation>Percentual de redução de aliquota</xs:documentation>
+					<xs:documentation>Percentual de redução de aliquota do cClassTrib</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="pAliqEfet" type="TDec1302">
@@ -906,7 +940,32 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="TCompraGov">
+	<xs:complexType name="TTribCompraGov">
+		<xs:annotation>
+			<xs:documentation>Tipo Tributação Compra Governamental</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pAliqIBSUF" type="TDec_0302_04" />
+			<xs:element name="vTribIBSUF" type="TDec1302">
+				<xs:annotation>
+					<xs:documentation>Valor que seria devido a UF, sem aplicação do Art. 473. da LC 214/2025</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pAliqIBSMun" type="TDec_0302_04" />
+			<xs:element name="vTribIBSMun" type="TDec1302">
+				<xs:annotation>
+					<xs:documentation>Valor que seria devido ao município, sem aplicação do Art. 473. da LC 214/2025</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pAliqCBS" type="TDec_0302_04" />
+			<xs:element name="vTribCBS" type="TDec1302">
+				<xs:annotation>
+					<xs:documentation>Valor que seria devido a CBS, sem aplicação do Art. 473. da LC 214/2025</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TCompraGovReduzido">
 		<xs:annotation>
 			<xs:documentation>Tipo Compras Governamentais</xs:documentation>
 			<xs:documentation>Cada DFe que utilizar deverá utilizar esses tipo no grupo ide</xs:documentation>
@@ -928,19 +987,72 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="TCompraGov">
+		<xs:annotation>
+			<xs:documentation>Tipo Compras Governamentais</xs:documentation>
+			<xs:documentation>Cada DFe que utilizar deverá utilizar esses tipo no grupo ide</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpEnteGov" type="TEnteGov">
+				<xs:annotation>
+					<xs:documentation>Para administração pública direta e suas autarquias e fundações:
+1=União
+2=Estados
+3=Distrito Federal
+4=Municípios</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pRedutor" type="TDec_0302_04">
+				<xs:annotation>
+					<xs:documentation>Percentual de redução de aliquota em compra goverrnamental</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tpOperGov" type="TOperCompraGov">
+				<xs:annotation>
+					<xs:documentation>Tipo da operação com ente governamental:
+1 - Fornecimento
+2 - Recebimento do Pagamento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="TTransfCred">
 		<xs:annotation>
-			<xs:documentation>Tipo Transferência de Credito</xs:documentation>
+			<xs:documentation>Tipo Transferência de Crédito</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="vIBS" type="TDec1302">
 				<xs:annotation>
-					<xs:documentation>Valor do IBS </xs:documentation>
+					<xs:documentation>Valor do IBS a ser transferido</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="vCBS" type="TDec1302">
 				<xs:annotation>
-					<xs:documentation>Valor do CBS </xs:documentation>
+					<xs:documentation>Valor da CBS a ser transferida</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TCredPresIBSZFM">
+		<xs:annotation>
+			<xs:documentation>Tipo Informações do crédito presumido de IBS para fornecimentos a partir da ZFM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpCredPresIBSZFM" type="TTpCredPresIBSZFM">
+				<xs:annotation>
+					<xs:documentation>Classificação de acordo com o art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido na ZFM</xs:documentation>
+					<xs:documentation>0 - Sem crédito presumido;
+1 - Bens de consumo final (55%);
+2 - Bens de capital (75%);
+3 - Bens intermediários (90,25%);
+4 - Bens de informática e outros definidos em legislação (100%).
+OBS: Percentuais definidos no art. 450, § 1º, da LC 214/25 para o cálculo do crédito presumido
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vCredPresIBSZFM" type="TDec1302" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Valor do crédito presumido calculado sobre o saldo devedor apurado</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>

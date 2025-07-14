@@ -1487,8 +1487,8 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 										<xs:annotation>
 											<xs:documentation>Tipo do CT-e Simplificado</xs:documentation>
 											<xs:documentation>Preencher com:
-4 - CTe Simplificado
-5 - Substituição CTe Simplificado</xs:documentation>
+5 - CTe Simplificado
+6 - Substituição CTe Simplificado</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="procEmi" type="TProcEmi">
@@ -1900,6 +1900,7 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:whiteSpace value="preserve"/>
+												<xs:enumeration value="0"/>
 												<xs:enumeration value="1"/>
 												<xs:enumeration value="2"/>
 												<xs:enumeration value="3"/>
@@ -1913,7 +1914,7 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 1 – Contribuinte ICMS;
 2 – Contribuinte isento de inscrição;
 9 – Não Contribuinte</xs:documentation>
-											<xs:documentation>Aplica-se ao tomador que for indicado no toma3 ou toma4</xs:documentation>
+											<xs:documentation>Aplica-se ao tomador que for indicado no toma</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -2656,7 +2657,7 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 					</xs:attribute>
 				</xs:complexType>
 				<xs:unique name="pk_nItem">
-					<xs:selector xpath="det"/>
+					<xs:selector xpath="./*"/>
 					<xs:field xpath="@nItem"/>
 				</xs:unique>
 			</xs:element>
@@ -4855,7 +4856,7 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 										<xs:simpleType>
 											<xs:restriction base="TString">
 												<xs:minLength value="2"/>
-												<xs:maxLength value="2000"/>
+												<xs:maxLength value="8000"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -5080,7 +5081,6 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 											<xs:documentation>Preencher com:
 0 - CT-e Normal; 
 1 - CT-e Complementar; 
-
 3 - CT-e de Substituição.</xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -7816,8 +7816,8 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>
-			<xs:enumeration value="4"/>
 			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TIdLote">

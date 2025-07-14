@@ -9,41 +9,54 @@ from enum import Enum
 from typing import List, Optional
 
 from nfelib import CommonMixin
-from nfelib.mdfe.bindings.v3_0.ev_alteracao_pagto_serv_mdfe_v3_00 import (
-    CompTpComp,
-    InfPagIndAntecipaAdiant,
-    InfPagIndPag,
-    InfPagTpAntecip,
-)
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/mdfe"
 
 
-class EvPagtoOperMdfeDescEvento(Enum):
-    PAGAMENTO_OPERA_O_MDF_E = "Pagamento Operação MDF-e"
-    PAGAMENTO_OPERACAO_MDF_E = "Pagamento Operacao MDF-e"
+class CompTpComp(Enum):
+    VALUE_01 = "01"
+    VALUE_02 = "02"
+    VALUE_03 = "03"
+    VALUE_99 = "99"
+
+
+class EvAlteracaoPagtoServMdfeDescEvento(Enum):
+    ALTERA_O_PAGAMENTO_SERVI_O_MDFE = "Alteração Pagamento Serviço MDFe"
+    ALTERACAO_PAGAMENTO_SERVICO_MDFE = "Alteracao Pagamento Servico MDFe"
+
+
+class InfPagIndAntecipaAdiant(Enum):
+    VALUE_1 = "1"
+
+
+class InfPagIndPag(Enum):
+    VALUE_0 = "0"
+    VALUE_1 = "1"
+
+
+class InfPagTpAntecip(Enum):
+    VALUE_0 = "0"
+    VALUE_1 = "1"
+    VALUE_2 = "2"
 
 
 @dataclass
-class EvPagtoOperMdfe(CommonMixin):
+class EvAlteracaoPagtoServMdfe(CommonMixin):
     """
-    Schema XML de validação do evento de pagamento da operação de transporte
-    110116.
+    Schema XML de validação do evento de alteração do pagamento do serviçp de
+    transporte 110118.
 
-    :ivar descEvento: Descrição do Evento - “Pagamento Operação MDF-e”
-    :ivar nProt: Número do Protocolo de Status do MDF-e. 1 posição tipo
-        de autorizador (9 - SEFAZ Nacional ); 2 posições ano; 10
-        seqüencial no ano.
-    :ivar infViagens: Informações do total de viagens acobertadas pelo
-        Evento “pagamento do frete”
+    :ivar descEvento: Descrição do Evento - “Alteração Pagamento Serviço
+        MDFe”
+    :ivar nProt: Número do Protocolo de Status do MDF-e.
     :ivar infPag: Informações do Pagamento do Frete
     """
 
     class Meta:
-        name = "evPagtoOperMDFe"
+        name = "evAlteracaoPagtoServMDFe"
         namespace = "http://www.portalfiscal.inf.br/mdfe"
 
-    descEvento: Optional[EvPagtoOperMdfeDescEvento] = field(
+    descEvento: Optional[EvAlteracaoPagtoServMdfeDescEvento] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -60,46 +73,13 @@ class EvPagtoOperMdfe(CommonMixin):
             "pattern": r"[0-9]{15}",
         },
     )
-    infViagens: Optional["EvPagtoOperMdfe.InfViagens"] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "required": True,
-        },
-    )
-    infPag: List["EvPagtoOperMdfe.InfPag"] = field(
+    infPag: List["EvAlteracaoPagtoServMdfe.InfPag"] = field(
         default_factory=list,
         metadata={
             "type": "Element",
             "min_occurs": 1,
         },
     )
-
-    @dataclass
-    class InfViagens(CommonMixin):
-        """
-        :ivar qtdViagens: Quantidade total de viagens realizadas com o
-            pagamento do Frete
-        :ivar nroViagem: Número de referência da viagem do MDFe
-            referenciado.
-        """
-
-        qtdViagens: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "required": True,
-                "pattern": r"[0-9]{5}",
-            },
-        )
-        nroViagem: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "required": True,
-                "pattern": r"[0-9]{5}",
-            },
-        )
 
     @dataclass
     class InfPag(CommonMixin):
@@ -167,7 +147,7 @@ class EvPagtoOperMdfe(CommonMixin):
                 "pattern": r"([!-ÿ]{0}|[!-ÿ]{5,20})?",
             },
         )
-        comp: List["EvPagtoOperMdfe.InfPag.Comp"] = field(
+        comp: List["EvAlteracaoPagtoServMdfe.InfPag.Comp"] = field(
             default_factory=list,
             metadata={
                 "name": "Comp",
@@ -206,7 +186,7 @@ class EvPagtoOperMdfe(CommonMixin):
                 "type": "Element",
             },
         )
-        infPrazo: List["EvPagtoOperMdfe.InfPag.InfPrazo"] = field(
+        infPrazo: List["EvAlteracaoPagtoServMdfe.InfPag.InfPrazo"] = field(
             default_factory=list,
             metadata={
                 "type": "Element",
@@ -218,7 +198,7 @@ class EvPagtoOperMdfe(CommonMixin):
                 "type": "Element",
             },
         )
-        infBanc: Optional["EvPagtoOperMdfe.InfPag.InfBanc"] = field(
+        infBanc: Optional["EvAlteracaoPagtoServMdfe.InfPag.InfBanc"] = field(
             default=None,
             metadata={
                 "type": "Element",

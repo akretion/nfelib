@@ -9,19 +9,19 @@ from typing import Optional
 
 from nfelib import CommonMixin
 from nfelib.cte.bindings.v4_0.cte_tipos_basico_v4_00 import (
-    Tgtve,
-    TprotGtve,
+    TcteSimp,
+    TprotCte,
 )
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 
 
 @dataclass
-class GtveProc(CommonMixin):
+class CteSimpProc(CommonMixin):
     """
-    GTV-e processada.
+    CT-e Simplificado processado.
 
-    :ivar GTVe:
+    :ivar CTeSimp:
     :ivar protCTe:
     :ivar versao:
     :ivar ipTransmissor: IP do transmissor do documento fiscal para o
@@ -31,17 +31,17 @@ class GtveProc(CommonMixin):
     """
 
     class Meta:
-        name = "GTVeProc"
+        name = "cteSimpProc"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    GTVe: Optional[Tgtve] = field(
+    CTeSimp: Optional[TcteSimp] = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
         },
     )
-    protCTe: Optional[TprotGtve] = field(
+    protCTe: Optional[TprotCte] = field(
         default=None,
         metadata={
             "type": "Element",

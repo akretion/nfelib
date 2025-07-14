@@ -1489,8 +1489,8 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 										<xs:annotation>
 											<xs:documentation>Tipo do CT-e Simplificado</xs:documentation>
 											<xs:documentation>Preencher com:
-4 - CTe Simplificado
-5 - Substituição CTe Simplificado</xs:documentation>
+5 - CTe Simplificado
+6 - Substituição CTe Simplificado</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="procEmi" type="TProcEmi">
@@ -1622,7 +1622,7 @@ para tpEmis diferente de 1</xs:documentation>
 											</xs:simpleType>
 										</xs:element>
 									</xs:sequence>
-									<xs:element name="gCompraGov" type="TCompraGov" minOccurs="0">
+									<xs:element name="gCompraGov" type="TCompraGovReduzido" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
@@ -3163,7 +3163,7 @@ para tpEmis diferente de 1</xs:documentation>
 											</xs:simpleType>
 										</xs:element>
 									</xs:sequence>
-									<xs:element name="gCompraGov" type="TCompraGov" minOccurs="0">
+									<xs:element name="gCompraGov" type="TCompraGovReduzido" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
@@ -4952,11 +4952,6 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="gCompraGov" type="TCompraGov" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
-							</xs:annotation>
-						</xs:element>
 					</xs:sequence>
 					<xs:attribute name="versao" use="required">
 						<xs:annotation>
@@ -5319,7 +5314,7 @@ para tpEmis diferente de 1</xs:documentation>
 											</xs:simpleType>
 										</xs:element>
 									</xs:sequence>
-									<xs:element name="gCompraGov" type="TCompraGov" minOccurs="0">
+									<xs:element name="gCompraGov" type="TCompraGovReduzido" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
@@ -7893,8 +7888,8 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>
-			<xs:enumeration value="4"/>
 			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TIdLote">

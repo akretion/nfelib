@@ -3,6 +3,7 @@
 from __future__ import annotations  # Python 3.8 compat
 
 import logging
+import sys
 from io import StringIO
 from os import environ
 from pathlib import Path
@@ -14,17 +15,18 @@ from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb, TcodUfIbge
 from bs4 import BeautifulSoup
 from xsdata.formats.dataclass.serializers import PycodeSerializer
 
-from nfelib.cte.bindings.v4_0.cons_stat_serv_tipos_basico_v4_00 import TconsStatServ
-from nfelib.cte.soap.v4_0.ctestatusservicov4 import (
-    CteStatusServicoV4Soap12CteStatusServicoCt,
-)
-from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
-from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import (
-    TconsStatServXServ,
-)
-from nfelib.nfe.soap.v4_0.nfestatusservico4 import (
-    NfeStatusServico4SoapNfeStatusServicoNf,
-)
+if sys.version_info[:2] > (3, 8):
+    from nfelib.cte.bindings.v4_0.cons_stat_serv_tipos_basico_v4_00 import TconsStatServ
+    from nfelib.cte.soap.v4_0.ctestatusservicov4 import (
+        CteStatusServicoV4Soap12CteStatusServicoCt,
+    )
+    from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
+    from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import (
+        TconsStatServXServ,
+    )
+    from nfelib.nfe.soap.v4_0.nfestatusservico4 import (
+        NfeStatusServico4SoapNfeStatusServicoNf,
+    )
 
 SERVICE_COLUMN = "Serviço"
 URL_COLUMN = "URL"
@@ -123,7 +125,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
 
     logger.info("Successfully fetched servers.")
 
-    if environ.get("CERT_FILE"):
+    if environ.get("CERT_FILE") and sys.version_info[:2] > (3, 8):
         logger.info("\nNow, let's test if some servers require SOAP 1.2 headers...")
         soap_12_servers = force_soap_12
 

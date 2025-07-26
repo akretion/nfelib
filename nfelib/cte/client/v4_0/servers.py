@@ -22,6 +22,7 @@ class Endpoint(Enum):
 class ServerConfig(TypedDict):
     prod_server: str
     dev_server: str
+    soap_version: str
     endpoints: dict[Endpoint, str]
 
 
@@ -29,6 +30,7 @@ servers: dict[str, ServerConfig] = {
     "MT": {
         "prod_server": "cte.sefaz.mt.gov.br",
         "dev_server": "homologacao.sefaz.mt.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.QRCODE: "/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/ctews2/services/CTeStatusServicoV4?wsdl",
@@ -43,6 +45,7 @@ servers: dict[str, ServerConfig] = {
     "MS": {
         "prod_server": "producao.cte.ms.gov.br",
         "dev_server": "homologacao.cte.ms.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.QRCODE: "/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4",
@@ -57,6 +60,7 @@ servers: dict[str, ServerConfig] = {
     "MG": {
         "prod_server": "cte.fazenda.mg.gov.br",
         "dev_server": "hcte.fazenda.mg.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/portalcte/sistema/qrcode.xhtml",
             Endpoint.CTESTATUSSERVICOV4: "/cte/services/CTeStatusServicoV4",
@@ -71,6 +75,7 @@ servers: dict[str, ServerConfig] = {
     "PR": {
         "prod_server": "cte.fazenda.pr.gov.br",
         "dev_server": "homologacao.cte.fazenda.pr.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/cte4/CTeStatusServicoV4?wsdl",
@@ -85,6 +90,7 @@ servers: dict[str, ServerConfig] = {
     "RS": {
         "prod_server": "cte.svrs.rs.gov.br",
         "dev_server": "cte-homologacao.svrs.rs.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/cte/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx",
@@ -99,6 +105,7 @@ servers: dict[str, ServerConfig] = {
     "SP": {
         "prod_server": "nfe.fazenda.sp.gov.br",
         "dev_server": "homologacao.nfe.fazenda.sp.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/CTeConsulta/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/CTeWS/WS/CTeStatusServicoV4.asmx",
@@ -113,6 +120,7 @@ servers: dict[str, ServerConfig] = {
     "SVRS": {
         "prod_server": "cte.svrs.rs.gov.br",
         "dev_server": "cte-homologacao.svrs.rs.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/cte/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx",
@@ -127,6 +135,7 @@ servers: dict[str, ServerConfig] = {
     "SVSP": {
         "prod_server": "nfe.fazenda.sp.gov.br",
         "dev_server": "homologacao.nfe.fazenda.sp.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.QRCODE: "/CTeConsulta/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/CTeWS/WS/CTeStatusServicoV4.asmx",
@@ -141,6 +150,7 @@ servers: dict[str, ServerConfig] = {
     "AN": {
         "prod_server": "www1.cte.fazenda.gov.br",
         "dev_server": "hom1.cte.fazenda.gov.br",
+        "soap_version": "1.1",
         "endpoints": {},
     },
 }

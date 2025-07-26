@@ -24,58 +24,51 @@ logger = logging.getLogger(__name__)
 
 def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
     """Fetches the MDFe server actions for production and homologation."""
-    try:
-        # Fetch the page content
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+    # Fetch the page content
+    response = requests.get(url)
+    response.raise_for_status()  # Raise an exception for HTTP errors
 
-        # Parse the HTML content
-        soup = BeautifulSoup(response.content, "lxml")
+    # Parse the HTML content
+    soup = BeautifulSoup(response.content, "lxml")
 
-        # Initialize dictionaries to store server actions
-        servers: dict[Any, Any] = {
-            "SVRS": {
-                "prod_server": "mdfe.svrs.rs.gov.br",
-                "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
-                "endpoints": {},
-            }
+    # Initialize dictionaries to store server actions
+    servers: dict[Any, Any] = {
+        "SVRS": {
+            "prod_server": "mdfe.svrs.rs.gov.br",
+            "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
+            "soap_version": "1.1",
+            "endpoints": {},
         }
+    }
 
-        # Find all tables with server information
-        tables = soup.find_all("table")
-        for table in tables:
-            # Determine if the table is for production or homologation
-            caption = table.find("caption")
-            if not caption:
+    # Find all tables with server information
+    tables = soup.find_all("table")
+    for table in tables:
+        # Determine if the table is for production or homologation
+        caption = table.find("caption")
+        if not caption:
+            continue
+
+        # Extract server actions from the table
+        rows = table.find_all("tr")[1:]  # Skip the header row
+        for row in rows:
+            cols = row.find_all("td")
+            if len(cols) < 4:  # Ensure there are enough columns
                 continue
 
-            # Extract server actions from the table
-            rows = table.find_all("tr")[1:]  # Skip the header row
-            for row in rows:
-                cols = row.find_all("td")
-                if len(cols) < 4:  # Ensure there are enough columns
-                    continue
+            service_name = cols[1].text.strip()
+            service_url = cols[3].text.strip()
 
-                service_name = cols[1].text.strip()
-                service_url = cols[3].text.strip()
+            # Add the service to the servers dictionary
+            if service_name not in servers["SVRS"]["endpoints"]:
+                servers["SVRS"]["endpoints"][service_name] = {}
 
-                # Add the service to the servers dictionary
-                if service_name not in servers["SVRS"]["endpoints"]:
-                    servers["SVRS"]["endpoints"][service_name] = {}
+            servers["SVRS"]["endpoints"][service_name] = "/" + "/".join(
+                service_url.split("/")[3:]
+            )
 
-                servers["SVRS"]["endpoints"][service_name] = "/" + "/".join(
-                    service_url.split("/")[3:]
-                )
-
-        logger.info("Successfully fetched MDFe servers.")
-        return servers
-
-    except requests.RequestException as e:
-        logger.error(f"Failed to fetch MDFe servers: {e}")
-        return {}
-    except Exception as e:
-        logger.error(f"An unexpected error occurred: {e}")
-        return {}
+    logger.info("Successfully fetched MDFe servers.")
+    return servers
 
 
 def main():

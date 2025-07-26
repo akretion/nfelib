@@ -22,6 +22,7 @@ class Endpoint(Enum):
 class ServerConfig(TypedDict):
     prod_server: str
     dev_server: str
+    soap_version: str
     endpoints: dict[Endpoint, str]
 
 
@@ -29,6 +30,7 @@ servers: dict[str, ServerConfig] = {
     "AM": {
         "prod_server": "nfe.sefaz.am.gov.br",
         "dev_server": "homnfe.sefaz.am.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/services2/services/NfeInutilizacao4",
             Endpoint.NFECONSULTAPROTOCOLO: "/services2/services/NfeConsulta4",
@@ -42,6 +44,7 @@ servers: dict[str, ServerConfig] = {
     "BA": {
         "prod_server": "nfe.sefaz.ba.gov.br",
         "dev_server": "hnfe.sefaz.ba.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/webservices/NFeInutilizacao4/NFeInutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/webservices/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx",
@@ -55,6 +58,7 @@ servers: dict[str, ServerConfig] = {
     "GO": {
         "prod_server": "nfe.sefaz.go.gov.br",
         "dev_server": "homolog.sefaz.go.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/nfe/services/NFeInutilizacao4?wsdl",
             Endpoint.NFECONSULTAPROTOCOLO: "/nfe/services/NFeConsultaProtocolo4?wsdl",
@@ -68,6 +72,7 @@ servers: dict[str, ServerConfig] = {
     "MG": {
         "prod_server": "nfe.fazenda.mg.gov.br",
         "dev_server": "hnfe.fazenda.mg.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/nfe2/services/NFeInutilizacao4",
             Endpoint.NFECONSULTAPROTOCOLO: "/nfe2/services/NFeConsultaProtocolo4",
@@ -81,6 +86,7 @@ servers: dict[str, ServerConfig] = {
     "MS": {
         "prod_server": "nfe.sefaz.ms.gov.br",
         "dev_server": "hom.nfe.sefaz.ms.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/ws/NFeInutilizacao4",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NFeConsultaProtocolo4",
@@ -94,6 +100,7 @@ servers: dict[str, ServerConfig] = {
     "MT": {
         "prod_server": "nfe.sefaz.mt.gov.br",
         "dev_server": "homologacao.sefaz.mt.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/nfews/v2/services/NfeInutilizacao4?wsdl",
             Endpoint.NFECONSULTAPROTOCOLO: "/nfews/v2/services/NfeConsulta4?wsdl",
@@ -107,6 +114,7 @@ servers: dict[str, ServerConfig] = {
     "PE": {
         "prod_server": "nfe.sefaz.pe.gov.br",
         "dev_server": "nfehomolog.sefaz.pe.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/nfe-service/services/NFeInutilizacao4",
             Endpoint.NFECONSULTAPROTOCOLO: "/nfe-service/services/NFeConsultaProtocolo4",
@@ -120,6 +128,7 @@ servers: dict[str, ServerConfig] = {
     "PR": {
         "prod_server": "nfe.sefa.pr.gov.br",
         "dev_server": "homologacao.nfe.sefa.pr.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/nfe/NFeInutilizacao4?wsdl",
             Endpoint.NFECONSULTAPROTOCOLO: "/nfe/NFeConsultaProtocolo4?wsdl",
@@ -133,6 +142,7 @@ servers: dict[str, ServerConfig] = {
     "RS": {
         "prod_server": "nfe.sefazrs.rs.gov.br",
         "dev_server": "nfe-homologacao.sefazrs.rs.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/ws/nfeinutilizacao/nfeinutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NfeConsulta/NfeConsulta4.asmx",
@@ -146,6 +156,7 @@ servers: dict[str, ServerConfig] = {
     "SP": {
         "prod_server": "nfe.fazenda.sp.gov.br",
         "dev_server": "homologacao.nfe.fazenda.sp.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/ws/nfeinutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/nfeconsultaprotocolo4.asmx",
@@ -159,6 +170,7 @@ servers: dict[str, ServerConfig] = {
     "SVAN": {
         "prod_server": "www.sefazvirtual.fazenda.gov.br",
         "dev_server": "hom.sefazvirtual.fazenda.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/NFeInutilizacao4/NFeInutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx",
@@ -171,6 +183,7 @@ servers: dict[str, ServerConfig] = {
     "SVRS": {
         "prod_server": "nfe.svrs.rs.gov.br",
         "dev_server": "nfe-homologacao.svrs.rs.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/ws/nfeinutilizacao/nfeinutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NfeConsulta/NfeConsulta4.asmx",
@@ -184,6 +197,7 @@ servers: dict[str, ServerConfig] = {
     "SVC-AN": {
         "prod_server": "www.sefazvirtual.fazenda.gov.br",
         "dev_server": "hom.sefazvirtual.fazenda.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.NFEINUTILIZACAO: "/NFeInutilizacao4/NFeInutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx",
@@ -196,6 +210,7 @@ servers: dict[str, ServerConfig] = {
     "SVC-RS": {
         "prod_server": "nfe.svrs.rs.gov.br",
         "dev_server": "nfe-homologacao.svrs.rs.gov.br",
+        "soap_version": "1.2",
         "endpoints": {
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NfeConsulta/NfeConsulta4.asmx",
             Endpoint.NFESTATUSSERVICO: "/ws/NfeStatusServico/NfeStatusServico4.asmx",
@@ -207,6 +222,7 @@ servers: dict[str, ServerConfig] = {
     "AN": {
         "prod_server": "www.nfe.fazenda.gov.br",
         "dev_server": "hom1.nfe.fazenda.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.RECEPCAOEVENTO: "/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx",
             Endpoint.NFEDISTRIBUICAODFE: "/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",

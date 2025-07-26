@@ -21,6 +21,7 @@ class Endpoint(Enum):
 class ServerConfig(TypedDict):
     prod_server: str
     dev_server: str
+    soap_version: str
     endpoints: dict[Endpoint, str]
 
 
@@ -28,6 +29,7 @@ servers: dict[str, ServerConfig] = {
     "SVRS": {
         "prod_server": "mdfe.svrs.rs.gov.br",
         "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
+        "soap_version": "1.1",
         "endpoints": {
             Endpoint.MDFERECEPCAOEVENTO: "/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx",
             Endpoint.MDFECONSULTA: "/ws/MDFeConsulta/MDFeConsulta.asmx",

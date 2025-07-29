@@ -3,18 +3,30 @@
 
 import logging
 import time
+from lxml import etree
 from datetime import date, datetime
 from typing import Any, Optional
 
-from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb, TcodUfIbge
+from brazil_fiscal_client.fiscal_client import (
+    FiscalClient,
+    Tamb,
+    TcodUfIbge,
+    WrappedResponse,
+)
+
+from nfelib import CommonMixin
 
 # --- Content Bindings ---
+from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
 from nfelib.nfe.bindings.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
 from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
 from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
 from nfelib.nfe.bindings.v4_0.envi_nfe_v4_00 import EnviNfe
 from nfelib.nfe.bindings.v4_0.inut_nfe_v4_00 import InutNfe
-from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TconsSitNfeXServ
+from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import (
+    TconsSitNfeXServ,
+    TprotNfe,
+)
 from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServXServ
 from nfelib.nfe.bindings.v4_0.leiaute_inut_nfe_v4_00 import InfInutXServ
 from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import TenviNfeIndSinc, Tnfe
@@ -54,16 +66,10 @@ from nfelib.nfe.soap.v4_0.nfestatusservico4 import (
 from nfelib.nfe.soap.v4_0.recepcaoevento4 import (
     NfeRecepcaoEvento4SoapNfeRecepcaoEvento,
 )
-from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
-    DetEventoDescEvento as DetEventoDescEventoCancel,
-)
-from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
-    DetEventoVersao as DetEventoVersaoCancel,
-)
 
 # --- Event Bindings ---
 from nfelib.nfe_evento_cancel.bindings.v1_0.evento_canc_nfe_v1_00 import (
-    Tevento as TeventoCancel,
+    Evento as TeventoCancel,
 )
 from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import (
     InfEventoTpEvento as InfEventoTpEventoCancel,
@@ -72,7 +78,6 @@ from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import
     InfEventoVerEvento as InfEventoVerEventoCancel,
 )
 from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import (
-    TenvEvento,
     TretEnvEvento,
 )
 from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
@@ -92,6 +97,16 @@ from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
 )
 from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
     Tevento as TeventoCCe,
+)
+
+# --- Dist DF-e ---
+from nfelib.nfe_dist_dfe.bindings.v1_0 import DistDfeInt, RetDistDfeInt
+
+from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
+    DetEventoDescEvento as DetEventoDescEventoCancel,
+)
+from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
+    DetEventoVersao as DetEventoVersaoCancel,
 )
 
 # --- Constants ---
@@ -295,7 +310,12 @@ class NfeClient(FiscalClient):
             raise ValueError(
                 "Could not determine Endpoint for action_class: {action_class.__name__}"
             )
-        wrapped_obj = {"Body": {"nfeDadosMsg": {"content": [obj]}}}
+        if isinstance(obj, DistDfeInt):
+            wrapped_obj = {
+                "Body": {"nfeDistDFeInteresse": {"nfeDadosMsg": {"content": [obj]}}}
+            }
+        else:
+            wrapped_obj = {"Body": {"nfeDadosMsg": {"content": [obj]}}}
 
         response = super().send(
             action_class,
@@ -305,7 +325,19 @@ class NfeClient(FiscalClient):
             placeholder_content=placeholder_content,
             **kwargs,
         )
-        return response.body.nfeResultMsg.content[0]
+        if not self.wrap_response:
+            if isinstance(obj, DistDfeInt):
+                return response.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult.content[
+                    0
+                ]
+            return response.body.nfeResultMsg.content[0]
+        if isinstance(obj, DistDfeInt):
+            response.resposta = response.resposta.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult.content[
+                0
+            ]
+        else:
+            response.resposta = response.resposta.body.nfeResultMsg.content[0]
+        return response
 
     ######################################
     # Webservices
@@ -335,29 +367,32 @@ class NfeClient(FiscalClient):
         return self.send(NfeConsultaProtocolo4SoapNfeConsultaNf, payload)
 
     # NOTE: I changed the signature from erpbrasil.edoc to support a list of NFe's
-    # OK 100%
-    # TODO call autoriza_documento that returns the protocol without waiting
     def envia_documento(
         self,
         lista_nfes: list,
         id_lote: str = "",
-        ind_sinc: TenviNfeIndSinc = TenviNfeIndSinc.VALUE_0,
+        ind_sinc: TenviNfeIndSinc = TenviNfeIndSinc.VALUE_1,
     ) -> RetEnviNfe:
         """Autoriza uma lista de NFe's."""
-        lista_nfes_str = []
+        signed_nfes = []
         for nfe in lista_nfes:
             if isinstance(nfe, str):
                 if "X509Certificate" in nfe:
-                    lista_nfes_str.append(nfe)
+                    signed_nfes.append(nfe)
                 else:
-                    self.sign_xml(
-                        xml = nfe,
-                        pkcs12_data=self.pkcs12_data,
-                        pkcs12_password=self.pkcs12_password,
-                        # TODO parse Id ;doc_id=serialized_nfe.infNFe.Id,
+                    nfe_etree = etree.fromstring(nfe.encode("utf-8"))
+                    ns = {"nfe": "http://www.portalfiscal.inf.br/nfe"}
+                    doc_id = nfe_etree.xpath("//nfe:infNFe/@Id", namespaces=ns)[0]
+                    signed_nfes.append(
+                        CommonMixin.sign_xml(
+                            xml=nfe,
+                            pkcs12_data=self.pkcs12_data,
+                            pkcs12_password=self.pkcs12_password,
+                            doc_id=doc_id,
+                        )
                     )
             else:
-                lista_nfes_str.append(
+                signed_nfes.append(
                     nfe.to_xml(
                         pkcs12_data=self.pkcs12_data,
                         pkcs12_password=self.pkcs12_password,
@@ -376,23 +411,23 @@ class NfeClient(FiscalClient):
                 NFe=[Tnfe()],
             ),
             placeholder_exp="<NFe/>",
-            placeholder_content="".join(lista_nfes_str),
+            placeholder_content="".join(signed_nfes),
         )
 
     def processar_lote(self, lista_nfes: list):  # adapted from processar_documento
-        if False: # TODO self._consulta_servico_ao_enviar:
+        if False:  # TODO self._consulta_servico_ao_enviar:
             pass
-        if False: #self._consulta_documento_antes_de_enviar:
+        if False:  # self._consulta_documento_antes_de_enviar:
             pass
 
         proc_envio = self.envia_documento(lista_nfes)
-        #if self.envio_sincrono:  # TODO
+        # if self.envio_sincrono:  # TODO
         #    self.monta_processo(proc_envio)
-        #import pudb; pu.db
         yield proc_envio
 
         if (
-            proc_envio.cStat not in ("103", "104")
+            (proc_envio.resposta if self.wrap_response else proc_envio).cStat
+            not in ("103", "104")
             # TODO or self.envio_sincrono
         ):
             return
@@ -405,8 +440,7 @@ class NfeClient(FiscalClient):
         # Consulta o recibo do lote, para ver o que aconteceu
         #
         proc_recibo = self.consulta_recibo(proc_envio=proc_envio)
-
-        if proc_recibo.cStat not in ("100", "104"):
+        if not (proc_recibo.resposta if self.wrap_response else proc_recibo):
             return
 
         #
@@ -415,7 +449,8 @@ class NfeClient(FiscalClient):
         #
         tentativa = 0
         while (
-            proc_recibo.cStat == "105"  # em processamento
+            (proc_recibo.resposta if self.wrap_response else proc_recibo).cStat
+            == "105"  # em processamento
             and tentativa < self._maximo_tentativas_consulta_recibo
         ):
             self._aguarda_tempo_medio(proc_envio)
@@ -424,28 +459,35 @@ class NfeClient(FiscalClient):
             # Consulta o recibo do lote, para ver o que aconteceu
             #
             proc_recibo = self.consulta_recibo(proc_envio=proc_envio)
-        self.monta_processo(proc_envio, proc_recibo)
+        self.monta_processo(proc_envio, proc_recibo, lista_nfes)
         yield proc_recibo
 
-    def monta_processo(self, proc_envio, proc_recibo=None):
-        nfe = proc_envio.envio_raiz.find(
-            "{" + self._namespace + "}NFe"
-        )  # Se proc_envio for 'None', debugar o método 'analisar_retorno_raw'
+    def monta_processo(self, proc_envio, proc_recibo=None, lista_nfes=[]):
+        nfe = lista_nfes[0]  # TODO could be a collection...
+        # nfe = proc_envio.envio_raiz.find(
+        # "{" + self._namespace + "}NFe"
+        # )  # Se proc_envio for 'None', debugar o método 'analisar_retorno_raw'
+
         if proc_recibo:
-            protocolos = proc_recibo.resposta.protNFe
+            if self.wrap_response:
+                proc_recibo = proc_recibo.resposta
+            protocolos = proc_recibo.protNFe
         else:
             # A falta do recibo indica envio no modo síncrono
             # o protocolo é recuperado diretamente da resposta do envio.
-            protocolos = proc_envio.resposta.protNFe
-        if len(nfe) and protocolos:
+            if self.wrap_response:
+                proc_envio = proc_envio.resposta
+            protocolos = proc_envio.protNFe
+        if False:  # TODO finish if len(nfe) and protocolos:
             if not isinstance(protocolos, list):
                 protocolos = [protocolos]
             for protocolo in protocolos:
-                nfe_proc = retEnviNFe.TNfeProc(
+                from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
+
+                nfe_proc = NfeProc(
                     versao=self.versao,
                     protNFe=protocolo,
                 )
-                nfe_proc.original_tagname_ = "nfeProc"
                 xml_file, nfe_proc = self._generateds_to_string_etree(nfe_proc)
                 prot_nfe = nfe_proc.find("{" + self._namespace + "}protNFe")
                 prot_nfe.addprevious(nfe)
@@ -456,26 +498,46 @@ class NfeClient(FiscalClient):
                 proc.protocolo = protocolo
             return True
 
-    def monta_nfe_proc(self, nfe, prot_nfe):
+    def monta_nfe_proc(self, nfe, prot_nfe: TprotNfe):
         """
         Constrói e retorna o XML do processo da NF-e,
         incorporando a NF-e com o seu protocolo de autorização.
         """
-        nfe_proc = etree.Element(
-            f"{{{self._namespace}}}nfeProc",
-            versao=self.versao,
-            nsmap={None: self._namespace},
-        )
-        nfe_proc.append(nfe)
-        nfe_proc.append(prot_nfe)
-        return etree.tostring(nfe_proc)
+        if isinstance(nfe, bytes):
+            nfe = nfe.decode("utf-8")
+        if isinstance(nfe, str):
+            nfe = Tnfe.from_xml(nfe)
+        else:
+            nfe = etree.tostring(nfe).decode("utf-8")
 
-    def envia_inutilizacao(
-        self, signed_inut_xml: str
-    ) -> Optional[RetInutNfe]:
+        if isinstance(prot_nfe, WrappedResponse):
+            # TODO it seems monta_nfe_proc is called
+            # in two different ways accross Odoo tests
+            # we could probably avoid these ifs
+            prot_nfe = prot_nfe.resposta
+
+        nfe_proc = NfeProc(
+            versao=self.versao,
+            NFe=nfe,
+            protNFe=prot_nfe,
+        )
+
+        return nfe_proc.to_xml()
+
+    def envia_inutilizacao(self, inut: Any) -> Optional[RetInutNfe]:
         """Envia um pedido de inutilização de numeração (XML já assinado)."""
-        if not signed_inut_xml:
-            raise ValueError("XML de inutilização assinado não pode estar vazio.")
+        if not isinstance(inut, str):
+            inut = inut.to_xml()
+        if "X509Certificate" not in inut:
+            inut_etree = etree.fromstring(inut.encode("utf-8"))
+            ns = {"nfe": "http://www.portalfiscal.inf.br/nfe"}
+            doc_id = inut_etree.xpath("//nfe:infInut/@Id", namespaces=ns)[0]
+            inut = CommonMixin.sign_xml(
+                xml=inut,
+                pkcs12_data=self.pkcs12_data,
+                pkcs12_password=self.pkcs12_password,
+                doc_id=doc_id,
+            )
 
         # Placeholder object for wrapping. The actual content comes
         # from signed_inut_xml.
@@ -490,7 +552,7 @@ class NfeClient(FiscalClient):
             NfeInutilizacao4SoapNfeInutilizacaoNf,
             payload_for_wrapping,  # Pass the object to be wrapped
             placeholder_exp=placeholder_exp,
-            placeholder_content=signed_inut_xml,  # The actual signed XML content
+            placeholder_content=inut,  # The actual signed XML content
         )
 
     def consulta_recibo(
@@ -499,6 +561,8 @@ class NfeClient(FiscalClient):
         """Consulta o resultado do processamento de um lote enviado."""
         recibo_a_consultar = numero
         if proc_envio:
+            if self.wrap_response:
+                proc_envio = proc_envio.resposta
             # Ensure infRec exists and has nRec
             if proc_envio.infRec and proc_envio.infRec.nRec:
                 recibo_a_consultar = proc_envio.infRec.nRec
@@ -524,26 +588,50 @@ class NfeClient(FiscalClient):
         return self.send(NfeRetAutorizacao4SoapNfeRetAutorizacaoLote, payload)
 
     def enviar_lote_evento(
-        self, signed_env_evento_xml: str
+        self, lista_eventos: list[TeventoCancel], numero_lote: str = False
     ) -> Optional[TretEnvEvento]:
-        """Envia um lote de eventos (XML TEnvEvento já assinado)."""
-        if not signed_env_evento_xml:
-            raise ValueError("XML TEnvEvento assinado não pode estar vazio.")
+        """Envia um lote de eventos."""
+        # TODO seems cancel event is hardcoded or what?
+        # it's called by cancela_documento. Does it make sense as a separated meth?
+        if not numero_lote:
+            numero_lote = datetime.now().strftime("%Y%m%d%H%M%S")
+        signed_events = []
+        for event in lista_eventos:
+            if isinstance(event, str):
+                if "X509Certificate" in event:
+                    signed_events.append(event)
+                else:
+                    event_etree = etree.fromstring(event.encode("utf-8"))
+                    ns = {"nfe": "http://www.portalfiscal.inf.br/nfe"}
+                    doc_id = event_etree.xpath("//nfe:infEvento/@Id", namespaces=ns)[0]
+                    signed_events.append(
+                        CommonMixin.sign_xml(
+                            xml=event,
+                            pkcs12_data=self.pkcs12_data,
+                            pkcs12_password=self.pkcs12_password,
+                            doc_id=doc_id,
+                        )
+                    )
+            else:
+                signed_events.append(
+                    event.to_xml(
+                        pkcs12_data=self.pkcs12_data,
+                        pkcs12_password=self.pkcs12_password,
+                        doc_id=event.infEvento.Id,
+                    )
+                )
 
         # Placeholder object for wrapping.
-        payload_for_wrapping = TenvEvento(
+        payload_for_wrapping = TeventoCancel(
             versao="1.00"
-        )  # Minimal object, version might depend on event
-
-        # The placeholder should match the <envEvento> tag within the
-        # SOAP Body's nfeDadosMsg
+        )
         placeholder_exp = r"<envEvento.*?>.*?</envEvento>"
 
         return self.send(
             NfeRecepcaoEvento4SoapNfeRecepcaoEvento,
             payload_for_wrapping,  # Pass the object to be wrapped
             placeholder_exp=placeholder_exp,
-            placeholder_content=signed_env_evento_xml,  # The actual signed XML content
+            placeholder_content=signed_events,  # The actual signed XML content
         )
 
     ######################################
@@ -686,7 +774,7 @@ class NfeClient(FiscalClient):
         num_ini: str,
         num_fin: str,
         justificativa: str,
-    ) -> InutNfe:  # Changed return type to the full object
+    ) -> InutNfe:
         """Monta o objeto InutNfe para um pedido de inutilização."""
         if not (isinstance(cnpj, str) and len(cnpj) == 14 and cnpj.isdigit()):
             raise ValueError(f"CNPJ inválido: {cnpj}")
@@ -711,11 +799,12 @@ class NfeClient(FiscalClient):
             )
         if not (serie_str.isdigit() and 0 <= int(serie_str) <= 999):
             raise ValueError(f"Série inválida: {serie_str}")
-        # Add model check if desired (e.g., mod in ['55', '65'])
+
+        from nfelib.nfe.bindings.v4_0.leiaute_inut_nfe_v4_00 import TinutNfe
 
         return InutNfe(
             versao=self.versao,
-            infInut=InutNfe.InfInut(
+            infInut=TinutNfe.InfInut(
                 Id="ID"
                 + self.uf
                 + year
@@ -743,7 +832,8 @@ class NfeClient(FiscalClient):
 
     def _aguarda_tempo_medio(self, proc_recibo: Optional[RetEnviNfe]):
         """Aguarda um tempo baseado no tMed retornado pela SEFAZ."""
-        # Add checks for safety
+        if self.wrap_response:
+            proc_recibo = proc_recibo.resposta
         if (
             proc_recibo
             and hasattr(proc_recibo, "infRec")
@@ -773,7 +863,7 @@ class NfeClient(FiscalClient):
             time.sleep(2.0)  # Default wait if tMed is missing
 
     ######################################
-    # DF-e (Placeholder)
+    # DF-e
     ######################################
 
     def consultar_distribuicao(
@@ -782,9 +872,42 @@ class NfeClient(FiscalClient):
         ultimo_nsu: str = "",
         nsu_especifico: str = "",
         chave: str = "",
-    ):
-        """Consulta a distribuição de DF-e."""
-        _logger.warning("Método 'consultar_distribuicao' ainda não implementado.")
-        # TODO: Implementar a lógica para montar o payload distDFeInt
-        #       e chamar self.send com NfeDistribuicaoDfeSoapNfeDistDfeInteresse
-        raise NotImplementedError("Consulta de distribuição de DF-e não implementada.")
+    ) -> RetDistDfeInt:
+        """
+        Consultar Disitbução de NFe.
+        :param cnpj_cpf: CPF ou CNPJ a ser consultado
+        :param ultimo_nsu: Último NSU para pesquisa. Formato: '999999999999999'
+        :param nsu_especifico: NSU Específico para pesquisa.
+                                Formato: '999999999999999'
+        :param chave: Chave de acesso do documento
+        :return: Retorna uma estrutura contendo as estruturas de envio
+        e retorno preenchidas
+        """
+
+        if not ultimo_nsu and not nsu_especifico and not chave:
+            return
+
+        distNSU = consNSU = consChNFe = None
+        if ultimo_nsu:
+            distNSU = DistDfeInt.DistNsu(ultNSU=ultimo_nsu)
+        if nsu_especifico:
+            consNSU = DistDfeInt.ConsNsu(NSU=nsu_especifico)
+        if chave:
+            consChNFe = DistDfeInt.ConsChNfe(chNFe=chave)
+
+        if distNSU and consNSU or distNSU and consChNFe or consNSU and consChNFe:
+            # TODO: Raise?
+            return
+
+        payload = DistDfeInt(
+            versao=self.versao,
+            tpAmb=self.ambiente,
+            cUFAutor=self.uf,
+            CNPJ=cnpj_cpf if len(cnpj_cpf) > 11 else None,
+            CPF=cnpj_cpf if len(cnpj_cpf) <= 11 else None,
+            distNSU=distNSU,
+            consNSU=consNSU,
+            consChNFe=consChNFe,
+        )
+
+        return self.send(NfeDistribuicaoDfeSoapNfeDistDfeInteresse, payload)

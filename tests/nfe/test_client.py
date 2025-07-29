@@ -1,6 +1,6 @@
 import logging
 import time
-from os import environ
+from os import environ, set_inheritable
 from pathlib import Path
 from unittest import TestCase, mock
 
@@ -21,7 +21,7 @@ from nfelib.nfe.bindings.v4_0.ret_inut_nfe_v4_00 import (
 )
 
 # --- Import Client ---
-from nfelib.nfe.client.v4_0 import (
+from nfelib.nfe.client.v4_0.client import (
     NfeClient,
     TcodUfIbge,  # Import Enum for UF validation/lookup
 )
@@ -30,9 +30,7 @@ from nfelib.nfe.client.v4_0 import (
 from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import (
     TenvEvento,
 )
-from nfelib.nfe_evento_cancel.bindings.v1_0.ret_env_evento_canc_nfe_v1_00 import (
-    RetEnvEvento,
-)
+from nfelib.nfe_evento_cce.bindings.v1_0.ret_env_cce_v1_00 import RetEnvEvento
 
 # --- Mock SOAP Responses ---
 # (Keep the existing mock responses as they are)
@@ -353,7 +351,7 @@ class SoapTest(TestCase):
                 f"  Protocolo NFe {prot.infProt.chNFe}: cStat={prot.infProt.cStat}, xMotivo={prot.infProt.xMotivo}"
             )
             self.assertIn(
-                prot.infProt.cStat, ("100", "110", "301", "302", "204", "297")
+                prot.infProt.cStat, ("100", "110", "301", "302", "204", "297", "213")
             )
 
     @mock.patch.object(DefaultTransport, "post")
@@ -427,8 +425,15 @@ class SoapTest(TestCase):
     def test_3_envia_inutilizacao_mocked(self, mock_post):
         mock_post.return_value = response_inutilizacao
         # Prepare data as if it was signed (content doesn't matter for mock)
-        signed_inut_xml = "<inutNFe>...</inutNFe>"  # Dummy signed content
-        res = self.client.envia_inutilizacao(signed_inut_xml)
+        evento = self.client.inutilizacao(
+            cnpj=self.cnpj_original,
+            mod="55",
+            serie="1",
+            num_ini="10",
+            num_fin="20",
+            justificativa="blablabla blablabla",
+        )
+        res = self.client.envia_inutilizacao(evento)
         self.assertIsInstance(res, RetInutNfe)
         self.assertEqual(res.infInut.cStat, "102")  # Mock returns success
 
@@ -503,7 +508,7 @@ class SoapTest(TestCase):
         )
 
         # 4. Send the signed TEnvEvento
-        res = self.client.enviar_lote_evento(signed_env_evento_xml)
+        res = self.client.enviar_lote_evento([signed_env_evento_xml])
         self.assertIsInstance(res, RetEnvEvento)
         _logger.info(
             f"Resultado Envio Evento Cancelamento: cStat={res.cStat}, xMotivo={res.xMotivo}"
@@ -529,83 +534,16 @@ class SoapTest(TestCase):
     def test_5_enviar_evento_cancelamento_mocked(self, mock_post):
         mock_post.return_value = response_cancela_documento  # Using the provided mock
         signed_env_evento_xml = "<envEvento>...</envEvento>"  # Dummy signed content
-        res = self.client.enviar_lote_evento(signed_env_evento_xml)
+        evento = self.client.cancela_documento(
+            chave="35200159594315000157550010000000022062777169",
+            protocolo_autorizacao="012345678912345",
+            justificativa="votou17",
+        )
+        res = self.client.enviar_lote_evento([evento])
         # for some reason the retur Type is not correct when mocked (but live is OK)
         # self.assertIsInstance(res, TretEnvEvento)
         # The mock response provided is actually a retEnvEvento inside nfeResultMsg
         self.assertEqual(res.cStat, "215")
 
     # --- Integration Style Test ---
-    # This test combines multiple steps but might be harder to debug if one step fails.
-    # It also relies heavily on the state of the SEFAZ Homologation environment.
-    # @only_if_valid_certificate
-    # def test_envia_consulta_e_cancela(self):
-    #     _logger.info("Iniciando teste de integração: Enviar -> Consultar -> Cancelar")
-
-    #     # 1. Enviar Documento
-    #     _logger.info("Enviando NFe...")
-    #     proc_envio = self.client.envia_documento([self.signed_nfe_xml])
-    #     self.assertIsInstance(proc_envio, RetEnviNfe)
-    #     self.assertIn(proc_envio.cStat, ("103", "104"), f"Falha no envio: {proc_envio.cStat} - {proc_envio.xMotivo}")
-
-    #     recibo = None
-    #     protocolo = None
-    #     if proc_envio.cStat == "103":
-    #         self.assertIsNotNone(proc_envio.infRec, "Recibo esperado para cStat 103")
-    #         recibo = proc_envio.infRec.nRec
-    #         self.assertIsNotNone(recibo, "Número do recibo não encontrado")
-    #         _logger.info(f"NFe enviada (assíncrono). Recibo: {recibo}. Aguardando processamento...")
-    #         self.client._aguarda_tempo_medio(proc_envio)
-    #         # 2. Consultar Recibo
-    #         _logger.info(f"Consultando recibo {recibo}...")
-    #         res_recibo = self.client.consulta_recibo(numero=recibo)
-    #         self.assertIsInstance(res_recibo, RetConsReciNfe)
-    #         self.assertEqual(res_recibo.cStat, "104", f"Consulta recibo falhou: {res_recibo.cStat} - {res_recibo.xMotivo}") # 104 = Lote Processado
-    #         self.assertTrue(res_recibo.protNFe, "Protocolo NFe esperado na consulta de recibo")
-    #         protocolo_info = res_recibo.protNFe[0].infProt
-    #         self.assertIn(protocolo_info.cStat, ("100", "204", "297"), f"NFe não autorizada ou rejeitada: {protocolo_info.cStat} - {protocolo_info.xMotivo}") # 100=Autorizado, 204=Duplicidade, 297=Assinatura difere
-    #         if protocolo_info.cStat != "100":
-    #              self.skipTest(f"NFe não foi autorizada (cStat={protocolo_info.cStat}), pulando cancelamento.")
-    #         protocolo = protocolo_info.nProt
-    #         _logger.info(f"NFe autorizada. Protocolo: {protocolo}")
-
-    #     elif proc_envio.cStat == "104": # Processado sincrono (simulado)
-    #         _logger.info("NFe enviada (síncrono simulado).")
-    #         self.assertIsNotNone(proc_envio.protNFe, "Protocolo esperado para cStat 104")
-    #         protocolo_info = proc_envio.protNFe.infProt
-    #         self.assertIn(protocolo_info.cStat, ("100", "204", "297"), f"NFe não autorizada ou rejeitada: {protocolo_info.cStat} - {protocolo_info.xMotivo}")
-    #         if protocolo_info.cStat != "100":
-    #              self.skipTest(f"NFe não foi autorizada (cStat={protocolo_info.cStat}), pulando cancelamento.")
-    #         protocolo = protocolo_info.nProt
-    #         _logger.info(f"NFe autorizada. Protocolo: {protocolo}")
-    #     else:
-    #          self.fail(f"Envio inicial falhou com cStat {proc_envio.cStat}")
-
-    #     # 3. Cancelar Documento (only if authorized)
-    #     _logger.info(f"Preparando cancelamento para chave {self.chave_original} com protocolo {protocolo}...")
-    #     evento_obj = self.client.cancela_documento(
-    #         chave=self.chave_original,
-    #         protocolo_autorizacao=protocolo,
-    #         justificativa="Cancelamento automatico de teste integrado",
-    #         cnpj_cpf=self.cnpj_original,
-    #         sequencia="1"
-    #     )
-    #     env_evento = TenvEvento(
-    #         versao="1.00",
-    #         idLote=str(int(time.time() * 1000))[-15:],
-    #         evento=[evento_obj]
-    #     )
-    #     signed_env_evento_xml = env_evento.sign_xml(
-    #          pkcs12_data=self.cert_data,
-    #          pkcs12_password=self.cert_password,
-    #          doc_id=env_evento.evento[0].infEvento.Id
-    #     )
-    #     _logger.info("Enviando evento de cancelamento...")
-    #     res_cancel = self.client.enviar_lote_evento(signed_env_evento_xml)
-    #     self.assertIsInstance(res_cancel, TretEnvEvento)
-    #     self.assertEqual(res_cancel.cStat, "128", f"Lote de cancelamento falhou: {res_cancel.cStat} - {res_cancel.xMotivo}") # 128 = Lote Processado
-    #     self.assertTrue(res_cancel.retEvento, "Retorno de evento esperado")
-    #     ret_ev_cancel = res_cancel.retEvento[0].infEvento
-    #     # 135 = Evento Registrado, 573 = Duplicidade (ok if run again)
-    #     self.assertIn(ret_ev_cancel.cStat, ("135", "573"), f"Registro do evento de cancelamento falhou: {ret_ev_cancel.cStat} - {ret_ev_cancel.xMotivo}")
-    #     _logger.info(f"Evento de cancelamento processado: cStat={ret_ev_cancel.cStat}, Motivo={ret_ev_cancel.xMotivo}")
+    # TODO processar_lote

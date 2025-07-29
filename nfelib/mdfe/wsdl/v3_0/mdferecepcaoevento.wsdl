@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento">
+      <s:element name="mdfeDadosMsg">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mdfeRecepcaoEventoResult">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mdfeCabecMsg" type="tns:mdfeCabecMsg" />
+      <s:complexType name="mdfeCabecMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cUF" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="versaoDados" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="mdfeRecepcaoEventoSoap12In">
+    <wsdl:part name="mdfeDadosMsg" element="tns:mdfeDadosMsg" />
+  </wsdl:message>
+  <wsdl:message name="mdfeRecepcaoEventoSoap12Out">
+    <wsdl:part name="mdfeRecepcaoEventoResult" element="tns:mdfeRecepcaoEventoResult" />
+  </wsdl:message>
+  <wsdl:message name="mdfeRecepcaoEventomdfeCabecMsg">
+    <wsdl:part name="mdfeCabecMsg" element="tns:mdfeCabecMsg" />
+  </wsdl:message>
+  <wsdl:portType name="MDFeRecepcaoEventoSoap12">
+    <wsdl:operation name="mdfeRecepcaoEvento">
+      <wsdl:input message="tns:mdfeRecepcaoEventoSoap12In" />
+      <wsdl:output message="tns:mdfeRecepcaoEventoSoap12Out" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MDFeRecepcaoEventoSoap12" type="tns:MDFeRecepcaoEventoSoap12">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="mdfeRecepcaoEvento">
+      <soap12:operation soapAction="http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento/mdfeRecepcaoEvento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:mdfeRecepcaoEventomdfeCabecMsg" part="mdfeCabecMsg" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:mdfeRecepcaoEventomdfeCabecMsg" part="mdfeCabecMsg" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MDFeRecepcaoEvento">
+    <wsdl:port name="MDFeRecepcaoEventoSoap12" binding="tns:MDFeRecepcaoEventoSoap12">
+      <soap12:address location="https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

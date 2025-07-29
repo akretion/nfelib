@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4">
+      <s:element name="nfeDadosMsg">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="nfeResultMsg" nillable="true">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="nfeConsultaNFSoapIn">
+    <wsdl:part name="nfeDadosMsg" element="tns:nfeDadosMsg" />
+  </wsdl:message>
+  <wsdl:message name="nfeConsultaNFSoapOut">
+    <wsdl:part name="nfeConsultaNFResult" element="tns:nfeResultMsg" />
+  </wsdl:message>
+  <wsdl:portType name="NFeConsultaProtocolo4Soap">
+    <wsdl:operation name="nfeConsultaNF">
+      <wsdl:input message="tns:nfeConsultaNFSoapIn" />
+      <wsdl:output message="tns:nfeConsultaNFSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NFeConsultaProtocolo4Soap" type="tns:NFeConsultaProtocolo4Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="nfeConsultaNF">
+      <soap:operation soapAction="http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4/nfeConsultaNF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NFeConsultaProtocolo4Soap12" type="tns:NFeConsultaProtocolo4Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="nfeConsultaNF">
+      <soap12:operation soapAction="http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4/nfeConsultaNF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NFeConsultaProtocolo4">
+    <wsdl:port name="NFeConsultaProtocolo4Soap" binding="tns:NFeConsultaProtocolo4Soap">
+      <soap:address location="https://nfe.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta4.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NFeConsultaProtocolo4Soap12" binding="tns:NFeConsultaProtocolo4Soap12">
+      <soap12:address location="https://nfe.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta4.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,6 +1,6 @@
 import logging
 import time
-from os import environ, set_inheritable
+from os import environ
 from pathlib import Path
 from unittest import TestCase, mock
 
@@ -21,7 +21,7 @@ from nfelib.nfe.bindings.v4_0.ret_inut_nfe_v4_00 import (
 )
 
 # --- Import Client ---
-from nfelib.nfe.client.v4_0.client import (
+from nfelib.nfe.client.v4_0.nfe import (
     NfeClient,
     TcodUfIbge,  # Import Enum for UF validation/lookup
 )
@@ -533,7 +533,6 @@ class SoapTest(TestCase):
     @mock.patch.object(DefaultTransport, "post")
     def test_5_enviar_evento_cancelamento_mocked(self, mock_post):
         mock_post.return_value = response_cancela_documento  # Using the provided mock
-        signed_env_evento_xml = "<envEvento>...</envEvento>"  # Dummy signed content
         evento = self.client.cancela_documento(
             chave="35200159594315000157550010000000022062777169",
             protocolo_autorizacao="012345678912345",

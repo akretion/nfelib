@@ -12,140 +12,59 @@ from xsdata.formats.dataclass.transports import DefaultTransport
 from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import TretEnvEvento
 
 # --- Import Client ---
-from nfelib.nfe.client.v4_0.mde import MDeClient
+from nfelib.nfe.client.v4_0.mde import MdeClient
 
 _logger = logging.getLogger(__name__)
 
-# --- Mock SOAP Responses from erpbrasil.edoc vcr cassettes ---
-# These are the core <retEnvEvento> parts inside the SOAP body.
-# The client is expected to parse this part.
+# --- Mock SOAP Responses ---
+# Using the corrected response name that the FiscalClient will handle
 response_confirmacao = b"""<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
+        <nfeRecepcaoEventoNFResult xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
             <retEnvEvento versao="1.00" xmlns="http://www.portalfiscal.inf.br/nfe">
-                <idLote>1</idLote>
-                <tpAmb>1</tpAmb>
-                <verAplic>AN_1.1.3</verAplic>
-                <cOrgao>91</cOrgao>
-                <cStat>128</cStat>
-                <xMotivo>Lote de evento processado</xMotivo>
-                <retEvento versao="1.00">
-                    <infEvento>
-                        <tpAmb>1</tpAmb>
-                        <verAplic>AN_1.1.3</verAplic>
-                        <cOrgao>91</cOrgao>
-                        <cStat>135</cStat>
-                        <xMotivo>Evento registrado e vinculado a NF-e</xMotivo>
-                        <chNFe>35200309091076000144550010001807401003642343</chNFe>
-                        <tpEvento>210200</tpEvento>
-                        <xEvento>Confirmacao da Operacao</xEvento>
-                        <nSeqEvento>1</nSeqEvento>
-                        <dhRegEvento>2020-11-20T07:55:58-03:00</dhRegEvento>
-                        <nProt>123456789012345</nProt>
-                    </infEvento>
-                </retEvento>
+                <idLote>1</idLote><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>128</cStat><xMotivo>Lote de evento processado</xMotivo>
+                <retEvento versao="1.00"><infEvento><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>135</cStat><xMotivo>Evento registrado e vinculado a NF-e</xMotivo><chNFe>35200309091076000144550010001807401003642343</chNFe><tpEvento>210200</tpEvento><xEvento>Confirmacao da Operacao</xEvento><nSeqEvento>1</nSeqEvento><dhRegEvento>2020-11-20T07:55:58-03:00</dhRegEvento><nProt>123456789012345</nProt></infEvento></retEvento>
             </retEnvEvento>
-        </nfeResultMsg>
+        </nfeRecepcaoEventoNFResult>
     </soap:Body>
-</soap:Envelope>
-"""
+</soap:Envelope>"""
 
 response_ciencia = b"""<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
+        <nfeRecepcaoEventoNFResult xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
             <retEnvEvento versao="1.00" xmlns="http://www.portalfiscal.inf.br/nfe">
-                <idLote>1</idLote>
-                <tpAmb>1</tpAmb>
-                <verAplic>AN_1.1.3</verAplic>
-                <cOrgao>91</cOrgao>
-                <cStat>128</cStat>
-                <xMotivo>Lote de evento processado</xMotivo>
-                <retEvento versao="1.00">
-                    <infEvento>
-                        <tpAmb>1</tpAmb>
-                        <verAplic>AN_1.1.3</verAplic>
-                        <cOrgao>91</cOrgao>
-                        <cStat>135</cStat>
-                        <xMotivo>Evento registrado e vinculado a NF-e</xMotivo>
-                        <chNFe>35200309091076000144550010001807401003642343</chNFe>
-                        <tpEvento>210210</tpEvento>
-                        <xEvento>Ciencia da Operacao</xEvento>
-                        <nSeqEvento>1</nSeqEvento>
-                        <dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento>
-                        <nProt>123456789012346</nProt>
-                    </infEvento>
-                </retEvento>
+                <idLote>1</idLote><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>128</cStat><xMotivo>Lote de evento processado</xMotivo>
+                <retEvento versao="1.00"><infEvento><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>135</cStat><xMotivo>Evento registrado e vinculado a NF-e</xMotivo><chNFe>35200309091076000144550010001807401003642343</chNFe><tpEvento>210210</tpEvento><xEvento>Ciencia da Operacao</xEvento><nSeqEvento>1</nSeqEvento><dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento><nProt>123456789012346</nProt></infEvento></retEvento>
             </retEnvEvento>
-        </nfeResultMsg>
+        </nfeRecepcaoEventoNFResult>
     </soap:Body>
-</soap:Envelope>
-"""
+</soap:Envelope>"""
 
 response_desconhecimento = b"""<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
+        <nfeRecepcaoEventoNFResult xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
             <retEnvEvento versao="1.00" xmlns="http://www.portalfiscal.inf.br/nfe">
-                <idLote>1</idLote>
-                <tpAmb>1</tpAmb>
-                <verAplic>AN_1.1.3</verAplic>
-                <cOrgao>91</cOrgao>
-                <cStat>128</cStat>
-                <xMotivo>Lote de evento processado</xMotivo>
-                <retEvento versao="1.00">
-                    <infEvento>
-                        <tpAmb>1</tpAmb>
-                        <verAplic>AN_1.1.3</verAplic>
-                        <cOrgao>91</cOrgao>
-                        <cStat>135</cStat>
-                        <xMotivo>Evento registrado e vinculado a NF-e</xMotivo>
-                        <chNFe>35200309091076000144550010001807401003642343</chNFe>
-                        <tpEvento>210220</tpEvento>
-                        <xEvento>Desconhecimento da Operacao</xEvento>
-                        <nSeqEvento>1</nSeqEvento>
-                        <dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento>
-                        <nProt>123456789012347</nProt>
-                    </infEvento>
-                </retEvento>
+                <idLote>1</idLote><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>128</cStat><xMotivo>Lote de evento processado</xMotivo>
+                <retEvento versao="1.00"><infEvento><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>135</cStat><xMotivo>Evento registrado e vinculado a NF-e</xMotivo><chNFe>35200309091076000144550010001807401003642343</chNFe><tpEvento>210220</tpEvento><xEvento>Desconhecimento da Operacao</xEvento><nSeqEvento>1</nSeqEvento><dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento><nProt>123456789012347</nProt></infEvento></retEvento>
             </retEnvEvento>
-        </nfeResultMsg>
+        </nfeRecepcaoEventoNFResult>
     </soap:Body>
-</soap:Envelope>
-"""
+</soap:Envelope>"""
 
 response_operacao_nao_realizada = b"""<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body>
-        <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
+        <nfeRecepcaoEventoNFResult xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRecepcaoEvento4">
             <retEnvEvento versao="1.00" xmlns="http://www.portalfiscal.inf.br/nfe">
-                <idLote>1</idLote>
-                <tpAmb>1</tpAmb>
-                <verAplic>AN_1.1.3</verAplic>
-                <cOrgao>91</cOrgao>
-                <cStat>128</cStat>
-                <xMotivo>Lote de evento processado</xMotivo>
-                <retEvento versao="1.00">
-                    <infEvento>
-                        <tpAmb>1</tpAmb>
-                        <verAplic>AN_1.1.3</verAplic>
-                        <cOrgao>91</cOrgao>
-                        <cStat>135</cStat>
-                        <xMotivo>Evento registrado e vinculado a NF-e</xMotivo>
-                        <chNFe>35200309091076000144550010001807401003642343</chNFe>
-                        <tpEvento>210240</tpEvento>
-                        <xEvento>Operacao nao Realizada</xEvento>
-                        <nSeqEvento>1</nSeqEvento>
-                        <dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento>
-                        <nProt>123456789012348</nProt>
-                    </infEvento>
-                </retEvento>
+                <idLote>1</idLote><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>128</cStat><xMotivo>Lote de evento processado</xMotivo>
+                <retEvento versao="1.00"><infEvento><tpAmb>1</tpAmb><verAplic>AN_1.1.3</verAplic><cOrgao>91</cOrgao><cStat>135</cStat><xMotivo>Evento registrado e vinculado a NF-e</xMotivo><chNFe>35200309091076000144550010001807401003642343</chNFe><tpEvento>210240</tpEvento><xEvento>Operacao nao Realizada</xEvento><nSeqEvento>1</nSeqEvento><dhRegEvento>2020-11-20T07:55:59-03:00</dhRegEvento><nProt>123456789012348</nProt></infEvento></retEvento>
             </retEnvEvento>
-        </nfeResultMsg>
+        </nfeRecepcaoEventoNFResult>
     </soap:Body>
-</soap:Envelope>
-"""
+</soap:Envelope>"""
 
 # Decorator for Certificate Check
 def _only_if_valid_certificate(method, self):
@@ -159,12 +78,11 @@ def _only_if_valid_certificate(method, self):
 def only_if_valid_certificate(method):
     return decorate(method, _only_if_valid_certificate)
 
+
 # --- Test Case ---
 class MDeSoapTest(TestCase):
     """
-    Tests MDeClient SOAP interactions for Manifestação do Destinatário.
-    Mocked tests run always.
-    Real tests run only if CERT_FILE and CERT_PASSWORD env vars are set.
+    Tests MdeClient SOAP interactions for Manifestação do Destinatário.
     """
 
     @classmethod
@@ -192,9 +110,10 @@ class MDeSoapTest(TestCase):
             cls.fake_certificate = True
 
         # Client Setup
-        cls.client = MDeClient(
-            ambiente="1",  # MD-e is usually tested against Production
-            uf="35",  # UF of the destinatário, but endpoint resolution will use AN
+        # The UF here is for the company doing the manifestation, but the client will resolve the endpoint to AN.
+        cls.client = MdeClient(
+            ambiente="1",
+            uf="35",  # UF of the destinatário
             pkcs12_data=cls.cert_data,
             pkcs12_password=cls.cert_password,
             fake_certificate=cls.fake_certificate,
@@ -204,7 +123,7 @@ class MDeSoapTest(TestCase):
         cls.chave = environ.get(
             "CHAVE_NFE", "35200309091076000144550010001807401003642343"
         )
-        cls.cnpj_cpf = environ.get("CNPJ_CPF_DEST", "23765766000162") # Example CNPJ
+        cls.cnpj_cpf = environ.get("CNPJ_CPF_DEST", "23765766000162")
 
     # --- Test Methods ---
 
@@ -221,13 +140,12 @@ class MDeSoapTest(TestCase):
 
     @only_if_valid_certificate
     def test_confirmacao_da_operacao_real(self):
-        # NOTE: This will likely return a duplicate event error if run multiple times.
         res = self.client.confirmacao_da_operacao(
             chave=self.chave, cnpj_cpf=self.cnpj_cpf
         )
         self.assertIsInstance(res, TretEnvEvento)
         self.assertEqual(res.cStat, "128")
-        self.assertIn(res.retEvento[0].infEvento.cStat, ["135", "573"]) # Registrado or Duplicado
+        self.assertIn(res.retEvento[0].infEvento.cStat, ["135", "573"])
 
     @mock.patch.object(DefaultTransport, "post")
     def test_ciencia_da_operacao_mocked(self, mock_post):
@@ -273,7 +191,9 @@ class MDeSoapTest(TestCase):
     def test_operacao_nao_realizada_mocked(self, mock_post):
         mock_post.return_value = response_operacao_nao_realizada
         res = self.client.operacao_nao_realizada(
-            chave=self.chave, cnpj_cpf=self.cnpj_cpf, justificativa="Justificativa de teste com mais de 15 caracteres"
+            chave=self.chave,
+            cnpj_cpf=self.cnpj_cpf,
+            justificativa="Justificativa de teste com mais de 15 caracteres",
         )
         self.assertIsInstance(res, TretEnvEvento)
         self.assertEqual(res.cStat, "128")
@@ -283,7 +203,9 @@ class MDeSoapTest(TestCase):
     @only_if_valid_certificate
     def test_operacao_nao_realizada_real(self):
         res = self.client.operacao_nao_realizada(
-            chave=self.chave, cnpj_cpf=self.cnpj_cpf, justificativa="Teste de operacao nao realizada para fins de auditoria."
+            chave=self.chave,
+            cnpj_cpf=self.cnpj_cpf,
+            justificativa="Teste de operacao nao realizada para fins de auditoria.",
         )
         self.assertIsInstance(res, TretEnvEvento)
         self.assertEqual(res.cStat, "128")

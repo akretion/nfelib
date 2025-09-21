@@ -3,7 +3,6 @@
 
 import logging
 import time
-from lxml import etree
 from datetime import date, datetime
 from typing import Any, Optional
 
@@ -13,11 +12,9 @@ from brazil_fiscal_client.fiscal_client import (
     TcodUfIbge,
     WrappedResponse,
 )
+from lxml import etree
 
 from nfelib import CommonMixin
-
-# --- Content Bindings ---
-from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
 from nfelib.nfe.bindings.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
 from nfelib.nfe.bindings.v4_0.cons_sit_nfe_v4_00 import ConsSitNfe
 from nfelib.nfe.bindings.v4_0.cons_stat_serv_v4_00 import ConsStatServ
@@ -30,6 +27,9 @@ from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import (
 from nfelib.nfe.bindings.v4_0.leiaute_cons_stat_serv_v4_00 import TconsStatServXServ
 from nfelib.nfe.bindings.v4_0.leiaute_inut_nfe_v4_00 import InfInutXServ
 from nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00 import TenviNfeIndSinc, Tnfe
+
+# --- Content Bindings ---
+from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
 from nfelib.nfe.bindings.v4_0.ret_cons_reci_nfe_v4_00 import RetConsReciNfe
 from nfelib.nfe.bindings.v4_0.ret_cons_sit_nfe_v4_00 import RetConsSitNfe
 from nfelib.nfe.bindings.v4_0.ret_cons_stat_serv_v4_00 import RetConsStatServ
@@ -51,9 +51,6 @@ from nfelib.nfe.soap.v4_0.nfeautorizacao4 import (
 from nfelib.nfe.soap.v4_0.nfeconsulta4 import (
     NfeConsultaProtocolo4SoapNfeConsultaNf,
 )
-from nfelib.nfe.soap.v4_0.nfedistribuicaodfe import (
-    NfeDistribuicaoDfeSoapNfeDistDfeInteresse,
-)
 from nfelib.nfe.soap.v4_0.nfeinutilizacao4 import (
     NfeInutilizacao4SoapNfeInutilizacaoNf,
 )
@@ -65,6 +62,14 @@ from nfelib.nfe.soap.v4_0.nfestatusservico4 import (
 )
 from nfelib.nfe.soap.v4_0.recepcaoevento4 import (
     NfeRecepcaoEvento4SoapNfeRecepcaoEvento,
+)
+
+# --- Dist DF-e ---
+from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
+    DetEventoDescEvento as DetEventoDescEventoCancel,
+)
+from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
+    DetEventoVersao as DetEventoVersaoCancel,
 )
 
 # --- Event Bindings ---
@@ -97,16 +102,6 @@ from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
 )
 from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
     Tevento as TeventoCCe,
-)
-
-# --- Dist DF-e ---
-from nfelib.nfe_dist_dfe.bindings.v1_0 import DistDfeInt, RetDistDfeInt
-
-from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
-    DetEventoDescEvento as DetEventoDescEventoCancel,
-)
-from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
-    DetEventoVersao as DetEventoVersaoCancel,
 )
 
 # --- Constants ---
@@ -186,20 +181,9 @@ _OWN_SERVER_UFS = {  # Re-list Own Server UFs excluding CE
 }
 
 
-# Specific endpoints handled only by AN
-_AN_ONLY_ENDPOINTS = {Endpoint.NFEDISTRIBUICAODFE}
-# RecepcaoEvento can be AN or the UF's normal server depending on the event type
-# We'll handle this by checking the cOrgao in the event later if needed,
-# for now, assume it goes to the UF's normal server unless it's DistDFe.
-
-
 def _get_server_key_for_uf(uf_ibge_code: str, endpoint: Endpoint) -> str:
     """Get the server key ('AM', 'SVRS', 'AN', etc.) for a given UF and Endpoint."""
-    # 1. Check for Ambiente Nacional specific endpoints
-    if endpoint in _AN_ONLY_ENDPOINTS:
-        return "AN"
-
-    # 2. Check ConsultaCadastro special rule
+    # 1. Check ConsultaCadastro special rule
     if (
         endpoint == Endpoint.NFECONSULTACADASTRO
         and uf_ibge_code in _SVRS_CONSULTACADASTRO_UFS
@@ -207,19 +191,19 @@ def _get_server_key_for_uf(uf_ibge_code: str, endpoint: Endpoint) -> str:
         _logger.debug(f"Using SVRS for ConsultaCadastro for UF {uf_ibge_code}")
         return "SVRS"
 
-    # 3. Check UFs with their own servers
+    # 2. Check UFs with their own servers
     if uf_ibge_code in _OWN_SERVER_UFS:
         return _OWN_SERVER_UFS[uf_ibge_code]
 
-    # 4. Check UFs using SVAN
+    # 3. Check UFs using SVAN
     if uf_ibge_code in _SVAN_NORMAL_UFS:
         return "SVAN"
 
-    # 5. Check UFs using SVRS (default for most others listed)
+    # 4. Check UFs using SVRS (default for most others listed)
     if uf_ibge_code in _SVRS_NORMAL_UFS:
         return "SVRS"
 
-    # 6. Fallback/Error Handling - Should not happen if all UFs are mapped
+    # 5. Fallback/Error Handling - Should not happen if all UFs are mapped
     _logger.error(
         f"Could not determine server key for UF {uf_ibge_code} and endpoint "
         "{endpoint.name}. Check mappings."
@@ -228,10 +212,15 @@ def _get_server_key_for_uf(uf_ibge_code: str, endpoint: Endpoint) -> str:
     raise ValueError(f"Server mapping not found for UF {uf_ibge_code}")
 
 
+# TODO methods -> verbs
+# TODO enviar_documento -> envior_lote
+
+
 class NfeClient(FiscalClient):
     """A façade for the NFe SOAP webservices."""
 
     def __init__(self, **kwargs: Any):
+        self.mod = kwargs.pop("mod", "55")
         super().__init__(
             service="nfe",
             versao="4.00",
@@ -301,7 +290,6 @@ class NfeClient(FiscalClient):
                 NfeRetAutorizacao4SoapNfeRetAutorizacaoLote: Endpoint.NFERETAUTORIZACAO,
                 NfeInutilizacao4SoapNfeInutilizacaoNf: Endpoint.NFEINUTILIZACAO,
                 NfeRecepcaoEvento4SoapNfeRecepcaoEvento: Endpoint.RECEPCAOEVENTO,
-                NfeDistribuicaoDfeSoapNfeDistDfeInteresse: Endpoint.NFEDISTRIBUICAODFE,
             }
             endpoint_type = action_to_endpoint_map[action_class]
             location = self._get_location(endpoint_type)
@@ -310,12 +298,7 @@ class NfeClient(FiscalClient):
             raise ValueError(
                 "Could not determine Endpoint for action_class: {action_class.__name__}"
             )
-        if isinstance(obj, DistDfeInt):
-            wrapped_obj = {
-                "Body": {"nfeDistDFeInteresse": {"nfeDadosMsg": {"content": [obj]}}}
-            }
-        else:
-            wrapped_obj = {"Body": {"nfeDadosMsg": {"content": [obj]}}}
+        wrapped_obj = {"Body": {"nfeDadosMsg": {"content": [obj]}}}
 
         response = super().send(
             action_class,
@@ -326,17 +309,8 @@ class NfeClient(FiscalClient):
             **kwargs,
         )
         if not self.wrap_response:
-            if isinstance(obj, DistDfeInt):
-                return response.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult.content[
-                    0
-                ]
             return response.body.nfeResultMsg.content[0]
-        if isinstance(obj, DistDfeInt):
-            response.resposta = response.resposta.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult.content[
-                0
-            ]
-        else:
-            response.resposta = response.resposta.body.nfeResultMsg.content[0]
+        response.resposta = response.resposta.body.nfeResultMsg.content[0]
         return response
 
     ######################################
@@ -499,8 +473,7 @@ class NfeClient(FiscalClient):
             return True
 
     def monta_nfe_proc(self, nfe, prot_nfe: TprotNfe):
-        """
-        Constrói e retorna o XML do processo da NF-e,
+        """Constrói e retorna o XML do processo da NF-e,
         incorporando a NF-e com o seu protocolo de autorização.
         """
         if isinstance(nfe, bytes):
@@ -622,9 +595,7 @@ class NfeClient(FiscalClient):
                 )
 
         # Placeholder object for wrapping.
-        payload_for_wrapping = TeventoCancel(
-            versao="1.00"
-        )
+        payload_for_wrapping = TeventoCancel(versao="1.00")
         placeholder_exp = r"<envEvento.*?>.*?</envEvento>"
 
         return self.send(
@@ -633,6 +604,61 @@ class NfeClient(FiscalClient):
             placeholder_exp=placeholder_exp,
             placeholder_content=signed_events,  # The actual signed XML content
         )
+
+    # NEW HIGH-LEVEL METHOD FOR CANCELLATION
+    # TODO
+    def cancelar_nfe(
+        self,
+        chave: str,
+        protocolo_autorizacao: str,
+        justificativa: str,
+        cnpj_cpf: Optional[str] = None,
+        data_hora_evento: Optional[str] = None,
+        sequencia: str = "1",
+    ) -> TretEnvEvento:
+        """Cria, assina e envia um evento de cancelamento para uma NF-e.
+
+        :param chave: Chave de acesso da NF-e a ser cancelada.
+        :param protocolo_autorizacao: Protocolo de autorização da NF-e.
+        :param justificativa: Justificativa do cancelamento (15-255 caracteres).
+        :param cnpj_cpf: CNPJ ou CPF do autor do evento. Se omitido, será extraído da chave.
+        :param data_hora_evento: Data e hora do evento (opcional, default: now).
+        :param sequencia: Sequencial do evento (default: "1").
+        :return: Objeto de retorno do processamento do lote de eventos.
+        """
+        evento_obj = self._monta_evento_cancelamento(
+            chave,
+            protocolo_autorizacao,
+            justificativa,
+            cnpj_cpf,
+            data_hora_evento,
+            sequencia,
+        )
+        return self._enviar_lote_evento([evento_obj])
+
+    # NEW HIGH-LEVEL METHOD FOR CC-e
+    # TODO
+    def enviar_cce(
+        self,
+        chave: str,
+        sequencia: str,
+        justificativa: str,
+        cnpj_cpf: Optional[str] = None,
+        data_hora_evento: Optional[str] = None,
+    ) -> TretEnvEvento:
+        """Cria, assina e envia um evento de Carta de Correção (CC-e) para uma NF-e.
+
+        :param chave: Chave de acesso da NF-e a ser corrigida.
+        :param sequencia: Sequencial do evento (1-20).
+        :param justificativa: Texto da correção (15-1000 caracteres).
+        :param cnpj_cpf: CNPJ ou CPF do autor do evento. Se omitido, será extraído da chave.
+        :param data_hora_evento: Data e hora do evento (opcional, default: now).
+        :return: Objeto de retorno do processamento do lote de eventos.
+        """
+        evento_obj = self._monta_evento_cce(
+            chave, sequencia, justificativa, cnpj_cpf, data_hora_evento
+        )
+        return self._enviar_lote_evento([evento_obj])
 
     ######################################
     # Binding Façades (Input Assembly)
@@ -861,53 +887,3 @@ class NfeClient(FiscalClient):
                 "Aguardando 2 segundos por padrão."
             )
             time.sleep(2.0)  # Default wait if tMed is missing
-
-    ######################################
-    # DF-e
-    ######################################
-
-    def consultar_distribuicao(
-        self,
-        cnpj_cpf: str,
-        ultimo_nsu: str = "",
-        nsu_especifico: str = "",
-        chave: str = "",
-    ) -> RetDistDfeInt:
-        """
-        Consultar Disitbução de NFe.
-        :param cnpj_cpf: CPF ou CNPJ a ser consultado
-        :param ultimo_nsu: Último NSU para pesquisa. Formato: '999999999999999'
-        :param nsu_especifico: NSU Específico para pesquisa.
-                                Formato: '999999999999999'
-        :param chave: Chave de acesso do documento
-        :return: Retorna uma estrutura contendo as estruturas de envio
-        e retorno preenchidas
-        """
-
-        if not ultimo_nsu and not nsu_especifico and not chave:
-            return
-
-        distNSU = consNSU = consChNFe = None
-        if ultimo_nsu:
-            distNSU = DistDfeInt.DistNsu(ultNSU=ultimo_nsu)
-        if nsu_especifico:
-            consNSU = DistDfeInt.ConsNsu(NSU=nsu_especifico)
-        if chave:
-            consChNFe = DistDfeInt.ConsChNfe(chNFe=chave)
-
-        if distNSU and consNSU or distNSU and consChNFe or consNSU and consChNFe:
-            # TODO: Raise?
-            return
-
-        payload = DistDfeInt(
-            versao=self.versao,
-            tpAmb=self.ambiente,
-            cUFAutor=self.uf,
-            CNPJ=cnpj_cpf if len(cnpj_cpf) > 11 else None,
-            CPF=cnpj_cpf if len(cnpj_cpf) <= 11 else None,
-            distNSU=distNSU,
-            consNSU=consNSU,
-            consChNFe=consChNFe,
-        )
-
-        return self.send(NfeDistribuicaoDfeSoapNfeDistDfeInteresse, payload)

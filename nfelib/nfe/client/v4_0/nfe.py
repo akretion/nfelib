@@ -221,6 +221,7 @@ class NfeClient(FiscalClient):
 
     def __init__(self, **kwargs: Any):
         self.mod = kwargs.pop("mod", "55")
+        self.envio_sincrono = kwargs.pop("envio_sincrono", False)
         super().__init__(
             service="nfe",
             versao="4.00",
@@ -229,7 +230,9 @@ class NfeClient(FiscalClient):
 
     def _get_location(self, endpoint_type: Endpoint) -> str:
         """Construct the full HTTPS URL for the specified service."""
-        server_key = _get_server_key_for_uf(self.uf, endpoint_type)
+        server_key = _get_server_key_for_uf(
+            self.uf, endpoint_type
+        )  # TODO self.envio_sincrono
         try:
             server_data = SERVERS_NFE[server_key]
         except KeyError:
@@ -395,15 +398,14 @@ class NfeClient(FiscalClient):
             pass
 
         proc_envio = self.envia_documento(lista_nfes)
-        # if self.envio_sincrono:  # TODO
-        #    self.monta_processo(proc_envio)
+        if self.envio_sincrono:
+            self.monta_processo(lista_nfes, proc_envio)
         yield proc_envio
 
-        if (
-            (proc_envio.resposta if self.wrap_response else proc_envio).cStat
-            not in ("103", "104")
-            # TODO or self.envio_sincrono
-        ):
+        if (proc_envio.resposta if self.wrap_response else proc_envio).cStat not in (
+            "103",
+            "104",
+        ) or self.envio_sincrono:
             return
 
         #
@@ -433,15 +435,11 @@ class NfeClient(FiscalClient):
             # Consulta o recibo do lote, para ver o que aconteceu
             #
             proc_recibo = self.consulta_recibo(proc_envio=proc_envio)
-        self.monta_processo(proc_envio, proc_recibo, lista_nfes)
+        self.monta_processo(lista_nfes, proc_envio, proc_recibo)
         yield proc_recibo
 
-    def monta_processo(self, proc_envio, proc_recibo=None, lista_nfes=[]):
+    def monta_processo(self, lista_nfes, proc_envio, proc_recibo=None):
         nfe = lista_nfes[0]  # TODO could be a collection...
-        # nfe = proc_envio.envio_raiz.find(
-        # "{" + self._namespace + "}NFe"
-        # )  # Se proc_envio for 'None', debugar o método 'analisar_retorno_raw'
-
         if proc_recibo:
             if self.wrap_response:
                 proc_recibo = proc_recibo.resposta

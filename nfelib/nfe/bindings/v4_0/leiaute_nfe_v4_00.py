@@ -9,6 +9,12 @@ from enum import Enum
 from typing import List, Optional
 
 from nfelib import CommonMixin
+from nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00 import (
+    Tis,
+    TtribNfe,
+    Tistot,
+    TibscbsmonoTot,
+)
 from nfelib.nfe.bindings.v4_0.leiaute_cons_sit_nfe_v4_00 import TprotNfe
 from nfelib.nfe.bindings.v4_0.tipos_basico_v4_00 import (
     Tamb,
@@ -5008,14 +5014,14 @@ class Tnfe(CommonMixin):
                         },
                     )
                 )
-                IS: Optional[str] = field(
+                IS: Optional[Tis] = field(
                     default=None,
                     metadata={
                         "type": "Element",
                         "namespace": "http://www.portalfiscal.inf.br/nfe",
                     },
                 )
-                IBSCBS: Optional[str] = field(
+                IBSCBS: Optional[TtribNfe] = field(
                     default=None,
                     metadata={
                         "type": "Element",
@@ -9617,14 +9623,14 @@ class Tnfe(CommonMixin):
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
                 },
             )
-            ISTot: Optional[str] = field(
+            ISTot: Optional[Tistot] = field(
                 default=None,
                 metadata={
                     "type": "Element",
                     "namespace": "http://www.portalfiscal.inf.br/nfe",
                 },
             )
-            IBSCBSTot: Optional[str] = field(
+            IBSCBSTot: Optional[TibscbsmonoTot] = field(
                 default=None,
                 metadata={
                     "type": "Element",

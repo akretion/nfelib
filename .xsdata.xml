@@ -10,9 +10,9 @@
     <PostponedAnnotations>false</PostponedAnnotations>
     <UnnestClasses>false</UnnestClasses>
   </Output>
-  <!--Extensions>
+  <Extensions>
     <Extension type="class" class=".*" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
-  </Extensions-->
+  </Extensions>
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>
     <FieldName case="originalCase" safePrefix="value"/>

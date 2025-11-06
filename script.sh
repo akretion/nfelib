@@ -4,7 +4,7 @@
 
 # Pacote de Liberação nº 010b (Novo leiaute da NF-e, NT 2025.002 v.1.10, NT 2024.003 e NT 2025.001) (ZIP). Publicado em 09/06/2025
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=%20B766g0c3dk=
+  erpbrasil-edoc-gen-download-schema -n nfe -v v4_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=Uk1T1otPFqI=
   rm -rf nfelib/nfe/schemas
   cp -rf /tmp/generated/nfe/schemas nfelib/nfe/schemas
 fi

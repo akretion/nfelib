@@ -33,7 +33,7 @@ class DfeClient(FiscalClient):
         self.mod = kwargs.pop("mod", "55")
         super().__init__(
             service="nfe",
-            versao="4.00",
+            versao="1.01",
             **kwargs,
         )
 

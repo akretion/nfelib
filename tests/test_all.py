@@ -4,6 +4,7 @@ import importlib
 import inspect
 import logging
 import pkgutil
+from abc import ABCMeta
 from enum import EnumMeta
 
 _logger = logging.getLogger(__name__)
@@ -12,6 +13,8 @@ _logger = logging.getLogger(__name__)
 def visit_nested_classes(cls, classes):
     classes.add(cls)
     for attr in dir(cls):
+        if attr == "__abstractmethods__":
+            continue
         nested = getattr(cls, attr)
         if (
             not inspect.isclass(nested)
@@ -43,7 +46,11 @@ def test_init_all():
                 mod = importlib.import_module(mod_name)
 
                 for _klass_name, klass in mod.__dict__.items():
-                    if isinstance(klass, type) and type(klass) is not EnumMeta:
+                    if (
+                        isinstance(klass, type)
+                        and type(klass) is not EnumMeta
+                        and type(klass) is not ABCMeta
+                    ):
                         classes = set()
                         visit_nested_classes(klass, classes)
                         for cls in classes:

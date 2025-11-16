@@ -204,7 +204,7 @@ class CommonMixin:
                 Danfe(
                     xml=xml,
                     config=config,
-                ).output(dest="S")
+                ).output()
             )
         try:
             from erpbrasil.edoc.pdf import base

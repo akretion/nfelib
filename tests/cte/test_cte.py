@@ -19,7 +19,7 @@ class CTeTests(TestCase):
             input_file = os.path.join(path, filename)
             parser = XmlParser()
             obj = parser.from_path(Path(input_file))
-            serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+            serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/cte"}
             )

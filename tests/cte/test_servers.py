@@ -1,4 +1,7 @@
+import sys
 from pathlib import Path
+
+import pytest
 
 from nfelib.cte.client.v4_0.servers_scraper import main
 
@@ -9,6 +12,10 @@ def read_current_servers():
     return OUTPUT_FILE.read_text(encoding="utf-8") if OUTPUT_FILE.exists() else ""
 
 
+@pytest.mark.skipif(
+    sys.version_info.major != 3 or sys.version_info.minor != 11,
+    reason="This test is intended to run only on Python 3.11",
+)
 def test_scraper():
     old_content = read_current_servers()
     main()

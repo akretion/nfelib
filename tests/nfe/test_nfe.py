@@ -43,7 +43,7 @@ class ClientTests(TestCase):
         input_file = os.path.join(path, filename)
         parser = XmlParser()
         nfe = parser.from_path(Path(input_file))
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=False))
+        serializer = XmlSerializer(config=SerializerConfig(indent="  "))
         xml = serializer.render(
             obj=nfe, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
         )
@@ -90,7 +90,8 @@ class ClientTests(TestCase):
             input_file = os.path.join(path, filename)
             parser = XmlParser()
             obj = parser.from_path(Path(input_file))
-            serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+
+            serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
             )
@@ -112,7 +113,7 @@ class ClientTests(TestCase):
             input_file = os.path.join(path, filename)
             parser = XmlParser()
             obj = parser.from_path(Path(input_file))
-            serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+            serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.portalfiscal.inf.br/nfe"}
             )
@@ -131,7 +132,7 @@ class ClientTests(TestCase):
             cUF="12",
             xServ="STATUS",
         )
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+        serializer = XmlSerializer(config=SerializerConfig(indent="  "))
         serializer.render(obj=obj)
 
     def test_cons_sit(self):
@@ -141,7 +142,7 @@ class ClientTests(TestCase):
             xServ="CONSULTAR",
             chNFe="NFe35180803102452000172550010000474641681223493",
         )
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+        serializer = XmlSerializer(config=SerializerConfig(indent="  "))
         serializer.render(obj=obj)
 
     def test_distDFe(self):
@@ -156,12 +157,12 @@ class ClientTests(TestCase):
                 NSU="35180803102452000172550010000474641681223493"
             ),
         )
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+        serializer = XmlSerializer(config=SerializerConfig(indent="  "))
         serializer.render(obj=obj)
 
     def test_evento_generico(self):
         obj = TenvEvento(versao="1.00", idLote="42")
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=True))
+        serializer = XmlSerializer(config=SerializerConfig(indent="  "))
         serializer.render(obj=obj)
 
     def test_validator(self):

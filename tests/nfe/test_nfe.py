@@ -37,6 +37,26 @@ class ClientTests(TestCase):
             == "typing.Union[nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00.Tipi, NoneType]"
         )
 
+    def test_patched_xsdata_for_is(self):
+        # see https://github.com/akretion/nfelib/pull/134
+        assert (
+            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
+            == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis]"
+            # Python < 3.9:
+            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
+            == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis, NoneType]"
+        )
+
+    def test_patched_xsdata_for_ibscsb(self):
+        # see https://github.com/akretion/nfelib/pull/134
+        assert (
+            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
+            == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe]"
+            # Python < 3.9:
+            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
+            == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe, NoneType]"
+        )
+
     def test_sign(self):
         path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")
         filename = "42210775277525000178550030000266631762885493-procNFe.xml"

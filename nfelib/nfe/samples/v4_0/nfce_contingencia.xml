@@ -1,0 +1,123 @@
+<!-- FILEPATH: nfelib/nfe/samples/v4_0/nfce_contingencia.xml -->
+<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="4.00" Id="NFe41240200000000000100650010000000101000000104">
+        <ide>
+            <cUF>41</cUF>
+            <cNF>00000010</cNF>
+            <natOp>VENDA</natOp>
+            <mod>65</mod>
+            <serie>1</serie>
+            <nNF>10</nNF>
+            <dhEmi>2024-02-28T09:30:00-03:00</dhEmi>
+            <tpNF>1</tpNF>
+            <idDest>1</idDest>
+            <cMunFG>4106902</cMunFG>
+            <tpImp>4</tpImp>
+            <tpEmis>9</tpEmis>
+            <cDV>4</cDV>
+            <tpAmb>2</tpAmb>
+            <finNFe>1</finNFe>
+            <indFinal>1</indFinal>
+            <indPres>1</indPres>
+            <procEmi>0</procEmi>
+            <verProc>TestClient 1.0</verProc>
+            <dhCont>2024-02-28T09:30:00-03:00</dhCont>
+            <xJust>TESTE DE EMISSAO EM CONTINGENCIA</xJust>
+        </ide>
+        <emit>
+            <CNPJ>00000000000100</CNPJ>
+            <xNome>EMPRESA TESTE</xNome>
+            <enderEmit>
+                <xLgr>RUA TESTE</xLgr>
+                <nro>123</nro>
+                <xBairro>CENTRO</xBairro>
+                <cMun>4106902</cMun>
+                <xMun>Curitiba</xMun>
+                <UF>PR</UF>
+                <CEP>80000000</CEP>
+                <cPais>1058</cPais>
+                <xPais>Brasil</xPais>
+            </enderEmit>
+            <IE>9000000000</IE>
+            <CRT>1</CRT>
+        </emit>
+        <dest>
+            <CPF>11111111111</CPF>
+            <xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+        </dest>
+        <det nItem="1">
+            <prod>
+                <cProd>1</cProd>
+                <cEAN>SEM GTIN</cEAN>
+                <xProd>PRODUTO TESTE</xProd>
+                <NCM>84713012</NCM>
+                <CFOP>5102</CFOP>
+                <uCom>UN</uCom>
+                <qCom>1.0000</qCom>
+                <vUnCom>15.00</vUnCom>
+                <vProd>15.00</vProd>
+                <cEANTrib>SEM GTIN</cEANTrib>
+                <uTrib>UN</uTrib>
+                <qTrib>1.0000</qTrib>
+                <vUnTrib>15.00</vUnTrib>
+                <indTot>1</indTot>
+            </prod>
+            <imposto>
+                <vTotTrib>2.00</vTotTrib>
+                <ICMS>
+                    <ICMSSN102>
+                        <orig>0</orig>
+                        <CSOSN>102</CSOSN>
+                    </ICMSSN102>
+                </ICMS>
+                <PIS>
+                    <PISNT>
+                        <CST>07</CST>
+                    </PISNT>
+                </PIS>
+                <COFINS>
+                    <COFINSNT>
+                        <CST>07</CST>
+                    </COFINSNT>
+                </COFINS>
+            </imposto>
+        </det>
+        <total>
+            <ICMSTot>
+                <vBC>0.00</vBC>
+                <vICMS>0.00</vICMS>
+                <vICMSDeson>0.00</vICMSDeson>
+                <vFCP>0.00</vFCP>
+                <vBCST>0.00</vBCST>
+                <vST>0.00</vST>
+                <vFCPST>0.00</vFCPST>
+                <vFCPSTRet>0.00</vFCPSTRet>
+                <vProd>15.00</vProd>
+                <vFrete>0.00</vFrete>
+                <vSeg>0.00</vSeg>
+                <vDesc>0.00</vDesc>
+                <vII>0.00</vII>
+                <vIPI>0.00</vIPI>
+                <vIPIDevol>0.00</vIPIDevol>
+                <vPIS>0.00</vPIS>
+                <vCOFINS>0.00</vCOFINS>
+                <vOutro>0.00</vOutro>
+                <vNF>15.00</vNF>
+                <vTotTrib>2.00</vTotTrib>
+            </ICMSTot>
+        </total>
+        <transp>
+            <modFrete>9</modFrete>
+        </transp>
+        <pag>
+            <detPag>
+                <tPag>01</tPag>
+                <vPag>15.00</vPag>
+            </detPag>
+        </pag>
+    </infNFe>
+    <infNFeSupl>
+        <qrCode><![CDATA[QRCODE_PLACEHOLDER]]></qrCode>
+        <urlChave>http://www.fazenda.pr.gov.br/nfce/consulta</urlChave>
+    </infNFeSupl>
+</NFe>

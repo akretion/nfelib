@@ -123,7 +123,12 @@ class ClientTests(TestCase):
                 f.write(xml)
 
             diff = main.diff_files(input_file, output_file)
-            assert len(diff) == 0
+            self.assertEqual(
+                len(diff),
+                0,
+                f"Error {output_file} != {input_file}. "
+                "Stopping tests here so you can compare XML files.",
+            )
             if len(diff) != 0:
                 break
 

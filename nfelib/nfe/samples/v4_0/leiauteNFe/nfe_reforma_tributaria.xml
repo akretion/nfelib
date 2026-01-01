@@ -29,7 +29,11 @@
         <NFref>
           <refNFe>21323412888283895737729149494949494171688099</refNFe>
         </NFref>
-        <gCompraGov/>
+        <gCompraGov>
+          <tpEnteGov>1</tpEnteGov>
+          <pRedutor>10</pRedutor>
+          <tpOperGov>1</tpOperGov>
+        </gCompraGov>
       </ide>
       <emit>
         <CNPJ>00127786000102</CNPJ>
@@ -174,6 +178,7 @@
                 </gRed>
                 <vIBSMun>25</vIBSMun>
               </gIBSMun>
+              <vIBS>0</vIBS>
               <gCBS>
                 <pCBS>0.09</pCBS>
                 <gDif>

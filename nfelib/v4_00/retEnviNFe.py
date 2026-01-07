@@ -15243,7 +15243,631 @@ class encerranteType(GeneratedsSuper):
 # end class encerranteType
 
 
+class gDifType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, pDif=None, vDif=None, **kwargs_):
+        self.pDif = pDif
+        self.vDif = vDif
+    def factory(*args_, **kwargs_): return gDifType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gDifType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gDifType', fromsubclass_=False, pretty_print=True):
+        if self.pDif is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spDif>%s</%spDif>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pDif), input_name='pDif')), namespaceprefix_))
+        if self.vDif is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDif>%s</%svDif>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDif), input_name='vDif')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'pDif': self.pDif = child.text
+            elif nodeName_ == 'vDif': self.vDif = child.text
+
+class gDevTribType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vDevTrib=None, **kwargs_):
+        self.vDevTrib = vDevTrib
+    def factory(*args_, **kwargs_): return gDevTribType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gDevTribType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gDevTribType', fromsubclass_=False, pretty_print=True):
+        if self.vDevTrib is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDevTrib>%s</%svDevTrib>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDevTrib), input_name='vDevTrib')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vDevTrib': self.vDevTrib = child.text
+
+class gRedType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, pRedAliq=None, pAliqEfet=None, **kwargs_):
+        self.pRedAliq = pRedAliq
+        self.pAliqEfet = pAliqEfet
+    def factory(*args_, **kwargs_): return gRedType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gRedType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gRedType', fromsubclass_=False, pretty_print=True):
+        if self.pRedAliq is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spRedAliq>%s</%spRedAliq>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pRedAliq), input_name='pRedAliq')), namespaceprefix_))
+        if self.pAliqEfet is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spAliqEfet>%s</%spAliqEfet>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pAliqEfet), input_name='pAliqEfet')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'pRedAliq': self.pRedAliq = child.text
+            elif nodeName_ == 'pAliqEfet': self.pAliqEfet = child.text
+
+class gIBSUFType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, pIBSUF=None, gDif=None, gDevTrib=None, gRed=None, vIBSUF=None, **kwargs_):
+        self.pIBSUF = pIBSUF
+        self.gDif = gDif
+        self.gDevTrib = gDevTrib
+        self.gRed = gRed
+        self.vIBSUF = vIBSUF
+    def factory(*args_, **kwargs_): return gIBSUFType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSUFType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSUFType', fromsubclass_=False, pretty_print=True):
+        if self.pIBSUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spIBSUF>%s</%spIBSUF>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pIBSUF), input_name='pIBSUF')), namespaceprefix_))
+        if self.gDif is not None:
+            self.gDif.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDif', pretty_print=pretty_print)
+        if self.gDevTrib is not None:
+            self.gDevTrib.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDevTrib', pretty_print=pretty_print)
+        if self.gRed is not None:
+            self.gRed.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gRed', pretty_print=pretty_print)
+        if self.vIBSUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSUF>%s</%svIBSUF>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSUF), input_name='vIBSUF')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'pIBSUF': self.pIBSUF = child.text
+            elif nodeName_ == 'gDif':
+                obj_ = gDifType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDif = obj_
+            elif nodeName_ == 'gDevTrib':
+                obj_ = gDevTribType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDevTrib = obj_
+            elif nodeName_ == 'gRed':
+                obj_ = gRedType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gRed = obj_
+            elif nodeName_ == 'vIBSUF': self.vIBSUF = child.text
+
+class gIBSMunType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, pIBSMun=None, gDif=None, gDevTrib=None, gRed=None, vIBSMun=None, **kwargs_):
+        self.pIBSMun = pIBSMun
+        self.gDif = gDif
+        self.gDevTrib = gDevTrib
+        self.gRed = gRed
+        self.vIBSMun = vIBSMun
+    def factory(*args_, **kwargs_): return gIBSMunType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSMunType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSMunType', fromsubclass_=False, pretty_print=True):
+        if self.pIBSMun is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spIBSMun>%s</%spIBSMun>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pIBSMun), input_name='pIBSMun')), namespaceprefix_))
+        if self.gDif is not None:
+            self.gDif.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDif', pretty_print=pretty_print)
+        if self.gDevTrib is not None:
+            self.gDevTrib.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDevTrib', pretty_print=pretty_print)
+        if self.gRed is not None:
+            self.gRed.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gRed', pretty_print=pretty_print)
+        if self.vIBSMun is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSMun>%s</%svIBSMun>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSMun), input_name='vIBSMun')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'pIBSMun': self.pIBSMun = child.text
+            elif nodeName_ == 'gDif':
+                obj_ = gDifType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDif = obj_
+            elif nodeName_ == 'gDevTrib':
+                obj_ = gDevTribType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDevTrib = obj_
+            elif nodeName_ == 'gRed':
+                obj_ = gRedType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gRed = obj_
+            elif nodeName_ == 'vIBSMun': self.vIBSMun = child.text
+
+class gCBSType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, pCBS=None, gDif=None, gDevTrib=None, gRed=None, vCBS=None, **kwargs_):
+        self.pCBS = pCBS
+        self.gDif = gDif
+        self.gDevTrib = gDevTrib
+        self.gRed = gRed
+        self.vCBS = vCBS
+    def factory(*args_, **kwargs_): return gCBSType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gCBSType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gCBSType', fromsubclass_=False, pretty_print=True):
+        if self.pCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spCBS>%s</%spCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pCBS), input_name='pCBS')), namespaceprefix_))
+        if self.gDif is not None:
+            self.gDif.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDif', pretty_print=pretty_print)
+        if self.gDevTrib is not None:
+            self.gDevTrib.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gDevTrib', pretty_print=pretty_print)
+        if self.gRed is not None:
+            self.gRed.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gRed', pretty_print=pretty_print)
+        if self.vCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCBS>%s</%svCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCBS), input_name='vCBS')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'pCBS': self.pCBS = child.text
+            elif nodeName_ == 'gDif':
+                obj_ = gDifType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDif = obj_
+            elif nodeName_ == 'gDevTrib':
+                obj_ = gDevTribType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gDevTrib = obj_
+            elif nodeName_ == 'gRed':
+                obj_ = gRedType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gRed = obj_
+            elif nodeName_ == 'vCBS': self.vCBS = child.text
+
+class gTribRegularType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, CSTReg=None, cClassTribReg=None, pAliqEfetRegIBSUF=None, vTribRegIBSUF=None, pAliqEfetRegIBSMun=None, vTribRegIBSMun=None, pAliqEfetRegCBS=None, vTribRegCBS=None, **kwargs_):
+        self.CSTReg = CSTReg
+        self.cClassTribReg = cClassTribReg
+        self.pAliqEfetRegIBSUF = pAliqEfetRegIBSUF
+        self.vTribRegIBSUF = vTribRegIBSUF
+        self.pAliqEfetRegIBSMun = pAliqEfetRegIBSMun
+        self.vTribRegIBSMun = vTribRegIBSMun
+        self.pAliqEfetRegCBS = pAliqEfetRegCBS
+        self.vTribRegCBS = vTribRegCBS
+    def factory(*args_, **kwargs_): return gTribRegularType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gTribRegularType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gTribRegularType', fromsubclass_=False, pretty_print=True):
+        if self.CSTReg is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sCSTReg>%s</%sCSTReg>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.CSTReg), input_name='CSTReg')), namespaceprefix_))
+        if self.cClassTribReg is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%scClassTribReg>%s</%scClassTribReg>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cClassTribReg), input_name='cClassTribReg')), namespaceprefix_))
+        if self.pAliqEfetRegIBSUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spAliqEfetRegIBSUF>%s</%spAliqEfetRegIBSUF>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pAliqEfetRegIBSUF), input_name='pAliqEfetRegIBSUF')), namespaceprefix_))
+        if self.vTribRegIBSUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svTribRegIBSUF>%s</%svTribRegIBSUF>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vTribRegIBSUF), input_name='vTribRegIBSUF')), namespaceprefix_))
+        if self.pAliqEfetRegIBSMun is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spAliqEfetRegIBSMun>%s</%spAliqEfetRegIBSMun>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pAliqEfetRegIBSMun), input_name='pAliqEfetRegIBSMun')), namespaceprefix_))
+        if self.vTribRegIBSMun is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svTribRegIBSMun>%s</%svTribRegIBSMun>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vTribRegIBSMun), input_name='vTribRegIBSMun')), namespaceprefix_))
+        if self.pAliqEfetRegCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%spAliqEfetRegCBS>%s</%spAliqEfetRegCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.pAliqEfetRegCBS), input_name='pAliqEfetRegCBS')), namespaceprefix_))
+        if self.vTribRegCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svTribRegCBS>%s</%svTribRegCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vTribRegCBS), input_name='vTribRegCBS')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'CSTReg': self.CSTReg = child.text
+            elif nodeName_ == 'cClassTribReg': self.cClassTribReg = child.text
+            elif nodeName_ == 'pAliqEfetRegIBSUF': self.pAliqEfetRegIBSUF = child.text
+            elif nodeName_ == 'vTribRegIBSUF': self.vTribRegIBSUF = child.text
+            elif nodeName_ == 'pAliqEfetRegIBSMun': self.pAliqEfetRegIBSMun = child.text
+            elif nodeName_ == 'vTribRegIBSMun': self.vTribRegIBSMun = child.text
+            elif nodeName_ == 'pAliqEfetRegCBS': self.pAliqEfetRegCBS = child.text
+            elif nodeName_ == 'vTribRegCBS': self.vTribRegCBS = child.text
+
+class gIBSCBSType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vBC=None, gIBSUF=None, gIBSMun=None, vIBS=None, gCBS=None, gTribRegular=None, **kwargs_):
+        self.vBC = vBC
+        self.gIBSUF = gIBSUF
+        self.gIBSMun = gIBSMun
+        self.vIBS = vIBS
+        self.gCBS = gCBS
+        self.gTribRegular = gTribRegular
+    def factory(*args_, **kwargs_): return gIBSCBSType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSCBSType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSCBSType', fromsubclass_=False, pretty_print=True):
+        if self.vBC is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svBC>%s</%svBC>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vBC), input_name='vBC')), namespaceprefix_))
+        if self.gIBSUF is not None:
+            self.gIBSUF.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBSUF', pretty_print=pretty_print)
+        if self.gIBSMun is not None:
+            self.gIBSMun.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBSMun', pretty_print=pretty_print)
+        if self.vIBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBS>%s</%svIBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBS), input_name='vIBS')), namespaceprefix_))
+        if self.gCBS is not None:
+            self.gCBS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gCBS', pretty_print=pretty_print)
+        if self.gTribRegular is not None:
+            self.gTribRegular.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gTribRegular', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vBC': self.vBC = child.text
+            elif nodeName_ == 'gIBSUF':
+                obj_ = gIBSUFType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBSUF = obj_
+            elif nodeName_ == 'gIBSMun':
+                obj_ = gIBSMunType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBSMun = obj_
+            elif nodeName_ == 'vIBS': self.vIBS = child.text
+            elif nodeName_ == 'gCBS':
+                obj_ = gCBSType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gCBS = obj_
+            elif nodeName_ == 'gTribRegular':
+                obj_ = gTribRegularType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gTribRegular = obj_
+
+class IBSCBSType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, CST=None, cClassTrib=None, gIBSCBS=None, **kwargs_):
+        self.CST = CST
+        self.cClassTrib = cClassTrib
+        self.gIBSCBS = gIBSCBS
+    def factory(*args_, **kwargs_): return IBSCBSType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='IBSCBSType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='IBSCBSType', fromsubclass_=False, pretty_print=True):
+        if self.CST is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sCST>%s</%sCST>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.CST), input_name='CST')), namespaceprefix_))
+        if self.cClassTrib is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%scClassTrib>%s</%scClassTrib>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cClassTrib), input_name='cClassTrib')), namespaceprefix_))
+        if self.gIBSCBS is not None:
+            self.gIBSCBS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBSCBS', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'CST': self.CST = child.text
+            elif nodeName_ == 'cClassTrib': self.cClassTrib = child.text
+            elif nodeName_ == 'gIBSCBS':
+                obj_ = gIBSCBSType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBSCBS = obj_
+
+class gIBSUFTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vDif=None, vDevTrib=None, vIBSUF=None, **kwargs_):
+        self.vDif = vDif
+        self.vDevTrib = vDevTrib
+        self.vIBSUF = vIBSUF
+    def factory(*args_, **kwargs_): return gIBSUFTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSUFTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSUFTotType', fromsubclass_=False, pretty_print=True):
+        if self.vDif is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDif>%s</%svDif>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDif), input_name='vDif')), namespaceprefix_))
+        if self.vDevTrib is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDevTrib>%s</%svDevTrib>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDevTrib), input_name='vDevTrib')), namespaceprefix_))
+        if self.vIBSUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSUF>%s</%svIBSUF>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSUF), input_name='vIBSUF')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vDif': self.vDif = child.text
+            elif nodeName_ == 'vDevTrib': self.vDevTrib = child.text
+            elif nodeName_ == 'vIBSUF': self.vIBSUF = child.text
+
+class gIBSMunTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vDif=None, vDevTrib=None, vIBSMun=None, **kwargs_):
+        self.vDif = vDif
+        self.vDevTrib = vDevTrib
+        self.vIBSMun = vIBSMun
+    def factory(*args_, **kwargs_): return gIBSMunTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSMunTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSMunTotType', fromsubclass_=False, pretty_print=True):
+        if self.vDif is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDif>%s</%svDif>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDif), input_name='vDif')), namespaceprefix_))
+        if self.vDevTrib is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDevTrib>%s</%svDevTrib>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDevTrib), input_name='vDevTrib')), namespaceprefix_))
+        if self.vIBSMun is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSMun>%s</%svIBSMun>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSMun), input_name='vIBSMun')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vDif': self.vDif = child.text
+            elif nodeName_ == 'vDevTrib': self.vDevTrib = child.text
+            elif nodeName_ == 'vIBSMun': self.vIBSMun = child.text
+
+class gIBSTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, gIBSUF=None, gIBSMun=None, vIBS=None, vCredPres=None, vCredPresCondSus=None, **kwargs_):
+        self.gIBSUF = gIBSUF
+        self.gIBSMun = gIBSMun
+        self.vIBS = vIBS
+        self.vCredPres = vCredPres
+        self.vCredPresCondSus = vCredPresCondSus
+    def factory(*args_, **kwargs_): return gIBSTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gIBSTotType', fromsubclass_=False, pretty_print=True):
+        if self.gIBSUF is not None:
+            self.gIBSUF.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBSUF', pretty_print=pretty_print)
+        if self.gIBSMun is not None:
+            self.gIBSMun.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBSMun', pretty_print=pretty_print)
+        if self.vIBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBS>%s</%svIBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBS), input_name='vIBS')), namespaceprefix_))
+        if self.vCredPres is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCredPres>%s</%svCredPres>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCredPres), input_name='vCredPres')), namespaceprefix_))
+        if self.vCredPresCondSus is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCredPresCondSus>%s</%svCredPresCondSus>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCredPresCondSus), input_name='vCredPresCondSus')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'gIBSUF':
+                obj_ = gIBSUFTotType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBSUF = obj_
+            elif nodeName_ == 'gIBSMun':
+                obj_ = gIBSMunTotType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBSMun = obj_
+            elif nodeName_ == 'vIBS': self.vIBS = child.text
+            elif nodeName_ == 'vCredPres': self.vCredPres = child.text
+            elif nodeName_ == 'vCredPresCondSus': self.vCredPresCondSus = child.text
+
+class gCBSTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vDif=None, vDevTrib=None, vCBS=None, vCredPres=None, vCredPresCondSus=None, **kwargs_):
+        self.vDif = vDif
+        self.vDevTrib = vDevTrib
+        self.vCBS = vCBS
+        self.vCredPres = vCredPres
+        self.vCredPresCondSus = vCredPresCondSus
+    def factory(*args_, **kwargs_): return gCBSTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gCBSTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gCBSTotType', fromsubclass_=False, pretty_print=True):
+        if self.vDif is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDif>%s</%svDif>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDif), input_name='vDif')), namespaceprefix_))
+        if self.vDevTrib is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svDevTrib>%s</%svDevTrib>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vDevTrib), input_name='vDevTrib')), namespaceprefix_))
+        if self.vCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCBS>%s</%svCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCBS), input_name='vCBS')), namespaceprefix_))
+        if self.vCredPres is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCredPres>%s</%svCredPres>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCredPres), input_name='vCredPres')), namespaceprefix_))
+        if self.vCredPresCondSus is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCredPresCondSus>%s</%svCredPresCondSus>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCredPresCondSus), input_name='vCredPresCondSus')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vDif': self.vDif = child.text
+            elif nodeName_ == 'vDevTrib': self.vDevTrib = child.text
+            elif nodeName_ == 'vCBS': self.vCBS = child.text
+            elif nodeName_ == 'vCredPres': self.vCredPres = child.text
+            elif nodeName_ == 'vCredPresCondSus': self.vCredPresCondSus = child.text
+
+class gMonoTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vIBSMono=None, vCBSMono=None, vIBSMonoReten=None, vCBSMonoReten=None, vIBSMonoRet=None, vCBSMonoRet=None, **kwargs_):
+        self.vIBSMono = vIBSMono
+        self.vCBSMono = vCBSMono
+        self.vIBSMonoReten = vIBSMonoReten
+        self.vCBSMonoReten = vCBSMonoReten
+        self.vIBSMonoRet = vIBSMonoRet
+        self.vCBSMonoRet = vCBSMonoRet
+    def factory(*args_, **kwargs_): return gMonoTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gMonoTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='gMonoTotType', fromsubclass_=False, pretty_print=True):
+        if self.vIBSMono is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSMono>%s</%svIBSMono>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSMono), input_name='vIBSMono')), namespaceprefix_))
+        if self.vCBSMono is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCBSMono>%s</%svCBSMono>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCBSMono), input_name='vCBSMono')), namespaceprefix_))
+        if self.vIBSMonoReten is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSMonoReten>%s</%svIBSMonoReten>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSMonoReten), input_name='vIBSMonoReten')), namespaceprefix_))
+        if self.vCBSMonoReten is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCBSMonoReten>%s</%svCBSMonoReten>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCBSMonoReten), input_name='vCBSMonoReten')), namespaceprefix_))
+        if self.vIBSMonoRet is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svIBSMonoRet>%s</%svIBSMonoRet>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vIBSMonoRet), input_name='vIBSMonoRet')), namespaceprefix_))
+        if self.vCBSMonoRet is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svCBSMonoRet>%s</%svCBSMonoRet>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vCBSMonoRet), input_name='vCBSMonoRet')), namespaceprefix_))
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vIBSMono': self.vIBSMono = child.text
+            elif nodeName_ == 'vCBSMono': self.vCBSMono = child.text
+            elif nodeName_ == 'vIBSMonoReten': self.vIBSMonoReten = child.text
+            elif nodeName_ == 'vCBSMonoReten': self.vCBSMonoReten = child.text
+            elif nodeName_ == 'vIBSMonoRet': self.vIBSMonoRet = child.text
+            elif nodeName_ == 'vCBSMonoRet': self.vCBSMonoRet = child.text
+
+class IBSCBSTotType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, vBCIBSCBS=None, gIBS=None, gCBS=None, gMono=None, **kwargs_):
+        self.vBCIBSCBS = vBCIBSCBS
+        self.gIBS = gIBS
+        self.gCBS = gCBS
+        self.gMono = gMono
+    def factory(*args_, **kwargs_): return IBSCBSTotType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='IBSCBSTotType', pretty_print=True):
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        outfile.write('>\n')
+        self.exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
+        showIndent(outfile, level, pretty_print)
+        outfile.write('</%s%s>\n' % (namespaceprefix_, name_))
+    def exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='IBSCBSTotType', fromsubclass_=False, pretty_print=True):
+        if self.vBCIBSCBS is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svBCIBSCBS>%s</%svBCIBSCBS>\n' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vBCIBSCBS), input_name='vBCIBSCBS')), namespaceprefix_))
+        if self.gIBS is not None:
+            self.gIBS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gIBS', pretty_print=pretty_print)
+        if self.gCBS is not None:
+            self.gCBS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gCBS', pretty_print=pretty_print)
+        if self.gMono is not None:
+            self.gMono.export(outfile, level, namespaceprefix_, namespacedef_='', name_='gMono', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            if nodeName_ == 'vBCIBSCBS': self.vBCIBSCBS = child.text
+            elif nodeName_ == 'gIBS':
+                obj_ = gIBSTotType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gIBS = obj_
+            elif nodeName_ == 'gCBS':
+                obj_ = gCBSTotType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gCBS = obj_
+            elif nodeName_ == 'gMono':
+                obj_ = gMonoTotType.factory(parent_object_=self)
+                obj_.build(child, gds_collector_=gds_collector_)
+                self.gMono = obj_
+
 class impostoType(GeneratedsSuper):
+
     """Tributos incidentes nos produtos ou serviços da NF-e"""
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
@@ -15257,10 +15881,11 @@ class impostoType(GeneratedsSuper):
         MemberSpec_('COFINS', 'COFINSType', 0, 1, {'minOccurs': '0', 'name': 'COFINS', 'type': 'COFINSType'}, None),
         MemberSpec_('COFINSST', 'COFINSSTType', 0, 1, {'minOccurs': '0', 'name': 'COFINSST', 'type': 'COFINSSTType'}, None),
         MemberSpec_('ICMSUFDest', 'ICMSUFDestType', 0, 1, {'minOccurs': '0', 'name': 'ICMSUFDest', 'type': 'ICMSUFDestType'}, None),
+        MemberSpec_('IBSCBS', 'IBSCBSType', 0, 1, {'minOccurs': '0', 'name': 'IBSCBS', 'type': 'IBSCBSType'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, vTotTrib=None, ICMS=None, II=None, IPI=None, ISSQN=None, PIS=None, PISST=None, COFINS=None, COFINSST=None, ICMSUFDest=None, gds_collector_=None, **kwargs_):
+    def __init__(self, vTotTrib=None, ICMS=None, II=None, IPI=None, ISSQN=None, PIS=None, PISST=None, COFINS=None, COFINSST=None, ICMSUFDest=None, IBSCBS=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -15287,6 +15912,8 @@ class impostoType(GeneratedsSuper):
         self.COFINSST_nsprefix_ = None
         self.ICMSUFDest = ICMSUFDest
         self.ICMSUFDest_nsprefix_ = None
+        self.IBSCBS = IBSCBS
+        self.IBSCBS_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -15323,7 +15950,8 @@ class impostoType(GeneratedsSuper):
             self.PISST is not None or
             self.COFINS is not None or
             self.COFINSST is not None or
-            self.ICMSUFDest is not None
+            self.ICMSUFDest is not None or
+            self.IBSCBS is not None
         ):
             return True
         else:
@@ -15389,6 +16017,8 @@ class impostoType(GeneratedsSuper):
         if self.ICMSUFDest is not None:
             namespaceprefix_ = self.ICMSUFDest_nsprefix_ + ':' if (UseCapturedNS_ and self.ICMSUFDest_nsprefix_) else ''
             self.ICMSUFDest.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ICMSUFDest', pretty_print=pretty_print)
+        if self.IBSCBS is not None:
+            self.IBSCBS.export(outfile, level, namespaceprefix_, namespacedef_='', name_='IBSCBS', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -15456,6 +16086,11 @@ class impostoType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.ICMSUFDest = obj_
             obj_.original_tagname_ = 'ICMSUFDest'
+        elif nodeName_ == 'IBSCBS':
+            obj_ = IBSCBSType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.IBSCBS = obj_
+            obj_.original_tagname_ = 'IBSCBS'
 # end class impostoType
 
 
@@ -26278,12 +26913,14 @@ class totalType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     member_data_items_ = [
         MemberSpec_('ICMSTot', 'ICMSTotType', 0, 0, {'name': 'ICMSTot', 'type': 'ICMSTotType'}, None),
+        MemberSpec_('IBSCBSTot', 'IBSCBSTotType', 0, 1, {'minOccurs': '0', 'name': 'IBSCBSTot', 'type': 'IBSCBSTotType'}, None),
         MemberSpec_('ISSQNtot', 'ISSQNtotType', 0, 1, {'minOccurs': '0', 'name': 'ISSQNtot', 'type': 'ISSQNtotType'}, None),
         MemberSpec_('retTrib', 'retTribType', 0, 1, {'minOccurs': '0', 'name': 'retTrib', 'type': 'retTribType'}, None),
+        MemberSpec_('vNFTot', ['TDec_1302', 'xs:string'], 0, 1, {'minOccurs': '0', 'name': 'vNFTot', 'type': 'xs:string'}, None),
     ]
     subclass = None
     superclass = None
-    def __init__(self, ICMSTot=None, ISSQNtot=None, retTrib=None, gds_collector_=None, **kwargs_):
+    def __init__(self, ICMSTot=None, IBSCBSTot=None, ISSQNtot=None, retTrib=None, vNFTot=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -26291,10 +26928,14 @@ class totalType(GeneratedsSuper):
         self.ns_prefix_ = None
         self.ICMSTot = ICMSTot
         self.ICMSTot_nsprefix_ = None
+        self.IBSCBSTot = IBSCBSTot
+        self.IBSCBSTot_nsprefix_ = None
         self.ISSQNtot = ISSQNtot
         self.ISSQNtot_nsprefix_ = None
         self.retTrib = retTrib
         self.retTrib_nsprefix_ = None
+        self.vNFTot = vNFTot
+        self.vNFTot_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -26309,8 +26950,10 @@ class totalType(GeneratedsSuper):
     def hasContent_(self):
         if (
             self.ICMSTot is not None or
+            self.IBSCBSTot is not None or
             self.ISSQNtot is not None or
-            self.retTrib is not None
+            self.retTrib is not None or
+            self.vNFTot is not None
         ):
             return True
         else:
@@ -26348,12 +26991,18 @@ class totalType(GeneratedsSuper):
         if self.ICMSTot is not None:
             namespaceprefix_ = self.ICMSTot_nsprefix_ + ':' if (UseCapturedNS_ and self.ICMSTot_nsprefix_) else ''
             self.ICMSTot.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ICMSTot', pretty_print=pretty_print)
+        if self.IBSCBSTot is not None:
+            self.IBSCBSTot.export(outfile, level, namespaceprefix_, namespacedef_='', name_='IBSCBSTot', pretty_print=pretty_print)
         if self.ISSQNtot is not None:
             namespaceprefix_ = self.ISSQNtot_nsprefix_ + ':' if (UseCapturedNS_ and self.ISSQNtot_nsprefix_) else ''
             self.ISSQNtot.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ISSQNtot', pretty_print=pretty_print)
         if self.retTrib is not None:
             namespaceprefix_ = self.retTrib_nsprefix_ + ':' if (UseCapturedNS_ and self.retTrib_nsprefix_) else ''
             self.retTrib.export(outfile, level, namespaceprefix_, namespacedef_='', name_='retTrib', pretty_print=pretty_print)
+        if self.vNFTot is not None:
+            namespaceprefix_ = self.vNFTot_nsprefix_ + ':' if (UseCapturedNS_ and self.vNFTot_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%svNFTot>%s</%svNFTot>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.vNFTot), input_name='vNFTot')), namespaceprefix_ , eol_))
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -26373,6 +27022,11 @@ class totalType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.ICMSTot = obj_
             obj_.original_tagname_ = 'ICMSTot'
+        elif nodeName_ == 'IBSCBSTot':
+            obj_ = IBSCBSTotType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.IBSCBSTot = obj_
+            obj_.original_tagname_ = 'IBSCBSTot'
         elif nodeName_ == 'ISSQNtot':
             obj_ = ISSQNtotType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -26383,6 +27037,12 @@ class totalType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.retTrib = obj_
             obj_.original_tagname_ = 'retTrib'
+        elif nodeName_ == 'vNFTot':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'vNFTot')
+            value_ = self.gds_validate_string(value_, node, 'vNFTot')
+            self.vNFTot = value_
+            self.vNFTot_nsprefix_ = child_.prefix
 # end class totalType
 
 

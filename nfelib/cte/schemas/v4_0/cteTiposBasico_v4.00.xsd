@@ -900,7 +900,7 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 									<xs:whiteSpace value="preserve"/>
 									<xs:minLength value="50"/>
 									<xs:maxLength value="1000"/>
-									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{44}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{6}[A-Z0-9]{12}[0-9]{26}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -2700,7 +2700,7 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 									<xs:whiteSpace value="preserve"/>
 									<xs:minLength value="50"/>
 									<xs:maxLength value="1000"/>
-									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{44}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{6}[A-Z0-9]{12}[0-9]{26}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -4990,7 +4990,7 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 									<xs:whiteSpace value="preserve"/>
 									<xs:minLength value="50"/>
 									<xs:maxLength value="1000"/>
-									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{44}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{6}[A-Z0-9]{12}[0-9]{26}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -6202,7 +6202,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:whiteSpace value="preserve"/>
 									<xs:minLength value="50"/>
 									<xs:maxLength value="1000"/>
-									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{44}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chCTe=[0-9]{6}[A-Z0-9]{12}[0-9]{26}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>

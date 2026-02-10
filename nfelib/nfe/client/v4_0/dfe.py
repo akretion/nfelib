@@ -121,8 +121,15 @@ class DfeClient(FiscalClient):
             **kwargs,
         )
 
+        # wrap_response=True keeps backward compatibility with erpbrasil.edoc
+        # so that consumers migrating to brazil_fiscal_client don't need a
+        # large refactor. In that mode the parent returns a WrappedResponse
+        # whose parsed SOAP envelope is in .resposta; otherwise it returns
+        # the parsed SOAP envelope directly.
+        soap_envelope = response.resposta if self.wrap_response else response
+
         result_container = (
-            response.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult
+            soap_envelope.body.nfeDistDFeInteresseResponse.nfeDistDFeInteresseResult
         )
 
         if not self.wrap_response:

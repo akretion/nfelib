@@ -2,6 +2,7 @@ import sys
 from unittest import TestCase, mock, skipIf
 
 from erpbrasil.assinatura import misc
+from brazil_fiscal_client.fiscal_client import WrappedResponse
 from xsdata.formats.dataclass.transports import DefaultTransport
 
 # --- Conditional Imports for Python 3.9+ ---
@@ -97,3 +98,57 @@ class DfeClientTest(TestCase):
 
         # Verify that the mock was called
         mock_post.assert_called_once()
+
+
+@skipIf(sys.version_info < (3, 9), "DfeClient requires Python 3.9+")
+class DfeClientWrapResponseTest(TestCase):
+    """Tests DfeClient with wrap_response=True (erpbrasil.edoc compatibility)."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.cert_password = "testpassword"
+        cls.cert_data = misc.create_fake_certificate_file(
+            valid=True,
+            passwd=cls.cert_password,
+            issuer="TEST ISSUER",
+            country="BR",
+            subject="TEST SUBJECT",
+        )
+
+        cls.client = DfeClient(
+            ambiente="1",
+            uf="35",
+            pkcs12_data=cls.cert_data,
+            pkcs12_password=cls.cert_password,
+            fake_certificate=True,
+            verify_ssl=False,
+            wrap_response=True,
+        )
+
+    @mock.patch.object(DefaultTransport, "post")
+    def test_consultar_distribuicao_wrap_response(self, mock_post):
+        """
+        Tests that wrap_response=True returns a WrappedResponse with the
+        parsed content in .resposta and HTTP data in .retorno.
+        """
+        mock_post.return_value = response_sucesso_multiplos
+
+        result = self.client.consultar_distribuicao(
+            cnpj_cpf="00000000000191", ultimo_nsu="000000000000000"
+        )
+
+        # Must return a WrappedResponse, not a raw RetDistDfeInt
+        self.assertIsInstance(result, WrappedResponse)
+
+        # .resposta must contain the parsed DF-e content
+        self.assertIsInstance(result.resposta, RetDistDfeInt)
+        self.assertEqual(result.resposta.cStat, "138")
+        self.assertEqual(result.resposta.xMotivo, "Documento(s) localizado(s)")
+        self.assertEqual(result.resposta.ultNSU, "000000000000201")
+        self.assertIsNotNone(result.resposta.loteDistDFeInt)
+        self.assertEqual(len(result.resposta.loteDistDFeInt.docZip), 2)
+
+        # .retorno must contain the HTTP response data
+        self.assertEqual(result.retorno.status_code, 200)
+        self.assertIsNotNone(result.retorno.content)

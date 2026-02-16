@@ -93,8 +93,14 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 constant_name = action.upper().replace(" ", "_")
                 constants[constant_name] = action
 
-        paths = ["/" + "/".join(url.split("/")[3:]) for url in urls]
-        prod_server = urls[-1].split("/")[2]
+        prod_server = urls[-1].strip().split("/")[2]
+        paths = []
+        for url in urls:
+            url_host = url.strip().split("/")[2]
+            if url_host != prod_server:
+                paths.append(url.strip())  # full URL when host differs
+            else:
+                paths.append("/" + "/".join(url.strip().split("/")[3:]))
 
         server = servers_list[index]
         action_dict = {}

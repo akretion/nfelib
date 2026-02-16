@@ -61,7 +61,15 @@ class DfeClient(FiscalClient):
                 "{server_key}"
             )
 
-        location = f"https://{server_host}{path}"
+        if path.startswith("https://"):
+            if self.ambiente != Tamb.PROD.value:
+                # Replace host in full URL with dev server
+                parts = path.split("/", 3)  # ['https:', '', 'host', 'rest']
+                parts[2] = server_data["dev_server"]
+                path = "/".join(parts)
+            location = path
+        else:
+            location = f"https://{server_host}{path}"
         _logger.debug(
             f"Determined location for {endpoint_type.name} (UF: {self.uf}, "
             "Amb: {self.ambiente}): {location}"

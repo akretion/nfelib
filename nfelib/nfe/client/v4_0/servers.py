@@ -147,7 +147,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEINUTILIZACAO: "/ws/nfeinutilizacao/nfeinutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NfeConsulta/NfeConsulta4.asmx",
             Endpoint.NFESTATUSSERVICO: "/ws/NfeStatusServico/NfeStatusServico4.asmx",
-            Endpoint.NFECONSULTACADASTRO: "/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
+            Endpoint.NFECONSULTACADASTRO: "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
             Endpoint.RECEPCAOEVENTO: "/ws/recepcaoevento/recepcaoevento4.asmx",
             Endpoint.NFEAUTORIZACAO: "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
@@ -188,7 +188,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEINUTILIZACAO: "/ws/nfeinutilizacao/nfeinutilizacao4.asmx",
             Endpoint.NFECONSULTAPROTOCOLO: "/ws/NfeConsulta/NfeConsulta4.asmx",
             Endpoint.NFESTATUSSERVICO: "/ws/NfeStatusServico/NfeStatusServico4.asmx",
-            Endpoint.NFECONSULTACADASTRO: "/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
+            Endpoint.NFECONSULTACADASTRO: "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
             Endpoint.RECEPCAOEVENTO: "/ws/recepcaoevento/recepcaoevento4.asmx",
             Endpoint.NFEAUTORIZACAO: "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
@@ -225,7 +225,7 @@ servers: dict[str, ServerConfig] = {
         "soap_version": "1.1",
         "endpoints": {
             Endpoint.RECEPCAOEVENTO: "/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx",
-            Endpoint.NFEDISTRIBUICAODFE: "/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
+            Endpoint.NFEDISTRIBUICAODFE: "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
         },
     },
 }

@@ -32,7 +32,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "homologacao.sefaz.mt.gov.br",
         "soap_version": "1.1",
         "endpoints": {
-            Endpoint.QRCODE: "/cte/qrcode",
+            Endpoint.QRCODE: "https://www.sefaz.mt.gov.br/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/ctews2/services/CTeStatusServicoV4?wsdl",
             Endpoint.CTECONSULTAV4: "/ctews2/services/CTeConsultaV4?wsdl",
             Endpoint.CTERECEPCAOEVENTOV4: "/ctews2/services/CTeRecepcaoEventoV4?wsdl",
@@ -47,7 +47,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "homologacao.cte.ms.gov.br",
         "soap_version": "1.1",
         "endpoints": {
-            Endpoint.QRCODE: "/cte/qrcode",
+            Endpoint.QRCODE: "http://www.dfe.ms.gov.br/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4",
             Endpoint.CTECONSULTAV4: "/ws/CTeConsultaV4",
             Endpoint.CTERECEPCAOEVENTOV4: "/ws/CTeRecepcaoEventoV4",
@@ -62,7 +62,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "hcte.fazenda.mg.gov.br",
         "soap_version": "1.2",
         "endpoints": {
-            Endpoint.QRCODE: "/portalcte/sistema/qrcode.xhtml",
+            Endpoint.QRCODE: "https://portalcte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml",
             Endpoint.CTESTATUSSERVICOV4: "/cte/services/CTeStatusServicoV4",
             Endpoint.CTECONSULTAV4: "/cte/services/CTeConsultaV4",
             Endpoint.CTERECEPCAOEVENTOV4: "/cte/services/CTeRecepcaoEventoV4",
@@ -77,7 +77,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "homologacao.cte.fazenda.pr.gov.br",
         "soap_version": "1.2",
         "endpoints": {
-            Endpoint.QRCODE: "/cte/qrcode",
+            Endpoint.QRCODE: "http://www.fazenda.pr.gov.br/cte/qrcode",
             Endpoint.CTESTATUSSERVICOV4: "/cte4/CTeStatusServicoV4?wsdl",
             Endpoint.CTECONSULTAV4: "/cte4/CTeConsultaV4?wsdl",
             Endpoint.CTERECEPCAOEVENTOV4: "/cte4/CTeRecepcaoEventoV4?wsdl",
@@ -92,7 +92,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "cte-homologacao.svrs.rs.gov.br",
         "soap_version": "1.2",
         "endpoints": {
-            Endpoint.QRCODE: "/cte/qrCode",
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/cte/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx",
             Endpoint.CTECONSULTAV4: "/ws/CTeConsultaV4/CTeConsultaV4.asmx",
             Endpoint.CTERECEPCAOEVENTOV4: "/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx",
@@ -122,7 +122,7 @@ servers: dict[str, ServerConfig] = {
         "dev_server": "cte-homologacao.svrs.rs.gov.br",
         "soap_version": "1.2",
         "endpoints": {
-            Endpoint.QRCODE: "/cte/qrCode",
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/cte/qrCode",
             Endpoint.CTESTATUSSERVICOV4: "/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx",
             Endpoint.CTECONSULTAV4: "/ws/CTeConsultaV4/CTeConsultaV4.asmx",
             Endpoint.CTERECEPCAOEVENTOV4: "/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx",

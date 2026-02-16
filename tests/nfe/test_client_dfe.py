@@ -1,8 +1,8 @@
 import sys
 from unittest import TestCase, mock, skipIf
 
-from erpbrasil.assinatura import misc
 from brazil_fiscal_client.fiscal_client import WrappedResponse
+from erpbrasil.assinatura import misc
 from xsdata.formats.dataclass.transports import DefaultTransport
 
 # --- Conditional Imports for Python 3.9+ ---

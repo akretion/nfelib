@@ -24,6 +24,7 @@ class ServerConfig(TypedDict):
     dev_server: str
     soap_version: str
     endpoints: dict[Endpoint, str]
+    dev_endpoints: dict[Endpoint, str]
 
 
 servers: dict[str, ServerConfig] = {
@@ -40,6 +41,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/services2/services/NfeAutorizacao4",
             Endpoint.NFERETAUTORIZACAO: "/services2/services/NfeRetAutorizacao4",
         },
+        "dev_endpoints": {},
     },
     "BA": {
         "prod_server": "nfe.sefaz.ba.gov.br",
@@ -54,6 +56,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/webservices/NFeAutorizacao4/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/webservices/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx",
         },
+        "dev_endpoints": {},
     },
     "GO": {
         "prod_server": "nfe.sefaz.go.gov.br",
@@ -68,6 +71,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/nfe/services/NFeAutorizacao4?wsdl",
             Endpoint.NFERETAUTORIZACAO: "/nfe/services/NFeRetAutorizacao4?wsdl",
         },
+        "dev_endpoints": {},
     },
     "MG": {
         "prod_server": "nfe.fazenda.mg.gov.br",
@@ -82,6 +86,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/nfe2/services/NFeAutorizacao4",
             Endpoint.NFERETAUTORIZACAO: "/nfe2/services/NFeRetAutorizacao4",
         },
+        "dev_endpoints": {},
     },
     "MS": {
         "prod_server": "nfe.sefaz.ms.gov.br",
@@ -96,6 +101,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/ws/NFeAutorizacao4",
             Endpoint.NFERETAUTORIZACAO: "/ws/NFeRetAutorizacao4",
         },
+        "dev_endpoints": {},
     },
     "MT": {
         "prod_server": "nfe.sefaz.mt.gov.br",
@@ -110,6 +116,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/nfews/v2/services/NfeAutorizacao4?wsdl",
             Endpoint.NFERETAUTORIZACAO: "/nfews/v2/services/NfeRetAutorizacao4?wsdl",
         },
+        "dev_endpoints": {},
     },
     "PE": {
         "prod_server": "nfe.sefaz.pe.gov.br",
@@ -124,6 +131,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/nfe-service/services/NFeAutorizacao4",
             Endpoint.NFERETAUTORIZACAO: "/nfe-service/services/NFeRetAutorizacao4",
         },
+        "dev_endpoints": {},
     },
     "PR": {
         "prod_server": "nfe.sefa.pr.gov.br",
@@ -138,6 +146,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/nfe/NFeAutorizacao4?wsdl",
             Endpoint.NFERETAUTORIZACAO: "/nfe/NFeRetAutorizacao4?wsdl",
         },
+        "dev_endpoints": {},
     },
     "RS": {
         "prod_server": "nfe.sefazrs.rs.gov.br",
@@ -151,6 +160,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.RECEPCAOEVENTO: "/ws/recepcaoevento/recepcaoevento4.asmx",
             Endpoint.NFEAUTORIZACAO: "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
+        },
+        "dev_endpoints": {
+            Endpoint.NFECONSULTACADASTRO: "https://cad-homologacao.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
         },
     },
     "SP": {
@@ -166,6 +178,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/ws/nfeautorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/nferetautorizacao4.asmx",
         },
+        "dev_endpoints": {},
     },
     "SVAN": {
         "prod_server": "www.sefazvirtual.fazenda.gov.br",
@@ -179,6 +192,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/NFeAutorizacao4/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx",
         },
+        "dev_endpoints": {},
     },
     "SVRS": {
         "prod_server": "nfe.svrs.rs.gov.br",
@@ -193,6 +207,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
         },
+        "dev_endpoints": {
+            Endpoint.NFECONSULTACADASTRO: "https://cad-homologacao.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx",
+        },
     },
     "SVC-AN": {
         "prod_server": "www.sefazvirtual.fazenda.gov.br",
@@ -206,6 +223,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/NFeAutorizacao4/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/NFeRetAutorizacao4/NFeRetAutorizacao4.asmx",
         },
+        "dev_endpoints": {},
     },
     "SVC-RS": {
         "prod_server": "nfe.svrs.rs.gov.br",
@@ -218,6 +236,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.NFEAUTORIZACAO: "/ws/NfeAutorizacao/NFeAutorizacao4.asmx",
             Endpoint.NFERETAUTORIZACAO: "/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx",
         },
+        "dev_endpoints": {},
     },
     "AN": {
         "prod_server": "www.nfe.fazenda.gov.br",
@@ -227,5 +246,6 @@ servers: dict[str, ServerConfig] = {
             Endpoint.RECEPCAOEVENTO: "/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx",
             Endpoint.NFEDISTRIBUICAODFE: "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
         },
+        "dev_endpoints": {},
     },
 }

@@ -24,6 +24,7 @@ class ServerConfig(TypedDict):
     dev_server: str
     soap_version: str
     endpoints: dict[Endpoint, str]
+    dev_endpoints: dict[Endpoint, str]
 
 
 servers: dict[str, ServerConfig] = {
@@ -41,6 +42,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOGTVEV4: "/ctews2/services/CTeRecepcaoGTVeV4?wsdl",
             Endpoint.CTERECEPCAOSIMPV4: "/cte-ws/services/CTeRecepcaoSimpV4",
         },
+        "dev_endpoints": {},
     },
     "MS": {
         "prod_server": "producao.cte.ms.gov.br",
@@ -55,6 +57,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOSINCV4: "/ws/CTeRecepcaoSincV4",
             Endpoint.CTERECEPCAOGTVEV4: "/ws/CTeRecepcaoGTVeV4",
             Endpoint.CTERECEPCAOSIMPV4: "/ws/CTeRecepcaoSimpV4",
+        },
+        "dev_endpoints": {
+            Endpoint.QRCODE: "http://www.dfe.ms.gov.br/cte/qrcode",
         },
     },
     "MG": {
@@ -71,6 +76,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOGTVEV4: "/cte/services/CTeRecepcaoGTVeV4",
             Endpoint.CTERECEPCAOSIMPV4: "/cte/services/CTeRecepcaoSimpV4",
         },
+        "dev_endpoints": {
+            Endpoint.QRCODE: "https://portalcte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml",
+        },
     },
     "PR": {
         "prod_server": "cte.fazenda.pr.gov.br",
@@ -85,6 +93,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOSINCV4: "/cte4/CTeRecepcaoSincV4?wsdl",
             Endpoint.CTERECEPCAOGTVEV4: "/cte4/CTeRecepcaoGTVeV4?wsdl",
             Endpoint.CTERECEPCAOSIMPV4: "/cte4/CTeRecepcaoSimpV4",
+        },
+        "dev_endpoints": {
+            Endpoint.QRCODE: "http://www.fazenda.pr.gov.br/cte/qrcode",
         },
     },
     "RS": {
@@ -101,6 +112,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOGTVEV4: "/ws/CTeRecepcaoGTVeV4/CTeRecepcaoGTVeV4.asmx",
             Endpoint.CTERECEPCAOSIMPV4: "/ws/CTeRecepcaoSimpV4/CTeRecepcaoSimpV4.asmx",
         },
+        "dev_endpoints": {
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/cte/qrCode",
+        },
     },
     "SP": {
         "prod_server": "nfe.fazenda.sp.gov.br",
@@ -116,6 +130,7 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOGTVEV4: "/CTeWS/WS/CTeRecepcaoGTVeV4.asmx",
             Endpoint.CTERECEPCAOSIMPV4: "/CTeWS/WS/CTeRecepcaoSimpV4.asmx",
         },
+        "dev_endpoints": {},
     },
     "SVRS": {
         "prod_server": "cte.svrs.rs.gov.br",
@@ -130,6 +145,9 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOSINCV4: "/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx",
             Endpoint.CTERECEPCAOGTVEV4: "/ws/CTeRecepcaoGTVeV4/CTeRecepcaoGTVeV4.asmx",
             Endpoint.CTERECEPCAOSIMPV4: "/ws/CTeRecepcaoSimpV4/CTeRecepcaoSimpV4.asmx",
+        },
+        "dev_endpoints": {
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/cte/qrCode",
         },
     },
     "SVSP": {
@@ -146,11 +164,13 @@ servers: dict[str, ServerConfig] = {
             Endpoint.CTERECEPCAOGTVEV4: "/CTeWS/WS/CTeRecepcaoGTVeV4.asmx",
             Endpoint.CTERECEPCAOSIMPV4: "/CTeWS/WS/CTeRecepcaoSimpV4.asmx",
         },
+        "dev_endpoints": {},
     },
     "AN": {
         "prod_server": "www1.cte.fazenda.gov.br",
         "dev_server": "hom1.cte.fazenda.gov.br",
         "soap_version": "1.1",
         "endpoints": {},
+        "dev_endpoints": {},
     },
 }

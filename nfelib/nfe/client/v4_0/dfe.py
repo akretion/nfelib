@@ -61,6 +61,13 @@ class DfeClient(FiscalClient):
                 "{server_key}"
             )
 
+        # dev_endpoints has full URLs for endpoints whose dev host
+        # differs from the general dev_server.
+        if self.ambiente != Tamb.PROD.value:
+            dev_endpoints = server_data.get("dev_endpoints", {})
+            if endpoint_type in dev_endpoints:
+                return dev_endpoints[endpoint_type]
+
         if path.startswith("https://"):
             if self.ambiente != Tamb.PROD.value:
                 # Replace host in full URL with dev server

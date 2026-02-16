@@ -68,13 +68,6 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     dev_html = dev_response.content.decode(dev_response.apparent_encoding)
     dev_tables = pd.read_html(StringIO(dev_html))  # Wrap HTML in StringIO
 
-    dev_servers = {
-        servers_list[index]: urls[-1].split("/")[2]
-        for index, table in enumerate(dev_tables)
-        if SERVICE_COLUMN in table.columns
-        for urls in [list(table.to_dict()[URL_COLUMN].values())]
-    }
-
     # Fetch production server details and generate constants
     prod_html = prod_response.content.decode(prod_response.apparent_encoding)
     prod_tables = pd.read_html(StringIO(prod_html))  # Wrap HTML in StringIO
@@ -93,38 +86,23 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 constant_name = action.upper().replace(" ", "_")
                 constants[constant_name] = action
 
-        prod_server = urls[-1].strip().split("/")[2]
-        paths = []
-        for url in urls:
-            url_host = url.strip().split("/")[2]
-            if url_host != prod_server:
-                paths.append(url.strip())  # full URL when host differs
-            else:
-                paths.append("/" + "/".join(url.strip().split("/")[3:]))
-
         server = servers_list[index]
         action_dict = {}
 
-        # Use dynamically generated constants as keys
-        for action, path in zip(actions, paths):
-            # if QRCODE in action.lower():
-            #    continue
+        for action, url in zip(actions, urls):
             constant_name = action.upper().replace(" ", "_")
             if constant_name in constants:
-                action_dict[constants[constant_name]] = path
+                action_dict[constants[constant_name]] = url.strip()
 
         # Handle special case for Ambiente Nacional (AN)
         if server == "AN" and "NFeDistribuicaoDFe" in actions:
             constant_name = "NFEDISTRIBUICAODFE"
             if constant_name not in constants:
                 constants[constant_name] = "NFeDistribuicaoDFe"
-            action_dict[constants[constant_name]] = paths[
-                actions.index("NFeDistribuicaoDFe")
-            ]
+            idx = actions.index("NFeDistribuicaoDFe")
+            action_dict[constants[constant_name]] = urls[idx].strip()
 
         servers[server] = {
-            "prod_server": prod_server,
-            "dev_server": dev_servers[server],
             "soap_version": "1.2" if server in force_soap_12 else "1.1",
             "prod_endpoints": action_dict,
         }
@@ -136,7 +114,6 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
         if URL_COLUMN not in table.columns:
             continue
         server = servers_list[index]
-        dev_host = dev_servers[server]
         actions = list(table.to_dict()[SERVICE_COLUMN].values())
         urls = list(table.to_dict()[URL_COLUMN].values())
 
@@ -145,13 +122,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
             constant_name = action.upper().replace(" ", "_")
             if constant_name not in constants:
                 continue
-            url_host = url.strip().split("/")[2]
-            if url_host != dev_host:
-                dev_action_dict[constants[constant_name]] = url.strip()
-            else:
-                dev_action_dict[constants[constant_name]] = (
-                    "/" + "/".join(url.strip().split("/")[3:])
-                )
+            dev_action_dict[constants[constant_name]] = url.strip()
 
         if server in servers:
             servers[server]["dev_endpoints"] = dev_action_dict
@@ -181,7 +152,8 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                     "SVSP": TcodUfIbge.SP,
                 }[server]
 
-            if not server_config["prod_endpoints"].get(status_key):
+            dev_eps = server_config.get("dev_endpoints", {})
+            if not dev_eps.get(status_key):
                 continue
 
             logger.info(f"\n\nTesting SOAP version for {server} - {uf} {uf.value}")
@@ -199,7 +171,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 if "nfe" in prod_url:
                     client.send(
                         NfeStatusServico4SoapNfeStatusServicoNf,
-                        f"https://{server_config['dev_server']}{server_config['prod_endpoints'][status_key]}",
+                        dev_eps[status_key],
                         {
                             "Body": {
                                 "nfeDadosMsg": {
@@ -220,7 +192,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 elif "cte" in prod_url:
                     client.send(
                         CteStatusServicoV4Soap12CteStatusServicoCt,
-                        f"https://{server_config['dev_server']}{server_config['prod_endpoints'][status_key]}",
+                        dev_eps[status_key],
                         {
                             "Body": {
                                 "cteDadosMsg": {
@@ -255,10 +227,10 @@ def save_servers(
     servers: dict[str, Any], endpoints: dict[str, str], output_file: Path
 ) -> None:
     """Saves the extracted server data and constants as a Python file."""
-    # Ensure all servers have both endpoint dicts (MDF-e scraper may not set them)
+    # Ensure all servers have both endpoint dicts
     for server_config in servers.values():
-        server_config.setdefault("prod_endpoints", server_config.pop("endpoints", {}))
-        server_config.setdefault("dev_endpoints", server_config.get("prod_endpoints", {}))
+        server_config.setdefault("prod_endpoints", {})
+        server_config.setdefault("dev_endpoints", {})
 
     # Generate the constants section
     actions = "\n".join([f'    {key} = "{value}"' for key, value in endpoints.items()])
@@ -290,8 +262,6 @@ class Endpoint(Enum):
 
 
 class ServerConfig(TypedDict):
-    prod_server: str
-    dev_server: str
     soap_version: str
     prod_endpoints: dict[Endpoint, str]
     dev_endpoints: dict[Endpoint, str]

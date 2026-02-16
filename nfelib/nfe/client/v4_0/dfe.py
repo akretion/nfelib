@@ -50,30 +50,18 @@ class DfeClient(FiscalClient):
 
         if self.ambiente == Tamb.PROD.value:
             endpoints = server_data["prod_endpoints"]
-            server_host = server_data["prod_server"]
         else:
             endpoints = server_data.get(
                 "dev_endpoints", server_data["prod_endpoints"]
             )
-            server_host = server_data["dev_server"]
 
         try:
-            path = endpoints[endpoint_type]
+            return endpoints[endpoint_type]
         except KeyError:
             raise ValueError(
                 f"Endpoint {endpoint_type.name} not configured for server key: "
                 "{server_key}"
             )
-
-        if path.startswith("https://"):
-            location = path
-        else:
-            location = f"https://{server_host}{path}"
-        _logger.debug(
-            f"Determined location for {endpoint_type.name} (UF: {self.uf}, "
-            "Amb: {self.ambiente}): {location}"
-        )
-        return location
 
     def send(
         self,

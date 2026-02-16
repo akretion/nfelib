@@ -31,9 +31,6 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
     # Parse the HTML content
     soup = BeautifulSoup(response.content, "lxml")
 
-    PROD_HOST = "mdfe.svrs.rs.gov.br"
-    DEV_HOST = "mdfe-homologacao.svrs.rs.gov.br"
-
     # Initialize dictionaries to store server actions
     servers: dict[Any, Any] = {
         "SVRS": {

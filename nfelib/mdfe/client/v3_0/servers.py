@@ -19,25 +19,31 @@ class Endpoint(Enum):
 
 
 class ServerConfig(TypedDict):
-    prod_server: str
-    dev_server: str
     soap_version: str
-    endpoints: dict[Endpoint, str]
+    prod_endpoints: dict[Endpoint, str]
+    dev_endpoints: dict[Endpoint, str]
 
 
 servers: dict[str, ServerConfig] = {
     "SVRS": {
-        "prod_server": "mdfe.svrs.rs.gov.br",
-        "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
         "soap_version": "1.1",
-        "endpoints": {
-            Endpoint.MDFERECEPCAOEVENTO: "/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx",
-            Endpoint.MDFECONSULTA: "/ws/MDFeConsulta/MDFeConsulta.asmx",
-            Endpoint.MDFESTATUSSERVICO: "/ws/MDFeStatusServico/MDFeStatusServico.asmx",
-            Endpoint.MDFECONSNAOENC: "/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx",
-            Endpoint.MDFEDISTRIBUICAODFE: "/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx",
-            Endpoint.MDFERECEPCAOSINC: "/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx",
-            Endpoint.QRCODE: "/mdfe/qrCode",
+        "prod_endpoints": {
+            Endpoint.MDFERECEPCAOEVENTO: "https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx",
+            Endpoint.MDFECONSULTA: "https://mdfe.svrs.rs.gov.br/ws/MDFeConsulta/MDFeConsulta.asmx",
+            Endpoint.MDFESTATUSSERVICO: "https://mdfe.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx",
+            Endpoint.MDFECONSNAOENC: "https://mdfe.svrs.rs.gov.br/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx",
+            Endpoint.MDFEDISTRIBUICAODFE: "https://mdfe.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx",
+            Endpoint.MDFERECEPCAOSINC: "https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx",
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/mdfe/qrCode",
+        },
+        "dev_endpoints": {
+            Endpoint.MDFERECEPCAOEVENTO: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx",
+            Endpoint.MDFECONSULTA: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeConsulta/MDFeConsulta.asmx",
+            Endpoint.MDFESTATUSSERVICO: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx",
+            Endpoint.MDFECONSNAOENC: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx",
+            Endpoint.MDFEDISTRIBUICAODFE: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx",
+            Endpoint.MDFERECEPCAOSINC: "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx",
+            Endpoint.QRCODE: "https://dfe-portal.svrs.rs.gov.br/mdfe/qrCode",
         },
     },
 }

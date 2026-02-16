@@ -51,9 +51,7 @@ class DfeClient(FiscalClient):
         if self.ambiente == Tamb.PROD.value:
             endpoints = server_data["prod_endpoints"]
         else:
-            endpoints = server_data.get(
-                "dev_endpoints", server_data["prod_endpoints"]
-            )
+            endpoints = server_data.get("dev_endpoints", server_data["prod_endpoints"])
 
         try:
             return endpoints[endpoint_type]

@@ -49,31 +49,23 @@ class DfeClient(FiscalClient):
             )
 
         if self.ambiente == Tamb.PROD.value:
+            endpoints = server_data["prod_endpoints"]
             server_host = server_data["prod_server"]
         else:
+            endpoints = server_data.get(
+                "dev_endpoints", server_data["prod_endpoints"]
+            )
             server_host = server_data["dev_server"]
 
         try:
-            path = server_data["endpoints"][endpoint_type]
+            path = endpoints[endpoint_type]
         except KeyError:
             raise ValueError(
                 f"Endpoint {endpoint_type.name} not configured for server key: "
                 "{server_key}"
             )
 
-        # dev_endpoints has full URLs for endpoints whose dev host
-        # differs from the general dev_server.
-        if self.ambiente != Tamb.PROD.value:
-            dev_endpoints = server_data.get("dev_endpoints", {})
-            if endpoint_type in dev_endpoints:
-                return dev_endpoints[endpoint_type]
-
         if path.startswith("https://"):
-            if self.ambiente != Tamb.PROD.value:
-                # Replace host in full URL with dev server
-                parts = path.split("/", 3)  # ['https:', '', 'host', 'rest']
-                parts[2] = server_data["dev_server"]
-                path = "/".join(parts)
             location = path
         else:
             location = f"https://{server_host}{path}"

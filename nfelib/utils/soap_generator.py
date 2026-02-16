@@ -36,7 +36,7 @@ def generate_soap(
     # Access the certificate and password from environment variables
     server = servers[SERVER]["prod_server"]
     wsdl_urls = [
-        f"https://{server}{servers[SERVER]['endpoints'].get(value, ' SKIP ' + key)}"
+        f"https://{server}{servers[SERVER]['prod_endpoints'].get(value, ' SKIP ' + key)}"
         for key, value in endpoints.items()
     ]
 

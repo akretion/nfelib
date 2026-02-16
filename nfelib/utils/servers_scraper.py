@@ -75,27 +75,6 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
         for urls in [list(table.to_dict()[URL_COLUMN].values())]
     }
 
-    # Also detect dev-side host mismatches (e.g. RS/SVRS
-    # NfeConsultaCadastro uses cad-homologacao.svrs.rs.gov.br
-    # instead of nfe-homologacao.sefazrs.rs.gov.br)
-    dev_endpoint_overrides: dict[str, dict[str, str]] = {}
-    for index, table in enumerate(dev_tables):
-        if SERVICE_COLUMN not in table.columns:
-            continue
-        if URL_COLUMN not in table.columns:
-            continue
-        server = servers_list[index]
-        dev_host = dev_servers[server]
-        actions = list(table.to_dict()[SERVICE_COLUMN].values())
-        urls = list(table.to_dict()[URL_COLUMN].values())
-        overrides: dict[str, str] = {}
-        for action, url in zip(actions, urls):
-            url_host = url.strip().split("/")[2]
-            if url_host != dev_host:
-                overrides[action] = url.strip()
-        if overrides:
-            dev_endpoint_overrides[server] = overrides
-
     # Fetch production server details and generate constants
     prod_html = prod_response.content.decode(prod_response.apparent_encoding)
     prod_tables = pd.read_html(StringIO(prod_html))  # Wrap HTML in StringIO
@@ -143,21 +122,39 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 actions.index("NFeDistribuicaoDFe")
             ]
 
-        # Build dev_endpoints from dev host mismatches
-        dev_action_dict: dict[str, str] = {}
-        if server in dev_endpoint_overrides:
-            for action, url in dev_endpoint_overrides[server].items():
-                constant_name = action.upper().replace(" ", "_")
-                if constant_name in constants:
-                    dev_action_dict[constants[constant_name]] = url
-
         servers[server] = {
             "prod_server": prod_server,
             "dev_server": dev_servers[server],
             "soap_version": "1.2" if server in force_soap_12 else "1.1",
-            "endpoints": action_dict,
-            "dev_endpoints": dev_action_dict,
+            "prod_endpoints": action_dict,
         }
+
+    # Build complete dev_endpoints from dev tables
+    for index, table in enumerate(dev_tables):
+        if SERVICE_COLUMN not in table.columns:
+            continue
+        if URL_COLUMN not in table.columns:
+            continue
+        server = servers_list[index]
+        dev_host = dev_servers[server]
+        actions = list(table.to_dict()[SERVICE_COLUMN].values())
+        urls = list(table.to_dict()[URL_COLUMN].values())
+
+        dev_action_dict: dict[str, str] = {}
+        for action, url in zip(actions, urls):
+            constant_name = action.upper().replace(" ", "_")
+            if constant_name not in constants:
+                continue
+            url_host = url.strip().split("/")[2]
+            if url_host != dev_host:
+                dev_action_dict[constants[constant_name]] = url.strip()
+            else:
+                dev_action_dict[constants[constant_name]] = (
+                    "/" + "/".join(url.strip().split("/")[3:])
+                )
+
+        if server in servers:
+            servers[server]["dev_endpoints"] = dev_action_dict
 
     logger.info("Successfully fetched servers.")
 
@@ -184,7 +181,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                     "SVSP": TcodUfIbge.SP,
                 }[server]
 
-            if not server_config["endpoints"].get(status_key):
+            if not server_config["prod_endpoints"].get(status_key):
                 continue
 
             logger.info(f"\n\nTesting SOAP version for {server} - {uf} {uf.value}")
@@ -202,7 +199,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 if "nfe" in prod_url:
                     client.send(
                         NfeStatusServico4SoapNfeStatusServicoNf,
-                        f"https://{server_config['dev_server']}{server_config['endpoints'][status_key]}",
+                        f"https://{server_config['dev_server']}{server_config['prod_endpoints'][status_key]}",
                         {
                             "Body": {
                                 "nfeDadosMsg": {
@@ -223,7 +220,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
                 elif "cte" in prod_url:
                     client.send(
                         CteStatusServicoV4Soap12CteStatusServicoCt,
-                        f"https://{server_config['dev_server']}{server_config['endpoints'][status_key]}",
+                        f"https://{server_config['dev_server']}{server_config['prod_endpoints'][status_key]}",
                         {
                             "Body": {
                                 "cteDadosMsg": {
@@ -258,9 +255,10 @@ def save_servers(
     servers: dict[str, Any], endpoints: dict[str, str], output_file: Path
 ) -> None:
     """Saves the extracted server data and constants as a Python file."""
-    # Ensure all servers have dev_endpoints (MDF-e scraper doesn't set it)
+    # Ensure all servers have both endpoint dicts (MDF-e scraper may not set them)
     for server_config in servers.values():
-        server_config.setdefault("dev_endpoints", {})
+        server_config.setdefault("prod_endpoints", server_config.pop("endpoints", {}))
+        server_config.setdefault("dev_endpoints", server_config.get("prod_endpoints", {}))
 
     # Generate the constants section
     actions = "\n".join([f'    {key} = "{value}"' for key, value in endpoints.items()])
@@ -295,7 +293,7 @@ class ServerConfig(TypedDict):
     prod_server: str
     dev_server: str
     soap_version: str
-    endpoints: dict[Endpoint, str]
+    prod_endpoints: dict[Endpoint, str]
     dev_endpoints: dict[Endpoint, str]
 
 

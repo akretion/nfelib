@@ -37,7 +37,8 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
             "prod_server": "mdfe.svrs.rs.gov.br",
             "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
             "soap_version": "1.1",
-            "endpoints": {},
+            "prod_endpoints": {},
+            "dev_endpoints": {},
         }
     }
 
@@ -60,10 +61,10 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
             service_url = cols[3].text.strip()
 
             # Add the service to the servers dictionary
-            if service_name not in servers["SVRS"]["endpoints"]:
-                servers["SVRS"]["endpoints"][service_name] = {}
+            if service_name not in servers["SVRS"]["prod_endpoints"]:
+                servers["SVRS"]["prod_endpoints"][service_name] = {}
 
-            servers["SVRS"]["endpoints"][service_name] = "/" + "/".join(
+            servers["SVRS"]["prod_endpoints"][service_name] = "/" + "/".join(
                 service_url.split("/")[3:]
             )
 

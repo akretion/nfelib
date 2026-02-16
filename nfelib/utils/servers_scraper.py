@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str, Any]]:
     """Fetches the NFe server list from the webpage using pandas and BeautifulSoup."""
-    servers = {}
+    servers: dict[str, Any] = {}
     constants = {}  # To store dynamically generated constants
     force_soap_12 = FORCE_SOAP_12_NFE if "nfe" in prod_url else FORCE_SOAP_12_CTE
     status_key = "NfeStatusServico" if "nfe" in prod_url else "CteStatusServicoV4"

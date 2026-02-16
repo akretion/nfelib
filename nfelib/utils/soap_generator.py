@@ -34,9 +34,8 @@ def generate_soap(
 ) -> None:
     """Download WSDL files for NF-e, CT-e, MDF-e, and BP-e."""
     # Access the certificate and password from environment variables
-    server = servers[SERVER]["prod_server"]
     wsdl_urls = [
-        f"https://{server}{servers[SERVER]['prod_endpoints'].get(value, ' SKIP ' + key)}"
+        servers[SERVER]["prod_endpoints"].get(value, f"SKIP {key}")
         for key, value in endpoints.items()
     ]
 
@@ -50,7 +49,7 @@ def generate_soap(
     for url in wsdl_urls:
         if "SKIP" in url and "NFeDistribuicaoDFe" not in url:
             _logger.error(
-                f"Skipping WSDL download for {url} (not found on server {server})"
+                f"Skipping WSDL download for {url} (not found on server {SERVER})"
             )
             continue
         try:

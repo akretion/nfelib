@@ -34,10 +34,9 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
     # Initialize dictionaries to store server actions
     servers: dict[Any, Any] = {
         "SVRS": {
-            "prod_server": "mdfe.svrs.rs.gov.br",
-            "dev_server": "mdfe-homologacao.svrs.rs.gov.br",
             "soap_version": "1.1",
-            "endpoints": {},
+            "prod_endpoints": {},
+            "dev_endpoints": {},
         }
     }
 
@@ -48,6 +47,12 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
         caption = table.find("caption")
         if not caption:
             continue
+        caption_text = caption.text.strip().lower()
+
+        if "homolog" in caption_text:
+            target = servers["SVRS"]["dev_endpoints"]
+        else:
+            target = servers["SVRS"]["prod_endpoints"]
 
         # Extract server actions from the table
         rows = table.find_all("tr")[1:]  # Skip the header row
@@ -58,14 +63,7 @@ def fetch_mdfe_servers(url: str) -> dict[Any, Any]:
 
             service_name = cols[1].text.strip()
             service_url = cols[3].text.strip()
-
-            # Add the service to the servers dictionary
-            if service_name not in servers["SVRS"]["endpoints"]:
-                servers["SVRS"]["endpoints"][service_name] = {}
-
-            servers["SVRS"]["endpoints"][service_name] = "/" + "/".join(
-                service_url.split("/")[3:]
-            )
+            target[service_name] = service_url
 
     logger.info("Successfully fetched MDFe servers.")
     return servers

@@ -158,6 +158,20 @@ class CTeAdapter(DocumentoElectronicoAdapter, CTe):
 
 
 class MDFeAdapter(DocumentoElectronicoAdapter, MDFe):
+    def _post(self, raiz, url, operacao, classe):
+        if is_dataclass(raiz):
+            xml_string, xml_etree = self.render_edoc_xsdata(raiz)
+        else:
+            xml_etree = xml_string = raiz
+        with self._transmissao.cliente(url):
+            retorno = self._transmissao.enviar(operacao, xml_etree)
+            if is_dataclass(classe):
+                return analisar_retorno_raw_xsdata(
+                    operacao, raiz, xml_string, retorno, classe
+                )
+            else:
+                return analisar_retorno_raw(operacao, raiz, xml_string, retorno, classe)
+                
     NAMESPACES = {
         "mdfe": "http://www.portalfiscal.inf.br/mdfe",
         "ds": "http://www.w3.org/2000/09/xmldsig#",

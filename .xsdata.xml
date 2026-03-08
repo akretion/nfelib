@@ -11,7 +11,24 @@
     <UnnestClasses>false</UnnestClasses>
   </Output>
   <Extensions>
-    <Extension type="class" class=".*" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tnfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TnfeProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TprotNfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TretCancNfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TinutNfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TretInutNfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tevento$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TRetEvento$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Cte$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tcte$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^CteProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Mdfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tmdfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tbpe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TbpeTm$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TprotBpe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tcnfse$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tcdps$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
   </Extensions>
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>

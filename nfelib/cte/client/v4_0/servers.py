@@ -17,6 +17,7 @@ class Endpoint(Enum):
     CTERECEPCAOSINCV4 = "CTeRecepcaoSincV4"
     CTERECEPCAOGTVEV4 = "CTeRecepcaoGTVeV4"
     CTERECEPCAOSIMPV4 = "CTeRecepcaoSimpV4"
+    CTEDISTRIBUICAODFE = "CTeDistribuicaoDFe"
 
 
 class ServerConfig(TypedDict):
@@ -211,8 +212,12 @@ servers: dict[str, ServerConfig] = {
         },
     },
     "AN": {
-        "soap_version": "1.1",
-        "prod_endpoints": {},
-        "dev_endpoints": {},
+        "soap_version": "1.2",
+        "prod_endpoints": {
+            Endpoint.CTEDISTRIBUICAODFE: "https://www1.cte.fazenda.gov.br/CTeDistribuicaoDFe/CTeDistribuicaoDFe.asmx",
+        },
+        "dev_endpoints": {
+            Endpoint.CTEDISTRIBUICAODFE: "https://hom1.cte.fazenda.gov.br/CTeDistribuicaoDFe/CTeDistribuicaoDFe.asmx",
+        },
     },
 }

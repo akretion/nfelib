@@ -157,5 +157,5 @@ if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n nfse -v v1_0 -u https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip
   rm -rf nfelib/nfse/schemas
   cp -rf /tmp/generated/nfse/schemas nfelib/nfse/schemas
-  xsdata generate --include-header nfelib/nfse/schemas/v1_0 --package nfelib.nfse.bindings.v1_0
 fi
+xsdata generate --include-header nfelib/nfse/schemas/v1_0 --package nfelib.nfse.bindings.v1_0

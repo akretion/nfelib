@@ -8,9 +8,14 @@ if [$DOWNLOAD_SCHEMAS]; then
   rm -rf nfelib/nfe/schemas
   cp -rf /tmp/generated/nfe/schemas nfelib/nfe/schemas
 fi
-export XSDATA_SCHEMA="nfe"  # se xsdata-odoo tiver instalado, ativa um patch do xsdata
-                            # detalhes aqui https://github.com/akretion/nfelib/issues/40
+export XSDATA_SCHEMA="nfe" # se xsdata-odoo tiver instalado, ativa um patch do xsdata
+# detalhes aqui https://github.com/akretion/nfelib/issues/40
 xsdata generate --include-header nfelib/nfe/schemas/v4_0 --package nfelib.nfe.bindings.v4_0
+# work around for https://github.com/akretion/nfelib/issues/131 xsdata bug with package generation for IBS/CBS:
+# commit once command above is done. Then adjust for the InfNfe class and amend:
+xsdata generate --include-header nfelib/nfe/schemas/v4_0/leiauteNFe_v4.00.xsd --package nfelib.nfe.bindings.v4_0
+# gc nfelib/nfe/bindings/v4_0/leiaute_nfe_v4_00.py --amend
+
 unset XSDATA_SCHEMA
 
 # Pacote de Liberação Distribuição de DF-e v1.02 (Atualizado em 25/10/16)
@@ -23,7 +28,7 @@ xsdata generate --include-header nfelib/nfe_dist_dfe/schemas/v1_0 --package nfel
 
 # Pacote de Liberação Evento Generico v1.01 (Atualizado em 30/05/2014)
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n nfe_evento_generico -v v1_0 -u   http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
+  erpbrasil-edoc-gen-download-schema -n nfe_evento_generico -v v1_0 -u http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=
   rm -rf nfelib/nfe_evento_generico/schemas
   cp -rf /tmp/generated/nfe_evento_generico/schemas nfelib/nfe_evento_generico/schemas
 fi
@@ -31,7 +36,7 @@ xsdata generate --include-header nfelib/nfe_evento_generico/schemas/v1_0 --packa
 
 # Pacote de Liberação Evento Canc v1.01 (30/05/2014)
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n nfe_evento_cancel -v v1_0 -u  http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=
+  erpbrasil-edoc-gen-download-schema -n nfe_evento_cancel -v v1_0 -u http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=
   rm -rf nfelib/nfe_evento_cancel/schemas
   cp -rf /tmp/generated/nfe_evento_cancel/schemas nfelib/nfe_evento_cancel/schemas
 fi
@@ -49,7 +54,7 @@ xsdata generate --include-header nfelib/nfe_evento_cce/schemas/v1_0 --package nf
 if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n nfe_evento_mde -v v1_0 -u https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=y2nVL6/GFlU=
   # mude o encoding desse arquivo xsd de iso-8859-1 para utf-8 e amaldiçoe o cara que usou iso-8859-1
-  iconv -f iso-8859-1 /tmp/generated/nfe_evento_mde/schemas/v1_0/retEnvConfRecebto_v1.00.xsd -t UTF-8 -o  /tmp/generated/nfe_evento_mde/schemas/v1_0/retEnvConfRecebto_v1.00.xsd
+  iconv -f iso-8859-1 /tmp/generated/nfe_evento_mde/schemas/v1_0/retEnvConfRecebto_v1.00.xsd -t UTF-8 -o /tmp/generated/nfe_evento_mde/schemas/v1_0/retEnvConfRecebto_v1.00.xsd
   rm -rf nfelib/nfe_evento_mdef/schemas
   cp -rf /tmp/generated/nfe_evento_mde/schemas nfelib/nfe_evento_mde/schemas
 fi
@@ -99,7 +104,6 @@ if [$DOWNLOAD_SCHEMAS]; then
 fi
 xsdata generate --include-header nfelib/nfe_insucesso/schemas/v1_0 --package nfelib.nfe_insucesso.bindings.v1_0
 
-
 # CT-e - Pacote de Liberação 4.00 (ZIP) (ref. NT 2024.002) - (Publicado em 08/04/2024)
 if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n cte -v v4_0 -u https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=1hNQGC4YA/o=
@@ -118,7 +122,9 @@ xsdata generate --include-header nfelib/cte_dist_dfe/schemas/v1_0 --package nfel
 
 # MDF-e - Manifesto Eletrônico de Documentos Fiscais - Schema NT 2021.002 (05/04/2021)
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n mdfe -v v3_0 -u https://mdfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFe_300a_NT022021.zip
+  erpbrasil-edoc-gen-download-schema -n mdfe -v v3_0 -u https://mdfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE &
+  tipoArquivo=2 &
+  nomeArquivo=PL_MDFe_300a_NT022021.zip
   # NOTE this one was actually downloaded manually to /tmp/generated/mdfe/schemas/v3_0
   rm -rf nfelib/mdfe/schemas
   cp -rf /tmp/generated/mdfe/schemas nfelib/mdfe/schemas
@@ -127,7 +133,9 @@ xsdata generate --include-header nfelib/mdfe/schemas/v3_0 --package nfelib.mdfe.
 
 # MDF-e - Web Service Distribuição de DF-e de Interesse dos Atores do MDF-e
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n cte_dist_dfe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFeDistDFe_100.zip
+  erpbrasil-edoc-gen-download-schema -n cte_dist_dfe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE &
+  tipoArquivo=2 &
+  nomeArquivo=PL_MDFeDistDFe_100.zip
   rm -rf nfelib/mdfe_dist_dfe/schemas
   cp -rf /tmp/generated/mdfe_dist_dfe/schemas nfelib/mdfe_dist_dfe/schemas
 fi
@@ -135,7 +143,9 @@ xsdata generate --include-header nfelib/mdfe_dist_dfe/schemas/v1_0 --package nfe
 
 # BP-e - Bilhete de Passagem Eletrônico - Schemas NT 2021.001 (26/01/2021)
 if [$DOWNLOAD_SCHEMAS]; then
-  erpbrasil-edoc-gen-download-schema -n bpe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip
+  erpbrasil-edoc-gen-download-schema -n bpe -v v1_0 -u https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE &
+  tipoArquivo=2 &
+  nomeArquivo=PL_BPe_100b_NT012021.zip
   # NOTE this one was actually downloaded manually to /tmp/generated/bpe/schemas/v1_0
   rm -rf nfelib/bpe/schemas
   cp -rf /tmp/generated/bpe/schemas nfelib/bpe/schemas
@@ -147,5 +157,5 @@ if [$DOWNLOAD_SCHEMAS]; then
   erpbrasil-edoc-gen-download-schema -n nfse -v v1_0 -u https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip
   rm -rf nfelib/nfse/schemas
   cp -rf /tmp/generated/nfse/schemas nfelib/nfse/schemas
-  xsdata generate --include-header nfelib/nfse/schemas/v1_0 --package nfelib.nfse.bindings.v1_0
 fi
+xsdata generate --include-header nfelib/nfse/schemas/v1_0 --package nfelib.nfse.bindings.v1_0

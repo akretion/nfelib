@@ -23,6 +23,7 @@ from nfelib.cte.bindings.v4_0.tipos_geral_cte_v4_00 import (
     Tuf,
     TufSemEx,
 )
+from nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00 import TtribCte
 from nfelib.cte.bindings.v4_0.xmldsig_core_schema_v1_01 import Signature
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
@@ -3666,7 +3667,7 @@ class TcteOs:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 },
             )
-            IBSCBS: Optional[str] = field(
+            IBSCBS: Optional[TtribCte] = field(
                 default=None,
                 metadata={
                     "type": "Element",
@@ -7842,7 +7843,7 @@ class Tcte(CommonMixin):
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 },
             )
-            IBSCBS: Optional[str] = field(
+            IBSCBS: Optional[TtribCte] = field(
                 default=None,
                 metadata={
                     "type": "Element",
@@ -10860,7 +10861,7 @@ class TcteSimp:
                     "namespace": "http://www.portalfiscal.inf.br/cte",
                 },
             )
-            IBSCBS: Optional[str] = field(
+            IBSCBS: Optional[TtribCte] = field(
                 default=None,
                 metadata={
                     "type": "Element",

@@ -29,7 +29,7 @@
     <Extension type="class" class="^TprotBpe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tcnfse$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tcdps$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
-  </Extensions>
+  </Extensions-->
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>
     <FieldName case="originalCase" safePrefix="value"/>

@@ -1,4 +1,5 @@
 # Copyright (C) 2023  Raphaël Valyi - Akretion <raphael.valyi@akretion.com.br>
+# Copyright (C) 2026  Renato Lima - Akretion <renato.lima@akretion.com.br>
 
 from __future__ import annotations  # Python 3.8 compat
 
@@ -177,10 +178,45 @@ class CommonMixin:
             return self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
         return xml
 
-    def validate_xml(self, schema_path: Optional[str] = None) -> list:
-        """Serialize binding as xml, validate it and return possible errors."""
+    @classmethod
+    def _get_validator_class(cls):
+        """Return the business rules validator class for this document type, or None."""
+        package = cls._get_package()
+        validator_map = {
+            "nfe": ("nfelib.nfe.nfe_validation", "NFeValidator"),
+        }
+        if package not in validator_map:
+            return None
+        module_path, class_name = validator_map[package]
+        try:
+            import importlib
+
+            module = importlib.import_module(module_path)
+            return getattr(module, class_name)
+        except (ImportError, AttributeError):
+            return None
+
+    def validate_xml(
+        self,
+        schema_path: Optional[str] = None,
+        include_facul: bool = False,
+    ) -> list:
+        """Serialize binding as xml, validate it and return possible errors.
+
+        Args:
+            schema_path: Optional path to XSD schema file.
+            include_facul: If True, also run facultative (optional) business
+                rules from MOC 7.0 section 4.2. Defaults to False
+                (only mandatory rules).
+        """
         xml = self.to_xml()
-        return self.schema_validation(xml, schema_path)
+        errors = self.schema_validation(xml, schema_path)
+        validator_cls = self._get_validator_class()
+        if validator_cls is not None:
+            validator = validator_cls(self, include_facul=include_facul)
+            for err in validator.validate_all():
+                errors.append(str(err))
+        return errors
 
     def to_pdf(
         self,

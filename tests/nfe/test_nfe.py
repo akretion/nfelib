@@ -202,8 +202,8 @@ class ClientTests(TestCase):
         parser = XmlParser()
         nfe_proc = parser.from_path(Path(path))
         assert (
-            len(Nfe(infNFe=nfe_proc.NFe.infNFe).validate_xml()) == 3
-        )  # (we know this file has 3 schema errors)
+            len(Nfe(infNFe=nfe_proc.NFe.infNFe).validate_xml()) == 4
+        )  # 3 schema errors + 1 business rule (A03-10: Id doesn't match concatenated fields)
 
 
 # def test_evento_cancelamento():

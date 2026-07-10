@@ -32,6 +32,7 @@ PATCH_DIR: Final = ROOT / "nfelib" / "generate_patches"
 
 CHAMELEON_PATCH: Final = PATCH_DIR / "xsdata_chameleon_patch.py"
 HOOK_PATCH: Final = PATCH_DIR / "xsdata_odoo_hook.py"
+OPTIONAL_DEFAULTS_PATCH: Final = PATCH_DIR / "xsdata_optional_defaults_patch.py"
 
 
 # ---------------------------------------------------------------------------
@@ -231,6 +232,17 @@ def _apply_patches() -> None:
     #    NFe-specific branch is gated on XSDATA_SCHEMA, set later per-binding.
     hook_globals: dict = {"__name__": "__nfelib_hook__"}
     exec(HOOK_PATCH.read_text(), hook_globals)
+
+    # 3. xsdata >= 25 emits schema-required fields with no default (and
+    #    kw_only=True), which breaks parsing of real documents that omit
+    #    mandatory elements (e.g. unsigned NF-e) and no-arg construction.
+    #    Restore the 24.x behaviour: every field optional with a None default.
+    from xsdata import __version__ as _xsdata_version
+
+    if int(_xsdata_version.split(".")[0]) >= 25:
+        optional_globals: dict = {}
+        exec(OPTIONAL_DEFAULTS_PATCH.read_text(), optional_globals)
+        optional_globals["apply_patch"]()
 
 
 # ---------------------------------------------------------------------------

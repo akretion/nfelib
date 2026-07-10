@@ -28,32 +28,42 @@ class ClientTests(TestCase):
         # Se vc instalar o pacote xsdata-odoo e fizer export XSD_SCHEMA=nfe,
         # o xsdata-odoo aplica esse monkey patch para você.
         # ver detalhes aqui: https://github.com/akretion/nfelib/issues/40
+        annotation = str(Tnfe.InfNfe.Det.Imposto.__annotations__["IPI"])
         assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"]).startswith(
-                "typing.Optional"
-            )
+            # xsdata >= 25 (PEP 604): "None | Tipi"
+            annotation == "None | Tipi"
+            # xsdata < 25, Python >= 3.9:
+            or annotation.startswith("typing.Optional")
             # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"])
+            or annotation
             == "typing.Union[nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00.Tipi, NoneType]"
         )
 
     def test_patched_xsdata_for_is(self):
         # see https://github.com/akretion/nfelib/pull/134
+        annotation = str(Tnfe.InfNfe.Det.Imposto.__annotations__["IS"])
         assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
+            # xsdata >= 25 (PEP 604):
+            annotation == "None | Tis"
+            # xsdata < 25, Python >= 3.9:
+            or annotation
             == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis]"
             # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
+            or annotation
             == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis, NoneType]"
         )
 
     def test_patched_xsdata_for_ibscsb(self):
         # see https://github.com/akretion/nfelib/pull/134
+        annotation = str(Tnfe.InfNfe.Det.Imposto.__annotations__["IBSCBS"])
         assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
+            # xsdata >= 25 (PEP 604):
+            annotation == "None | TtribNfe"
+            # xsdata < 25, Python >= 3.9:
+            or annotation
             == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe]"
             # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
+            or annotation
             == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe, NoneType]"
         )
 

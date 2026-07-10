@@ -144,4 +144,7 @@ line-ending = "lf"
 
 [tool.pytest.ini_options]
 addopts = "--color=yes"
+filterwarnings = [
+    "ignore::urllib3.exceptions.InsecureRequestWarning",
+]
 doctest_optionflags = "NORMALIZE_WHITESPACE"

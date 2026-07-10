@@ -6,7 +6,7 @@ import os
 import warnings
 from os import environ
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import xsdata
 from lxml import etree
@@ -39,7 +39,7 @@ class CommonMixin:
         return cls.from_xml(xml)
 
     @classmethod
-    def schema_validation(cls, xml: str, schema_path: Optional[str] = None) -> list:
+    def schema_validation(cls, xml: str, schema_path: str | None = None) -> list:
         """Validate xml against xsd schema at given path."""
         validation_messages = []
         doc_etree = etree.fromstring(xml.encode("utf-8"))
@@ -109,9 +109,9 @@ class CommonMixin:
     def sign_xml(
         cls,
         xml: str,
-        pkcs12_data: Optional[bytes] = None,
-        pkcs12_password: Optional[str] = None,
-        doc_id: Optional[str] = None,
+        pkcs12_data: bytes | None = None,
+        pkcs12_password: str | None = None,
+        doc_id: str | None = None,
     ) -> str:
         """Sign xml file with pkcs12_data/pkcs12_password certificate.
 
@@ -135,11 +135,11 @@ class CommonMixin:
     def to_xml(
         self,
         indent: str = "  ",
-        ns_map: Optional[dict] = None,
-        pkcs12_data: Optional[bytes] = None,
-        pkcs12_password: Optional[str] = None,
-        doc_id: Optional[str] = None,
-        pretty_print: Optional[str] = None,  # deprecated
+        ns_map: dict | None = None,
+        pkcs12_data: bytes | None = None,
+        pkcs12_password: str | None = None,
+        doc_id: str | None = None,
+        pretty_print: str | None = None,  # deprecated
     ) -> str:
         """Serialize binding as xml. You can fill the signature params to sign it."""
         if xsdata.__version__.split(".")[0] in ("20", "21", "22", "23"):
@@ -177,7 +177,7 @@ class CommonMixin:
             return self.sign_xml(xml, pkcs12_data, pkcs12_password, doc_id=doc_id)
         return xml
 
-    def validate_xml(self, schema_path: Optional[str] = None) -> list:
+    def validate_xml(self, schema_path: str | None = None) -> list:
         """Serialize binding as xml, validate it and return possible errors."""
         xml = self.to_xml()
         return self.schema_validation(xml, schema_path)
@@ -186,9 +186,9 @@ class CommonMixin:
         self,
         engine: str = "brazilfiscalreport",
         config: Any = None,  # (actually expects a DanfeConfig)
-        pkcs12_data: Optional[bytes] = None,
-        pkcs12_password: Optional[str] = None,
-        doc_id: Optional[str] = None,
+        pkcs12_data: bytes | None = None,
+        pkcs12_password: str | None = None,
+        doc_id: str | None = None,
     ) -> bytes:
         """Serialize binding into pdf bytes."""
         xml = self.to_xml()

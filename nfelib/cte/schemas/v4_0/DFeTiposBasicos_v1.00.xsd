@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="TChDFeRTC">
+		<xs:annotation>
+			<xs:documentation>Tipo Chave de Documento Fiscal Eletrônico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:maxLength value="44"/>
+			<xs:pattern value="[0-9]{6}[A-Z0-9]{12}[0-9]{26}"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="TStringRTC">
 		<xs:annotation>
 			<xs:documentation> Tipo string genérico</xs:documentation>
@@ -55,6 +65,24 @@
 			<xs:pattern value="0\.[1-9]{1}[0-9]{3}|0\.[0-9]{3}[1-9]{1}|0\.[0-9]{2}[1-9]{1}[0-9]{1}|0\.[0-9]{1}[1-9]{1}[0-9]{2}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="TCnpjBaseRTC">
+		<xs:annotation>
+			<xs:documentation>Tipo CNPJ Base</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[A-Z0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TCnpjRTC">
+		<xs:annotation>
+			<xs:documentation>Tipo CNPJ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[A-Z0-9]{12}[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="TDec1302RTC">
 		<xs:annotation>
 			<xs:documentation>Tipo Decimal com 15 dígitos, sendo 13 de corpo e 2 decimais</xs:documentation>
@@ -81,6 +109,8 @@
 			<xs:whiteSpace value="preserve"/>
 			<xs:enumeration value="1"/>
 			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TEnteGov">
@@ -93,6 +123,8 @@
 			<xs:enumeration value="2"/>
 			<xs:enumeration value="3"/>
 			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TTpCredPresIBSZFM">
@@ -155,6 +187,26 @@
 					<xs:documentation>Indica se a operação é de doação</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="gIBSCBS" type="TCIBS" minOccurs="0"/>
+			<xs:element name="gEstornoCred" type="TEstornoCred" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Informado conforme indicador no cClassTrib</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TTribNFGas">
+		<xs:annotation>
+			<xs:documentation>Grupo de informações da Tributação da NFGas</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CST" type="TCST">
+				<xs:annotation>
+					<xs:documentation>Código Situação Tributária do IBS/CBS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cClassTrib" type="TcClassTrib"/>
+			<xs:element name="indDoacao" type="TIndDoacao" minOccurs="0"/>
 			<xs:element name="gIBSCBS" type="TCIBS" minOccurs="0"/>
 			<xs:element name="gEstornoCred" type="TEstornoCred" minOccurs="0">
 				<xs:annotation>
@@ -296,33 +348,6 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="TTribNFGas">
-		<xs:annotation>
-			<xs:documentation>Grupo de informações da Tributação da NFGas</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="CST" type="TCST">
-				<xs:annotation>
-					<xs:documentation>Código Situação Tributária do IBS/CBS</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="cClassTrib" type="TcClassTrib"/>
-			<xs:element name="indDoacao" type="TIndDoacao" minOccurs="0"/>
-			<xs:choice minOccurs="0">
-				<xs:element name="gIBSCBS" type="TCIBS"/>
-				<xs:element name="gIBSCBSMono" type="TMonofasia">
-					<xs:annotation>
-						<xs:documentation>Informar essa opção da Choice para Monofasia</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:choice>
-			<xs:element name="gEstornoCred" type="TEstornoCred" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Informado conforme indicador no cClassTrib</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TIS">
@@ -1131,12 +1156,37 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 1=União
 2=Estados
 3=Distrito Federal
-4=Municípios</xs:documentation>
+4=Municípios
+5=Consórcio Público
+6=Comitê Gestor do IBS</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="pRedutor" type="TDec_0302_04RTC">
 				<xs:annotation>
 					<xs:documentation>Percentual de redução de aliquota em compra governamental</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tpOperGov" type="TOperCompraGov">
+				<xs:annotation>
+					<xs:documentation>Tipo da operação com ente governamental:
+1 – Fornecimento com pagamento posterior;
+
+2 - Recebimento do pagamento com fornecimento já realizado;
+
+3 – Fornecimento com pagamento já realizado;
+
+4 – Recebimento do pagamento com fornecimento posterior;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refDFeAnt" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Chave de acesso do documento fiscal anterior.
+
+Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
+
+No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
+
+Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1153,7 +1203,9 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 1=União
 2=Estados
 3=Distrito Federal
-4=Municípios</xs:documentation>
+4=Municípios
+5=Consórcio Público
+6=Comitê Gestor do IBS</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="pRedutor" type="TDec_0302_04RTC">
@@ -1164,8 +1216,28 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 			<xs:element name="tpOperGov" type="TOperCompraGov">
 				<xs:annotation>
 					<xs:documentation>Tipo da operação com ente governamental:
-1 - Fornecimento
-2 - Recebimento do Pagamento</xs:documentation>
+1 – Fornecimento com pagamento posterior;
+
+2 - Recebimento do pagamento com fornecimento já realizado;
+
+3 – Fornecimento com pagamento já realizado;
+
+4 – Recebimento do pagamento com fornecimento posterior;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TPagRef">
+		<xs:annotation>
+			<xs:documentation>Tipo Pagamento que ocorre em DFe emitdo anteriormente</xs:documentation>
+			<xs:documentation>Informado para abater as parcelas de antecipação de pagamento, conforme art. 10 §4</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="refDFe" maxOccurs="99">
+				<xs:annotation>
+					<xs:documentation>Chave de acesso do documento fiscal de antecipação de pagamento
+
+Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1290,4 +1362,60 @@ OBS: Percentuais definidos no art. 450, § 1º, da LC 214/25 para o cálculo do 
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="TPagamentoRTC">
+		<xs:annotation>
+			<xs:documentation>Tipo dados do pagamento para o sistema de arrecadação</xs:documentation>
+			<xs:documentation>Cada DFe que utilizar deverá utilizar esses tipo no grupo ide</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpMeioPgto" type="TMeioPgto">
+				<xs:annotation>
+					<xs:documentation>(Meio de pagamento utilizado (ver IT DFe 2026.001)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJReceb" type="TCnpjRTC">
+				<xs:annotation>
+					<xs:documentation>CNPJ do recebedor do pagamento</xs:documentation>
+					<xs:documentation>Informar zeros não significativos</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJBasePSP" type="TCnpjBaseRTC">
+				<xs:annotation>
+					<xs:documentation>CNPJ base da instituição financeira</xs:documentation>
+					<xs:documentation>Informar zeros não significativos</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="nPag" use="required">
+			<xs:annotation>
+				<xs:documentation>Número sequencial do pagamento</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:whiteSpace value="preserve"/>
+					<xs:pattern value="[1-9]{1}[0-9]{0,1}|[1-8]{1}[0-9]{2}|[9]{1}[0-8]{1}[0-9]{1}|[9]{1}[9]{1}[0]{1}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="idTransacao" use="required">
+			<xs:annotation>
+				<xs:documentation>ID específico da transação financeira conforme o meio de pagamento</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="TStringRTC">
+					<xs:minLength value="2"/>
+					<xs:maxLength value="35"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="TMeioPgto">
+		<xs:annotation>
+			<xs:documentation>Tipo de meio de Pagamento do arranjo financeiro</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

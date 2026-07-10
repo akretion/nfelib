@@ -8,29 +8,30 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
+from nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00 import TpagamentoRtc
+
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 
 
-class EvCancCteDescEvento(Enum):
-    CANCELAMENTO = "Cancelamento"
+class EvVincPgtoDescEvento(Enum):
+    VINCULA_O_DO_PAGAMENTO = "Vinculação do Pagamento"
+    VINCULACAO_DO_PAGAMENTO = "Vinculacao do Pagamento"
 
 
 @dataclass
-class EvCancCte:
-    """
-    Schema XML de validação do evento do cancelamento 110111.
-    "
+class EvVincPgto:
+    """Schema XML de validação do evento de vinculação da transação de pagamento com o DFe  - 110300"
 
-    :ivar descEvento: Descrição do Evento - “Cancelamento”
-    :ivar nProt: Número do Protocolo de Status do CT-e
-    :ivar xJust: Justificativa do Cancelamento
+    :ivar descEvento: Descrição do Evento - “Vinculação Pagamento”
+    :ivar nProt: Número do Protocolo de autorização do DFe
+    :ivar pgto: Vinuclação com o pagamento
     """
 
     class Meta:
-        name = "evCancCTe"
+        name = "evVincPgto"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    descEvento: Optional[EvCancCteDescEvento] = field(
+    descEvento: Optional[EvVincPgtoDescEvento] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -47,14 +48,10 @@ class EvCancCte:
             "pattern": r"[0-9]{15}",
         },
     )
-    xJust: Optional[str] = field(
+    pgto: Optional[TpagamentoRtc] = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
-            "min_length": 15,
-            "max_length": 255,
-            "white_space": "preserve",
-            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
         },
     )

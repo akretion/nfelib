@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 from xsdata.codegen.handlers.merge_attributes import MergeAttributes
 from xsdata.codegen.handlers.update_attributes_effective_choice import (
@@ -10,11 +11,10 @@ from xsdata.utils import collections
 
 
 @classmethod  # type: ignore[misc]  # Suppresses "classmethod used with a non-method"
-def process(cls, target: Class):
-    """
-    Detect same type attributes in order to merge them together with their
-    restrictions.
+def process(cls: Any, target: Class):
+    """Detect same type attributes in order to merge them together.
 
+    Merge them together with their restrictions.
     Two attributes are considered equal if they have the same name,
     tag and namespace.
     """
@@ -50,7 +50,8 @@ def process(cls, target: Class):
 
 
 @classmethod  # type: ignore[misc]  # Suppresses "classmethod used with a non-method"
-def merge_attrs(cls, target: Class, groups: list[list[int]]) -> list[Attr]:
+def merge_attrs(cls: Any, target: Class, groups: list[list[int]]) -> list[Attr]:
+    """Merge attributes into groups based on connected components."""
     attrs = []
 
     for index, attr in enumerate(target.attrs):

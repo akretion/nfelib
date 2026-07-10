@@ -20,7 +20,6 @@ import argparse
 import os
 import shutil
 import subprocess
-import sys
 from pathlib import Path
 from typing import Final
 
@@ -38,6 +37,7 @@ HOOK_PATCH: Final = PATCH_DIR / "xsdata_odoo_hook.py"
 # ---------------------------------------------------------------------------
 # Schema configuration
 # ---------------------------------------------------------------------------
+
 
 class SchemaConfig:
     """Describe one schema / binding target."""
@@ -208,31 +208,29 @@ def _ensure_patches() -> None:
 
 
 def _apply_patches() -> None:
-    """Apply both local patches to the installed xsdata."""
+    """Apply both local patches to the installed xsdata.
+
+    The NFe attribute-merge hook reads ``XSDATA_SCHEMA`` at generation time, so
+    that variable is set per-binding in ``main`` (around ``_run_xsdata``), not
+    here. This step only registers the patched methods on xsdata's classes.
+    """
     _ensure_patches()
 
     # Import xsdata modules so they can be patched.
-    import xsdata.codegen.handlers.merge_attributes  # noqa: F401
-    import xsdata.codegen.handlers.update_attributes_effective_choice  # noqa: F401
-    import xsdata.codegen.transformer  # noqa: F401
+    import xsdata.codegen.handlers.merge_attributes
+    import xsdata.codegen.handlers.update_attributes_effective_choice
+    import xsdata.codegen.transformer
     import xsdata.codegen.writer  # noqa: F401
 
     # 1. Chameleon ordering fix: replace the methods on the real class.
     chameleon_globals: dict = {}
-    exec(CHAMELEON_PATCH.read_text(), chameleon_globals)  # noqa: S102
+    exec(CHAMELEON_PATCH.read_text(), chameleon_globals)
     chameleon_globals["apply_patch"]()
 
-    # 2. xsdata_odoo NFe hook. The hook expects XSDATA_SCHEMA=nfe to be set.
-    env_before = os.environ.get("XSDATA_SCHEMA")
-    os.environ["XSDATA_SCHEMA"] = "nfe"
-    try:
-        hook_globals: dict = {"__name__": "__nfelib_hook__"}
-        exec(HOOK_PATCH.read_text(), hook_globals)  # noqa: S102
-    finally:
-        if env_before is None:
-            os.environ.pop("XSDATA_SCHEMA", None)
-        else:
-            os.environ["XSDATA_SCHEMA"] = env_before
+    # 2. xsdata_odoo NFe hook: registers patched merge methods. The hook's
+    #    NFe-specific branch is gated on XSDATA_SCHEMA, set later per-binding.
+    hook_globals: dict = {"__name__": "__nfelib_hook__"}
+    exec(HOOK_PATCH.read_text(), hook_globals)
 
 
 # ---------------------------------------------------------------------------
@@ -240,15 +238,35 @@ def _apply_patches() -> None:
 # ---------------------------------------------------------------------------
 
 
-def _run_xsdata(schema_dir: Path, package: str, *, single_package: bool = False) -> None:
-    """Invoke xsdata generate for the given schema target."""
-    cmd: list[str] = [sys.executable, "-m", "xsdata", "generate"]
-    if single_package:
-        cmd.extend(["-ss", "single-package"])
-    cmd.extend(["--include-header", str(schema_dir), "--package", package])
+def _run_xsdata(
+    schema_dir: Path, package: str, *, single_package: bool = False
+) -> None:
+    """Invoke xsdata generate in-process for the given schema target.
 
-    print(f"Running: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True)
+    Generation runs in-process (not via a subprocess) so the runtime
+    monkey-patches applied by ``_apply_patches`` are in effect. A subprocess
+    would import a fresh, unpatched xsdata and miss both the chameleon fix and
+    the NFe attribute-merge hook.
+    """
+    from xsdata.cli import resolve_source
+    from xsdata.codegen.transformer import ResourceTransformer
+    from xsdata.models.config import GeneratorConfig, StructureStyle
+
+    config_file = ROOT / ".xsdata.xml"
+    if config_file.exists():
+        config = GeneratorConfig.read(config_file)
+    else:
+        config = GeneratorConfig()
+
+    config.output.package = package
+    config.output.include_header = True
+    if single_package:
+        config.output.structure_style = StructureStyle.SINGLE_PACKAGE
+
+    print(f"Generating {package} from {schema_dir}")
+    transformer = ResourceTransformer(config=config)
+    uris = sorted(resolve_source(str(schema_dir), recursive=False))
+    transformer.process(uris)
 
 
 # ---------------------------------------------------------------------------
@@ -333,12 +351,12 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--download",
         action="store_true",
-        help="Download schemas with erpbrasil-edoc-gen-download-schema before generating.",
+        help="Download schemas with erpbrasil-edoc-gen-download-schema first.",
     )
     parser.add_argument(
         "--skip-patches",
         action="store_true",
-        help="Skip monkey-patching xsdata (only if installed xsdata is already patched).",
+        help="Skip patching xsdata (only if installed xsdata is already patched).",
     )
     return parser.parse_args()
 
@@ -355,6 +373,7 @@ def _resolve_names(names: list[str]) -> list[str]:
 
 
 def main() -> None:
+    """Parse arguments, patch xsdata, and generate the requested bindings."""
     args = _parse_args()
     names = _resolve_names(args.bindings)
 
@@ -372,11 +391,24 @@ def main() -> None:
             print(f"Skipping {name}: schema path not found {schema_path}")
             continue
 
-        _run_xsdata(
-            schema_path,
-            config.package,
-            single_package=config.single_package is not None,
-        )
+        # The NFe attribute-merge hook is gated on XSDATA_SCHEMA=nfe. Enable it
+        # for the NFe family (which shares leiauteNFe / the IPI compound field).
+        env_before = os.environ.get("XSDATA_SCHEMA")
+        if name.startswith("nfe"):
+            os.environ["XSDATA_SCHEMA"] = "nfe"
+        else:
+            os.environ.pop("XSDATA_SCHEMA", None)
+        try:
+            _run_xsdata(
+                schema_path,
+                config.package,
+                single_package=config.single_package is not None,
+            )
+        finally:
+            if env_before is None:
+                os.environ.pop("XSDATA_SCHEMA", None)
+            else:
+                os.environ["XSDATA_SCHEMA"] = env_before
 
 
 if __name__ == "__main__":

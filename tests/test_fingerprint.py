@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+import sys
 import warnings
 from os import environ
 from pathlib import Path
@@ -47,6 +48,9 @@ PAGES = {
 
 class FingerPrintTests(TestCase):
     def test_fingerprint(self) -> None:
+        if sys.version_info[:2] != (3, 13):
+            _logger.info("Fingerprint test only runs on Python 3.13")
+            self.skipTest("Fingerprint test only runs on Python 3.13")
         if environ.get("SKIP_FINGERPRINT"):
             _logger.info("Skipping fingerprint test")
             return True

@@ -143,12 +143,13 @@ Para atualizar os bindings:
 
     ```bash
     xsdata generate nfelib/nfe/schemas/v4_0 --package nfelib.nfe.bindings.v4_0
+    ou ./generate_bindings.py nfe
     ```
 
 Para gerir todos bindings com xsdata:
 
 ```bash
-./script.sh
+./generate_bindings.py all
 ```
 
 ## Versões dos esquemas e pastas

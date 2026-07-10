@@ -21,7 +21,7 @@ repos:
       - id: ruff
         args: [ --fix, --show-fixes]
       - id: ruff-format
-        exclude: ^nfelib/[^/]+\.py$
+        exclude: ^(nfelib/[^/]+\.py|tests/fingerprints\.json)$
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
     hooks:

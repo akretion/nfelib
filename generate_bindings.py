@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -234,6 +235,47 @@ def _apply_patches() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Python 3.9 compatibility post-processing
+# ---------------------------------------------------------------------------
+
+
+def _post_process_py39(base_path: Path) -> None:
+    """Rewrite PEP 604 union syntax in generated files to Python 3.9-compatible types.
+
+    xsdata 25 with ``PostponedAnnotations=true`` still emits ``None | str`` for
+    some fields. Python 3.9 can parse the annotation as a string because of
+    ``from __future__ import annotations``, but ``typing.get_type_hints()`` fails
+    to evaluate it. We rewrite these to ``Optional[str]`` so runtime introspection
+    works on Python 3.9.
+    """
+    if not base_path.exists():
+        return
+
+    pattern = re.compile(r"(?P<head>:\s*)(?P<none>None)\s*\|\s*(?P<type>\S+)(?P<tail>\s*=\s*field)")
+    optional = re.compile(r"from typing import .*\bOptional\b")
+
+    for path in base_path.rglob("*.py"):
+        if path.name == "__init__.py":
+            continue
+
+        text = path.read_text()
+        if "None |" not in text and "| None" not in text:
+            continue
+
+        new_text, count = pattern.subn(r"\g<head>Optional[\g<type>]\g<tail>", text)
+        if count:
+            # Ensure ``from typing import Optional`` is present.
+            if not optional.search(new_text):
+                new_text = new_text.replace(
+                    "from typing import dataclass, field",
+                    "from typing import Optional, dataclass, field",
+                    1,
+                )
+            path.write_text(new_text)
+            print(f"  rewritten {count} union(s) in {path}")
+
+
+# ---------------------------------------------------------------------------
 # xsdata invocation
 # ---------------------------------------------------------------------------
 
@@ -275,6 +317,15 @@ def _run_xsdata(
     transformer = ResourceTransformer(config=config)
     uris = sorted(resolve_source(str(schema_dir), recursive=False))
     transformer.process(uris)
+
+    # Post-process generated files so they stay Python 3.9 compatible even when
+    # xsdata emits PEP 604 union syntax.
+    package_path = ROOT / package.replace(".", "/")
+    if single_package and package_path.suffix != ".py":
+        # Single-package mode generates a single module directly under its parent
+        # package directory, so post-process the whole parent package.
+        package_path = package_path.parent
+    _post_process_py39(package_path)
 
 
 # ---------------------------------------------------------------------------

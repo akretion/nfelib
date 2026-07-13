@@ -16,12 +16,12 @@ Expected format for each section:
 ## nfe (v4_0)
 
 - binding_dir: `nfe/bindings/v4_0`
-- version: `PL_010e_v1.01`
-- package: `Pacote de Liberação 010e v1.01`
+- version: `PL_010e_v1.02`
+- package: `Pacote de Liberação 010e v1.02`
 - nota_tecnica: `NT 2025.002 v1.40, NT 2026.002 v1.0, NT 2026.003 v1.0`
-- published_at: `2026-06-26`
+- published_at: `2026-07-10`
 - source_url:
-  `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=JcM57FABN1M`
+  `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=akib2DRpJN4=`
 
 ## cte (v4_0)
 

@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 
 import pytest
+import requests
 
 from nfelib.cte.client.v4_0.servers_scraper import main
 
@@ -18,7 +19,10 @@ def read_current_servers():
 )
 def test_scraper():
     old_content = read_current_servers()
-    main()
+    try:
+        main()
+    except requests.exceptions.RequestException as e:
+        pytest.skip(f"Could not reach Fazenda servers to compare scraper output: {e}")
     new_content = read_current_servers()
     assert new_content == old_content, (
         "Server list has changed. Review and commit the new file."

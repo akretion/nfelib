@@ -60,7 +60,8 @@ class DocumentoElectronicoAdapter(DocumentoEletronico):
             return etree.tostring(edoc), edoc
         if isinstance(edoc, str):
             return edoc, etree.fromstring(edoc)
-        serializer = XmlSerializer(config=SerializerConfig(pretty_print=pretty_print))
+        indent = "  " if pretty_print else None
+        serializer = XmlSerializer(config=SerializerConfig(indent=indent))
 
         if self._namespace:
             ns_map = {None: self._namespace}

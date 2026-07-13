@@ -15,6 +15,8 @@ from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb, TcodUfIbge
 from bs4 import BeautifulSoup
 from xsdata.formats.dataclass.serializers import PycodeSerializer
 
+REQUEST_TIMEOUT = 10
+
 if sys.version_info[:2] > (3, 8):
     from nfelib.cte.bindings.v4_0.cons_stat_serv_tipos_basico_v4_00 import TconsStatServ
     from nfelib.cte.soap.v4_0.ctestatusservicov4 import (
@@ -51,7 +53,11 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     status_key = "NfeStatusServico" if "nfe" in prod_url else "CteStatusServicoV4"
 
     # Fetch production servers
-    prod_response = requests.get(prod_url, verify=False)
+    try:
+        prod_response = requests.get(prod_url, verify=False, timeout=REQUEST_TIMEOUT)
+    except requests.exceptions.RequestException as e:
+        logger.warning(f"Failed to fetch production servers from {prod_url}: {e}")
+        return {}, {}
     prod_response.raise_for_status()
     soup = BeautifulSoup(prod_response.content, "lxml")
     captions = soup.find_all("caption")
@@ -63,7 +69,11 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     ]
 
     # Fetch development servers
-    dev_response = requests.get(dev_url, verify=False)
+    try:
+        dev_response = requests.get(dev_url, verify=False, timeout=REQUEST_TIMEOUT)
+    except requests.exceptions.RequestException as e:
+        logger.warning(f"Failed to fetch development servers from {dev_url}: {e}")
+        return {}, {}
     dev_response.raise_for_status()
     dev_html = dev_response.content.decode(dev_response.apparent_encoding)
     dev_tables = pd.read_html(StringIO(dev_html))  # Wrap HTML in StringIO

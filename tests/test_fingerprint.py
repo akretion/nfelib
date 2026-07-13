@@ -20,6 +20,8 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
 }
 
+REQUEST_TIMEOUT = 10
+
 PAGES = {
     "nfe": (
         "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=BMPFMBoln3w=",
@@ -59,21 +61,27 @@ class FingerPrintTests(TestCase):
             url = scrap_params[0]
             md5 = "ELEMENT NOT FOUND"
             _logger.info(f"Fetching {url} ...")
-            if len(scrap_params) > 1:
-                page = requests.get(url, headers=HEADERS, verify=False)
-                soup = BeautifulSoup(page.text, "html.parser")
-                if scrap_params[2] == "id" and soup.find(
-                    scrap_params[1], {"id": scrap_params[3]}
-                ):
-                    fragment = soup.find(
+            try:
+                if len(scrap_params) > 1:
+                    page = requests.get(
+                        url, headers=HEADERS, verify=False, timeout=REQUEST_TIMEOUT
+                    )
+                    soup = BeautifulSoup(page.text, "html.parser")
+                    if scrap_params[2] == "id" and soup.find(
                         scrap_params[1], {"id": scrap_params[3]}
-                    ).text.encode("utf-8")
+                    ):
+                        fragment = soup.find(
+                            scrap_params[1], {"id": scrap_params[3]}
+                        ).text.encode("utf-8")
+                        md5 = hashlib.md5(fragment).hexdigest()
+                else:
+                    fragment = requests.get(
+                        url, headers=HEADERS, verify=False, timeout=REQUEST_TIMEOUT
+                    ).content  # .decode('utf-8')
                     md5 = hashlib.md5(fragment).hexdigest()
-            else:
-                fragment = requests.get(
-                    url, headers=HEADERS, verify=False
-                ).content  # .decode('utf-8')
-                md5 = hashlib.md5(fragment).hexdigest()
+            except requests.exceptions.RequestException as e:
+                _logger.warning(f"Could not fetch {url}: {e}")
+                self.skipTest(f"Unable to reach {url}: {e}")
             fingerprint[code] = (url, md5)
 
         _logger.info(fingerprint)

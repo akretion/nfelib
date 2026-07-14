@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nf3e" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nf3e" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="consSitNF3eTiposBasico_v1.00.xsd"/>
+	<xs:element name="retConsSitNF3e" type="TRetConsSitNF3e">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do retorno da consulta da situação atual da NF-3e.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

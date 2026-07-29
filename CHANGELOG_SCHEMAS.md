@@ -101,3 +101,14 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-02-09`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`
+
+## gnre (v2_0)
+
+- binding_dir: `gnre/bindings/v2_0`
+- version: `GNRE_MIC_v2.15 (leiaute 2.00)`
+- package:
+  `Manual de Integração do Contribuinte GNRE v2.15 (16 XSD, leiautes 1.00 e 2.00)`
+- nota_tecnica:
+  `Manual de Integração do Contribuinte v2.15; o leiaute 2.00 traz o CNPJ alfanumérico no documento de origem e o qrcodePayload (PIX) no resultado.`
+- published_at: `2026-06-18 (data do PDF do manual)`
+- source_url: `https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`

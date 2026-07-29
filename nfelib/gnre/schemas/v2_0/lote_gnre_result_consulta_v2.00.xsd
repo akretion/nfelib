@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.gnre.pe.gov.br" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://www.gnre.pe.gov.br" >
+	<xs:include schemaLocation="dados_gnre_v1.00.xsd"/>
+	<xs:include schemaLocation="dados_gnre_v2.00.xsd"/>
+	<xs:group name="dadosGnre_1.00">
+		<xs:sequence>
+	       	<xs:group ref="dadosGnre_1.00_1"/>
+ 			<xs:element minOccurs="0" name="c07_atualizacaoMonetaria" type="TDec_1502">
+				<xs:annotation>
+					<xs:documentation>Atualização monetária do valor original até a data de pagamento.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="c08_juros" type="TDec_1502">
+				<xs:annotation>
+					<xs:documentation>Valor de juros sobre o valor original até a data de pagamento.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="c09_multa" type="TDec_1502">
+				<xs:annotation>
+					<xs:documentation>Valor da multa aplicada sobre o valor original.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	       	<xs:group ref="dadosGnre_1.00_2"/>
+			<xs:element minOccurs="0" name="c29_dataLimitePagamento" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data máxima que o banco pode receber o pagamento, que estará impressa na guia e no código de barras.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	       	<xs:group ref="dadosGnre_1.00_3"/>
+			<xs:element minOccurs="0" name="c23_informacoes">
+			<xs:annotation>
+				<xs:documentation>Informação complementar a ser impressa na guia.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="TString">
+				<xs:maxLength value="300" />
+				</xs:restriction>
+			</xs:simpleType>
+			</xs:element>
+           	<xs:element minOccurs="0" name="c30_nossoNumero">
+           		<xs:annotation>
+           			<xs:documentation>
+           				Número interno da guia gerado pela UF
+           			</xs:documentation>
+           		</xs:annotation>
+           		<xs:simpleType>
+           			<xs:restriction base="xs:string">
+           				<xs:whiteSpace value="preserve" />
+           				<xs:pattern value="[0-9]{16}" />
+           			</xs:restriction>
+           		</xs:simpleType>
+           	</xs:element>
+	       	<xs:group ref="dadosGnre_1.00_4"/>
+	    </xs:sequence>
+	</xs:group>
+	<xs:group name="dadosGnre_2.00">
+		<xs:sequence>
+			<xs:group ref="dadosGnre_2.00_1"/>
+			<xs:group ref="dadosGnre_2.00_2_retorno" />
+			<xs:group ref="dadosGnre_2.00_3" />
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="resultadoGuia">
+		<xs:sequence>
+			<xs:element name="linhaDigitavel" maxOccurs="1"	minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{48}"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codigoBarras" maxOccurs="1" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{44}"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="qrcodePayload">
+				<xs:annotation>
+					<xs:documentation>String PIX, texto copia e cola, utilizado na geracao do qrcode.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:whiteSpace value="preserve" />
+						<xs:maxLength value="512"></xs:maxLength>
+						<xs:minLength value="100"></xs:minLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="dataEmissao" type="TData">
+				<xs:annotation>
+					<xs:documentation>
+						Data de emissão da guia. (Formato AAAA-MM-DD)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="horaEmissao"
+				type="xs:time">
+				<xs:annotation>
+					<xs:documentation>
+						Hora de emissão da guia. (Formato HH:MM:SS)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dadosPagamento" maxOccurs="1" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="data" type="TDataHora">
+							<xs:annotation>
+								<xs:documentation>
+									Data do pagamento da guia no banco.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="autenticacao">
+							<xs:annotation>
+								<xs:documentation>
+									Autenticação bancária do pagamento da guia.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="TString">
+									<xs:maxLength value="23" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="banco">
+							<xs:annotation>
+								<xs:documentation>
+									Código do Banco onde foi paga a	guia.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="preserve" />
+									<xs:pattern value="[0-9]{3}" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="agencia">
+							<xs:annotation>
+								<xs:documentation>
+									Código da Agência bancária onde foi paga a guia.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction
+									base="xs:string">
+									<xs:whiteSpace
+										value="preserve" />
+									<xs:pattern
+										value="[0-9]{4,5}" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="idConsulta" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Texto livre para ser utilizado como identificador da consulta no lote</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="10"></xs:maxLength>
+						<xs:pattern value="[0-9]{1,10}"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="motivosRejeicao" maxOccurs="1" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+			           <xs:element name="motivo" maxOccurs="unbounded" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="codigo" maxOccurs="1" minOccurs="1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="\d{3}"></xs:pattern>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="descricao" maxOccurs="1" minOccurs="1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="355"></xs:maxLength>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="campo" maxOccurs="1" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"></xs:maxLength>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+        </xs:sequence>
+	</xs:group>
+	<xs:element name="TResultLote_GNRE">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="ambiente" maxOccurs="1" minOccurs="1">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="1"></xs:enumeration>
+    						<xs:enumeration value="2"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="numeroRecibo" minOccurs="0">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:pattern value="[0-9]{10}"></xs:pattern>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="situacaoProcess" maxOccurs="1" minOccurs="1">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="codigo" maxOccurs="1" minOccurs="1">
+    							<xs:simpleType>
+    								<xs:restriction base="xs:string">
+    									<xs:pattern
+    										value="[1-9][0-9]{2}">
+    									</xs:pattern>
+    								</xs:restriction>
+    							</xs:simpleType>
+    						</xs:element>
+    						<xs:element name="descricao" maxOccurs="1" minOccurs="1">
+    							<xs:simpleType>
+    								<xs:restriction base="xs:string">
+    									<xs:maxLength value="255"></xs:maxLength>
+    								</xs:restriction>
+    							</xs:simpleType>
+    						</xs:element>
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="resultado" maxOccurs="1" minOccurs="0" >
+    				<xs:complexType>
+						<xs:sequence>
+							<xs:element name="guia" minOccurs="1"
+								maxOccurs="200">
+								<xs:complexType>
+									<xs:sequence>
+                                    	<xs:element name="situacaoGuia" maxOccurs="1" minOccurs="1">
+											<xs:annotation>
+												<xs:documentation>
+													0 - Processada com sucesso 
+													1 - Invalidada pelo	Portal 
+													2 - Invalidada pela UF 
+													3 - Erro de	comunicação
+													4 - Pendencia de processamento
+												</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="0"></xs:enumeration>
+													<xs:enumeration value="1"></xs:enumeration>
+													<xs:enumeration value="2"></xs:enumeration>
+													<xs:enumeration value="3"></xs:enumeration>
+													<xs:enumeration value="4"></xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+                                        <xs:choice>
+                                        	<xs:sequence>
+												<xs:group
+													ref="dadosGnre_1.00" />
+											</xs:sequence>
+                                            <xs:sequence>
+												<xs:group ref="dadosGnre_2.00" />
+												<xs:element minOccurs="0" name="dataLimitePagamento"
+													type="TData">
+													<xs:annotation>
+														<xs:documentation>
+															Data máxima que o banco pode receber o
+															pagamento, que estará impressa na guia e no
+															código de barras.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element minOccurs="0"
+													name="informacoesComplementares">
+													<xs:annotation>
+														<xs:documentation>
+															Informação complementar a ser impressa na guia.
+														</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="informacao" minOccurs="1"
+																maxOccurs="3">
+																<xs:simpleType>
+																	<xs:restriction base="TString">
+																		<xs:maxLength value="100" />
+																		<xs:minLength value="1" />
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+													<!-- <xs:simpleType>
+														<xs:restriction base="TString">
+														<xs:maxLength value="300" />
+														</xs:restriction>
+														</xs:simpleType> -->
+												</xs:element>
+												<xs:element minOccurs="0" name="nossoNumero">
+													<xs:annotation>
+														<xs:documentation>
+															Número interno da guia gerado pela UF
+														</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:whiteSpace value="preserve" />
+															<xs:pattern value="[0-9]{16}" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:choice>
+										<xs:group ref="resultadoGuia" />
+									</xs:sequence>
+									<xs:attribute name="versao" use="required">
+										<xs:simpleType>
+											<xs:restriction
+												base="xs:string">
+												<xs:enumeration
+													value="1.00">
+												</xs:enumeration>
+												<xs:enumeration
+													value="2.00">
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>

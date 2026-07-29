@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns="http://www.gnre.pe.gov.br" 
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+	attributeFormDefault="unqualified" 
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.gnre.pe.gov.br" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="tiposBasicoGNRE_v1.00.xsd" />
+	<xs:include schemaLocation="dados_gnre_v1.00.xsd" />
+	<xs:element name="TRetorno_GNRE">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="dados">
+				<xs:complexType>
+				<xs:sequence>
+            		<xs:group ref="dadosGnre_1.00_1"/>
+    				<xs:element minOccurs="0" name="c07_atualizacaoMonetaria" type="TDec_1502">
+						<xs:annotation>
+							<xs:documentation>Atualização monetária do valor original até a data de pagamento.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="c08_juros" type="TDec_1502">
+						<xs:annotation>
+							<xs:documentation>Valor de juros sobre o valor original até a data de pagamento.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="c09_multa" type="TDec_1502">
+						<xs:annotation>
+							<xs:documentation>Valor da multa aplicada sobre o valor original.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+            		<xs:group ref="dadosGnre_1.00_2"/>
+					<xs:element minOccurs="0" name="c29_dataLimitePagamento" type="TData">
+					<xs:annotation>
+						<xs:documentation>Data máxima que o banco pode receber o pagamento, que estará impressa na guia e no código de barras.</xs:documentation>
+					</xs:annotation>
+					</xs:element>
+					<xs:group ref="dadosGnre_1.00_3"/>
+					<xs:element minOccurs="0" name="c23_informacoes">
+					<xs:annotation>
+						<xs:documentation>Informação complementar a ser impressa na guia.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="TString">
+						<xs:maxLength value="300" />
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+		           	<xs:element minOccurs="0" name="c30_nossoNumero">
+		           		<xs:annotation>
+		           			<xs:documentation>
+		           				Número interno da guia gerado pela UF
+		           			</xs:documentation>
+		           		</xs:annotation>
+		           		<xs:simpleType>
+		           			<xs:restriction base="xs:string">
+		           				<xs:whiteSpace value="preserve" />
+		           				<xs:pattern value="[0-9]{16}" />
+		           			</xs:restriction>
+		           		</xs:simpleType>
+		           	</xs:element>
+					<xs:element minOccurs="0" name="c24_autenticacao">
+					<xs:annotation>
+						<xs:documentation>Autenticação bancária do pagamento da guia.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="TString">
+						<xs:maxLength value="23" />
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="c31_banco">
+					<xs:annotation>
+						<xs:documentation>Código do Banco onde foi paga a guia.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve" />
+						<xs:pattern value="[0-9]{3}" />
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="c32_agencia">
+					<xs:annotation>
+						<xs:documentation>Código da Agência bancária onde foi paga a guia.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve" />
+						<xs:pattern value="[0-9]{4,5}" />
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+					<xs:group ref="dadosGnre_1.00_4"/>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="1" name="situacao">
+				<xs:annotation>
+					<xs:documentation>
+						Indica o status do processamento da guia 
+						0 – Gerada com sucesso; 
+						1 – Erro de	preenchimento; 
+						2 – Erro de comunicação;
+						3 - Pendencia de tempo de processamento
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:whiteSpace value="preserve" />
+					<xs:enumeration value="0" />
+					<xs:enumeration value="1" />
+					<xs:enumeration value="2" />
+					<xs:enumeration value="3" />
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="erros">
+				<xs:annotation>
+				<xs:documentation>Erros no processamento da GNRE.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:choice>
+					<xs:element maxOccurs="unbounded" name="erro">
+					<xs:complexType>
+						<xs:sequence>
+						<xs:element minOccurs="0" name="campo" type="TCamposGNRE">
+							<xs:annotation>
+							<xs:documentation>Campo que apresentou erro durante o processamento.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="mensagem" type="xs:string">
+							<xs:annotation>
+							<xs:documentation>Mensagem com o motivo do erro gerado para o campo.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="linhaDigitavel">
+				<xs:annotation>
+				<xs:documentation>Linha digitável gerada nas UFs.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:whiteSpace value="preserve" />
+
+						<xs:length value="48"></xs:length>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="dataEmissao" type="TData">
+				<xs:annotation>
+				<xs:documentation>Data de emissão da guia. (Formato AAAA-MM-DD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="horaEmissao" type="xs:time">
+				<xs:annotation>
+				<xs:documentation>Hora de emissão da guia. (Formato HH:MM:SS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

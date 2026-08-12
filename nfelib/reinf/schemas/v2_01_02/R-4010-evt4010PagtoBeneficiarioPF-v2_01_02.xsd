@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.reinf.esocial.gov.br/schemas/evt4010PagtoBeneficiarioPF/v2_01_02" targetNamespace="http://www.reinf.esocial.gov.br/schemas/evt4010PagtoBeneficiarioPF/v2_01_02" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="./xmldsig-core-schema.xsd"/>
+  <xs:element name="Reinf">
+    <xs:annotation>
+      <xs:documentation>Escrituracao Fiscal Digital de Retencoes e Outras Informacoes Fiscais (EFD-Reinf)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtRetPF" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Evento pagamentos ou creditos efetuados a pessoa fisica</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de identificacao do evento</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="indRetif" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Indicativo de Retificacao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrRecibo" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Recibo arquivo a ser retificado</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="52"/>
+                          <xs:pattern value="[0-9]{1,18}[-][0-9]{2}[-][0-9]{4}[-][0-9]{4}[-][0-9]{1,18}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="perApur" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Periodo de apuracao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:gYearMonth">
+                          <xs:pattern value="20([1-9][0-9])-(0[1-9]|1[0-2])"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tpAmb" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Tipo de ambiente</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="procEmi" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Processo de emissao do evento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="verProc" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Versao do processo de emissao do evento. </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="20"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ideContri" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de identificacao do contribuinte</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Tipo de Inscricao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Numero de Inscricao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[0-9A-Z]{8}|[0-9]{11}|[0-9A-Z]{14}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="infoComplContri" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Informacoes complementares do contribuinte</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="natJur" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza juridica do declarante</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:integer">
+                                <xs:pattern value="\d{4}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ideEstab" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de identificacao do estabelecimento</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="tpInscEstab" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Tipo de inscricao do estabelecimento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2|3"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrInscEstab" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Numero de inscricao do estabelecimento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[0-9]{11}|[0-9A-Z]{14}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ideBenef" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Identificacao do beneficiario</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="cpfBenef" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>CPF do beneficiario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{11}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="nmBenef" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Nome do beneficiario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="70"/>
+                                <xs:whiteSpace value="preserve"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ideEvtAdic" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Identificador de evento adicional por beneficiario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="8"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ideDep" minOccurs="0" maxOccurs="999">
+                            <xs:annotation>
+                              <xs:documentation>Identificacao dos dependentes</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cpfDep" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Numero de inscricao no CPF</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:pattern value="\d{11}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="relDep" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Relacao de dependencia</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:unsignedByte">
+                                      <xs:pattern value="1|2|3|6|9|10|11|12|99"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="descrDep" minOccurs="0" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Descricao da dependencia</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="30"/>
+                                      <xs:whiteSpace value="preserve"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="idePgto" minOccurs="0" maxOccurs="100">
+                            <xs:annotation>
+                              <xs:documentation>Identificacao do rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Natureza do Rendimento</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:pattern value="\d{5}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="observ" minOccurs="0" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Observacoes</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="200"/>
+                                      <xs:whiteSpace value="preserve"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="infoPgto" minOccurs="1" maxOccurs="999">
+                                  <xs:annotation>
+                                    <xs:documentation>Informacoes relativas ao rendimento pago/creditado</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="dtFG" minOccurs="1" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Data do pagamento.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:date">
+                                            <xs:pattern value="20([1-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="compFP" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Competencia a que se refere os rendimentos</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="7"/>
+                                            <xs:pattern value="20([1-9][0-9])|20([1-9][0-9])-(0[1-9]|1[0-2])"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="indDecTerc" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Indicativo de decimo terceiro salario</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="S"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrRendBruto" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor do rendimento bruto</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:minLength value="4"/>
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrRendTrib" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor do rendimento tributavel</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrIR" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor da retencao do IR</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="indRRA" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Indicativo de RRA</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="S"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="indFciScp" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Indicativo de FCI ou SCP</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:unsignedByte">
+                                            <xs:pattern value="1|2"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="nrInscFciScp" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>CNPJ do FCI ou SCP</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="[0-9A-Z]{14}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="percSCP" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Percentual de participacao na SCP</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="(([0-9]|[1-9][0-9])[,][0-9])|100,0"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="indJud" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Indicativo de rendimento oriundo de decisao judicial</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="S|N"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="paisResidExt" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Codigo do Pais</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="\d{3}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="dtEscrCont" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Data da escrituracao contabil referente ao IRRF dos juros sobre capital proprio informada no evento R-4040.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:date">
+                                            <xs:pattern value="20[0-9]{2}-[0-1][0-9]-[0-3][0-9]"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="observ" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Observacoes</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="200"/>
+                                            <xs:whiteSpace value="preserve"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="detDed" minOccurs="0" maxOccurs="25">
+                                        <xs:annotation>
+                                          <xs:documentation>Informacoes relativas as deducoes do rendimento tributavel</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="indTpDeducao" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Indicativo do tipo de deducao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:minInclusive value="1"/>
+                                                  <xs:maxInclusive value="99"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrDeducao" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor da deducao do rendimento tributavel.</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="4"/>
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="infoEntid" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Possui informacoes da entidade?</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="S|N"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nrInscPrevComp" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Inscricao da entidade de previdencia complementar</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9A-Z]{14}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrPatrocFunp" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor da contribuicao do ente publico patrocinador</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="benefPen" minOccurs="0" maxOccurs="99">
+                                              <xs:annotation>
+                                                <xs:documentation>Dependentes e beneficiarios da pensao alimenticia</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="cpfDep" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Numero de inscricao no CPF</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:pattern value="\d{11}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="vlrDepen" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor com dependentes ou pensao alimenticia</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:minLength value="4"/>
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="rendIsento" minOccurs="0" maxOccurs="25">
+                                        <xs:annotation>
+                                          <xs:documentation>Rendimentos isentos ou nao tributaveis</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="tpIsencao" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Tipo de isencao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:minInclusive value="1"/>
+                                                  <xs:maxInclusive value="99"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrIsento" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor da parcela isenta</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="4"/>
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="descRendimento" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Descricao do rendimento isento/Nao tributavel</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="100"/>
+                                                  <xs:whiteSpace value="preserve"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="dtLaudo" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Data atribuida pelo laudo da molestia grave</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:date">
+                                                  <xs:pattern value="(19|20)[0-9]{2}-(0[1-9]|1[0-2])-[0-3][0-9]"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="infoProcRet" minOccurs="0" maxOccurs="50">
+                                        <xs:annotation>
+                                          <xs:documentation>Processos relacionados a nao retencao de tributos</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="tpProcRet" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Tipo de Processo</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nrProcRet" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Numero do Processo</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="1"/>
+                                                  <xs:maxLength value="21"/>
+                                                  <xs:pattern value="[0-9]{1,21}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="codSusp" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Codigo do indicativo da suspensao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9]{1,14}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrNRetido" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>IR nao retido.</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrDepJud" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor do deposito judicial</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrCmpAnoCal" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor da compensacao relativa ao ano calendario</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrCmpAnoAnt" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor da compensacao relativa a anos anteriores</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrRendSusp" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor do rendimento com exigibilidade suspensa</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="dedSusp" minOccurs="0" maxOccurs="25">
+                                              <xs:annotation>
+                                                <xs:documentation>Detalhamento das deducoes suspensas</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="indTpDeducao" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Indicativo do tipo de deducao</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:unsignedByte">
+                                                        <xs:minInclusive value="1"/>
+                                                        <xs:maxInclusive value="99"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="vlrDedSusp" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor da deducao suspensa</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="benefPen" minOccurs="0" maxOccurs="99">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Deducoes suspensas por dependentes e beneficiarios da pensao alimenticia</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="cpfDep" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Numero de inscricao no CPF</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:pattern value="\d{11}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="vlrDepenSusp" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Valor suspenso com dependentes ou pensao alimenticia</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:minLength value="4"/>
+                                                              <xs:maxLength value="15"/>
+                                                              <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="infoRRA" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Informacoes complementares - RRA</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="tpProcRRA" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Tipo de Processo/Requerimento:</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2|3"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nrProcRRA" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Numero do processo/requerimento administrativo/judicial</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="21"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="indOrigRec" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Indicativo de origem dos recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="descRRA" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Descricao do RRA</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="50"/>
+                                                  <xs:whiteSpace value="preserve"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="qtdMesesRRA" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Quantidade de meses</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="3"/>
+                                                  <xs:maxLength value="6"/>
+                                                  <xs:pattern value="([0-9])*[0-9],[0-9]"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="cnpjOrigRecurso" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>CNPJ da empresa que repassou os recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9A-Z]{14}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="cpfOrigRecurso" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>CPF da origem dos recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9]{11}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="despProcJud" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Despesas com processo judicial</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="vlrDespCustas" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor da despesa com custas judiciais</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:minLength value="4"/>
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="vlrDespAdvogados" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor da despesa com advogado(s)</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:minLength value="4"/>
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="ideAdv" minOccurs="0" maxOccurs="99">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Identificacao do advogado</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="tpInscAdv" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Tipo de inscricao do advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:unsignedByte">
+                                                              <xs:pattern value="1|2"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="nrInscAdv" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Informar o numero de inscricao do advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:pattern value="[0-9]{11}|[0-9A-Z]{14}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="vlrAdv" minOccurs="0" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Valor da despesa com o advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:maxLength value="15"/>
+                                                              <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="infoProcJud" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Informacoes de processo judicial</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="nrProc" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Numero do Processo</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="1"/>
+                                                  <xs:maxLength value="21"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="indOrigRec" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Indicativo de origem dos recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="cnpjOrigRecurso" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>CNPJ da empresa que repassou os recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9A-Z]{14}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="cpfOrigRecurso" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>CPF da origem dos recursos</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9]{11}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="desc" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Descricao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="50"/>
+                                                  <xs:whiteSpace value="preserve"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="despProcJud" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Despesas com processo judicial</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="vlrDespCustas" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor da despesa com custas judiciais</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:minLength value="4"/>
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="vlrDespAdvogados" minOccurs="1" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Valor da despesa com advogado(s)</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:minLength value="4"/>
+                                                        <xs:maxLength value="15"/>
+                                                        <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="ideAdv" minOccurs="0" maxOccurs="99">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Identificacao do advogado</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="tpInscAdv" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Tipo de inscricao do advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:unsignedByte">
+                                                              <xs:pattern value="1|2"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="nrInscAdv" minOccurs="1" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Informar o numero de inscricao do advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:pattern value="[0-9]{11}|[0-9A-Z]{14}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="vlrAdv" minOccurs="0" maxOccurs="1">
+                                                          <xs:annotation>
+                                                            <xs:documentation>Valor da despesa com o advogado</xs:documentation>
+                                                          </xs:annotation>
+                                                          <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:maxLength value="15"/>
+                                                              <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="infoPgtoExt" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Informacoes complementares relativas a pagamentos no Exterior</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="indNIF" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Indicativo do preenchimento do NIF</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2|3"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nifBenef" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>NIF do beneficiario</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="30"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="frmTribut" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Forma de tributacao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="endExt" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Endereco do beneficiario residente ou domiciliado no exterior</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="dscLograd" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Descricao do logradouro</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="80"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="nrLograd" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Numero do imovel no logradouro</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="10"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="complem" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Complemento</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="30"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="bairro" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Nome do bairro/distrito</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="60"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="cidade" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Nome da cidade</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="40"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="estado" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Nome da provincia/estado</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="40"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="codPostal" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>CEP</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="12"/>
+                                                        <xs:whiteSpace value="preserve"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="telef" minOccurs="0" maxOccurs="1">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Telefone</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:pattern value="[0-9]{0,15}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ideOpSaude" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation>Identificacao da operadora do plano privado coletivo empresarial de assistencia a saude</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Numero de Inscricao</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:pattern value="[0-9A-Z]{14}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="regANS" minOccurs="0" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Registro na ANS</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:pattern value="\d{6}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="vlrSaude" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Valor pago ao plano de saude</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="4"/>
+                                      <xs:maxLength value="15"/>
+                                      <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="infoReemb" minOccurs="0" maxOccurs="99">
+                                  <xs:annotation>
+                                    <xs:documentation>Informacao de reembolso do titular do plano de saude coletivo empresarial</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Tipo de Inscricao</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:unsignedByte">
+                                            <xs:pattern value="1|2"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Numero de Inscricao</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="[0-9]{11}|[0-9A-Z]{14}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrReemb" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor do reembolso na competencia</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrReembAnt" minOccurs="0" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor do reembolso relativo a anos anteriores</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="infoDependPl" minOccurs="0" maxOccurs="99">
+                                  <xs:annotation>
+                                    <xs:documentation>Informacoes de dependente do plano de saude coletivo empresarial</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="cpfDep" minOccurs="1" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Numero de inscricao no CPF</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="\d{11}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="vlrSaude" minOccurs="1" maxOccurs="1">
+                                        <xs:annotation>
+                                          <xs:documentation>Valor pago ao plano de saude</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                          <xs:restriction base="xs:string">
+                                            <xs:minLength value="4"/>
+                                            <xs:maxLength value="15"/>
+                                            <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="infoReembDep" minOccurs="0" maxOccurs="99">
+                                        <xs:annotation>
+                                          <xs:documentation>Informacao de reembolso do dependente do plano de saude coletivo empresarial</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Tipo de Inscricao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:unsignedByte">
+                                                  <xs:pattern value="1|2"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Numero de Inscricao</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:pattern value="[0-9]{11}|[0-9A-Z]{14}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrReemb" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor do reembolso na competencia</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrReembAnt" minOccurs="0" maxOccurs="1">
+                                              <xs:annotation>
+                                                <xs:documentation>Valor do reembolso relativo a anos anteriores</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="15"/>
+                                                  <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" use="required">
+              <xs:annotation>
+                <xs:documentation>Identificacao unica do evento</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:ID">
+                  <xs:length value="36"/>
+                  <xs:pattern value="I{1}D{1}[0-9]{1}[0-9A-Z]{12}[0-9]{21}"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

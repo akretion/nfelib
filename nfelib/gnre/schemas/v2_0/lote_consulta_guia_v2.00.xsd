@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.gnre.pe.gov.br"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.gnre.pe.gov.br" 
+	attributeFormDefault="unqualified">
+	<xs:include xmlns="http://www.gnre.pe.gov.br" schemaLocation="tiposBasicoGNRE_v2.00.xsd"/>
+	<xs:element name="TLote_ConsultaGNRE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="consulta" minOccurs="1" maxOccurs="50">
+					<xs:complexType>
+						<xs:sequence>
+					   		<xs:element name="uf" type="TUf" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Sigla da UF</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="emitenteId" minOccurs="0"	maxOccurs="1" type="TIdentificacao2">
+								<xs:annotation>
+                       				<xs:documentation>Identificação do emitente. CPF, CNPJ ou IE.</xs:documentation>
+                       			</xs:annotation>
+							</xs:element>
+							<xs:element name="codBarras" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+                       				<xs:documentation>Código de barras da GNRE. 44 ou 48 dígitos.</xs:documentation>
+                       			</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="[0-9]{44}|[0-9]{48}"/>
+									</xs:restriction>
+								</xs:simpleType>								
+							</xs:element>
+							<xs:element name="numControle" minOccurs="0" maxOccurs="1">
+                       			<xs:annotation>
+                       				<xs:documentation>Número de Controle da GNRE</xs:documentation>
+                       			</xs:annotation>
+                       			<xs:simpleType>
+                       				<xs:restriction base="xs:string">                       					
+                       					<xs:pattern	value="[0-9]{10,16}" />
+                       				</xs:restriction>
+                       			</xs:simpleType>
+                       		</xs:element>
+               				<xs:element name="docOrigem" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										Número e tipo do Documento de Origem.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="TDocOrigem">
+											<xs:attribute name="tipo" use="required">
+												<xs:simpleType>
+													<xs:restriction	base="xs:string">
+														<xs:pattern value="[0-9]{2}" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="idConsulta" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+                       				<xs:documentation>Texto livre para ser utilizado como identificador da consulta no lote</xs:documentation>
+                       			</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:maxLength value="10"></xs:maxLength>
+										<xs:pattern value="[0-9]{1,10}"></xs:pattern>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="tipoConsulta" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Tipo da Consulta. 
+C: Consulta por codigo de barras
+N: Consulta por numero controle
+D: Consulta por documento origem
+CD: Consulta por codigo de barras mais documento de origem
+ND: Consulta por numero de controle mais documento de origem
+CR: Consulta por codigo de barras mais codigo da receita
+NR: Consulta por numero de controle mais codigo da receita</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="C"></xs:enumeration>
+										<xs:enumeration value="N"></xs:enumeration>
+										<xs:enumeration value="D"></xs:enumeration>
+										<xs:enumeration value="CD"></xs:enumeration>
+										<xs:enumeration value="ND"></xs:enumeration>
+										<xs:enumeration value="CR"></xs:enumeration>
+										<xs:enumeration value="NR"></xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>		
+			<xs:attribute name="versao" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d\.\d{2}"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

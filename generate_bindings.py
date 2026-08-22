@@ -150,6 +150,11 @@ SCHEMAS: Final[dict[str, SchemaConfig]] = {
         schema_dir="nfelib/nfse/schemas/v1_0",
         package="nfelib.nfse.bindings.v1_0",
     ),
+    "gnre": SchemaConfig(
+        name="gnre",
+        schema_dir="nfelib/gnre/schemas/v2_0",
+        package="nfelib.gnre.bindings.v2_0",
+    ),
 }
 
 DOWNLOAD_URLS: Final[dict[str, str]] = {

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0.0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:reinf="http://www.reinf.esocial.gov.br/schemas/retornoLoteEventosAssincrono/v1_00_00"
+           targetNamespace="http://www.reinf.esocial.gov.br/schemas/retornoLoteEventosAssincrono/v1_00_00"
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+
+  <xs:element name="Reinf">
+    <xs:annotation>
+      <xs:documentation>Elemento raiz do Reinf.</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="retornoLoteEventosAssincrono">
+          <xs:annotation>
+            <xs:documentation>
+              Xml de retorno da recepcao/processamento do lote assincrono.
+            </xs:documentation>
+          </xs:annotation>
+
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="ideContribuinte" type="reinf:TIdeContribuinte" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Identificação do Contribuinte.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+
+              <xs:element name="status" type="reinf:TStatus" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Contém o status atual do lote.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+
+              <xs:element name="dadosRecepcaoLote" type="reinf:TDadosRecepcao"  minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Contém os dados de recepção do lote.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+
+              <xs:element name="dadosProcessamentoLote" type="reinf:TDadosProcessamento"  minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Contém os dados de processamento do lote.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+
+              <xs:element name="retornoEventos"  minOccurs="0" >
+                <xs:annotation>
+                  <xs:documentation>Contém o(s) resultado(s) do processamento dos eventos do lote.</xs:documentation>
+                </xs:annotation>
+
+                <xs:complexType>
+                  <xs:sequence maxOccurs="50">
+                    <xs:element name="evento">
+                      <xs:complexType>
+
+                        <xs:sequence>
+                          <xs:element name="retornoEvento" type="reinf:TArquivoReinf">
+                            <xs:annotation>
+                              <xs:documentation>Contém o recibo do evento se o mesmo foi recebido com sucesso, ou as inconsistências caso não tenha sido recebido.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+
+                        <xs:attribute name="Id" use="required" type="xs:ID">
+                          <xs:annotation>
+                            <xs:documentation>
+                              É através deste atributo que o contribuinte conseguirá fazer o mapeamento
+                              entre o evento que ele enviou e o resultado do processamento de cada evento.
+                            </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="evtDupl" use="optional" type="xs:boolean">
+                          <xs:annotation>
+                            <xs:documentation>
+                              Este atributo indica se o recibo que está sendo retornado é de um evento que já foi recebido anteriormente ou não.
+                              Ele somente será preenchido no caso de ser true.
+                            </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="TIdeContribuinte">
+    <xs:annotation>
+      <xs:documentation>Define a identificação do Contribuinte.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>
+              Preencher com o código correspondente ao tipo de inscrição.
+              Deve ser igual a [1] (CNPJ) ou [2] (CPF)
+            </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:unsignedByte">
+            <xs:pattern value="1|2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Número de inscrição do contribuinte de acordo com o tipo de inscrição indicado.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="8"/>
+            <xs:maxLength value="14"/>
+            <xs:pattern value="[0-9A-Z]{8}|[0-9]{11}|[0-9A-Z]{14}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TDadosRecepcao">
+    <xs:annotation>
+      <xs:documentation>Define os dados de recepção de um arquivo de lote.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="dhRecepcao" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Data hora recepção.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="versaoAplicativoRecepcao">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo de recepção.</xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="protocoloEnvio">
+        <xs:annotation>
+          <xs:documentation>
+            Código de retorno para localização do lote.
+            Número sequencial único produzido no instante de recepção da mensagem originada no empregador.
+            São válidos os seguintes intervalos, expressos na base decimal:
+            Formato: X.AAAAMM.NNNNNNNNNNNNNNNNNNN
+            Onde:
+            X = Ambiente de recepção: Produção=1; Pré-Produção=2; Homologação=3; Desenvolvimento=4
+            AAAAMM = Ano e Mês em que o lote foi recebido.
+            N = Número sequencial (pode variar de 1 a 19 posições)
+            Exemplo:
+            1.202003.123
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="28" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TDadosProcessamento">
+    <xs:annotation>
+      <xs:documentation>Define os dados de processamento de um lote de eventos.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="versaoAplicativoProcessamentoLote" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo de processamento do lote.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TArquivoReinf">
+    <xs:annotation>
+      <xs:documentation>
+        Define os dados de um arquivo do Reinf (evento).
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:any processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Contém xml com o retorno do processamento do evento. (conforme Xsd retornoEvento)</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TStatus">
+    <xs:annotation>
+      <xs:documentation>Contém o status atual do lote ou do Evento.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="cdResposta" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Código de resposta do processamento do lote.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="descResposta">
+        <xs:annotation>
+          <xs:documentation>Contém a descrição correspondente ao código de resposta.</xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="2048" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="ocorrencias" type="reinf:TOcorrencias" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Contém as ocorrências encontradas durante a validação do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TOcorrencias">
+    <xs:annotation>
+      <xs:documentation>Define uma ocorrências encontrada no processamento de um arquivo.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="ocorrencia" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+
+            <xs:element name="codigo" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Código da ocorrência</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="descricao">
+              <xs:annotation>
+                <xs:documentation>Descrição da ocorrência</xs:documentation>
+              </xs:annotation>
+
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="2048" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="tipo" type="xs:unsignedByte">
+              <xs:annotation>
+                <xs:documentation>Contém o tipo da ocorrência: 1 - Erro, 2 - Advertência</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="localizacao" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Contém o caminho do registro e/ou campo em que ocorreu o erro.</xs:documentation>
+              </xs:annotation>
+
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="2048" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

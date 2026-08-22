@@ -11,6 +11,7 @@
     <UnnestClasses>false</UnnestClasses>
   </Output>
   <Extensions>
+    <Extension type="class" class="^Reinf$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tnfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^TnfeProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^TprotNfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>

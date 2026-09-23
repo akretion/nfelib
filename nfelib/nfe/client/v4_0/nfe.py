@@ -397,14 +397,25 @@ class NfeClient(FiscalClient):
             pass
 
         proc_envio = self.envia_documento(lista_nfes)
-        if self.envio_sincrono:
+        resposta = proc_envio.resposta if self.wrap_response else proc_envio
+
+        # Terminal synchronous answer: SEFAZ processed the batch at once,
+        # there is no receipt to consult (cStat 104 without infRec). This
+        # covers both envio_sincrono clients and SEFAZ states that answer
+        # synchronously to nfeAutorizacao4.
+        if self.envio_sincrono or (
+            resposta.cStat == "104" and not getattr(resposta, "infRec", None)
+        ):
             self.monta_processo(lista_nfes, proc_envio)
+            yield proc_envio
+            return
+
         yield proc_envio
 
-        if (proc_envio.resposta if self.wrap_response else proc_envio).cStat not in (
+        if resposta.cStat not in (
             "103",
             "104",
-        ) or self.envio_sincrono:
+        ):
             return
 
         #

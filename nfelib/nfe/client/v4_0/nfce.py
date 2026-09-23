@@ -77,6 +77,21 @@ class NfceClient(NfeClient):
         qr_hash = self._compute_qr_hash(pre_qrcode_with_csc)
         return self._build_qrcode(pre_qrcode_normal, qr_hash)
 
+    def monta_qrcode_contingencia(self, edoc_obj: Tnfe) -> str:
+        """Monta o QR code de contingência assinando o documento internamente.
+
+        Facade that signs the NFC-e binding with the client's certificate,
+        so callers do not have to pass pkcs12 data again.
+        """
+        xml_file = edoc_obj.to_xml()
+        signed_xml = edoc_obj.sign_xml(
+            xml_file,
+            self.pkcs12_data,
+            self.pkcs12_password,
+            edoc_obj.infNFe.Id,
+        )
+        return self._generate_qrcode_contingency(edoc_obj, signed_xml)
+
     def _generate_qrcode_contingency(self, edoc_obj: Tnfe, signed_xml: str) -> str:
         xml_tree = etree.fromstring(signed_xml.encode("utf-8"))
         chave_nfce = edoc_obj.infNFe.Id.replace("NFe", "")
@@ -170,6 +185,11 @@ class NfceClient(NfeClient):
                 f"URL de Consulta não encontrada para UF {uf_sigla} no ambiente {self.ambiente}"
             )
         return url
+
+    @property
+    def consulta_qrcode_url(self) -> str:
+        """Alias kept for erpbrasil.edoc compatibility."""
+        return self.get_consulta_url()
 
     @staticmethod
     def uf_code_to_sigla(uf_code: str) -> str:

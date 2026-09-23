@@ -2,6 +2,7 @@
 
 from __future__ import annotations  # Python 3.8 compat
 
+import base64
 import os
 import warnings
 from os import environ
@@ -105,6 +106,21 @@ class CommonMixin:
             )
         return "undef"
 
+    @staticmethod
+    def normalize_pkcs12(pkcs12_data):
+        """Normalize a PKCS12 input to the base64 form erpbrasil.assinatura
+        expects, accepting raw PFX bytes as well.
+
+        Odoo stores the PFX in a Binary field (base64 when read), while some
+        callers (e.g. the Odoo 18 core certificate module consumers) hand over
+        the decoded PFX: both are accepted here, like erpbrasil's Certificado
+        accepted a path, base64 or bytes.
+        """
+        if isinstance(pkcs12_data, bytes) and pkcs12_data[:1] == b"\x30":
+            # ASN.1 SEQUENCE: a raw (DER) PFX, not base64 text
+            return base64.b64encode(pkcs12_data)
+        return pkcs12_data
+
     @classmethod
     def sign_xml(
         cls,
@@ -126,7 +142,7 @@ class CommonMixin:
             raise (RuntimeError("erpbrasil.assinatura package is not installed!"))
 
         certificate = cert.Certificado(
-            arquivo=environ.get("CERT_FILE", pkcs12_data),
+            arquivo=environ.get("CERT_FILE", cls.normalize_pkcs12(pkcs12_data)),
             senha=environ.get("CERT_PASSWORD", pkcs12_password),
         )
         xml_etree = etree.fromstring(xml.encode("utf-8"))

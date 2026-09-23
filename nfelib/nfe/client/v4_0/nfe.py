@@ -13,6 +13,7 @@ from brazil_fiscal_client.fiscal_client import (
     WrappedResponse,
 )
 from lxml import etree
+from xsdata.formats.dataclass.parsers import XmlParser
 
 from nfelib import CommonMixin
 from nfelib.nfe.bindings.v4_0.cons_reci_nfe_v4_00 import ConsReciNfe
@@ -437,6 +438,13 @@ class NfeClient(FiscalClient):
         yield proc_recibo
 
     def monta_processo(self, lista_nfes, proc_envio, proc_recibo=None):
+        """Populate the processo/protocolo on the wrapped response.
+
+        Mirrors the erpbrasil.edoc behavior: the final response carries the
+        authorization protocol (``protocolo``) and the assembled nfeProc
+        (``processo`` / ``processo_xml``) so that consumers do not have to
+        reassemble it.
+        """
         nfe = lista_nfes[0]  # TODO could be a collection...
         if proc_recibo:
             if self.wrap_response:
@@ -448,25 +456,17 @@ class NfeClient(FiscalClient):
             if self.wrap_response:
                 proc_envio = proc_envio.resposta
             protocolos = proc_envio.protNFe
-        if False:  # TODO finish if len(nfe) and protocolos:
-            if not isinstance(protocolos, list):
-                protocolos = [protocolos]
-            for protocolo in protocolos:
-                from nfelib.nfe.bindings.v4_0.proc_nfe_v4_00 import NfeProc
-
-                nfe_proc = NfeProc(
-                    versao=self.versao,
-                    protNFe=protocolo,
-                )
-                xml_file, nfe_proc = self._generateds_to_string_etree(nfe_proc)
-                prot_nfe = nfe_proc.find("{" + self._namespace + "}protNFe")
-                prot_nfe.addprevious(nfe)
-
-                proc = proc_recibo if proc_recibo else proc_envio
-                proc.processo = nfe_proc
-                proc.processo_xml = self._generateds_to_string_etree(nfe_proc)[0]
-                proc.protocolo = protocolo
-            return True
+        if not protocolos:
+            return
+        if not isinstance(protocolos, list):
+            protocolos = [protocolos]
+        # nb: the localization only sends one NFe per batch.
+        protocolo = protocolos[0]
+        proc = proc_recibo if proc_recibo else proc_envio
+        proc.protocolo = protocolo
+        proc_nfe_xml = self.monta_nfe_proc(nfe, protocolo)
+        proc.processo_xml = proc_nfe_xml
+        proc.processo = XmlParser().from_string(proc_nfe_xml, NfeProc)
 
     def monta_nfe_proc(self, nfe, prot_nfe: TprotNfe):
         """Constrói e retorna o XML do processo da NF-e,
@@ -476,8 +476,9 @@ class NfeClient(FiscalClient):
             nfe = nfe.decode("utf-8")
         if isinstance(nfe, str):
             nfe = Tnfe.from_xml(nfe)
-        else:
-            nfe = etree.tostring(nfe).decode("utf-8")
+        elif not isinstance(nfe, Tnfe):
+            # lxml element (e.g. extracted from a saved enviNFe)
+            nfe = Tnfe.from_xml(etree.tostring(nfe).decode("utf-8"))
 
         if isinstance(prot_nfe, WrappedResponse):
             # TODO it seems monta_nfe_proc is called

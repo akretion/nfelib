@@ -61,13 +61,12 @@ class MdeClient(FiscalClient):
 
         server_key = "AN"  # Always use Ambiente Nacional
         server_data = SERVERS_NFE[server_key]
-        server_host = (
-            server_data["prod_server"]
+        endpoints = (
+            server_data["prod_endpoints"]
             if self.ambiente == Tamb.PROD.value
-            else server_data["dev_server"]
+            else server_data["dev_endpoints"]
         )
-        path = server_data["endpoints"][endpoint_type]
-        location = f"https://{server_host}{path}"
+        location = endpoints[endpoint_type]
         _logger.debug(
             f"Determined MD-e location for {endpoint_type.name} "
             f"(Amb: {self.ambiente}): {location}"

@@ -505,8 +505,16 @@ class NfeClient(FiscalClient):
 
         return nfe_proc.to_xml()
 
-    def envia_inutilizacao(self, inut: Any) -> Optional[RetInutNfe]:
-        """Envia um pedido de inutilização de numeração (XML já assinado)."""
+    def envia_inutilizacao(
+        self, inut: Any = None, *, evento: Any = None
+    ) -> Optional[RetInutNfe]:
+        """Envia um pedido de inutilização de numeração (XML já assinado).
+
+        Accepts the erpbrasil.edoc ``evento=`` keyword for compatibility.
+        """
+        inut = inut if inut is not None else evento
+        if inut is None:
+            raise ValueError("inut (or evento) is required")
         if not isinstance(inut, str):
             inut = inut.to_xml()
         if "X509Certificate" not in inut:

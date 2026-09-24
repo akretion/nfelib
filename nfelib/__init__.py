@@ -15,7 +15,7 @@ from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-__version__ = "2.5.2"
+__version__ = "2.5.3"
 
 
 # mypy: disable-error-code = attr-defined

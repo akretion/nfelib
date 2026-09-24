@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 
 import pytest
+from requests.exceptions import RequestException
 
 from nfelib.mdfe.client.v3_0.servers_scraper import main
 
@@ -18,7 +19,10 @@ def read_current_servers():
 )
 def test_scraper():
     old_content = read_current_servers()
-    main()
+    try:
+        main()
+    except RequestException as exc:
+        pytest.skip(f"Gov portal unreachable, cannot verify server list: {exc}")
     new_content = read_current_servers()
     assert new_content == old_content, (
         "Server list has changed. Review and commit the new file."

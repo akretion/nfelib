@@ -251,7 +251,9 @@ def _post_process_py39(base_path: Path) -> None:
     if not base_path.exists():
         return
 
-    pattern = re.compile(r"(?P<head>:\s*)(?P<none>None)\s*\|\s*(?P<type>\S+)(?P<tail>\s*=\s*field)")
+    pattern = re.compile(
+        r"(?P<head>:\s*)(?P<none>None)\s*\|\s*(?P<type>\S+)(?P<tail>\s*=\s*field)"
+    )
     optional = re.compile(r"from typing import .*\bOptional\b")
 
     for path in base_path.rglob("*.py"):

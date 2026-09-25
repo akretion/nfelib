@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="TChDFeRTC">
+		<xs:annotation>
+			<xs:documentation>Tipo Chave de Documento Fiscal Eletrônico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:maxLength value="44"/>
+			<xs:pattern value="[0-9]{6}[A-Z0-9]{12}[0-9]{26}"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="TStringRTC">
 		<xs:annotation>
 			<xs:documentation> Tipo string genérico</xs:documentation>
@@ -1157,6 +1167,41 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 					<xs:documentation>Percentual de redução de aliquota em compra governamental</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="tpOperGov" type="TOperCompraGov">
+				<xs:annotation>
+					<xs:documentation>Tipo da operação com ente governamental:
+1 - Fornecimento
+2 - Recebimento do Pagamento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refDFeAnt" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Chave de acesso do documento fiscal anterior.
+
+Caso o tipo de operação de compra governamental seja de recebimento do pagamento e o fornecimento tenha sido realizado antes, o DFe anterior referenciado deve ser da compra governamental de fornecimento.
+
+No momento da emissão do DFe de compra governamental de fornecimento, caso o pagamento já tenho ocorrido, deverá ser referenciado a chave de acesso do DFe de recebimento do pagamento.
+
+Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TPagAntecipado">
+		<xs:annotation>
+			<xs:documentation>Tipo Pagamento Antecipado
+
+Informado para abater as parcelas de antecipação de pagamento, conforme art. 10 §4</xs:documentation>
+			<xs:documentation>Cada DFe que utilizar deverá utilizar esses tipo no grupo ide</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="refDFe" maxOccurs="99">
+				<xs:annotation>
+					<xs:documentation>Chave de acesso do documento fiscal de antecipação de pagamento
+
+Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TCompraGov">
@@ -1316,13 +1361,7 @@ OBS: Percentuais definidos no art. 450, § 1º, da LC 214/25 para o cálculo do 
 		<xs:sequence>
 			<xs:element name="tpMeioPgto" type="TMeioPgto">
 				<xs:annotation>
-					<xs:documentation>Meio de pagamento:
-01-Boleto
-02-Pix QRCode dinâmico
-03-Pix automático
-04-Pix chave ou QRCode estático
-05-TED
-06-TEF / booktransfer</xs:documentation>
+					<xs:documentation>(Meio de pagamento utilizado (ver IT DFe 2026.001)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="CNPJReceb" type="TCnpjRTC">
@@ -1367,12 +1406,7 @@ OBS: Percentuais definidos no art. 450, § 1º, da LC 214/25 para o cálculo do 
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>
-			<xs:enumeration value="01"/>
-			<xs:enumeration value="02"/>
-			<xs:enumeration value="03"/>
-			<xs:enumeration value="04"/>
-			<xs:enumeration value="05"/>
-			<xs:enumeration value="06"/>
+			<xs:pattern value="[0-9]{2}"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

@@ -240,19 +240,28 @@ def _apply_patches() -> None:
 
 
 def _post_process_py39(base_path: Path) -> None:
-    """Rewrite PEP 604 union syntax in generated files to Python 3.9-compatible types.
+    """Rewrite Python 3.10+ only syntax in generated files for Python 3.9.
 
-    xsdata 25 with ``PostponedAnnotations=true`` still emits ``None | str`` for
-    some fields. Python 3.9 can parse the annotation as a string because of
-    ``from __future__ import annotations``, but ``typing.get_type_hints()`` fails
-    to evaluate it. We rewrite these to ``Optional[str]`` so runtime introspection
-    works on Python 3.9.
+    Two rewrites, both needed because ``typing.get_type_hints()`` and
+    ``dataclasses`` are evaluated at runtime by the spec import:
+
+    1. PEP 604 unions: xsdata 25+ emits ``None | str`` for some fields
+       (even more with ``PostponedAnnotations=false``). Python 3.9 can parse
+       the annotation as a string thanks to ``from __future__ import
+       annotations``, but ``typing.get_type_hints()`` fails to evaluate it.
+       Rewritten to ``Optional[str]``.
+    2. ``@dataclass(kw_only=True)``: emitted by xsdata 26 for classes with
+       mandatory fields. The ``kw_only`` parameter only exists on
+       Python >= 3.10, so class creation crashes on 3.9. Dropped: every
+       field already carries a default (optional-defaults patch), so the
+       keyword-vs-positional distinction is irrelevant for our bindings.
     """
     if not base_path.exists():
         return
 
     pattern = re.compile(r"(?P<head>:\s*)(?P<none>None)\s*\|\s*(?P<type>\S+)(?P<tail>\s*=\s*field)")
     optional = re.compile(r"from typing import .*\bOptional\b")
+    kw_only = re.compile(r"@dataclass\(kw_only=True\)\n")
 
     for path in base_path.rglob("*.py"):
         if path.name == "__init__.py":
@@ -260,19 +269,26 @@ def _post_process_py39(base_path: Path) -> None:
 
         text = path.read_text()
         if "None |" not in text and "| None" not in text:
-            continue
+            count = 0
+        else:
+            new_text, count = pattern.subn(r"\g<head>Optional[\g<type>]\g<tail>", text)
+            if count:
+                # Ensure ``from typing import Optional`` is present.
+                if not optional.search(new_text):
+                    new_text = new_text.replace(
+                        "from typing import dataclass, field",
+                        "from typing import Optional, dataclass, field",
+                        1,
+                    )
+                text = new_text
 
-        new_text, count = pattern.subn(r"\g<head>Optional[\g<type>]\g<tail>", text)
-        if count:
-            # Ensure ``from typing import Optional`` is present.
-            if not optional.search(new_text):
-                new_text = new_text.replace(
-                    "from typing import dataclass, field",
-                    "from typing import Optional, dataclass, field",
-                    1,
-                )
-            path.write_text(new_text)
-            print(f"  rewritten {count} union(s) in {path}")
+        kw_count = 0
+        if "@dataclass(kw_only=True)" in text:
+            text, kw_count = kw_only.subn("@dataclass\n", text)
+
+        if count or kw_count:
+            path.write_text(text)
+            print(f"  rewritten {count} union(s), {kw_count} kw_only in {path}")
 
 
 # ---------------------------------------------------------------------------

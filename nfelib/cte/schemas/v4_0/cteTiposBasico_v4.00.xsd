@@ -571,19 +571,6 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 											<xs:documentation>Endereço do emitente</xs:documentation>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="ISUFEmit" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
-											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:minLength value="8"/>
-												<xs:maxLength value="9"/>
-												<xs:whiteSpace value="preserve"/>
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1618,35 +1605,6 @@ para tpEmis diferente de 1</xs:documentation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="tpPagAnt" type="TPagAnt" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
-											<xs:documentation>Informar:
-1 - Pagamento Antecipado 
-3 - Fornecimento com pagamento realizado anteriormente
-
-Este campo é opcional e apenas deve ser informado em caso de Antecipação de Pagamento e no CTe de fornecimento associada a esses pagamentos antecipados, demais hipóteses de prestação de serviço sem antecipação não devem preencher.</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="gPagAntecipado" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Grupo de antecipação de pagamento
-
-Permite informar apenas quando tpPagAnt=3</xs:documentation>
-											<xs:documentation>Informado para abater as parcelas de antecipação de
-pagamento, conforme Art. 10. § 4º </xs:documentation>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence maxOccurs="99">
-												<xs:element name="chDFePagAnt" type="TChDFe">
-													<xs:annotation>
-														<xs:documentation>Chave de acesso do DFe de antecipação de pagamento (com tpPagAnt=1)</xs:documentation>
-														<xs:documentation>Referência a CTe emitido anteriormente, referente a pagamento antecipado</xs:documentation>
-													</xs:annotation>
-												</xs:element>
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1903,19 +1861,6 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 4=Simples Nacional - Microempreendedor Individual – MEI.
 </xs:documentation>
 										</xs:annotation>
-									</xs:element>
-									<xs:element name="ISUFEmit" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
-											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:minLength value="8"/>
-												<xs:maxLength value="9"/>
-												<xs:whiteSpace value="preserve"/>
-											</xs:restriction>
-										</xs:simpleType>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -3219,33 +3164,6 @@ para tpEmis diferente de 1</xs:documentation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="tpPagAnt" type="TPagAnt" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
-											<xs:documentation>Informar:
-1 - Pagamento Antecipado 
-3 - Fornecimento com pagamento realizado anteriormente
-
-Este campo é opcional e apenas deve ser informado quando pagamento que ocorre antes da prestação do serviço e na DFe de fornecimento associada a esses pagamentos, demais hipóteses de prestação de serviço sem antecipação não devem preencher.</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-									<xs:element name="gPagAntecipado" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Grupo de antecipação de pagamento</xs:documentation>
-											<xs:documentation>Informado para abater as parcelas de antecipação de
-pagamento, conforme Art. 10. § 4º </xs:documentation>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:sequence maxOccurs="99">
-												<xs:element name="chCTePagAnt" type="TChDFe">
-													<xs:annotation>
-														<xs:documentation>Chave de acesso do CTe de antecipação de pagamento</xs:documentation>
-														<xs:documentation>Referência a CTe emitido anteriormente, referente a pagamento antecipado</xs:documentation>
-													</xs:annotation>
-												</xs:element>
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -3721,19 +3639,6 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 4=Simples Nacional - Microempreendedor Individual – MEI.
 </xs:documentation>
 										</xs:annotation>
-									</xs:element>
-									<xs:element name="ISUFEmit" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
-											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:minLength value="8"/>
-												<xs:maxLength value="9"/>
-												<xs:whiteSpace value="preserve"/>
-											</xs:restriction>
-										</xs:simpleType>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -5615,19 +5520,6 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="ISUFEmit" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
-											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:minLength value="8"/>
-												<xs:maxLength value="9"/>
-												<xs:whiteSpace value="preserve"/>
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -6193,15 +6085,10 @@ Somente para Transporte de Valores</xs:documentation>
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="chCTe">
+													<xs:element name="chCTe" type="TChDFe">
 														<xs:annotation>
 															<xs:documentation>Chave de acesso da GTV-e</xs:documentation>
 														</xs:annotation>
-														<xs:simpleType>
-															<xs:restriction base="xs:string">
-																<xs:pattern value="[0-9]{44}"/>
-															</xs:restriction>
-														</xs:simpleType>
 													</xs:element>
 													<xs:element name="Comp" maxOccurs="unbounded">
 														<xs:annotation>
@@ -6300,33 +6187,6 @@ Somente para Transporte de Valores</xs:documentation>
 							<xs:annotation>
 								<xs:documentation>Informações do Responsável Técnico pela emissão do DF-e</xs:documentation>
 							</xs:annotation>
-						</xs:element>
-						<xs:element name="tpPagAnt" type="TPagAnt" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
-								<xs:documentation>Informar:
-1 - Pagamento Antecipado 
-3 - Fornecimento com pagamento realizado anteriormente
-
-Este campo é opcional e apenas deve ser informado quando pagamento que ocorre antes da prestação do serviço e na DFe de fornecimento associada a esses pagamentos, demais hipóteses de prestação de serviço sem antecipação não devem preencher.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="gPagAntecipado" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Grupo de antecipação de pagamento</xs:documentation>
-								<xs:documentation>Informado para abater as parcelas de antecipação de
-pagamento, conforme Art. 10. § 4º </xs:documentation>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence maxOccurs="99">
-									<xs:element name="chCTePagAnt" type="TChDFe">
-										<xs:annotation>
-											<xs:documentation>Chave de acesso do CTe de antecipação de pagamento</xs:documentation>
-											<xs:documentation>Referência a CTe emitido anteriormente, referente a pagamento antecipado</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
 					<xs:attribute name="versao" use="required">
@@ -8199,18 +8059,6 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>
 			<xs:pattern value="(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="TPagAnt">
-		<xs:annotation>
-			<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:minLength value="1"/>
-			<xs:maxLength value="1"/>
-			<xs:whiteSpace value="preserve"/>
-			<xs:enumeration value="1"/>
-			<xs:enumeration value="3"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TVerCTe">

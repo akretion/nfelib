@@ -8,17 +8,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from nfelib.nfse.bindings.v1_0.tipos_eventos_v1_00 import Tcevento
+from nfelib.nfse.bindings.v1_0.tipos_cnc_v1_00 import Tcnc
 
 __NAMESPACE__ = "http://www.sped.fazenda.gov.br/nfse"
 
 
 @dataclass
-class Evento(Tcevento):
-    """
-    Schema XML do Pedido de Registro de Eventos.
-    """
+class Cnc(Tcnc):
+    """Schema XML Leiaute do arquivo para upload - CNC"""
 
     class Meta:
-        name = "evento"
+        name = "CNC"
         namespace = "http://www.sped.fazenda.gov.br/nfse"

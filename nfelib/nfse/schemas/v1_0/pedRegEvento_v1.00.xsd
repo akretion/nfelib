@@ -5,7 +5,7 @@
            xmlns="http://www.sped.fazenda.gov.br/nfse"
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
-  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.00.xsd"/>
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
   <xs:include schemaLocation="tiposEventos_v1.00.xsd"/>
   <xs:element name="pedRegEvento" type="TCPedRegEvt">
     <xs:annotation>

@@ -239,7 +239,11 @@ def _apply_patches() -> None:
 
 
 def _run_xsdata(
-    schema_dir: Path, package: str, *, single_package: bool = False
+    schema_dir: Path,
+    package: str,
+    *,
+    single_package: bool = False,
+    output_format: str | None = None,
 ) -> None:
     """Invoke xsdata generate in-process for the given schema target.
 
@@ -262,8 +266,12 @@ def _run_xsdata(
     config.output.include_header = True
     if single_package:
         config.output.structure_style = StructureStyle.SINGLE_PACKAGE
+    if output_format:
+        config.output.format.value = output_format
 
-    print(f"Generating {package} from {schema_dir}")
+    print(
+        f"Generating {package} from {schema_dir} (output={output_format or 'default'})"
+    )
     transformer = ResourceTransformer(config=config)
     uris = sorted(resolve_source(str(schema_dir), recursive=False))
     transformer.process(uris)
@@ -351,7 +359,21 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--download",
         action="store_true",
-        help="Download schemas with erpbrasil-edoc-gen-download-schema first.",
+        help=(
+            "Download schemas with erpbrasil-edoc-gen-download-schema first. "
+            "WARNING: this relies on an unmaintained experimental tool; "
+            "prefer using the committed schemas and avoid this option."
+        ),
+    )
+    parser.add_argument(
+        "--output",
+        dest="output_format",
+        default=None,
+        help=(
+            "xsdata output format passed to the generator "
+            "(e.g. 'pydataclass', 'dataclasses', or a plugin alias). "
+            "Use 'odoo' with the xsdata-odoo plugin to generate Odoo abstract models."
+        ),
     )
     parser.add_argument(
         "--skip-patches",
@@ -391,24 +413,44 @@ def main() -> None:
             print(f"Skipping {name}: schema path not found {schema_path}")
             continue
 
-        # The NFe attribute-merge hook is gated on XSDATA_SCHEMA=nfe. Enable it
-        # for the NFe family (which shares leiauteNFe / the IPI compound field).
+        # Set schema/version env vars so xsdata-odoo can apply the correct field
+        # prefixes (e.g. nfe40_, cte40_, mdfe30_). The version is derived from
+        # the schema directory name (v4_0 -> 40, v3_0 -> 30, v1_0 -> 10).
         env_before = os.environ.get("XSDATA_SCHEMA")
-        if name.startswith("nfe"):
-            os.environ["XSDATA_SCHEMA"] = "nfe"
-        else:
-            os.environ.pop("XSDATA_SCHEMA", None)
+        version_before = os.environ.get("XSDATA_VERSION")
+        lang_before = os.environ.get("XSDATA_LANG")
+        schema_name = name.split("_")[0]
+        os.environ["XSDATA_SCHEMA"] = schema_name
+        version = Path(config.schema_dir).name.lstrip("v").replace("_", "")
+        os.environ["XSDATA_VERSION"] = version
+        os.environ["XSDATA_LANG"] = "portuguese"
+
+        # When generating Odoo models, write them to a different package path so
+        # they do not overwrite the standard Python dataclass bindings.
+        package = config.package
+        if args.output_format == "odoo":
+            package = package.replace(".bindings.", ".odoo.")
+
         try:
             _run_xsdata(
                 schema_path,
-                config.package,
+                package,
                 single_package=config.single_package is not None,
+                output_format=args.output_format,
             )
         finally:
             if env_before is None:
                 os.environ.pop("XSDATA_SCHEMA", None)
             else:
                 os.environ["XSDATA_SCHEMA"] = env_before
+            if version_before is None:
+                os.environ.pop("XSDATA_VERSION", None)
+            else:
+                os.environ["XSDATA_VERSION"] = version_before
+            if lang_before is None:
+                os.environ.pop("XSDATA_LANG", None)
+            else:
+                os.environ["XSDATA_LANG"] = lang_before
 
 
 if __name__ == "__main__":

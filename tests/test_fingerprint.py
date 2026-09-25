@@ -81,5 +81,5 @@ class FingerPrintTests(TestCase):
         target = Path("tests/fingerprints.json").read_text()
         if environ.get("UPDATE_FINGERPRINTS"):
             with Path("tests/fingerprints.json").open("w") as outfile:
-                outfile.write(json_string)
+                outfile.write(json_string + "\n")
         self.assertEqual(target.strip(), json_string.strip())

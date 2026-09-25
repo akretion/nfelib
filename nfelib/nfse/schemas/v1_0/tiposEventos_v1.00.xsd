@@ -5,7 +5,7 @@
            xmlns="http://www.sped.fazenda.gov.br/nfse"
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
-  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.00.xsd"/>
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
   <xs:include schemaLocation="tiposComplexos_v1.00.xsd"/>
 
 
@@ -44,7 +44,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="nDFe" type="TSNumDFe">
+      <xs:element name="nDFSe" type="TSNumDFe">
         <xs:annotation>
           <xs:documentation>Ambiente gerador do evento</xs:documentation>
         </xs:annotation>
@@ -106,15 +106,6 @@
       <xs:element name="chNFSe" type="TSChaveNFSe">
         <xs:annotation>
           <xs:documentation>Chave de Acesso da NFS-e vinculada ao Evento</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="nPedRegEvento" type="TSNum3Dig">
-        <xs:annotation>
-          <xs:documentation>
-            Número do pedido do registro de evento para o mesmo tipo de evento.
-            Para os eventos que ocorrem somente uma vez, como é o caso do cancelamento, o nPedRegEvento deve ser igual a 1.
-            Os eventos que podem ocorrer mais de uma vez devem ter o nPedRegEvento único.
-          </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:choice>

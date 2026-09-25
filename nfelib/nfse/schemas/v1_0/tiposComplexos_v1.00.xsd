@@ -5,7 +5,7 @@
            xmlns="http://www.sped.fazenda.gov.br/nfse"
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
-  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.00.xsd"/>
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
   <xs:include schemaLocation="tiposSimples_v1.00.xsd"/>
   <!--TIPO COMPLEXO NFS-e-->
   <xs:complexType name="TCNFSe">
@@ -98,7 +98,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="procEmi" type="TSProcEmissao">
+      <xs:element name="procEmi" type="TSProcEmissao" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             Processo de Emissão da DPS:
@@ -258,16 +258,16 @@
       <xs:element name="vTotalRet" type="TSDec15V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor total de retenções = Σ(CP + IRRF + CSLL  + ISSQN* +  (PIS + COFINS)**)
-            vTotalRet (R$) = (vRetCP + vRetIRRF + vRetCSLL) + vISSQN* + (vPIS + vCOFINS)**
+            Valor total das retenções de tributos da NFS-e.
+            Valor total de retenções (R$) = Σ(vRetCP + vRetIRRF+ vRetCSLL + ISSQN*)
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="vLiq" type="TSDec15V2">
         <xs:annotation>
           <xs:documentation>
-            Valor líquido = Valor do serviço - Desconto condicionado - Desconto incondicionado - Valores retidos (CP, IRRF, CSLL)* - Valores, se retidos (ISSQN, PIS, COFINS)**
-            Valor Líquido (R$) = vServ – vDescIncond – vDescCond – (vRetCP + vRetIRRF + vRetCSLL)* – (vISSQN - vPIS + vCOFINS)**
+            Valor líquido da NFS-e.
+            Valor líquido (R$) = Valor do serviço - Desconto condicionado - Desconto incondicionado - Valores retidos
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -497,7 +497,7 @@
             Opção para que o contribuinte optante pelo Simples Nacional ME/EPP (opSimpNac = 3) possa indicar, ao emitir o documento fiscal, em qual regime de apuração os tributos federais e municipal estão inseridos, caso tenha ultrapassado algum sublimite ou limite definido para o Simples Nacional.
             1 – Regime de apuração dos tributos federais e municipal pelo SN;
             2 – Regime de apuração dos tributos federais pelo SN e ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;
-            3 – Regime de apuração dos tributos federais e municipal por fora do SN conforme respectivas legilações federal e municipal de cada tributo;
+            3 – Regime de apuração dos tributos federais e municipal por fora do SN conforme respectivas legislações federal e municipal de cada tributo;
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -863,7 +863,7 @@
 
   <!--TIPO COMPLEXO PARA INFORMAÇÕES DO LOCAL DA PRESTAÇÃO DO SERVIÇO-->
   <xs:complexType name="TCLocPrest">
-    <xs:sequence>
+    <xs:choice>
       <xs:element name="cLocPrestacao" type="TSCodMunIBGE" minOccurs="0">
         <xs:annotation>
           <xs:documentation>Código do município onde o serviço foi prestado (tabela do IBGE)</xs:documentation>
@@ -874,16 +874,7 @@
           <xs:documentation>Código do país onde o serviço foi prestado (Tabela de Países ISO)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="opConsumServ" type="TSOpConsumServ" minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>
-            Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
-            0 - Consumo do serviço prestado ocorrido no município do local da prestação;
-            1 - Consumo do serviço prestado ocorrido ocorrido no exterior ;
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <!--TIPO COMPLEXO PARA INFORMAÇÕES RELATIVAS AO CÓDIGO DO SERVIÇO PRESTADO-->
@@ -941,13 +932,14 @@
         <xs:annotation>
           <xs:documentation>
             Vínculo entre as partes no negócio:
-            0 - Sem vínculo com o tomador/ Prestador
+            0 - Sem vínculo com o Tomador/Prestador
             1 - Controlada;
             2 - Controladora;
             3 - Coligada;
             4 - Matriz;
             5 - Filial ou sucursal;
             6 - Outro vínculo;
+            9 - Desconhecido;
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -1051,18 +1043,17 @@
         <xs:annotation>
           <xs:documentation>
             Categorias de veículos para cobrança:
-            00 - Categoria de Veículos (tipo não informado na nota de origem);
+            00 - Categoria de veículos (tipo não informado na nota de origem)
             01 - Automóvel, caminhonete e furgão;
             02 - Caminhão leve, ônibus, caminhão trator e furgão;
             03 - Automóvel e caminhonete com semireboque;
             04 - Caminhão, caminhão-trator, caminhão-trator com semi-reboque e ônibus;
             05 - Automóvel e caminhonete com reboque;
-            06 - Caminhão com reboque e caminhãotrator com semi-reboque;
-            07 - Caminhão com reboque e caminhãotrator com semi-reboque;
-            08 - Caminhão com reboque e caminhãotrator com semi-reboque;
-            09 - Motocicletas, motonetas e bicicletas motorizadas;
-            10 - Veículo especial;
-            11 - Veículo Isento;
+            06 - Caminhão com reboque;
+            07 - Caminhão trator com semi-reboque;
+            08 - Motocicletas, motonetas e bicicletas motorizadas;
+            09 - Veículo especial;
+            10 - Veículo Isento;
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -1255,7 +1246,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="tribFed" type="TCTribNacional" minOccurs="0">
+      <xs:element name="tribFed" type="TCTribFederal" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             Grupo de informações de outros tributos relacionados ao serviço prestado
@@ -1393,6 +1384,7 @@
             6 – Repasse plano de saúde;
             7 – Serviços;
             8 – Subempreitada de mão de obra;
+            9 - Profissional parceiro;
             99 – Outras deduções;
           </xs:documentation>
         </xs:annotation>
@@ -1608,7 +1600,7 @@
   </xs:complexType>
 
   <!--TIPO COMPLEXO PARA INFORMAÇÕES DE TRIBUTAÇÃO ESPECÍFICA PARA OUTROS TRIBUTOS-->
-  <xs:complexType name="TCTribNacional">
+  <xs:complexType name="TCTribFederal">
     <xs:sequence>
       <xs:element name="piscofins" type="TCTribOutrosPisCofins" minOccurs="0">
         <xs:annotation>
@@ -1658,50 +1650,82 @@
             07 - Operação Tributável da Contribuição;
             08 - Operação sem Incidência da Contribuição;
             09 - Operação com Suspensão da Contribuição;
+            49 - Outras Operações de Saída;
+            50 - Operação com Direito a Crédito – Vinculada Exclusivamente a Receita Tributada no Mercado Interno;
+            51 - Operação com Direito a Crédito – Vinculada Exclusivamente a Receita Não-Tributada no Mercado Interno;
+            52 - Operação com Direito a Crédito – Vinculada Exclusivamente a Receita de Exportação;
+            53 - Operação com Direito a Crédito – Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno;
+            54 - Operação com Direito a Crédito – Vinculada a Receitas Tributadas no Mercado Interno e de Exportação;
+            55 - Operação com Direito a Crédito – Vinculada a Receitas Não Tributadas no Mercado Interno e de Exportação;
+            56 - Operação com Direito a Crédito – Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno e de Exportação;
+            60 - Crédito Presumido – Operação de Aquisição Vinculada Exclusivamente a Receita Tributada no Mercado Interno;
+            61 - Crédito Presumido – Operação de Aquisição Vinculada Exclusivamente a Receita Não-Tributada no Mercado Interno;
+            62 - Crédito Presumido – Operação de Aquisição Vinculada Exclusivamente a Receita de Exportação;
+            63 - Crédito Presumido – Operação de Aquisição Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno;
+            64 - Crédito Presumido – Operação de Aquisição Vinculada a Receitas Tributadas no Mercado Interno e de Exportação;
+            65 - Crédito Presumido – Operação de Aquisição Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação;
+            66 - Crédito Presumido – Operação de Aquisição Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno e de Exportação;
+            67 - Crédito Presumido – Outras Operações;
+            70 - Operação de Aquisição sem Direito a Crédito;
+            71 - Operação de Aquisição com Isenção;
+            72 - Operação de Aquisição com Suspensão;
+            73 - Operação de Aquisição a Alíquota Zero;
+            74 - Operação de Aquisição sem Incidência da Contribuição;
+            75 - Operação de Aquisição por Substituição Tributária;
+            98 - Outras Operações de Entrada;
+            99 - Outras Operações;
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="vBCPisCofins" type="TSDec15V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor da Base de Cálculo do PIS/COFINS (R$).
+            Valor da Base de Cálculo do PIS/COFINS, relativo à apuração própria (R$).
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="pAliqPis" type="TSDec2V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor da Alíquota do PIS (%).
+            Alíquota do PIS, relativa à apuração própria (%).
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="pAliqCofins" type="TSDec2V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor da Alíquota da COFINS (%).
+            Alíquota da COFINS, relativa à apuração própria (%).
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="vPis" type="TSDec15V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor monetário do PIS (R$).
+            Valor do débito de PIS apuração própria (R$).
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="vCofins" type="TSDec15V2" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Valor monetário do COFINS (R$).
+            Valor do débito de COFINS apuração própria (R$).
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="tpRetPisCofins" type="TSTipoRetPISCofins" minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            Tipo de retencao do Pis/Cofins:
-            1 - Retido;
-            2 - Não Retido;
+            Tipo de retenção do PIS/COFINS:
+            0 - PIS/COFINS/CSLL Não Retidos;
+            1 - PIS/COFINS Retidos;
+            2 - PIS/COFINS Não Retidos;
+            3 - PIS/COFINS/CSLL Retidos;
+            4 - PIS/COFINS Retidos, CSLL Não Retido;
+            5 - PIS Retido, COFINS/CSLL Não Retido;
+            6 - COFINS Retido, PIS/CSLL Não Retido;
+            7 - PIS Não Retido, COFINS/CSLL Retidos;
+            8 - PIS/COFINS Não Retidos, CSLL Retido;
+            9 - COFINS Não Retido, PIS/CSLL Retidos;
           </xs:documentation>
         </xs:annotation>
       </xs:element>

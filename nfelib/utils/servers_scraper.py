@@ -51,7 +51,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     status_key = "NfeStatusServico" if "nfe" in prod_url else "CteStatusServicoV4"
 
     # Fetch production servers
-    prod_response = requests.get(prod_url)
+    prod_response = requests.get(prod_url, verify=False)
     prod_response.raise_for_status()
     soup = BeautifulSoup(prod_response.content, "lxml")
     captions = soup.find_all("caption")
@@ -63,7 +63,7 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     ]
 
     # Fetch development servers
-    dev_response = requests.get(dev_url)
+    dev_response = requests.get(dev_url, verify=False)
     dev_response.raise_for_status()
     dev_html = dev_response.content.decode(dev_response.apparent_encoding)
     dev_tables = pd.read_html(StringIO(dev_html))  # Wrap HTML in StringIO

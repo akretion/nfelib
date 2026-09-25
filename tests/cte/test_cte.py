@@ -17,27 +17,11 @@ class CTeTests(TestCase):
     def test_patched_xsdata_for_ibscsb(self):
         # see https://github.com/akretion/nfelib/pull/151
         # IBSCBS should be TtribCte, not str
-        assert (
-            str(Tcte.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Optional[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte]"
-            # Python < 3.9:
-            or str(Tcte.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Union[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte, NoneType]"
-        )
-        assert (
-            str(TcteOs.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Optional[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte]"
-            # Python < 3.9:
-            or str(TcteOs.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Union[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte, NoneType]"
-        )
-        assert (
-            str(TcteSimp.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Optional[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte]"
-            # Python < 3.9:
-            or str(TcteSimp.InfCte.Imp().__annotations__["IBSCBS"])
-            == "typing.Union[nfelib.cte.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribCte, NoneType]"
-        )
+        from typing import get_type_hints
+
+        for cls in (Tcte, TcteOs, TcteSimp):
+            hints = get_type_hints(cls.InfCte.Imp)
+            assert "TtribCte" in str(hints["IBSCBS"])
 
     def test_in_out_cte(self):
         path = os.path.join("nfelib", "cte", "samples", "v4_0")

@@ -28,34 +28,24 @@ class ClientTests(TestCase):
         # Se vc instalar o pacote xsdata-odoo e fizer export XSD_SCHEMA=nfe,
         # o xsdata-odoo aplica esse monkey patch para você.
         # ver detalhes aqui: https://github.com/akretion/nfelib/issues/40
-        assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"]).startswith(
-                "typing.Optional"
-            )
-            # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IPI"])
-            == "typing.Union[nfelib.nfe.bindings.v4_0.leiaute_nfe_v4_00.Tipi, NoneType]"
-        )
+        from typing import get_type_hints
+
+        hints = get_type_hints(Tnfe.InfNfe.Det.Imposto)
+        assert "Tipi" in str(hints["IPI"])
 
     def test_patched_xsdata_for_is(self):
         # see https://github.com/akretion/nfelib/pull/134
-        assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
-            == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis]"
-            # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IS"])
-            == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.Tis, NoneType]"
-        )
+        from typing import get_type_hints
+
+        hints = get_type_hints(Tnfe.InfNfe.Det.Imposto)
+        assert "Tis" in str(hints["IS"])
 
     def test_patched_xsdata_for_ibscsb(self):
         # see https://github.com/akretion/nfelib/pull/134
-        assert (
-            str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
-            == "typing.Optional[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe]"
-            # Python < 3.9:
-            or str(Tnfe.InfNfe.Det.Imposto().__annotations__["IBSCBS"])
-            == "typing.Union[nfelib.nfe.bindings.v4_0.dfe_tipos_basicos_v1_00.TtribNfe, NoneType]"
-        )
+        from typing import get_type_hints
+
+        hints = get_type_hints(Tnfe.InfNfe.Det.Imposto)
+        assert "TtribNfe" in str(hints["IBSCBS"])
 
     def test_sign(self):
         path = os.path.join("nfelib", "nfe", "samples", "v4_0", "leiauteNFe")

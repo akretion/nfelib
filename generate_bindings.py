@@ -286,9 +286,32 @@ def _post_process_py39(base_path: Path) -> None:
         if "@dataclass(kw_only=True)" in text:
             text, kw_count = kw_only.subn("@dataclass\n", text)
 
-        if count or kw_count:
+        # xsdata >= 26.1 emits schema-required fields with no default; once the
+        # kw_only decorator is gone such fields make dataclass construction
+        # fail with "non-default argument follows default argument". Give them
+        # an explicit None default (the required metadata is kept, so
+        # serialization still enforces the schema).
+        no_default = re.compile(
+            r"(?P<head>\w+: [^=\n]+? = field\(\n)(?P<meta>\s+metadata=\{(?:[^{}]|\{[^{}]*\})*\},?\n)"
+        )
+        default_count = 0
+
+        def _add_default(m):
+            nonlocal default_count
+            meta = m.group("meta")
+            if "default" in meta:
+                return m.group(0)
+            default_count += 1
+            return f"{m.group('head')}        default=None,\n{meta}"
+
+        text = no_default.sub(_add_default, text)
+
+        if count or kw_count or default_count:
             path.write_text(text)
-            print(f"  rewritten {count} union(s), {kw_count} kw_only in {path}")
+            print(
+                f"  rewritten {count} union(s), {kw_count} kw_only, "
+                f"{default_count} missing default(s) in {path}"
+            )
 
 
 # ---------------------------------------------------------------------------

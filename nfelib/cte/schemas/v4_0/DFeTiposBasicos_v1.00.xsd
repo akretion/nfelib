@@ -109,6 +109,8 @@
 			<xs:whiteSpace value="preserve"/>
 			<xs:enumeration value="1"/>
 			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TEnteGov">
@@ -121,6 +123,8 @@
 			<xs:enumeration value="2"/>
 			<xs:enumeration value="3"/>
 			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TTpCredPresIBSZFM">
@@ -1159,7 +1163,9 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 1=União
 2=Estados
 3=Distrito Federal
-4=Municípios</xs:documentation>
+4=Municípios
+5=Consórcio Público
+6=Comitê Gestor do IBS</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="pRedutor" type="TDec_0302_04RTC">
@@ -1170,36 +1176,24 @@ gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
 			<xs:element name="tpOperGov" type="TOperCompraGov">
 				<xs:annotation>
 					<xs:documentation>Tipo da operação com ente governamental:
-1 - Fornecimento
-2 - Recebimento do Pagamento</xs:documentation>
+1 – Fornecimento com pagamento posterior;
+
+2 - Recebimento do pagamento com fornecimento já realizado;
+
+3 – Fornecimento com pagamento já realizado;
+
+4 – Recebimento do pagamento com fornecimento posterior;</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="refDFeAnt" minOccurs="0">
+			<xs:element name="refDFeAnt" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Chave de acesso do documento fiscal anterior.
 
-Caso o tipo de operação de compra governamental seja de recebimento do pagamento e o fornecimento tenha sido realizado antes, o DFe anterior referenciado deve ser da compra governamental de fornecimento.
+Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos 1 e 4.
 
-No momento da emissão do DFe de compra governamental de fornecimento, caso o pagamento já tenho ocorrido, deverá ser referenciado a chave de acesso do DFe de recebimento do pagamento.
+No caso do toOperGov 2 aceitará apenas uma chave referenciada, no tipo 3 poderá aceitar múltiplas chaves
 
 Obs: a chave de acesso deverá ser de um emitente com o mesmo CNPJ base</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="TPagAntecipado">
-		<xs:annotation>
-			<xs:documentation>Tipo Pagamento Antecipado
-
-Informado para abater as parcelas de antecipação de pagamento, conforme art. 10 §4</xs:documentation>
-			<xs:documentation>Cada DFe que utilizar deverá utilizar esses tipo no grupo ide</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="refDFe" maxOccurs="99">
-				<xs:annotation>
-					<xs:documentation>Chave de acesso do documento fiscal de antecipação de pagamento
-
-Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1216,7 +1210,9 @@ Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:document
 1=União
 2=Estados
 3=Distrito Federal
-4=Municípios</xs:documentation>
+4=Municípios
+5=Consórcio Público
+6=Comitê Gestor do IBS</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="pRedutor" type="TDec_0302_04RTC">
@@ -1227,8 +1223,28 @@ Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:document
 			<xs:element name="tpOperGov" type="TOperCompraGov">
 				<xs:annotation>
 					<xs:documentation>Tipo da operação com ente governamental:
-1 - Fornecimento
-2 - Recebimento do Pagamento</xs:documentation>
+1 – Fornecimento com pagamento posterior;
+
+2 - Recebimento do pagamento com fornecimento já realizado;
+
+3 – Fornecimento com pagamento já realizado;
+
+4 – Recebimento do pagamento com fornecimento posterior;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TPagRef">
+		<xs:annotation>
+			<xs:documentation>Tipo Pagamento que ocorre em DFe emitdo anteriormente</xs:documentation>
+			<xs:documentation>Informado para abater as parcelas de antecipação de pagamento, conforme art. 10 §4</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="refDFe" maxOccurs="99">
+				<xs:annotation>
+					<xs:documentation>Chave de acesso do documento fiscal de antecipação de pagamento
+
+Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>

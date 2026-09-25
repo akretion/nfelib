@@ -30,7 +30,10 @@ keywords = ["e-invoicing", "ERP", "Odoo", "NFe", "CTe", "MDFe", "BPe", "NFSe"]
 requires-python = ">=3.8"
 dependencies = [
     "lxml",
-    "xsdata",
+    # Bindings are generated with xsdata 25.7 and validated against it. xsdata
+    # 26.x emits kw_only/strictly-required dataclasses and drops Python 3.9,
+    # which Odoo 16 needs; keep the resolver on the tested generation.
+    "xsdata>=24.3,<26",
 ]
 dynamic = ["version"]
 

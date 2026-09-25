@@ -13,31 +13,33 @@ from typing import Optional
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/cte"
 
 
-class EvCancIecteDescEvento(Enum):
-    CANCELAMENTO_DO_INSUCESSO_DE_ENTREGA_DO_CT_E = (
-        "Cancelamento do Insucesso de Entrega do CT-e"
+class EvCancVincPgtoDescEvento(Enum):
+    CANCELAMENTO_DA_VINCULA_O_DO_PAGAMENTO = (
+        "Cancelamento da vinculação do pagamento"
+    )
+    CANCELAMENTO_DA_VINCULACAO_DO_PAGAMENTO = (
+        "Cancelamento da vinculacao do pagamento"
     )
 
 
 @dataclass
-class EvCancIecte:
+class EvCancVincPgto:
     """
-    Schema XML de validação do evento cancelamento do insucesso de entrega
-    eletrônico do CT-e 110191.
+    Schema XML de validação do evento cancelamento da vinculação do pgto 110301.
     "
 
-    :ivar descEvento: Descrição do Evento - “Cancelamento do Insucesso
-        de Entrega do CT-e”
-    :ivar nProt: Número do Protocolo de autorização do CT-e
-    :ivar nProtIE: Número do Protocolo de autorização do evento a ser
-        cancelado
+    :ivar descEvento: Descrição do Evento - “Cancelamento da vinculação
+        do pagamento”
+    :ivar nProt: Número do Protocolo de autorização do DFe
+    :ivar nProtVincPgto: Número do Protocolo de autorização do evento a
+        ser cancelado
     """
 
     class Meta:
-        name = "evCancIECTe"
+        name = "evCancVincPgto"
         namespace = "http://www.portalfiscal.inf.br/cte"
 
-    descEvento: Optional[EvCancIecteDescEvento] = field(
+    descEvento: Optional[EvCancVincPgtoDescEvento] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -54,7 +56,7 @@ class EvCancIecte:
             "pattern": r"[0-9]{15}",
         },
     )
-    nProtIE: Optional[str] = field(
+    nProtVincPgto: Optional[str] = field(
         default=None,
         metadata={
             "type": "Element",

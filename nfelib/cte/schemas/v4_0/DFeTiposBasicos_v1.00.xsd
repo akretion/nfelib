@@ -974,6 +974,12 @@
 								<xs:documentation>Grupo de campos da redução de aliquota</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="gALCZFMCBS" type="TALCZFMCBS" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Grupo de operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero)</xs:documentation>
+								<xs:documentation>Grupo de informações para identificação de operações em áreas incentivadas (ALC/ZFM) com alíquota zero da CBS, conforme arts. 451 e 466 da LC 214/2025, quando fornecedor e destinatário estiverem nessas áreas, distinguindo a existência de processo aprovado na Suframa.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:element name="vCBS" type="TDec1302RTC">
 							<xs:annotation>
 								<xs:documentation>Valor da CBS</xs:documentation>
@@ -1057,10 +1063,14 @@
 			<xs:documentation>Tipo Devolução Tributo</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
+			<xs:element name="pDevTrib" type="TDec_0302_04RTC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Percentual de devolução do tributo, conforme LC 214/25 art. 118.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="vDevTrib" type="TDec1302RTC">
 				<xs:annotation>
-					<xs:documentation>Valor do tributo devolvido. No fornecimento de energia elétrica, água, esgoto e
-gás natural e em outras hipóteses definidas no regulamento</xs:documentation>
+					<xs:documentation>Valor do tributo devolvido. (“cashback” de desconto na própria Nota Fiscal / Fatura) </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1255,6 +1265,25 @@ Obs: esse DFe deverá ter o indAntecipacaoPgto marcado no grupo ide</xs:document
 			<xs:element name="vCBS" type="TDec1302RTC">
 				<xs:annotation>
 					<xs:documentation>Valor da CBS a ser transferida</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TALCZFMCBS">
+		<xs:annotation>
+			<xs:documentation>Tipo Operações em areas incentivadas com CBS Zero</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pAliqEfetRegCBS" type="TDec_0302_04RTC">
+				<xs:annotation>
+					<xs:documentation>Percentual efetivo sem a redução</xs:documentation>
+					<xs:documentation>Alíquota efetiva de referência da CBS aplicável à operação fora de áreas ou regimes incentivados.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="vTribRegCBS" type="TDec1302RTC">
+				<xs:annotation>
+					<xs:documentation>Valor efetivo sem a redução</xs:documentation>
+					<xs:documentation>Valor da CBS calculado para a operação fora de áreas ou regimes incentivado</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>

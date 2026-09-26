@@ -7,6 +7,8 @@ from datetime import datetime
 from typing import Any, Optional
 
 from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb
+from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.formats.dataclass.serializers import XmlSerializer
 
 # --- Server Definitions & SOAP Bindings ---
 from nfelib.nfe.client.v4_0.servers import Endpoint
@@ -97,11 +99,32 @@ class MdeClient(FiscalClient):
         )
 
         if not self.wrap_response:
-            return response.body.nfeResultMsg.content[0]
+            return self._coerce_ret_env_evento(response.body.nfeResultMsg.content[0])
 
         # Adapt the wrapped response to contain the direct result
-        response.resposta = response.resposta.body.nfeResultMsg.content[0]
+        response.resposta = self._coerce_ret_env_evento(
+            response.resposta.body.nfeResultMsg.content[0]
+        )
         return response
+
+    @staticmethod
+    def _coerce_ret_env_evento(obj: Any) -> Any:
+        """Re-parse a parsed retEnvEvento as the MD-e binding class if needed.
+
+        The cancel-event and MD-e bindings both declare a global
+        ``retEnvEvento`` element, so xsdata's global class registry maps that
+        qname to whichever binding package was imported last. The wildcard
+        parse of ``nfeResultMsg`` may therefore return the cancel-event
+        ``RetEnvEvento`` (a supertype shape that also parses fine) depending
+        on import order. Re-serialize and parse explicitly as the MD-e
+        ``TretEnvEvento`` to make the result deterministic.
+        """
+        if isinstance(obj, TretEnvEvento):
+            return obj
+        if type(obj).__name__ not in ("RetEnvEvento", "TretEnvEvento"):
+            return obj
+        xml = XmlSerializer().render(obj)
+        return XmlParser().from_string(xml, TretEnvEvento)
 
     def nfe_recepcao_envia_lote_evento(
         self, lista_eventos: list[Tevento], numero_lote: Optional[str] = None

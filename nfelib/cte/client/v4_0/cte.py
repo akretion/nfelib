@@ -95,7 +95,14 @@ class CteClient(FiscalClient):
         location = self._get_location(endpoint_type)
 
         if isinstance(obj, Tcte):
-            wrapped_obj = {"Body": {"cteDadosMsg": {"value": obj}}}
+            # CTeRecepcaoSincV4 carries the signed CT-e as the text of
+            # cteDadosMsg (xsd:string), not as a wildcard child element.
+            signed_xml = obj.to_xml(
+                pkcs12_data=self.pkcs12_data,
+                pkcs12_password=self.pkcs12_password,
+                doc_id=obj.infCte.Id,
+            )
+            wrapped_obj = {"Body": {"cteDadosMsg": {"value": signed_xml}}}
         else:
             wrapped_obj = {"Body": {"cteDadosMsg": {"content": [obj]}}}
 
@@ -110,12 +117,16 @@ class CteClient(FiscalClient):
         if not self.wrap_response:
             if isinstance(obj, ConsStatServCte):
                 return response.body.cteStatusServicoCTResult.content[0]
-            return response.body.content[0].content[0]
+            if isinstance(obj, ConsSitCte):
+                return response.body.cteConsultaCTResult.content[0]
+            return response.body.cteRecepcaoResult.content[0]
 
         if isinstance(obj, ConsStatServCte):
-            response.resposta = response.body.cteStatusServicoCTResult.content
+            response.resposta = response.resposta.body.cteStatusServicoCTResult.content
+        elif isinstance(obj, ConsSitCte):
+            response.resposta = response.resposta.body.cteConsultaCTResult.content[0]
         else:
-            response.resposta = response.resposta.body.content[0].content[0]
+            response.resposta = response.resposta.body.cteRecepcaoResult.content[0]
         return response
 
     def status_servico(self) -> RetConsStatServCte:
@@ -141,16 +152,8 @@ class CteClient(FiscalClient):
         Returns:
             The processing result from the SEFAZ.
         """
-        signed_xml = cte_obj.to_xml(
-            pkcs12_data=self.pkcs12_data,
-            pkcs12_password=self.pkcs12_password,
-            doc_id=cte_obj.infCte.Id,
-        )
-        # FIXME this is wrong, see erpbrasil envia_documento and gzip
-
-        # The webservice expects the signed CTe object directly inside cteDadosMsg
-        return self.send(
-            CteRecepcaoSincV4Soap12CteRecepcao, etree.fromstring(signed_xml)
-        )
+        # send() signs the CT-e and carries it as the cteDadosMsg text
+        # (xsd:string), as the CTeRecepcaoSincV4 webservice expects.
+        return self.send(CteRecepcaoSincV4Soap12CteRecepcao, cte_obj)
 
     # TODO enviar_lote_evento, cancela_documento, carta_correcao, consulta_recibo, get_documento_id, monta_qrcode, monta_cte_proc

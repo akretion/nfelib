@@ -1507,6 +1507,16 @@ class TretEnviMdfe:
             "namespace": "http://www.portalfiscal.inf.br/mdfe",
         },
     )
+    # NOTE: not in the official TRetEnviMDFe XSD type, but the synchronous
+    # MDFeRecepcaoSinc webservice really embeds a protMDFe element in the
+    # retEnviMDFe response. Hand-patched like the CTe IBSCBS binding patch.
+    protMDFe: Optional[TprotMdfe] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "http://www.portalfiscal.inf.br/mdfe",
+        },
+    )
     versao: Optional[str] = field(
         default=None,
         metadata={

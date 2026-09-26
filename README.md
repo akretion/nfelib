@@ -128,6 +128,57 @@ Imprimir o DANFE usando a lib [BrazilFiscalReport](https://github.com/Engenere/B
 ```
 
 
+## Transmissão SOAP (BETA)
+
+A nfelib inclui clientes SOAP («transmission clients») que assinam e
+transmitem os documentos diretamente, sem passar pelo `erpbrasil.edoc`:
+
+```python
+from nfelib.nfe.client.v4_0.nfe import NfeClient
+from nfelib.nfe.client.v4_0.nfce import NfceClient
+from nfelib.cte.client.v4_0.cte import CteClient
+from nfelib.mdfe.client.v3_0.mdfe import MdfeClient
+
+client = NfeClient(
+    ambiente="2",                # 1=produção, 2=homologação
+    uf="35",                     # código IBGE da UF (para o cabeçalho)
+    pkcs12_data=pkcs12_bytes,    # conteúdo do certificado A1 (.pfx), decodificado
+    pkcs12_password="senha",
+    wrap_response=True,          # devolve um WrappedResponse (envio_xml, resposta, retorno)
+)
+processo = client.processar_lote([nfe])       # NF-e / NFC-e (assíncrono)
+processo = client.envia_documento(cte)        # CT-e  (CTeRecepcaoSincV4)
+processo = client.envia_documento(mdfe)       # MDF-e (MDFeRecepcaoSinc)
+processo = client.cancela_documento(...)      # MDF-e (evento 110111)
+```
+
+Estado do suporte (**BETA**, API sujeita a mudanças):
+
+| Documento | Autorização | Cancelamento / eventos |
+|-----------|-------------|------------------------|
+| NF-e / NFC-e | sim | ver PR 4147 (l10n-brazil) |
+| CT-e | sim (síncrono) | ainda não implementado |
+| MDF-e | sim (síncrono) | cancelamento e encerramento |
+
+Instalação das dependências dos clientes:
+
+```bash
+pip install nfelib[soap]
+```
+
+Os clientes usam o [brazil-fiscal-client](https://github.com/akretion/brazil-fiscal-client)
+para o transporte SOAP (mTLS com o certificado A1).
+
+No OCA/l10n-brazil, a transmissão pela nfelib é experimental e fica atrás de
+um parâmetro de sistema por módulo (com o `erpbrasil.edoc` ainda como padrão):
+
+```
+l10n_br_nfe.nfelib_soap_transmission  = True
+l10n_br_cte.nfelib_soap_transmission  = True
+l10n_br_mdfe.nfelib_soap_transmission = True
+```
+
+
 ## Desenvolvimento / testes
 
 Para rodar os testes:

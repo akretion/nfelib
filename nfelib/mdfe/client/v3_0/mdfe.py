@@ -219,11 +219,20 @@ class MdfeClient(FiscalClient):
 
         evento = EventoMdfe(versao=self.versao, infEvento=inf_evento)
         signed_xml = evento.to_xml(
-            self.pkcs12_data, self.pkcs12_password, evento.infEvento.Id
+            pkcs12_data=self.pkcs12_data,
+            pkcs12_password=self.pkcs12_password,
+            doc_id=evento.infEvento.Id,
         )
 
+        # The signed event XML is injected raw with a placeholder so the
+        # signature survives the payload serialization (xsdata cannot
+        # serialize an lxml element inside the mdfeDadosMsg wildcard).
+        placeholder_exp = r"<eventoMDFe[^>]*/>|<eventoMDFe.*?>.*?</eventoMDFe>"
         return self.send(
-            MdfeRecepcaoEventoSoap12MdfeRecepcaoEvento, etree.fromstring(signed_xml)
+            MdfeRecepcaoEventoSoap12MdfeRecepcaoEvento,
+            EventoMdfe(versao=self.versao),
+            placeholder_exp=placeholder_exp,
+            placeholder_content=signed_xml,
         )
 
     def cancela_documento(  # NOTE cancela_documento in erpbrasil

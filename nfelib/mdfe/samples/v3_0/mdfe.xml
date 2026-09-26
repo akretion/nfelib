@@ -1,0 +1,69 @@
+<MDFe xmlns="http://www.portalfiscal.inf.br/mdfe">
+    <infMDFe versao="3.00" Id="MDFe41240200000000000100580010000000101000000104">
+        <ide>
+            <cUF>41</cUF>
+            <tpAmb>2</tpAmb>
+            <tpEmit>1</tpEmit>
+            <mod>58</mod>
+            <serie>1</serie>
+            <nMDF>10</nMDF>
+            <cMDF>00000010</cMDF>
+            <cDV>4</cDV>
+            <modal>1</modal>
+            <dhEmi>2024-02-15T14:30:00-03:00</dhEmi>
+            <tpEmis>1</tpEmis>
+            <procEmi>0</procEmi>
+            <verProc>TestClient 1.0</verProc>
+            <UFIni>PR</UFIni>
+            <UFFim>SC</UFFim>
+            <infMunCarrega>
+                <cMunCarrega>4106902</cMunCarrega>
+                <xMunCarrega>Curitiba</xMunCarrega>
+            </infMunCarrega>
+        </ide>
+        <emit>
+            <CNPJ>00000000000100</CNPJ>
+            <IE>9000000000</IE>
+            <xNome>EMPRESA TESTE EMISSAO MDFE</xNome>
+            <enderEmit>
+                <xLgr>RUA TESTE</xLgr>
+                <nro>123</nro>
+                <xBairro>CENTRO</xBairro>
+                <cMun>4106902</cMun>
+                <xMun>Curitiba</xMun>
+                <CEP>80000000</CEP>
+                <UF>PR</UF>
+            </enderEmit>
+        </emit>
+        <infModal versaoModal="3.00">
+            <rodo>
+                <veicTracao>
+                    <placa>ABC1234</placa>
+                    <tara>6000</tara>
+                    <tpRod>01</tpRod>
+                    <tpCar>02</tpCar>
+                    <UF>PR</UF>
+                    <condutor>
+                        <xNome>MOTORISTA TESTE</xNome>
+                        <CPF>11111111111</CPF>
+                    </condutor>
+                </veicTracao>
+            </rodo>
+        </infModal>
+        <infDoc>
+            <infMunDescarga>
+                <cMunDescarga>4205407</cMunDescarga>
+                <xMunDescarga>Florianopolis</xMunDescarga>
+                <infNFe>
+                    <chNFe>41240100000000000100550010000000011000000011</chNFe>
+                </infNFe>
+            </infMunDescarga>
+        </infDoc>
+        <tot>
+            <qNFe>1</qNFe>
+            <vCarga>1500.55</vCarga>
+            <cUnid>01</cUnid>
+            <qCarga>12.3456</qCarga>
+        </tot>
+    </infMDFe>
+</MDFe>

@@ -70,13 +70,12 @@ class CteClient(FiscalClient):
                 f"No server configuration found for key: {server_key} (derived from UF {self.uf})"
             )
 
-        server_host = (
-            server_data["prod_server"]
+        endpoints = (
+            server_data["prod_endpoints"]
             if self.ambiente == Tamb.PROD.value
-            else server_data["dev_server"]
+            else server_data["dev_endpoints"]
         )
-        path = server_data["endpoints"][endpoint_type]
-        location = f"https://{server_host}{path}"
+        location = endpoints[endpoint_type]
         _logger.debug(f"Determined location for {endpoint_type.name}: {location}")
         return location
 

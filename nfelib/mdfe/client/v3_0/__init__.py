@@ -116,19 +116,18 @@ class MdfeClient(FiscalClient):
                 "MDFe server configuration not foundfor key: {self.server_key}"
             )
 
-        if self.ambiente == Tamb.PROD.value:
-            server_host = server_data["prod_server"]
-        else:
-            server_host = server_data["dev_server"]
-
-        if endpoint_type not in server_data["endpoints"]:
+        endpoints = (
+            server_data["prod_endpoints"]
+            if self.ambiente == Tamb.PROD.value
+            else server_data["dev_endpoints"]
+        )
+        if endpoint_type not in endpoints:
             raise ValueError(
                 f"Endpoint {endpoint_type.name} not configured "
                 "for server key: {self.server_key}"
             )
 
-        path = server_data["endpoints"][endpoint_type]
-        location = f"https://{server_host}{path}"
+        location = endpoints[endpoint_type]
         _logger.debug(
             f"Determined location for {endpoint_type.name} (Amb: {self.ambiente}, "
             "ServerKey: {self.server_key}): {location}"

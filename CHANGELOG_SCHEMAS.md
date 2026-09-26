@@ -57,6 +57,3 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-02-09`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`
-
-The same package also ships the 1.01 layout (`Schemas/1.01/`); it is not part of this
-binding yet.

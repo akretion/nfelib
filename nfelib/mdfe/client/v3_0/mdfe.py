@@ -65,13 +65,12 @@ class MdfeClient(FiscalClient):
         server_key = "SVRS"
         server_data = SERVERS_MDFE[server_key]
 
-        server_host = (
-            server_data["prod_server"]
+        endpoints = (
+            server_data["prod_endpoints"]
             if self.ambiente == Tamb.PROD.value
-            else server_data["dev_server"]
+            else server_data["dev_endpoints"]
         )
-        path = server_data["endpoints"][endpoint_type]
-        location = f"https://{server_host}{path}"
+        location = endpoints[endpoint_type]
         _logger.debug(f"Determined location for {endpoint_type.name}: {location}")
         return location
 
@@ -94,20 +93,25 @@ class MdfeClient(FiscalClient):
         endpoint_type = action_to_endpoint_map[action_class]
         location = self._get_location(endpoint_type)
 
-        # Conditionally create the header
-        header_obj = None
+        if action_class is MdfeRecepcaoSincSoap12MdfeRecepcao:
+            # MDFeRecepcaoSinc carries the signed MDF-e as the text of
+            # mdfeDadosMsg (xsd:string), not as a wildcard child element.
+            if not isinstance(obj, str):
+                obj = etree.tostring(obj, encoding="unicode")
+            wrapped_obj = {"Body": {"mdfeDadosMsg": {"value": obj}}}
+        else:
+            wrapped_obj = {
+                "Body": {"mdfeDadosMsg": {"content": [obj]}},
+            }
         if hasattr(action_class.input, "Header"):
-            header_obj = action_class.input.Header(
-                    mdfeCabecMsg=MdfeCabecMsg(
-                    cUF=str(self.uf), versaoDados=self.versao
-                )
-            )
-
-        wrapped_obj = {
-            "Body": {"mdfeDadosMsg": {"content": [obj]}},
-        }
-        if header_obj:
-            wrapped_obj["Header"] = header_obj
+            # DictDecoder only accepts plain dicts for element vars,
+            # not pre-built dataclass instances.
+            wrapped_obj["Header"] = {  # type: ignore[assignment]
+                "mdfeCabecMsg": {
+                    "cUF": str(self.uf),
+                    "versaoDados": self.versao,
+                }
+            }
 
         response = super().send(
             action_class=action_class,
@@ -119,10 +123,32 @@ class MdfeClient(FiscalClient):
         )
 
         if not self.wrap_response:
-            return response.body.content[0].content[0]
+            return self._unwrap_body(response.body)
 
-        response.resposta = response.resposta.body.content[0].content[0]
+        response.resposta = self._unwrap_body(response.resposta.body)
         return response
+
+    @staticmethod
+    def _unwrap_body(body: Any) -> Any:
+        """Return the payload element of the MDFe SOAP response Body.
+
+        Each MDFe WSDL has its own result element as a named Body field
+        (mdfeStatusServicoMDFResult, mdfeRecepcaoResult, ...) whose content
+        is a wildcard list.
+        """
+        for attr in (
+            "mdfeStatusServicoMDFResult",
+            "mdfeRecepcaoResult",
+            "mdfeConsultaMDFResult",
+            "mdfeConsNaoEncResult",
+            "mdfeRecepcaoEventoResult",
+        ):
+            result = getattr(body, attr, None)
+            if result is not None:
+                return result.content[0]
+        raise ValueError(
+            f"No known result element found in MDFe SOAP response Body: {body!r}"
+        )
 
     def status_servico(self) -> RetConsStatServMdfe:
         """Consulta o status do serviço MDF-e."""
@@ -246,14 +272,14 @@ class MdfeClient(FiscalClient):
     ) -> str:  # NOTE monta_qrcode in erpbrasil
         """Monta a URL do QR Code para o DAMDFE."""
         server_data = SERVERS_MDFE["SVRS"]
-        host = (
-            server_data["prod_server"]
+        endpoints = (
+            server_data["prod_endpoints"]
             if self.ambiente == Tamb.PROD.value
-            else server_data["dev_server"]
+            else server_data["dev_endpoints"]
         )
-        path = server_data["endpoints"][Endpoint.QRCODE]
+        location = endpoints[Endpoint.QRCODE]
 
-        base_url = f"https://{host}{path}"
+        base_url = location
 
         params = f"?chMDFe={chave}&tpAmb={self.ambiente}"
 

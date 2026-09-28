@@ -12,6 +12,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from nfelib import CommonMixin
 from nfelib.bpe.bindings import v1_0 as bindings
+from nfelib.bpe.bindings.v1_0.bpe_ta_v1_00 import BpeTa
 from nfelib.bpe.bindings.v1_0.bpe_tipos_basico_v1_00 import TendeEmi
 from nfelib.bpe.bindings.v1_0.bpe_v1_00 import Bpe
 from nfelib.bpe.bindings.v1_0.cons_sit_bpe_v1_00 import ConsSitBpe
@@ -25,6 +26,7 @@ BPE_NS = "http://www.portalfiscal.inf.br/bpe"
 # name does not always match the root element name convention (the BPeTM
 # element is bound to BpeTm), so name-based root resolution is not reliable.
 SAMPLE_ROOTS = {
+    "bpe-ta.xml": BpeTa,
     "bpe.xml": Bpe,
 }
 
@@ -57,6 +59,7 @@ def test_common_mixin_on_roots():
     # extension would leak the mixin into every binding on the next
     # regeneration.
     assert issubclass(Bpe, CommonMixin)
+    assert issubclass(BpeTa, CommonMixin)
     assert issubclass(BpeProc, CommonMixin)
     assert issubclass(EventoBpe, CommonMixin)
     assert not issubclass(ConsStatServBpe, CommonMixin)

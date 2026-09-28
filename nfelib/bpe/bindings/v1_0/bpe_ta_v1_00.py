@@ -8,19 +8,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from nfelib.bpe.bindings.v1_0.cons_stat_serv_bpe_tipos_basico_v1_00 import (
-    TconsStatServ,
-)
+from nfelib.bpe.bindings.v1_0.bpe_tipos_basico_v1_00 import TbpeTa
 
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/bpe"
 
 
 @dataclass
-class ConsStatServBpe(TconsStatServ):
-    """
-    Schema XML de validação do Pedido de Consulta do Status do Serviço BP-e.
-    """
+class BpeTa(TbpeTa):
+    """Bilhete de Passagem Eletrônico - Transporte Aéreo"""
 
     class Meta:
-        name = "consStatServBPe"
+        name = "BPeTA"
         namespace = "http://www.portalfiscal.inf.br/bpe"

@@ -112,7 +112,7 @@ Observação: o ambiente autorizador que trabalhar com mais de um Site deverá d
 									<xs:element name="finNFCom" type="TFinNFCom">
 										<xs:annotation>
 											<xs:documentation>Finalidade de emissão da NFCom</xs:documentation>
-											<xs:documentation>0- NFCom Normal; 
+											<xs:documentation>0 - NFCom Normal; 
 3 - NFCom de Substituição; 
 4 - NFCom de Ajuste;</xs:documentation>
 										</xs:annotation>
@@ -206,6 +206,19 @@ para tpEmis diferente de 1</xs:documentation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
 									</xs:element>
+									<xs:element name="tpPagAnt" type="TPagAnt" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
+											<xs:documentation>Informar:
+1 - Pagamento Antecipado de Serviços Não Continuados
+2 - Pagamento de serviços continuados (antes da prestação)
+3 - Fornecimento com pagamento realizado anteriormente
+
+Este campo é opcional e apenas deve ser informado em notas de pagamento que ocorre antes da prestação do serviço e na nota de fornecimento associada a esses pagamentos, Notas Normais que retratam a prestação de serviço continuado mensal da nota fatura (contendo ou não itens de serviço não continuado) em que o pagamento não foi antecipado NÃO DEVEM INFORMAR ESSE CAMPO.
+
+A tabela cClass terá uma flag que sinaliza se o tipo de item é de prestação continuada ou não continuada</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -269,6 +282,19 @@ para tpEmis diferente de 1</xs:documentation>
 										<xs:annotation>
 											<xs:documentation>Endereço do emitente</xs:documentation>
 										</xs:annotation>
+									</xs:element>
+									<xs:element name="ISUFEmit" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
+											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="8"/>
+												<xs:maxLength value="9"/>
+												<xs:whiteSpace value="preserve"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -546,7 +572,8 @@ Sequencia XML</xs:documentation>
 02 – Erro Cadastral
 03 – Decisão Judicial
 04 - Erro de Tributação
-05 - Descontinuidade do Serviço</xs:documentation>
+05 - Descontinuidade do Serviço
+06 - Regime Especial</xs:documentation>
 											</xs:annotation>
 										</xs:element>
 									</xs:sequence>
@@ -739,6 +766,44 @@ Sequencia XML</xs:documentation>
 																<xs:enumeration value="1"/>
 															</xs:restriction>
 														</xs:simpleType>
+													</xs:element>
+													<xs:element name="CNPJCobrTerc" type="TCnpj" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>CNPJ de cobrança de terceiro</xs:documentation>
+															<xs:documentation>Informar quando cClass do grupo 110 - Cobrança de terceiros</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="gPagAntecipado" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Grupo de antecipação de pagamento
+
+Permite informar apenas quando tpPagAnt=3</xs:documentation>
+															<xs:documentation>Informado para abater as parcelas de antecipação de
+pagamento</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="chDFePagAnt" type="TChDFe">
+																	<xs:annotation>
+																		<xs:documentation>Chave de acesso da nota de antecipação de pagamento (com tpPagAnt=1 ou 2)</xs:documentation>
+																		<xs:documentation>Referência a DFe emitido anteriormente, referente a pagamento antecipado</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="nItemPagAnt" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Número do item do DFe de antecipação para referência direta a um item</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="3"/>
+																			<xs:whiteSpace value="preserve"/>
+																			<xs:pattern value="[1-9]{1}[0-9]{0,1}|[1-8]{1}[0-9]{2}|[9]{1}[0-8]{1}[0-9]{1}|[9]{1}[9]{1}[0]{1}"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
@@ -2763,6 +2828,19 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 			<xs:pattern value="(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="TPagAnt">
+		<xs:annotation>
+			<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1"/>
+			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="TEmail">
 		<xs:annotation>
 			<xs:documentation>Tipo Email</xs:documentation>
@@ -2916,6 +2994,7 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 			<xs:enumeration value="03"/>
 			<xs:enumeration value="04"/>
 			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TAjusteNFComAnt_v2">

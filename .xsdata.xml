@@ -33,6 +33,9 @@
     <Extension type="class" class="^TprotNF3E$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Nf3EProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^EvCancNf3E$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tnfcom$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^NfcomProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^EvCancNfcom$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
   </Extensions>
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>

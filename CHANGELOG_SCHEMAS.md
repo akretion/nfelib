@@ -48,6 +48,17 @@ commit message. A binding without a section here simply gets no metadata injecte
 - source_url:
   `https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFe_300b_NT012025_1.04.zip`
 
+## nfcom (v1_0)
+
+- binding_dir: `nfcom/bindings/v1_0`
+- version: `PL_NFCOM_1.00_NT2024001`
+- package:
+  `Pacote de Liberação NFCom 1.00 - NT 2024.001`
+- nota_tecnica: `NT 2024.001 v1.01`
+- published_at: `2024-04-05 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFCOM/DownloadArquivoEstatico/?sistema=NFCOM&tipoArquivo=2&nomeArquivo=PL_NFCOM_1.00_NT2024001.zip`
+
 ## nf3e (v1_0)
 
 - binding_dir: `nf3e/bindings/v1_0`

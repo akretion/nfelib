@@ -248,6 +248,11 @@ SCHEMAS: Final[dict[str, SchemaConfig]] = {
         schema_dir="nfelib/nf3e/schemas/v1_0",
         package="nfelib.nf3e.bindings.v1_0",
     ),
+    "nfcom": SchemaConfig(
+        name="nfcom",
+        schema_dir="nfelib/nfcom/schemas/v1_0",
+        package="nfelib.nfcom.bindings.v1_0",
+    ),
     "nfse": SchemaConfig(
         name="nfse",
         schema_dir="nfelib/nfse/schemas/v1_0",
@@ -273,6 +278,7 @@ DOWNLOAD_URLS: Final[dict[str, str]] = {
     "mdfe_dist_dfe": "https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFeDistDFe_100.zip",
     "bpe": "https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip",
     "nfse": "https://www.gov.br/nfse/pt-br/documentacao-tecnica/xsd_pl_nfse_1-00-producao.zip/@@download/file/XSD_PL_NFSe_1.00-Produ%C3%A7%C3%A3o.zip",
+    "nfcom": "https://dfe-portal.svrs.rs.gov.br/NFCOM/DownloadArquivoEstatico/?sistema=NFCOM&tipoArquivo=2&nomeArquivo=PL_NFCOM_1.00_NT2026.002%20RTC_1.01.zip",
 }
 
 

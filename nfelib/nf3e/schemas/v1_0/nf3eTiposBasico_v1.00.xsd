@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2014 rel. 2 (http://www.altova.com) by private (private) -->
+<!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nf3e" targetNamespace="http://www.portalfiscal.inf.br/nf3e" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
 	<xs:include schemaLocation="tiposGeralNF3e_v1.00.xsd"/>
+	<xs:include schemaLocation="DFeTiposBasicos_v1.00.xsd"/>
 	<xs:complexType name="TNF3e">
 		<xs:annotation>
 			<xs:documentation>Tipo Nota Fiscal de Energia Elétrica</xs:documentation>
@@ -152,6 +153,11 @@ para tpEmis diferente de 1</xs:documentation>
 											</xs:simpleType>
 										</xs:element>
 									</xs:sequence>
+									<xs:element name="gCompraGov" type="TCompraGovReduzido" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -360,11 +366,12 @@ Nota: No caso de Contribuinte Isento de Inscrição (indIEDest=2) informar a tag
 									<xs:element name="tpAcesso" type="TAcessante">
 										<xs:annotation>
 											<xs:documentation>Tipo de Acessante</xs:documentation>
-											<xs:documentation>0 - Gerador; 1 – Cativo; 
+											<xs:documentation>0 - Gerador;
+1 – Cativo; 
 2 – Livre;
- 3 – Parcialmente Livre; 
+3 – Parcialmente Livre; 
 4 – Consumidor Especial;
- 5 – Parcialmente Especial;
+5 – Parcialmente Especial;
  6 – Comunhão; 
 7 – Suprimento; 
 8 – Distribuidora.</xs:documentation>
@@ -398,61 +405,35 @@ Nota: No caso de Contribuinte Isento de Inscrição (indIEDest=2) informar a tag
 										<xs:annotation>
 											<xs:documentation>Subclasse de Consumo da Unidade Consumidora</xs:documentation>
 											<xs:documentation>01 - Residencial;
-
 02 - Residencial baixa renda;
-
 03 - Residencial baixa renda indígena;
-
 04 - Residencial baixa renda quilombola;
-
 05 - Residencial baixa renda benefício de prestação continuada da assistência social;
-
 06 - Residencial baixa renda multifamiliar; 
-
 07 - Comercial; 
-
 08 - Serviços de transporte, exceto tração elétrica; 
-
 09 - Serviços de comunicação e telecomunicação;
-
 10 - Associação e entidades filantrópicas; 
-
 11 - Templos religiosos; 
-
 12 - Administração condominial: iluminação e instalações de uso comum de prédio ou conjunto de edificações;
-
- 13 - Iluminação em rodovias solicitada por quem detenha concessão ou autorização para administração em rodovias;
-
- 14 - Semáforos, radares e câmeras de monitoramento de trânsito, solicitados por quem detenha concessão ou autorização para controle de trânsito;
-
- 15 - Outros serviços e outras atividades da classe comercial;
-16=Agropecuária rural; 
-
+13 - Iluminação em rodovias solicitada por quem detenha concessão ou autorização para administração em rodovias;
+14 - Semáforos, radares e câmeras de monitoramento de trânsito, solicitados por quem detenha concessão ou autorização para controle de trânsito;
+15 - Outros serviços e outras atividades da classe comercial;
+16 - Agropecuária rural; 
 17 - Agropecuária urbana;
-
- 18 - Residencial rural; 
-
+18 - Residencial rural; 
 19 - Cooperativa de eletrificação rural;
-
 20 - Agroindustrial; 
-
 21 - Serviço público de irrigação rural; 
-
 22 - Escola agrotécnica;
-
- 23 - Aquicultura; 
-
+23 - Aquicultura; 
 24 - Poder público Federal;
-
 25 - Poder Público Estadual ou Distrital;
-
- 26 - Poder público Municipal;
-
- 27 - Tração Elétrica;
-
+26 - Poder público Municipal;
+27 - Tração Elétrica;
 28 - Água esgoto ou saneamento;
-
- 99 - Outros.</xs:documentation>
+29 - Residencial Desconto Social;
+99 - Outros.</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="tpFase" type="TFase">
@@ -770,6 +751,26 @@ Nota: No caso de Contribuinte Isento de Inscrição (indIEDest=2) informar a tag
 															<xs:documentation>0=Único
 ; 1=Ponta
 ; 2=Fora Ponta; 3=Intermediário</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:sequence minOccurs="0" maxOccurs="unbounded">
+													<xs:element name="enerInjet">
+														<xs:annotation>
+															<xs:documentation>Energia injetada</xs:documentation>
+															<xs:documentation>Quantidade de energia excedente que é destinado pela unidade geradora a esta unidade consumidora em kWh.</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="TDec_0803"/>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="tpPosTarInjet" type="TPosTarSimples">
+														<xs:annotation>
+															<xs:documentation>Tipo de Posto Tarifário Energia injetada</xs:documentation>
+															<xs:documentation>0=Único
+1=Ponta
+2=Fora Ponta
+3=Intermediário</xs:documentation>
 														</xs:annotation>
 													</xs:element>
 												</xs:sequence>
@@ -2158,6 +2159,11 @@ Se informado esse grupo o schema não permite informar nenhum dos grupos de ICMS
 																							</xs:sequence>
 																						</xs:complexType>
 																					</xs:element>
+																					<xs:element name="IBSCBS" type="TTribNF3e" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>Grupo de informações do IBS e CBS</xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
 																				</xs:sequence>
 																			</xs:extension>
 																		</xs:complexContent>
@@ -2532,6 +2538,18 @@ Deve sempre existir um detItemAnt que corresponda</xs:documentation>
 											<xs:documentation>Valor Total da NF-e</xs:documentation>
 										</xs:annotation>
 									</xs:element>
+									<xs:element name="IBSCBSTot" type="TIBSCBSTot" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Totais de IBS e CBS</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor total do documento fiscal 
+(vNF + total do IBS + total da CBS) 
+</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -2741,7 +2759,7 @@ Não obrigatória, conforme item 2.3.2 da Seção 11.1 do Módulo 11 do PRODIST.
 						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:ID">
-								<xs:pattern value="NF3e[0-9]{44}"/>
+								<xs:pattern value="NF3e[0-9]{6}[A-Z0-9]{12}[0-9]{26}"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
@@ -2778,7 +2796,7 @@ Não obrigatória, conforme item 2.3.2 da Seção 11.1 do Módulo 11 do PRODIST.
 									<xs:whiteSpace value="preserve"/>
 									<xs:minLength value="50"/>
 									<xs:maxLength value="1000"/>
-									<xs:pattern value="((HTTPS?|https?)://.*\?chNF3e=[0-9]{44}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chNF3e=[0-9]{6}[A-Z0-9]{12}[0-9]{26}&amp;tpAmb=[1-2](&amp;sign=[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1})?)"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -2787,16 +2805,6 @@ Não obrigatória, conforme item 2.3.2 da Seção 11.1 do Módulo 11 do PRODIST.
 			</xs:element>
 			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="TEnviNF3e">
-		<xs:annotation>
-			<xs:documentation>Tipo Pedido de Concessão de Autorização de NF-3e</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="idLote" type="TIdLote"/>
-			<xs:element name="NF3e" type="TNF3e" maxOccurs="50"/>
-		</xs:sequence>
-		<xs:attribute name="versao" type="TVerNF3e" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="TEndeEmi">
 		<xs:annotation>
@@ -3334,9 +3342,9 @@ Não obrigatória, conforme item 2.3.2 da Seção 11.1 do Módulo 11 do PRODIST.
 					<xs:documentation>Tipo de grandeza medida</xs:documentation>
 					<xs:documentation>01 - Demanda; 
 02 - Demanda Reativa
-; 03 - Energia Ativa; 
+03 - Energia Ativa; 
 04 - Energia Ativa injetada
-; 05 - Energia Reativa</xs:documentation>
+05 - Energia Reativa</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="cPosTarif" type="TPosTarifCompleto">
@@ -3597,7 +3605,6 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 			<xs:enumeration value="6"/>
 			<xs:enumeration value="7"/>
 			<xs:enumeration value="8"/>
-			<xs:enumeration value=""/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TClasse">
@@ -3654,6 +3661,7 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 			<xs:enumeration value="26"/>
 			<xs:enumeration value="27"/>
 			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
 			<xs:enumeration value="99"/>
 		</xs:restriction>
 	</xs:simpleType>

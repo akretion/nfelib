@@ -31,13 +31,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## bpe (v1_0)
 
 - binding_dir: `bpe/bindings/v1_0`
-- version: `PL_BPe_100b_NT012021`
+- version: `PL_BPe_100b_NT012021_1.01`
 - package:
-  `Pacote de Liberação BPe 1.00b - NT 2021.001 (zip PL_BPe_100b_NT012021)`
-- nota_tecnica: `NT 2021.001`
-- published_at: `2021-01-21 (zip build date)`
+  `Pacote de Liberação BPe 1.00b - NT 2021.001 v1.01 (zip PL_BPe_100b_NT012021_1.01)`
+- nota_tecnica: `NT 2021.001 v1.01`
+- published_at: `2022-04-08 (zip build date)`
 - source_url:
-  `https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip`
+  `https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021_1.01.zip`
 
 ## cte (v4_0)
 

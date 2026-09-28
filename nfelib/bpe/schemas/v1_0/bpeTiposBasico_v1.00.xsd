@@ -276,7 +276,7 @@ para tpEmis diferente de 1</xs:documentation>
 									<xs:element name="TAR" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Termo de Autorização de Serviço Regular</xs:documentation>
-											<xs:documentation>Registro obrigatório do emitente do BP-e junto à ANTT para exercer a atividade		</xs:documentation>
+											<xs:documentation>Registro obrigatório do emitente do BPe TM junto à Agência Reguladora Estadual ou ANTT.</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

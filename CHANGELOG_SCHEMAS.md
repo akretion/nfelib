@@ -28,6 +28,17 @@ commit message. A binding without a section here simply gets no metadata injecte
 - source_url:
   `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=8ITFuBLltXs=`
 
+## bpe (v1_0)
+
+- binding_dir: `bpe/bindings/v1_0`
+- version: `PL_BPe_100b_NT012021`
+- package:
+  `Pacote de Liberação BPe 1.00b - NT 2021.001 (zip PL_BPe_100b_NT012021)`
+- nota_tecnica: `NT 2021.001`
+- published_at: `2021-01-21 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/BPE/DownloadArquivoEstatico/?sistema=BPE&tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT012021.zip`
+
 ## cte (v4_0)
 
 - binding_dir: `cte/bindings/v4_0`

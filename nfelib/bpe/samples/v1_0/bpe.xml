@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BPe xmlns="http://www.portalfiscal.inf.br/bpe">
+  <infBPe versao="1.00" Id="BPe35260712345678000195630010000000011234567890">
+    <ide>
+      <cUF>35</cUF>
+      <tpAmb>2</tpAmb>
+      <mod>63</mod>
+      <serie>1</serie>
+      <nBP>1</nBP>
+      <cBP>12345678</cBP>
+      <cDV>0</cDV>
+      <modal>1</modal>
+      <dhEmi>2026-07-06T08:00:00-03:00</dhEmi>
+      <tpEmis>1</tpEmis>
+      <verProc>1.0</verProc>
+      <tpBPe>0</tpBPe>
+      <indPres>1</indPres>
+      <UFIni>SP</UFIni>
+      <cMunIni>3550308</cMunIni>
+      <UFFim>RJ</UFFim>
+      <cMunFim>3304557</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>12345678000195</CNPJ>
+      <IE>123456789012</IE>
+      <xNome>EMPRESA BP-E</xNome>
+      <CRT>3</CRT>
+      <enderEmit>
+        <xLgr>RUA TESTE</xLgr>
+        <nro>100</nro>
+        <xBairro>CENTRO</xBairro>
+        <cMun>3550308</cMun>
+        <xMun>SAO PAULO</xMun>
+        <UF>SP</UF>
+      </enderEmit>
+    </emit>
+    <infPassagem>
+      <cLocOrig>3550308</cLocOrig>
+      <xLocOrig>SAO PAULO</xLocOrig>
+      <cLocDest>3304557</cLocDest>
+      <xLocDest>RIO DE JANEIRO</xLocDest>
+      <dhEmb>2026-07-06T10:00:00-03:00</dhEmb>
+      <dhValidade>2026-07-07T10:00:00-03:00</dhValidade>
+      <infPassageiro>
+        <xNome>PASSAGEIRO TESTE</xNome>
+        <CPF>12345678901</CPF>
+        <tpDoc>1</tpDoc>
+        <nDoc>12345678</nDoc>
+      </infPassageiro>
+    </infPassagem>
+    <infViagem>
+      <cPercurso>001</cPercurso>
+      <xPercurso>SAO PAULO - RIO DE JANEIRO</xPercurso>
+      <tpViagem>00</tpViagem>
+      <tpServ>1</tpServ>
+      <tpAcomodacao>1</tpAcomodacao>
+      <tpTrecho>1</tpTrecho>
+      <dhViagem>2026-07-06T10:00:00-03:00</dhViagem>
+    </infViagem>
+    <infValorBPe>
+      <vBP>100.00</vBP>
+      <vDesconto>0.00</vDesconto>
+      <vPgto>100.00</vPgto>
+      <vTroco>0.00</vTroco>
+      <Comp>
+        <tpComp>01</tpComp>
+        <vComp>100.00</vComp>
+      </Comp>
+    </infValorBPe>
+    <imp>
+      <ICMS>
+        <ICMS00>
+          <CST>00</CST>
+          <vBC>100.00</vBC>
+          <pICMS>18.00</pICMS>
+          <vICMS>18.00</vICMS>
+        </ICMS00>
+      </ICMS>
+    </imp>
+    <pag>
+      <tPag>01</tPag>
+      <vPag>100.00</vPag>
+    </pag>
+  </infBPe>
+</BPe>

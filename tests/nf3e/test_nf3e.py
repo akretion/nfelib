@@ -14,7 +14,7 @@ from nfelib.nf3e.bindings.v1_0.cons_stat_serv_nf3e_tipos_basico_v1_00 import (
     TconsStatServ,
     TretConsStatServ,
 )
-from nfelib.nf3e.bindings.v1_0.nf3e_tipos_basico_v1_00 import TendeEmi, Tnf3E
+from nfelib.nf3e.bindings.v1_0.nf3e_tipos_basico_v1_00 import TendeEmi
 from nfelib.nf3e.bindings.v1_0.nf3e_v1_00 import Nf3E
 from nfelib.nf3e.bindings.v1_0.proc_nf3e_v1_00 import Nf3EProc
 

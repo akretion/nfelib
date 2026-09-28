@@ -48,6 +48,17 @@ commit message. A binding without a section here simply gets no metadata injecte
 - source_url:
   `https://dfe-portal.svrs.rs.gov.br/MDFE/DownloadArquivoEstatico/?sistema=MDFE&tipoArquivo=2&nomeArquivo=PL_MDFe_300b_NT012025_1.04.zip`
 
+## nf3e (v1_0)
+
+- binding_dir: `nf3e/bindings/v1_0`
+- version: `PL_NF3E_1.00a_NT2026.002_RTC_1.01`
+- package:
+  `Pacote de Schemas que acompanha a NT 2026.002 RTC (zip PL_NF3E_1.00a_NT2026.002 RTC_1.01)`
+- nota_tecnica: `NT 2026.002 RTC v1.01`
+- published_at: `2026-06-29`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NF3E/DownloadArquivoEstatico/?sistema=NF3E&tipoArquivo=2&nomeArquivo=PL_NF3E_1.00a_NT2026.002%20RTC_1.01.zip`
+
 ## nfse (v1_0)
 
 - binding_dir: `nfse/bindings/v1_0`

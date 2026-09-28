@@ -2339,6 +2339,27 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 								<xs:documentation>Valor do ICMS</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF aplicado</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -2365,6 +2386,27 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF aplicado</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -2411,6 +2453,27 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 								<xs:documentation>Valor do Crédito Outorgado/Presumido</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sequencia XML</xs:documentation>
+							</xs:annotation>
+							<xs:element name="vICMSDeson" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor do ICMS de desoneração</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cBenef">
+								<xs:annotation>
+									<xs:documentation>Código de Benefício Fiscal na UF aplicado</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>

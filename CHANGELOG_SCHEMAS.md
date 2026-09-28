@@ -28,6 +28,16 @@ commit message. A binding without a section here simply gets no metadata injecte
 - source_url:
   `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=8ITFuBLltXs=`
 
+## nfe_dist_dfe (v1_0)
+
+- binding_dir: `nfe_dist_dfe/bindings/v1_0`
+- version: `PL_NFeDistDFe_104`
+- package: `Pacote de Liberação Distribuição de DF-e v1.04 (zip dir PL_NFeDistDFe_104)`
+- nota_tecnica: `NT 2014.002 v1.40, NT Conjunta 2025.001 (CNPJ alfanumérico)`
+- published_at: `2026-07-03`
+- source_url:
+  `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=IzuP2y0G6hk=`
+
 ## bpe (v1_0)
 
 - binding_dir: `bpe/bindings/v1_0`

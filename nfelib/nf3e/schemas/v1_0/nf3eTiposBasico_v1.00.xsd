@@ -2553,6 +2553,28 @@ Deve sempre existir um detItemAnt que corresponda</xs:documentation>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
+						<xs:element name="pgtoVinc" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Grupo de informações da vínculação com a transação de pagamento</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pgto" type="TPagamentoRTC" maxOccurs="99">
+										<xs:annotation>
+											<xs:documentation>Dados de cada pagamento previsto</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+							<xs:unique name="pk_nPag">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@nPag"/>
+							</xs:unique>
+							<xs:unique name="pk_idTransacao">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@idTransacao"/>
+							</xs:unique>
+						</xs:element>
 						<xs:element name="gFat">
 							<xs:annotation>
 								<xs:documentation>Grupo de informações de controle da Fatura</xs:documentation>

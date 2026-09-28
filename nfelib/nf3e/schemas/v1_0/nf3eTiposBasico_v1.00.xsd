@@ -158,6 +158,19 @@ para tpEmis diferente de 1</xs:documentation>
 											<xs:documentation>Grupo de Compras Governamentais</xs:documentation>
 										</xs:annotation>
 									</xs:element>
+									<xs:element name="tpPagAnt" type="TPagAnt" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
+											<xs:documentation>Informar:
+1 - Pagamento Antecipado de Serviços Não Continuados
+2 - Pagamento de serviços continuados (antes da prestação)
+3 - Fornecimento com pagamento realizado anteriormente
+
+Este campo é opcional e apenas deve ser informado em notas de pagamento que ocorre antes da prestação do serviço e na nota de fornecimento associada a esses pagamentos, Notas Normais que retratam a prestação de serviço continuado mensal da nota fatura (contendo ou não itens de serviço não continuado) em que o pagamento não foi antecipado NÃO DEVEM INFORMAR ESSE CAMPO.
+
+A tabela cClass terá uma flag que sinaliza se o tipo de item é de prestação continuada ou não continuada</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -204,6 +217,19 @@ para tpEmis diferente de 1</xs:documentation>
 										<xs:annotation>
 											<xs:documentation>Endereço do emitente</xs:documentation>
 										</xs:annotation>
+									</xs:element>
+									<xs:element name="ISUFEmit" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Inscrição do emitente da Suframa</xs:documentation>
+											<xs:documentation>Informar o número do Cadastro do emitente na Suframa. Campo obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA com alíquota zero da CBS referente aos arts. 451 e 466 da LC 214/25 </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="8"/>
+												<xs:maxLength value="9"/>
+												<xs:whiteSpace value="preserve"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -1473,6 +1499,38 @@ Deve informar ICMS10 e não poderá informar grupo de tarifas aplicadas.
 																						<xs:enumeration value="1"/>
 																					</xs:restriction>
 																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="gPagAntecipado" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Grupo de antecipação de pagamento
+
+Permite informar apenas quando tpPagAnt=3</xs:documentation>
+																					<xs:documentation>Informado para abater as parcelas de antecipação de
+pagamento</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="chDFePagAnt" type="TChDFe">
+																							<xs:annotation>
+																								<xs:documentation>Chave de acesso da nota de antecipação de pagamento (com tpPagAnt=1 ou 2)</xs:documentation>
+																								<xs:documentation>Referência a DFe emitido anteriormente, referente a pagamento antecipado</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																						<xs:element name="nItemPagAnt" minOccurs="0">
+																							<xs:annotation>
+																								<xs:documentation>Número do item do DFe de antecipação para referência direta a um item</xs:documentation>
+																							</xs:annotation>
+																							<xs:simpleType>
+																								<xs:restriction base="xs:string">
+																									<xs:minLength value="1"/>
+																									<xs:maxLength value="3"/>
+																									<xs:whiteSpace value="preserve"/>
+																									<xs:pattern value="[1-9]{1}[0-9]{0,1}|[1-8]{1}[0-9]{2}|[9]{1}[0-8]{1}[0-9]{1}|[9]{1}[9]{1}[0]{1}"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
 																			</xs:element>
 																		</xs:sequence>
 																	</xs:complexType>
@@ -3871,6 +3929,19 @@ Observação: 28 caracteres são representados no schema como 20 bytes do tipo b
 			<xs:enumeration value="2"/>
 			<xs:enumeration value="3"/>
 			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TPagAnt">
+		<xs:annotation>
+			<xs:documentation>Tipo Pagamento ou Pagamento Antecipado</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1"/>
+			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="TMotAjuste">

@@ -57,6 +57,23 @@ def test_common_mixin_on_roots():
     assert not issubclass(TretConsStatServ, CommonMixin)
 
 
+def test_vinc_pgto_events_are_generated():
+    # NT 2026.001 introduced the payment-linkage events (110300/110301); they
+    # must stay generated with their real enum and shared RTC payment type.
+    from nfelib.nfcom.bindings.v1_0.dfe_tipos_basicos_v1_00 import TpagamentoRtc
+    from nfelib.nfcom.bindings.v1_0.ev_canc_vinc_pgto_v1_00 import EvCancVincPgto
+    from nfelib.nfcom.bindings.v1_0.ev_vinc_pgto_v1_00 import (
+        EvVincPgto,
+        EvVincPgtoDescEvento,
+    )
+
+    assert (
+        EvVincPgtoDescEvento.VINCULA_O_DO_PAGAMENTO.value == "Vinculação do Pagamento"
+    )
+    assert get_type_hints(EvVincPgto)["pgto"].__args__[0] is TpagamentoRtc
+    assert EvCancVincPgto.Meta.name == "evCancVincPgto"
+
+
 def test_in_out_nfcom(tmp_path):
     path = os.path.join("nfelib", "nfcom", "samples", "v1_0")
     for filename in os.listdir(path):

@@ -51,13 +51,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## nfcom (v1_0)
 
 - binding_dir: `nfcom/bindings/v1_0`
-- version: `PL_NFCOM_1.00_NT2025.001_RTC_1.14_corr`
+- version: `PL_NFCOM_1.00_NT2026.001_RTC_VincPgto_1.01_corr`
 - package:
-  `Pacote de Liberação NFCom 1.00 - NT 2025.001 RTC 1.14 (zip PL_NFCOM_1.00_NT2025.001 RTC_1.14_corr)`
-- nota_tecnica: `NT 2025.001 RTC v1.14 (Reforma Tributária do Consumo)`
-- published_at: `2025-10-30 (zip build date)`
+  `Pacote de Liberação NFCom 1.00 - NT 2026.001 RTC Vinculação Pagamento v1.01 (zip PL_NFCOM_1.00_NT2026.001 RTC_VincPgto_1.01_corr)`
+- nota_tecnica: `NT 2026.001 RTC Vinculação Pagamento v1.01`
+- published_at: `2026-02-03 (zip build date)`
 - source_url:
-  `https://dfe-portal.svrs.rs.gov.br/NFCOM/DownloadArquivoEstatico/?sistema=NFCOM&tipoArquivo=2&nomeArquivo=PL_NFCOM_1.00_NT2025.001%20RTC_1.14_corr.zip`
+  `https://dfe-portal.svrs.rs.gov.br/NFCOM/DownloadArquivoEstatico/?sistema=NFCOM&tipoArquivo=2&nomeArquivo=PL_NFCOM_1.00_NT2026.001%20RTC_VincPgto_1.01_corr.zip`
 
 ## nf3e (v1_0)
 

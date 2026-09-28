@@ -262,7 +262,7 @@ SCHEMAS: Final[dict[str, SchemaConfig]] = {
 
 DOWNLOAD_URLS: Final[dict[str, str]] = {
     "nfe": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=Uk1T1otPFqI=",
-    "nfe_dist_dfe": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=n3Kn9%20YZNak=",
+    "nfe_dist_dfe": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=IzuP2y0G6hk=",
     "nfe_evento_generico": "http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=YaiBe2csOmA=",
     "nfe_evento_cancel": "http://hom.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=MtjAJ1Rurjc=",
     "nfe_evento_cce": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=P/FXaGiLKo0=",

@@ -95,7 +95,7 @@ class CommonMixin:
                 "v4_0",
                 "cte_v4.00.xsd",
             )
-        elif package == "bpe":
+        if package == "bpe":
             return os.path.join(
                 os.path.dirname(__file__),
                 "bpe",
@@ -103,7 +103,7 @@ class CommonMixin:
                 "v1_0",
                 "bpe_v1.00.xsd",
             )
-        elif package == "nf3e":
+        if package == "nf3e":
             return os.path.join(
                 os.path.dirname(__file__),
                 "nf3e",

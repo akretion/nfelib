@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas.softwares@procergs.rs.gov.br (PROCERGS) -->
+<!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/bpe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/bpe" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
 	<xs:include schemaLocation="tiposGeralBPe_v1.00.xsd"/>
@@ -56,7 +56,7 @@
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:whiteSpace value="preserve"/>
-									<xs:pattern value="[1-9][0-9]|0?[1-9]"/>
+									<xs:pattern value="[0-9]{1,3}"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
@@ -91,7 +91,8 @@ Insira neste local o XML específico do tipo de evento (cancelamento, encerramen
 						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:ID">
-								<xs:pattern value="ID[0-9]{52}"/>
+								<xs:pattern value="ID[0-9]{12}[A-Z0-9]{12}[0-9]{28}"/>
+								<xs:pattern value="ID[0-9]{12}[A-Z0-9]{12}[0-9]{29}"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
@@ -170,7 +171,7 @@ Insira neste local o XML específico do tipo de evento (cancelamento, encerramen
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:whiteSpace value="preserve"/>
-									<xs:pattern value="[1-9][0-9]|0?[1-9]"/>
+									<xs:pattern value="[0-9]{1,3}"/>
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>

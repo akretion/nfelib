@@ -26,6 +26,8 @@
     <Extension type="class" class="^Tmdfe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tbpe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^TbpeTm$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^BpeTmproc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^BpeProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^TprotBpe$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tcnfse$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^Tcdps$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>

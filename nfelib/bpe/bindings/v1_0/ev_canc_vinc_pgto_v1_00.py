@@ -13,27 +13,33 @@ from typing import Optional
 __NAMESPACE__ = "http://www.portalfiscal.inf.br/bpe"
 
 
-class EvAlteracaoPoltronaDescEvento(Enum):
-    ALTERA_O_POLTRONA = "Alteração Poltrona"
-    ALTERACAO_POLTRONA = "Alteracao Poltrona"
+class EvCancVincPgtoDescEvento(Enum):
+    CANCELAMENTO_DA_VINCULA_O_DO_PAGAMENTO = (
+        "Cancelamento da vinculação do pagamento"
+    )
+    CANCELAMENTO_DA_VINCULACAO_DO_PAGAMENTO = (
+        "Cancelamento da vinculacao do pagamento"
+    )
 
 
 @dataclass
-class EvAlteracaoPoltrona:
+class EvCancVincPgto:
     """
-    Schema XML de validação do evento de alteração de poltrona 110116.
+    Schema XML de validação do evento cancelamento da vinculação do pgto 110301.
     "
 
-    :ivar descEvento: Descrição do Evento - “Alteração de Poltrona”
-    :ivar nProt: Número do Protocolo de Status do BP-e.
-    :ivar poltrona: Número da Poltrona / assento / cabine
+    :ivar descEvento: Descrição do Evento - “Cancelamento da vinculação
+        do pagamento”
+    :ivar nProt: Número do Protocolo de autorização do DFe
+    :ivar nProtVincPgto: Número do Protocolo de autorização do evento a
+        ser cancelado
     """
 
     class Meta:
-        name = "evAlteracaoPoltrona"
+        name = "evCancVincPgto"
         namespace = "http://www.portalfiscal.inf.br/bpe"
 
-    descEvento: Optional[EvAlteracaoPoltronaDescEvento] = field(
+    descEvento: Optional[EvCancVincPgtoDescEvento] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -50,14 +56,12 @@ class EvAlteracaoPoltrona:
             "pattern": r"[0-9]{15}",
         },
     )
-    poltrona: Optional[str] = field(
+    nProtVincPgto: Optional[str] = field(
         default=None,
         metadata={
             "type": "Element",
             "required": True,
-            "min_length": 1,
-            "max_length": 3,
             "white_space": "preserve",
-            "pattern": r"0|[1-9]{1}[0-9]{0,2}",
+            "pattern": r"[0-9]{15}",
         },
     )

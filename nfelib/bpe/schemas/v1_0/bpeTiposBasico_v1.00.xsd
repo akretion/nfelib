@@ -998,6 +998,28 @@ vBP+ total do IBS + total da CBS</xs:documentation>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
+						<xs:element name="pgtoVinc" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Grupo de informações da vínculação com a transação de pagamento</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pgto" type="TPagamentoRTC" maxOccurs="99">
+										<xs:annotation>
+											<xs:documentation>Dados de cada pagamento previsto</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+							<xs:unique name="pk_nPagTA">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@nPag"/>
+							</xs:unique>
+							<xs:unique name="pk_idTransacaoTA">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@idTransacao"/>
+							</xs:unique>
+						</xs:element>
 						<xs:element name="autXML" minOccurs="0" maxOccurs="10">
 							<xs:annotation>
 								<xs:documentation>Autorizados para download do XML do DF-e</xs:documentation>
@@ -1626,6 +1648,28 @@ para tpEmis diferente de 1</xs:documentation>
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
+						</xs:element>
+						<xs:element name="pgtoVinc" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Grupo de informações da vínculação com a transação de pagamento</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pgto" type="TPagamentoRTC" maxOccurs="99">
+										<xs:annotation>
+											<xs:documentation>Dados de cada pagamento previsto</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+							<xs:unique name="pk_nPagTM">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@nPag"/>
+							</xs:unique>
+							<xs:unique name="pk_idTransacaoTM">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@idTransacao"/>
+							</xs:unique>
 						</xs:element>
 						<xs:element name="autXML" minOccurs="0" maxOccurs="10">
 							<xs:annotation>
@@ -2921,6 +2965,28 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
+						</xs:element>
+						<xs:element name="pgtoVinc" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Grupo de informações da vínculação com a transação de pagamento</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pgto" type="TPagamentoRTC" maxOccurs="99">
+										<xs:annotation>
+											<xs:documentation>Dados de cada pagamento previsto</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+							<xs:unique name="pk_nPag">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@nPag"/>
+							</xs:unique>
+							<xs:unique name="pk_idTransacao">
+								<xs:selector xpath="./*"/>
+								<xs:field xpath="@idTransacao"/>
+							</xs:unique>
 						</xs:element>
 						<xs:element name="autXML" minOccurs="0" maxOccurs="10">
 							<xs:annotation>

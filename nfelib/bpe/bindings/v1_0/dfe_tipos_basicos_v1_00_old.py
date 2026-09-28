@@ -12,8 +12,6 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlPeriod
 
-__NAMESPACE__ = "http://www.portalfiscal.inf.br/bpe"
-
 
 @dataclass
 class Talczfmcbs:
@@ -35,7 +33,6 @@ class Talczfmcbs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -45,17 +42,11 @@ class Talczfmcbs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
     )
-
-
-class TalczfmcbsNfeTpAlczfmcbs(Enum):
-    VALUE_1 = "1"
-    VALUE_2 = "2"
 
 
 @dataclass
@@ -77,7 +68,6 @@ class TajusteCompet:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "min_inclusive": XmlPeriod("2025-01"),
         },
@@ -86,7 +76,6 @@ class TajusteCompet:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -96,7 +85,6 @@ class TajusteCompet:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -124,7 +112,6 @@ class TcredPres:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -134,7 +121,6 @@ class TcredPres:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
@@ -143,7 +129,6 @@ class TcredPres:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
@@ -158,7 +143,7 @@ class TdevTrib:
 
     :ivar pDevTrib: Percentual de devolução do tributo, conforme LC
         214/25 art. 118.
-    :ivar vDevTrib: Valor do tributo devolvido ("cashback" de desconto
+    :ivar vDevTrib: Valor do tributo devolvido. (“cashback” de desconto
         na própria Nota Fiscal / Fatura)
     """
 
@@ -169,7 +154,6 @@ class TdevTrib:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
         },
@@ -178,7 +162,6 @@ class TdevTrib:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -203,7 +186,6 @@ class Tdif:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -213,7 +195,6 @@ class Tdif:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -251,7 +232,6 @@ class TestornoCred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -261,7 +241,6 @@ class TestornoCred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -290,7 +269,6 @@ class TibscbsmonoTot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -300,28 +278,24 @@ class TibscbsmonoTot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gCBS: Optional[TibscbsmonoTot.GCbs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gMono: Optional[TibscbsmonoTot.GMono] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TibscbsmonoTot.GEstornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -343,7 +317,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             },
         )
@@ -351,7 +324,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             },
         )
@@ -359,7 +331,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -369,7 +340,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -379,7 +349,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -401,7 +370,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -411,7 +379,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -421,7 +388,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -443,7 +409,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -453,7 +418,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -463,7 +427,6 @@ class TibscbsmonoTot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -488,7 +451,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -498,7 +460,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -508,7 +469,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -518,7 +478,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -528,7 +487,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -555,7 +513,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -565,7 +522,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -575,7 +531,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -585,7 +540,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -595,7 +549,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -605,7 +558,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -626,7 +578,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -636,7 +587,6 @@ class TibscbsmonoTot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -663,7 +613,6 @@ class Tibscbstot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -673,7 +622,6 @@ class Tibscbstot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -681,7 +629,6 @@ class Tibscbstot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -689,7 +636,6 @@ class Tibscbstot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -708,7 +654,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             },
         )
@@ -716,7 +661,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
             },
         )
@@ -724,7 +668,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -746,7 +689,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -756,7 +698,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -766,7 +707,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -788,7 +728,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -798,7 +737,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -808,7 +746,6 @@ class Tibscbstot:
                 default=None,
                 metadata={
                     "type": "Element",
-                    "namespace": "http://www.portalfiscal.inf.br/bpe",
                     "required": True,
                     "white_space": "preserve",
                     "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -830,7 +767,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -840,7 +776,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -850,7 +785,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -871,7 +805,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -881,7 +814,6 @@ class Tibscbstot:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -899,7 +831,7 @@ class Tis:
     :ivar cClassTribIS:
     :ivar vBCIS: Valor do BC
     :ivar pIS: Alíquota do Imposto Seletivo (percentual)
-    :ivar adRemIS: Alíquota do Imposto Seletivo (por valor)
+    :ivar pISEspec: Alíquota do Imposto Seletivo (por valor)
     :ivar uTrib: Unidade de medida apropriada especificada em Lei
         Ordinaria para fins de apuração do Imposto Seletivo
     :ivar qTrib: Quantidade com abse no campo uTrib informado
@@ -913,7 +845,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -923,7 +854,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -933,7 +863,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
@@ -942,16 +871,14 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
         },
     )
-    adRemIS: Optional[str] = field(
+    pISEspec: Optional[str] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
         },
@@ -960,7 +887,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "min_length": 1,
             "max_length": 6,
             "white_space": "preserve",
@@ -971,7 +897,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0\.[1-9]{1}[0-9]{3}|0\.[0-9]{3}[1-9]{1}|0\.[0-9]{2}[1-9]{1}[0-9]{1}|0\.[0-9]{1}[1-9]{1}[0-9]{2}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
         },
@@ -980,7 +905,6 @@ class Tis:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
@@ -1003,7 +927,6 @@ class Tistot:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1044,35 +967,30 @@ class Tmonofasia:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gMonoReten: Optional[Tmonofasia.GMonoReten] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gMonoRet: Optional[Tmonofasia.GMonoRet] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gMonoDif: Optional[Tmonofasia.GMonoDif] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     vTotIBSMonoItem: Optional[str] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1082,7 +1000,6 @@ class Tmonofasia:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1106,7 +1023,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{4}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
@@ -1116,7 +1032,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1126,7 +1041,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1136,7 +1050,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1146,7 +1059,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1170,7 +1082,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{4}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
@@ -1180,7 +1091,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1190,7 +1100,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1200,7 +1109,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1210,7 +1118,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1234,7 +1141,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{4}|[1-9]{1}[0-9]{0,10}(\.[0-9]{4})?",
@@ -1244,7 +1150,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1254,7 +1159,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1264,7 +1168,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1274,7 +1177,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1297,7 +1199,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1307,7 +1208,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1317,7 +1217,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1327,7 +1226,6 @@ class Tmonofasia:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1362,16 +1260,12 @@ class TpagRef:
     class Meta:
         name = "TPagRef"
 
-    refDFe: list[str] = field(
+    refDFe: list[object] = field(
         default_factory=list,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "min_occurs": 1,
             "max_occurs": 99,
-            "max_length": 44,
-            "white_space": "preserve",
-            "pattern": r"[0-9]{6}[A-Z0-9]{12}[0-9]{26}",
         },
     )
 
@@ -1379,15 +1273,15 @@ class TpagRef:
 @dataclass
 class TpagamentoRtc:
     """
-    Tipo dados do pagamento para o sistema de arrecadação Estrutura a ser utilizada
-    no grupo ide.
+    Tipo dados do pagamento para o sistema de arrecadação Cada DFe que utilizar
+    deverá utilizar esses tipo no grupo ide.
     "
 
-    :ivar tpMeioPgto: Código do meio de pagamento (ver IT DFe 2026.001)
+    :ivar tpMeioPgto: (Meio de pagamento utilizado (ver IT DFe 2026.001)
     :ivar CNPJReceb: CNPJ do recebedor do pagamento Informar zeros não
         significativos
-    :ivar CNPJBasePSP: CNPJ base da instituição financeira ou de
-        pagamento Informar zeros não significativos
+    :ivar CNPJBasePSP: CNPJ base da instituição financeira Informar
+        zeros não significativos
     :ivar nPag: Número sequencial do pagamento
     :ivar idTransacao: ID específico da transação financeira conforme o
         meio de pagamento
@@ -1400,7 +1294,6 @@ class TpagamentoRtc:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[0-9]{2}",
@@ -1410,7 +1303,6 @@ class TpagamentoRtc:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[A-Z0-9]{12}[0-9]{2}",
@@ -1420,7 +1312,6 @@ class TpagamentoRtc:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"[A-Z0-9]{8}",
@@ -1448,20 +1339,6 @@ class TpagamentoRtc:
     )
 
 
-class Trbsn(Enum):
-    """
-    Tipo de Receita Bruta do SN.
-    """
-
-    VALUE_0 = "0"
-    VALUE_1 = "1"
-    VALUE_2 = "2"
-    VALUE_3 = "3"
-    VALUE_4 = "4"
-    VALUE_5 = "5"
-    VALUE_9 = "9"
-
-
 @dataclass
 class Tred:
     """
@@ -1480,7 +1357,6 @@ class Tred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1490,82 +1366,9 @@ class Tred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-        },
-    )
-
-
-@dataclass
-class TtotalSn:
-    """
-    Tipo dados de totais do SN.
-    "
-
-    :ivar vRBSNTot: Valor total da receita bruta do Simples Nacional,
-        correspondente ao somatório dos valores atribuídos aos itens do
-        DFe
-    :ivar vIBSSNTot: Valor total do IBS devido pelo Simples Nacional
-        apurado no documento
-    :ivar vIBSSNtotPendSusp: Valor total do IBS devido pelo Simples
-        Nacional cuja apropriação encontra-se pendente ou com
-        exigibilidade suspensa
-    :ivar vCBSSNTot: Valor total da CBS devido pelo Simples Nacional
-        apurado no documento
-    :ivar vCBSSNtotPendSusp: Valor total do CBS devido pelo Simples
-        Nacional cuja apropriação encontra-se pendente ou com
-        exigibilidade suspensa
-    """
-
-    class Meta:
-        name = "TTotalSN"
-
-    vRBSNTot: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vIBSSNTot: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vIBSSNtotPendSusp: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vCBSSNTot: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vCBSSNtotPendSusp: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
         },
     )
 
@@ -1599,7 +1402,6 @@ class TtransfCred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1609,7 +1411,6 @@ class TtransfCred:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1641,7 +1442,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1651,7 +1451,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1661,7 +1460,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1671,7 +1469,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1681,7 +1478,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1691,7 +1487,6 @@ class TtribCompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1733,7 +1528,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -1743,7 +1537,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -1753,7 +1546,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1763,7 +1555,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1773,7 +1564,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1783,7 +1573,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1793,7 +1582,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1803,66 +1591,6 @@ class TtribRegular:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-
-
-@dataclass
-class TalczfmcbsNfe:
-    """Tipo Operações em áreas incentivadas (ALC/ZFM) - CBS (alíquota zero)"
-
-    :ivar tpALCZFMCBS: Tipo de aplicação da alíquota zero da CBS.
-    :ivar nProcSuframa: Número do processo na Suframa para o item
-        comercializado.
-    :ivar pAliqEfetRegCBS: Percentual efetivo sem a redução Alíquota
-        efetiva de referência da CBS aplicável à operação fora de áreas
-        ou regimes incentivados.
-    :ivar vTribRegCBS: Valor efetivo sem a redução Valor da CBS
-        calculado para a operação fora de áreas ou regimes incentivado
-    """
-
-    class Meta:
-        name = "TALCZFMCBS_NFe"
-
-    tpALCZFMCBS: Optional[TalczfmcbsNfeTpAlczfmcbs] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-        },
-    )
-    nProcSuframa: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "min_length": 8,
-            "max_length": 12,
-            "white_space": "preserve",
-            "pattern": r"[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}",
-        },
-    )
-    pAliqEfetRegCBS: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-        },
-    )
-    vTribRegCBS: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1896,7 +1624,6 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1906,7 +1633,6 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -1914,7 +1640,6 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -1922,7 +1647,6 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -1932,7 +1656,6 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -1940,14 +1663,12 @@ class Tcibs:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gTribCompraGov: Optional[TtribCompraGov] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -1975,7 +1696,6 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -1985,35 +1705,30 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gDevTrib: Optional[TdevTrib] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gRed: Optional[Tred] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gALCZFMCBS: Optional[Talczfmcbs] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         vCBS: Optional[str] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -2038,7 +1753,6 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -2048,28 +1762,24 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gDevTrib: Optional[TdevTrib] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gRed: Optional[Tred] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         vIBSUF: Optional[str] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -2093,7 +1803,6 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -2103,28 +1812,24 @@ class Tcibs:
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gDevTrib: Optional[TdevTrib] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         gRed: Optional[Tred] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
             },
         )
         vIBSMun: Optional[str] = field(
             default=None,
             metadata={
                 "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
                 "required": True,
                 "white_space": "preserve",
                 "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -2142,18 +1847,13 @@ class TcompraGov:
     :ivar tpEnteGov: Para administração pública direta e suas autarquias
         e fundações: 1=União 2=Estados 3=Distrito Federal 4=Municípios
         5=Consórcio Público 6=Comitê Gestor do IBS
-    :ivar pRedutor: Percentual de redução de alíquota em compra
+    :ivar pRedutor: Percentual de redução de aliquota em compra
         governamental
     :ivar tpOperGov: Tipo da operação com ente governamental: 1 –
         Fornecimento com pagamento posterior; 2 - Recebimento do
         pagamento com fornecimento já realizado; 3 – Fornecimento com
         pagamento já realizado; 4 – Recebimento do pagamento com
         fornecimento posterior;
-    :ivar refDFeAnt: Chave de acesso do documento fiscal anterior.
-        Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos
-        1 e 4. No caso do tpOperGov 2 aceitará apenas uma chave
-        referenciada, no tipo 3 poderá aceitar múltiplas chaves Obs: a
-        chave de acesso deverá ser de um emitente com o mesmo CNPJ base
     """
 
     class Meta:
@@ -2163,7 +1863,6 @@ class TcompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -2171,7 +1870,6 @@ class TcompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -2181,19 +1879,7 @@ class TcompraGov:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
-        },
-    )
-    refDFeAnt: list[str] = field(
-        default_factory=list,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "max_occurs": 99,
-            "max_length": 44,
-            "white_space": "preserve",
-            "pattern": r"[0-9]{6}[A-Z0-9]{12}[0-9]{26}",
         },
     )
 
@@ -2217,7 +1903,7 @@ class TcompraGovReduzido:
         fornecimento posterior;
     :ivar refDFeAnt: Chave de acesso do documento fiscal anterior.
         Deverá ser informado para tpOperGov 2 e 3 e vedado para os tipos
-        1 e 4. No caso do tpOperGov 2 aceitará apenas uma chave
+        1 e 4. No caso do toOperGov 2 aceitará apenas uma chave
         referenciada, no tipo 3 poderá aceitar múltiplas chaves Obs: a
         chave de acesso deverá ser de um emitente com o mesmo CNPJ base
     """
@@ -2229,7 +1915,6 @@ class TcompraGovReduzido:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -2237,7 +1922,6 @@ class TcompraGovReduzido:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
@@ -2247,19 +1931,13 @@ class TcompraGovReduzido:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
-    refDFeAnt: list[str] = field(
+    refDFeAnt: list[object] = field(
         default_factory=list,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "max_occurs": 99,
-            "max_length": 44,
-            "white_space": "preserve",
-            "pattern": r"[0-9]{6}[A-Z0-9]{12}[0-9]{26}",
         },
     )
 
@@ -2291,7 +1969,6 @@ class TcredPresIbszfm:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "min_inclusive": XmlPeriod("2025-01"),
         },
@@ -2300,7 +1977,6 @@ class TcredPresIbszfm:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
         },
     )
@@ -2308,7 +1984,6 @@ class TcredPresIbszfm:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -2339,7 +2014,6 @@ class TcredPresOper:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
@@ -2349,7 +2023,6 @@ class TcredPresOper:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{2}",
@@ -2359,390 +2032,14 @@ class TcredPresOper:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gCBSCredPres: Optional[TcredPres] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
-
-
-@dataclass
-class TtribItemSn:
-    """
-    Tipo Detalhamento dos Tributos por Item.
-    "
-
-    :ivar vRBSNItem: Valor da receita bruta do Simples Nacional
-        atribuída ao item. Se item tributável, RBSNitem = vTPrest
-    :ivar tpRBSN: Tipo de Receita Bruta do Simples Nacional Tipo de
-        Receita Bruta do Simples Nacional referente ao cClassTrib do
-        item 0 - Não é receita bruta 1 - Receita bruta - interna 2 -
-        Receita bruta - interna sem cálculo de IBS e CBS 3 - Receita
-        bruta – exportação direta 4 - Receita bruta - exportação
-        indireta 5 - Receita bruta - mercado interno e exportação 9 -
-        Fornecimento incompatível com SN
-    :ivar pIBSSN: Alíquota aplicável de cálculo do IBS referente ao item
-    :ivar vIBSSN: Valor do IBS devido pelo Simples Nacional.
-    :ivar pCBSSN: Alíquota aplicável de cálculo da CBS referente ao item
-    :ivar vCBSSN: Valor da CBS devido pelo Simples Nacional.
-    :ivar vIBSPendSusp: Valor do IBS pendente ou suspenso referente ao
-        item
-    :ivar vCBSPendSusp: Valor da CBS pendente ou suspenso referente ao
-        item
-    :ivar nItem: Número do item
-    """
-
-    class Meta:
-        name = "TTribItemSN"
-
-    vRBSNItem: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    tpRBSN: Optional[Trbsn] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-        },
-    )
-    pIBSSN: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-        },
-    )
-    vIBSSN: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    pCBSSN: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-        },
-    )
-    vCBSSN: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vIBSPendSusp: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    vCBSPendSusp: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    nItem: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Attribute",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"[1-9]{1}[0-9]{0,3}",
-        },
-    )
-
-
-@dataclass
-class TcibsNfe:
-    """
-    Tipo CBS IBS Completo NFe.
-    "
-
-    :ivar vBC: Valor do BC
-    :ivar gIBSUF: Grupo de informações do IBS na UF
-    :ivar gIBSMun: Grupo de Informações do IBS no Município
-    :ivar vIBS: Valor do IBS
-    :ivar gCBS: Grupo de Tributação da CBS
-    :ivar gTribRegular: Grupo de informações da Tributação Regular.
-        Informar como seria a tributação caso não cumprida a condição
-        resolutória/suspensiva. Exemplo 1: Art. 442, §4. Operações com
-        ZFM e ALC. Exemplo 2: Operações com suspensão do tributo.
-    :ivar gTribCompraGov: Grupo de informações da composição do valor do
-        IBS e da CBS em compras governamental
-    """
-
-    class Meta:
-        name = "TCIBS_NFe"
-
-    vBC: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    gIBSUF: Optional[TcibsNfe.GIbsuf] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-        },
-    )
-    gIBSMun: Optional[TcibsNfe.GIbsmun] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-        },
-    )
-    vIBS: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-        },
-    )
-    gCBS: Optional[TcibsNfe.GCbs] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-        },
-    )
-    gTribRegular: Optional[TtribRegular] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-    gTribCompraGov: Optional[TtribCompraGov] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-
-    @dataclass
-    class GCbs:
-        """
-
-        "
-
-        :ivar pCBS: Aliquota da CBS (em percentual)
-        :ivar gDif: Grupo de campos do Diferimento
-        :ivar gDevTrib: Grupo de Informações da devolução de tributos
-        :ivar gRed: Grupo de campos da redução de aliquota
-        :ivar gALCZFMCBS: Grupo de operações em áreas incentivadas
-            (ALC/ZFM) - CBS (alíquota zero) Grupo de informações para
-            identificação de operações em áreas incentivadas (ALC/ZFM)
-            com alíquota zero da CBS, conforme arts. 451 e 466 da LC
-            214/2025, quando fornecedor e destinatário estiverem nessas
-            áreas, distinguindo a existência de processo aprovado na
-            Suframa.
-        :ivar vCBS: Valor da CBS
-        """
-
-        pCBS: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-            },
-        )
-        gDif: Optional[Tdif] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gDevTrib: Optional[TdevTrib] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gRed: Optional[Tred] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gALCZFMCBS: Optional[TalczfmcbsNfe] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        vCBS: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-            },
-        )
-
-    @dataclass
-    class GIbsuf:
-        """
-
-        "
-
-        :ivar pIBSUF: Aliquota do IBS de competência das UF (em
-            percentual)
-        :ivar gDif: Grupo de campos do Diferimento
-        :ivar gDevTrib: Grupo de Informações da devolução de tributos
-        :ivar gRed: Grupo de campos da redução de aliquota
-        :ivar vIBSUF: Valor do IBS de competência das UF
-        """
-
-        pIBSUF: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-            },
-        )
-        gDif: Optional[Tdif] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gDevTrib: Optional[TdevTrib] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gRed: Optional[Tred] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        vIBSUF: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-            },
-        )
-
-    @dataclass
-    class GIbsmun:
-        """
-
-        "
-
-        :ivar pIBSMun: Aliquota do IBS Municipal (em percentual)
-        :ivar gDif: Grupo de campos do Diferimento
-        :ivar gDevTrib: Grupo de Informações da devolução de tributos
-        :ivar gRed: Grupo de campos da redução de aliquota
-        :ivar vIBSMun: Valor do IBS Municipal
-        """
-
-        pIBSMun: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2,4}|[1-9]{1}[0-9]{0,2}(\.[0-9]{2,4})?",
-            },
-        )
-        gDif: Optional[Tdif] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gDevTrib: Optional[TdevTrib] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        gRed: Optional[Tred] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-            },
-        )
-        vIBSMun: Optional[str] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.portalfiscal.inf.br/bpe",
-                "required": True,
-                "white_space": "preserve",
-                "pattern": r"0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?",
-            },
-        )
 
 
 @dataclass
@@ -2765,7 +2062,6 @@ class TtribBpe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -2775,7 +2071,6 @@ class TtribBpe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -2785,21 +2080,18 @@ class TtribBpe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TestornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -2824,7 +2116,6 @@ class TtribCte:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -2834,7 +2125,6 @@ class TtribCte:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -2844,21 +2134,18 @@ class TtribCte:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TestornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -2883,7 +2170,6 @@ class TtribNf3E:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -2893,7 +2179,6 @@ class TtribNf3E:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -2903,21 +2188,18 @@ class TtribNf3E:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TestornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -2942,7 +2224,6 @@ class TtribNfag:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -2952,7 +2233,6 @@ class TtribNfag:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -2962,139 +2242,18 @@ class TtribNfag:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TestornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-
-
-@dataclass
-class TtribNfcom:
-    """
-    Grupo de informações da Tributação da NFCom.
-    "
-
-    :ivar CST: Código Situação Tributária do IBS/CBS
-    :ivar cClassTrib:
-    :ivar indDoacao: Indica se a operação é de doação
-    :ivar gIBSCBS:
-    :ivar gEstornoCred: Informado conforme indicador no cClassTrib
-    """
-
-    class Meta:
-        name = "TTribNFCom"
-
-    CST: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"\d{3}",
-        },
-    )
-    cClassTrib: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"\d{6}",
-        },
-    )
-    indDoacao: Optional[TindDoacao] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-    gIBSCBS: Optional[Tcibs] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-    gEstornoCred: Optional[TestornoCred] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-
-
-@dataclass
-class TtribNfgas:
-    """
-    Grupo de informações da Tributação da NFGas.
-    "
-
-    :ivar CST: Código Situação Tributária do IBS/CBS
-    :ivar cClassTrib:
-    :ivar indDoacao:
-    :ivar gIBSCBS:
-    :ivar gEstornoCred: Informado conforme indicador no cClassTrib
-    """
-
-    class Meta:
-        name = "TTribNFGas"
-
-    CST: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"\d{3}",
-        },
-    )
-    cClassTrib: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-            "required": True,
-            "white_space": "preserve",
-            "pattern": r"\d{6}",
-        },
-    )
-    indDoacao: Optional[TindDoacao] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-    gIBSCBS: Optional[Tcibs] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
-        },
-    )
-    gEstornoCred: Optional[TestornoCred] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
 
@@ -3119,7 +2278,6 @@ class TtribNfce:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -3129,7 +2287,6 @@ class TtribNfce:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -3139,21 +2296,126 @@ class TtribNfce:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
-    gIBSCBS: Optional[TcibsNfe] = field(
+    gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBSMono: Optional[Tmonofasia] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
+        },
+    )
+
+
+@dataclass
+class TtribNfcom:
+    """
+    Grupo de informações da Tributação da NFCom.
+    "
+
+    :ivar CST: Código Situação Tributária do IBS/CBS
+    :ivar cClassTrib:
+    :ivar indDoacao: Indica se a operação é de doação
+    :ivar gIBSCBS:
+    :ivar gEstornoCred: Informado conforme indicador no cClassTrib
+    """
+
+    class Meta:
+        name = "TTribNFCom"
+
+    CST: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "required": True,
+            "white_space": "preserve",
+            "pattern": r"\d{3}",
+        },
+    )
+    cClassTrib: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "required": True,
+            "white_space": "preserve",
+            "pattern": r"\d{6}",
+        },
+    )
+    indDoacao: Optional[TindDoacao] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+        },
+    )
+    gIBSCBS: Optional[Tcibs] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+        },
+    )
+    gEstornoCred: Optional[TestornoCred] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+        },
+    )
+
+
+@dataclass
+class TtribNfgas:
+    """
+    Grupo de informações da Tributação da NFGas.
+    "
+
+    :ivar CST: Código Situação Tributária do IBS/CBS
+    :ivar cClassTrib:
+    :ivar indDoacao:
+    :ivar gIBSCBS:
+    :ivar gEstornoCred: Informado conforme indicador no cClassTrib
+    """
+
+    class Meta:
+        name = "TTribNFGas"
+
+    CST: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "required": True,
+            "white_space": "preserve",
+            "pattern": r"\d{3}",
+        },
+    )
+    cClassTrib: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "required": True,
+            "white_space": "preserve",
+            "pattern": r"\d{6}",
+        },
+    )
+    indDoacao: Optional[TindDoacao] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+        },
+    )
+    gIBSCBS: Optional[Tcibs] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+        },
+    )
+    gEstornoCred: Optional[TestornoCred] = field(
+        default=None,
+        metadata={
+            "type": "Element",
         },
     )
 
@@ -3187,7 +2449,6 @@ class TtribNfe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{3}",
@@ -3197,7 +2458,6 @@ class TtribNfe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
             "required": True,
             "white_space": "preserve",
             "pattern": r"\d{6}",
@@ -3207,55 +2467,47 @@ class TtribNfe:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
-    gIBSCBS: Optional[TcibsNfe] = field(
+    gIBSCBS: Optional[Tcibs] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gIBSCBSMono: Optional[Tmonofasia] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gTransfCred: Optional[TtransfCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gAjusteCompet: Optional[TajusteCompet] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gEstornoCred: Optional[TestornoCred] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gCredPresOper: Optional[TcredPresOper] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )
     gCredPresIBSZFM: Optional[TcredPresIbszfm] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "http://www.portalfiscal.inf.br/bpe",
         },
     )

@@ -3,7 +3,7 @@
 import sys
 from pathlib import Path
 
-from nfelib.utils.servers_scraper import fetch_servers, save_servers
+from nfelib.utils.servers_scraper import fetch_servers
 from nfelib.utils.soap_generator import generate_soap
 
 # Constants
@@ -30,8 +30,9 @@ def main():
 
     servers, endpoints = fetch_servers(PROD_URL, DEV_URL)
     if servers:
-        save_servers(servers, endpoints, OUTPUT_FILE)
-        generate_soap(servers, endpoints, download, generate)
+        # FIXME: temporary hack
+        # save_servers(servers, endpoints, OUTPUT_FILE)
+        generate_soap(servers, endpoints, download, True)  # generate)
 
 
 if __name__ == "__main__":

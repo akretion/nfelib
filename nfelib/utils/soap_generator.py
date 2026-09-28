@@ -41,7 +41,9 @@ def generate_soap(
 
     # TODO make extra wsdl urls a param
     wsdl_urls.append(
-        "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"
+        #        "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"
+        # FIXME!
+        "https://www1.cte.fazenda.gov.br/CTeDistribuicaoDFe/CTeDistribuicaoDFe.asmx",
     )
 
     doc_type = None

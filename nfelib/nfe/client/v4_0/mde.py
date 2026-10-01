@@ -17,8 +17,12 @@ from nfelib.nfe.soap.v4_0.recepcaoevento4 import (
 )
 
 # --- MD-e Event Bindings ---
+# NOTE: the 2.6.0 regenerated bindings renamed this enum to
+# DetEventoDescEvento1 (xsdata appends a counter to duplicated type names).
 from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
-    DetEventoDescEvento,
+    DetEventoDescEvento1 as DetEventoDescEvento,
+)
+from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
     InfEventoTpEvento,
     TcorgaoIbge,
     TenvEvento,

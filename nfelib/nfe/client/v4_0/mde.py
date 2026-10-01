@@ -157,7 +157,7 @@ class MdeClient(FiscalClient):
         )
 
         # The placeholder should match the entire <evento> tag block
-        placeholder_exp = r"<evento.*?>.*?</evento>"
+        placeholder_exp = r"<evento\s*/>|<evento.*?>.*?</evento>"
 
         return self.send(
             NfeRecepcaoEvento4SoapNfeRecepcaoEvento,

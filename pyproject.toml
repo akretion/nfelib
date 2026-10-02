@@ -50,6 +50,11 @@ Changelog = "https://nfelib.readthedocs.io/en/latest/changelog/"
 sign = [
     "erpbrasil.assinatura",
 ]
+nfse = [
+    "requests",
+    "cryptography",
+    "erpbrasil.assinatura",
+]
 pdf = [
     "brazilfiscalreport",
 ]

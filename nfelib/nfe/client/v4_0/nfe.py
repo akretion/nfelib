@@ -390,7 +390,8 @@ class NfeClient(FiscalClient):
             placeholder_content="".join(signed_nfes),
         )
 
-    def processar_lote(self, lista_nfes: list):  # adapted from processar_documento
+    def processar_lote(self, lista_nfes: list):
+        """Serialize + authorize a list of NF-e's (adapted from erpbrasil)."""
         if False:  # TODO self._consulta_servico_ao_enviar:
             pass
         if False:  # self._consulta_documento_antes_de_enviar:
@@ -448,7 +449,12 @@ class NfeClient(FiscalClient):
         self.monta_processo(lista_nfes, proc_envio, proc_recibo)
         yield proc_recibo
 
-    def monta_processo(self, lista_nfes, proc_envio, proc_recibo=None):
+    def monta_processo(
+        self,
+        lista_nfes: list[Tnfe],
+        proc_envio: RetEnviNfe,
+        proc_recibo: Optional[RetConsReciNfe] = None,
+    ):
         """Populate the processo/protocolo on the wrapped response.
 
         Mirrors the erpbrasil.edoc behavior: the final response carries the
@@ -479,9 +485,10 @@ class NfeClient(FiscalClient):
         proc.processo_xml = proc_nfe_xml
         proc.processo = XmlParser().from_string(proc_nfe_xml, NfeProc)
 
-    def monta_nfe_proc(self, nfe, prot_nfe: TprotNfe):
-        """Constrói e retorna o XML do processo da NF-e,
-        incorporando a NF-e com o seu protocolo de autorização.
+    def monta_nfe_proc(self, nfe: Tnfe, prot_nfe: TprotNfe):
+        """Constrói o XML do processo da NF-e com o protocolo.
+
+        Incorpora a NF-e com o seu protocolo de autorização.
         """
         if isinstance(nfe, bytes):
             nfe = nfe.decode("utf-8")
@@ -637,7 +644,8 @@ class NfeClient(FiscalClient):
         :param chave: Chave de acesso da NF-e a ser cancelada.
         :param protocolo_autorizacao: Protocolo de autorização da NF-e.
         :param justificativa: Justificativa do cancelamento (15-255 caracteres).
-        :param cnpj_cpf: CNPJ ou CPF do autor do evento. Se omitido, será extraído da chave.
+        :param cnpj_cpf: CNPJ ou CPF do autor do evento.
+        Se omitido, será extraído da chave.
         :param data_hora_evento: Data e hora do evento (opcional, default: now).
         :param sequencia: Sequencial do evento (default: "1").
         :return: Objeto de retorno do processamento do lote de eventos.
@@ -667,7 +675,8 @@ class NfeClient(FiscalClient):
         :param chave: Chave de acesso da NF-e a ser corrigida.
         :param sequencia: Sequencial do evento (1-20).
         :param justificativa: Texto da correção (15-1000 caracteres).
-        :param cnpj_cpf: CNPJ ou CPF do autor do evento. Se omitido, será extraído da chave.
+        :param cnpj_cpf: CNPJ ou CPF do autor do evento.
+        Se omitido, será extraído da chave.
         :param data_hora_evento: Data e hora do evento (opcional, default: now).
         :return: Objeto de retorno do processamento do lote de eventos.
         """

@@ -115,7 +115,8 @@ class CommonMixin:
         return "undef"
 
     @staticmethod
-    def normalize_pkcs12(pkcs12_data):
+    def normalize_pkcs12(pkcs12_data: bytes | str) -> str:
+        """Normalize a PKCS12 certificate input (see to_xml docs)."""
         """Normalize a PKCS12 input to the base64 form erpbrasil.assinatura
         expects, accepting raw PFX bytes as well.
 

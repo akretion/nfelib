@@ -32,13 +32,13 @@ from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
 
 _logger = logging.getLogger(__name__)
 
-# TODO Flaw/Inconsistency: Method names like confirmacao_da_operacao are 
-# not Pythonic. The use of _ separates words but the name itself is a noun phrase, 
+# TODO Flaw/Inconsistency: Method names like confirmacao_da_operacao are
+# not Pythonic. The use of _ separates words but the name itself is a noun phrase,
 # not a verb.
 # TODO confirmacao_da_operacao -> confirmar_operacao;
-# ciencia_da_operacao -> registrar_ciencia; 
-# desconhecimento_da_operacao -> registrar_desconhecimento; 
-# operacao_nao_realizada -> registrar_operacao_nao_realizada 
+# ciencia_da_operacao -> registrar_ciencia;
+# desconhecimento_da_operacao -> registrar_desconhecimento;
+# operacao_nao_realizada -> registrar_operacao_nao_realizada
 # (and require justificativa as a non-optional argument).
 
 
@@ -46,7 +46,8 @@ class MdeClient(FiscalClient):
     """A façade for the NFe Manifestação do Destinatário (MD-e) SOAP webservices."""
 
     def __init__(self, **kwargs: Any):
-        # The user provides their own UF, but for endpoint resolution, MD-e always uses Ambiente Nacional (AN).
+        # The user provides their own UF, but for endpoint resolution,
+        # MD-e always uses Ambiente Nacional (AN).
         # We will override _get_location to enforce this.
         super().__init__(
             service="nfe",
@@ -55,8 +56,9 @@ class MdeClient(FiscalClient):
         )
 
     def _get_location(self, endpoint_type: Endpoint) -> str:
-        """Overrides the parent method to always use the Ambiente Nacional (AN)
-        server for MD-e event reception, regardless of the client's configured UF.
+        """Always use the Ambiente Nacional (AN) server for MD-e events.
+
+        Overrides the parent method: ignores the client's configured UF.
         """
         if endpoint_type != Endpoint.RECEPCAOEVENTO:
             raise ValueError(
@@ -175,7 +177,10 @@ class MdeClient(FiscalClient):
         nSeqEvento: str = "1",
         xJust: Optional[str] = None,
     ) -> Tevento:
-        """Helper method to create the full Tevento structure for a manifestation event."""
+        """Create the full Tevento structure for a manifestation event.
+
+        Helper method: builds Id, orgao, timestamps and the detEvento.
+        """
         if not (isinstance(chave, str) and len(chave) == 44 and chave.isdigit()):
             raise ValueError(f"Chave de acesso inválida: {chave}")
         if not (1 <= int(nSeqEvento) <= 20):
@@ -227,6 +232,7 @@ class MdeClient(FiscalClient):
         )
 
     def confirmacao_da_operacao(self, chave: str, cnpj_cpf: str) -> TretEnvEvento:
+        """Envia o evento 210200 (confirmacao da operacao)."""
         return self._enviar_evento_unitario(
             chave=chave,
             cnpj_cpf=cnpj_cpf,
@@ -235,6 +241,7 @@ class MdeClient(FiscalClient):
         )
 
     def ciencia_da_operacao(self, chave: str, cnpj_cpf: str) -> TretEnvEvento:
+        """Envia o evento 210210 (ciencia da operacao)."""
         return self._enviar_evento_unitario(
             chave=chave,
             cnpj_cpf=cnpj_cpf,
@@ -243,6 +250,7 @@ class MdeClient(FiscalClient):
         )
 
     def desconhecimento_da_operacao(self, chave: str, cnpj_cpf: str) -> TretEnvEvento:
+        """Envia o evento 210220 (desconhecimento da operacao)."""
         return self._enviar_evento_unitario(
             chave=chave,
             cnpj_cpf=cnpj_cpf,
@@ -253,9 +261,11 @@ class MdeClient(FiscalClient):
     def operacao_nao_realizada(
         self, chave: str, cnpj_cpf: str, justificativa: str
     ) -> TretEnvEvento:
+        """Envia o evento 210240 (operacao nao realizada)."""
         if not (15 <= len(justificativa) <= 255):
             raise ValueError(
-                "Justificativa para 'Operação não Realizada' deve ter entre 15 e 255 caracteres."
+                "Justificativa para 'Operação não Realizada' deve ter "
+                "entre 15 e 255 caracteres."
             )
         return self._enviar_evento_unitario(
             chave=chave,

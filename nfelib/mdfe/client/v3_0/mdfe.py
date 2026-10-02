@@ -41,15 +41,15 @@ from nfelib.mdfe.soap.v3_0.mdferecepcaoevento import (
 from nfelib.mdfe.soap.v3_0.mdferecepcaosinc import MdfeRecepcaoSincSoap12MdfeRecepcao
 from nfelib.mdfe.soap.v3_0.mdfestatusservico import (
     MdfeStatusServicoSoap12MdfeStatusServicoMdf,
-    MdfeCabecMsg,
 )
 
 _logger = logging.getLogger(__name__)
 
 
-# TODO The event methods in MdfeClient should follow the same high-level pattern 
-# proposed for NfeClient: accept data primitives (chave, protocolo, etc.) and 
+# TODO The event methods in MdfeClient should follow the same high-level pattern
+# proposed for NfeClient: accept data primitives (chave, protocolo, etc.) and
 # handle the creation and signing of the detEvento internally.
+
 
 class MdfeClient(FiscalClient):
     """A façade for the MDFe v3.00 SOAP webservices."""

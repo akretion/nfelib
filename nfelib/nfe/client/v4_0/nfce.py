@@ -4,7 +4,7 @@
 import binascii
 import hashlib
 import logging
-from typing import List, Optional
+from typing import Any, Optional
 
 from lxml import etree
 
@@ -24,11 +24,12 @@ NAMESPACES = {
     "ds": "http://www.w3.org/2000/09/xmldsig#",
 }
 
-# TODO Migration Impact: Medium. Every call to envia_documento for NFC-e will 
-# now need to include the CSC credentials. This requires code changes but makes the 
+# TODO Migration Impact: Medium. Every call to envia_documento for NFC-e will
+# now need to include the CSC credentials. This requires code changes but makes the
 # system more robust for multi-establishment scenarios.
-# Move csc_token and csc_code from __init__ to the envia_documento method 
+# Move csc_token and csc_code from __init__ to the envia_documento method
 # signature. This makes the client stateless regarding CSCs and more versatile.
+
 
 class NfceClient(NfeClient):
     """A façade for the NFC-e SOAP webservices, extending the NFe client."""
@@ -38,7 +39,7 @@ class NfceClient(NfeClient):
         qrcode_versao: str = "2",
         csc_token: Optional[str] = None,
         csc_code: Optional[str] = None,
-        **kwargs,
+        **kwargs: Any,
     ):
         # ... (init method remains the same) ...
         kwargs["mod"] = "65"
@@ -52,7 +53,8 @@ class NfceClient(NfeClient):
         self.csc_token = str(csc_token)
         self.csc_code = str(csc_code)
 
-    # ... (_build_pre_qrcode_normal, _compute_qr_hash, _build_qrcode, monta_qrcode, _generate_qrcode_contingency remain the same) ...
+    # ... (_build_pre_qrcode_normal, _compute_qr_hash, _build_qrcode,
+    #  monta_qrcode, _generate_qrcode_contingency remain the same) ...
 
     def _build_pre_qrcode_normal(self, nfce_chave: str) -> str:
         return f"{nfce_chave}|{self.qrcode_versao}|{self.ambiente}|{self.csc_token}"
@@ -66,11 +68,13 @@ class NfceClient(NfeClient):
         base_url = ESTADO_QRCODE.get(uf_sigla, {}).get(self.ambiente)
         if not base_url:
             raise ValueError(
-                f"URL de QR Code não encontrada para UF {uf_sigla} no ambiente {self.ambiente}"
+                f"URL de QR Code não encontrada para UF {uf_sigla} "
+                "no ambiente {self.ambiente}"
             )
         return f"{base_url}{pre_qrcode_without_csc}|{qr_hash}"
 
     def monta_qrcode(self, chave: str) -> str:
+        """Monta o QR Code da NFC-e (online ou contingência)."""
         pre_qrcode_normal = self._build_pre_qrcode_normal(chave)
         pre_qrcode_with_csc = f"{pre_qrcode_normal}{self.csc_code}"
         qr_hash = self._compute_qr_hash(pre_qrcode_with_csc)
@@ -128,8 +132,9 @@ class NfceClient(NfeClient):
         edoc_obj.infNFeSupl.qrCode = qr_code_text
 
     def envia_documento(
-        self, lista_nfes: List[Tnfe], id_lote: Optional[str] = None
+        self, lista_nfes: list[Tnfe], id_lote: Optional[str] = None
     ) -> RetEnviNfe:
+        """Envia uma NFC-e única (síncrono)."""
         if len(lista_nfes) != 1:
             raise ValueError(
                 "NfceClient.envia_documento supports only one NFC-e at a time."
@@ -173,15 +178,18 @@ class NfceClient(NfeClient):
         )
 
     def consulta_recibo(self, proc_envio: RetEnviNfe) -> RetEnviNfe:
+        """NFC-e is synchronous: just return the original send result."""
         _logger.info("NFC-e is synchronous; returning original send result.")
         return proc_envio
 
     def get_consulta_url(self) -> str:
+        """Retorna a URL pública de consulta da NFC-e por UF/ambiente."""
         uf_sigla = self.uf_code_to_sigla(self.uf)
         url = ESTADO_CONSULTA_NFCE.get(uf_sigla, {})[int(self.ambiente) - 1]
         if not url:
             raise ValueError(
-                f"URL de Consulta não encontrada para UF {uf_sigla} no ambiente {self.ambiente}"
+                f"URL de Consulta não encontrada para UF {uf_sigla} "
+                "no ambiente {self.ambiente}"
             )
         return url
 
@@ -192,6 +200,7 @@ class NfceClient(NfeClient):
 
     @staticmethod
     def uf_code_to_sigla(uf_code: str) -> str:
+        """Converte um código IBGE de UF na sigla correspondente."""
         uf_map = {
             "12": "AC",
             "27": "AL",

@@ -70,3 +70,6 @@ docs/_build/
 # Backup files
 *~
 *.swp
+
+# Test artifacts (serialization outputs)
+tests/output_*.xml

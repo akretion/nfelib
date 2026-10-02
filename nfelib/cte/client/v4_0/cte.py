@@ -4,7 +4,6 @@ import logging
 from typing import Any
 
 from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb
-from lxml import etree
 
 # --- Content Bindings ---
 from nfelib.cte.bindings.v4_0.cons_sit_cte_v4_00 import ConsSitCte
@@ -66,7 +65,8 @@ class CteClient(FiscalClient):
             server_data = SERVERS_CTE[server_key]
         except KeyError:
             raise ValueError(
-                f"No server configuration found for key: {server_key} (derived from UF {self.uf})"
+                f"No server configuration found for key: {server_key} "
+                f"(derived from UF {self.uf})"
             )
 
         endpoints = (
@@ -155,4 +155,5 @@ class CteClient(FiscalClient):
         # (xsd:string), as the CTeRecepcaoSincV4 webservice expects.
         return self.send(CteRecepcaoSincV4Soap12CteRecepcao, cte_obj)
 
-    # TODO enviar_lote_evento, cancela_documento, carta_correcao, consulta_recibo, get_documento_id, monta_qrcode, monta_cte_proc
+    # TODO enviar_lote_evento, cancela_documento, carta_correcao,
+    # consulta_recibo, get_documento_id, monta_qrcode, monta_cte_proc

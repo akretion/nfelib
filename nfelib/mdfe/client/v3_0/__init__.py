@@ -6,16 +6,6 @@ from typing import Any, Optional
 
 from brazil_fiscal_client.fiscal_client import FiscalClient, Tamb, TcodUfIbge
 
-from nfelib.mdfe.bindings.v3_0 import (
-    ConsStatServMdfe,
-    EvCancMdfe,
-    EvEncMdfe,
-    EventoMdfe,
-    RetConsSitMdfe,
-    RetEventoMdfe,
-    RetMdfe,
-)
-
 # --- Content Bindings ---
 # Import necessary MDFe content bindings (adjust based on actual methods implemented)
 from nfelib.mdfe.bindings.v3_0.cons_mdfe_nao_enc_v3_00 import ConsMdfeNaoEnc
@@ -24,26 +14,21 @@ from nfelib.mdfe.bindings.v3_0.cons_mdfe_nao_enc_v3_00 import ConsMdfeNaoEnc
 # from nfelib.mdfe.bindings.v3_0.cons_stat_serv_tipos_basico_v3_00 import TconsStatServ
 from nfelib.mdfe.bindings.v3_0.cons_sit_mdfe_v3_00 import ConsSitMdfe
 from nfelib.mdfe.bindings.v3_0.cons_stat_serv_mdfe_v3_00 import ConsStatServMdfe
-from nfelib.mdfe.bindings.v3_0.dist_mdfe_v3_00 import DistMdfe
-from nfelib.mdfe.bindings.v3_0.envi_mdfe_v3_00 import EnviMdfe
 from nfelib.mdfe.bindings.v3_0.ev_canc_mdfe_v3_00 import EvCancMdfe
 from nfelib.mdfe.bindings.v3_0.ev_enc_mdfe_v3_00 import EvEncMdfe
-
-# --- Event Bindings (Example for Cancel/Encerramento) ---
-# Adapt imports based on which events you need
 from nfelib.mdfe.bindings.v3_0.evento_mdfe_tipos_basico_v3_00 import (
     #    TenvEvento as TenvEventoMdfe, # Renamed for clarity
     #    TretEvento as TretEventoMdfe,
     Tevento as TeventoMdfe,
 )
-from nfelib.mdfe.bindings.v3_0.mdfe_tipos_basico_v3_00 import TenviMdfe, Tmdfe
-from nfelib.mdfe.bindings.v3_0.mdfe_v3_00 import Mdfe
+
+# --- Event Bindings (Example for Cancel/Encerramento) ---
+# Adapt imports based on which events you need
 from nfelib.mdfe.bindings.v3_0.ret_cons_mdfe_nao_enc_v3_00 import RetConsMdfeNaoEnc
 from nfelib.mdfe.bindings.v3_0.ret_cons_sit_mdfe_v3_00 import RetConsSitMdfe
-from nfelib.mdfe.bindings.v3_0.ret_cons_stat_serv_mdfe_v3_00 import RetConsStatServMdfe
-from nfelib.mdfe.bindings.v3_0.ret_dist_mdfe_v3_00 import RetDistMdfe
-from nfelib.mdfe.bindings.v3_0.ret_envi_mdfe_v3_00 import RetEnviMdfe
-from nfelib.mdfe.bindings.v3_0.ret_evento_mdfe_v3_00 import RetEventoMdfe
+from nfelib.mdfe.bindings.v3_0.ret_cons_stat_serv_mdfe_v3_00 import (
+    RetConsStatServMdfe,
+)
 from nfelib.mdfe.bindings.v3_0.ret_mdfe_v3_00 import RetMdfe
 from nfelib.mdfe.client.v3_0.servers import Endpoint
 
@@ -264,34 +249,6 @@ class MdfeClient(FiscalClient):
             payload_is_base64=True,  # Signal to send to handle it differently
         )
 
-    def envia_evento(
-        self, evento, tipo, chave, sequencia="001", data_hora: str = False
-    ):
-        EventoMdfe(
-            versao="3.00",
-            infEvento=EventoMdfe.InfEvento(
-                Id="ID" + tipo + chave + sequencia.zfill(2),
-                cOrgao=self.uf,
-                tpAmb=self.ambiente,
-                CNPJ=chave[6:20],
-                chMDFe=chave,
-                dhEvento=data_hora or self._hora_agora(),
-                tpEvento=tipo,
-                nSeqEvento=sequencia,
-                detEvento=EventoMdfe.InfEvento.DetEvento(
-                    versaoEvento="3.00", any_element=evento
-                ),
-            ),
-        )
-        # FIXME:
-        return self.send(
-            MdfeRecepcaoEventoSoap12MdfeRecepcaoEvento,
-            payload_obj=payload_for_wrapping,  # This needs to be wrapped
-        )
-
-    # --- Need to Refine FiscalClient.send for pre-signed ---
-    # Let's add a flag to FiscalClient.send to bypass prepare_payload if content is already XML
-
     def consulta_nao_encerrados(
         self, cnpj: Optional[str] = None, cpf: Optional[str] = None
     ) -> Optional[RetConsMdfeNaoEnc]:
@@ -434,8 +391,10 @@ class MdfeClient(FiscalClient):
     # def _timestamp(cls):
     #     return super()._timestamp() # Or specific MDFe format
 
-    # --- Need _aguarda_tempo_medio equivalent? MDFe RecepcaoSinc doesn't return tMed ---
-    # def _aguarda_tempo_medio(self, proc_recibo: Optional[RetEnviMdfe]):
-    #     # MDFe sync response (RetMdfe) doesn't have tMed. Async (RetConsReciMDFe) does.
+    # --- Need _aguarda_tempo_medio equivalent?
+    # (MDFe RecepcaoSinc doesn't return tMed) ---
+    # def _aguarda_tempo_medio(self, proc_recibo):
+    #     # MDFe sync response (RetMdfe) doesn't have tMed.
+    #     # Async (RetConsReciMDFe) does.
     #     # This method might only be relevant if using async submission.
     #     pass

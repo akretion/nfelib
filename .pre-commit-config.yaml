@@ -1,3 +1,7 @@
+# Generated or data files whose exact text is asserted by the tests
+# (the server lists are re-scraped and compared verbatim in
+# tests/*/test_servers.py, the bindings/schemas/soap modules come from
+# xsdata), so the formatters/linters must not touch them.
 exclude: |
   (?x)
   .*/bindings/.*\.py$|
@@ -5,6 +9,7 @@ exclude: |
   .*/samples/.*\.xml$|
   .*/wsdl/.*\.wsdl$|
   .*/soap/.*\.py$|
+  .*/client/.*/servers.*\.py$|
   nfelib/nfe/ws/edoc_legacy.py|
   ^README\.md$
 

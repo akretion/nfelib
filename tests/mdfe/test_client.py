@@ -1,5 +1,4 @@
 import logging
-from os import environ
 from pathlib import Path
 from unittest import TestCase, mock
 
@@ -72,6 +71,7 @@ response_envia_documento = b"""<?xml version="1.0" encoding="utf-8"?>
 </soap12:Envelope>
 """
 
+
 # Decorator for Certificate Check
 def _only_if_valid_certificate(method, self):
     if self.valid_certificate:
@@ -102,16 +102,15 @@ class MdfeSoapTest(TestCase):
             subject="TEST SUBJECT",
         )
         cls.fake_certificate = True
-        
+
         mdfe_path = (
-            Path(__file__).parent.parent.parent
-            / "nfelib/mdfe/samples/v3_0/mdfe.xml"
+            Path(__file__).parent.parent.parent / "nfelib/mdfe/samples/v3_0/mdfe.xml"
         )
         if not mdfe_path.is_file():
             raise FileNotFoundError(f"MDF-e fixture not found: {mdfe_path}")
 
         cls.mdfe_obj = XmlParser().from_path(mdfe_path, Tmdfe)
-        
+
         # Client for a state that uses SVRS
         cls.client = MdfeClient(
             ambiente="2",
@@ -135,7 +134,7 @@ class MdfeSoapTest(TestCase):
         mock_post.return_value = response_envia_documento
         res = self.client.envia_documento(self.mdfe_obj)
         self.assertIsInstance(res, RetEnviMdfe)
-        self.assertEqual(res.cStat, "104") # Lote Processado
+        self.assertEqual(res.cStat, "104")  # Lote Processado
         self.assertIsNotNone(res.protMDFe)
         self.assertEqual(res.protMDFe.infProt.cStat, "215")
 
@@ -154,11 +153,11 @@ class MdfeSoapTest(TestCase):
         """
         # Adjusting the object to be valid for sending (e.g., current timestamp)
         self.mdfe_obj.infMDFe.ide.dhEmi = self.client._timestamp()
-        
+
         res = self.client.envia_documento(self.mdfe_obj)
         self.assertIsInstance(res, RetEnviMdfe)
         self.assertEqual(res.cStat, "104")
         self.assertIsNotNone(res.protMDFe)
         # Check for common rejection codes in homologation
-        self.assertNotEqual(res.protMDFe.infProt.cStat, "100") 
+        self.assertNotEqual(res.protMDFe.infProt.cStat, "100")
         _logger.info(f"Envio real rejeitado com: {res.protMDFe.infProt.xMotivo}")

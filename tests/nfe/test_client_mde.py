@@ -7,11 +7,11 @@ from decorator import decorate
 from erpbrasil.assinatura import misc
 from xsdata.formats.dataclass.transports import DefaultTransport
 
-# --- Import Bindings ---
-from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import TretEnvEvento
-
 # --- Import Client ---
 from nfelib.nfe.client.v4_0.mde import MdeClient
+
+# --- Import Bindings ---
+from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import TretEnvEvento
 
 _logger = logging.getLogger(__name__)
 
@@ -65,6 +65,7 @@ response_operacao_nao_realizada = b"""<?xml version="1.0" encoding="utf-8"?>
     </soap:Body>
 </soap:Envelope>"""
 
+
 # Decorator for Certificate Check
 def _only_if_valid_certificate(method, self):
     if self.valid_certificate:
@@ -73,6 +74,7 @@ def _only_if_valid_certificate(method, self):
         f"Skipping test '{method.__name__}' because CERT_FILE and CERT_PASSWORD env vars are not set."
     )
     return lambda *args, **kwargs: None
+
 
 def only_if_valid_certificate(method):
     return decorate(method, _only_if_valid_certificate)
@@ -149,9 +151,7 @@ class MDeSoapTest(TestCase):
     @mock.patch.object(DefaultTransport, "post")
     def test_ciencia_da_operacao_mocked(self, mock_post):
         mock_post.return_value = response_ciencia
-        res = self.client.ciencia_da_operacao(
-            chave=self.chave, cnpj_cpf=self.cnpj_cpf
-        )
+        res = self.client.ciencia_da_operacao(chave=self.chave, cnpj_cpf=self.cnpj_cpf)
         self.assertIsInstance(res, TretEnvEvento)
         self.assertEqual(res.cStat, "128")
         self.assertEqual(res.retEvento[0].infEvento.cStat, "135")
@@ -159,9 +159,7 @@ class MDeSoapTest(TestCase):
 
     @only_if_valid_certificate
     def test_ciencia_da_operacao_real(self):
-        res = self.client.ciencia_da_operacao(
-            chave=self.chave, cnpj_cpf=self.cnpj_cpf
-        )
+        res = self.client.ciencia_da_operacao(chave=self.chave, cnpj_cpf=self.cnpj_cpf)
         self.assertIsInstance(res, TretEnvEvento)
         self.assertEqual(res.cStat, "128")
         self.assertIn(res.retEvento[0].infEvento.cStat, ["135", "573"])

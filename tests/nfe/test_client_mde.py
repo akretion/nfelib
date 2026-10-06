@@ -66,6 +66,12 @@ response_operacao_nao_realizada = b"""<?xml version="1.0" encoding="utf-8"?>
 </soap:Envelope>"""
 
 
+def _sent_payload(mock_post):
+    """The SOAP payload given to the mocked transport, as text."""
+    data = mock_post.call_args.kwargs["data"]
+    return data.decode("utf-8") if isinstance(data, bytes) else data
+
+
 # Decorator for Certificate Check
 def _only_if_valid_certificate(method, self):
     if self.valid_certificate:
@@ -156,6 +162,17 @@ class MDeSoapTest(TestCase):
         self.assertEqual(res.cStat, "128")
         self.assertEqual(res.retEvento[0].infEvento.cStat, "135")
         self.assertEqual(res.retEvento[0].infEvento.tpEvento, "210210")
+
+        # the batch and the event must be the envEvento and evento elements
+        # of the NF-e namespace
+        sent = _sent_payload(mock_post)
+        self.assertIn(
+            '<envEvento versao="1.00"><idLote>1</idLote>'
+            '<evento xmlns="http://www.portalfiscal.inf.br/nfe" versao="1.00">'
+            '<infEvento Id="ID210210',
+            sent,
+        )
+        self.assertIn("<Signature", sent)
 
     @only_if_valid_certificate
     def test_ciencia_da_operacao_real(self):

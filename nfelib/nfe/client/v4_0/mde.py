@@ -17,6 +17,11 @@ from nfelib.nfe.soap.v4_0.recepcaoevento4 import (
 )
 
 # --- MD-e Event Bindings ---
+# the global elements (not the Tevento/TenvEvento types) serialize as
+# <evento>/<envEvento> of the NF-e namespace
+from nfelib.nfe_evento_mde.bindings.v1_0.conf_recebto_v1_00 import Evento
+from nfelib.nfe_evento_mde.bindings.v1_0.env_conf_recebto_v1_00 import EnvEvento
+
 # NOTE: the 2.6.0 regenerated bindings renamed this enum to
 # DetEventoDescEvento1 (xsdata appends a counter to duplicated type names).
 from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
@@ -25,7 +30,6 @@ from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
 from nfelib.nfe_evento_mde.bindings.v1_0.leiaute_conf_recebto_v1_00 import (
     InfEventoTpEvento,
     TcorgaoIbge,
-    TenvEvento,
     Tevento,
     TretEnvEvento,
 )
@@ -152,14 +156,14 @@ class MdeClient(FiscalClient):
             )
             signed_events_xml.append(signed_xml)
 
-        env_evento_payload = TenvEvento(
+        env_evento_payload = EnvEvento(
             versao="1.00",
             idLote=numero_lote,
-            evento=[Tevento()],  # Placeholder for replacement
+            evento=[Evento()],  # Placeholder for replacement
         )
 
         # The placeholder should match the entire <evento> tag block
-        placeholder_exp = r"<evento\s*/>|<evento.*?>.*?</evento>"
+        placeholder_exp = r"<evento[^>]*/>|<evento.*?>.*?</evento>"
 
         return self.send(
             NfeRecepcaoEvento4SoapNfeRecepcaoEvento,
@@ -209,7 +213,7 @@ class MdeClient(FiscalClient):
                 versao="1.00", descEvento=descEvento, xJust=xJust
             ),
         )
-        return Tevento(versao="1.00", infEvento=inf_evento)
+        return Evento(versao="1.00", infEvento=inf_evento)
 
     def _enviar_evento_unitario(
         self,

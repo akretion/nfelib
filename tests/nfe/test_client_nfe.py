@@ -173,6 +173,12 @@ response_cancela_documento = b"""<?xml version="1.0" encoding="utf-8"?>
 _logger = logging.getLogger(__name__)
 
 
+def _sent_payload(mock_post):
+    """The SOAP payload given to the mocked transport, as text."""
+    data = mock_post.call_args.kwargs["data"]
+    return data.decode("utf-8") if isinstance(data, bytes) else data
+
+
 # --- Decorator for Certificate Check ---
 def _only_if_valid_certificate(method, self):
     if self.valid_certificate:
@@ -437,6 +443,11 @@ class SoapTest(TestCase):
         self.assertIsInstance(res, RetInutNfe)
         self.assertEqual(res.infInut.cStat, "102")  # Mock returns success
 
+        # the signed inutNFe must replace the empty placeholder on the wire
+        sent = _sent_payload(mock_post)
+        self.assertIn(f'<infInut Id="{evento.infInut.Id}"', sent)
+        self.assertIn("<Signature", sent)
+
     @only_if_valid_certificate
     def test_4_consulta_recibo(self):
         # Use a known recibo or one from a previous envia_documento test run
@@ -538,11 +549,37 @@ class SoapTest(TestCase):
             protocolo_autorizacao="012345678912345",
             justificativa="votou17",
         )
-        res = self.client.enviar_lote_evento([evento])
+        res = self.client.enviar_lote_evento([evento], numero_lote="123")
         # for some reason the retur Type is not correct when mocked (but live is OK)
         # self.assertIsInstance(res, TretEnvEvento)
         # The mock response provided is actually a retEnvEvento inside nfeResultMsg
         self.assertEqual(res.cStat, "215")
+
+        # the signed event must go on the wire inside an envEvento batch
+        sent = _sent_payload(mock_post)
+        self.assertIn('<envEvento versao="1.00"><idLote>123</idLote><evento', sent)
+        self.assertIn(f'<infEvento Id="{evento.infEvento.Id}"', sent)
+        self.assertIn("<Signature", sent)
+
+    @mock.patch.object(DefaultTransport, "post")
+    def test_6_enviar_evento_cce_mocked(self, mock_post):
+        mock_post.return_value = response_cancela_documento
+        evento = self.client.carta_correcao(
+            chave=self.chave_original,
+            sequencia="1",
+            justificativa="Correcao do endereco de entrega",
+            cnpj_cpf=self.cnpj_original,
+        )
+        self.client.enviar_lote_evento([evento], numero_lote="123")
+
+        # the CC-e must go as the evento element of the NF-e namespace
+        sent = _sent_payload(mock_post)
+        self.assertIn(
+            '<idLote>123</idLote><evento xmlns="http://www.portalfiscal.inf.br/nfe"'
+            f' versao="1.00"><infEvento Id="{evento.infEvento.Id}">',
+            sent,
+        )
+        self.assertIn("<Signature", sent)
 
     # --- Integration Style Test ---
     # TODO processar_lote

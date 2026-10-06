@@ -72,6 +72,9 @@ from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
 from nfelib.nfe_evento_cancel.bindings.v1_0.e110111_v1_00 import (
     DetEventoVersao as DetEventoVersaoCancel,
 )
+from nfelib.nfe_evento_cancel.bindings.v1_0.env_evento_canc_nfe_v1_00 import (
+    EnvEvento,
+)
 
 # --- Event Bindings ---
 from nfelib.nfe_evento_cancel.bindings.v1_0.evento_canc_nfe_v1_00 import (
@@ -85,6 +88,9 @@ from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import
 )
 from nfelib.nfe_evento_cancel.bindings.v1_0.leiaute_evento_canc_nfe_v1_00 import (
     TretEnvEvento,
+)
+from nfelib.nfe_evento_cce.bindings.v1_0.cce_v1_00 import (
+    Evento as EventoCCe,
 )
 from nfelib.nfe_evento_cce.bindings.v1_0.leiaute_cce_v1_00 import (
     DetEventoDescEvento as DetEventoDescEventoCCe,
@@ -540,9 +546,9 @@ class NfeClient(FiscalClient):
         payload_for_wrapping = InutNfe(versao=self.versao)  # Minimal object
 
         # The placeholder should match the <inutNFe> tag within
-        # the SOAP Body's nfeDadosMsg
-        # Example: <nfeDadosMsg><inutNFe>...</inutNFe></nfeDadosMsg>
-        placeholder_exp = r"<inutNFe.*?>.*?</inutNFe>"
+        # the SOAP Body's nfeDadosMsg. The empty placeholder object
+        # serializes as a self-closing <inutNFe versao="4.00"/> tag.
+        placeholder_exp = r"<inutNFe[^>]*/>|<inutNFe.*?>.*?</inutNFe>"
 
         return self.send(
             NfeInutilizacao4SoapNfeInutilizacaoNf,
@@ -617,15 +623,20 @@ class NfeClient(FiscalClient):
                     )
                 )
 
-        # Placeholder object for wrapping.
-        payload_for_wrapping = TeventoCancel(versao="1.00")
-        placeholder_exp = r"<envEvento.*?>.*?</envEvento>"
+        # envEvento batch with an empty placeholder event (serialized as a
+        # self-closing <evento/> tag) to be replaced by the signed events.
+        env_evento_payload = EnvEvento(
+            versao="1.00",
+            idLote=numero_lote,
+            evento=[TeventoCancel()],
+        )
+        placeholder_exp = r"<evento[^>]*/>|<evento.*?>.*?</evento>"
 
         return self.send(
             NfeRecepcaoEvento4SoapNfeRecepcaoEvento,
-            payload_for_wrapping,  # Pass the object to be wrapped
+            env_evento_payload,
             placeholder_exp=placeholder_exp,
-            placeholder_content=signed_events,  # The actual signed XML content
+            placeholder_content="".join(signed_events),
         )
 
     # NEW HIGH-LEVEL METHOD FOR CANCELLATION
@@ -795,7 +806,9 @@ class NfeClient(FiscalClient):
                 "CNPJ/CPF não fornecido para CC-e, extraindo da chave (assumindo CNPJ)."
             )
 
-        return TeventoCCe(
+        # the evento global element (not the Tevento type) so it serializes
+        # as <evento xmlns="http://www.portalfiscal.inf.br/nfe">
+        return EventoCCe(
             versao="1.00",
             infEvento=TeventoCCe.InfEvento(
                 Id="ID" + TIPO_EVENTO_CCE + chave + sequencia.zfill(2),

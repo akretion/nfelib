@@ -10,8 +10,9 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from nfelib.nfse.bindings.v1_0 import (
-    dps_v1_00,  # noqa: F401
-    nfse_v1_00,  # noqa: F401
+    dps_v1_00,
+    nfse_v1_00,
+    ped_reg_evento_v1_00,
 )
 
 
@@ -21,7 +22,7 @@ class NFseTests(TestCase):
         for filename in ["ConsultarNFSeEnvio-ped-sitnfse.xml"]:
             input_file = os.path.join(path, filename)
             parser = XmlParser()
-            obj = parser.from_path(Path(input_file))
+            obj = parser.from_path(Path(input_file), nfse_v1_00.Nfse)
             serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}
@@ -41,7 +42,7 @@ class NFseTests(TestCase):
         for filename in ["dps-simples.xml", "dps-regime-normal.xml"]:
             input_file = os.path.join(path, filename)
             parser = XmlParser()
-            obj = parser.from_path(Path(input_file))
+            obj = parser.from_path(Path(input_file), dps_v1_00.Dps)
             serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}
@@ -61,7 +62,7 @@ class NFseTests(TestCase):
         for filename in ["CancelarNFSe-ped-cannfse.xml"]:
             input_file = os.path.join(path, filename)
             parser = XmlParser()
-            obj = parser.from_path(Path(input_file))
+            obj = parser.from_path(Path(input_file), ped_reg_evento_v1_00.PedRegEvento)
             serializer = XmlSerializer(config=SerializerConfig(indent="  "))
             xml = serializer.render(
                 obj=obj, ns_map={None: "http://www.sped.fazenda.gov.br/nfse"}

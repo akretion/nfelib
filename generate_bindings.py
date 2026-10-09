@@ -258,6 +258,14 @@ SCHEMAS: Final[dict[str, SchemaConfig]] = {
         schema_dir="nfelib/nfse/schemas/v1_0",
         package="nfelib.nfse.bindings.v1_0",
     ),
+    # The NFS-e 1.01 layout is not a superset of 1.00 (explRod and other groups
+    # are gone) and both are valid at the same time, so it gets its own folder
+    # instead of superseding v1_0. The schema version folder keeps the 3 digits.
+    "nfse_v1_01": SchemaConfig(
+        name="nfse_v1_01",
+        schema_dir="nfelib/nfse/schemas/v1_01",
+        package="nfelib.nfse.bindings.v1_01",
+    ),
 }
 
 DOWNLOAD_URLS: Final[dict[str, str]] = {

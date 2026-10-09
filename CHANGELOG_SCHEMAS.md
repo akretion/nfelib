@@ -100,3 +100,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-02-09`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`
+
+## nfse (v1_01)
+
+- binding_dir: `nfse/bindings/v1_01`
+- version: `NFSe-ESQUEMAS_XSD-v1.01-20260209 (leiaute 1.01)`
+- package: `NFSe-ESQUEMAS_XSD-v1.01-20260209, diretório Schemas/1.01`
+- nota_tecnica: `Leiaute NFSe 1.01 (grupos IBSCBS da RTC, NT SE/CGNFS-e 004) + CNC`
+- published_at: `2026-02-09`
+- source_url:
+  `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`

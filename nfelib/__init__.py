@@ -5,6 +5,7 @@ from __future__ import annotations  # Python 3.8 compat
 import base64
 import os
 import warnings
+from io import BytesIO
 from os import environ
 from pathlib import Path
 from typing import Any
@@ -29,9 +30,32 @@ class CommonMixin:
     @classmethod
     def from_xml(cls, xml: str, config: ParserConfig = None) -> Any:
         """Parse xml and return an instance of the class."""
-        if config is None:
-            return XmlParser().from_string(xml)
-        return XmlParser(config=config).from_string(xml)
+        parser = XmlParser() if config is None else XmlParser(config=config)
+        return parser.from_string(xml, cls._find_root_class(parser, xml))
+
+    @classmethod
+    def _find_root_class(cls, parser: XmlParser, xml: str | bytes) -> Any:
+        """Return the root element class from the binding package of cls.
+
+        Two layout versions of a document can share the namespace and the
+        element names (NFS-e 1.00 and 1.01). xsdata would then return the
+        class imported last, whatever the class from_xml was called on. When
+        several classes match the root, keep the one of the same package.
+        Return None to let xsdata detect the root class as usual.
+        """
+        data = xml.encode("utf-8") if isinstance(xml, str) else xml
+        try:
+            _event, root = next(etree.iterparse(BytesIO(data), events=("start",)))
+        except (etree.XMLSyntaxError, StopIteration):
+            return None
+        candidates: list[type] = parser.context.find_types(root.tag)
+        if len(candidates) < 2:
+            return None
+        package = cls.__module__.rpartition(".")[0]
+        for candidate in reversed(candidates):
+            if candidate.__module__.rpartition(".")[0] == package:
+                return candidate
+        return None
 
     @classmethod
     def from_path(cls, path: str) -> Any:
@@ -73,6 +97,14 @@ class CommonMixin:
                 "nfe_v4.00.xsd",
             )
         if package == "nfse":
+            if ".bindings.v1_01." in cls.__module__:
+                return os.path.join(
+                    os.path.dirname(__file__),
+                    "nfse",
+                    "schemas",
+                    "v1_01",
+                    "DPS_v1.01.xsd",
+                )
             return os.path.join(
                 os.path.dirname(__file__),
                 "nfse",

@@ -8,6 +8,8 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
+from nfelib.nfse.bindings.v1_0.dps_v1_00 import Dps as Dps100
+from nfelib.nfse.bindings.v1_01.dps_v1_01 import Dps
 from nfelib.nfse.bindings.v1_01.nfse_v1_01 import Nfse
 
 SAMPLES = os.path.join("nfelib", "nfse", "samples", "v1_01")
@@ -43,3 +45,20 @@ class NFse101Tests(TestCase):
         schema = etree.XMLSchema(etree.parse(os.path.join(SCHEMAS, "NFSe_v1.01.xsd")))
         doc = etree.parse(os.path.join(SAMPLES, "nfse-ibscbs.xml"))
         self.assertTrue(schema.validate(doc), schema.error_log)
+
+    def test_dps_schema_validation(self):
+        nfse = Nfse.from_path(os.path.join(SAMPLES, "nfse-ibscbs.xml"))
+        dps = Dps(infDPS=nfse.infNFSe.DPS.infDPS, versao="1.01")
+        self.assertTrue(Dps._get_schema_path().endswith("DPS_v1.01.xsd"))
+        self.assertEqual(dps.validate_xml(), [])
+
+    def test_both_versions_side_by_side(self):
+        # Both layouts share the namespace and the root element names, so
+        # the class from_path is called on decides the binding version.
+        dps = Dps100.from_path(
+            os.path.join("nfelib", "nfse", "samples", "v1_0", "dps-simples.xml")
+        )
+        self.assertIsInstance(dps, Dps100)
+        self.assertTrue(Dps100._get_schema_path().endswith("DPS_v1.00.xsd"))
+        nfse = Nfse.from_path(os.path.join(SAMPLES, "nfse-ibscbs.xml"))
+        self.assertIsInstance(nfse, Nfse)

@@ -304,6 +304,14 @@ to support the various versions at the same time using different folders. It
 would be possible, for example, to issue the future NF-e 5.0 and still import
 an NF-e 4.0.
 
+The NFS-e is the exception to the 2 digits rule: its 1.01 layout (the IBSCBS
+groups of the tax reform) cannot read every 1.00 document (`explRod` and other
+groups are gone), and the government accepts both layouts at the same time. So
+`nfse/bindings/v1_0` (layout 1.00) and `nfse/bindings/v1_01` (layout 1.01) live
+side by side. They share the namespace and the root element names, so
+`from_xml`/`from_path` return the classes of the package of the class you call
+them on, and an `XmlParser` used directly should be given the target class.
+
 
 ## Credits
 

@@ -94,9 +94,10 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## nfse (v1_0)
 
 - binding_dir: `nfse/bindings/v1_0`
-- version: `NFSe-ESQUEMAS_XSD-v1.01-20260209 (leiaute 1.00)`
-- package: `NFSe-ESQUEMAS_XSD-v1.01-20260209, diretório Schemas/1.00`
-- nota_tecnica: `Leiaute NFSe 1.00 (eventos, tipos atualizados) + CNC`
+- version: `NFSe-ESQUEMAS_XSD-v1.01-20260209 (leiaute 1.01)`
+- package: `NFSe-ESQUEMAS_XSD-v1.01-20260209, diretório Schemas/1.01`
+- nota_tecnica:
+  `Leiaute NFS-e 1.01 (grupos IBSCBS da RTC, NT SE/CGNFS-e 004) + CNC, substituindo o leiaute 1.00 nesta pasta (um leiaute por pasta, como NF-e/CT-e/MDF-e); a NT SE/CGNFS-e 004 mantém os dois leiautes válidos e um documento 1.00 segue legível pelos bindings 1.01.`
 - published_at: `2026-02-09`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`

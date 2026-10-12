@@ -7,8 +7,8 @@ from unittest import TestCase, mock
 
 from erpbrasil.assinatura import misc
 
-from nfelib.nfse.bindings.v1_0.dps_v1_00 import Dps
-from nfelib.nfse.bindings.v1_0.tipos_complexos_v1_00 import TcinfDps
+from nfelib.nfse.bindings.v1_0.dps_v1_01 import Dps
+from nfelib.nfse.bindings.v1_0.tipos_complexos_v1_01 import TcinfDps
 from nfelib.nfse.client.v1_0.nfse import NfseClient
 
 

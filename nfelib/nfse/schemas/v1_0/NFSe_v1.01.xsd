@@ -5,7 +5,8 @@
            xmlns="http://www.sped.fazenda.gov.br/nfse" 
            attributeFormDefault="unqualified" 
            elementFormDefault="qualified">
-  <xs:include schemaLocation="tiposComplexos_v1.00.xsd"/>
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:include schemaLocation="tiposComplexos_v1.01.xsd"/>
   <xs:element name="NFSe" type="TCNFSe">
     <xs:annotation>
       <xs:documentation>Schema XML da Nota Fiscal de Serviços Eletrônica - NFS-e</xs:documentation>

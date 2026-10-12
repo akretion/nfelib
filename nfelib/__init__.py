@@ -73,12 +73,15 @@ class CommonMixin:
                 "nfe_v4.00.xsd",
             )
         if package == "nfse":
+            # One layout per folder: v1_0 holds the current layout (1.01 since
+            # the 2026-02-09 package), so the DPS schema keeps its published
+            # file name. The layout recap is in CHANGELOG_SCHEMAS.md.
             return os.path.join(
                 os.path.dirname(__file__),
                 "nfse",
                 "schemas",
                 "v1_0",
-                "DPS_v1.00.xsd",
+                "DPS_v1.01.xsd",
             )
         if package == "mdfe":
             return os.path.join(

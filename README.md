@@ -130,13 +130,13 @@ also prints the CT-e (DACTE/DACTE-OS) and the MDF-e (DAMDFE):
 
 ```python
 >>> # Parse an NFS-e:
->>> from nfelib.nfse.bindings.v1_0.nfse_v1_00 import Nfse
+>>> from nfelib.nfse.bindings.v1_0.nfse_v1_01 import Nfse
 >>> nfse = Nfse.from_path("alguma_nfse.xml")
 >>>
 >>> # Serialize an NFS-e:
 >>> nfse.to_xml()
 >>> # Parse a DPS:
->>> from nfelib.nfse.bindings.v1_0.dps_v1_00 import Dps
+>>> from nfelib.nfse.bindings.v1_0.dps_v1_01 import Dps
 >>> dps = Dps.from_path("nfelib/nfse/samples/v1_0/GerarNFSeEnvio-env-loterps.xml")
 ```
 

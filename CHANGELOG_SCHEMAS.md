@@ -52,12 +52,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## cte (v4_0)
 
 - binding_dir: `cte/bindings/v4_0`
-- version: `PL_CTe_400_NT2026.002_RTC_1.01_corr`
-- package: `Pacote de Liberação 4.00`
-- nota_tecnica: `NT 2026.001 v1.01c, NT 2026.002 v1.01`
-- published_at: `2026-08-24`
+- version: `PL_CTe_400_NT2026.004 RTC_1.00`
+- package:
+  `Schemas XML CT-e - NT 2026.004_RTC v.1.00 (zip dir PL_CTe_400_NT2026.004 RTC_1.00)`
+- nota_tecnica: `NT 2026.004 RTC v1.00`
+- published_at: `2026-10-16 (republicado; zip build date 2026-10-01)`
 - source_url:
-  `https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=qGIe20MvWf4=`
+  `https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=zeylq8Ib5E0=`
 
 ## mdfe (v3_0)
 

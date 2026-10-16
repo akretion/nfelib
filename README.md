@@ -192,6 +192,7 @@ client = NfseClient(
 ret = client.envia_dps(dps)                    # POST /nfse -> generates the NFS-e
 ret.body["chaveAcesso"]
 ret = client.consulta_nfse(chave)              # GET /nfse/{chaveAcesso}
+ret = client.consulta_nfse_sefin(chave)        # GET Sefin /nfse/{chaveAcesso}
 ret = client.consulta_dps(dps_id)              # GET /dps/{id}
 ret = client.cancela_documento(chave, evento)  # POST /nfse/{chaveAcesso}/eventos
 ret = client.consulta_evento(chave, tipo_evento, num_seq)

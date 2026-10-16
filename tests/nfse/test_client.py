@@ -119,3 +119,48 @@ class NfseClientTest(TestCase):
         self.assertTrue(args[1].endswith(f"/nfse/{chave}/eventos"))
         payload = kwargs["json"]["pedidoRegistroEventoXmlGZipB64"]
         self.assertEqual(gzip.decompress(base64.b64decode(payload)), b"<signedEvento/>")
+
+    def test_consulta_dfe(self):
+        client, mock_request = self._client()
+        response = mock.Mock(status_code=200)
+        response.json.return_value = {"LoteDFe": []}
+        mock_request.return_value = response
+
+        ret = client.consulta_dfe(0, cnpj="59594315000157")
+
+        self.assertEqual(ret.status_code, 200)
+        self.assertEqual(
+            client.dfe_base_url,
+            "https://adn.producaorestrita.nfse.gov.br",
+        )
+        args, kwargs = mock_request.call_args
+        self.assertEqual(args[0], "GET")
+        self.assertEqual(
+            args[1],
+            "https://adn.producaorestrita.nfse.gov.br/contribuintes/DFe/0",
+        )
+        self.assertNotIn("/contribuinte/", args[1])
+        self.assertEqual(
+            kwargs["params"],
+            {"lote": "true", "cnpjConsulta": "59594315000157"},
+        )
+
+    def test_consulta_eventos(self):
+        client, mock_request = self._client()
+        response = mock.Mock(status_code=200)
+        response.json.return_value = {"eventos": []}
+        mock_request.return_value = response
+
+        chave = "35200000000000000000000000000000000000000000000001"
+        ret = client.consulta_eventos(chave)
+
+        self.assertEqual(ret.status_code, 200)
+        args, kwargs = mock_request.call_args
+        self.assertEqual(args[0], "GET")
+        self.assertEqual(
+            args[1],
+            "https://adn.producaorestrita.nfse.gov.br"
+            f"/contribuintes/NFSe/{chave}/Eventos",
+        )
+        self.assertNotIn("/contribuinte/", args[1])
+        self.assertIsNone(kwargs["params"])

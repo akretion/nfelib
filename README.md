@@ -195,6 +195,10 @@ ret = client.consulta_nfse(chave)              # GET /nfse/{chaveAcesso}
 ret = client.consulta_dps(dps_id)              # GET /dps/{id}
 ret = client.cancela_documento(chave, evento)  # POST /nfse/{chaveAcesso}/eventos
 ret = client.consulta_evento(chave, tipo_evento, num_seq)
+
+# Distribution uses the ADN root, not the /contribuinte emission prefix.
+ret = client.consulta_dfe(0, cnpj="12345678000199")  # GET /contribuintes/DFe/{nsu}
+ret = client.consulta_eventos(chave)  # GET /contribuintes/NFSe/{chave}/Eventos
 ```
 
 The certificate may be given as raw PFX bytes, base64 text (like an Odoo

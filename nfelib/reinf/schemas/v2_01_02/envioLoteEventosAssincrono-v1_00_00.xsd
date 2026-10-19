@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:reinf="http://www.reinf.esocial.gov.br/schemas/envioLoteEventosAssincrono/v1_00_00"
+           targetNamespace="http://www.reinf.esocial.gov.br/schemas/envioLoteEventosAssincrono/v1_00_00"
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+
+  <xs:element name="Reinf">
+    <xs:annotation>
+      <xs:documentation>Elemento raiz do Reinf.</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="envioLoteEventos">
+          <xs:annotation>
+            <xs:documentation>Representa um lote de eventos.</xs:documentation>
+          </xs:annotation>
+
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="ideContribuinte" type="reinf:TIdeContribuinte">
+                <xs:annotation>
+                  <xs:documentation>Identificação do Contribuinte.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+
+              <xs:element name="eventos">
+                <xs:annotation>
+                  <xs:documentation>Contém a relação de eventos que compõe o lote.</xs:documentation>
+                </xs:annotation>
+
+                <xs:complexType>
+                  <xs:sequence maxOccurs="50">
+                    <xs:element name="evento" type="reinf:TArquivoReinf" />
+                  </xs:sequence>
+                </xs:complexType>              
+              </xs:element>
+              
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+
+  <xs:complexType name="TIdeContribuinte">
+    <xs:annotation>
+      <xs:documentation>Define a identificação do Contribuinte.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>
+              Preencher com o código correspondente ao tipo de inscrição.
+              Deve ser igual a [1] (CNPJ) ou [2] (CPF)
+            </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:unsignedByte">
+            <xs:pattern value="1|2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Número de inscrição do contribuinte de acordo com o tipo de inscrição indicado.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="8"/>
+            <xs:maxLength value="14"/>
+            <xs:pattern value="[0-9A-Z]{8}|[0-9]{11}|[0-9A-Z]{14}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TArquivoReinf">
+    <xs:annotation>
+      <xs:documentation>
+        Define os dados de um arquivo do Reinf (evento).
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:any processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Contém o xml do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+
+    <xs:attribute name="Id" use="required" type="xs:ID">
+      <xs:annotation>
+        <xs:documentation>
+          Contém a chave de acesso do evento contido no elemento xsd:any. É através deste atributo que o Contribuinte conseguirá fazer o mapeamento
+          entre o evento que ele enviou e o resultado do processamento de cada evento.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>

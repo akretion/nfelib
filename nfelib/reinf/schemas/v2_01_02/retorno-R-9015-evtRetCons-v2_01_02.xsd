@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.reinf.esocial.gov.br/schemas/evtRetCons/v2_01_02" targetNamespace="http://www.reinf.esocial.gov.br/schemas/evtRetCons/v2_01_02" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="./xmldsig-core-schema.xsd"/>
+  <xs:element name="Reinf">
+    <xs:annotation>
+      <xs:documentation>Escrituracao Fiscal Digital de Retencoes e Outras Informacoes Fiscais (EFD-Reinf)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtRetCons" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Evento totalizador por contribuinte</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de identificacao do evento</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="perApur" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Periodo de apuracao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:gYearMonth">
+                          <xs:pattern value="20([1-9][0-9])-(0[1-9]|1[0-2])"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ideContri" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de identificacao do contribuinte</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="tpInsc" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Tipo de Inscricao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrInsc" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Numero de Inscricao</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[0-9A-Z]{8}|[0-9]{11}|[0-9A-Z]{14}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ideRecRetorno" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes do recibo de retorno</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ideStatus" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Situacao atual do evento</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="cdRetorno" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo do Retorno</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="0|1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="descRetorno" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Descricao do retorno</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="1000"/>
+                                <xs:whiteSpace value="preserve"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="regOcorrs" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation>Informacoes de ocorrencias registradas</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="tpOcorr" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Tipo da ocorrencia</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:unsignedByte">
+                                      <xs:pattern value="1|2|3"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="localErroAviso" minOccurs="0" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Campo que originou o erro ou aviso</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="200"/>
+                                      <xs:whiteSpace value="preserve"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="codResp" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Codigo do status da resposta do processamento da consulta</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
+                                      <xs:maxLength value="6"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="dscResp" minOccurs="1" maxOccurs="1">
+                                  <xs:annotation>
+                                    <xs:documentation>Descricao literal da resposta do processamento da consulta</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
+                                      <xs:maxLength value="999"/>
+                                      <xs:whiteSpace value="preserve"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoRecEv" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes de processamento do evento</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nrRecArqBase" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Recibo do arquivo de origem</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0"/>
+                          <xs:maxLength value="52"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrProtLote" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Numero do protocolo de entrega do lote</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="30"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="dhRecepcao" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Data e hora da recepcao do evento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:dateTime">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="dhProcess" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Data e hora do processamento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:dateTime">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tpEv" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Tipo do evento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[Rr]{1}-{1}[\d]{4}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="idEv" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>ID do Evento</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="3"/>
+                          <xs:maxLength value="36"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="hash" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Hash do arquivo processado</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="3"/>
+                          <xs:maxLength value="60"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="fechRet" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Indicativo da finalidade do evento de origem.</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="\d"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoCR_CNR" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes relativas a totalizadores pela natureza do rendimento e codigo de receita</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="indExistInfo" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Existe informacoes</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:pattern value="1|2|3"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="identEscritDCTF" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Identificacao da escrituracao fiscal (EFD-Reinf) na DCTFWeb</xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="19"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="totApurMen" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador de tributos com periodo de apuracao mensal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CRMen" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenInf" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenSuspInf" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao mensal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenSuspCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo de apuracao mensal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza do Rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{5}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurQui" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador de tributos com periodo de apuracao quinzenal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurQui" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRQui" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiInf" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiSuspInf" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao quinzenal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuisSuspCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao quinzenal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza do Rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{5}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurDec" minOccurs="0" maxOccurs="60">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao decendial</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurDec" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao decenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2|3"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRDec" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao decendial</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecInf" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao decendial</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao decendial</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecSuspInf" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo de apuracao decendial suspenso informado</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecSuspCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo de apuracao decendial suspenso calculado</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza do Rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{5}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurSem" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao semanal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurSem" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2|3|4|5"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRSem" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemInf" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemSuspInf" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao semanal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemSuspCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao semanal suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza do Rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{5}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurDia" minOccurs="0" maxOccurs="350">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao diario</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurDia" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao diario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:byte">
+                                <xs:pattern value="\d{1,2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRDia" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao diario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaInf" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao diaria</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao diaria</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaSuspInf" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao diario suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaSuspCalc" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor da base do tributo de apuracao diario suspenso</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natRend" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Natureza do Rendimento</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:pattern value="\d{5}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoTotalCR" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Informacoes consolidadas dos tributos da empresa</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="totApurMen" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador de tributos com periodo de apuracao mensal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CRMen" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRMenSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurQui" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador de tributos com periodo de apuracao quinzenal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurQui" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRQui" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao quinzenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRQuiSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurDec" minOccurs="0" maxOccurs="60">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao decendial</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurDec" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao decenal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2|3"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRDec" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao decendial</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDecSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurSem" minOccurs="0" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao semanal</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurSem" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:unsignedByte">
+                                <xs:pattern value="1|2|3|4|5"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRSem" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao semanal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRSemSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="totApurDia" minOccurs="0" maxOccurs="350">
+                      <xs:annotation>
+                        <xs:documentation>Totalizador dos tributos com periodo de apuracao diario</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="perApurDia" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Periodo de apuracao diario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:byte">
+                                <xs:pattern value="\d{1,2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CRDia" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Codigo de Receita - CR de tributo com apuracao diario</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaDCTF" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="4"/>
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vlrCRDiaSuspDCTF" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation>Valor do tributo retido com apuracao mensal</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="15"/>
+                                <xs:pattern value="[0-9]{1,12}[,][0-9]{2}"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" use="required">
+              <xs:annotation>
+                <xs:documentation>Identificacao unica do evento</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:ID">
+                  <xs:length value="36"/>
+                  <xs:pattern value="I{1}D{1}[0-9]{1}[0-9A-Z]{12}[0-9]{21}"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

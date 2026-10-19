@@ -102,3 +102,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-02-09`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`
+
+## reinf (v2_01_02)
+
+- binding_dir: `reinf/bindings/v2_01_02`
+- version: `EFD-Reinf v2.1.2 (CNPJ alfanumérico)`
+- package:
+  `XSD EFD-Reinf v2.1.2 - CNPJ Alfanumérico (26 XSD: eventos, retornos R-900x, lote assíncrono v1_00_00 e retornoRecibosChaveEvento v1_05_01)`
+- nota_tecnica: `NT EFD-Reinf 03/2026 (CNPJ alfanumérico)`
+- published_at: `não informada no portal; NT 03/2026 em produção desde 2026-07-27`
+- source_url: `https://sped.rfb.gov.br/arquivo/download/8193`

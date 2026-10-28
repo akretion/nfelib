@@ -3,6 +3,7 @@
 from __future__ import annotations  # Python 3.8 compat
 
 import logging
+import re
 import sys
 from io import StringIO
 from os import environ
@@ -36,7 +37,14 @@ URL_COLUMN = "URL"
 # of the file. Thus we don't always need to export a proper CERT_FILE env var
 # to scrap the server URLs.
 FORCE_SOAP_12_NFE = {"SVC-RS", "SVC-AN", "SP", "PR"}
-FORCE_SOAP_12_CTE = {"SVSP", "RS", "SVRS", "MG", "SP", "PR"}
+# AN only carries the CTeDistribuicaoDFe service for the CT-e, which expects a
+# SOAP 1.2 envelope (that is what the CT-e ecosystem sends, see ACBrCTe).
+FORCE_SOAP_12_CTE = {"SVSP", "RS", "SVRS", "MG", "SP", "PR", "AN"}
+
+# The DF-e distribution services (NFeDistribuicaoDFe, CTeDistribuicaoDFe, ...)
+# are only published in the Ambiente Nacional table, never in the per-UF ones,
+# so they miss the constant list built from the first table.
+DISTRIBUICAO_DFE = re.compile(r"distribuicaodfe$", re.IGNORECASE)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -91,16 +99,11 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
 
         for action, url in zip(actions, urls):
             constant_name = action.upper().replace(" ", "_")
+            if constant_name not in constants and DISTRIBUICAO_DFE.search(action):
+                # the distribution services are missing from the first table
+                constants[constant_name] = action
             if constant_name in constants:
                 action_dict[constants[constant_name]] = url.strip()
-
-        # Handle special case for Ambiente Nacional (AN)
-        if server == "AN" and "NFeDistribuicaoDFe" in actions:
-            constant_name = "NFEDISTRIBUICAODFE"
-            if constant_name not in constants:
-                constants[constant_name] = "NFeDistribuicaoDFe"
-            idx = actions.index("NFeDistribuicaoDFe")
-            action_dict[constants[constant_name]] = urls[idx].strip()
 
         servers[server] = {
             "soap_version": "1.2" if server in force_soap_12 else "1.1",

@@ -4,6 +4,7 @@ from __future__ import annotations  # Python 3.8 compat
 
 import logging
 import os
+import re
 import subprocess
 from os import environ
 from typing import Any
@@ -25,6 +26,32 @@ WSDL_DIRS = {
     "bpe": ("nfelib/bpe/wsdl/v1_0", "bpe"),
 }
 
+# The DF-e distribution webservices (NFeDistribuicaoDFe, CTeDistribuicaoDFe...)
+DISTRIBUICAO_DFE = re.compile(r"distribuicaodfe", re.IGNORECASE)
+
+
+def get_distribuicao_dfe_wsdl_urls(servers: dict[str, Any]) -> list[str]:
+    """Collect the WSDL URLs of the DF-e distribution webservices.
+
+    Those webservices are hosted by the Ambiente Nacional (AN), not by the
+    SVRS server the other endpoints are read from, so they must be picked up
+    from the whole server list.
+    """
+    urls: list[str] = []
+    for server_config in servers.values():
+        for name, url in server_config.get("prod_endpoints", {}).items():
+            if DISTRIBUICAO_DFE.search(str(name)) and url not in urls:
+                urls.append(url)
+    return urls
+
+
+def get_document_type(url: str) -> str | None:
+    """Identify the document type (NF-e, CT-e, MDF-e, BP-e) from its URL."""
+    for key in WSDL_DIRS:
+        if key in url.lower():
+            return key
+    return None
+
 
 def generate_soap(
     servers: dict[str, Any],
@@ -33,29 +60,22 @@ def generate_soap(
     generate: bool = False,
 ) -> None:
     """Download WSDL files for NF-e, CT-e, MDF-e, and BP-e."""
-    # Access the certificate and password from environment variables
     wsdl_urls = [
         servers[SERVER]["prod_endpoints"].get(value, f"SKIP {key}")
         for key, value in endpoints.items()
     ]
+    wsdl_urls.extend(get_distribuicao_dfe_wsdl_urls(servers))
+    # the MDF-e distribution endpoint is already part of the SVRS endpoints
+    wsdl_urls = list(dict.fromkeys(wsdl_urls))
 
-    # TODO make extra wsdl urls a param
-    wsdl_urls.append(
-        "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"
-    )
-
-    doc_type = None
     wsdl_dir = ""
     for url in wsdl_urls:
-        if "SKIP" in url and "NFeDistribuicaoDFe" not in url:
+        if "SKIP" in url:
             _logger.error(
                 f"Skipping WSDL download for {url} (not found on server {SERVER})"
             )
             continue
         try:
-            # Determine the server and mount the PKCS12 adapter
-            # url = f"https://{server}{path}"
-
             # Ensure the URL ends with ?wsdl
             if not url.endswith("?wsdl"):
                 url += "?wsdl"
@@ -68,21 +88,13 @@ def generate_soap(
                 .lower()
             )
 
-            if doc_type is None:
-                # Identify the document type (NF-e, CT-e, MDF-e, BP-e)
-                for key, (_, _prefix) in WSDL_DIRS.items():
-                    if key in url.lower():
-                        doc_type = key
-                        break
-                if not doc_type:
-                    raise ValueError(f"Cannot determine document type for URL: {url}")
+            doc_type = get_document_type(url)
+            if not doc_type:
+                raise ValueError(f"Cannot determine document type for URL: {url}")
 
-            if doc_type == "nfe":
-                if "cadconsultacadastro4" in url:
-                    "the server is different in this case"
-                    url = "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx"
-            elif "NFeDistribuicaoDFe" in url:  # only for NFe
-                continue
+            if doc_type == "nfe" and "cadconsultacadastro4" in url:
+                "the server is different in this case"
+                url = "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx"
 
             # Create the output directory if it doesn't exist
             wsdl_dir, _ = WSDL_DIRS[doc_type]

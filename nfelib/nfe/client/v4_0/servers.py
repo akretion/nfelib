@@ -315,8 +315,8 @@ servers: dict[str, ServerConfig] = {
     "AN": {
         "soap_version": "1.1",
         "prod_endpoints": {
-            Endpoint.RECEPCAOEVENTO: "https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx",
             Endpoint.NFEDISTRIBUICAODFE: "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
+            Endpoint.RECEPCAOEVENTO: "https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx",
         },
         "dev_endpoints": {
             Endpoint.NFEDISTRIBUICAODFE: "https://hom1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",

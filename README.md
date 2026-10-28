@@ -23,7 +23,7 @@ print:
 | Document | Parse / build / sign / validate | Transmission | PDF |
 |----------|---------------------------------|--------------|-----|
 | **NF-e / NFC-e** (invoices) | yes | SOAP: authorize, cancel, CC-e, inutilização, consultation, MD-e events, DistDFe | DANFE |
-| **CT-e** (freight) | yes | SOAP: authorize (synchronous) | DACTE |
+| **CT-e** (freight) | yes | SOAP: authorize (synchronous), DistDFe | DACTE |
 | **MDF-e** (manifest) | yes | SOAP: authorize (synchronous), cancel, encerramento, consultation | DAMDFE |
 | **NFS-e** (national standard) | yes | REST: DPS submission, NFS-e and event consultation, cancelling | DANFSE |
 | **NF3e / NFCom** (energy / telecom) | yes | — | — |
@@ -251,10 +251,10 @@ Support status (**BETA**, API may change):
 | CT-e | yes (synchronous) | not yet |
 | MDF-e | yes (synchronous) | cancel, encerramento |
 
-The same clients power the DF-e distribution service (`NFeDistribuicaoDFe`,
-polling the documents sent to your CNPJ) and the Manifestacao do Destinatario
-events used by the [OCA/l10n-brazil](https://github.com/OCA/l10n-brazil)
-localization for Odoo.
+The same clients power the DF-e distribution services (`NFeDistribuicaoDFe` and
+`CTeDistribuicaoDFe`, polling the documents sent to your CNPJ) and the
+Manifestacao do Destinatario events used by the
+[OCA/l10n-brazil](https://github.com/OCA/l10n-brazil) localization for Odoo.
 
 Because the bindings, signing and transmission are all pure Python and
 serializable, nfelib can also be embedded behind a REST API (FastAPI, Odoo...)

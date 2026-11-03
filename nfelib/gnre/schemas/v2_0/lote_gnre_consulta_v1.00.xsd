@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.gnre.pe.gov.br" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://www.gnre.pe.gov.br" >
+    <xs:element name="TConsLote_GNRE">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="ambiente" maxOccurs="1" minOccurs="1">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="1"></xs:enumeration>
+    						<xs:enumeration value="2"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="numeroRecibo" maxOccurs="1" minOccurs="1">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+							<xs:pattern value="([0-9]{10}|[0-9]{14})"></xs:pattern>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="incluirPDFGuias" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>indica se o pdf (string na base64) das guias processadas com sucesso deve ser incluido no retorno da consulta do lote</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="S"></xs:enumeration>
+    						<xs:enumeration value="N"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="incluirArquivoPagamento" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>indica se o arquivo de pagamento, com as guias processadas com sucesso, deve ser incluido no retorno da consulta do lote</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="S"></xs:enumeration>
+    						<xs:enumeration value="N"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="incluirNoticias" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>indica se o arquivo de pagamento, com as guias processadas com sucesso, deve ser incluido no retorno da consulta do lote</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="S"></xs:enumeration>
+    						<xs:enumeration value="N"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>

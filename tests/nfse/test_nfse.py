@@ -92,7 +92,7 @@ class NFseTests(TestCase):
         self.assertEqual(nfse.infNFSe.IBSCBS.valores.vBC, "1000.00")
         self.assertEqual(totals.gIBS.vIBSTot, "1.00")
         self.assertEqual(totals.gCBS.vCBS, "9.00")
-        classification = nfse.infNFSe.DPS.infDPS.IBSCBS.valores.trib.gIBSCBS
+        classification = nfse.infNFSe.DPS.infDPS.IBSCBS.valores.trib
         self.assertEqual(classification.CST, "000")
         self.assertEqual(classification.cClassTrib, "000001")
 

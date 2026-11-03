@@ -77,6 +77,7 @@
 				<nDPS>1</nDPS>
 				<dCompet>2026-03-10</dCompet>
 				<tpEmit>1</tpEmit>
+				<finNFSe>0</finNFSe>
 				<cLocEmi>4202404</cLocEmi>
 				<prest>
 					<CNPJ>00000000000000</CNPJ>
@@ -96,8 +97,8 @@
 					</locPrest>
 					<cServ>
 						<cTribNac>010101</cTribNac>
-						<xDescServ>Desenvolvimento de sistema sob encomenda</xDescServ>
 						<cNBS>115022000</cNBS>
+						<xDescServ>Desenvolvimento de sistema sob encomenda</xDescServ>
 					</cServ>
 				</serv>
 				<valores>
@@ -115,15 +116,12 @@
 					</trib>
 				</valores>
 				<IBSCBS>
-					<finNFSe>0</finNFSe>
 					<cIndOp>100301</cIndOp>
 					<indDest>0</indDest>
 					<valores>
 						<trib>
-							<gIBSCBS>
-								<CST>000</CST>
-								<cClassTrib>000001</cClassTrib>
-							</gIBSCBS>
+							<CST>000</CST>
+							<cClassTrib>000001</cClassTrib>
 						</trib>
 					</valores>
 				</IBSCBS>

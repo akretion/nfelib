@@ -11,16 +11,18 @@ on:
 jobs:
   tests:
     name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - {name: Python 3.9, python: '3.9', os: ubuntu}
-          - {name: Python 3.10, python: '3.10', os: ubuntu}
-          - {name: Python 3.11, python: '3.11', os: ubuntu}
-          - {name: Python 3.12, python: '3.12', os: ubuntu}
-          - {name: Python 3.13, python: '3.13', os: ubuntu}
+          # ubuntu-latest is Ubuntu 26.04 since 2026-10, which has no Python
+          # 3.9 build in actions/setup-python: keep 3.9 on 24.04.
+          - {name: Python 3.9, python: '3.9', os: ubuntu-24.04}
+          - {name: Python 3.10, python: '3.10', os: ubuntu-latest}
+          - {name: Python 3.11, python: '3.11', os: ubuntu-latest}
+          - {name: Python 3.12, python: '3.12', os: ubuntu-latest}
+          - {name: Python 3.13, python: '3.13', os: ubuntu-latest}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python }}

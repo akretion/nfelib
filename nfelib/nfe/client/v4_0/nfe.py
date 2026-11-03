@@ -117,6 +117,8 @@ TIPO_EVENTO_CANCEL = "110111"
 
 _logger = logging.getLogger(__name__)
 
+NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe"
+
 
 # --- UF to Server Key Mapping & Logic (based on SEFAZ page) ---
 
@@ -461,62 +463,94 @@ class NfeClient(FiscalClient):
         proc_envio: RetEnviNfe,
         proc_recibo: Optional[RetConsReciNfe] = None,
     ):
-        """Populate the processo/protocolo on the wrapped response.
+        """Populate the processo/protocolo on the final response.
 
         Mirrors the erpbrasil.edoc behavior: the final response carries the
         authorization protocol (``protocolo``) and the assembled nfeProc
         (``processo`` / ``processo_xml``) so that consumers do not have to
         reassemble it.
+
+        With ``wrap_response`` the attributes are set on the WrappedResponse
+        that ``processar_lote`` yields (not on its inner ``resposta``), and
+        the nfeProc is assembled from the signed NF-e that was actually sent.
         """
-        nfe = lista_nfes[0]  # TODO could be a collection...
-        if proc_recibo:
-            if self.wrap_response:
-                proc_recibo = proc_recibo.resposta
-            protocolos = proc_recibo.protNFe
-        else:
-            # A falta do recibo indica envio no modo síncrono
-            # o protocolo é recuperado diretamente da resposta do envio.
-            if self.wrap_response:
-                proc_envio = proc_envio.resposta
-            protocolos = proc_envio.protNFe
+        proc = proc_recibo if proc_recibo else proc_envio
+        resposta = proc.resposta if self.wrap_response else proc
+        protocolos = resposta.protNFe
         if not protocolos:
             return
         if not isinstance(protocolos, list):
             protocolos = [protocolos]
         # nb: the localization only sends one NFe per batch.
         protocolo = protocolos[0]
-        proc = proc_recibo if proc_recibo else proc_envio
+        nfe = self._nfe_enviada(lista_nfes, proc_envio, protocolo)
         proc.protocolo = protocolo
-        proc_nfe_xml = self.monta_nfe_proc(nfe, protocolo)
-        proc.processo_xml = proc_nfe_xml
-        proc.processo = XmlParser().from_string(proc_nfe_xml, NfeProc)
+        proc.processo_xml = self.monta_nfe_proc(nfe, protocolo)
+        proc.processo = XmlParser().from_string(proc.processo_xml, NfeProc)
 
-    def monta_nfe_proc(self, nfe: Tnfe, prot_nfe: TprotNfe):
+    def _nfe_enviada(
+        self, lista_nfes: list, proc_envio: Any, protocolo: TprotNfe
+    ) -> Any:
+        """The NF-e to put in the nfeProc: the signed XML that was sent.
+
+        ``envia_documento`` signs the NF-e's on the fly and injects them in
+        the enviNFe payload; with ``wrap_response`` that signed content is
+        kept in ``request_obj``. Without it, fall back to the caller's input
+        (already signed when it is a str).
+        """
+        content = getattr(proc_envio, "request_obj", None)
+        if self.wrap_response and isinstance(content, str) and "<NFe" in content:
+            # several signed <NFe> may have been concatenated
+            batch = etree.fromstring(f"<lote>{content}</lote>".encode())
+            nfes = batch.findall(f"{{{NFE_NAMESPACE}}}NFe")
+            if nfes:
+                ch_nfe = protocolo.infProt.chNFe if protocolo.infProt else None
+                for nfe in nfes:
+                    inf_nfe = nfe.find(f"{{{NFE_NAMESPACE}}}infNFe")
+                    if inf_nfe is not None and inf_nfe.get("Id") == f"NFe{ch_nfe}":
+                        return nfe
+                return nfes[0]
+        return lista_nfes[0]  # TODO could be a collection...
+
+    def monta_nfe_proc(self, nfe: Any, prot_nfe: Any) -> str:
         """Constrói o XML do processo da NF-e com o protocolo.
 
-        Incorpora a NF-e com o seu protocolo de autorização.
+        Incorpora a NF-e com o seu protocolo de autorização. The NF-e is
+        grafted as is (lxml) when it comes serialized (str, bytes or lxml
+        element): parsing a signed NF-e into the binding and serializing it
+        again re-prefixes the ds:Signature namespace, which breaks the
+        signature canonicalization.
         """
+        if isinstance(prot_nfe, WrappedResponse):
+            prot_nfe = prot_nfe.resposta
         if isinstance(nfe, bytes):
             nfe = nfe.decode("utf-8")
         if isinstance(nfe, str):
-            nfe = Tnfe.from_xml(nfe)
-        elif not isinstance(nfe, Tnfe):
-            # lxml element (e.g. extracted from a saved enviNFe)
-            nfe = Tnfe.from_xml(etree.tostring(nfe).decode("utf-8"))
+            nfe = etree.fromstring(nfe.encode("utf-8"))
+        elif isinstance(nfe, Tnfe):
+            nfe = etree.fromstring(nfe.to_xml(indent="").encode("utf-8"))
 
-        if isinstance(prot_nfe, WrappedResponse):
-            # TODO it seems monta_nfe_proc is called
-            # in two different ways accross Odoo tests
-            # we could probably avoid these ifs
-            prot_nfe = prot_nfe.resposta
-
-        nfe_proc = NfeProc(
-            versao=self.versao,
-            NFe=nfe,
-            protNFe=prot_nfe,
-        )
-
-        return nfe_proc.to_xml()
+        if isinstance(prot_nfe, bytes):
+            prot_nfe = prot_nfe.decode("utf-8")
+        if isinstance(prot_nfe, str):
+            prot_nfe = etree.fromstring(prot_nfe.encode("utf-8"))
+        if isinstance(prot_nfe, etree._Element):
+            nfe_proc = etree.Element(
+                f"{{{NFE_NAMESPACE}}}nfeProc",
+                versao=self.versao,
+                nsmap={None: NFE_NAMESPACE},
+            )
+            nfe_proc.append(prot_nfe)
+        else:
+            # TProtNFe is a type: serialize it through the nfeProc element
+            # so that it is rendered as <protNFe> in the NF-e namespace.
+            nfe_proc = etree.fromstring(
+                NfeProc(versao=self.versao, protNFe=prot_nfe)
+                .to_xml(indent="")
+                .encode("utf-8")
+            )
+        nfe_proc.insert(0, nfe)
+        return etree.tostring(nfe_proc, encoding="unicode")
 
     def envia_inutilizacao(
         self, inut: Any = None, *, evento: Any = None

@@ -4,8 +4,10 @@ from os import environ
 from pathlib import Path
 from unittest import TestCase, mock
 
+from brazil_fiscal_client.fiscal_client import WrappedResponse
 from decorator import decorate
 from erpbrasil.assinatura import misc
+from lxml import etree
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.transports import DefaultTransport
 
@@ -145,6 +147,68 @@ response_consulta_recibo = b"""<?xml version="1.0" encoding="utf-8"?>
             <digVal>IoYUWXt2fIiRXb7UYRgl77c6Zlk=</digVal>
             <cStat>297</cStat>
             <xMotivo>Rejeicao: Assinatura difere do calculado</xMotivo>
+          </infProt>
+        </protNFe>
+      </retConsReciNFe>
+    </nfeResultMsg>
+  </soap:Body>
+</soap:Envelope>
+"""
+
+# Synchronous authorization (indSinc=1): the batch comes back processed, with
+# the protocol and no receipt. {chave} is the key of the NF-e fixture.
+response_envia_documento_sincrono = """<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeAutorizacao4">
+      <retEnviNFe versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+        <tpAmb>2</tpAmb>
+        <verAplic>SVRS202305251555</verAplic>
+        <cStat>104</cStat>
+        <xMotivo>Lote processado</xMotivo>
+        <cUF>42</cUF>
+        <dhRecbto>2023-06-11T01:18:19-03:00</dhRecbto>
+        <protNFe versao="4.00">
+          <infProt>
+            <tpAmb>2</tpAmb>
+            <verAplic>SVRS202305251555</verAplic>
+            <chNFe>{chave}</chNFe>
+            <dhRecbto>2023-06-11T01:18:19-03:00</dhRecbto>
+            <nProt>342230000000001</nProt>
+            <digVal>IoYUWXt2fIiRXb7UYRgl77c6Zlk=</digVal>
+            <cStat>100</cStat>
+            <xMotivo>Autorizado o uso da NF-e</xMotivo>
+          </infProt>
+        </protNFe>
+      </retEnviNFe>
+    </nfeResultMsg>
+  </soap:Body>
+</soap:Envelope>
+"""
+
+# Receipt of an authorized batch (asynchronous flow).
+response_consulta_recibo_autorizada = """<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <nfeResultMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeRetAutorizacao4">
+      <retConsReciNFe versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+        <tpAmb>2</tpAmb>
+        <verAplic>SVRS202305261028</verAplic>
+        <nRec>423002202113232</nRec>
+        <cStat>104</cStat>
+        <xMotivo>Lote processado</xMotivo>
+        <cUF>42</cUF>
+        <dhRecbto>2023-06-11T01:18:19-03:00</dhRecbto>
+        <protNFe versao="4.00">
+          <infProt>
+            <tpAmb>2</tpAmb>
+            <verAplic>SVRS202305261028</verAplic>
+            <chNFe>{chave}</chNFe>
+            <dhRecbto>2023-06-11T01:18:19-03:00</dhRecbto>
+            <nProt>342230000000002</nProt>
+            <digVal>IoYUWXt2fIiRXb7UYRgl77c6Zlk=</digVal>
+            <cStat>100</cStat>
+            <xMotivo>Autorizado o uso da NF-e</xMotivo>
           </infProt>
         </protNFe>
       </retConsReciNFe>
@@ -581,5 +645,94 @@ class SoapTest(TestCase):
         )
         self.assertIn("<Signature", sent)
 
-    # --- Integration Style Test ---
-    # TODO processar_lote
+    # --- processar_lote (batch authorization + nfeProc assembly) ---
+
+    def _wrapped_client(self, **kwargs):
+        return NfeClient(
+            ambiente="2",
+            uf=self.test_uf,
+            pkcs12_data=self.cert_data,
+            pkcs12_password=self.cert_password,
+            fake_certificate=self.fake_certificate,
+            verify_ssl=False,
+            wrap_response=True,
+            **kwargs,
+        )
+
+    def _assert_processo(self, proc, n_prot):
+        """The final response carries the protocol and a nfeProc made of the
+        signed NF-e that was sent, with its signature untouched."""
+        ns = "http://www.portalfiscal.inf.br/nfe"
+        ds = "http://www.w3.org/2000/09/xmldsig#"
+        self.assertEqual(proc.protocolo.infProt.nProt, n_prot)
+        self.assertIsInstance(proc.processo, NfeProc)
+        self.assertEqual(proc.processo.protNFe.infProt.nProt, n_prot)
+        self.assertIsInstance(proc.processo_xml, str)
+
+        nfe_proc = etree.fromstring(proc.processo_xml.encode("utf-8"))
+        self.assertEqual(nfe_proc.tag, f"{{{ns}}}nfeProc")
+        self.assertEqual(
+            [child.tag for child in nfe_proc], [f"{{{ns}}}NFe", f"{{{ns}}}protNFe"]
+        )
+        self.assertEqual(
+            nfe_proc.find(f"{{{ns}}}protNFe/{{{ns}}}infProt/{{{ns}}}nProt").text, n_prot
+        )
+
+        sent = etree.fromstring(self.signed_nfe_xml.encode("utf-8"))
+        for path in (f"{{{ns}}}infNFe", f"{{{ds}}}Signature"):
+            self.assertEqual(
+                etree.tostring(nfe_proc.find(f"{{{ns}}}NFe/{path}"), method="c14n"),
+                etree.tostring(sent.find(path), method="c14n"),
+            )
+
+    @mock.patch.object(DefaultTransport, "post")
+    def test_7_processar_lote_sincrono_wrapped(self, mock_post):
+        mock_post.return_value = response_envia_documento_sincrono.format(
+            chave=self.chave_original
+        ).encode("utf-8")
+        client = self._wrapped_client(envio_sincrono=True)
+
+        results = list(client.processar_lote([self.signed_nfe_xml]))
+
+        self.assertEqual(len(results), 1)
+        proc = results[0]
+        self.assertIsInstance(proc, WrappedResponse)
+        self.assertEqual(proc.resposta.cStat, "104")
+        # the attributes must be on the yielded wrapper, not on its resposta
+        self._assert_processo(proc, "342230000000001")
+
+    @mock.patch("nfelib.nfe.client.v4_0.nfe.time.sleep")
+    @mock.patch.object(DefaultTransport, "post")
+    def test_8_processar_lote_assincrono_wrapped(self, mock_post, mock_sleep):
+        mock_post.side_effect = [
+            response_envia_documento,
+            response_consulta_recibo_autorizada.format(
+                chave=self.chave_original
+            ).encode("utf-8"),
+        ]
+        client = self._wrapped_client()
+
+        results = list(client.processar_lote([self.signed_nfe_xml]))
+
+        self.assertEqual(len(results), 2)
+        envio, recibo = results
+        self.assertEqual(envio.resposta.infRec.nRec, "423002202113232")
+        self.assertFalse(hasattr(envio, "processo_xml"))
+        self.assertIsInstance(recibo, WrappedResponse)
+        self.assertEqual(recibo.resposta.cStat, "104")
+        self._assert_processo(recibo, "342230000000002")
+
+    @mock.patch.object(DefaultTransport, "post")
+    def test_9_processar_lote_sincrono_unwrapped(self, mock_post):
+        mock_post.return_value = response_envia_documento_sincrono.format(
+            chave=self.chave_original
+        ).encode("utf-8")
+        client = self._wrapped_client(envio_sincrono=True)
+        client.wrap_response = False
+
+        results = list(client.processar_lote([self.signed_nfe_xml]))
+
+        self.assertEqual(len(results), 1)
+        proc = results[0]
+        self.assertIsInstance(proc, RetEnviNfe)
+        self._assert_processo(proc, "342230000000001")

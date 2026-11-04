@@ -368,7 +368,7 @@ Informar quando diferente do passageiro</xs:documentation>
 											<xs:restriction base="TIeDest"/>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="enderComp" type="TEndereco">
+									<xs:element name="enderComp" type="TEndereco" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Endereço do comprador</xs:documentation>
 										</xs:annotation>
@@ -681,7 +681,12 @@ Informar se tpTrecho = 3</xs:documentation>
 											<xs:element name="vBP" type="TDec_1302">
 												<xs:annotation>
 													<xs:documentation>Valor do Bilhete de Passagem</xs:documentation>
-													<xs:documentation>Pode conter zeros quando o BP-e for de complemento de ICMS</xs:documentation>
+													<xs:documentation>Observação: A partir 2027, os valores de IBS e CBS compõem o Valor Total do Bilhete</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="vBPLiq" type="TDec_1302" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Valor Líquido total do Bilhete SEM tributos</xs:documentation>
 												</xs:annotation>
 											</xs:element>
 											<xs:element name="vDesconto" type="TDec_1302">
@@ -821,8 +826,7 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 											</xs:element>
 											<xs:element name="vTotDFe" type="TDec_1302">
 												<xs:annotation>
-													<xs:documentation>Valor total do documento fiscal 
-vBP+ total do IBS + total da CBS</xs:documentation>
+													<xs:documentation>Valor total do documento fiscal (vBP)</xs:documentation>
 												</xs:annotation>
 											</xs:element>
 										</xs:sequence>
@@ -1526,7 +1530,12 @@ para tpEmis diferente de 1</xs:documentation>
 												<xs:element name="vBP" type="TDec_1302">
 													<xs:annotation>
 														<xs:documentation>Valor da soma dos Bilhetes de Passagem da viagem</xs:documentation>
-														<xs:documentation>Pode conter zeros quando o BP-e for de complemento de ICMS</xs:documentation>
+														<xs:documentation>A partir de 2027, os valores de IBS e CBS compõem o valor do BPe</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="vBPLiq" type="TDec_1302" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Valor Líquido total do Bilhete SEM tributos</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 												<xs:element name="imp">
@@ -1638,7 +1647,11 @@ para tpEmis diferente de 1</xs:documentation>
 									<xs:element name="vBP" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valor Total do Bilhete de Passagem Transporte Metropolitano</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o BP-e for de complemento de ICMS</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vBPLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Total Líquido Sem Tributos do Bilhete de Passagem Transporte Metropolitano </xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="ICMSTot">
@@ -1667,8 +1680,7 @@ para tpEmis diferente de 1</xs:documentation>
 									</xs:element>
 									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
 										<xs:annotation>
-											<xs:documentation>Valor total do documento fiscal 
-(vBP + total do IBS + total da CBS) 
+											<xs:documentation>Valor total do documento fiscal (vBP) 
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -2625,7 +2637,12 @@ Informar se tpTrecho = 3</xs:documentation>
 									<xs:element name="vBP" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valor do Bilhete de Passagem</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o BP-e for de complemento de ICMS</xs:documentation>
+											<xs:documentation>A partir de 2027 os valores de IBS e CBS compõem o valor total do bilhete</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vBPLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Líquido total do Bilhete SEM tributos</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="vDesconto" type="TDec_1302">
@@ -2830,8 +2847,7 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 									</xs:element>
 									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
 										<xs:annotation>
-											<xs:documentation>Valor total do documento fiscal 
-(vBP + total do IBS + total da CBS) 
+											<xs:documentation>Valor total do documento fiscal (vBP)
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -3600,6 +3616,7 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 									<xs:restriction base="xs:string">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -3647,6 +3664,7 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 									<xs:restriction base="xs:string">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -3714,6 +3732,7 @@ Informar 0.00 em caso de passagem comercializada sem nenhum desconto</xs:documen
 									<xs:restriction base="xs:string">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>

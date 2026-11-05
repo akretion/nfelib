@@ -21,12 +21,12 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## nfe (v4_0)
 
 - binding_dir: `nfe/bindings/v4_0`
-- version: `PL_010f`
-- package: `Pacote de Liberação 010f (zip PL_010f_v1.04)`
-- nota_tecnica: `NT 2025.002 v1.50, NT 2026.007 v1.00`
-- published_at: `2026-08-31`
+- version: `PL_010g_v1.03`
+- package: `Pacote de Liberação 010g v1.03 (zip PL_010g_v1.03)`
+- nota_tecnica: `NT 2026.006 v1.00, NT 2026.008 v1.00`
+- published_at: `2026-10-26`
 - source_url:
-  `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=8ITFuBLltXs=`
+  `https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=EQhOQMgipXY=`
 
 ## nfe_dist_dfe (v1_0)
 

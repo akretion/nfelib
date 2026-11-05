@@ -680,8 +680,10 @@ class SoapTest(TestCase):
 
         sent = etree.fromstring(self.signed_nfe_xml.encode("utf-8"))
         for path in (f"{{{ns}}}infNFe", f"{{{ds}}}Signature"):
+            got = nfe_proc.find(f"{{{ns}}}NFe/{path}")
+            self.assertIsNotNone(got, f"{path} missing from the nfeProc")
             self.assertEqual(
-                etree.tostring(nfe_proc.find(f"{{{ns}}}NFe/{path}"), method="c14n"),
+                etree.tostring(got, method="c14n"),
                 etree.tostring(sent.find(path), method="c14n"),
             )
 
@@ -735,4 +737,25 @@ class SoapTest(TestCase):
         self.assertEqual(len(results), 1)
         proc = results[0]
         self.assertIsInstance(proc, RetEnviNfe)
+        self._assert_processo(proc, "342230000000001")
+
+    @mock.patch.object(DefaultTransport, "post")
+    def test_10_processar_lote_com_binding_nao_assinado(self, mock_post):
+        """The caller may hand over an unsigned binding, as l10n-brazil does.
+
+        ``_nfe_send_for_authorization`` passes ``serialize()[0]``: the client
+        signs it in ``envia_documento`` and the nfeProc must embed that signed
+        NF-e, not the unsigned binding. Otherwise the authorization XML is
+        saved without any Signature and the DANFE comes out "SEM VALOR FISCAL".
+        """
+        mock_post.return_value = response_envia_documento_sincrono.format(
+            chave=self.chave_original
+        ).encode("utf-8")
+        client = self._wrapped_client(envio_sincrono=True)
+
+        results = list(client.processar_lote([self.nfe]))
+
+        self.assertEqual(len(results), 1)
+        proc = results[0]
+        self.assertIsInstance(proc, WrappedResponse)
         self._assert_processo(proc, "342230000000001")

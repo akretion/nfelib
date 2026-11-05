@@ -495,10 +495,13 @@ class NfeClient(FiscalClient):
 
         ``envia_documento`` signs the NF-e's on the fly and injects them in
         the enviNFe payload; with ``wrap_response`` that signed content is
-        kept in ``request_obj``. Without it, fall back to the caller's input
+        kept in ``request_obj`` (``envio_raiz`` before brazil-fiscal-client
+        1.0.0, which renamed it). Without it, fall back to the caller's input
         (already signed when it is a str).
         """
-        content = getattr(proc_envio, "request_obj", None)
+        content = getattr(proc_envio, "request_obj", None) or getattr(
+            proc_envio, "envio_raiz", None
+        )
         if self.wrap_response and isinstance(content, str) and "<NFe" in content:
             # several signed <NFe> may have been concatenated
             batch = etree.fromstring(f"<lote>{content}</lote>".encode())

@@ -34,6 +34,16 @@ ADN_DFE_SERVERS = {
     AMBIENTE_PRODUCAO_RESTRITA: "https://adn.producaorestrita.nfse.gov.br",
 }
 
+# The authorized note lookup is served by Sefin Nacional, not the ADN
+# distribution host. Keep this endpoint separate from the ADN routes so a
+# caller cannot accidentally query the wrong service.
+SEFIN_SERVERS = {
+    AMBIENTE_PRODUCAO: "https://sefin.nfse.gov.br/SefinNacional",
+    AMBIENTE_PRODUCAO_RESTRITA: (
+        "https://sefin.producaorestrita.nfse.gov.br/SefinNacional"
+    ),
+}
+
 
 @dataclass
 class NfseResponse:
@@ -42,11 +52,20 @@ class NfseResponse:
     :ivar status_code: HTTP status code.
     :ivar body: decoded JSON body (dict) when the answer is JSON.
     :ivar content: raw response bytes.
+    :ivar headers: response headers.
+    :ivar text: response body decoded as text.
     """
 
     status_code: int
     body: dict | None
     content: bytes
+    headers: dict | None = None
+    text: str = ""
+
+    @property
+    def ok(self):
+        """Whether the response has a successful HTTP status code."""
+        return 200 <= self.status_code < 300
 
 
 class NfseClient:
@@ -81,6 +100,7 @@ class NfseClient:
         self.ambiente = ambiente
         self.base_url = ADN_SERVERS[ambiente]
         self.dfe_base_url = ADN_DFE_SERVERS[ambiente]
+        self.sefin_base_url = SEFIN_SERVERS[ambiente]
         self.timeout = timeout
         self.pkcs12_data = pkcs12_data
         self.pkcs12_password = pkcs12_password
@@ -166,10 +186,18 @@ class NfseClient:
             body = response.json()
         except ValueError:
             body = None
+        try:
+            headers = dict(getattr(response, "headers", {}) or {})
+        except (TypeError, ValueError):
+            headers = {}
+        text = getattr(response, "text", "")
+        text = text if isinstance(text, str) else ""
         return NfseResponse(
             status_code=response.status_code,
             body=body,
             content=response.content,
+            headers=headers,
+            text=text,
         )
 
     @staticmethod
@@ -205,6 +233,15 @@ class NfseClient:
     def consulta_nfse(self, chave: str) -> NfseResponse:
         """Fetch an NFS-e by its access key: GET /nfse/{chaveAcesso}."""
         return self._request("GET", f"/nfse/{chave}")
+
+    def consulta_nfse_sefin(self, chave: str) -> NfseResponse:
+        """Fetch an authorized NFS-e from the Sefin Nacional service.
+
+        The Sefin route has the same path as the ADN emission route but is
+        hosted at ``/SefinNacional``. It is therefore exposed separately
+        instead of changing the existing ``consulta_nfse`` endpoint.
+        """
+        return self._request("GET", f"/nfse/{chave}", base_url=self.sefin_base_url)
 
     def consulta_dps(self, dps_id: str) -> NfseResponse:
         """Resolve the NFS-e key from a DPS id: GET /dps/{id}."""

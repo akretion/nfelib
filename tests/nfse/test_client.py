@@ -88,6 +88,30 @@ class NfseClientTest(TestCase):
         self.assertEqual(args[0], "GET")
         self.assertTrue(args[1].endswith(f"/nfse/{chave}"))
 
+    def test_consulta_nfse_sefin(self):
+        client, mock_request = self._client()
+        response = mock.Mock(
+            status_code=200,
+            headers={"X-Test": "yes"},
+            text="{}",
+        )
+        response.json.return_value = {"nfseXmlGZipB64": "eA=="}
+        mock_request.return_value = response
+
+        chave = "35200000000000000000000000000000000000000000000001"
+        ret = client.consulta_nfse_sefin(chave)
+
+        self.assertEqual(ret.status_code, 200)
+        args, _kwargs = mock_request.call_args
+        self.assertEqual(args[0], "GET")
+        self.assertEqual(
+            args[1],
+            f"https://sefin.producaorestrita.nfse.gov.br/SefinNacional/nfse/{chave}",
+        )
+        self.assertTrue(ret.ok)
+        self.assertEqual(ret.headers, {"X-Test": "yes"})
+        self.assertEqual(ret.text, "{}")
+
     def test_consulta_dps(self):
         client, mock_request = self._client()
         response = mock.Mock(status_code=200)

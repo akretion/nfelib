@@ -234,6 +234,72 @@ def fetch_servers(prod_url: str, dev_url: str) -> tuple[dict[str, Any], dict[str
     return servers, constants
 
 
+def fetch_dfe_portal_servers(
+    url: str,
+    aliases: dict[str, str] | None = None,
+    service_aliases: dict[str, str] | None = None,
+    soap_version: str = "1.2",
+) -> tuple[dict[str, Any], dict[str, str]]:
+    """Fetch the server list of a document from its SVRS DF-e portal page.
+
+    The DF-e portal (https://dfe-portal.svrs.rs.gov.br/<doc>/Servicos) has one
+    table per authorizer and environment, captioned "<name> (<key>) - Produção"
+    or "<name> (<key>) - Homologação", with the service name and its URL in
+    the second and fourth columns. The authorizer key is the text between the
+    parentheses (or the whole name when there is none), renamed by `aliases`;
+    `service_aliases` renames misspelled service names. Spaces inside the URLs
+    (typos of the portal) are removed.
+
+    Returns the servers and the Endpoint constants, in the order the services
+    are first listed.
+    """
+    aliases = aliases or {}
+    service_aliases = service_aliases or {}
+    response = requests.get(url)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.content, "lxml")
+
+    servers: dict[str, Any] = {}
+    endpoints: dict[str, str] = {}
+    for table in soup.find_all("table"):
+        caption = table.find("caption")
+        if not caption:
+            continue
+        name, _sep, environment = caption.text.strip().rpartition(" - ")
+        environment = environment.lower()
+        if "produ" in environment:
+            target = "prod_endpoints"
+        elif "homolog" in environment:
+            target = "dev_endpoints"
+        else:
+            continue
+        match = re.search(r"\(([^)]*)\)\s*$", name)
+        key = match.group(1) if match else name.strip()
+        key = aliases.get(key, key)
+        server = servers.setdefault(
+            key,
+            {
+                "soap_version": soap_version,
+                "prod_endpoints": {},
+                "dev_endpoints": {},
+            },
+        )
+        for row in table.find_all("tr")[1:]:
+            cols = row.find_all("td")
+            if len(cols) < 4:
+                continue
+            service = cols[1].text.strip()
+            service = service_aliases.get(service, service)
+            service_url = re.sub(r"\s+", "", cols[3].text)
+            if not service or not service_url:
+                continue
+            endpoints.setdefault(service.upper().replace(" ", "_"), service)
+            server[target][service] = service_url
+
+    logger.info(f"Successfully fetched the servers of {url}.")
+    return servers, endpoints
+
+
 def save_servers(
     servers: dict[str, Any], endpoints: dict[str, str], output_file: Path
 ) -> None:

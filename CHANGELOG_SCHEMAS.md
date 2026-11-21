@@ -137,3 +137,20 @@ no other file includes and is left out (the `dce` one is kept).
 - published_at: `2026-10-30 (zip build date)`
 - source_url:
   `https://dfe-portal.svrs.rs.gov.br/NFAG/DownloadArquivoEstatico/?sistema=NFAG&tipoArquivo=2&nomeArquivo=PL_NFAg_NT2026.004%20RTC_1.01.zip`
+
+## nfeabi (v1_0)
+
+- binding_dir: `nfeabi/bindings/v1_0`
+- version: `PL_NFeABI_1.00_NT2026.001_v1.06`
+- package:
+  `Pacote de Schemas NFeABI 1.00 [versão 1.06] (zip PL_NFeABI_1.00_NT2026.001_v1.06)`
+- nota_tecnica:
+  `NT 2026.001 v1.00 (Ajustes no Leiaute e nas Regras de Validação da NF-e ABI)`
+- published_at: `2026-11-18`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFABI/DownloadArquivoEstatico/?sistema=NFABI&tipoArquivo=2&nomeArquivo=PL_NFeABI_1.00_NT2026.001_v1.06.zip`
+
+On 2026-11-21 the national NF-e portal still lists only the 1.00 package published on
+2026-09-02, older than NT 2026.001; the SVRS package above is the one that implements
+the NT. The zip also ships a `LEIA-ME.txt` and a `validar_eventos.py` helper, which are
+not committed.

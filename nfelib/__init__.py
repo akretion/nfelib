@@ -139,6 +139,14 @@ class CommonMixin:
                 "v1_0",
                 "nfag_v1.00.xsd",
             )
+        if package == "nfeabi":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "nfeabi",
+                "schemas",
+                "v1_0",
+                "NFeABI_v1.00.xsd",
+            )
         return "undef"
 
     @staticmethod

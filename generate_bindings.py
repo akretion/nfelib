@@ -268,6 +268,11 @@ SCHEMAS: Final[dict[str, SchemaConfig]] = {
         schema_dir="nfelib/nfag/schemas/v1_0",
         package="nfelib.nfag.bindings.v1_0",
     ),
+    "nfeabi": SchemaConfig(
+        name="nfeabi",
+        schema_dir="nfelib/nfeabi/schemas/v1_0",
+        package="nfelib.nfeabi.bindings.v1_0",
+    ),
     "nfse": SchemaConfig(
         name="nfse",
         schema_dir="nfelib/nfse/schemas/v1_0",

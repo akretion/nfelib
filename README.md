@@ -31,6 +31,7 @@ print:
 | **DC-e** (content declaration) | yes | no | no |
 | **NFGas** (piped gas) | yes | no | no |
 | **NFAg** (water and sanitation) | yes | no | no |
+| **NF-e ABI** (real estate sale) | yes | no | no |
 
 Our goal is to make nfelib the default Python library for electronic
 invoicing in Brazil. The library is used extensively by the

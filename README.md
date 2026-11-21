@@ -29,6 +29,7 @@ print:
 | **NF3e / NFCom** (energy / telecom) | yes | — | — |
 | **BP-e** (passenger transport) | yes | — | — |
 | **DC-e** (content declaration) | yes | no | no |
+| **NFGas** (piped gas) | yes | no | no |
 
 Our goal is to make nfelib the default Python library for electronic
 invoicing in Brazil. The library is used extensively by the

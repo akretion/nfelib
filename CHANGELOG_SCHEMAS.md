@@ -117,3 +117,13 @@ The zip has three folders (`dce`, `evento` and `consulta`), each with its own co
 the shared schemas; they are merged into a single folder. The copies of `tiposGeralDCe`
 and `xmldsig-core-schema` are identical; `consulta/dceTiposBasico` is an older copy that
 no other file includes and is left out (the `dce` one is kept).
+
+## nfgas (v1_0)
+
+- binding_dir: `nfgas/bindings/v1_0`
+- version: `PL_NFGas_NT2026.004_RTC_1.01`
+- package: `Nota Técnica 2026.004 RTC v1.01 (zip PL_NFGas_NT2026.004 RTC_1.01)`
+- nota_tecnica: `NT 2026.004 RTC v1.01 (MOC NFGas 1.00g, leiaute 1.00)`
+- published_at: `2026-10-30 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFGAS/DownloadArquivoEstatico/?sistema=NFGAS&tipoArquivo=2&nomeArquivo=PL_NFGas_NT2026.004%20RTC_1.01.zip`

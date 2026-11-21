@@ -43,6 +43,10 @@
     <Extension type="class" class="^TprotDce$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^DceProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^EvCancDce$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tnfgas$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TprotNfgas$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^NfgasProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^EvCancNfgas$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
   </Extensions>
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>
@@ -109,5 +113,8 @@
     <Substitution type="field" search="^Fisco$" replace="fisco"/>
     <Substitution type="field" search="^Marketplace$" replace="marketplace"/>
     <Substitution type="field" search="^Transportadora$" replace="transportadora"/>
+
+    <!-- NFGas: same for the imposto/TxReg group: -->
+    <Substitution type="field" search="^TxReg$" replace="txReg"/>
   </Substitutions>
 </Config>

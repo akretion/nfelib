@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfgas" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfgas" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="consStatServNFGasTiposBasico_v1.00.xsd"/>
+	<xs:element name="retConsStatServNFGas" type="TRetConsStatServ">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do Resultado da Consulta do Status do Serviço de NFGas</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

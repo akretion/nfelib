@@ -102,3 +102,18 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-10-20`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/producao-restrita/esquemas_prod_restrita_20261020.zip`
+
+## dce (v1_0)
+
+- binding_dir: `dce/bindings/v1_0`
+- version: `PL_DCe_v1.00a_NT2024.001v1.00`
+- package: `Schemas NT 2024.001 (zip PL_DCe_v1.00a_NT2024.001v1.00)`
+- nota_tecnica: `NT 2024.001 v1.00`
+- published_at: `2024-10-08`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/DCE/DownloadArquivoEstatico/?sistema=DCE&tipoArquivo=2&nomeArquivo=PL_DCe_v1.00a_NT2024.001v1.00.zip`
+
+The zip has three folders (`dce`, `evento` and `consulta`), each with its own copy of
+the shared schemas; they are merged into a single folder. The copies of `tiposGeralDCe`
+and `xmldsig-core-schema` are identical; `consulta/dceTiposBasico` is an older copy that
+no other file includes and is left out (the `dce` one is kept).

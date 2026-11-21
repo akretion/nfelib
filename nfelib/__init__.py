@@ -115,6 +115,14 @@ class CommonMixin:
                 "v1_0",
                 "nf3e_v1.00.xsd",
             )
+        if package == "dce":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "dce",
+                "schemas",
+                "v1_0",
+                "dce_v1.00.xsd",
+            )
         return "undef"
 
     @staticmethod

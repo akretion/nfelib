@@ -127,3 +127,13 @@ no other file includes and is left out (the `dce` one is kept).
 - published_at: `2026-10-30 (zip build date)`
 - source_url:
   `https://dfe-portal.svrs.rs.gov.br/NFGAS/DownloadArquivoEstatico/?sistema=NFGAS&tipoArquivo=2&nomeArquivo=PL_NFGas_NT2026.004%20RTC_1.01.zip`
+
+## nfag (v1_0)
+
+- binding_dir: `nfag/bindings/v1_0`
+- version: `PL_NFAg_NT2026.004_RTC_1.01`
+- package: `Nota Técnica 2026.004 RTC v1.01 (zip PL_NFAg_NT2026.004 RTC_1.01)`
+- nota_tecnica: `NT 2026.004 RTC v1.01 (MOC NFAg 1.00l, leiaute 1.00)`
+- published_at: `2026-10-30 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFAG/DownloadArquivoEstatico/?sistema=NFAG&tipoArquivo=2&nomeArquivo=PL_NFAg_NT2026.004%20RTC_1.01.zip`

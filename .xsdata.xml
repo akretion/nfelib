@@ -47,6 +47,10 @@
     <Extension type="class" class="^TprotNfgas$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^NfgasProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
     <Extension type="class" class="^EvCancNfgas$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^Tnfag$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^TprotNfag$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^NfagProc$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
+    <Extension type="class" class="^EvCancNfag$" import="nfelib.CommonMixin" prepend="false" applyIfDerived="false"/>
   </Extensions>
   <Conventions>
     <ClassName case="pascalCase" safePrefix="type"/>

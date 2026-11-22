@@ -1,0 +1,29 @@
+import sys
+from pathlib import Path
+
+import pytest
+from requests.exceptions import RequestException
+
+from nfelib.dce.client.v1_0.servers_scraper import main
+
+OUTPUT_FILE = Path("nfelib/dce/client/v1_0/servers.py")
+
+
+def read_current_servers():
+    return OUTPUT_FILE.read_text(encoding="utf-8") if OUTPUT_FILE.exists() else ""
+
+
+@pytest.mark.skipif(
+    sys.version_info.major != 3 or sys.version_info.minor != 11,
+    reason="This test is intended to run only on Python 3.11",
+)
+def test_scraper():
+    old_content = read_current_servers()
+    try:
+        main()
+    except RequestException as exc:
+        pytest.skip(f"Gov portal unreachable, cannot verify server list: {exc}")
+    new_content = read_current_servers()
+    assert new_content == old_content, (
+        "Server list has changed. Review and commit the new file."
+    )

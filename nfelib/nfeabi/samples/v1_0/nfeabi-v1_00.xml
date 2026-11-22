@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NFeABI xmlns="http://www.portalfiscal.inf.br/nfeabi">
+	<infNFeABI versao="1.00" Id="NFeABI35261159594315000157770010000000071076543216">
+		<ide>
+			<cUF>35</cUF>
+			<cNF>7654321</cNF>
+			<mod>77</mod>
+			<serie>1</serie>
+			<nNF>7</nNF>
+			<dhEmi>2026-11-20T10:15:00-03:00</dhEmi>
+			<tpNF>1</tpNF>
+			<tpImp>1</tpImp>
+			<gModNat>
+				<modOper>01</modOper>
+				<natOper>01</natOper>
+			</gModNat>
+			<tpEmis>1</tpEmis>
+			<nSiteAutoriz>0</nSiteAutoriz>
+			<cDV>6</cDV>
+			<tpAmb>2</tpAmb>
+			<finNFe>1</finNFe>
+			<procEmi>0</procEmi>
+			<verProc>nfelib 3.3</verProc>
+		</ide>
+		<emit>
+			<CNPJ>59594315000157</CNPJ>
+			<xNome>Cartorio de Registro de Imoveis Exemplo</xNome>
+			<enderEmit>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<UF>SP</UF>
+				<CEP>01001000</CEP>
+			</enderEmit>
+			<tpEmit>01</tpEmit>
+		</emit>
+		<transmit nTransmit="1">
+			<CPF>12345678909</CPF>
+			<xNome>Joao Vendedor</xNome>
+			<enderTransmit>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<UF>SP</UF>
+				<CEP>01001000</CEP>
+			</enderTransmit>
+			<pTransIndiv>100.0000</pTransIndiv>
+		</transmit>
+		<adquirente nAdquir="1">
+			<CNPJ>11222333000181</CNPJ>
+			<xNome>Compradora Exemplo Ltda</xNome>
+			<enderAdquirente>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<UF>SP</UF>
+				<CEP>01001000</CEP>
+			</enderAdquirente>
+			<pAquisicao>100.0000</pAquisicao>
+		</adquirente>
+		<imovel>
+			<tipo>1</tipo>
+			<cadastro>
+				<nIPTU>0123456789</nIPTU>
+			</cadastro>
+			<espImovel>01</espImovel>
+			<enquadramento>01</enquadramento>
+			<enderImovel>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<UF>SP</UF>
+				<CEP>01001000</CEP>
+			</enderImovel>
+			<areaTotal>250.00</areaTotal>
+			<uAreaTotal>m2</uAreaTotal>
+		</imovel>
+		<infOper>
+			<vTotalOperacao>500000.00</vTotalOperacao>
+			<instrumento>
+				<tpInstrumento>01</tpInstrumento>
+				<dtInstrumento>2026-11-19</dtInstrumento>
+			</instrumento>
+		</infOper>
+		<gInfTrib>
+			<IBSCBS>
+				<CST>000</CST>
+				<cClassTrib>000001</cClassTrib>
+			</IBSCBS>
+		</gInfTrib>
+		<total>
+			<vTotalOperacao>500000.00</vTotalOperacao>
+			<tribTot>
+				<vRedAjusteIndiv>0.00</vRedAjusteIndiv>
+				<vRedSocialIndiv>0.00</vRedSocialIndiv>
+				<vBC>0.00</vBC>
+				<vIBSUF>0.00</vIBSUF>
+				<vIBSMun>0.00</vIBSMun>
+				<vCBS>0.00</vCBS>
+			</tribTot>
+			<vNF>500000.00</vNF>
+		</total>
+		<infRespTec>
+			<CNPJ>59594315000157</CNPJ>
+			<xContato>Suporte</xContato>
+			<email>suporte@example.com.br</email>
+			<fone>1130000000</fone>
+		</infRespTec>
+	</infNFeABI>
+	<infNFeSupl>
+		<qrCode>https://dfe-portal.svrs.rs.gov.br/nfabi/qrCode?chNFeABI=35261159594315000157770010000000071076543216&amp;tpAmb=2</qrCode>
+		<urlChave>https://dfe-portal.svrs.rs.gov.br/nfabi/consulta</urlChave>
+	</infNFeSupl>
+</NFeABI>

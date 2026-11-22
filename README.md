@@ -27,7 +27,11 @@ print:
 | **MDF-e** (manifest) | yes | SOAP: authorize (synchronous), cancel, encerramento, consultation | DAMDFE |
 | **NFS-e** (national standard) | yes | REST: DPS submission, NFS-e and event consultation, cancelling | DANFSE |
 | **NF3e / NFCom** (energy / telecom) | yes | — | — |
-| **BP-e** (passenger transport) | yes | — | — |
+| **BP-e** (passenger transport) | yes | SOAP: authorize (synchronous), events, consultation | no |
+| **DC-e** (content declaration) | yes | SOAP: authorize (synchronous), events, consultation | no |
+| **NFGas** (piped gas) | yes | SOAP: authorize (synchronous), events, consultation | no |
+| **NFAg** (water and sanitation) | yes | SOAP: authorize (synchronous), events, consultation | no |
+| **NF-e ABI** (real estate sale) | yes | no | no |
 
 Our goal is to make nfelib the default Python library for electronic
 invoicing in Brazil. The library is used extensively by the
@@ -69,7 +73,7 @@ Optional features (install only what you need):
 ```bash
 pip install nfelib[sign]   # XML signing with A1 certificates
 pip install nfelib[pdf]    # PDF printing (BrazilFiscalReport)
-pip install nfelib[soap]   # SOAP transmission clients (NF-e, CT-e, MDF-e)
+pip install nfelib[soap]   # SOAP transmission clients (NF-e, CT-e, MDF-e, BP-e, DC-e, NFGas, NFAg)
 pip install nfelib[nfse]   # REST client for the national NFS-e (ADN)
 ```
 
@@ -218,6 +222,10 @@ from nfelib.nfe.client.v4_0.nfce import NfceClient
 from nfelib.nfe.client.v4_0.mde import MdeClient
 from nfelib.cte.client.v4_0.cte import CteClient
 from nfelib.mdfe.client.v3_0.mdfe import MdfeClient
+from nfelib.bpe.client.v1_0.bpe import BpeClient
+from nfelib.dce.client.v1_0.dce import DceClient
+from nfelib.nfgas.client.v1_0.nfgas import NfgasClient
+from nfelib.nfag.client.v1_0.nfag import NfagClient
 
 client = NfeClient(
     ambiente="2",                # 1=production, 2=homologation
@@ -250,6 +258,11 @@ Support status (**BETA**, API may change):
 | NF-e / NFC-e | yes | cancel, CC-e, inutilizacao |
 | CT-e | yes (synchronous) | not yet |
 | MDF-e | yes (synchronous) | cancel, encerramento |
+| BP-e / DC-e / NFGas / NFAg | yes (synchronous) | cancel, generic event |
+
+The BP-e, DC-e, NFGas and NFAg WSDL are only served to a client certificate:
+their SOAP modules follow the MOC of each document and were not checked against
+the WSDL nor in homologation yet.
 
 The same clients power the DF-e distribution services (`NFeDistribuicaoDFe` and
 `CTeDistribuicaoDFe`, polling the documents sent to your CNPJ) and the

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfgas" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfgas" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="nfgasTiposBasico_v1.00.xsd"/>
+	<xs:element name="retNFGas" type="TRetNFGas">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do retorno da NFGas</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

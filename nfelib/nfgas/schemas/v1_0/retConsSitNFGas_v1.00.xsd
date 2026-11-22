@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfgas" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfgas" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="consSitNFGasTiposBasico_v1.00.xsd"/>
+	<xs:element name="retConsSitNFGas" type="TRetConsSitNFGas">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do retorno da consulta da situação atual da NFGas.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

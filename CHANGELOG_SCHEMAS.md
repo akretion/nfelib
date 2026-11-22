@@ -102,3 +102,55 @@ commit message. A binding without a section here simply gets no metadata injecte
 - published_at: `2026-10-20`
 - source_url:
   `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/producao-restrita/esquemas_prod_restrita_20261020.zip`
+
+## dce (v1_0)
+
+- binding_dir: `dce/bindings/v1_0`
+- version: `PL_DCe_v1.00a_NT2024.001v1.00`
+- package: `Schemas NT 2024.001 (zip PL_DCe_v1.00a_NT2024.001v1.00)`
+- nota_tecnica: `NT 2024.001 v1.00`
+- published_at: `2024-10-08`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/DCE/DownloadArquivoEstatico/?sistema=DCE&tipoArquivo=2&nomeArquivo=PL_DCe_v1.00a_NT2024.001v1.00.zip`
+
+The zip has three folders (`dce`, `evento` and `consulta`), each with its own copy of
+the shared schemas; they are merged into a single folder. The copies of `tiposGeralDCe`
+and `xmldsig-core-schema` are identical; `consulta/dceTiposBasico` is an older copy that
+no other file includes and is left out (the `dce` one is kept).
+
+## nfgas (v1_0)
+
+- binding_dir: `nfgas/bindings/v1_0`
+- version: `PL_NFGas_NT2026.004_RTC_1.01`
+- package: `Nota Técnica 2026.004 RTC v1.01 (zip PL_NFGas_NT2026.004 RTC_1.01)`
+- nota_tecnica: `NT 2026.004 RTC v1.01 (MOC NFGas 1.00g, leiaute 1.00)`
+- published_at: `2026-10-30 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFGAS/DownloadArquivoEstatico/?sistema=NFGAS&tipoArquivo=2&nomeArquivo=PL_NFGas_NT2026.004%20RTC_1.01.zip`
+
+## nfag (v1_0)
+
+- binding_dir: `nfag/bindings/v1_0`
+- version: `PL_NFAg_NT2026.004_RTC_1.01`
+- package: `Nota Técnica 2026.004 RTC v1.01 (zip PL_NFAg_NT2026.004 RTC_1.01)`
+- nota_tecnica: `NT 2026.004 RTC v1.01 (MOC NFAg 1.00l, leiaute 1.00)`
+- published_at: `2026-10-30 (zip build date)`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFAG/DownloadArquivoEstatico/?sistema=NFAG&tipoArquivo=2&nomeArquivo=PL_NFAg_NT2026.004%20RTC_1.01.zip`
+
+## nfeabi (v1_0)
+
+- binding_dir: `nfeabi/bindings/v1_0`
+- version: `PL_NFeABI_1.00_NT2026.001_v1.06`
+- package:
+  `Pacote de Schemas NFeABI 1.00 [versão 1.06] (zip PL_NFeABI_1.00_NT2026.001_v1.06)`
+- nota_tecnica:
+  `NT 2026.001 v1.00 (Ajustes no Leiaute e nas Regras de Validação da NF-e ABI)`
+- published_at: `2026-11-18`
+- source_url:
+  `https://dfe-portal.svrs.rs.gov.br/NFABI/DownloadArquivoEstatico/?sistema=NFABI&tipoArquivo=2&nomeArquivo=PL_NFeABI_1.00_NT2026.001_v1.06.zip`
+
+On 2026-11-21 the national NF-e portal still lists only the 1.00 package published on
+2026-09-02, older than NT 2026.001; the SVRS package above is the one that implements
+the NT. The zip also ships a `LEIA-ME.txt` and a `validar_eventos.py` helper, which are
+not committed.

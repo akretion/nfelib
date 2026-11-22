@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema XML de validação do Evento de Apropriação de Créditos Individuais da NF-e ABI -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.portalfiscal.inf.br/nfeabi"
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           targetNamespace="http://www.portalfiscal.inf.br/nfeabi"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:include schemaLocation="eventoNFeABITiposBasico_v1.00.xsd"/>
+
+    <xs:element name="evApropCredIndNFeABI">
+        <xs:annotation>
+            <xs:documentation>Schema XML de validação do Evento de Apropriação de Créditos Individuais da NF-e ABI</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="descEvento">
+                    <xs:annotation>
+                        <xs:documentation>Descrição do Evento - “Apropriação de créditos individuais”</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:whiteSpace value="preserve"/>
+                            <xs:enumeration value="Apropriação de créditos individuais"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="adquirente" type="TAdquirApropCredInd" minOccurs="2" maxOccurs="99"/>
+            </xs:sequence>
+            <xs:attribute name="versao" type="TVerEvento" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

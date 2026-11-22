@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NFAg xmlns="http://www.portalfiscal.inf.br/nfag">
+	<infNFAg versao="1.00" Id="NFAG35261159594315000157750010000001231045678910">
+		<ide>
+			<cUF>35</cUF>
+			<tpAmb>2</tpAmb>
+			<mod>75</mod>
+			<serie>1</serie>
+			<nNF>123</nNF>
+			<cNF>4567891</cNF>
+			<cDV>0</cDV>
+			<dhEmi>2026-11-20T10:15:00-03:00</dhEmi>
+			<tpEmis>1</tpEmis>
+			<nSiteAutoriz>0</nSiteAutoriz>
+			<cMunFG>3550308</cMunFG>
+			<finNFAg>0</finNFAg>
+			<tpFat>1</tpFat>
+			<verProc>nfelib 3.3</verProc>
+		</ide>
+		<emit>
+			<CNPJ>59594315000157</CNPJ>
+			<xNome>Saneamento Exemplo S.A.</xNome>
+			<enderEmit>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<CEP>01001000</CEP>
+				<UF>SP</UF>
+			</enderEmit>
+		</emit>
+		<dest>
+			<xNome>NF EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+			<CPF>12345678909</CPF>
+			<enderDest>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<CEP>01001000</CEP>
+				<UF>SP</UF>
+			</enderDest>
+		</dest>
+		<det nItem="1">
+			<prod>
+				<indOrigemQtd>2</indOrigemQtd>
+				<cProd>AGUA</cProd>
+				<xProd>Fornecimento de agua</xProd>
+				<cClass>0100101</cClass>
+				<uMed>1</uMed>
+				<qFaturada>15.00</qFaturada>
+				<vItem>4.00</vItem>
+				<vProd>60.00</vProd>
+			</prod>
+			<imposto>
+				<IBSCBS>
+					<CST>000</CST>
+					<cClassTrib>000001</cClassTrib>
+				</IBSCBS>
+			</imposto>
+		</det>
+		<total>
+			<vProd>60.00</vProd>
+			<vRetTribTot>
+				<vRetPIS>0.00</vRetPIS>
+				<vRetCofins>0.00</vRetCofins>
+				<vRetCSLL>0.00</vRetCSLL>
+				<vIRRF>0.00</vIRRF>
+			</vRetTribTot>
+			<vCOFINS>0.00</vCOFINS>
+			<vPIS>0.00</vPIS>
+			<vTFS>0.00</vTFS>
+			<vTFU>0.00</vTFU>
+			<vNF>60.00</vNF>
+			<IBSCBSTot>
+				<vBCIBSCBS>0.00</vBCIBSCBS>
+				<gIBS>
+					<gIBSUF>
+						<vDif>0.00</vDif>
+						<vDevTrib>0.00</vDevTrib>
+						<vIBSUF>0.00</vIBSUF>
+					</gIBSUF>
+					<gIBSMun>
+						<vDif>0.00</vDif>
+						<vDevTrib>0.00</vDevTrib>
+						<vIBSMun>0.00</vIBSMun>
+					</gIBSMun>
+					<vIBS>0.00</vIBS>
+				</gIBS>
+				<gCBS>
+					<vDif>0.00</vDif>
+					<vDevTrib>0.00</vDevTrib>
+					<vCBS>0.00</vCBS>
+				</gCBS>
+			</IBSCBSTot>
+			<vTotDFe>60.00</vTotDFe>
+		</total>
+	</infNFAg>
+	<infNFAgSupl>
+		<qrCodNFAg>https://dfe-portal.svrs.rs.gov.br/nfag/qrCode?chNFAg=35261159594315000157750010000001231045678910&amp;tpAmb=2</qrCodNFAg>
+	</infNFAgSupl>
+</NFAg>

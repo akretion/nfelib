@@ -115,6 +115,38 @@ class CommonMixin:
                 "v1_0",
                 "nf3e_v1.00.xsd",
             )
+        if package == "dce":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "dce",
+                "schemas",
+                "v1_0",
+                "dce_v1.00.xsd",
+            )
+        if package == "nfgas":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "nfgas",
+                "schemas",
+                "v1_0",
+                "nfgas_v1.00.xsd",
+            )
+        if package == "nfag":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "nfag",
+                "schemas",
+                "v1_0",
+                "nfag_v1.00.xsd",
+            )
+        if package == "nfeabi":
+            return os.path.join(
+                os.path.dirname(__file__),
+                "nfeabi",
+                "schemas",
+                "v1_0",
+                "NFeABI_v1.00.xsd",
+            )
         return "undef"
 
     @staticmethod

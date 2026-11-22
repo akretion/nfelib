@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NFGas xmlns="http://www.portalfiscal.inf.br/nfgas">
+	<infNFGas versao="1.00" Id="NFGas35261159594315000157760010000001231045678913">
+		<ide>
+			<cUF>35</cUF>
+			<tpAmb>2</tpAmb>
+			<mod>76</mod>
+			<serie>1</serie>
+			<nNF>123</nNF>
+			<cNF>4567891</cNF>
+			<cDV>3</cDV>
+			<dhEmi>2026-11-20T10:15:00-03:00</dhEmi>
+			<tpEmis>1</tpEmis>
+			<nSiteAutoriz>0</nSiteAutoriz>
+			<cMunFG>3550308</cMunFG>
+			<finNFGas>0</finNFGas>
+			<tpFat>1</tpFat>
+			<verProc>nfelib 3.3</verProc>
+		</ide>
+		<emit>
+			<CNPJ>59594315000157</CNPJ>
+			<IE>111111111119</IE>
+			<xNome>Distribuidora Exemplo S.A.</xNome>
+			<enderEmit>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<CEP>01001000</CEP>
+				<UF>SP</UF>
+			</enderEmit>
+		</emit>
+		<dest>
+			<xNome>NF EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+			<CPF>12345678909</CPF>
+			<enderDest>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<CEP>01001000</CEP>
+				<UF>SP</UF>
+			</enderDest>
+		</dest>
+		<det nItem="1">
+			<gNormal>
+				<prod>
+					<indOrigemQtd>2</indOrigemQtd>
+					<cProd>CONSUMO</cProd>
+					<xProd>Consumo do mes</xProd>
+					<cClass>0100101</cClass>
+					<uMed>1</uMed>
+					<qFaturada>20.00</qFaturada>
+					<vItem>5.00</vItem>
+					<vProd>100.00</vProd>
+				</prod>
+				<imposto>
+					<orig>0</orig>
+					<ICMS00>
+						<CST>00</CST>
+						<vBC>100.00</vBC>
+						<pICMS>12.00</pICMS>
+						<vICMS>12.00</vICMS>
+					</ICMS00>
+					<IBSCBS>
+						<CST>000</CST>
+						<cClassTrib>000001</cClassTrib>
+					</IBSCBS>
+				</imposto>
+			</gNormal>
+		</det>
+		<total>
+			<vProd>100.00</vProd>
+			<ICMSTot>
+				<vBC>100.00</vBC>
+				<vICMS>12.00</vICMS>
+				<vICMSDeson>0.00</vICMSDeson>
+				<vFCP>0.00</vFCP>
+				<vBCST>0.00</vBCST>
+				<vST>0.00</vST>
+				<vFCPST>0.00</vFCPST>
+			</ICMSTot>
+			<vRetTribTot>
+				<vRetPIS>0.00</vRetPIS>
+				<vRetCofins>0.00</vRetCofins>
+				<vRetCSLL>0.00</vRetCSLL>
+				<vIRRF>0.00</vIRRF>
+			</vRetTribTot>
+			<vCOFINS>0.00</vCOFINS>
+			<vPIS>0.00</vPIS>
+			<vTxReg>0.00</vTxReg>
+			<vNF>100.00</vNF>
+			<IBSCBSTot>
+				<vBCIBSCBS>0.00</vBCIBSCBS>
+				<gIBS>
+					<gIBSUF>
+						<vDif>0.00</vDif>
+						<vDevTrib>0.00</vDevTrib>
+						<vIBSUF>0.00</vIBSUF>
+					</gIBSUF>
+					<gIBSMun>
+						<vDif>0.00</vDif>
+						<vDevTrib>0.00</vDevTrib>
+						<vIBSMun>0.00</vIBSMun>
+					</gIBSMun>
+					<vIBS>0.00</vIBS>
+				</gIBS>
+				<gCBS>
+					<vDif>0.00</vDif>
+					<vDevTrib>0.00</vDevTrib>
+					<vCBS>0.00</vCBS>
+				</gCBS>
+			</IBSCBSTot>
+			<vTotDFe>100.00</vTotDFe>
+		</total>
+	</infNFGas>
+	<infNFGasSupl>
+		<qrCodNFGas>https://dfe-portal.svrs.rs.gov.br/nfgas/qrCode?chNFGas=35261159594315000157760010000001231045678913&amp;tpAmb=2</qrCodNFGas>
+	</infNFGasSupl>
+</NFGas>

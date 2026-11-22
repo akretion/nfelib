@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DCe xmlns="http://www.portalfiscal.inf.br/dce">
+	<infDCe versao="1.00" Id="DCe35261111222333000181990010000000421105839217">
+		<ide>
+			<cUF>35</cUF>
+			<cDC>583921</cDC>
+			<mod>99</mod>
+			<serie>1</serie>
+			<nDC>42</nDC>
+			<dhEmi>2026-11-20T10:15:00-03:00</dhEmi>
+			<tpEmis>1</tpEmis>
+			<tpEmit>1</tpEmit>
+			<nSiteAutoriz>0</nSiteAutoriz>
+			<cDV>7</cDV>
+			<tpAmb>2</tpAmb>
+			<verProc>nfelib 3.3</verProc>
+		</ide>
+		<emit>
+			<CPF>12345678909</CPF>
+			<xNome>Maria da Silva</xNome>
+			<enderEmit>
+				<xLgr>Rua das Flores</xLgr>
+				<nro>100</nro>
+				<xBairro>Centro</xBairro>
+				<cMun>3550308</cMun>
+				<xMun>Sao Paulo</xMun>
+				<UF>SP</UF>
+				<CEP>01001000</CEP>
+				<cPais>1058</cPais>
+				<xPais>Brasil</xPais>
+			</enderEmit>
+		</emit>
+		<Marketplace>
+			<CNPJ>11222333000181</CNPJ>
+			<xNome>Marketplace Exemplo Ltda</xNome>
+			<Site>https://www.marketplace.example.com.br</Site>
+		</Marketplace>
+		<dest>
+			<CNPJ>59594315000157</CNPJ>
+			<xNome>DCE EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+			<enderDest>
+				<xLgr>Avenida Brasil</xLgr>
+				<nro>2000</nro>
+				<xBairro>Jardim America</xBairro>
+				<cMun>3304557</cMun>
+				<xMun>Rio de Janeiro</xMun>
+				<UF>RJ</UF>
+				<CEP>20040002</CEP>
+				<cPais>1058</cPais>
+				<xPais>Brasil</xPais>
+			</enderDest>
+		</dest>
+		<det nItem="1">
+			<prod>
+				<xProd>Livro usado</xProd>
+				<NCM>49019900</NCM>
+				<qCom>2.0000</qCom>
+				<vUnCom>25.00</vUnCom>
+				<vProd>50.00</vProd>
+			</prod>
+		</det>
+		<det nItem="2">
+			<prod>
+				<xProd>Camiseta de algodao</xProd>
+				<NCM>61091000</NCM>
+				<qCom>1.0000</qCom>
+				<vUnCom>40.00</vUnCom>
+				<vProd>40.00</vProd>
+			</prod>
+			<infAdProd>Usada, tamanho M</infAdProd>
+		</det>
+		<total>
+			<vDC>90.00</vDC>
+		</total>
+		<transp>
+			<modTrans>1</modTrans>
+			<CNPJTransp>59594315000157</CNPJTransp>
+		</transp>
+		<infAdic>
+			<infCpl>Venda entre pessoas fisicas intermediada pelo marketplace</infCpl>
+		</infAdic>
+		<infDec>
+			<xObs1>É contribuinte de ICMS qualquer pessoa física ou jurídica, que realize, com habitualidade ou em volume que caracterize intuito comercial, operações de circulação de mercadoria ou prestações de serviços de transportes interestadual e intermunicipal e de comunicação, ainda que as operações e prestações de iniciem no exterior (Lei Complementar nº 87/96, Art. 4º)</xObs1>
+			<xObs2>Constitui crime contra a ordem tributária suprimir ou reduzir tributo, ou contribuição social e qualquer acessório: quando negar ou deixar de fornecer, quando obrigatório, nota fiscal ou documento equivalente, relativa a venda de mercadoria ou prestação de serviço, efetivamente realizada ou fornece-la em desacordo com a legislação. Sob pena de reclusão de 2 (dois) e 5 (cinco) anos, e multa (Lei 8.137/90, Art 1ª, V)</xObs2>
+		</infDec>
+	</infDCe>
+	<infSolicDCe>
+		<xSolic>Emissao solicitada pelo marketplace</xSolic>
+	</infSolicDCe>
+	<infDCeSupl>
+		<qrCodDCe>https://www.fazenda.pr.gov.br/dce/qrcode?chDCe=35261111222333000181990010000000421105839217&amp;tpAmb=2</qrCodDCe>
+		<urlChave>https://www.fazenda.pr.gov.br/dce/qrcode</urlChave>
+	</infDCeSupl>
+</DCe>

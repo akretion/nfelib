@@ -1,4 +1,5 @@
 # Copyright (C) 2026  Raphaël Valyi - Akretion
+# Copyright 2026 Escodoo - Marcel Savegnago <marcel.savegnago@escodoo.com.br>
 
 """Minimal REST client for the national NFS-e system (ADN).
 
@@ -24,6 +25,13 @@ AMBIENTE_PRODUCAO_RESTRITA = "2"
 ADN_SERVERS = {
     AMBIENTE_PRODUCAO: "https://adn.nfse.gov.br/contribuinte",
     AMBIENTE_PRODUCAO_RESTRITA: "https://adn.producaorestrita.nfse.gov.br/contribuinte",
+}
+
+# Distribution (tomador feed) lives on the ADN root. It is not under the
+# ``/contribuinte`` emission prefix.
+ADN_DFE_SERVERS = {
+    AMBIENTE_PRODUCAO: "https://adn.nfse.gov.br",
+    AMBIENTE_PRODUCAO_RESTRITA: "https://adn.producaorestrita.nfse.gov.br",
 }
 
 
@@ -72,6 +80,7 @@ class NfseClient:
 
         self.ambiente = ambiente
         self.base_url = ADN_SERVERS[ambiente]
+        self.dfe_base_url = ADN_DFE_SERVERS[ambiente]
         self.timeout = timeout
         self.pkcs12_data = pkcs12_data
         self.pkcs12_password = pkcs12_password
@@ -131,13 +140,25 @@ class NfseClient:
             return tmp.name
 
     def _request(
-        self, method: str, path: str, json: dict | None = None
+        self,
+        method: str,
+        path: str,
+        json: dict | None = None,
+        params: dict | None = None,
+        base_url: str | None = None,
     ) -> NfseResponse:
-        """Fire one request against the ADN and normalize the answer."""
+        """Fire one request against the ADN and normalize the answer.
+
+        ``base_url`` defaults to the emission host (``/contribuinte``).
+        Distribution calls pass the ADN root so the path is not nested
+        under that prefix.
+        """
+        root = self.base_url if base_url is None else base_url
         response = self.session.request(
             method,
-            f"{self.base_url}{path}",
+            f"{root}{path}",
             json=json,
+            params=params,
             timeout=self.timeout,
         )
         _logger.debug("ADN %s %s -> %s", method, path, response.status_code)
@@ -212,3 +233,27 @@ class NfseClient:
     ) -> NfseResponse:
         """Fetch one event: GET /nfse/{chaveAcesso}/eventos/{tipoEvento}/{numSeq}."""
         return self._request("GET", f"/nfse/{chave}/eventos/{tipo_evento}/{num_seq}")
+
+    def consulta_dfe(self, nsu: int | str, cnpj: str | None = None) -> NfseResponse:
+        """Fetch one distribution batch: GET /contribuintes/DFe/{nsu}.
+
+        ``lote=true`` asks for the batch. ``cnpjConsulta`` limits it to one
+        company when given. The host is the ADN root, not ``/contribuinte``.
+        """
+        params = {"lote": "true"}
+        if cnpj:
+            params["cnpjConsulta"] = cnpj
+        return self._request(
+            "GET",
+            f"/contribuintes/DFe/{nsu}",
+            params=params,
+            base_url=self.dfe_base_url,
+        )
+
+    def consulta_eventos(self, chave: str) -> NfseResponse:
+        """List the events of one NFS-e: GET /contribuintes/NFSe/{chave}/Eventos."""
+        return self._request(
+            "GET",
+            f"/contribuintes/NFSe/{chave}/Eventos",
+            base_url=self.dfe_base_url,
+        )

@@ -19,9 +19,13 @@ class CTeTests(TestCase):
         # IBSCBS should be TtribCte, not str
         from typing import get_type_hints
 
-        for cls in (Tcte, TcteOs, TcteSimp):
+        for cls in (Tcte, TcteOs):
             hints = get_type_hints(cls.InfCte.Imp)
             assert "TtribCte" in str(hints["IBSCBS"])
+        # PL_CTe_400_NT2026.004 RTC 1.00 moves the IBS/CBS group of the CT-e
+        # Simplificado from `imp` to the per-item `det` group.
+        hints = get_type_hints(TcteSimp.InfCte.Det)
+        assert "TtribCte" in str(hints["IBSCBS"])
 
     def test_in_out_cte(self):
         path = os.path.join("nfelib", "cte", "samples", "v4_0")

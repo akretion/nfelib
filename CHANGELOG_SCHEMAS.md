@@ -52,12 +52,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## cte (v4_0)
 
 - binding_dir: `cte/bindings/v4_0`
-- version: `PL_CTe_400_NT2026.002_RTC_1.01_corr`
-- package: `Pacote de Liberação 4.00`
-- nota_tecnica: `NT 2026.001 v1.01c, NT 2026.002 v1.01`
-- published_at: `2026-08-24`
+- version: `PL_CTe_400_NT2026.004 RTC_1.00`
+- package:
+  `Schemas XML CT-e - NT 2026.004_RTC v.1.00 (zip dir PL_CTe_400_NT2026.004 RTC_1.00)`
+- nota_tecnica: `NT 2026.004 RTC v1.00`
+- published_at: `2026-10-16 (republicado; zip build date 2026-10-01)`
 - source_url:
-  `https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=qGIe20MvWf4=`
+  `https://www.cte.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=zeylq8Ib5E0=`
 
 ## mdfe (v3_0)
 
@@ -94,13 +95,13 @@ commit message. A binding without a section here simply gets no metadata injecte
 ## nfse (v1_0)
 
 - binding_dir: `nfse/bindings/v1_0`
-- version: `NFSe-ESQUEMAS_XSD-v1.01-20260209 (leiaute 1.01)`
-- package: `NFSe-ESQUEMAS_XSD-v1.01-20260209, diretório Schemas/1.01`
+- version: `NFSe-ESQUEMAS_XSD-RTC-v1.02-20261020 (leiaute 1.04.01)`
+- package: `esquemas_prod_restrita_20261020.zip`
 - nota_tecnica:
-  `Leiaute NFS-e 1.01 (grupos IBSCBS da RTC, NT SE/CGNFS-e 004) + CNC, substituindo o leiaute 1.00 nesta pasta (um leiaute por pasta, como NF-e/CT-e/MDF-e); a NT SE/CGNFS-e 004 mantém os dois leiautes válidos e um documento 1.00 segue legível pelos bindings 1.01.`
-- published_at: `2026-02-09`
+  `NT SE/CGNFS-e 009 v1.01 (Anexo VI leiaute 1.04.01, schema 1.02): RTC IBS/CBS, finNFSe at infDPS, cServ order and Simples Nacional fields. Supersedes the 2026-02-09 package in this folder.`
+- published_at: `2026-10-20`
 - source_url:
-  `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/nfse-esquemas_xsd-v1-01-20260209.zip`
+  `https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/producao-restrita/esquemas_prod_restrita_20261020.zip`
 
 ## gnre (v2_0)
 

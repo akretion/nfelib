@@ -1441,15 +1441,17 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 											<xs:documentation>Forma de emissão do CT-e </xs:documentation>
 											<xs:documentation>Preencher com:
 1 - Normal;
-3 - Regime Especial NFF;  
-4 - EPEC pela SVC; 
-7 - Autorização pela SVC-RS;
+2 - Contingência Offline
+3 - Regime Especial NFF
+4 - EPEC - Em desativação
+7 - Autorização pela SVC-RS
 8 - Autorização pela SVC-SP</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:whiteSpace value="preserve"/>
 												<xs:enumeration value="1"/>
+												<xs:enumeration value="2"/>
 												<xs:enumeration value="3"/>
 												<xs:enumeration value="4"/>
 												<xs:enumeration value="7"/>
@@ -2211,7 +2213,12 @@ Informar os zeros não significativos.</xs:documentation>
 									<xs:element name="vPrest" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valorl da Prestação do Serviço</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o CT-e for de complemento de ICMS</xs:documentation>
+											<xs:documentation>Observação: A partir 2027, os valores de IBS e CBS compõem o Valor da Prestação </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vPrestLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Líquido da Prestação SEM tributos</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="vRec" type="TDec_1302">
@@ -2244,6 +2251,11 @@ Informar os zeros não significativos.</xs:documentation>
 												</xs:element>
 											</xs:sequence>
 										</xs:complexType>
+									</xs:element>
+									<xs:element name="IBSCBS" type="TTribCTe" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Grupo de informações do IBS e CBS</xs:documentation>
+										</xs:annotation>
 									</xs:element>
 									<xs:choice>
 										<xs:element name="infNFe" maxOccurs="unbounded">
@@ -2567,11 +2579,6 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
-									<xs:element name="IBSCBS" type="TTribCTe" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Grupo de informações do IBS e CBS</xs:documentation>
-										</xs:annotation>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -2606,7 +2613,11 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 									<xs:element name="vTPrest" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valor Total da Prestação do Serviço</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o CT-e for de complemento de ICMS</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vTPrestLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Total Líquido da Prestação do Serviço sem tributos</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="vTRec" type="TDec_1302">
@@ -2614,10 +2625,14 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 											<xs:documentation>Valor total a Receber</xs:documentation>
 										</xs:annotation>
 									</xs:element>
+									<xs:element name="IBSCBSTot" type="TIBSCBSTot" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Total de IBS e CBS</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
 										<xs:annotation>
-											<xs:documentation>Valor total do documento fiscal 
-(vTPrest + total do IBS + total da CBS) 
+											<xs:documentation>Valor total do documento fiscal (vTPrest) 
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -2857,18 +2872,21 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 										<xs:annotation>
 											<xs:documentation>Forma de emissão do CT-e </xs:documentation>
 											<xs:documentation>Preencher com:
-1 - Normal;
- 3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;
-	7 - Autorização pela SVC-RS;
-  8 - Autorização pela SVC-SP</xs:documentation>
+1 - Normal
+2 - Contingencia OffLine
+4 - EPEC - Em desativação
+3 - Regime Especial NFF
+7 - Autorização pela SVC-RS
+8 - Autorização pela SVC-SP
+</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:whiteSpace value="preserve"/>
 												<xs:enumeration value="1"/>
+												<xs:enumeration value="2"/>
 												<xs:enumeration value="3"/>
 												<xs:enumeration value="4"/>
-												<xs:enumeration value="5"/>
 												<xs:enumeration value="7"/>
 												<xs:enumeration value="8"/>
 											</xs:restriction>
@@ -4011,7 +4029,12 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 									<xs:element name="vTPrest" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valor Total da Prestação do Serviço</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o CT-e for de complemento de ICMS</xs:documentation>
+											<xs:documentation>Observação: A partir 2027, os valores de IBS e CBS compõem o Valor Total da Prestação </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vTPrestLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Líquido da Prestação SEM tributos </xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="vRec" type="TDec_1302">
@@ -4133,8 +4156,7 @@ Usar com série específica 920-969 para emitente pessoa física com inscrição
 									</xs:element>
 									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
 										<xs:annotation>
-											<xs:documentation>Valor total do documento fiscal 
-(vTPrest + total do IBS + total da CBS) 
+											<xs:documentation>Valor total do documento fiscal (vTPrest) 
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -5206,15 +5228,15 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 											<xs:documentation>Forma de emissão do CT-e</xs:documentation>
 											<xs:documentation>Preencher com:
 1 - Normal;
- 5 - Contingência FSDA;
+2 - Contingência Offline;
 7 - Autorização pela SVC-RS;
- 8 - Autorização pela SVC-SP</xs:documentation>
+8 - Autorização pela SVC-SP</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:whiteSpace value="preserve"/>
 												<xs:enumeration value="1"/>
-												<xs:enumeration value="5"/>
+												<xs:enumeration value="2"/>
 												<xs:enumeration value="7"/>
 												<xs:enumeration value="8"/>
 											</xs:restriction>
@@ -5741,7 +5763,12 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 									<xs:element name="vTPrest" type="TDec_1302">
 										<xs:annotation>
 											<xs:documentation>Valor Total da Prestação do Serviço</xs:documentation>
-											<xs:documentation>Pode conter zeros quando o CT-e for de complemento de ICMS</xs:documentation>
+											<xs:documentation>Observação: A partir 2027, os valores de IBS e CBS compõem o Valor Total da Prestação </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vTPrestLiq" type="TDec_1302" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Valor Líquido da Prestação SEM tributos </xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="vRec" type="TDec_1302">
@@ -5898,8 +5925,7 @@ REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc</xs:documentation>
 									</xs:element>
 									<xs:element name="vTotDFe" type="TDec_1302" minOccurs="0">
 										<xs:annotation>
-											<xs:documentation>Valor total do documento fiscal 
-(vTPrest + total do IBS + total da CBS) 
+											<xs:documentation>Valor total do documento fiscal (vTPrest) 
 </xs:documentation>
 										</xs:annotation>
 									</xs:element>
@@ -6998,6 +7024,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7047,6 +7074,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7115,6 +7143,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7184,6 +7213,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7248,6 +7278,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7283,6 +7314,24 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:enumeration value="1"/>
 								</xs:restriction>
 							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gICMSPrevistoPagtoAntecip">
+				<xs:annotation>
+					<xs:documentation>Grupo utilizado exclusivamente na determinação da BC de IBS e CBS em cenários específicos de pagamento antecipado</xs:documentation>
+					<xs:documentation>informar nas hipóteses: 
+  - tpPagAnt = 1 - Pagamento Antecipado   
+  - tpOperGov = 4-Recebimento do pagamento com fornecimento posterior. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vICMSPrevisto" type="TDec_1302">
+							<xs:annotation>
+								<xs:documentation>Valor do ICMS a incidir no momento do fornecimento futuro. 
+Observação: Em cenários onde não há valor de ICMS devido, informar 0. </xs:documentation>
+							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
@@ -7387,6 +7436,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7436,6 +7486,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7505,6 +7556,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7569,6 +7621,7 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:restriction base="TString">
 										<xs:whiteSpace value="preserve"/>
 										<xs:maxLength value="10"/>
+										<xs:pattern value="[!-ÿ]{8}|[!-ÿ]{10}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -7604,6 +7657,24 @@ Somente para Transporte de Valores</xs:documentation>
 									<xs:enumeration value="1"/>
 								</xs:restriction>
 							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gICMSPrevistoPagtoAntecip">
+				<xs:annotation>
+					<xs:documentation>Grupo utilizado exclusivamente na determinação da BC de IBS e CBS em cenários específicos de pagamento antecipado</xs:documentation>
+					<xs:documentation>informar nas hipóteses: 
+  - tpPagAnt = 1 - Pagamento Antecipado   
+  - tpOperGov = 4-Recebimento do pagamento com fornecimento posterior. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vICMSPrevisto" type="TDec_1302">
+							<xs:annotation>
+								<xs:documentation>Valor do ICMS a incidir no momento do fornecimento futuro. 
+Observação: Em cenários onde não há valor de ICMS devido, informar 0. </xs:documentation>
+							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>

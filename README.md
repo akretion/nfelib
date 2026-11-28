@@ -23,7 +23,7 @@ print:
 | Document | Parse / build / sign / validate | Transmission | PDF |
 |----------|---------------------------------|--------------|-----|
 | **NF-e / NFC-e** (invoices) | yes | SOAP: authorize, cancel, CC-e, inutilização, consultation, MD-e events, DistDFe | DANFE |
-| **CT-e** (freight) | yes | SOAP: authorize (synchronous) | DACTE |
+| **CT-e** (freight) | yes | SOAP: authorize (synchronous), DistDFe | DACTE |
 | **MDF-e** (manifest) | yes | SOAP: authorize (synchronous), cancel, encerramento, consultation | DAMDFE |
 | **NFS-e** (national standard) | yes | REST: DPS submission, NFS-e and event consultation, cancelling | DANFSE |
 | **NF3e / NFCom** (energy / telecom) | yes | — | — |
@@ -195,6 +195,10 @@ ret = client.consulta_nfse(chave)              # GET /nfse/{chaveAcesso}
 ret = client.consulta_dps(dps_id)              # GET /dps/{id}
 ret = client.cancela_documento(chave, evento)  # POST /nfse/{chaveAcesso}/eventos
 ret = client.consulta_evento(chave, tipo_evento, num_seq)
+
+# Distribution uses the ADN root, not the /contribuinte emission prefix.
+ret = client.consulta_dfe(0, cnpj="12345678000199")  # GET /contribuintes/DFe/{nsu}
+ret = client.consulta_eventos(chave)  # GET /contribuintes/NFSe/{chave}/Eventos
 ```
 
 The certificate may be given as raw PFX bytes, base64 text (like an Odoo
@@ -247,10 +251,10 @@ Support status (**BETA**, API may change):
 | CT-e | yes (synchronous) | not yet |
 | MDF-e | yes (synchronous) | cancel, encerramento |
 
-The same clients power the DF-e distribution service (`NFeDistribuicaoDFe`,
-polling the documents sent to your CNPJ) and the Manifestacao do Destinatario
-events used by the [OCA/l10n-brazil](https://github.com/OCA/l10n-brazil)
-localization for Odoo.
+The same clients power the DF-e distribution services (`NFeDistribuicaoDFe` and
+`CTeDistribuicaoDFe`, polling the documents sent to your CNPJ) and the
+Manifestacao do Destinatario events used by the
+[OCA/l10n-brazil](https://github.com/OCA/l10n-brazil) localization for Odoo.
 
 Because the bindings, signing and transmission are all pure Python and
 serializable, nfelib can also be embedded behind a REST API (FastAPI, Odoo...)

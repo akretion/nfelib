@@ -33,8 +33,8 @@
 			</locPrest>
 			<cServ>
 				<cTribNac>010101</cTribNac>
-				<xDescServ>Teste de NF Nacional com imposto</xDescServ>
 				<cNBS>111111111</cNBS>
+				<xDescServ>Teste de NF Nacional com imposto</xDescServ>
 			</cServ>
 		</serv>
 		<valores>

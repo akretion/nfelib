@@ -56,7 +56,12 @@ def test_init_all():
                         for cls in classes:
                             if (
                                 cls.__name__
-                                in ("XmlDateTime", "XmlDate", "MixedContainer")
+                                in (
+                                    "XmlDateTime",
+                                    "XmlDate",
+                                    "XmlTime",
+                                    "MixedContainer",
+                                )
                                 or "FixedOffsetTZ" in cls.__name__
                             ):
                                 continue

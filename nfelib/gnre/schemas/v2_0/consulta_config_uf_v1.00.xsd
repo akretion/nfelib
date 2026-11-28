@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.gnre.pe.gov.br"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.gnre.pe.gov.br">
+	<include schemaLocation="tiposBasicoGNRE_v1.00.xsd"></include>
+	<simpleType name="TReceita">
+		<restriction base="string">
+			<pattern value="[0-9]{6}"></pattern>
+		</restriction>
+	</simpleType>
+	<element name="TConsultaConfigUf">
+		<complexType>
+			<sequence>
+				<element name="ambiente" maxOccurs="1" minOccurs="1">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="1"></enumeration>
+							<enumeration value="2"></enumeration>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="uf" type="tns:TUf" maxOccurs="1" minOccurs="1"></element>
+				<element name="receita" maxOccurs="1" minOccurs="0">
+					<complexType>
+						<simpleContent>
+							<extension base="tns:TReceita">
+								<attribute name="courier" type="tns:TSimNao" use="optional"/>
+							</extension>
+						</simpleContent>
+					</complexType>
+				</element>
+				<element name="tiposGnre" type="tns:TSimNao" minOccurs="0" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

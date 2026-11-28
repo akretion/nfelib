@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.gnre.pe.gov.br" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://www.gnre.pe.gov.br" >
+    <xs:element name="TResultLote_GNRE">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="ambiente" maxOccurs="1" minOccurs="1">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="1"></xs:enumeration>
+    						<xs:enumeration value="2"></xs:enumeration>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="numeroRecibo" minOccurs="0">
+    				<xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:pattern value="[0-9]{10}"></xs:pattern>
+    					</xs:restriction>
+    				</xs:simpleType>
+    			</xs:element>
+    			<xs:element name="situacaoProcess" maxOccurs="1" minOccurs="1">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="codigo" maxOccurs="1" minOccurs="1">
+    							<xs:simpleType>
+    								<xs:restriction base="xs:string">
+    									<xs:pattern
+    										value="[1-9][0-9]{2}">
+    									</xs:pattern>
+    								</xs:restriction>
+    							</xs:simpleType>
+    						</xs:element>
+    						<xs:element name="descricao" maxOccurs="1" minOccurs="1">
+    							<xs:simpleType>
+    								<xs:restriction base="xs:string">
+    									<xs:maxLength value="255"></xs:maxLength>
+    								</xs:restriction>
+    							</xs:simpleType>
+    						</xs:element>
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="resultado" maxOccurs="1" minOccurs="0" type="xs:string" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>
